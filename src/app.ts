@@ -12,15 +12,36 @@ config();
 
 import * as express from "express";
 import { getRoutes } from "./routes";
+import { PrismaClient } from "@prisma/client";
 
 const app = express();
 
+app.use(express.json());
+
 const port = process.env.PORT || 3000;
+
+const prisma = new PrismaClient();
 
 (async () => {
   const routes = await getRoutes();
   for (const route of Object.keys(routes)) {
-    app.all(route, routes[route]);
+    app.all(route, async (req, res) => {
+      try {
+        if (routes[route].constructor.name === "AsyncFunction") {
+          await routes[route](req, res);
+        } else {
+          routes[route](req, res);
+        }
+      } catch (e) {
+        res
+          .status(500)
+          .json({
+            error: e.message,
+            code: 500,
+          })
+          .end();
+      }
+    });
   }
 
   app.all("*", (req, res) => {

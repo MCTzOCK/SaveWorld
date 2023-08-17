@@ -28,6 +28,7 @@ export async function getRoutes() {
       if (mod.default) {
         let d = directory
           .replace(path.join(__dirname, "routes"), "")
+          .replaceAll("\\", "/")
           .replace(".ts", "")
           .replace("index", "");
 
