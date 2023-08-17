@@ -20,8 +20,6 @@ app.use(express.json());
 
 const port = process.env.PORT || 3000;
 
-const prisma = new PrismaClient();
-
 (async () => {
   const routes = await getRoutes();
   for (const route of Object.keys(routes)) {
