@@ -1,0 +1,42 @@
+/**
+ * src/app.ts
+ *
+ * Author: Ben Siebert <hello@ben-siebert.de>
+ * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
+ * License: Project License
+ * Created At: 17.08.23
+ *
+ */
+import { config } from "dotenv";
+config();
+
+import * as express from "express";
+import { getRoutes } from "./routes";
+
+const app = express();
+
+const port = process.env.PORT || 3000;
+
+(async () => {
+  const routes = await getRoutes();
+  for (const route of Object.keys(routes)) {
+    app.all(route, routes[route]);
+  }
+
+  app.all("*", (req, res) => {
+    res
+      .status(404)
+      .json({
+        error: "Not Found",
+        code: 404,
+      })
+      .end();
+  });
+
+  console.log("Registered Routes:");
+  console.table(Object.keys(routes));
+
+  app.listen(port, () => {
+    console.log(`App listening on port ${port}`);
+  });
+})();
