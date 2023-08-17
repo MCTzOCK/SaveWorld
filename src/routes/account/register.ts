@@ -9,7 +9,7 @@
  */
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
-import * as crypto from "crypto";
+import * as crypto from "node:crypto";
 import { getTransport } from "../../util/transport";
 
 export default async function (req: Request, res: Response) {
@@ -29,7 +29,7 @@ export default async function (req: Request, res: Response) {
   const user = await prisma.user.create({
     data: {
       username,
-      password,
+      password: crypto.createHash("sha512").update(password).digest("hex"),
       email,
       firstName,
       lastName,
