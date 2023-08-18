@@ -1,0 +1,7 @@
+{
+  "name": "2024_saveworld_mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
