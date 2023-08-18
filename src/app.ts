@@ -35,7 +35,7 @@ const port = process.env.PORT || 3000;
           .status(500)
           .json({
             error: e.message,
-            code: 500,
+            status: 500,
           })
           .end();
       }

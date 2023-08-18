@@ -1,5 +1,5 @@
 /**
- * src/routes/account/verify.ts
+ * src/routes/account/activate.ts
  *
  * Author: Ben Siebert <hello@ben-siebert.de>
  * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.

@@ -47,7 +47,7 @@ export default async function (req: Request, res: Response) {
       req.protocol
     }://${req.get("host")}${
       req.get("host").endsWith("/") ? "" : "/"
-    }account/verify?token=${activationToken}`,
+    }account/activate?token=${activationToken}`,
   });
 
   if (!user) {
