@@ -45,6 +45,6 @@ export default async function (req: Request, res: Response) {
 
   res.status(200).json({
     status: 200,
-    message: "Your account has been verified.",
+    message: "Account activated successfully",
   });
 }
