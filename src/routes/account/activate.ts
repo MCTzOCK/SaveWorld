@@ -8,7 +8,7 @@
  *
  */
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../../db";
 
 export default async function (req: Request, res: Response) {
   if (req.method !== "GET") {
@@ -20,8 +20,6 @@ export default async function (req: Request, res: Response) {
   if (!token) {
     throw new Error("Missing parameters");
   }
-
-  const prisma = new PrismaClient();
 
   const user = await prisma.user.findFirst({
     where: {

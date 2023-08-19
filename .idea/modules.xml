@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../2024_saveworld_mobile/.idea/2024_saveworld_mobile.iml" filepath="$PROJECT_DIR$/../2024_saveworld_mobile/.idea/2024_saveworld_mobile.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../2024_saveworld_mobile_ionic/.idea/2024_saveworld_mobile_ionic.iml" filepath="$PROJECT_DIR$/../2024_saveworld_mobile_ionic/.idea/2024_saveworld_mobile_ionic.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/backend.iml" filepath="$PROJECT_DIR$/.idea/backend.iml" />
     </modules>
   </component>

@@ -10,10 +10,9 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import * as jwt from "jsonwebtoken";
+import { prisma } from "../db";
 
 export async function isAuthenticated(req: Request, res: Response) {
-  const prisma = new PrismaClient();
-
   let token = req.headers["x-auth"];
 
   if (!token) {

@@ -8,9 +8,9 @@
  *
  */
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
 import * as crypto from "node:crypto";
 import { getTransport } from "../../util/transport";
+import { prisma } from "../../db";
 
 export default async function (req: Request, res: Response) {
   if (req.method !== "POST") {
@@ -22,7 +22,6 @@ export default async function (req: Request, res: Response) {
   if (!username || !password || !email || !firstName || !lastName) {
     throw new Error("Missing parameters");
   }
-  const prisma = new PrismaClient();
 
   const activationToken = crypto.randomBytes(64).toString("hex");
 

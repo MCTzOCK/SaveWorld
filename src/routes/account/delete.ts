@@ -10,7 +10,7 @@
 
 import { Request, Response } from "express";
 import { isAuthenticated } from "../../util/isAuthenticated";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../../db";
 
 export default async function (req: Request, res: Response) {
   if (req.method !== "DELETE") {
@@ -18,8 +18,6 @@ export default async function (req: Request, res: Response) {
   }
 
   const { auth, user } = await isAuthenticated(req, res);
-
-  const prisma = new PrismaClient();
 
   if (!auth || !user) {
     res.status(401).send("Unauthorized");

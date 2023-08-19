@@ -10,7 +10,7 @@
 
 import { Request, Response } from "express";
 import { isAuthenticated } from "../../util/isAuthenticated";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../../db";
 
 export default async function (req: Request, res: Response) {
   if (req.method !== "GET") {
@@ -22,8 +22,6 @@ export default async function (req: Request, res: Response) {
   if (!auth) {
     throw new Error("Not authenticated");
   }
-
-  const prisma = new PrismaClient();
 
   const pUser = await prisma.user.findFirst({
     where: {

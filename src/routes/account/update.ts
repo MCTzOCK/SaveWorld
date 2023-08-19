@@ -8,11 +8,11 @@
  *
  */
 
-import { Response, Request } from "express";
-import { PrismaClient } from "@prisma/client";
+import { Request, Response } from "express";
 import { isAuthenticated } from "../../util/isAuthenticated";
 import { createHash } from "node:crypto";
 import { authenticator } from "otplib";
+import { prisma } from "../../db";
 
 export default async function (req: Request, res: Response) {
   if (req.method !== "POST") throw new Error("Method not allowed");
@@ -22,8 +22,6 @@ export default async function (req: Request, res: Response) {
   if (!auth) {
     throw new Error("Not authenticated");
   }
-
-  const prisma = new PrismaClient();
 
   const { update, totpCode } = req.body;
 

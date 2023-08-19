@@ -8,15 +8,13 @@
  *
  */
 
-import { Response, Request } from "express";
-import { PrismaClient } from "@prisma/client";
+import { Request, Response } from "express";
 import { createHash } from "node:crypto";
 import * as jwt from "jsonwebtoken";
 import { authenticator } from "otplib";
+import { prisma } from "../../db";
 
 export default async function (req: Request, res: Response) {
-  const prisma = new PrismaClient();
-
   const { email, password, totpCode } = req.body;
 
   if (!email || !password) {
@@ -31,6 +29,10 @@ export default async function (req: Request, res: Response) {
 
   if (user == null) {
     throw new Error("User not found");
+  }
+
+  if (!user.active) {
+    throw new Error("User not activated");
   }
 
   if (createHash("sha512").update(password).digest("hex") !== user.password) {

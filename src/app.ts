@@ -13,10 +13,14 @@ config();
 import * as express from "express";
 import { getRoutes } from "./routes";
 import { PrismaClient } from "@prisma/client";
+import * as cors from "cors";
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
+
+const prisma = new PrismaClient();
 
 const port = process.env.PORT || 3000;
 
