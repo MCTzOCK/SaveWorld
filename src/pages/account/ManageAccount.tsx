@@ -15,11 +15,9 @@ import {
   IonButton,
   IonInput,
   IonItem,
-  IonLabel,
   IonList,
   IonSpinner,
   IonText,
-  IonTitle,
   useIonRouter,
 } from "@ionic/react";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
@@ -129,6 +127,59 @@ export default function ManageAccount() {
                   </IonButton>
                 </IonItem>
               </form>
+            </IonList>
+            <IonList inset>
+              <IonText>Passwort ändern</IonText>
+            </IonList>
+            <IonList inset>
+              <IonItem color={"light"}>
+                <IonInput
+                  labelPlacement={"fixed"}
+                  label={"Neues Passwort"}
+                  type={"password"}
+                  id={"acc_change_pass"}
+                />
+              </IonItem>
+              <IonItem color={"light"}>
+                <IonInput
+                  labelPlacement={"fixed"}
+                  label={"Bestätigen"}
+                  type={"password"}
+                  id={"acc_change_pass_conf"}
+                />
+              </IonItem>
+              <IonItem
+                color={"light"}
+                onClick={async () => {
+                  const pass = (
+                    document.getElementById("acc_change_pass") as any
+                  ).value;
+                  const passConf = (
+                    document.getElementById("acc_change_pass_conf") as any
+                  ).value;
+
+                  if (pass !== passConf || pass === "" || passConf === "") {
+                    alert("Passwörter stimmen nicht überein!");
+                    return;
+                  }
+
+                  const res = await REST.Account.update(
+                    localStorage.getItem("token") as string,
+                    {
+                      password: pass,
+                    },
+                  );
+
+                  if (res.status === 200) {
+                    alert("Erfolgreich gespeichert!");
+                    window.location.reload();
+                  } else {
+                    alert("Fehler beim Speichern: " + res.payload.error);
+                  }
+                }}
+              >
+                <IonText color={"primary"}>Speichern</IonText>
+              </IonItem>
             </IonList>
             <IonList inset>
               <IonText>Destruktive Aktionen</IonText>
