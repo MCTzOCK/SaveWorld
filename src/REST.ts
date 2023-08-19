@@ -78,5 +78,12 @@ export class REST {
         },
       });
     },
+    delete: async (token: string) => {
+      return await makeRequest({
+        path: ENDPOINT + "/account/delete",
+        method: "DELETE",
+        token: token,
+      });
+    },
   };
 }

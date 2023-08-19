@@ -20,6 +20,7 @@ import {
   IonSpinner,
   IonText,
   IonTitle,
+  useIonRouter,
 } from "@ionic/react";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
 import { REST } from "../../REST";
@@ -28,6 +29,8 @@ export default function ManageAccount() {
   const { loggedIn, loaded, userInfo } = useUserData();
 
   useRedirectForAnon();
+
+  const router = useIonRouter();
 
   return (
     <>
@@ -126,6 +129,53 @@ export default function ManageAccount() {
                   </IonButton>
                 </IonItem>
               </form>
+            </IonList>
+            <IonList inset>
+              <IonText>Destruktive Aktionen</IonText>
+            </IonList>
+            <IonList inset>
+              <IonItem
+                color={"light"}
+                detail
+                onClick={() => {
+                  if (
+                    !confirm("Bist du sicher, dass du dich abmelden möchtest?")
+                  )
+                    return;
+                  localStorage.removeItem("token");
+                  window.location.assign("/register");
+                }}
+              >
+                <IonText color={"danger"}>Abmelden</IonText>
+              </IonItem>
+              <IonItem
+                color={"light"}
+                detail
+                onClick={async () => {
+                  if (
+                    !confirm(
+                      "Bist du sicher, dass du dein Konto löschen möchtest?",
+                    )
+                  )
+                    return;
+
+                  const res = await REST.Account.delete(
+                    localStorage.getItem("token") as string,
+                  );
+
+                  if (res.status === 200) {
+                    localStorage.removeItem("token");
+                    window.location.assign("/register");
+                  } else {
+                    alert(
+                      "Fehler beim Löschen, bitte kontaktiere den Support: " +
+                        res.payload.error,
+                    );
+                  }
+                }}
+              >
+                <IonText color={"danger"}>Konto löschen</IonText>
+              </IonItem>
             </IonList>
           </>
         )}
