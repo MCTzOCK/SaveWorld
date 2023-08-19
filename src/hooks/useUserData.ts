@@ -20,6 +20,7 @@ export function useUserData(): {
     lastName: string;
     totpActive: boolean;
     admin: boolean;
+    username: string;
   };
 } {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -27,6 +28,7 @@ export function useUserData(): {
   const [userInfo, setUserInfo] = useState({
     id: "",
     email: "",
+    username: "",
     firstName: "",
     lastName: "",
     totpActive: false,

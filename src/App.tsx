@@ -11,7 +11,7 @@ import {
   useIonRouter,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { home, homeSharp, person, personSharp, triangle } from "ionicons/icons";
+import { home, homeSharp, person, personSharp } from "ionicons/icons";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -34,8 +34,6 @@ import "./theme/variables.css";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import { useUserData } from "./hooks/useUserData";
-import { useEffect } from "react";
-import { Redirect } from "react-router";
 import Onboarding from "./pages/Onboarding";
 import ManageAccount from "./pages/account/ManageAccount";
 
@@ -62,12 +60,28 @@ export default function App() {
               <ManageAccount />
             </Route>
           </IonRouterOutlet>
-          <IonTabBar slot="bottom">
-            <IonTabButton tab="onboarding" href="/" disabled={!loggedIn}>
+          <IonTabBar
+            slot="bottom"
+            style={{
+              "--background": "transparent",
+              "--border": "0px solid transparent",
+            }}
+          >
+            <IonTabButton
+              tab="onboarding"
+              href="/"
+              disabled={!loggedIn}
+              selected={false}
+            >
               <IonIcon aria-hidden="true" ios={home} md={homeSharp} />
               <IonLabel>Home</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="account" href="/account" disabled={!loggedIn}>
+            <IonTabButton
+              tab="account"
+              href="/account"
+              disabled={!loggedIn}
+              selected={false}
+            >
               <IonIcon aria-hidden="true" ios={person} md={personSharp} />
               <IonLabel>Konto</IonLabel>
             </IonTabButton>

@@ -49,5 +49,34 @@ export class REST {
         token: token,
       });
     },
+    update: async (
+      token: string,
+      options: {
+        mail?: string;
+        password?: string;
+        username?: string;
+        firstName?: string;
+        lastName?: string;
+        totpActive?: boolean;
+        totpCode?: string;
+      },
+    ) => {
+      return await makeRequest({
+        path: ENDPOINT + "/account/update",
+        method: "POST",
+        token: token,
+        body: {
+          update: {
+            email: options.mail,
+            password: options.password,
+            username: options.username,
+            firstName: options.firstName,
+            lastName: options.lastName,
+            totpActive: options.totpActive,
+          },
+          totpCode: options.totpCode,
+        },
+      });
+    },
   };
 }
