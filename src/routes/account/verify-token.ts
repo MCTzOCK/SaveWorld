@@ -42,6 +42,7 @@ export default async function (req: Request, res: Response) {
       lastName: pUser.lastName,
       totpActive: !!pUser.totpSecret,
       admin: pUser.admin,
+      username: pUser.username,
     },
   });
 }

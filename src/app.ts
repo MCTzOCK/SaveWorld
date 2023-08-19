@@ -14,6 +14,7 @@ import * as express from "express";
 import { getRoutes } from "./routes";
 import { PrismaClient } from "@prisma/client";
 import * as cors from "cors";
+import * as chalk from "chalk";
 
 const app = express();
 
@@ -29,6 +30,11 @@ const port = process.env.PORT || 3000;
   for (const route of Object.keys(routes)) {
     app.all(route, async (req, res) => {
       try {
+        console.log(
+          `${new Date().toLocaleString()} [${chalk.red(
+            req.method,
+          )}] ${chalk.red(req.path)}`,
+        );
         if (routes[route].constructor.name === "AsyncFunction") {
           await routes[route](req, res);
         } else {
