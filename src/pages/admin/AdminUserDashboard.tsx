@@ -136,7 +136,7 @@ export default function AdminUserDashboard() {
                         email: mail,
                         firstName: firstName,
                         lastName: lastName,
-                        password: password,
+                        password: password === "" ? undefined : password,
                         active: active,
                         admin: admin,
                       },
