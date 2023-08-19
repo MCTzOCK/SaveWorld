@@ -30,6 +30,8 @@ import {
   personSharp,
   videocam,
   videocamSharp,
+  warning,
+  warningSharp,
 } from "ionicons/icons";
 import { useUserData } from "../hooks/useUserData";
 import { useEffect } from "react";
@@ -37,6 +39,7 @@ import Page from "../components/Page";
 import { useRedirectForAnon } from "../hooks/useRedirectForAnon";
 
 export default function Onboarding() {
+  const { userInfo } = useUserData();
   useRedirectForAnon();
 
   return (
@@ -72,6 +75,17 @@ export default function Onboarding() {
                 <IonIcon ios={people} md={peopleSharp} slot={"start"} />
                 Community
               </IonItem>
+              {userInfo.admin && (
+                <IonItem detail routerLink={"/admin"}>
+                  <IonIcon
+                    color={"danger"}
+                    slot={"start"}
+                    ios={warning}
+                    md={warningSharp}
+                  />
+                  <IonText color={"danger"}>Admin-Panel</IonText>
+                </IonItem>
+              )}
             </IonList>
           </IonCardContent>
         </IonCard>

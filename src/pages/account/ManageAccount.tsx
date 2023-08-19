@@ -13,8 +13,10 @@ import Page from "../../components/Page";
 import { useUserData } from "../../hooks/useUserData";
 import {
   IonButton,
+  IonIcon,
   IonInput,
   IonItem,
+  IonLabel,
   IonList,
   IonSpinner,
   IonText,
@@ -22,6 +24,7 @@ import {
 } from "@ionic/react";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
 import { REST } from "../../REST";
+import { warning, warningSharp } from "ionicons/icons";
 
 export default function ManageAccount() {
   const { loggedIn, loaded, userInfo } = useUserData();
@@ -182,6 +185,59 @@ export default function ManageAccount() {
               </IonItem>
             </IonList>
             <IonList inset>
+              <IonText>Zwei Faktor Authentifizierung</IonText>
+            </IonList>
+            <IonList inset>
+              <IonItem
+                color={"light"}
+                detail
+                onClick={async () => {
+                  if (!userInfo.totpActive) {
+                    const res = await REST.Account.update(
+                      localStorage.getItem("token") as string,
+                      {
+                        totpActive: true,
+                      },
+                    );
+
+                    if (res.status === 200) {
+                      alert("Erfolgreich aktiviert!");
+                      prompt(
+                        "Trage den Code in deiner App ein:",
+                        res.payload.totpSecret,
+                      );
+                      window.location.reload();
+                    } else {
+                      alert("Fehler beim Aktivieren: " + res.payload.error);
+                    }
+                  } else {
+                    const code = prompt("Bitte 2FA Code eingeben:");
+
+                    if (!code) return;
+
+                    const res = await REST.Account.update(
+                      localStorage.getItem("token") as string,
+                      {
+                        totpCode: code,
+                        totpActive: false,
+                      },
+                    );
+
+                    if (res.status === 200) {
+                      alert("Erfolgreich deaktiviert!");
+                      window.location.reload();
+                    } else {
+                      alert("Fehler beim Deaktivieren: " + res.payload.error);
+                    }
+                  }
+                }}
+              >
+                <IonLabel color={userInfo.totpActive ? "danger" : "success"}>
+                  {userInfo.totpActive ? "Deaktivieren" : "Aktivieren"}
+                </IonLabel>
+              </IonItem>
+            </IonList>
+            <IonList inset>
               <IonText>Destruktive Aktionen</IonText>
             </IonList>
             <IonList inset>
@@ -227,6 +283,18 @@ export default function ManageAccount() {
               >
                 <IonText color={"danger"}>Konto löschen</IonText>
               </IonItem>
+
+              {userInfo.admin && (
+                <IonItem color={"light"} detail routerLink={"/admin"}>
+                  <IonIcon
+                    color={"danger"}
+                    slot={"start"}
+                    ios={warning}
+                    md={warningSharp}
+                  />
+                  <IonText color={"danger"}>Admin-Panel</IonText>
+                </IonItem>
+              )}
             </IonList>
           </>
         )}

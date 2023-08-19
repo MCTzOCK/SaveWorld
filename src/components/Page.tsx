@@ -17,8 +17,17 @@ export default function Page(props: {
 }) {
   return (
     <>
-      <IonPage>
-        <IonContent fullscreen>
+      <IonPage
+        style={{
+          overflow: "hidden",
+        }}
+      >
+        <IonContent
+          fullscreen
+          style={{
+            overflow: "hidden",
+          }}
+        >
           <div
             style={{
               position: "fixed",
@@ -60,6 +69,8 @@ export default function Page(props: {
               left: "4%",
               width: "92%",
               height: "fit-content",
+              maxHeight: "75%",
+              overflow: "scroll",
             }}
           >
             {props.children}

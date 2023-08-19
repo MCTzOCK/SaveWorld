@@ -38,7 +38,21 @@ export default function Login() {
               localStorage.setItem("token", res.payload.token);
               router.push("/", "none", "replace");
             } else {
-              alert("Fehler beim anmelden: " + res.payload.error);
+              if (res.payload.error === "TOTP Code incorrect") {
+                const code = prompt("Bitte gebe den 2FA Code ein");
+
+                if (!code) return;
+                const resp = await REST.Account.login(mail, pass, code);
+
+                if (resp.status === 200) {
+                  localStorage.setItem("token", resp.payload.token);
+                  router.push("/", "none", "replace");
+                } else {
+                  alert("Fehler beim anmelden: " + resp.payload.error);
+                }
+              } else {
+                alert("Fehler beim anmelden: " + res.payload.error);
+              }
             }
           }}
         >
