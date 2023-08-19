@@ -37,6 +37,7 @@ import { useUserData } from "./hooks/useUserData";
 import { useEffect } from "react";
 import { Redirect } from "react-router";
 import Onboarding from "./pages/Onboarding";
+import ManageAccount from "./pages/account/ManageAccount";
 
 setupIonicReact();
 
@@ -57,9 +58,12 @@ export default function App() {
             <Route exact path="/">
               <Onboarding />
             </Route>
+            <Route exact path="/account">
+              <ManageAccount />
+            </Route>
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
-            <IonTabButton tab="home" href="/home" disabled={!loggedIn}>
+            <IonTabButton tab="onboarding" href="/" disabled={!loggedIn}>
               <IonIcon aria-hidden="true" ios={home} md={homeSharp} />
               <IonLabel>Home</IonLabel>
             </IonTabButton>

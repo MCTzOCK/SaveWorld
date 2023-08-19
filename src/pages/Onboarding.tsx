@@ -33,89 +33,49 @@ import {
 } from "ionicons/icons";
 import { useUserData } from "../hooks/useUserData";
 import { useEffect } from "react";
+import Page from "../components/Page";
+import { useRedirectForAnon } from "../hooks/useRedirectForAnon";
 
 export default function Onboarding() {
-  const router = useIonRouter();
-  const { loggedIn, loaded } = useUserData();
-
-  useEffect(() => {
-    if (loaded && router) {
-      if (!loggedIn) {
-        router.push("/register", "none", "replace");
-      }
-    }
-  }, [loaded, loggedIn, router]);
+  useRedirectForAnon();
 
   return (
     <>
-      <IonPage>
-        <IonContent fullscreen>
-          <div
-            style={{
-              position: "fixed",
-              top: "0",
-              left: 0,
-              width: "100%",
-              height: "100%",
-            }}
-          >
-            <div
+      <Page title={"SaveWorld"}>
+        <IonCard>
+          <IonCardHeader>
+            <IonCardTitle>SaveWorld</IonCardTitle>
+            <IonCardSubtitle>Verbesser die Welt</IonCardSubtitle>
+          </IonCardHeader>
+          <IonCardContent>
+            <IonText>
+              Willkommen bei SaveWorld! Hier kannst du die Welt verbessern!
+              Aktuell bietet die App dir folgende Funktionen:
+            </IonText>
+            <IonList
+              inset
               style={{
-                background: "linear-gradient(45deg, #8BFE6B 30%, #538EFF 90%)",
                 width: "100%",
-                height: "25%",
-                rotate: "180deg",
+                marginTop: "1.2rem",
+                margin: 0,
               }}
-            ></div>
-          </div>
-          <IonText
-            style={{
-              fontSize: "50px",
-              fontWeight: "bold",
-              position: "relative",
-              top: "15%",
-              left: "5%",
-            }}
-            color={"white"}
-          >
-            SaveWorld
-          </IonText>
-          <div
-            style={{
-              position: "relative",
-              top: "20%",
-              height: "fit-content",
-            }}
-          >
-            <IonCard>
-              <IonCardHeader>
-                <IonCardTitle>SaveWorld</IonCardTitle>
-                <IonCardSubtitle>Verbesser die Welt</IonCardSubtitle>
-              </IonCardHeader>
-              <IonCardContent>
-                <IonText>
-                  Willkommen bei SaveWorld! Hier kannst du die Welt verbessern!
-                  Aktuell bietet die App dir folgende Funktionen:
-                </IonText>
-                <IonList inset>
-                  <IonItem detail routerLink={"/account"}>
-                    <IonIcon ios={person} md={personSharp} slot={"start"} />
-                    Konto-Verwaltung
-                  </IonItem>
-                  <IonItem detail routerLink={"/videos"}>
-                    <IonIcon ios={videocam} md={videocamSharp} slot={"start"} />
-                    Lern-Videos
-                  </IonItem>
-                  <IonItem detail routerLink={"/community"}>
-                    <IonIcon ios={people} md={peopleSharp} slot={"start"} />
-                    Community
-                  </IonItem>
-                </IonList>
-              </IonCardContent>
-            </IonCard>
-          </div>
-        </IonContent>
-      </IonPage>
+            >
+              <IonItem detail routerLink={"/account"}>
+                <IonIcon ios={person} md={personSharp} slot={"start"} />
+                Konto-Verwaltung
+              </IonItem>
+              <IonItem detail routerLink={"/videos"}>
+                <IonIcon ios={videocam} md={videocamSharp} slot={"start"} />
+                Lern-Videos
+              </IonItem>
+              <IonItem detail routerLink={"/community"}>
+                <IonIcon ios={people} md={peopleSharp} slot={"start"} />
+                Community
+              </IonItem>
+            </IonList>
+          </IonCardContent>
+        </IonCard>
+      </Page>
     </>
   );
 }
