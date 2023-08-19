@@ -36,6 +36,9 @@ import Login from "./pages/Login";
 import { useUserData } from "./hooks/useUserData";
 import Onboarding from "./pages/Onboarding";
 import ManageAccount from "./pages/account/ManageAccount";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminUsersDashboard from "./pages/admin/AdminUsersDashboard";
+import AdminUserDashboard from "./pages/admin/AdminUserDashboard";
 
 setupIonicReact();
 
@@ -58,6 +61,15 @@ export default function App() {
             </Route>
             <Route exact path="/account">
               <ManageAccount />
+            </Route>
+            <Route exact path="/admin">
+              <AdminDashboard />
+            </Route>
+            <Route exact path="/admin/users">
+              <AdminUsersDashboard />
+            </Route>
+            <Route exact path="/admin/users/:id">
+              <AdminUserDashboard />
             </Route>
           </IonRouterOutlet>
           <IonTabBar

@@ -11,6 +11,33 @@ import makeRequest from "./util/makeRequest";
 import { ENDPOINT } from "./env";
 
 export class REST {
+  public static Admin = {
+    stats: async (token: string) => {
+      return await makeRequest({
+        path: ENDPOINT + "/admin/stats",
+        method: "GET",
+        token: token,
+      });
+    },
+    users: async (token: string, id?: string) => {
+      return await makeRequest({
+        path: ENDPOINT + "/admin/users" + (id ? "?id=" + id : ""),
+        method: "GET",
+        token: token,
+      });
+    },
+    updateUser: async (token: string, id: string, update: any) => {
+      return await makeRequest({
+        path: ENDPOINT + "/admin/users/update?id=" + id,
+        method: "POST",
+        token: token,
+        body: {
+          update: update,
+        },
+      });
+    },
+  };
+
   public static Account = {
     login: async (mail: string, password: string, totpCode?: string) => {
       return await makeRequest({
@@ -54,7 +81,6 @@ export class REST {
       options: {
         mail?: string;
         password?: string;
-        username?: string;
         firstName?: string;
         lastName?: string;
         totpActive?: boolean;
@@ -69,7 +95,6 @@ export class REST {
           update: {
             email: options.mail,
             password: options.password,
-            username: options.username,
             firstName: options.firstName,
             lastName: options.lastName,
             totpActive: options.totpActive,

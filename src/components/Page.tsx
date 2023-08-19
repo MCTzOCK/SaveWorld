@@ -14,6 +14,7 @@ import { IonBackButton, IonContent, IonPage, IonText } from "@ionic/react";
 export default function Page(props: {
   title: string;
   children: React.ReactNode;
+  redGradient?: boolean;
 }) {
   return (
     <>
@@ -39,7 +40,9 @@ export default function Page(props: {
           >
             <div
               style={{
-                background: "linear-gradient(45deg, #8BFE6B 30%, #538EFF 90%)",
+                background: !props.redGradient
+                  ? "linear-gradient(45deg, #8BFE6B 30%, #538EFF 90%)"
+                  : "linear-gradient(45deg, #ca2238 30%, #eb445a 90%)",
                 width: "100%",
                 borderTopLeftRadius: "12px",
                 borderTopRightRadius: "12px",
