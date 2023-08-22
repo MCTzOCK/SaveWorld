@@ -4,58 +4,118 @@
  * Author: Ben Siebert <hello@ben-siebert.de>
  * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
  * License: Project License
- * Created At: 17.08.2023
+ * Created At: 22.08.2023
  *
  */
-
 import { Request, Response } from "express";
-import { createHash } from "node:crypto";
-import * as jwt from "jsonwebtoken";
+import mongoConnect from "../../util/mongo";
+import UserModel from "../../models/UserModel";
+import { createHash } from "crypto";
 import { authenticator } from "otplib";
-import { prisma } from "../../db";
+import { sign } from "jsonwebtoken";
 
 export default async function (req: Request, res: Response) {
-  const { email, password, totpCode } = req.body;
-
-  if (!email || !password) {
-    throw new Error("Missing parameters");
+  if (req.method !== "POST") {
+    res
+      .status(405)
+      .json({
+        error: "Method not allowed",
+        status: 405,
+      })
+      .end();
+    return;
   }
 
-  const user = await prisma.user.findFirst({
-    where: {
-      email: email,
-    },
-  });
+  try {
+    await mongoConnect();
 
-  if (user == null) {
-    throw new Error("User not found");
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      res
+        .status(400)
+        .json({
+          error: "Please provide all required fields",
+          status: 400,
+        })
+        .end();
+      return;
+    }
+    const user = await UserModel.findOne({
+      email,
+    });
+
+    if (!user) {
+      res
+        .status(400)
+        .json({
+          error: "Please provide a valid email address",
+          status: 400,
+        })
+        .end();
+      return;
+    }
+
+    if (!user.active) {
+      res
+        .status(400)
+        .json({
+          error: "Please activate your account first",
+          status: 400,
+        })
+        .end();
+      return;
+    }
+
+    if (user.password !== createHash("sha512").update(password).digest("hex")) {
+      res
+        .status(400)
+        .json({
+          error: "Please provide a valid password",
+          status: 400,
+        })
+        .end();
+      return;
+    }
+
+    if (
+      user.totpSecret &&
+      !authenticator.check(req.body.totpCode, user.totpSecret)
+    ) {
+      res
+        .status(400)
+        .json({
+          error: "TOTP Code incorrect",
+          status: 400,
+        })
+        .end();
+      return;
+    }
+
+    const jsonwebtoken = sign(
+      {
+        id: user._id,
+      },
+      process.env.JWT_SECRET as string,
+      {
+        expiresIn: "365d",
+      },
+    );
+
+    res.status(200).json({
+      status: 200,
+      message: "Login successful",
+      token: jsonwebtoken,
+    });
+    return;
+  } catch (e) {
+    res
+      .status(500)
+      .json({
+        error: "Internal server error",
+        status: 500,
+      })
+      .end();
+    return;
   }
-
-  if (!user.active) {
-    throw new Error("User not activated");
-  }
-
-  if (createHash("sha512").update(password).digest("hex") !== user.password) {
-    throw new Error("Password incorrect");
-  }
-
-  if (user.totpSecret && !authenticator.check(totpCode, user.totpSecret)) {
-    throw new Error("TOTP Code incorrect");
-  }
-
-  const jsonwebtoken = jwt.sign(
-    {
-      id: user.id,
-    },
-    process.env.JWT_SECRET,
-    {
-      expiresIn: "365d",
-    },
-  );
-
-  res.status(200).json({
-    status: 200,
-    message: "Login successful",
-    token: jsonwebtoken,
-  });
 }

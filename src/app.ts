@@ -12,16 +12,18 @@ config();
 
 import * as express from "express";
 import { getRoutes } from "./routes";
-import { PrismaClient } from "@prisma/client";
 import * as cors from "cors";
 import * as chalk from "chalk";
+import mongoConnect from "./util/mongo";
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-const prisma = new PrismaClient();
+mongoConnect().then(() => {
+  console.log("[MongoDB] Connected");
+});
 
 const port = process.env.PORT || 3000;
 
@@ -30,16 +32,17 @@ const port = process.env.PORT || 3000;
   for (const route of Object.keys(routes)) {
     app.all(route, async (req, res) => {
       try {
-        console.log(
-          `${new Date().toLocaleString()} [${chalk.red(
-            req.method,
-          )}] ${chalk.red(req.path)}`,
-        );
         if (routes[route].constructor.name === "AsyncFunction") {
           await routes[route](req, res);
         } else {
           routes[route](req, res);
         }
+
+        console.log(
+          `${new Date().toLocaleString()} [${chalk.red(
+            req.method,
+          )}] {${chalk.green(res.statusCode)}} ${chalk.red(req.path)}`,
+        );
       } catch (e) {
         res
           .status(500)

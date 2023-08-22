@@ -8,13 +8,14 @@
  *
  */
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
 import * as jwt from "jsonwebtoken";
-import { prisma } from "../db";
+import mongoConnect from "./mongo";
+import UserModel from "../models/UserModel";
 
 export async function isAuthenticated(req: Request, res: Response) {
   let token = req.headers["x-auth"];
 
+  await mongoConnect();
   if (!token) {
     return {
       auth: false,
@@ -32,11 +33,7 @@ export async function isAuthenticated(req: Request, res: Response) {
   const decoded = jwt.decode(token) as { id: string };
 
   try {
-    const user = await prisma.user.findFirst({
-      where: {
-        id: decoded.id,
-      },
-    });
+    const user = await UserModel.findById(decoded.id);
 
     if (!user || !user.active) {
       return {

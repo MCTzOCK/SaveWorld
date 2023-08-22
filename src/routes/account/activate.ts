@@ -4,45 +4,69 @@
  * Author: Ben Siebert <hello@ben-siebert.de>
  * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
  * License: Project License
- * Created At: 17.08.2023
+ * Created At: 22.08.2023
  *
  */
+
 import { Request, Response } from "express";
-import { prisma } from "../../db";
+import mongoConnect from "../../util/mongo";
+
+import UserModel from "../../models/UserModel";
 
 export default async function (req: Request, res: Response) {
   if (req.method !== "GET") {
-    throw new Error("Method not allowed");
+    res
+      .status(405)
+      .json({
+        error: "Method not allowed",
+        status: 405,
+      })
+      .end();
+    return;
   }
 
-  const { token } = req.query;
+  try {
+    await mongoConnect();
 
-  if (!token) {
-    throw new Error("Missing parameters");
+    const { token } = req.query;
+
+    if (!token) {
+      res.status(400).json({
+        error: "Please provide a token",
+        status: 400,
+      });
+      return;
+    }
+
+    const user = await UserModel.findOne({
+      activationToken: token,
+    });
+
+    if (!user) {
+      res.status(400).json({
+        error: "Please provide a valid token",
+        status: 400,
+      });
+      return;
+    }
+
+    user.active = true;
+    user.activationToken = "";
+
+    await user.save();
+
+    res.status(200).json({
+      status: 200,
+      message: "Account activated successfully",
+    });
+  } catch (e) {
+    res
+      .status(500)
+      .json({
+        error: e.message,
+        status: 500,
+      })
+      .end();
+    return;
   }
-
-  const user = await prisma.user.findFirst({
-    where: {
-      activationToken: token.toString(),
-    },
-  });
-
-  if (!user) {
-    throw new Error("Invalid token");
-  }
-
-  await prisma.user.update({
-    where: {
-      id: user.id,
-    },
-    data: {
-      activationToken: null,
-      active: true,
-    },
-  });
-
-  res.status(200).json({
-    status: 200,
-    message: "Account activated successfully",
-  });
 }
