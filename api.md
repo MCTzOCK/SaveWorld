@@ -86,11 +86,10 @@ X-AUTH: <jsonwebtoken>
 **Path**: `/account/update`
 
 **Request**
-You can update any of the following fields: `email`, `firstName`, `lastName`, `password`, `totpActive`
+You can update any of the following fields: `firstName`, `lastName`, `password`, `totpActive`
 ```json
 {
   "update": {
-    "email": "email",
     "firstName": "firstName",
     "lastName": "lastName",
     "password": "password",
