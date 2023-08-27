@@ -75,7 +75,7 @@ export default function Onboarding() {
                 <IonIcon ios={people} md={peopleSharp} slot={"start"} />
                 Community
               </IonItem>
-              {userInfo.admin && (
+              {userInfo.role === "admin" && (
                 <IonItem detail routerLink={"/admin"}>
                   <IonIcon
                     color={"danger"}

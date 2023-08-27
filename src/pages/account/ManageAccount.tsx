@@ -272,7 +272,7 @@ export default function ManageAccount() {
                 <IonText color={"danger"}>Konto löschen</IonText>
               </IonItem>
 
-              {userInfo.admin && (
+              {userInfo.role === "admin" && (
                 <IonItem color={"light"} detail routerLink={"/admin"}>
                   <IonIcon
                     color={"danger"}

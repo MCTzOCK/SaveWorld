@@ -38,7 +38,7 @@ export default function AdminUsersDashboard() {
 
   const [users, setUsers] = useState<
     {
-      id: string;
+      _id: string;
       email: string;
       username: string;
       firstName: string;
@@ -48,7 +48,7 @@ export default function AdminUsersDashboard() {
       updatedAt: string;
       totpSecret: string;
       active: boolean;
-      admin: boolean;
+      role: string;
       activationToken: string;
     }[]
   >([]);
@@ -121,14 +121,18 @@ export default function AdminUsersDashboard() {
               .map((user) => {
                 return (
                   <>
-                    <IonCard routerLink={"/admin/users/" + user.id}>
+                    <IonCard routerLink={"/admin/users/" + user._id}>
                       <IonCardHeader>
                         <IonCardTitle>
                           {user.firstName} {user.lastName}
                         </IonCardTitle>
                         <IonCardSubtitle>
-                          <IonText color={user.admin ? "danger" : ""}>
-                            {user.admin ? "Administrator" : "Benutzer"}
+                          <IonText
+                            color={user.role === "admin" ? "danger" : ""}
+                          >
+                            {user.role === "admin"
+                              ? "Administrator"
+                              : "Benutzer"}
                           </IonText>
                           &nbsp;-&nbsp;
                           <IonText color={user.active ? "success" : "danger"}>

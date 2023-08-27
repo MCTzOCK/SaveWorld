@@ -47,7 +47,7 @@ export default function AdminUserDashboard() {
     updatedAt: string;
     totpSecret: string;
     active: boolean;
-    admin: boolean;
+    role: string;
     activationToken: string;
   }>({
     id: "",
@@ -60,7 +60,7 @@ export default function AdminUserDashboard() {
     updatedAt: "",
     totpSecret: "",
     active: false,
-    admin: false,
+    role: "",
     activationToken: "",
   });
 
@@ -216,7 +216,7 @@ export default function AdminUserDashboard() {
                       <IonToggle
                         labelPlacement={"fixed"}
                         id={"admin_change_user_settings_admin"}
-                        checked={user.admin}
+                        checked={user.role === "admin"}
                       >
                         <IonLabel color={"danger"}>Admin</IonLabel>
                       </IonToggle>

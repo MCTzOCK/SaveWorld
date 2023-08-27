@@ -14,27 +14,25 @@ export function useUserData(): {
   loggedIn: boolean;
   loaded: boolean;
   userInfo: {
-    id: string;
+    _id: string;
     email: string;
     firstName: string;
     lastName: string;
     totpActive: boolean;
     role: string;
-    admin: boolean;
     username: string;
   };
 } {
   const [loggedIn, setLoggedIn] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [userInfo, setUserInfo] = useState({
-    id: "",
+    _id: "",
     email: "",
     username: "",
     firstName: "",
     lastName: "",
     totpActive: false,
     role: "user",
-    admin: false,
   });
 
   useEffect(() => {
@@ -53,10 +51,7 @@ export function useUserData(): {
 
                 if (r.status === 200) {
                   setLoggedIn(true);
-                  setUserInfo({
-                    ...r.payload.user,
-                    admin: r.payload.user.role === "admin",
-                  });
+                  setUserInfo(r.payload.user);
                 } else {
                   setLoggedIn(false);
                 }
@@ -66,10 +61,7 @@ export function useUserData(): {
 
               token = newToken;
               setLoggedIn(true);
-              setUserInfo({
-                ...res.payload.user,
-                admin: res.payload.user.role === "admin",
-              });
+              setUserInfo(res.payload.user);
             } else {
               token = null;
               setLoggedIn(false);

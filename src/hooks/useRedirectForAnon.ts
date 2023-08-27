@@ -22,7 +22,7 @@ export function useRedirectForAnon(options?: { onlyAdmins?: boolean }) {
       } else {
         if (options && options.onlyAdmins) {
           if (userInfo) {
-            if (!userInfo.admin) {
+            if (userInfo.role !== "admin") {
               router.push("/", "none", "replace");
             }
           }
