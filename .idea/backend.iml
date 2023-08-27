@@ -8,7 +8,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="2024_saveworld_mobile" />
-    <orderEntry type="module" module-name="2024_saveworld_mobile_ionic" />
   </component>
 </module>

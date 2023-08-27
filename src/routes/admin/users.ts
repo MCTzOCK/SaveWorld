@@ -1,5 +1,5 @@
 /**
- * src/routes/account/delete.ts
+ * src/routes/admin/users.ts
  *
  * Author: Ben Siebert <hello@ben-siebert.de>
  * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
@@ -9,15 +9,14 @@
  */
 
 import { Request, Response } from "express";
-import mongoConnect from "../../util/mongo";
-import { isAuthenticated } from "../../util/isAuthenticated";
 import UserModel from "../../models/UserModel";
+import { isAuthenticated } from "../../util/isAuthenticated";
 
 export default async function (req: Request, res: Response) {
-  if (req.method !== "DELETE") {
+  if (req.method !== "GET") {
     res.status(405).json({
-      status: 405,
       error: "Method not allowed",
+      status: 405,
     });
     return;
   }
@@ -26,33 +25,41 @@ export default async function (req: Request, res: Response) {
 
   if (!auth) {
     res.status(401).json({
-      status: 401,
       error: "Unauthorized",
+      status: 401,
     });
     return;
   }
 
-  const pUser = await UserModel.findById(user.id);
-
-  if (!pUser || !pUser.active) {
+  if (!user) {
     res.status(401).json({
-      status: 401,
       error: "Unauthorized",
+      status: 401,
     });
     return;
   }
 
-  if (pUser.role === "admin") {
+  if (user.role !== "admin") {
     res.status(401).json({
+      error: "Unauthorized",
       status: 401,
-      error: "Cannot delete admin account",
     });
+    return;
   }
 
-  await pUser.deleteOne();
+  let users: any[] = [];
+
+  if (req.query.id) {
+    users = await UserModel.find({
+      _id: req.query.id,
+    });
+  } else {
+    users = await UserModel.find();
+  }
 
   res.status(200).json({
+    users: users,
     status: 200,
-    message: "Account deleted successfully",
+    message: "Users attached",
   });
 }
