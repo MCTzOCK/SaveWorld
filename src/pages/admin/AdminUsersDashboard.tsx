@@ -28,8 +28,8 @@ import {
   IonText,
 } from "@ionic/react";
 import { useState } from "react";
-import { REST } from "../../REST";
 import { reloadCircle, reloadCircleSharp } from "ionicons/icons";
+import { REST } from "@saveworld/api-js";
 
 export default function AdminUsersDashboard() {
   useRedirectForAnon({

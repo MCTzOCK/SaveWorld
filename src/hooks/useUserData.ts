@@ -7,8 +7,8 @@
  * Created At: 19.08.2023
  *
  */
-import { REST } from "../REST";
 import { useEffect, useState } from "react";
+import { REST } from "@saveworld/api-js";
 
 export function useUserData(): {
   loggedIn: boolean;
@@ -19,6 +19,7 @@ export function useUserData(): {
     firstName: string;
     lastName: string;
     totpActive: boolean;
+    role: string;
     admin: boolean;
     username: string;
   };
@@ -32,6 +33,7 @@ export function useUserData(): {
     firstName: "",
     lastName: "",
     totpActive: false,
+    role: "user",
     admin: false,
   });
 
@@ -51,7 +53,10 @@ export function useUserData(): {
 
                 if (r.status === 200) {
                   setLoggedIn(true);
-                  setUserInfo(r.payload.user);
+                  setUserInfo({
+                    ...r.payload.user,
+                    admin: r.payload.user.role === "admin",
+                  });
                 } else {
                   setLoggedIn(false);
                 }
@@ -61,7 +66,10 @@ export function useUserData(): {
 
               token = newToken;
               setLoggedIn(true);
-              setUserInfo(res.payload.user);
+              setUserInfo({
+                ...res.payload.user,
+                admin: res.payload.user.role === "admin",
+              });
             } else {
               token = null;
               setLoggedIn(false);

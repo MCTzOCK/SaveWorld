@@ -21,7 +21,7 @@ import {
   IonSpinner,
   IonText,
 } from "@ionic/react";
-import { REST } from "../../REST";
+import { REST } from "@saveworld/api-js";
 
 export default function AdminDashboard() {
   useRedirectForAnon({

@@ -21,7 +21,7 @@ import {
   IonToolbar,
   useIonRouter,
 } from "@ionic/react";
-import { REST } from "../REST";
+import { REST } from "@saveworld/api-js";
 import Page from "../components/Page";
 
 export default function Register() {

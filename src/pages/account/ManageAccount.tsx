@@ -23,8 +23,8 @@ import {
   useIonRouter,
 } from "@ionic/react";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
-import { REST } from "../../REST";
 import { warning, warningSharp } from "ionicons/icons";
+import { REST } from "@saveworld/api-js";
 
 export default function ManageAccount() {
   const { loggedIn, loaded, userInfo } = useUserData();
@@ -68,15 +68,12 @@ export default function ManageAccount() {
               <form
                 onSubmit={async (e) => {
                   e.preventDefault();
-
-                  const mail = (e.target as any).mail.value;
                   const firstName = (e.target as any).firstName.value;
                   const lastName = (e.target as any).lastName.value;
 
                   const res = await REST.Account.update(
                     localStorage.getItem("token") as string,
                     {
-                      mail: mail,
                       firstName: firstName,
                       lastName: lastName,
                     },
@@ -91,15 +88,6 @@ export default function ManageAccount() {
                 }}
                 id={"acc_updateInfoForm"}
               >
-                <IonItem color={"light"}>
-                  <IonInput
-                    labelPlacement={"fixed"}
-                    label={"E-Mail"}
-                    type={"email"}
-                    value={userInfo.email}
-                    name={"mail"}
-                  />
-                </IonItem>
                 <IonItem color={"light"}>
                   <IonInput
                     labelPlacement={"fixed"}

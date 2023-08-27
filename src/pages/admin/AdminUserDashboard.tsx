@@ -13,7 +13,6 @@ import { useEffect, useState } from "react";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
 import { useParams } from "react-router";
 import Page from "../../components/Page";
-import { REST } from "../../REST";
 import {
   IonButton,
   IonCard,
@@ -30,6 +29,7 @@ import {
   IonToggle,
 } from "@ionic/react";
 import { warning, warningSharp } from "ionicons/icons";
+import { REST } from "@saveworld/api-js";
 
 export default function AdminUserDashboard() {
   useRedirectForAnon({

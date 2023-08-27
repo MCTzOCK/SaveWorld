@@ -8,10 +8,16 @@ import {
   IonTabButton,
   IonTabs,
   setupIonicReact,
-  useIonRouter,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { home, homeSharp, person, personSharp } from "ionicons/icons";
+import {
+  home,
+  homeSharp,
+  person,
+  personSharp,
+  videocam,
+  videocamSharp,
+} from "ionicons/icons";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -77,7 +83,7 @@ export default function App() {
             style={{
               "--background": "#333333",
               "--border": "0px solid transparent",
-              "--color": "#3a7be0",
+              "--color": "#FFFFFF",
               borderTopRightRadius: "12px",
               borderTopLeftRadius: "12px",
             }}
@@ -90,6 +96,15 @@ export default function App() {
             >
               <IonIcon aria-hidden="true" ios={home} md={homeSharp} />
               <IonLabel>Home</IonLabel>
+            </IonTabButton>
+            <IonTabButton
+              tab="videos"
+              href="/videos"
+              disabled={!loggedIn}
+              selected={false}
+            >
+              <IonIcon aria-hidden="true" ios={videocam} md={videocamSharp} />
+              <IonLabel>Videos</IonLabel>
             </IonTabButton>
             <IonTabButton
               tab="account"

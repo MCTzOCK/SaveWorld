@@ -1,5 +1,5 @@
 {
-  "name": "2024_saveworld_mobile",
+  "name": "@saveworld/mobile",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -19,6 +19,7 @@
     "@capacitor/status-bar": "5.0.6",
     "@ionic/react": "^7.0.0",
     "@ionic/react-router": "^7.0.0",
+    "@saveworld/api-js": "^1.0.5",
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
     "ionicons": "^7.0.0",
