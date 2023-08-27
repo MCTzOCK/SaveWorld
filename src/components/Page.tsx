@@ -9,7 +9,7 @@
  */
 
 import * as React from "react";
-import { IonBackButton, IonContent, IonPage, IonText } from "@ionic/react";
+import { IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonText, IonTitle, IonToolbar } from "@ionic/react";
 
 export default function Page(props: {
   title: string;
@@ -23,59 +23,31 @@ export default function Page(props: {
           overflow: "hidden",
         }}
       >
+        <IonHeader>
+          <IonToolbar style={{
+            "--background": !props.redGradient
+              ? "linear-gradient(45deg, #8BFE6B 30%, #538EFF 90%)"
+              : "linear-gradient(45deg, #ca2238 30%, #eb445a 90%)",
+            "--min-height": "50px",
+        }}>
+            <IonButtons slot="start">
+              <IonBackButton text={"Zurück"} style={{
+                "--color": props.redGradient ? "white" : "black",
+              }} />
+            </IonButtons>
+            <IonTitle>{props.title}</IonTitle>
+          </IonToolbar>
+        </IonHeader>
         <IonContent
           fullscreen
           style={{
             overflow: "hidden",
           }}
         >
-          <div
-            style={{
-              position: "fixed",
-              top: "0",
-              left: 0,
-              width: "100%",
-              height: "100%",
-              zIndex: -1,
-            }}
-          >
-            <div
-              style={{
-                background: !props.redGradient
-                  ? "linear-gradient(45deg, #8BFE6B 30%, #538EFF 90%)"
-                  : "linear-gradient(45deg, #ca2238 30%, #eb445a 90%)",
-                width: "100%",
-                borderTopLeftRadius: "12px",
-                borderTopRightRadius: "12px",
-                height: "25%",
-                rotate: "180deg",
-              }}
-            ></div>
-          </div>
-
-          <IonText
-            style={{
-              fontSize: "40px",
-              fontWeight: "bold",
-              position: "relative",
-              top: "10%",
-              left: "4%",
-              zIndex: 1,
-            }}
-            color={"white"}
-          >
-            {props.title}
-          </IonText>
 
           <div
             style={{
-              position: "relative",
-              top: "20%",
-              left: "4%",
-              width: "92%",
-              height: "fit-content",
-              maxHeight: "75%",
-              overflow: "scroll",
+              padding: "20px"
             }}
           >
             {props.children}
