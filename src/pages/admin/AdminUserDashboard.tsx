@@ -27,6 +27,7 @@ import {
   IonList,
   IonSpinner,
   IonToggle,
+  useIonRouter,
 } from "@ionic/react";
 import { warning, warningSharp } from "ionicons/icons";
 import { REST } from "@saveworld/api-js";
@@ -81,6 +82,8 @@ export default function AdminUserDashboard() {
       );
     }
   }, [id]);
+
+  const router = useIonRouter();
 
   return (
     <>
@@ -230,6 +233,27 @@ export default function AdminUserDashboard() {
                     }}
                   >
                     Speichern
+                  </IonButton>
+                  <IonButton
+                    expand={"block"}
+                    color={"danger"}
+                    style={{
+                      marginTop: "1.2rem",
+                    }}
+                    onClick={async () => {
+                      const res = await REST.Admin.deleteUser(
+                        localStorage.getItem("token") as string,
+                        id,
+                      );
+                      if (res.status === 200) {
+                        alert("Benutzer gelöscht!");
+                        router.goBack();
+                      } else {
+                        alert("Fehler beim Löschen: " + res.payload.error);
+                      }
+                    }}
+                  >
+                    Löschen
                   </IonButton>
                 </form>
               </IonCardContent>

@@ -9,7 +9,16 @@
  */
 
 import * as React from "react";
-import { IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonText, IonTitle, IonToolbar } from "@ionic/react";
+import {
+  IonBackButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonText,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/react";
 
 export default function Page(props: {
   title: string;
@@ -24,16 +33,21 @@ export default function Page(props: {
         }}
       >
         <IonHeader>
-          <IonToolbar style={{
-            "--background": !props.redGradient
-              ? "linear-gradient(45deg, #8BFE6B 30%, #538EFF 90%)"
-              : "linear-gradient(45deg, #ca2238 30%, #eb445a 90%)",
-            "--min-height": "50px",
-        }}>
+          <IonToolbar
+            style={{
+              "--background": !props.redGradient
+                ? "linear-gradient(45deg, #8BFE6B 30%, #538EFF 90%)"
+                : "linear-gradient(45deg, #ca2238 30%, #eb445a 90%)",
+              "--min-height": "50px",
+            }}
+          >
             <IonButtons slot="start">
-              <IonBackButton text={"Zurück"} style={{
-                "--color": props.redGradient ? "white" : "black",
-              }} />
+              <IonBackButton
+                text={"Zurück"}
+                style={{
+                  "--color": props.redGradient ? "white" : "black",
+                }}
+              />
             </IonButtons>
             <IonTitle>{props.title}</IonTitle>
           </IonToolbar>
@@ -44,10 +58,9 @@ export default function Page(props: {
             overflow: "hidden",
           }}
         >
-
           <div
             style={{
-              padding: "20px"
+              padding: "20px",
             }}
           >
             {props.children}

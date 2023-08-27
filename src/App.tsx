@@ -11,6 +11,8 @@ import {
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import {
+  book,
+  bookSharp,
   home,
   homeSharp,
   person,
@@ -45,8 +47,11 @@ import ManageAccount from "./pages/account/ManageAccount";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminUsersDashboard from "./pages/admin/AdminUsersDashboard";
 import AdminUserDashboard from "./pages/admin/AdminUserDashboard";
+import NotFound from "./pages/NotFound";
 
-setupIonicReact();
+setupIonicReact({
+  mode: "ios",
+});
 
 export default function App() {
   const { userInfo, loaded, loggedIn } = useUserData();
@@ -77,6 +82,9 @@ export default function App() {
             <Route exact path="/admin/users/:id">
               <AdminUserDashboard />
             </Route>
+            <Route>
+              <NotFound />
+            </Route>
           </IonRouterOutlet>
           <IonTabBar
             slot="bottom"
@@ -98,13 +106,13 @@ export default function App() {
               <IonLabel>Home</IonLabel>
             </IonTabButton>
             <IonTabButton
-              tab="videos"
-              href="/videos"
+              tab="learn"
+              href="/learn"
               disabled={!loggedIn}
               selected={false}
             >
-              <IonIcon aria-hidden="true" ios={videocam} md={videocamSharp} />
-              <IonLabel>Videos</IonLabel>
+              <IonIcon aria-hidden="true" ios={book} md={bookSharp} />
+              <IonLabel>Lernen</IonLabel>
             </IonTabButton>
             <IonTabButton
               tab="account"

@@ -23,8 +23,14 @@ import {
   useIonRouter,
 } from "@ionic/react";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
-import { warning, warningSharp } from "ionicons/icons";
+import {
+  document as ionDocument,
+  documentSharp as ionDocumentSharp,
+  warning,
+  warningSharp,
+} from "ionicons/icons";
 import { REST } from "@saveworld/api-js";
+import { Browser } from "@capacitor/browser";
 
 export default function ManageAccount() {
   const { loggedIn, loaded, userInfo } = useUserData();
@@ -283,6 +289,39 @@ export default function ManageAccount() {
                   <IonText color={"danger"}>Admin-Panel</IonText>
                 </IonItem>
               )}
+            </IonList>
+            <IonList inset>
+              <IonText>Informationen</IonText>
+            </IonList>
+            <IonList inset>
+              <IonItem
+                color={"light"}
+                detail
+                onClick={() => {
+                  Browser.open({ url: "https://saveworld.one/privacy" });
+                }}
+              >
+                <IonIcon
+                  slot={"start"}
+                  ios={ionDocument}
+                  md={ionDocumentSharp}
+                />
+                <IonText>Datenschutz</IonText>
+              </IonItem>
+              <IonItem
+                color={"light"}
+                detail
+                onClick={() => {
+                  Browser.open({ url: "https://saveworld.one/legal-notice" });
+                }}
+              >
+                <IonIcon
+                  slot={"start"}
+                  ios={ionDocument}
+                  md={ionDocumentSharp}
+                />
+                <IonText>Impressum</IonText>
+              </IonItem>
             </IonList>
           </>
         )}

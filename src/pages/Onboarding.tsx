@@ -24,6 +24,8 @@ import {
   useIonRouter,
 } from "@ionic/react";
 import {
+  book,
+  bookSharp,
   people,
   peopleSharp,
   person,
@@ -67,9 +69,9 @@ export default function Onboarding() {
                 <IonIcon ios={person} md={personSharp} slot={"start"} />
                 Konto-Verwaltung
               </IonItem>
-              <IonItem detail routerLink={"/videos"}>
-                <IonIcon ios={videocam} md={videocamSharp} slot={"start"} />
-                Lern-Videos
+              <IonItem detail routerLink={"/learn"}>
+                <IonIcon ios={book} md={bookSharp} slot={"start"} />
+                Lernen
               </IonItem>
               <IonItem detail routerLink={"/community"}>
                 <IonIcon ios={people} md={peopleSharp} slot={"start"} />

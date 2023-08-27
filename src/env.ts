@@ -8,4 +8,4 @@
  *
  */
 
-export const ENDPOINT = "https://api-dev.saveworld.one";
+export const ENDPOINT = "http://localhost:3000";
