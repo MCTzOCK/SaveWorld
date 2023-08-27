@@ -36,6 +36,7 @@ export default function Page(props: {
               left: 0,
               width: "100%",
               height: "100%",
+              zIndex: -1,
             }}
           >
             <div
@@ -57,8 +58,9 @@ export default function Page(props: {
               fontSize: "40px",
               fontWeight: "bold",
               position: "relative",
-              top: "17%",
-              left: "5%",
+              top: "10%",
+              left: "4%",
+              zIndex: 1,
             }}
             color={"white"}
           >
