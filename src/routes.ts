@@ -36,6 +36,8 @@ export async function getRoutes() {
           d = d.substr(0, d.length - 1);
         }
 
+        d = d.replace("/_", "/:");
+
         routeTable[d] = mod.default;
       }
     }

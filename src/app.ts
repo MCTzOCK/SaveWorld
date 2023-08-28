@@ -8,23 +8,19 @@
  *
  */
 import { config } from "dotenv";
-config();
-
 import * as express from "express";
 import { getRoutes } from "./routes";
 import * as cors from "cors";
 import * as chalk from "chalk";
-import mongoConnect from "./util/mongo";
+import mongoose from "mongoose";
+import { getMediaBucket } from "./util/getMediaBucket";
+
+config();
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
-
-mongoConnect().then(() => {
-  console.log("[MongoDB] Connected");
-});
-
 const port = process.env.PORT || 3000;
 
 (async () => {
@@ -54,6 +50,18 @@ const port = process.env.PORT || 3000;
       }
     });
   }
+
+  if (mongoose.connection.readyState === 0) {
+    try {
+      await mongoose.connect(process.env.MONGO_URI as string);
+    } catch (e) {
+      console.error("Could not connect to MongoDB");
+      console.error(e);
+      process.exit(1);
+    }
+  }
+
+  const bucket = getMediaBucket();
 
   app.all("*", (req, res) => {
     res
