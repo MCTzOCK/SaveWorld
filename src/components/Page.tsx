@@ -71,8 +71,8 @@ export default function Page(props: {
           fullscreen
           style={{
             overflow: "hidden",
-            padding: "20px",
           }}
+          className={"ion-padding"}
         >
           {props.children}
         </IonContent>

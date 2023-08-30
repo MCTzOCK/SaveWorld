@@ -205,6 +205,7 @@ export default function AdminUserDashboard() {
                         labelPlacement={"fixed"}
                         id={"admin_change_user_settings_active"}
                         checked={user.active}
+                        color={"danger"}
                       >
                         <IonLabel>Aktiv</IonLabel>
                       </IonToggle>
@@ -220,6 +221,7 @@ export default function AdminUserDashboard() {
                         labelPlacement={"fixed"}
                         id={"admin_change_user_settings_admin"}
                         checked={user.role === "admin"}
+                        color={"danger"}
                       >
                         <IonLabel color={"danger"}>Admin</IonLabel>
                       </IonToggle>

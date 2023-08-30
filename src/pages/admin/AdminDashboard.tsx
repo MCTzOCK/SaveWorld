@@ -87,7 +87,7 @@ export default function AdminDashboard() {
                 </IonText>
               </IonCardContent>
             </IonCard>
-            <IonCard color={"primary"} routerLink={"/admin/users"}>
+            <IonCard color={"danger"} routerLink={"/admin/users"}>
               <IonCardHeader>
                 <IonCardTitle>Benutzer</IonCardTitle>
               </IonCardHeader>
@@ -100,7 +100,7 @@ export default function AdminDashboard() {
                 </IonText>
               </IonCardContent>
             </IonCard>
-            <IonCard color={"primary"} routerLink={"/admin/content"}>
+            <IonCard color={"danger"} routerLink={"/admin/content"}>
               <IonCardHeader>
                 <IonCardTitle>Inhalte</IonCardTitle>
               </IonCardHeader>

@@ -157,6 +157,7 @@ export default function AdminContentCategoryDashboard() {
                 onClick={() => {
                   modal.current?.present();
                 }}
+                color={"danger"}
               >
                 <IonIcon ios={add} md={addSharp} />
               </IonFabButton>

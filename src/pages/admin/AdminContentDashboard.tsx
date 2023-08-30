@@ -30,7 +30,7 @@ export default function AdminContentDashboard() {
   return (
     <>
       <Page title={"Inhalte"} redGradient>
-        <IonCard color={"primary"} routerLink={"/admin/content/categories"}>
+        <IonCard color={"danger"} routerLink={"/admin/content/categories"}>
           <IonCardHeader>
             <IonCardTitle>Kategorien und Interessen</IonCardTitle>
           </IonCardHeader>

@@ -38,7 +38,11 @@ export default function Welcome() {
   return (
     <>
       <Page title={"Willkommen!"} setPresentingElement={setPresentingElement}>
-        <IonCard>
+        <IonCard
+          style={{
+            boxShadow: "70px 50px 70px 50px rgba(0,100,0,0.75)",
+          }}
+        >
           <IonCardHeader>
             <IonCardTitle>Einrichtung</IonCardTitle>
             <IonCardSubtitle>an Interessen anpassen</IonCardSubtitle>
