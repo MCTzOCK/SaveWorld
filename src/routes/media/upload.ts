@@ -42,56 +42,68 @@ export default async function (req: Request, res: Response) {
           return;
         }
 
-        const file = files.file[0] as formidable.File;
+        try {
+          const file = files.file[0] as formidable.File;
 
-        if (!file) {
-          res.status(500).json({
-            error: "No file",
-            status: 500,
+          if (!file) {
+            res.status(500).json({
+              error: "No file",
+              status: 500,
+            });
+            return;
+          }
+
+          console.log(file, file.filepath);
+
+          const content = fs.readFileSync(file["filepath"]);
+          const mimeType = file.mimetype;
+          const fileName = file.originalFilename;
+
+          const uploadStream = bucket.openUploadStream(
+            randomBytes(128).toString("hex") +
+              "." +
+              (fileName as string).split(".").pop(),
+            {
+              contentType: mimeType as string,
+              metadata: {
+                contentType: mimeType as string,
+                fileName: fileName as string,
+              },
+            },
+          );
+
+          uploadStream.write(content);
+
+          uploadStream.end();
+
+          await new Promise((resolve0) => {
+            uploadStream.on("finish", () => {
+              resolve0(true);
+            });
           });
+
+          res.end(
+            JSON.stringify({
+              status: "success",
+              message: "File uploaded successfully.",
+              data: {
+                url: `/media/file/${uploadStream.filename}`,
+              },
+            }),
+          );
+
+          resolve(true);
+        } catch (e) {
+          res
+            .status(500)
+            .json({
+              error: e.message,
+              status: 500,
+            })
+            .end();
+          resolve(true);
           return;
         }
-
-        console.log(file, file.filepath);
-
-        const content = fs.readFileSync(file["filepath"]);
-        const mimeType = file.mimetype;
-        const fileName = file.originalFilename;
-
-        const uploadStream = bucket.openUploadStream(
-          randomBytes(128).toString("hex") +
-            "." +
-            (fileName as string).split(".").pop(),
-          {
-            contentType: mimeType as string,
-            metadata: {
-              contentType: mimeType as string,
-              fileName: fileName as string,
-            },
-          },
-        );
-
-        uploadStream.write(content);
-
-        uploadStream.end();
-
-        await new Promise((resolve0) => {
-          uploadStream.on("finish", () => {
-            resolve0(true);
-          });
-        });
-
-        res.end(
-          JSON.stringify({
-            status: "success",
-            message: "File uploaded successfully.",
-            data: {
-              url: `/media/file/${uploadStream.filename}`,
-            },
-          }),
-        );
-
-        resolve(true);
       });
     });
     return;

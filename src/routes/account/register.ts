@@ -14,6 +14,7 @@ import mongoConnect from "../../util/mongo";
 import UserModel from "../../models/UserModel";
 import { createHash, randomBytes } from "crypto";
 import { getTransport } from "../../util/transport";
+import UserPreferencesModel from "../../models/UserPreferencesModel";
 
 export default async function (req: Request, res: Response) {
   if (req.method !== "POST") {
@@ -75,6 +76,11 @@ export default async function (req: Request, res: Response) {
       lastName,
       activationToken,
       active: false,
+    });
+
+    const userPreferences = await UserPreferencesModel.create({
+      user: user._id,
+      interests: [],
     });
 
     const transport = getTransport();
