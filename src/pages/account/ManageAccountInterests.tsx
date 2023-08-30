@@ -9,17 +9,11 @@
  */
 
 import * as React from "react";
+import { useEffect, useState } from "react";
 import Page from "../../components/Page";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
-import { useEffect, useState } from "react";
 import { REST } from "@saveworld/api-js";
-import {
-  IonCheckbox,
-  IonItem,
-  IonList,
-  IonText,
-  IonToggle,
-} from "@ionic/react";
+import { IonItem, IonList, IonText, IonToggle } from "@ionic/react";
 
 export default function ManageAccountInterests() {
   useRedirectForAnon();
@@ -90,7 +84,10 @@ export default function ManageAccountInterests() {
           })}
         </IonList>
         <IonText>
-          Du kannst zusätzlich noch folgenden Interessen auswählen:
+          {categories.filter((c) => !preferences.interests.includes(c._id))
+            .length === 0
+            ? "Du hast alle verfügbaren Interessen ausgewählt!"
+            : "Du kannst zusätzlich noch folgenden Interessen auswählen:"}
         </IonText>
         <IonList inset>
           {categories
