@@ -36,7 +36,7 @@ export default function Login() {
 
             if (res.status === 200) {
               localStorage.setItem("token", res.payload.token);
-              router.push("/", "none", "replace");
+              router.push("/welcome", "none", "replace");
             } else {
               if (res.payload.error === "TOTP Code incorrect") {
                 const code = prompt("Bitte gebe den 2FA Code ein");
@@ -46,7 +46,7 @@ export default function Login() {
 
                 if (resp.status === 200) {
                   localStorage.setItem("token", resp.payload.token);
-                  router.push("/", "none", "replace");
+                  router.push("/welcome", "none", "replace");
                 } else {
                   alert("Fehler beim anmelden: " + resp.payload.error);
                 }

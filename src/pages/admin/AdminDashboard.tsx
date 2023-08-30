@@ -100,6 +100,17 @@ export default function AdminDashboard() {
                 </IonText>
               </IonCardContent>
             </IonCard>
+            <IonCard color={"primary"} routerLink={"/admin/content"}>
+              <IonCardHeader>
+                <IonCardTitle>Inhalte</IonCardTitle>
+              </IonCardHeader>
+              <IonCardContent>
+                <IonText>
+                  Verwalte die Inhalte der App. Du kannst hier neue Inhalte
+                  erstellen, bearbeiten und löschen.
+                </IonText>
+              </IonCardContent>
+            </IonCard>
           </>
         )}
       </Page>

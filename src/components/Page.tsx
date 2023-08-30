@@ -19,26 +19,41 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
+import { useEffect } from "react";
 
 export default function Page(props: {
   title: string;
   children: React.ReactNode;
   redGradient?: boolean;
+  setPresentingElement?: React.Dispatch<
+    React.SetStateAction<HTMLElement | undefined>
+  >;
 }) {
+  const ref = React.useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (props.setPresentingElement && ref.current) {
+      props.setPresentingElement(ref.current);
+    }
+  }, []);
+
   return (
     <>
       <IonPage
         style={{
           overflow: "hidden",
         }}
+        ref={ref}
       >
         <IonHeader>
           <IonToolbar
             style={{
               "--background": !props.redGradient
-                ? "linear-gradient(45deg, #8BFE6B 30%, #538EFF 90%)"
+                ? "linear-gradient(45deg, #538EFF 30%, #8BFE6B 90%)"
                 : "linear-gradient(45deg, #ca2238 30%, #eb445a 90%)",
-              "--min-height": "50px",
+              "--min-height": "75px",
+              borderBottomLeftRadius: "12px",
+              borderBottomRightRadius: "12px",
             }}
           >
             <IonButtons slot="start">
@@ -49,22 +64,17 @@ export default function Page(props: {
                 }}
               />
             </IonButtons>
-            <IonTitle>{props.title}</IonTitle>
+            <IonTitle size={"large"}>{props.title}</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonContent
           fullscreen
           style={{
             overflow: "hidden",
+            padding: "20px",
           }}
         >
-          <div
-            style={{
-              padding: "20px",
-            }}
-          >
-            {props.children}
-          </div>
+          {props.children}
         </IonContent>
       </IonPage>
     </>

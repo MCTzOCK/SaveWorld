@@ -17,8 +17,6 @@ import {
   homeSharp,
   person,
   personSharp,
-  videocam,
-  videocamSharp,
 } from "ionicons/icons";
 
 /* Core CSS required for Ionic components to work properly */
@@ -48,6 +46,9 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminUsersDashboard from "./pages/admin/AdminUsersDashboard";
 import AdminUserDashboard from "./pages/admin/AdminUserDashboard";
 import NotFound from "./pages/NotFound";
+import Welcome from "./pages/Welcome";
+import AdminContentDashboard from "./pages/admin/AdminContentDashboard";
+import AdminContentCategoryDashboard from "./pages/admin/AdminContentCategoryDashboard";
 
 setupIonicReact({
   mode: "ios",
@@ -70,11 +71,20 @@ export default function App() {
             <Route exact path="/">
               <Onboarding />
             </Route>
+            <Route exact path="/welcome">
+              <Welcome />
+            </Route>
             <Route exact path="/account">
               <ManageAccount />
             </Route>
             <Route exact path="/admin">
               <AdminDashboard />
+            </Route>
+            <Route exact path="/admin/content">
+              <AdminContentDashboard />
+            </Route>
+            <Route exact path="/admin/content/categories">
+              <AdminContentCategoryDashboard />
             </Route>
             <Route exact path="/admin/users">
               <AdminUsersDashboard />
