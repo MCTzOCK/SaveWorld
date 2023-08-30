@@ -36,14 +36,26 @@ export default async function (req: Request, res: Response) {
     if (req.method === "GET") {
       res.json({ prefs });
       return;
-    } else if (req.method === "GET") {
+    } else if (req.method === "POST") {
       const { update } = req.body;
+
+      if (!update) {
+        res.status(400).json({
+          error: "Please provide an update object",
+          status: 400,
+        });
+        return;
+      }
 
       const disallowed = ["_id", "user", "__v"];
 
       for (const key in update) {
         if (disallowed.includes(key)) {
-          continue;
+          res.status(400).json({
+            error: "Please provide a valid update object",
+            status: 400,
+          });
+          return;
         }
         prefs[key] = update[key];
       }
