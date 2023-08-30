@@ -50,6 +50,7 @@ import Welcome from "./pages/Welcome";
 import AdminContentDashboard from "./pages/admin/AdminContentDashboard";
 import AdminContentCategoryDashboard from "./pages/admin/AdminContentCategoryDashboard";
 import FinishWelcome from "./pages/FinishWelcome";
+import ManageAccountInterests from "./pages/account/ManageAccountInterests";
 
 setupIonicReact({
   mode: "ios",
@@ -80,6 +81,9 @@ export default function App() {
             </Route>
             <Route exact path="/account">
               <ManageAccount />
+            </Route>
+            <Route exact path="/account/interests">
+              <ManageAccountInterests />
             </Route>
             <Route exact path="/admin">
               <AdminDashboard />

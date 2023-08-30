@@ -124,6 +124,9 @@ export default function ManageAccount() {
                   </IonButton>
                 </IonItem>
               </form>
+              <IonItem color={"light"} detail routerLink={"/account/interests"}>
+                <IonText>Interessen</IonText>
+              </IonItem>
             </IonList>
             <IonList inset>
               <IonText>Passwort ändern</IonText>

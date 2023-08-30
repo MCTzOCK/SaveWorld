@@ -21,8 +21,11 @@ import {
 } from "@ionic/react";
 import { useEffect, useRef, useState } from "react";
 import WelcomeInterestModal from "../components/WelcomeInterestModal";
+import { useRedirectForAnon } from "../hooks/useRedirectForAnon";
 
 export default function Welcome() {
+  useRedirectForAnon();
+
   const modal = useRef<HTMLIonModalElement>(
     null,
   ) as React.MutableRefObject<HTMLIonModalElement>;
