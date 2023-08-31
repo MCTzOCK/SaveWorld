@@ -49,7 +49,7 @@ export default function Onboarding() {
       <Page title={"SaveWorld"}>
         <div
           style={{
-            position: "absolute",
+            position: "fixed",
             width: "300%",
             height: "25%",
             background: "var(--ion-color-success-shade)",

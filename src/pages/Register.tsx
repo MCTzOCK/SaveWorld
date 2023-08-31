@@ -14,6 +14,8 @@ import {
   IonContent,
   IonHeader,
   IonInput,
+  IonItem,
+  IonList,
   IonPage,
   IonText,
   IonTextarea,
@@ -88,7 +90,7 @@ export default function Register() {
               name={"user"}
               placeholder={"Benutzername"}
               style={{
-                borderBottom: "1px solid red",
+                borderBottom: "1px solid var(--ion-color-success-shade)",
               }}
             />
             <IonInput
@@ -96,7 +98,7 @@ export default function Register() {
               type={"email"}
               placeholder={"E-Mail"}
               style={{
-                borderBottom: "1px solid red",
+                borderBottom: "1px solid var(--ion-color-success-shade)",
               }}
             />
           </div>
@@ -114,14 +116,14 @@ export default function Register() {
               name={"firstName"}
               placeholder={"Vorname"}
               style={{
-                borderBottom: "1px solid red",
+                borderBottom: "1px solid var(--ion-color-success-shade)",
               }}
             />
             <IonInput
               name={"lastName"}
               placeholder={"Nachname"}
               style={{
-                borderBottom: "1px solid red",
+                borderBottom: "1px solid var(--ion-color-success-shade)",
               }}
             />
           </div>
@@ -140,7 +142,7 @@ export default function Register() {
               type={"password"}
               placeholder={"Passwort"}
               style={{
-                borderBottom: "1px solid red",
+                borderBottom: "1px solid var(--ion-color-success-shade)",
               }}
             />
             <IonInput
@@ -148,7 +150,7 @@ export default function Register() {
               type={"password"}
               placeholder={"Passwort bestätigen"}
               style={{
-                borderBottom: "1px solid red",
+                borderBottom: "1px solid var(--ion-color-success-shade)",
               }}
             />
           </div>
@@ -156,18 +158,20 @@ export default function Register() {
             type={"submit"}
             style={{ marginTop: "1.2rem", marginBottom: "1.2rem" }}
             expand={"block"}
-            color={"primary"}
+            color={"success"}
           >
             Registrieren
           </IonButton>
-          <IonText
-            color={"primary"}
-            onClick={() => {
-              router.push("/login", "none", "replace");
-            }}
-          >
-            Du hast bereits ein Konto? Melde dich an!
-          </IonText>
+
+          <IonList inset>
+            <IonItem
+              color={"light"}
+              routerLink={"/login"}
+              routerDirection={"none"}
+            >
+              Stattdessen anmelden
+            </IonItem>
+          </IonList>
         </form>
       </Page>
     </>

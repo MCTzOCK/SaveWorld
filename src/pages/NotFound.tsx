@@ -36,7 +36,11 @@ export default function NotFound() {
             Die Seite konnte nicht gefunden werden. Wenn du glaubst, dass dies
             ein Fehler ist, wende dich bitte an den Support
           </IonText>
-          <IonButton expand={"block"} href={"mailto:hello@ben-siebert.de"}>
+          <IonButton
+            color={"success"}
+            expand={"block"}
+            href={"mailto:hello@ben-siebert.de"}
+          >
             Support kontaktieren
           </IonButton>
         </IonCardContent>

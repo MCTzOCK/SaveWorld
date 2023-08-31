@@ -44,6 +44,7 @@ export default function AdminCreateCategoryModal(props: {
           <IonToolbar>
             <IonButtons slot={"start"}>
               <IonButton
+                color={"danger"}
                 onClick={() => {
                   setImage("");
                   props.modal.current?.dismiss();
@@ -55,6 +56,7 @@ export default function AdminCreateCategoryModal(props: {
             <IonTitle>Neue Kategorie</IonTitle>
             <IonButtons slot={"end"}>
               <IonButton
+                color={"success"}
                 onClick={async () => {
                   const name = (
                     document.getElementById(
@@ -127,6 +129,7 @@ export default function AdminCreateCategoryModal(props: {
 
                 input.click();
               }}
+              color={"success"}
             >
               Bild ändern
             </IonButton>

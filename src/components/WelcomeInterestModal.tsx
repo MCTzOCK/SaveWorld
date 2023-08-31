@@ -140,7 +140,7 @@ export default function WelcomeInterestModal(props: {
                   <IonButton
                     expand={"block"}
                     color={
-                      selected.includes(category._id) ? "danger" : "primary"
+                      selected.includes(category._id) ? "danger" : "success"
                     }
                     style={{
                       marginTop: "20px",

@@ -13,6 +13,8 @@ import {
   IonButton,
   IonContent,
   IonInput,
+  IonItem,
+  IonList,
   IonPage,
   IonText,
   useIonRouter,
@@ -70,7 +72,7 @@ export default function Login() {
               type={"email"}
               placeholder={"E-Mail"}
               style={{
-                borderBottom: "1px solid red",
+                borderBottom: "1px solid var(--ion-color-success-shade)",
               }}
             />
             <div
@@ -88,7 +90,7 @@ export default function Login() {
                 type={"password"}
                 placeholder={"Passwort"}
                 style={{
-                  borderBottom: "1px solid red",
+                  borderBottom: "1px solid var(--ion-color-success-shade)",
                 }}
               />
             </div>
@@ -97,18 +99,19 @@ export default function Login() {
             type={"submit"}
             style={{ marginTop: "1.2rem", marginBottom: "1.2rem" }}
             expand={"block"}
-            color={"primary"}
+            color={"success"}
           >
             Anmelden
           </IonButton>
-          <IonText
-            color={"primary"}
-            onClick={() => {
-              router.push("/register", "none", "replace");
-            }}
-          >
-            Du hast noch kein Konto? Registrieren!
-          </IonText>
+          <IonList inset>
+            <IonItem
+              color={"light"}
+              routerLink={"/register"}
+              routerDirection={"none"}
+            >
+              Stattdessen registrieren
+            </IonItem>
+          </IonList>
         </form>
       </Page>
     </>

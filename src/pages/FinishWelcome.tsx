@@ -39,6 +39,7 @@ export default function FinishWelcome() {
             </IonText>
             <IonButton
               expand={"block"}
+              color={"success"}
               style={{
                 marginTop: "2rem",
               }}
