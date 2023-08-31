@@ -28,6 +28,8 @@ import {
   documentSharp as ionDocumentSharp,
   warning,
   warningSharp,
+  analytics,
+  analyticsSharp,
 } from "ionicons/icons";
 import { REST } from "@saveworld/api-js";
 import { Browser } from "@capacitor/browser";
@@ -324,6 +326,18 @@ export default function ManageAccount() {
                   md={ionDocumentSharp}
                 />
                 <IonText>Impressum</IonText>
+              </IonItem>
+              <IonItem
+                color={"light"}
+                detail
+                onClick={() => {
+                  Browser.open({
+                    url: "https://status.saveworld.one/status/saveworld",
+                  });
+                }}
+              >
+                <IonIcon slot={"start"} ios={analytics} md={analyticsSharp} />
+                <IonText>Server Status</IonText>
               </IonItem>
             </IonList>
           </>
