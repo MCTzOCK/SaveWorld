@@ -13,7 +13,6 @@ import { getRoutes } from "./routes";
 import * as cors from "cors";
 import * as chalk from "chalk";
 import mongoose from "mongoose";
-import { getMediaBucket } from "./util/getMediaBucket";
 
 config();
 
@@ -60,8 +59,6 @@ const port = process.env.PORT || 3000;
       process.exit(1);
     }
   }
-
-  const bucket = getMediaBucket();
 
   app.all("*", (req, res) => {
     res
