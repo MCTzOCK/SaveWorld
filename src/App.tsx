@@ -107,9 +107,9 @@ export default function App() {
           <IonTabBar
             slot="bottom"
             style={{
-              "--background": "var(--ion-color-light-shade)",
+              "--background": "#444444",
               "--border": "0px solid transparent",
-              "--color": "var(--ion-color-primary-shade)",
+              "--color": "var(--ion-color-success-shade)",
               borderTopRightRadius: "12px",
               borderTopLeftRadius: "12px",
             }}

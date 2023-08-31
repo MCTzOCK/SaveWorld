@@ -47,6 +47,17 @@ export default function Onboarding() {
   return (
     <>
       <Page title={"SaveWorld"}>
+        <div
+          style={{
+            position: "absolute",
+            width: "300%",
+            height: "25%",
+            background: "var(--ion-color-success-shade)",
+            top: "25%",
+            left: "-50%",
+            rotate: "-35deg",
+          }}
+        ></div>
         <IonCard>
           <IonCardHeader>
             <IonCardTitle>SaveWorld</IonCardTitle>
@@ -61,8 +72,8 @@ export default function Onboarding() {
               inset
               style={{
                 width: "100%",
-                marginTop: "1.2rem",
                 margin: 0,
+                marginTop: "1.2rem",
               }}
             >
               <IonItem detail routerLink={"/account"}>
