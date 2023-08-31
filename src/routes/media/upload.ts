@@ -9,7 +9,6 @@
  */
 
 import { Request, Response } from "express";
-import { getMediaBucket } from "../../util/getMediaBucket";
 import mongoose from "mongoose";
 import * as formidable from "formidable";
 import * as fs from "fs";
@@ -30,8 +29,6 @@ export default async function (req: Request, res: Response) {
     }
 
     const form = new formidable.IncomingForm();
-
-    const bucket = getMediaBucket();
 
     await new Promise((resolve, reject) => {
       form.parse(req, async (err, fields, files) => {
