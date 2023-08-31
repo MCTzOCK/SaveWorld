@@ -158,11 +158,6 @@ export default function AdminUsersDashboard() {
                           Erstellt am:&nbsp;
                           {new Date(user.createdAt).toLocaleString()}
                         </IonText>
-                        <br />
-                        <IonText>
-                          Geändert am:&nbsp;
-                          {new Date(user.updatedAt).toLocaleString()}
-                        </IonText>
                       </IonCardContent>
                     </IonCard>
                   </>
