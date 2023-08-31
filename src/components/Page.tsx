@@ -48,9 +48,14 @@ export default function Page(props: {
         <IonHeader>
           <IonToolbar
             style={{
+              /*
               "--background": !props.redGradient
                 ? "linear-gradient(45deg, #538EFF 30%, #8BFE6B 90%)"
                 : "linear-gradient(45deg, #ca2238 30%, #eb445a 90%)",
+                 */
+              "--background": props.redGradient
+                ? "var(--ion-color-danger-shade)"
+                : "var(--ion-color-success-shade)",
               "--min-height": "75px",
               borderBottomLeftRadius: "12px",
               borderBottomRightRadius: "12px",
