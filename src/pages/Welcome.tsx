@@ -43,7 +43,7 @@ export default function Welcome() {
       <Page title={"Willkommen!"} setPresentingElement={setPresentingElement}>
         <IonCard
           style={{
-            boxShadow: "70px 50px 70px 50px rgba(0,100,0,0.75)",
+            boxShadow: "65px 50px 65px 50px rgba(0,100,0,0.75)",
           }}
         >
           <IonCardHeader>
