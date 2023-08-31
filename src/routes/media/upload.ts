@@ -14,6 +14,7 @@ import mongoose from "mongoose";
 import * as formidable from "formidable";
 import * as fs from "fs";
 import { randomBytes } from "crypto";
+import { getMinio } from "../../util/getMinio";
 
 export default async function (req: Request, res: Response) {
   try {
@@ -53,46 +54,44 @@ export default async function (req: Request, res: Response) {
             return;
           }
 
-          console.log(file, file.filepath);
-
-          const content = fs.readFileSync(file["filepath"]);
           const mimeType = file.mimetype;
           const fileName = file.originalFilename;
 
-          const uploadStream = bucket.openUploadStream(
-            randomBytes(128).toString("hex") +
-              "." +
-              (fileName as string).split(".").pop(),
+          const minio = getMinio();
+
+          let objectName =
+            randomBytes(64).toString("hex") +
+            "." +
+            (fileName as string).split(".").pop();
+
+          await minio.fPutObject(
+            process.env.MINIO_MEDIA_BUCKET as string,
+            objectName,
+            file["filepath"],
             {
-              contentType: mimeType as string,
-              metadata: {
-                contentType: mimeType as string,
-                fileName: fileName as string,
-              },
+              "Content-Type": mimeType,
+              "X-ORIGINAL-FILENAME": fileName,
+            },
+            (err, etag) => {
+              if (err) {
+                res.status(500).json({
+                  error: err.message,
+                  status: 500,
+                });
+                return;
+              }
+
+              res.end(
+                JSON.stringify({
+                  status: "success",
+                  message: "File uploaded successfully.",
+                  data: {
+                    url: `/media/file/${objectName}`,
+                  },
+                }),
+              );
             },
           );
-
-          uploadStream.write(content);
-
-          uploadStream.end();
-
-          await new Promise((resolve0) => {
-            uploadStream.on("finish", () => {
-              resolve0(true);
-            });
-          });
-
-          res.end(
-            JSON.stringify({
-              status: "success",
-              message: "File uploaded successfully.",
-              data: {
-                url: `/media/file/${uploadStream.filename}`,
-              },
-            }),
-          );
-
-          resolve(true);
         } catch (e) {
           res
             .status(500)

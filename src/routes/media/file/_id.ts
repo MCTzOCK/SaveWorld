@@ -9,8 +9,7 @@
  */
 
 import { Request, Response } from "express";
-import { getMediaBucket } from "../../../util/getMediaBucket";
-import mongoose from "mongoose";
+import { getMinio } from "../../../util/getMinio";
 
 export default async function (req: Request, res: Response) {
   try {
@@ -25,28 +24,33 @@ export default async function (req: Request, res: Response) {
       return;
     }
 
-    const bucket = getMediaBucket();
+    const minio = getMinio();
 
-    const file = await bucket
-      .find({
-        filename: req.params.id,
-      })
-      .toArray();
-    if (file.length === 0) {
-      res
-        .status(404)
-        .json({
-          error: "Not Found",
-          code: 404,
-        })
-        .end();
-      return;
-    }
-    res.setHeader("Content-Type", file[0].metadata.contentType);
-    bucket
-      // @ts-ignore
-      .openDownloadStreamByName(req.params.id)
-      .pipe(res);
+    const stat = await minio.statObject(
+      process.env.MINIO_MEDIA_BUCKET as string,
+      req.params.id,
+    );
+    minio.getObject(
+      process.env.MINIO_MEDIA_BUCKET as string,
+      req.params.id,
+      (err, dataStream) => {
+        if (err) {
+          res.status(500).json({
+            error: err.message,
+            status: 500,
+          });
+          return;
+        }
+
+        res.setHeader("Content-Type", stat.metaData["content-type"]);
+        res.setHeader(
+          "X-Original-Filename",
+          stat.metaData["x-original-filename"],
+        );
+
+        dataStream.pipe(res);
+      },
+    );
   } catch (e) {
     res
       .status(500)
