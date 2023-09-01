@@ -22,6 +22,10 @@ const UserPreferencesModel = new mongoose.Schema({
       ref: "Category",
     },
   ],
+  picture: {
+    type: String,
+    required: false,
+  },
 });
 
 export default mongoose.models?.UserPreferences ||
