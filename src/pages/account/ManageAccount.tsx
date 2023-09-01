@@ -12,6 +12,7 @@ import * as React from "react";
 import Page from "../../components/Page";
 import { useUserData } from "../../hooks/useUserData";
 import {
+  IonAvatar,
   IonButton,
   IonIcon,
   IonInput,
@@ -30,16 +31,32 @@ import {
   warningSharp,
   analytics,
   analyticsSharp,
+  pencil,
+  pencilSharp,
 } from "ionicons/icons";
 import { REST } from "@saveworld/api-js";
 import { Browser } from "@capacitor/browser";
+import { useEffect } from "react";
+import { ENDPOINT } from "../../env";
 
 export default function ManageAccount() {
   const { loggedIn, loaded, userInfo } = useUserData();
 
+  const [preferences, setPreferences] = React.useState<{
+    picture: string;
+  } | null>(null);
+
   useRedirectForAnon();
 
-  const router = useIonRouter();
+  useEffect(() => {
+    REST.Account.preferences(localStorage.getItem("token") as string).then(
+      (res) => {
+        if (res.status === 200) {
+          setPreferences(res.payload.prefs);
+        }
+      },
+    );
+  }, []);
 
   return (
     <>
@@ -61,6 +78,97 @@ export default function ManageAccount() {
         )}
         {loaded && (
           <>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                gap: "1.2rem",
+                marginBottom: "1.2rem",
+              }}
+            >
+              <IonAvatar>
+                <img
+                  alt={""}
+                  src={
+                    preferences && preferences.picture
+                      ? preferences.picture
+                      : "/blank-profile-picture-973460_1280.png"
+                  }
+                />
+              </IonAvatar>
+            </div>
+            <IonList inset>
+              <IonItem
+                color={"light"}
+                detail
+                onClick={() => {
+                  const fileInput = document.createElement("input");
+                  fileInput.type = "file";
+                  fileInput.accept = "image/*";
+                  fileInput.onchange = async (e) => {
+                    const file = (e.target as any).files[0];
+                    const formData = new FormData();
+                    formData.append("file", file);
+                    const mediaRes = await fetch(ENDPOINT + "/media/upload", {
+                      method: "POST",
+                      body: formData,
+                    });
+
+                    if (mediaRes.status === 200) {
+                      const res = await REST.Account.updatePreferences(
+                        localStorage.getItem("token") as string,
+                        {
+                          picture: ENDPOINT + (await mediaRes.json()).data.url,
+                        },
+                      );
+
+                      if (res.status === 200) {
+                        alert("Erfolgreich gespeichert!");
+                        window.location.reload();
+                      } else {
+                        alert("Fehler beim speichern: " + res.payload.error);
+                      }
+                    } else {
+                      alert("Fehler beim Upload: " + mediaRes.statusText);
+                    }
+                  };
+                  fileInput.click();
+                }}
+              >
+                Profilbild Bearbeiten
+              </IonItem>
+              <IonItem
+                detail
+                color={"light"}
+                onClick={async () => {
+                  if (
+                    !confirm(
+                      "Bist du sicher, dass du dein Profilbild entfernen möchtest?",
+                    )
+                  )
+                    return;
+                  const res = await REST.Account.updatePreferences(
+                    localStorage.getItem("token") as string,
+                    {
+                      picture: "",
+                    },
+                  );
+
+                  if (res.status === 200) {
+                    alert("Erfolgreich gespeichert!");
+                    window.location.reload();
+                  } else {
+                    alert("Fehler beim speichern: " + res.payload.error);
+                  }
+                }}
+              >
+                <IonText color={"danger"}>Profilbild entfernen</IonText>
+              </IonItem>
+            </IonList>
+
             <IonList inset>
               <IonText>Konto-Informationen</IonText>
             </IonList>

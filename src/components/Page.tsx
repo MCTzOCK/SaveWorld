@@ -9,17 +9,16 @@
  */
 
 import * as React from "react";
+import { useEffect } from "react";
 import {
   IonBackButton,
   IonButtons,
   IonContent,
   IonHeader,
   IonPage,
-  IonText,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { useEffect } from "react";
 
 export default function Page(props: {
   title: string;
@@ -49,10 +48,10 @@ export default function Page(props: {
           <IonToolbar
             style={{
               /*
-              "--background": !props.redGradient
-                ? "linear-gradient(45deg, #538EFF 30%, #8BFE6B 90%)"
-                : "linear-gradient(45deg, #ca2238 30%, #eb445a 90%)",
-                 */
+                            "--background": !props.redGradient
+                              ? "linear-gradient(45deg, #538EFF 30%, #8BFE6B 90%)"
+                              : "linear-gradient(45deg, #ca2238 30%, #eb445a 90%)",
+                               */
               "--background": props.redGradient
                 ? "var(--ion-color-danger-shade)"
                 : "var(--ion-color-success-shade)",
