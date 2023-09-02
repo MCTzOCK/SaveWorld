@@ -40,6 +40,14 @@ export default function AdminContentDashboard() {
             </IonText>
           </IonCardContent>
         </IonCard>
+        <IonCard color={"danger"} routerLink={"/admin/content/videos"}>
+          <IonCardHeader>
+            <IonCardTitle>Videos</IonCardTitle>
+          </IonCardHeader>
+          <IonCardContent>
+            <IonText>Hier kannst du Videos verwalten.</IonText>
+          </IonCardContent>
+        </IonCard>
       </Page>
     </>
   );

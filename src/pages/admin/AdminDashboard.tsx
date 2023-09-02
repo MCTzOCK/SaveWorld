@@ -18,6 +18,8 @@ import {
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
+  IonItem,
+  IonList,
   IonSpinner,
   IonText,
 } from "@ionic/react";
@@ -111,6 +113,44 @@ export default function AdminDashboard() {
                 </IonText>
               </IonCardContent>
             </IonCard>
+            <IonList inset>Interne Werkzeuge:</IonList>
+            <IonList inset>
+              <IonItem
+                color={"light"}
+                href={"https://s3.ben-siebert.com"}
+                target={"_blank"}
+              >
+                S3-Admin
+              </IonItem>
+              <IonItem
+                color={"light"}
+                href={"https://portainer.cluster.ben-siebert.com"}
+                target={"_blank"}
+              >
+                Docker-Admin
+              </IonItem>
+              <IonItem
+                color={"light"}
+                href={"https://http.cluster.ben-siebert.com"}
+                target={"_blank"}
+              >
+                Reverse Proxy
+              </IonItem>
+              <IonItem
+                color={"light"}
+                href={"https://saveworld.one/wp-admin"}
+                target={"_blank"}
+              >
+                Website-Admin
+              </IonItem>
+              <IonItem
+                color={"light"}
+                href={"https://status.saveworld.one"}
+                target={"_blank"}
+              >
+                Server Status
+              </IonItem>
+            </IonList>
           </>
         )}
       </Page>
