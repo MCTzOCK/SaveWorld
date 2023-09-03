@@ -41,6 +41,13 @@ export default function Videos() {
       localStorage.getItem("token") as string,
     );
     if (res.status === 200) {
+      if (video) {
+        REST.Content.addVideoToHistory(
+          localStorage.getItem("token") as string,
+          video._id,
+        );
+      }
+
       setVideo(res.payload.video);
     } else {
       alert("Fehler beim Laden des nächsten Videos");
@@ -69,6 +76,9 @@ export default function Videos() {
         <div {...swipeHandlers}>
           <Plyr
             ref={videoRef}
+            onEnded={() => {
+              console.log("123");
+            }}
             source={{
               type: "video",
               sources: [
