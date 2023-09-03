@@ -50,10 +50,15 @@ export default function AdminVideoDashboard() {
 
   const { id } = useParams<{ id: string }>();
 
+  const [selectedCategories, setSelectedCategories] = React.useState<string[]>(
+    [],
+  );
+
   useEffect(() => {
     REST.Content.videoMetadata(id + ".mp4").then((res) => {
       if (res.status === 200) {
         setVideo(res.payload.video);
+        setSelectedCategories(res.payload.video.categories);
       } else {
         alert("Fehler beim Laden des Videos: " + res.payload.error);
       }
@@ -67,8 +72,6 @@ export default function AdminVideoDashboard() {
     });
   }, []);
 
-  const router = useIonRouter();
-
   return (
     <>
       <Page title={video?.title || "Laden..."} redGradient>
@@ -80,6 +83,7 @@ export default function AdminVideoDashboard() {
                   label={"Titel"}
                   value={video.title}
                   labelPlacement={"fixed"}
+                  id={"update-video-title"}
                 />
               </IonItem>
               <IonItem color={"light"}>
@@ -87,6 +91,7 @@ export default function AdminVideoDashboard() {
                   label={"Beschreibung"}
                   value={video.description}
                   labelPlacement={"fixed"}
+                  id={"update-video-desc"}
                 />
               </IonItem>
               {categories.map((c) => {
@@ -95,13 +100,60 @@ export default function AdminVideoDashboard() {
                     <IonItem color={"light"}>
                       <IonToggle
                         slot={"end"}
-                        checked={video.categories.includes(c._id)}
+                        checked={selectedCategories.includes(c._id)}
+                        onIonChange={(ev) => {
+                          if (ev.detail.checked) {
+                            setSelectedCategories([
+                              ...selectedCategories,
+                              c._id,
+                            ]);
+                          } else {
+                            setSelectedCategories(
+                              selectedCategories.filter((sc) => sc !== c._id),
+                            );
+                          }
+                        }}
                       />
                       {c.name}
                     </IonItem>
                   </>
                 );
               })}
+              <IonItem
+                color={"light"}
+                detail
+                onClick={async () => {
+                  const title = (
+                    document.getElementById(
+                      "update-video-title",
+                    ) as HTMLIonInputElement
+                  ).value as string;
+                  const desc = (
+                    document.getElementById(
+                      "update-video-desc",
+                    ) as HTMLIonTextareaElement
+                  ).value as string;
+
+                  const res = await REST.Admin.updateVideo(
+                    localStorage.getItem("token") as string,
+                    video!._id,
+                    title,
+                    desc,
+                    selectedCategories,
+                  );
+                  if (res.status === 200) {
+                    alert("Video aktualisiert!");
+                    window.location.href = "/admin/content/videos";
+                  } else {
+                    alert(
+                      "Fehler beim Aktualisieren des Videos: " +
+                        res.payload.error,
+                    );
+                  }
+                }}
+              >
+                <IonText color={"primary"}>Speichern</IonText>
+              </IonItem>
               <IonItem
                 color={"light"}
                 detail
