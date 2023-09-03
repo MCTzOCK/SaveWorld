@@ -33,13 +33,11 @@ export default async function (req: Request, res: Response) {
       return;
     }
 
-    const { videoId, time, finished } = req.body as {
+    const { videoId } = req.body as {
       videoId: string;
-      time: number;
-      finished: boolean;
     };
 
-    if (!videoId || !time || !finished) {
+    if (!videoId) {
       res.status(400).json({
         error: "Bad Request",
         status: 400,
@@ -60,8 +58,6 @@ export default async function (req: Request, res: Response) {
     await WatchHistoryModel.create({
       user: user._id,
       video: video._id,
-      time: time,
-      finished: finished,
     });
 
     res.status(200).json({

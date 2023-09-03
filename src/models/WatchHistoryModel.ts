@@ -21,14 +21,6 @@ const WatchHistoryModel = new mongoose.Schema({
     ref: "Video",
     required: true,
   },
-  time: {
-    type: Number,
-    required: true,
-  },
-  finished: {
-    type: Boolean,
-    required: true,
-  },
   watchedAt: {
     type: Date,
     required: true,
