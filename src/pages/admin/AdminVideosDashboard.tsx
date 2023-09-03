@@ -80,7 +80,9 @@ export default function AdminVideosDashboard() {
           return (
             <IonCard
               color={"danger"}
-              routerLink={"/admin/content/videos/" + video._id}
+              routerLink={
+                "/admin/content/videos/" + video.s3ObjectName.split(".")[0]
+              }
             >
               <IonCardHeader>
                 <IonCardTitle>{video.title}</IonCardTitle>
