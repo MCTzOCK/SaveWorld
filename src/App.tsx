@@ -53,6 +53,7 @@ import FinishWelcome from "./pages/FinishWelcome";
 import ManageAccountInterests from "./pages/account/ManageAccountInterests";
 import AdminVideosDashboard from "./pages/admin/AdminVideosDashboard";
 import AdminVideoDashboard from "./pages/admin/AdminVideoDashboard";
+import Videos from "./pages/learn/Videos";
 
 setupIonicReact({
   mode: "ios",
@@ -107,6 +108,9 @@ export default function App() {
             </Route>
             <Route exact path="/admin/users/:id">
               <AdminUserDashboard />
+            </Route>
+            <Route exact path="/learn">
+              <Videos />
             </Route>
             <Route>
               <NotFound />

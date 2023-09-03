@@ -27,6 +27,7 @@ export default function Page(props: {
   setPresentingElement?: React.Dispatch<
     React.SetStateAction<HTMLElement | undefined>
   >;
+  noPadding?: boolean;
 }) {
   const ref = React.useRef<HTMLElement>(null);
 
@@ -76,7 +77,7 @@ export default function Page(props: {
           style={{
             overflow: "hidden",
           }}
-          className={"ion-padding"}
+          className={props.noPadding ? "" : "ion-padding"}
         >
           {props.children}
         </IonContent>
