@@ -35,12 +35,6 @@ const VideoModel = new mongoose.Schema({
     type: String,
     required: true,
   },
-  comments: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "VideoComment",
-    },
-  ],
 });
 
 export default mongoose.models?.Video || mongoose.model("Video", VideoModel);

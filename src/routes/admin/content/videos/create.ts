@@ -96,7 +96,6 @@ export default async function (req: Request, res: Response) {
               title: title[0],
               description: description[0],
               categories: JSON.parse(categories[0]),
-              comments: [],
               streamUrl: "/content/videos/" + objectName + "/stream",
               thumbnailUrl: "/media/file/" + objectName + "_thumbnail.png",
               s3ObjectName: objectName,
