@@ -28,6 +28,7 @@ export default function Page(props: {
     React.SetStateAction<HTMLElement | undefined>
   >;
   noPadding?: boolean;
+  endButtons?: React.ReactNode;
 }) {
   const ref = React.useRef<HTMLElement>(null);
 
@@ -48,11 +49,6 @@ export default function Page(props: {
         <IonHeader>
           <IonToolbar
             style={{
-              /*
-                            "--background": !props.redGradient
-                              ? "linear-gradient(45deg, #538EFF 30%, #8BFE6B 90%)"
-                              : "linear-gradient(45deg, #ca2238 30%, #eb445a 90%)",
-                               */
               "--background": props.redGradient
                 ? "var(--ion-color-danger-shade)"
                 : "var(--ion-color-success-shade)",
@@ -70,6 +66,7 @@ export default function Page(props: {
               />
             </IonButtons>
             <IonTitle size={"large"}>{props.title}</IonTitle>
+            {props.endButtons}
           </IonToolbar>
         </IonHeader>
         <IonContent

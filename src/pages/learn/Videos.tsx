@@ -16,10 +16,12 @@ import { useEffect, useRef } from "react";
 import { ENDPOINT } from "../../env";
 import Plyr, { APITypes, PlyrInstance } from "plyr-react";
 import "plyr-react/plyr.css";
-import { IonButton, IonIcon, IonText } from "@ionic/react";
+import { IonButton, IonButtons, IonIcon, IonText } from "@ionic/react";
 import {
   ellipsisHorizontalCircle,
   ellipsisHorizontalCircleSharp,
+  search,
+  searchSharp,
 } from "ionicons/icons";
 import { useSwipeable } from "react-swipeable";
 import VideoDetailsModal from "../../components/VideoDetailsModal";
@@ -75,7 +77,25 @@ export default function Videos() {
 
   return (
     <>
-      <Page title={"Lernen"} noPadding>
+      <Page
+        title={"Lernen"}
+        noPadding
+        endButtons={
+          <>
+            <IonButtons slot={"end"}>
+              <IonButton
+                size={"large"}
+                routerLink={"/learn/fts-search"}
+                style={{
+                  "--color": "var(--ion-color-light-shade)",
+                }}
+              >
+                <IonIcon ios={search} md={searchSharp} />
+              </IonButton>
+            </IonButtons>
+          </>
+        }
+      >
         <div {...swipeHandlers}>
           <Plyr
             ref={videoRef}
