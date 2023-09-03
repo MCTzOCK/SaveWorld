@@ -22,9 +22,12 @@ import {
   ellipsisHorizontalCircleSharp,
 } from "ionicons/icons";
 import { useSwipeable } from "react-swipeable";
+import VideoDetailsModal from "../../components/VideoDetailsModal";
 
 export default function Videos() {
   useRedirectForAnon();
+
+  const modal = React.useRef<HTMLIonModalElement>(null);
 
   const [video, setVideo] = React.useState<{
     _id: string;
@@ -116,7 +119,12 @@ export default function Videos() {
             }}
           >
             <IonText>{video?.title}</IonText>
-            <IonButton fill={"clear"}>
+            <IonButton
+              fill={"clear"}
+              onClick={() => {
+                modal.current?.present();
+              }}
+            >
               <IonIcon
                 ios={ellipsisHorizontalCircle}
                 md={ellipsisHorizontalCircleSharp}
@@ -124,6 +132,7 @@ export default function Videos() {
             </IonButton>
           </div>
         </div>
+        <VideoDetailsModal modal={modal} video={video} />
       </Page>
     </>
   );
