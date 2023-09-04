@@ -73,7 +73,7 @@ export default function VideoSearchFTS() {
         />
         {videos.map((v) => (
           <>
-            <IonCard>
+            <IonCard routerLink={"/learn?vid=" + v.s3ObjectName}>
               <IonCardHeader>
                 <IonCardTitle>{v.title}</IonCardTitle>
               </IonCardHeader>

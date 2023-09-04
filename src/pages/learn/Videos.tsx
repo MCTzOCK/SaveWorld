@@ -9,14 +9,20 @@
  */
 
 import * as React from "react";
+import { useEffect, useRef } from "react";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
 import Page from "../../components/Page";
 import { REST } from "@saveworld/api-js";
-import { useEffect, useRef } from "react";
 import { ENDPOINT } from "../../env";
-import Plyr, { APITypes, PlyrInstance } from "plyr-react";
+import Plyr, { APITypes } from "plyr-react";
 import "plyr-react/plyr.css";
-import { IonButton, IonButtons, IonIcon, IonText } from "@ionic/react";
+import {
+  IonButton,
+  IonButtons,
+  IonIcon,
+  IonText,
+  useIonRouter,
+} from "@ionic/react";
 import {
   ellipsisHorizontalCircle,
   ellipsisHorizontalCircleSharp,
@@ -25,9 +31,12 @@ import {
 } from "ionicons/icons";
 import { useSwipeable } from "react-swipeable";
 import VideoDetailsModal from "../../components/VideoDetailsModal";
+import { useLocation, useParams } from "react-router";
 
 export default function Videos() {
   useRedirectForAnon();
+
+  const location = useLocation();
 
   const modal = React.useRef<HTMLIonModalElement>(null);
 
@@ -62,6 +71,22 @@ export default function Videos() {
   useEffect(() => {
     nextVideo();
   }, []);
+
+  useEffect(() => {
+    const usp = new URLSearchParams(location.search);
+
+    if (usp.get("vid")) {
+      setTimeout(() => {
+        REST.Content.videoMetadata(usp.get("vid") as string).then((res) => {
+          if (res.status === 200) {
+            setVideo(res.payload.video);
+          } else {
+            alert("Fehler beim Laden des Videos");
+          }
+        });
+      }, 1500);
+    }
+  }, [location]);
 
   const videoRef = useRef<APITypes | null>(null);
 
