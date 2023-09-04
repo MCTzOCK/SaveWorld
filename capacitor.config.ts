@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: '2024_saveworld_mobile',
+  appId: 'com.bensiebert.saveworld',
+  appName: 'SaveWorld',
   webDir: 'dist',
   server: {
     androidScheme: 'https'

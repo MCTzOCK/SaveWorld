@@ -108,7 +108,8 @@ export default function ManageAccount() {
                   const fileInput = document.createElement("input");
                   fileInput.type = "file";
                   fileInput.accept = "image/*";
-                  fileInput.onchange = async (e) => {
+
+                  fileInput.addEventListener("change", async (e) => {
                     const file = (e.target as any).files[0];
                     const formData = new FormData();
                     formData.append("file", file);
@@ -134,7 +135,14 @@ export default function ManageAccount() {
                     } else {
                       alert("Fehler beim Upload: " + mediaRes.statusText);
                     }
+
+                    (document.querySelector("#manual-mount-point") as HTMLDivElement).removeChild(fileInput);
+                  })
+
+                  fileInput.onchange = async (e) => {
+
                   };
+                  (document.querySelector("#manual-mount-point") as HTMLDivElement).appendChild(fileInput);
                   fileInput.click();
                 }}
               >
@@ -383,7 +391,7 @@ export default function ManageAccount() {
                   } else {
                     alert(
                       "Fehler beim Löschen, bitte kontaktiere den Support: " +
-                        res.payload.error,
+                      res.payload.error,
                     );
                   }
                 }}
