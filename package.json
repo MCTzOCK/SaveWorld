@@ -26,6 +26,7 @@
     "@types/jsonwebtoken": "^9.0.2",
     "@types/node": "^20.5.0",
     "@types/nodemailer": "^6.4.9",
+    "byte-size": "^8.1.1",
     "chalk": "^4.0.0",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",

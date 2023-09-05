@@ -22,17 +22,38 @@ export default async function (req: Request, res: Response) {
       videoKey,
     );
 
+    if (req.method === "HEAD") {
+      res.setHeader("Accept-Ranges", "bytes");
+      res.setHeader("Content-Length", stat.size);
+      res.status(200);
+      res.end();
+      return;
+    }
+
     const range = req.headers.range;
     const start = Number((range || "").replace(/bytes=/, "").split("-")[0]);
-    const end = stat.size - 1;
+    const end = Number((range || "").replace(/bytes=/, "").split("-")[1]);
+
+    if (start >= stat.size || end >= stat.size) {
+      res.status(200);
+      res.end();
+    }
 
     const headers = {
-      "Content-Range": `bytes ${start}-${end}/${stat.size}`,
-      "Accept-Ranges": "bytes",
-      "Content-Type": stat.metaData["content-type"],
+      "Content-Range":
+        range !== undefined ? `bytes ${start}-${end}/${stat.size}` : undefined,
+      "Accept-Ranges": range !== undefined ? "bytes" : undefined,
+      "Content-Length": range !== undefined ? end - start + 1 : undefined,
+      "Content-Type": "video/mp4",
     };
 
-    res.writeHead(206, headers);
+    res.statusCode = 206;
+
+    for (const key in headers) {
+      if (headers[key] !== undefined) {
+        res.setHeader(key, headers[key]);
+      }
+    }
 
     minio.getPartialObject(
       process.env.MINIO_VIDEO_BUCKET as string,
