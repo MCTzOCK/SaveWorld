@@ -33,7 +33,6 @@ export default function VideoSearchFTS() {
       streamUrl: string;
       thumbnailUrl: string;
       categories: string[];
-      s3ObjectName: string;
     }[]
   >([]);
   const [videoCount, setVideoCount] = useState<number>(0);
@@ -73,7 +72,7 @@ export default function VideoSearchFTS() {
         />
         {videos.map((v) => (
           <>
-            <IonCard routerLink={"/learn?vid=" + v.s3ObjectName}>
+            <IonCard routerLink={"/learn?vid=" + v._id}>
               <IonCardHeader>
                 <IonCardTitle>{v.title}</IonCardTitle>
               </IonCardHeader>

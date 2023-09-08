@@ -47,7 +47,6 @@ export default function Videos() {
     streamUrl: string;
     thumbnailUrl: string;
     categories: string[];
-    s3ObjectName: string;
   } | null>(null);
 
   const nextVideo = async () => {
@@ -128,8 +127,11 @@ export default function Videos() {
               type: "video",
               sources: [
                 {
-                  provider: "html5",
-                  src: ENDPOINT + video?.streamUrl,
+                  provider: "youtube",
+                  src:
+                    (video?.streamUrl ||
+                      "https://www.youtube.com/embed/dQw4w9WgXcQ") +
+                    "?autoplay=1",
                 },
               ],
             }}
@@ -144,8 +146,8 @@ export default function Videos() {
                 active: true,
               },
               clickToPlay: true,
+              ratio: "9:16",
             }}
-            playsInline={true}
           />
           <div
             style={{

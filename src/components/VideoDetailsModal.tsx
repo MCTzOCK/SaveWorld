@@ -36,7 +36,7 @@ export default function VideoDetailsModal(props: {
     title: string;
     description: string;
     categories: string[];
-    s3ObjectName: string;
+    _id: string;
   } | null;
 }) {
   const [categories, setCategories] = React.useState<
@@ -73,8 +73,7 @@ export default function VideoDetailsModal(props: {
                     title: props.video?.title,
                     text: props.video?.description,
                     url:
-                      "https://app.saveworld.one/learn?vid=" +
-                      props.video?.s3ObjectName,
+                      "https://app.saveworld.one/learn?vid=" + props.video?._id,
                   });
                 }}
               >

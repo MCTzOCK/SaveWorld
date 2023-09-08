@@ -52,8 +52,6 @@ export default function AdminCreateVideoModal(props: {
     [],
   );
 
-  const [videoFile, setVideoFile] = React.useState<File | null>(null);
-
   const [uploading, setUploading] = React.useState<boolean>(false);
 
   return (
@@ -82,11 +80,6 @@ export default function AdminCreateVideoModal(props: {
                 color={"success"}
                 disabled={uploading}
                 onClick={async () => {
-                  if (!videoFile) {
-                    alert("Bitte wähle ein Video aus.");
-                    return;
-                  }
-
                   if (selectedCategories.length < 1) {
                     alert("Bitte wähle mindestens eine Kategorie aus.");
                     return;
@@ -102,8 +95,13 @@ export default function AdminCreateVideoModal(props: {
                       "create-vid-desc",
                     ) as HTMLIonTextareaElement
                   ).value as string;
+                  const id = (
+                    document.getElementById(
+                      "create-vid-id",
+                    ) as HTMLIonInputElement
+                  ).value as string;
 
-                  if (!name || !desc) {
+                  if (!name || !desc || !id) {
                     alert("Bitte fülle alle Felder aus!");
                     return;
                   }
@@ -112,7 +110,7 @@ export default function AdminCreateVideoModal(props: {
                   data.append("title", name);
                   data.append("description", desc);
                   data.append("categories", JSON.stringify(selectedCategories));
-                  data.append("video", videoFile);
+                  data.append("youtubeVideoId", id);
 
                   setUploading(true);
 
@@ -128,7 +126,6 @@ export default function AdminCreateVideoModal(props: {
                   );
 
                   setUploading(false);
-                  setVideoFile(null);
                   setSelectedCategories([]);
                   if (res.ok) {
                     props.callback();
@@ -155,30 +152,15 @@ export default function AdminCreateVideoModal(props: {
           )}
           {!uploading && (
             <>
-              <div className={"ion-padding"}>
-                <IonButton
-                  expand={"block"}
-                  onClick={async () => {
-                    const a = document.createElement("input");
-                    a.type = "file";
-                    a.accept = "video/mp4";
-                    a.onchange = (ev) => {
-                      let t = ev.target as HTMLInputElement;
-                      if (t.files?.length) {
-                        setVideoFile(t.files[0]);
-                      }
-                    };
-                    a.click();
-                  }}
-                  color={"success"}
-                >
-                  Video auswählen
-                </IonButton>
-                <IonText>
-                  {videoFile ? videoFile.name : "Kein Video ausgewählt"}
-                </IonText>
-              </div>
               <IonList inset>
+                <IonItem color={"light"}>
+                  <IonInput
+                    placeholder={"MakGA7Y77YI"}
+                    label={"YouTube ID"}
+                    labelPlacement={"fixed"}
+                    id={"create-vid-id"}
+                  />
+                </IonItem>
                 <IonItem color={"light"}>
                   <IonInput
                     placeholder={"Name"}

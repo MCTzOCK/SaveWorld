@@ -42,7 +42,6 @@ export default function AdminVideosDashboard() {
       streamUrl: string;
       thumbnailUrl: string;
       categories: string[];
-      s3ObjectName: string;
     }[]
   >([]);
   const [videoCount, setVideoCount] = useState<number>(0);
@@ -80,9 +79,7 @@ export default function AdminVideosDashboard() {
           return (
             <IonCard
               color={"danger"}
-              routerLink={
-                "/admin/content/videos/" + video.s3ObjectName.split(".")[0]
-              }
+              routerLink={"/admin/content/videos/" + video._id}
             >
               <IonCardHeader>
                 <IonCardTitle>{video.title}</IonCardTitle>

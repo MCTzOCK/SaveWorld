@@ -36,7 +36,6 @@ export default function AdminVideoDashboard() {
     streamUrl: string;
     thumbnailUrl: string;
     categories: string[];
-    s3ObjectName: string;
   } | null>(null);
 
   const [categories, setCategories] = React.useState<
@@ -55,7 +54,7 @@ export default function AdminVideoDashboard() {
   );
 
   useEffect(() => {
-    REST.Content.videoMetadata(id + ".mp4").then((res) => {
+    REST.Content.videoMetadata(id).then((res) => {
       if (res.status === 200) {
         setVideo(res.payload.video);
         setSelectedCategories(res.payload.video.categories);
@@ -167,7 +166,7 @@ export default function AdminVideoDashboard() {
 
                   const res = await REST.Admin.deleteVideo(
                     localStorage.getItem("token") as string,
-                    video.s3ObjectName,
+                    video?._id,
                   );
 
                   if (res.status === 200) {
