@@ -92,8 +92,6 @@ export default function Videos() {
 
   const swipeHandlers = useSwipeable({
     onSwipedUp: (eventData) => {
-      console.log("Swipe");
-      
       nextVideo();
     },
     trackMouse: true,

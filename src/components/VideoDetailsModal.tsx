@@ -15,9 +15,11 @@ import {
   IonCard,
   IonCardContent,
   IonCardHeader,
+  IonCardSubtitle,
   IonCardTitle,
   IonContent,
   IonHeader,
+  IonIcon,
   IonModal,
   IonText,
   IonTitle,
@@ -25,6 +27,8 @@ import {
 } from "@ionic/react";
 import { useEffect } from "react";
 import { REST } from "@saveworld/api-js";
+import { share, shareSharp } from "ionicons/icons";
+import { Share } from "@capacitor/share";
 
 export default function VideoDetailsModal(props: {
   modal: React.RefObject<HTMLIonModalElement>;
@@ -32,6 +36,7 @@ export default function VideoDetailsModal(props: {
     title: string;
     description: string;
     categories: string[];
+    s3ObjectName: string;
   } | null;
 }) {
   const [categories, setCategories] = React.useState<
@@ -60,6 +65,22 @@ export default function VideoDetailsModal(props: {
       >
         <IonHeader>
           <IonToolbar>
+            <IonButtons slot={"start"}>
+              <IonButton
+                color={"success"}
+                onClick={async () => {
+                  await Share.share({
+                    title: props.video?.title,
+                    text: props.video?.description,
+                    url:
+                      "https://app.saveworld.one/learn?vid=" +
+                      props.video?.s3ObjectName,
+                  });
+                }}
+              >
+                <IonIcon ios={share} md={shareSharp} />
+              </IonButton>
+            </IonButtons>
             <IonTitle>{props.video?.title}</IonTitle>
             <IonButtons slot={"end"}>
               <IonButton
