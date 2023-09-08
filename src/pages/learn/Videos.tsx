@@ -92,6 +92,8 @@ export default function Videos() {
 
   const swipeHandlers = useSwipeable({
     onSwipedUp: (eventData) => {
+      console.log("Swipe");
+      
       nextVideo();
     },
     trackMouse: true,
@@ -124,9 +126,6 @@ export default function Videos() {
         <div {...swipeHandlers}>
           <Plyr
             ref={videoRef}
-            onEnded={() => {
-              console.log("123");
-            }}
             source={{
               type: "video",
               sources: [
@@ -148,6 +147,7 @@ export default function Videos() {
               },
               clickToPlay: true,
             }}
+            playsInline={true}
           />
           <div
             style={{
