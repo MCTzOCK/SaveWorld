@@ -26,6 +26,8 @@ import {
 import {
   book,
   bookSharp,
+  leaf,
+  leafSharp,
   people,
   peopleSharp,
   person,
@@ -83,6 +85,10 @@ export default function Onboarding() {
               <IonItem detail routerLink={"/learn"}>
                 <IonIcon ios={book} md={bookSharp} slot={"start"} />
                 Lernen
+              </IonItem>
+              <IonItem detail routerLink={"/eco-tracker"}>
+                <IonIcon ios={leaf} md={leafSharp} slot={"start"} />
+                Tracker
               </IonItem>
               <IonItem detail routerLink={"/community"}>
                 <IonIcon ios={people} md={peopleSharp} slot={"start"} />
