@@ -11,14 +11,20 @@
 import * as React from "react";
 import { useEffect } from "react";
 import {
+  IonAvatar,
   IonBackButton,
+  IonButton,
   IonButtons,
   IonContent,
   IonHeader,
+  IonIcon,
   IonPage,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
+import { useUserData } from "../hooks/useUserData";
+import { search, searchSharp } from "ionicons/icons";
+import { ENDPOINT } from "../env";
 
 export default function Page(props: {
   title: string;
@@ -31,6 +37,8 @@ export default function Page(props: {
   endButtons?: React.ReactNode;
 }) {
   const ref = React.useRef<HTMLElement>(null);
+
+  const { loggedIn, loaded, userInfo } = useUserData();
 
   useEffect(() => {
     if (props.setPresentingElement && ref.current) {
@@ -66,7 +74,22 @@ export default function Page(props: {
               />
             </IonButtons>
             <IonTitle size={"large"}>{props.title}</IonTitle>
-            {props.endButtons}
+            <IonButtons slot={"end"}>
+              {props.endButtons}
+              {loggedIn && userInfo._id ? (
+                <>
+                  <IonButton routerLink={"/account"}>
+                    <IonAvatar>
+                      <img
+                        src={
+                          ENDPOINT + "/media/profile-picture/" + userInfo._id
+                        }
+                      />
+                    </IonAvatar>
+                  </IonButton>
+                </>
+              ) : null}
+            </IonButtons>
           </IonToolbar>
         </IonHeader>
         <IonContent

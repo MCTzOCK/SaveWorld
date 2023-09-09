@@ -107,17 +107,15 @@ export default function Videos() {
         noPadding
         endButtons={
           <>
-            <IonButtons slot={"end"}>
-              <IonButton
-                size={"large"}
-                routerLink={"/learn/fts-search"}
-                style={{
-                  "--color": "var(--ion-color-light-shade)",
-                }}
-              >
-                <IonIcon ios={search} md={searchSharp} />
-              </IonButton>
-            </IonButtons>
+            <IonButton
+              size={"large"}
+              routerLink={"/learn/fts-search"}
+              style={{
+                "--color": "var(--ion-color-light-shade)",
+              }}
+            >
+              <IonIcon ios={search} md={searchSharp} />
+            </IonButton>
           </>
         }
       >

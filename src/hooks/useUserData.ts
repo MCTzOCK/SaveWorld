@@ -61,7 +61,10 @@ export function useUserData(): {
 
               token = newToken;
               setLoggedIn(true);
-              setUserInfo(res.payload.user);
+              setUserInfo({
+                _id: res.payload.user.id,
+                ...res.payload.user,
+              });
             } else {
               token = null;
               setLoggedIn(false);

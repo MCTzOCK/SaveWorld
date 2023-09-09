@@ -15,6 +15,8 @@ import {
   bookSharp,
   home,
   homeSharp,
+  leaf,
+  leafSharp,
   person,
   personSharp,
 } from "ionicons/icons";
@@ -55,6 +57,7 @@ import AdminVideosDashboard from "./pages/admin/AdminVideosDashboard";
 import AdminVideoDashboard from "./pages/admin/AdminVideoDashboard";
 import Videos from "./pages/learn/Videos";
 import VideoSearchFTS from "./pages/learn/VideoSearchFTS";
+import { Redirect } from "react-router";
 
 setupIonicReact({
   mode: "ios",
@@ -74,9 +77,10 @@ export default function App() {
             <Route exact path="/login">
               <Login />
             </Route>
-            <Route exact path="/">
+            <Route exact path="/onboarding">
               <Onboarding />
             </Route>
+            <Redirect to={"/onboarding"} from={"/"} exact />
             <Route exact path="/welcome">
               <Welcome />
             </Route>
@@ -132,12 +136,21 @@ export default function App() {
           >
             <IonTabButton
               tab="onboarding"
-              href="/"
+              href="/onboarding"
               disabled={!loggedIn}
               selected={false}
             >
               <IonIcon aria-hidden="true" ios={home} md={homeSharp} />
               <IonLabel>Home</IonLabel>
+            </IonTabButton>
+            <IonTabButton
+              tab="eco-tracker"
+              href="/eco-tracker"
+              disabled={!loggedIn}
+              selected={false}
+            >
+              <IonIcon aria-hidden="true" ios={leaf} md={leafSharp} />
+              <IonLabel>Tracker</IonLabel>
             </IonTabButton>
             <IonTabButton
               tab="learn"
@@ -147,15 +160,6 @@ export default function App() {
             >
               <IonIcon aria-hidden="true" ios={book} md={bookSharp} />
               <IonLabel>Lernen</IonLabel>
-            </IonTabButton>
-            <IonTabButton
-              tab="account"
-              href="/account"
-              disabled={!loggedIn}
-              selected={false}
-            >
-              <IonIcon aria-hidden="true" ios={person} md={personSharp} />
-              <IonLabel>Konto</IonLabel>
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
