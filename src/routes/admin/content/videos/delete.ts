@@ -33,10 +33,10 @@ export default async function (req: Request, res: Response) {
       return;
     }
 
-    const { s3id } = req.query as {
-      s3id: string;
+    const { id } = req.query as {
+      id: string;
     };
-    if (!s3id) {
+    if (!id) {
       res.status(400).json({
         error: "Bad Request",
         status: 400,
@@ -44,9 +44,7 @@ export default async function (req: Request, res: Response) {
       return;
     }
 
-    const video = await VideoModel.findOne({
-      s3ObjectName: s3id,
-    });
+    const video = await VideoModel.findById(id);
 
     if (!video) {
       res.status(404).json({
@@ -56,23 +54,11 @@ export default async function (req: Request, res: Response) {
       return;
     }
 
-    const minio = getMinio();
+    await video.deleteOne();
 
-    minio.removeObject(process.env.MINIO_VIDEO_BUCKET, s3id, async (err) => {
-      if (err) {
-        res.status(500).json({
-          // @ts-ignore
-          error: err.message,
-          status: 500,
-        });
-        return;
-      }
-
-      await video.deleteOne();
-
-      res.status(200).json({
-        status: 200,
-      });
+    res.status(200).json({
+      message: "Deleted",
+      status: 200,
     });
   } catch (e) {
     res.status(500).json({

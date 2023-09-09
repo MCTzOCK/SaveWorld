@@ -1,5 +1,5 @@
 /**
- * backend/src/routes/content/videos/_s3id/metadata.ts
+ * backend/src/routes/content/videos/_id/metadata.ts
  *
  * Author: Ben Siebert <hello@ben-siebert.de>
  * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
@@ -13,9 +13,7 @@ import VideoModel from "../../../../models/VideoModel";
 
 export default async function (req: Request, res: Response) {
   try {
-    const video = await VideoModel.findOne({
-      s3ObjectName: req.params.s3id,
-    });
+    const video = await VideoModel.findById(req.params.id);
     if (!video) {
       res.status(404).json({
         error: "Not Found",

@@ -11,9 +11,8 @@
 import { Request, Response } from "express";
 import { isAuthenticated } from "../../../../util/isAuthenticated";
 import VideoModel from "../../../../models/VideoModel";
-import { getMinio } from "../../../../util/getMinio";
 import * as formidable from "formidable";
-import { randomBytes } from "crypto";
+
 export default async function (req: Request, res: Response) {
   try {
     const { auth, user } = await isAuthenticated(req, res);
@@ -38,78 +37,32 @@ export default async function (req: Request, res: Response) {
       }
 
       try {
-        const { title, description, categories } = fields;
-        if (!title || !description || !categories) {
+        const { title, description, categories, youtubeVideoId } = fields;
+        if (!title || !description || !categories || !youtubeVideoId) {
           res.status(400).json({
             error: "Bad Request",
             status: 400,
           });
           return;
         }
+        const video = await VideoModel.create({
+          title: title[0],
+          description: description[0],
+          categories: JSON.parse(categories[0]),
+          streamUrl: "https://youtube.com/embed/" + youtubeVideoId[0],
+          thumbnailUrl: "/media/file/" + "" + "_thumbnail.png",
+        });
 
-        const file = files.video[0] as formidable.File;
+        video.streamUrl = "/content/videos/" + video._id + "/stream";
+        video.thumbnailUrl = "/media/file/" + video._id + "_thumbnail.png";
 
-        if (!file) {
-          res.status(500).json({
-            error: "No file",
-            status: 500,
-          });
-          return;
-        }
-
-        const mimeType = file.mimetype;
-        const fileName = file.originalFilename;
-
-        if (!mimeType.startsWith("video/")) {
-          res.status(400).json({
-            error: "Please upload a video",
-            status: 400,
-          });
-          return;
-        }
-
-        const minio = getMinio();
-
-        let objectName =
-          randomBytes(64).toString("hex") +
-          "." +
-          (fileName as string).split(".").pop();
-
-        await minio.fPutObject(
-          process.env.MINIO_VIDEO_BUCKET as string,
-          objectName,
-          file["filepath"],
-          {
-            "Content-Type": mimeType,
-            "X-ORIGINAL-FILENAME": fileName,
+        res.status(200).json({
+          status: "success",
+          message: "Video created successfully.",
+          data: {
+            video: video,
           },
-          async (err, etag) => {
-            if (err) {
-              res.status(500).json({
-                error: err.message,
-                status: 500,
-              });
-              return;
-            }
-
-            const video = await VideoModel.create({
-              title: title[0],
-              description: description[0],
-              categories: JSON.parse(categories[0]),
-              streamUrl: "/content/videos/" + objectName + "/stream",
-              thumbnailUrl: "/media/file/" + objectName + "_thumbnail.png",
-              s3ObjectName: objectName,
-            });
-
-            res.status(200).json({
-              status: "success",
-              message: "Video created successfully.",
-              data: {
-                video: video,
-              },
-            });
-          },
-        );
+        });
       } catch (e) {
         res.status(500).json({
           error: e.message,

@@ -31,9 +31,17 @@ const VideoModel = new mongoose.Schema({
     type: String,
     required: true,
   },
-  s3ObjectName: {
-    type: String,
+  ratings: {
+    type: [
+      {
+        type: Number,
+        required: true,
+        min: 1,
+        max: 5,
+      },
+    ],
     required: true,
+    default: [],
   },
 });
 
