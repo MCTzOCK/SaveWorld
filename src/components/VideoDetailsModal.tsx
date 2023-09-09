@@ -9,13 +9,14 @@
  */
 
 import * as React from "react";
+import { useEffect } from "react";
 import {
+  IonActionSheet,
   IonButton,
   IonButtons,
   IonCard,
   IonCardContent,
   IonCardHeader,
-  IonCardSubtitle,
   IonCardTitle,
   IonContent,
   IonHeader,
@@ -25,9 +26,8 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { useEffect } from "react";
 import { REST } from "@saveworld/api-js";
-import { share, shareSharp } from "ionicons/icons";
+import { share, shareSharp, star, starSharp } from "ionicons/icons";
 import { Share } from "@capacitor/share";
 
 export default function VideoDetailsModal(props: {
@@ -37,6 +37,7 @@ export default function VideoDetailsModal(props: {
     description: string;
     categories: string[];
     _id: string;
+    ratings: number[];
   } | null;
 }) {
   const [categories, setCategories] = React.useState<
@@ -55,6 +56,8 @@ export default function VideoDetailsModal(props: {
       }
     });
   }, []);
+
+  const asRef = React.useRef<HTMLIonActionSheetElement>(null);
 
   return (
     <>
@@ -79,6 +82,14 @@ export default function VideoDetailsModal(props: {
               >
                 <IonIcon ios={share} md={shareSharp} />
               </IonButton>
+              <IonButton
+                color={"success"}
+                onClick={async () => {
+                  asRef.current?.present();
+                }}
+              >
+                <IonIcon ios={star} md={starSharp} />
+              </IonButton>
             </IonButtons>
             <IonTitle>{props.video?.title}</IonTitle>
             <IonButtons slot={"end"}>
@@ -94,28 +105,179 @@ export default function VideoDetailsModal(props: {
           </IonToolbar>
         </IonHeader>
         <IonContent>
-          <div className={"ion-padding"}>
-            <IonText>{props.video?.description}</IonText>
-            {props.video?.categories.map((category) => {
-              return (
-                <>
-                  <IonCard>
-                    <img
-                      src={categories.find((c) => c._id === category)?.image}
-                    />
-                    <IonCardHeader>
-                      <IonCardTitle>
-                        {categories.find((c) => c._id === category)!.name}
-                      </IonCardTitle>
-                    </IonCardHeader>
-                    <IonCardContent>
-                      {categories.find((c) => c._id === category)!.description}
-                    </IonCardContent>
-                  </IonCard>
-                </>
+          <IonActionSheet
+            ref={asRef}
+            header={"Bewerten"}
+            subHeader={"Wie viele Sterne hat das Video verdient?"}
+            buttons={[
+              {
+                text: "1 Stern",
+                data: {
+                  rating: 1,
+                },
+              },
+              {
+                text: "2 Sterne",
+                data: {
+                  rating: 2,
+                },
+              },
+              {
+                text: "3 Sterne",
+                data: {
+                  rating: 3,
+                },
+              },
+              {
+                text: "4 Sterne",
+                data: {
+                  rating: 4,
+                },
+              },
+              {
+                text: "5 Sterne",
+                data: {
+                  rating: 5,
+                },
+              },
+              {
+                text: "Abbrechen",
+                role: "cancel",
+              },
+            ]}
+            onDidDismiss={async (e) => {
+              if (e.detail.role === "cancel") return;
+              const rating = e.detail.data.rating;
+
+              const res = await REST.Content.rate(
+                props.video?._id as string,
+                rating,
               );
-            })}
-          </div>
+
+              if (res.status === 200) {
+                alert("Vielen Dank für deine Bewertung!");
+              } else {
+                alert("Fehler beim Bewerten des Videos: " + res.payload.error);
+              }
+            }}
+          />
+          {props.video ? (
+            <div className={"ion-padding"}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  width: "100%",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "1rem",
+                  marginBottom: "2rem",
+                }}
+              >
+                <IonIcon
+                  ios={star}
+                  md={starSharp}
+                  color={
+                    (Math.round(
+                      (props.video?.ratings as number[]).reduce(
+                        (a, b) => a + b,
+                        0,
+                      ) / (props.video?.ratings as number[]).length,
+                    ) || 0) > 0
+                      ? "warning"
+                      : "medium"
+                  }
+                />
+                <IonIcon
+                  ios={star}
+                  md={starSharp}
+                  color={
+                    (Math.round(
+                      (props.video?.ratings as number[]).reduce(
+                        (a, b) => a + b,
+                        0,
+                      ) / (props.video?.ratings as number[]).length,
+                    ) || 0) > 1
+                      ? "warning"
+                      : "medium"
+                  }
+                />
+                <IonIcon
+                  ios={star}
+                  md={starSharp}
+                  color={
+                    (Math.round(
+                      (props.video?.ratings as number[]).reduce(
+                        (a, b) => a + b,
+                        0,
+                      ) / (props.video?.ratings as number[]).length,
+                    ) || 0) > 2
+                      ? "warning"
+                      : "medium"
+                  }
+                />
+                <IonIcon
+                  ios={star}
+                  md={starSharp}
+                  color={
+                    (Math.round(
+                      (props.video?.ratings as number[]).reduce(
+                        (a, b) => a + b,
+                        0,
+                      ) / (props.video?.ratings as number[]).length,
+                    ) || 0) > 3
+                      ? "warning"
+                      : "medium"
+                  }
+                />
+                <IonIcon
+                  ios={star}
+                  md={starSharp}
+                  color={
+                    (Math.round(
+                      (props.video?.ratings as number[]).reduce(
+                        (a, b) => a + b,
+                        0,
+                      ) / (props.video?.ratings as number[]).length,
+                    ) || 0) > 4
+                      ? "warning"
+                      : "medium"
+                  }
+                />
+                (
+                {Math.round(
+                  (props.video?.ratings as number[]).reduce(
+                    (a, b) => a + b,
+                    0,
+                  ) / (props.video?.ratings as number[]).length,
+                ) || "0"}
+                )
+              </div>
+              <IonText>{props.video?.description}</IonText>
+              {props.video?.categories.map((category) => {
+                return (
+                  <>
+                    <IonCard>
+                      <img
+                        src={categories.find((c) => c._id === category)?.image}
+                      />
+                      <IonCardHeader>
+                        <IonCardTitle>
+                          {categories.find((c) => c._id === category)!.name}
+                        </IonCardTitle>
+                      </IonCardHeader>
+                      <IonCardContent>
+                        {
+                          categories.find((c) => c._id === category)!
+                            .description
+                        }
+                      </IonCardContent>
+                    </IonCard>
+                  </>
+                );
+              })}
+            </div>
+          ) : null}
         </IonContent>
       </IonModal>
     </>

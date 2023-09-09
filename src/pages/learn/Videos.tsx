@@ -47,6 +47,7 @@ export default function Videos() {
     streamUrl: string;
     thumbnailUrl: string;
     categories: string[];
+    ratings: number[];
   } | null>(null);
 
   const nextVideo = async () => {
@@ -145,9 +146,10 @@ export default function Videos() {
               loop: {
                 active: true,
               },
-              clickToPlay: true,
               ratio: "9:16",
+              clickToPlay: true,
             }}
+            playsInline={true}
           />
           <div
             style={{
