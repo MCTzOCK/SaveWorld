@@ -89,7 +89,7 @@ export default function TrackerActionModal(props: {
                 <IonContent className={"ion-padding"}>
                   <IonText>
                     Wir können nicht überprüfen, ob du die Aktionen wirklich
-                    durchgeführt, aber wir vertrauen auf deine Ehrlichkeit!
+                    durchgeführt hast, aber wir vertrauen auf deine Ehrlichkeit!
                   </IonText>
                 </IonContent>
               </IonPopover>
