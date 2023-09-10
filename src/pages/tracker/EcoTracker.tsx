@@ -40,7 +40,9 @@ import TrackerActionModal from "../../components/TrackerActionModal";
 export default function EcoTracker() {
   useRedirectForAnon();
 
-  const [date, setDate] = React.useState(new Date().toISOString());
+  const [dates, setDates] = useState<string[]>([]);
+
+  const [date, setDate] = useState(new Date().toISOString());
   const [actions, setActions] = useState<
     {
       __v: number;
@@ -62,6 +64,16 @@ export default function EcoTracker() {
       setActions(res.payload.data);
     } else {
       alert("Aktionen konnten nicht geladen werden: " + res.payload.error);
+    }
+
+    const dRes = await REST.Tracker.dates(
+      localStorage.getItem("token") as string,
+    );
+
+    if (dRes.status === 200) {
+      setDates(dRes.payload.data);
+    } else {
+      alert("Daten konnten nicht geladen werden: " + dRes.payload.error);
     }
   };
 
@@ -91,8 +103,17 @@ export default function EcoTracker() {
             locale={"de-DE"}
             presentation={"date"}
             value={date}
+            doneText={"Fertig"}
+            cancelText={"Abbrechen"}
             max={new Date().toISOString()}
             showDefaultButtons
+            highlightedDates={dates.map((d) => {
+              return {
+                date: d,
+                textColor: "#000000",
+                backgroundColor: "var(--ion-color-success)",
+              };
+            })}
             onIonChange={(e) => {
               setDate(e.detail.value! as string);
               reloadData(e.detail.value! as string);
