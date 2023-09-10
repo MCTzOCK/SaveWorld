@@ -23,6 +23,7 @@ import {
   IonLabel,
   IonList,
   IonModal,
+  IonText,
 } from "@ionic/react";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
 import { useEffect, useState } from "react";

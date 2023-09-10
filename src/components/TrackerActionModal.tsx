@@ -16,17 +16,25 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
+  IonIcon,
   IonInput,
   IonItem,
   IonLabel,
   IonList,
   IonModal,
+  IonPopover,
   IonText,
   IonTextarea,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
 import { REST } from "@saveworld/api-js";
+import {
+  information,
+  informationCircle,
+  informationCircleSharp,
+  informationSharp,
+} from "ionicons/icons";
 
 const templates: {
   action: string;
@@ -74,6 +82,17 @@ export default function TrackerActionModal(props: {
             </IonButtons>
             <IonTitle>{props.action ? "Bearbeiten" : "Neue Aktion"}</IonTitle>
             <IonButtons slot={"end"}>
+              <IonButton color={"warning"} id={"disclaimer-click"}>
+                <IonIcon ios={informationCircle} md={informationCircleSharp} />
+              </IonButton>
+              <IonPopover trigger={"disclaimer-click"} triggerAction={"click"}>
+                <IonContent className={"ion-padding"}>
+                  <IonText>
+                    Wir können nicht überprüfen, ob du die Aktionen wirklich
+                    durchgeführt, aber wir vertrauen auf deine Ehrlichkeit!
+                  </IonText>
+                </IonContent>
+              </IonPopover>
               <IonButton
                 color={"success"}
                 onClick={async () => {
