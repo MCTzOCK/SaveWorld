@@ -58,6 +58,7 @@ import AdminVideoDashboard from "./pages/admin/AdminVideoDashboard";
 import Videos from "./pages/learn/Videos";
 import VideoSearchFTS from "./pages/learn/VideoSearchFTS";
 import { Redirect } from "react-router";
+import EcoTracker from "./pages/tracker/EcoTracker";
 
 setupIonicReact({
   mode: "ios",
@@ -119,6 +120,9 @@ export default function App() {
             </Route>
             <Route exact path="/learn/fts-search">
               <VideoSearchFTS />
+            </Route>
+            <Route exact path="/eco-tracker">
+              <EcoTracker />
             </Route>
             <Route>
               <NotFound />
