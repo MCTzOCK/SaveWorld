@@ -61,6 +61,17 @@ export default function TrackerActionModal(props: {
       >
         <IonHeader>
           <IonToolbar>
+            <IonButtons slot={"start"}>
+              <IonButton
+                color={"danger"}
+                onClick={() => {
+                  props.setAction(undefined);
+                  props.modal.current?.dismiss();
+                }}
+              >
+                Abbrechen
+              </IonButton>
+            </IonButtons>
             <IonTitle>{props.action ? "Bearbeiten" : "Neue Aktion"}</IonTitle>
             <IonButtons slot={"end"}>
               <IonButton
