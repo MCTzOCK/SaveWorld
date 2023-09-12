@@ -62,6 +62,7 @@ import EcoTracker from "./pages/tracker/EcoTracker";
 
 import OneSignal from "onesignal-cordova-plugin";
 import { ONE_SIGNAL_APP_ID } from "./env";
+import { useEffect } from "react";
 
 setupIonicReact({
   mode: "ios",
@@ -71,6 +72,12 @@ OneSignal.init(ONE_SIGNAL_APP_ID);
 OneSignal.Notifications.requestPermission();
 export default function App() {
   const { userInfo, loaded, loggedIn } = useUserData();
+
+  useEffect(() => {
+    if (loaded && loggedIn) {
+      OneSignal.login(userInfo._id);
+    }
+  }, [loaded, loggedIn]);
 
   return (
     <IonApp>

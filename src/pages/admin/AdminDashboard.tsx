@@ -150,6 +150,15 @@ export default function AdminDashboard() {
               >
                 Server Status
               </IonItem>
+              <IonItem
+                color={"light"}
+                href={
+                  "https://dashboard.onesignal.com/apps/7575751a-432d-44b0-baa2-84dcfc925f45"
+                }
+                target={"_blank"}
+              >
+                OneSignal (Push)
+              </IonItem>
             </IonList>
           </>
         )}
