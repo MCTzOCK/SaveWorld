@@ -7,6 +7,7 @@ import {
   IonTabBar,
   IonTabButton,
   IonTabs,
+  isPlatform,
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
@@ -68,14 +69,18 @@ setupIonicReact({
   mode: "ios",
 });
 
-OneSignal.init(ONE_SIGNAL_APP_ID);
-OneSignal.Notifications.requestPermission();
 export default function App() {
   const { userInfo, loaded, loggedIn } = useUserData();
 
   useEffect(() => {
-    if (loaded && loggedIn) {
-      OneSignal.login(userInfo._id);
+    if (!isPlatform("desktop")) {
+      try {
+        OneSignal.init(ONE_SIGNAL_APP_ID);
+        OneSignal.Notifications.requestPermission();
+        if (loaded && loggedIn) {
+          OneSignal.login(userInfo._id);
+        }
+      } catch (e) {}
     }
   }, [loaded, loggedIn]);
 
