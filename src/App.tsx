@@ -60,10 +60,15 @@ import VideoSearchFTS from "./pages/learn/VideoSearchFTS";
 import { Redirect } from "react-router";
 import EcoTracker from "./pages/tracker/EcoTracker";
 
+import OneSignal from "onesignal-cordova-plugin";
+import { ONE_SIGNAL_APP_ID } from "./env";
+
 setupIonicReact({
   mode: "ios",
 });
 
+OneSignal.init(ONE_SIGNAL_APP_ID);
+OneSignal.Notifications.requestPermission();
 export default function App() {
   const { userInfo, loaded, loggedIn } = useUserData();
 
