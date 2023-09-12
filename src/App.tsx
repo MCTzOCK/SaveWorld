@@ -64,6 +64,7 @@ import EcoTracker from "./pages/tracker/EcoTracker";
 import OneSignal from "onesignal-cordova-plugin";
 import { ONE_SIGNAL_APP_ID } from "./env";
 import { useEffect } from "react";
+import AppUrlListener from "./AppUrlListener";
 
 setupIonicReact({
   mode: "ios",
@@ -88,6 +89,7 @@ export default function App() {
     <IonApp>
       <IonReactRouter>
         <IonTabs>
+          <AppUrlListener />
           <IonRouterOutlet>
             <Route exact path="/register">
               <Register />
