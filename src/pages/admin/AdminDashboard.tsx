@@ -113,6 +113,17 @@ export default function AdminDashboard() {
                 </IonText>
               </IonCardContent>
             </IonCard>
+            <IonCard color={"danger"} routerLink={"/admin/lifestyle-templates"}>
+              <IonCardHeader>
+                <IonCardTitle>Lifestyle Vorlagen</IonCardTitle>
+              </IonCardHeader>
+              <IonCardContent>
+                <IonText>
+                  Verwalte die Vorlagen für die Eingabe des Lifestyles eines
+                  Benutzers.
+                </IonText>
+              </IonCardContent>
+            </IonCard>
             <IonList inset>Interne Werkzeuge:</IonList>
             <IonList inset>
               <IonItem

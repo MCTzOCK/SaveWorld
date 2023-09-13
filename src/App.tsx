@@ -65,6 +65,7 @@ import OneSignal from "onesignal-cordova-plugin";
 import { ONE_SIGNAL_APP_ID } from "./env";
 import { useEffect } from "react";
 import AppUrlListener from "./AppUrlListener";
+import AdminLifestyleTemplates from "./pages/admin/AdminLifestyleTemplates";
 
 setupIonicReact({
   mode: "ios",
@@ -133,6 +134,9 @@ export default function App() {
             </Route>
             <Route exact path="/admin/users/:id">
               <AdminUserDashboard />
+            </Route>
+            <Route exact path="/admin/lifestyle-templates">
+              <AdminLifestyleTemplates />
             </Route>
             <Route exact path="/learn">
               <Videos />
