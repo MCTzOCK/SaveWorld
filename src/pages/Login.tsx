@@ -38,7 +38,21 @@ export default function Login() {
 
             if (res.status === 200) {
               localStorage.setItem("token", res.payload.token);
-              router.push("/welcome", "none", "replace");
+              const prefs = await REST.Account.preferences(res.payload.token);
+
+              let hasInterests = false;
+
+              if (!prefs.payload.prefs.interests) {
+                hasInterests = false;
+              } else {
+                hasInterests = prefs.payload.prefs.interests.length > 0;
+              }
+
+              if (!hasInterests) {
+                router.push("/welcome", "none", "replace");
+              } else {
+                router.push("/onboarding", "none", "replace");
+              }
             } else {
               if (res.payload.error === "TOTP Code incorrect") {
                 const code = prompt("Bitte gebe den 2FA Code ein");
@@ -49,13 +63,17 @@ export default function Login() {
                 if (resp.status === 200) {
                   localStorage.setItem("token", resp.payload.token);
                   const prefs = await REST.Account.preferences(
-                    localStorage.getItem("token") as string,
+                    resp.payload.token,
                   );
+                  let hasInterests = false;
 
-                  if (
-                    !prefs.payload.interests ||
-                    prefs.payload.interests.length === 0
-                  ) {
+                  if (!prefs.payload.prefs.interests) {
+                    hasInterests = false;
+                  } else {
+                    hasInterests = prefs.payload.prefs.interests.length > 0;
+                  }
+
+                  if (!hasInterests) {
                     router.push("/welcome", "none", "replace");
                   } else {
                     router.push("/onboarding", "none", "replace");
