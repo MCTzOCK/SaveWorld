@@ -48,7 +48,18 @@ export default function Login() {
 
                 if (resp.status === 200) {
                   localStorage.setItem("token", resp.payload.token);
-                  router.push("/welcome", "none", "replace");
+                  const prefs = await REST.Account.preferences(
+                    localStorage.getItem("token") as string,
+                  );
+
+                  if (
+                    !prefs.payload.interests ||
+                    prefs.payload.interests.length === 0
+                  ) {
+                    router.push("/welcome", "none", "replace");
+                  } else {
+                    router.push("/onboarding", "none", "replace");
+                  }
                 } else {
                   alert("Fehler beim anmelden: " + resp.payload.error);
                 }
