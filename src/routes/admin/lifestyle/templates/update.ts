@@ -32,7 +32,9 @@ export default async function (req: Request, res: Response) {
       return;
     }
 
-    const { name, goal, id } = req.body;
+    const { id } = req.query;
+
+    const { name, goal } = req.body;
 
     if (!name || !goal || !id) {
       res.status(400).json({
@@ -54,6 +56,8 @@ export default async function (req: Request, res: Response) {
 
     lst.name = name;
     lst.goal = goal;
+
+    await lst.save();
 
     res.status(200).json({ lst, status: 200 });
   } catch (e) {
