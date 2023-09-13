@@ -10,18 +10,20 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { App, URLOpenListenerEvent } from "@capacitor/app";
+import { useIonRouter } from "@ionic/react";
 
 export default function AppUrlListener() {
-  let history = useHistory();
+  let router = useIonRouter();
   useEffect(() => {
     App.addListener("appUrlOpen", (event: URLOpenListenerEvent) => {
-      // https://app.saveworld.one/root-page/sub-page
-      // -> /root-page/sub-page
-      const slug = event.url.split(".one")[1];
+      const slug = event.url.split(".one").pop();
       if (slug) {
-        history.push(slug);
+        router.push(slug, "forward", "push");
       }
     });
+    return () => {
+      App.removeAllListeners();
+    };
   }, []);
   return null;
 }

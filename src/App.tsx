@@ -88,8 +88,8 @@ export default function App() {
   return (
     <IonApp>
       <IonReactRouter>
+        <AppUrlListener />
         <IonTabs>
-          <AppUrlListener />
           <IonRouterOutlet>
             <Route exact path="/register">
               <Register />
