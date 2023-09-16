@@ -1,5 +1,5 @@
 /**
- * backend/src/models/LifestyleTemplate.ts
+ * backend/src/models/LifestyleTemplateModel.ts
  *
  * Author: Ben Siebert <hello@ben-siebert.de>
  * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.

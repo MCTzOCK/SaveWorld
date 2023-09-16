@@ -9,7 +9,7 @@
  */
 
 import { Request, Response } from "express";
-import LifestyleTemplateModel from "../../../../models/LifestyleTemplate";
+import LifestyleTemplateModel from "../../../../models/LifestyleTemplateModel";
 import { isAuthenticated } from "../../../../util/isAuthenticated";
 
 export default async function (req: Request, res: Response) {

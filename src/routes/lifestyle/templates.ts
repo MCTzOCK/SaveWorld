@@ -9,7 +9,7 @@
  */
 
 import { Request, Response } from "express";
-import LifestyleTemplateModel from "../../models/LifestyleTemplate";
+import LifestyleTemplateModel from "../../models/LifestyleTemplateModel";
 
 export default async function (req: Request, res: Response) {
   try {
