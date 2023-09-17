@@ -136,13 +136,19 @@ export default function ManageAccount() {
                       alert("Fehler beim Upload: " + mediaRes.statusText);
                     }
 
-                    (document.querySelector("#manual-mount-point") as HTMLDivElement).removeChild(fileInput);
-                  })
+                    (
+                      document.querySelector(
+                        "#manual-mount-point",
+                      ) as HTMLDivElement
+                    ).removeChild(fileInput);
+                  });
 
-                  fileInput.onchange = async (e) => {
-
-                  };
-                  (document.querySelector("#manual-mount-point") as HTMLDivElement).appendChild(fileInput);
+                  fileInput.onchange = async (e) => {};
+                  (
+                    document.querySelector(
+                      "#manual-mount-point",
+                    ) as HTMLDivElement
+                  ).appendChild(fileInput);
                   fileInput.click();
                 }}
               >
@@ -174,6 +180,17 @@ export default function ManageAccount() {
                 }}
               >
                 <IonText color={"danger"}>Profilbild entfernen</IonText>
+              </IonItem>
+            </IonList>
+
+            <IonList inset>
+              <IonItem
+                color={"light"}
+                detail
+                routerLink={"/welcome"}
+                routerDirection={"none"}
+              >
+                <IonText>Einleitung erneut öffnen</IonText>
               </IonItem>
             </IonList>
 
@@ -391,7 +408,7 @@ export default function ManageAccount() {
                   } else {
                     alert(
                       "Fehler beim Löschen, bitte kontaktiere den Support: " +
-                      res.payload.error,
+                        res.payload.error,
                     );
                   }
                 }}

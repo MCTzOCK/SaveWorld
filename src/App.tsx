@@ -18,8 +18,6 @@ import {
   homeSharp,
   leaf,
   leafSharp,
-  person,
-  personSharp,
 } from "ionicons/icons";
 
 /* Core CSS required for Ionic components to work properly */
@@ -49,10 +47,10 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminUsersDashboard from "./pages/admin/AdminUsersDashboard";
 import AdminUserDashboard from "./pages/admin/AdminUserDashboard";
 import NotFound from "./pages/NotFound";
-import Welcome from "./pages/Welcome";
+import Welcome from "./pages/introduction/Welcome";
 import AdminContentDashboard from "./pages/admin/AdminContentDashboard";
 import AdminContentCategoryDashboard from "./pages/admin/AdminContentCategoryDashboard";
-import FinishWelcome from "./pages/FinishWelcome";
+import FinishWelcome from "./pages/introduction/FinishWelcome";
 import ManageAccountInterests from "./pages/account/ManageAccountInterests";
 import AdminVideosDashboard from "./pages/admin/AdminVideosDashboard";
 import AdminVideoDashboard from "./pages/admin/AdminVideoDashboard";
@@ -66,6 +64,7 @@ import { ONE_SIGNAL_APP_ID } from "./env";
 import { useEffect } from "react";
 import AppUrlListener from "./AppUrlListener";
 import AdminLifestyleTemplates from "./pages/admin/AdminLifestyleTemplates";
+import WelcomeLifestyle from "./pages/introduction/WelcomeLifestyle";
 
 setupIonicReact({
   mode: "ios",
@@ -104,6 +103,9 @@ export default function App() {
             <Redirect to={"/onboarding"} from={"/"} exact />
             <Route exact path="/welcome">
               <Welcome />
+            </Route>
+            <Route exact path="/welcome/lifestyle">
+              <WelcomeLifestyle />
             </Route>
             <Route exact path="/welcome/finish">
               <FinishWelcome />

@@ -9,7 +9,7 @@
  */
 
 import * as React from "react";
-import Page from "../components/Page";
+import Page from "../../components/Page";
 import {
   IonButton,
   IonCard,
@@ -20,8 +20,8 @@ import {
   IonText,
 } from "@ionic/react";
 import { useEffect, useRef, useState } from "react";
-import WelcomeInterestModal from "../components/WelcomeInterestModal";
-import { useRedirectForAnon } from "../hooks/useRedirectForAnon";
+import WelcomeInterestModal from "../../components/WelcomeInterestModal";
+import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
 
 export default function Welcome() {
   useRedirectForAnon();

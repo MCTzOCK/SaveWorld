@@ -84,7 +84,7 @@ export default function WelcomeInterestModal(props: {
 
                   props.modal.current?.dismiss();
 
-                  router.push("/welcome/finish", "forward", "replace");
+                  router.push("/welcome/lifestyle", "forward", "replace");
                 }}
               >
                 <b>Fertig</b>
