@@ -13,6 +13,8 @@ import { getRoutes } from "./routes";
 import * as cors from "cors";
 import * as chalk from "chalk";
 import mongoose from "mongoose";
+import * as schedule from "node-schedule";
+import { getOS } from "./util/getOS";
 
 config();
 
@@ -73,6 +75,21 @@ const port = process.env.PORT || 3000;
 
   console.log("Registered Routes:");
   console.table(Object.keys(routes));
+
+  const client = getOS();
+  const notifyJob = schedule.scheduleJob("30 18 * * *", async () => {
+    const notification = await client.createNotification({
+      contents: {
+        en: "Es ist Zeit deinen Tagesbericht zu schreiben!",
+      },
+      headings: {
+        en: "SaveWorld",
+      },
+      included_segments: ["All"],
+      app_id: process.env.ONE_SIGNAL_USER_KEY,
+      url: "https://app.saveworld.one/e2",
+    });
+  });
 
   app.listen(port, () => {
     console.log(`App listening on port ${port}`);
