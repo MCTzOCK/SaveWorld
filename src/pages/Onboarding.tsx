@@ -86,7 +86,7 @@ export default function Onboarding() {
                 <IonIcon ios={book} md={bookSharp} slot={"start"} />
                 Lernen
               </IonItem>
-              <IonItem detail routerLink={"/eco-tracker"}>
+              <IonItem detail routerLink={"/e2"}>
                 <IonIcon ios={leaf} md={leafSharp} slot={"start"} />
                 Tracker
               </IonItem>

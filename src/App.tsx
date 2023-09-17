@@ -65,6 +65,7 @@ import { useEffect } from "react";
 import AppUrlListener from "./AppUrlListener";
 import AdminLifestyleTemplates from "./pages/admin/AdminLifestyleTemplates";
 import WelcomeLifestyle from "./pages/introduction/WelcomeLifestyle";
+import E2 from "./pages/e2/E2";
 
 setupIonicReact({
   mode: "ios",
@@ -148,6 +149,9 @@ export default function App() {
             </Route>
             <Route exact path="/eco-tracker">
               <EcoTracker />
+            </Route>
+            <Route exact path="/e2">
+              <E2 />
             </Route>
             <Route>
               <NotFound />
