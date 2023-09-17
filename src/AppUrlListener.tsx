@@ -8,7 +8,6 @@
  *
  */
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import { App, URLOpenListenerEvent } from "@capacitor/app";
 import { useIonRouter } from "@ionic/react";
 
