@@ -41,7 +41,7 @@ const LifestyleModel = new mongoose.Schema({
  *   goals: [
  *     {
  *       template: "5f5f5f5f5f5f5f5f5f5f5f5f",
- *       maxPerWeek: 2
+ *       goalPerWeek: 2
  *     }
  *   ]
  * }
