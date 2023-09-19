@@ -76,7 +76,7 @@ export default function Welcome() {
               style={{
                 marginTop: "1.2rem",
               }}
-              routerLink={"/"}
+              routerLink={"/onboarding"}
               routerDirection={"none"}
             >
               Später auswählen
