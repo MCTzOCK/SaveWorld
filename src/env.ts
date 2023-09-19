@@ -9,5 +9,5 @@
  */
 
 //export const ENDPOINT = "https://api-dev.saveworld.one";
-export const ENDPOINT = "http://127.0.0.1:3000";
+export const ENDPOINT = "https://api-dev.saveworld.one";
 export const ONE_SIGNAL_APP_ID = "7575751a-432d-44b0-baa2-84dcfc925f45";
