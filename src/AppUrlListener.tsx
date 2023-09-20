@@ -21,6 +21,13 @@ export default function AppUrlListener() {
         router.push(slug, "forward", "push");
       }
     });
+
+    App.getLaunchUrl().then((v) => {
+      if(v) {
+        alert(v)
+      }
+    })
+
     return () => {
       App.removeAllListeners();
     };

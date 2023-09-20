@@ -28,3 +28,8 @@ end
 post_install do |installer|
   assertDeploymentTarget(installer)
 end
+
+target 'OneSignalNotificationServiceExtension' do
+  use_frameworks!
+  pod 'OneSignalXCFramework', '5.0.0-beta-04'
+end

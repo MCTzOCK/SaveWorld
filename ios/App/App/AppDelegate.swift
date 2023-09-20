@@ -1,5 +1,6 @@
 import UIKit
 import Capacitor
+import OneSignalFramework
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
