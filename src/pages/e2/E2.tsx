@@ -35,6 +35,7 @@ import {
 } from "@ionic/react";
 import E2SubmitModal from "../../components/E2SubmitModal";
 import E2Data from "../../components/E2Data";
+import E2Analytics from "../../components/E2Analytics";
 
 export default function E2() {
   useRedirectForAnon();
@@ -57,11 +58,7 @@ export default function E2() {
             <IonLabel>Analyse</IonLabel>
           </IonSegmentButton>
         </IonSegment>
-        {segment === "data" ? (
-          <>
-            <E2Data />
-          </>
-        ) : null}
+        {segment === "data" ? <E2Data /> : <E2Analytics />}
       </Page>
     </>
   );

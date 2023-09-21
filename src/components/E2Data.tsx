@@ -148,32 +148,37 @@ export default function E2Data() {
             Object.keys(weekly).map((k) => {
               return (
                 <>
-                  <IonText>{templates.find((t) => t._id === k)?.name}</IonText>
-                  <ProgressBar
-                    completed={`${
-                      weekly[k].actual > weekly[k].goal
-                        ? weekly[k].goal
-                        : weekly[k].actual
-                    }`}
-                    maxCompleted={weekly[k].goal}
-                    bgColor={
-                      weekly[k].actual > weekly[k].goal
-                        ? "var(--ion-color-danger-shade)"
-                        : "var(--ion-color-success-shade)"
-                    }
-                  />
-                  <IonText>
-                    <small>
-                      {weekly[k].actual} von {weekly[k].goal} erreicht.&nbsp;
-                      {weekly[k].actual > weekly[k].goal ? (
-                        <>
-                          <IonText color={"danger"}>
-                            Ziel nicht erreicht!
-                          </IonText>
-                        </>
-                      ) : null}
-                    </small>
-                  </IonText>
+                  <div>
+                    <IonText>
+                      {templates.find((t) => t._id === k)?.name}
+                    </IonText>
+                    <ProgressBar
+                      completed={`${
+                        weekly[k].actual > weekly[k].goal
+                          ? weekly[k].goal
+                          : weekly[k].actual
+                      }`}
+                      maxCompleted={weekly[k].goal}
+                      isLabelVisible={false}
+                      bgColor={
+                        weekly[k].actual > weekly[k].goal
+                          ? "var(--ion-color-danger-shade)"
+                          : "var(--ion-color-success-shade)"
+                      }
+                    />
+                    <IonText>
+                      <small>
+                        {weekly[k].actual} von {weekly[k].goal} erreicht.&nbsp;
+                        {weekly[k].actual > weekly[k].goal ? (
+                          <>
+                            <IonText color={"danger"}>
+                              Ziel nicht erreicht!
+                            </IonText>
+                          </>
+                        ) : null}
+                      </small>
+                    </IonText>
+                  </div>
                 </>
               );
             })}

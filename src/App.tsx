@@ -177,8 +177,8 @@ export default function App() {
               <IonLabel>Home</IonLabel>
             </IonTabButton>
             <IonTabButton
-              tab="eco-tracker"
-              href="/eco-tracker"
+              tab="e2"
+              href="/e2"
               disabled={!loggedIn}
               selected={false}
             >
