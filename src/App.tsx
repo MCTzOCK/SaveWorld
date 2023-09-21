@@ -66,36 +66,25 @@ import AppUrlListener from "./AppUrlListener";
 import AdminLifestyleTemplates from "./pages/admin/AdminLifestyleTemplates";
 import WelcomeLifestyle from "./pages/introduction/WelcomeLifestyle";
 import E2 from "./pages/e2/E2";
-import { ClickedEvent } from "onesignal-cordova-plugin/dist/models/NotificationClicked";
 
 setupIonicReact({
   mode: "ios",
 });
 
-function OneSignalInit() {
-  OneSignal.init(ONE_SIGNAL_APP_ID);
-
-  const clickListener = async (evt: ClickedEvent) => {
-    alert("clicked:" +  evt.notification.launchURL);
-  }
-
-  OneSignal.Notifications.addEventListener("click", (ev) => {
-    clickListener(ev);
-  });
-
-  OneSignal.Notifications.requestPermission();
-}
-
 export default function App() {
   const { userInfo, loaded, loggedIn } = useUserData();
-
-  OneSignalInit();
-
   useEffect(() => {
-    if(loaded && loggedIn) {
-      OneSignal.login(userInfo!._id);
-    }
-  }, [loggedIn, userInfo, loaded]);
+    try {
+      if (!isPlatform("desktop")) {
+        OneSignal.init(ONE_SIGNAL_APP_ID);
+
+        OneSignal.Notifications.requestPermission();
+        if (loaded && loggedIn) {
+          OneSignal.login(userInfo._id);
+        }
+      }
+    } catch (e) {}
+  }, [loggedIn, loaded]);
 
   return (
     <IonApp>
