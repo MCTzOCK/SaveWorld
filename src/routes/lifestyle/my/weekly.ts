@@ -29,12 +29,31 @@ export default async function (req: Request, res: Response) {
       user: user._id,
     });
 
-    const dates: Date[] = [];
-    for (let i = 0; i < 7; i++) {
-      const date = new Date();
-      date.setDate(date.getDate() - i);
-      date.setHours(0, 0, 0, 0);
-      dates.push(date);
+    function getWeekDates(date: Date): string[] {
+      const weekDates: string[] = [];
+      const currentDate = new Date(date);
+
+      // Setze den Wochentag auf Montag (1 entspricht Montag)
+      currentDate.setDate(currentDate.getDate() - (currentDate.getDay() - 1));
+      currentDate.setUTCHours(0, 0, 0, 0);
+
+      // Füge alle Daten der Woche (Montag bis Sonntag) zum Array hinzu
+      for (let i = 0; i < 7; i++) {
+        const formattedDate = currentDate.toISOString().split("T")[0];
+        weekDates.push(formattedDate);
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+
+      return weekDates;
+    }
+
+    let dates: Date[] = [];
+    if (req.query.dayInWeek) {
+      dates = getWeekDates(new Date(req.query.dayInWeek as string)).map(
+        (e) => new Date(e),
+      );
+    } else {
+      dates = getWeekDates(new Date()).map((e) => new Date(e));
     }
 
     const summaries = await LifestyleSummaryModel.find({
@@ -67,6 +86,8 @@ export default async function (req: Request, res: Response) {
     res.status(200).json({
       goals: g,
       status: 200,
+      startDate: dates[0],
+      endDate: dates[dates.length - 1],
     });
   } catch (e) {
     res.status(500).json({

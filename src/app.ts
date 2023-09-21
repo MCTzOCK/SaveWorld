@@ -77,7 +77,7 @@ const port = process.env.PORT || 3000;
   console.table(Object.keys(routes));
 
   const client = getOS();
-  const notifyJob = schedule.scheduleJob("30 18 * * *", async () => {
+  const notifyJob = schedule.scheduleJob("00 19 * * *", async () => {
     const notification = await client.createNotification({
       contents: {
         en: "Es ist Zeit deinen Tagesbericht zu schreiben!",
@@ -87,7 +87,7 @@ const port = process.env.PORT || 3000;
       },
       included_segments: ["All"],
       app_id: process.env.ONE_SIGNAL_USER_KEY,
-      url: "https://app.saveworld.one/e2",
+      url: "https://app.saveworld.one/account",
     });
   });
 

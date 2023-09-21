@@ -26,7 +26,7 @@ export default async function (req: Request, res: Response) {
 
     const date = new Date(req.params.date);
 
-    date.setHours(0, 0, 0, 0);
+    date.setUTCHours(0, 0, 0, 0);
 
     const lfsummary = await LifestyleSummaryModel.findOne({
       user: user._id,
