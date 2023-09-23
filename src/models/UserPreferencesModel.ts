@@ -26,6 +26,11 @@ const UserPreferencesModel = new mongoose.Schema({
     type: String,
     required: false,
   },
+  /** PUBLICLY AVAILABLE **/
+  community_profile: {
+    type: Map,
+    of: mongoose.Schema.Types.Mixed,
+  },
 });
 
 export default mongoose.models?.UserPreferences ||

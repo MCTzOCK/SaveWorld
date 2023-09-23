@@ -1,5 +1,5 @@
 /**
- * backend/src/routes/lifestyle/my/level.ts
+ * backend/src/routes/community/blog/receive.ts
  *
  * Author: Ben Siebert <hello@ben-siebert.de>
  * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
@@ -9,10 +9,8 @@
  */
 
 import { Request, Response } from "express";
-import LifestyleSummaryModel from "../../../models/LifestyleSummaryModel";
-import LifestyleModel from "../../../models/LifestyleModel";
+import CommunityBlogEntryModel from "../../../models/CommunityBlogEntryModel";
 import { isAuthenticated } from "../../../util/isAuthenticated";
-import { getUserEcoLevel } from "../../../util/getUserEcoLevel";
 
 export default async function (req: Request, res: Response) {
   try {
@@ -26,13 +24,28 @@ export default async function (req: Request, res: Response) {
       return;
     }
 
-    const lvl = await getUserEcoLevel(user);
+    const { id } = req.query as { id: string };
+
+    if (!id) {
+      res.status(400).json({
+        error: "Bad Request",
+        status: 400,
+      });
+      return;
+    }
+
+    const entry = await CommunityBlogEntryModel.findById(id);
+    if (!entry) {
+      res.status(404).json({
+        error: "Not Found",
+        status: 404,
+      });
+      return;
+    }
 
     res.status(200).json({
       status: 200,
-      level: lvl.level,
-      totalGoals: lvl.totalGoals,
-      achievedGoals: lvl.achievedGoals,
+      entry,
     });
   } catch (e) {
     res.status(500).json({
