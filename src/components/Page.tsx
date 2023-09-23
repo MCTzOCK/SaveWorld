@@ -139,7 +139,7 @@ export default function Page(props: {
                   <IonIcon ios={chatbox} md={chatboxSharp} />
                 </IonFabButton>
                 <IonFabButton
-                  routerLink={"/community/create"}
+                  routerLink={"/community/create/blog"}
                   color={"success"}
                 >
                   <IonIcon ios={add} md={addSharp} />

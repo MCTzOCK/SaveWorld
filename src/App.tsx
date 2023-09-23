@@ -68,6 +68,8 @@ import WelcomeLifestyle from "./pages/introduction/WelcomeLifestyle";
 import E2 from "./pages/e2/E2";
 import CommunityDashboard from "./pages/community/CommunityDashboard";
 import CommunityProfile from "./pages/community/CommunityProfile";
+import CommunityCreateBlog from "./pages/community/CommunityCreateBlog";
+import CommunityBlogViewer from "./pages/community/CommunityBlogViewer";
 
 setupIonicReact({
   mode: "ios",
@@ -160,6 +162,12 @@ export default function App() {
             </Route>
             <Route exact path="/community/u/:username">
               <CommunityProfile />
+            </Route>
+            <Route exact path="/community/create/blog">
+              <CommunityCreateBlog />
+            </Route>
+            <Route exact path="/community/r/:id">
+              <CommunityBlogViewer />
             </Route>
             <Route>
               <NotFound />

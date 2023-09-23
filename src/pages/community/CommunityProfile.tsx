@@ -102,6 +102,7 @@ export default function CommunityProfile() {
             style={{
               aspectRatio: "16/9",
               width: "100%",
+              objectFit: "cover",
             }}
           />
           <IonCard
