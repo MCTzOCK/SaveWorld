@@ -15,7 +15,10 @@ import { Request, Response } from "express";
 export async function getRoutes() {
   const routes = fs.readdirSync(path.join(__dirname, "routes"));
   const routeTable: {
-    [key: string]: (req: Request, res: Response) => void | Promise<void>;
+    [key: string]: {
+      exec: (req: Request, res: Response) => void | Promise<void>;
+      directory: string;
+    };
   } = {};
 
   const processRoute = async (directory: string) => {
@@ -38,7 +41,10 @@ export async function getRoutes() {
 
         d = d.replace("/_", "/:");
 
-        routeTable[d] = mod.default;
+        routeTable[d] = {
+          exec: mod.default,
+          directory: directory,
+        };
       }
     }
   };

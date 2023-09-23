@@ -7,7 +7,8 @@
     "ts:start": "cross-env NODE_ENV=development ts-node src/app.ts",
     "ts:prod": "cross-env NODE_ENV=production ts-node src/app.ts",
     "docker:build": "docker build -t registry.ben-siebert.com/ben/saveworld-backend .",
-    "docker:push": "docker push registry.ben-siebert.com/ben/saveworld-backend"
+    "docker:push": "docker push registry.ben-siebert.com/ben/saveworld-backend",
+    "docker:run": "docker run -d -p 7000:3000 --env-file ./.env registry.ben-siebert.com/ben/saveworld-backend"
   },
   "repository": {
     "type": "git",

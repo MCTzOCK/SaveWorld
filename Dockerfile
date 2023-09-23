@@ -3,4 +3,4 @@ LABEL authors="Ben Siebert"
 WORKDIR /usr/src/app
 COPY . .
 RUN npm install
-ENTRYPOINT ["npm", "run", "ts:start"]
+ENTRYPOINT ["npm", "run", "ts:prod"]

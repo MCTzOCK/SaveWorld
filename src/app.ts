@@ -31,25 +31,27 @@ const port = process.env.PORT || 3000;
     app.all(route, async (req, res) => {
       try {
         if (routes[route].constructor.name === "AsyncFunction") {
-          await routes[route](req, res);
+          await routes[route].exec(req, res);
         } else {
-          routes[route](req, res);
+          routes[route].exec(req, res);
         }
-
-        console.log(
-          `${new Date().toLocaleString()} [${chalk.red(
-            req.method,
-          )}] {${chalk.green(res.statusCode)}} ${chalk.red(req.path)}`,
-        );
       } catch (e) {
         res
           .status(500)
           .json({
             error: e.message,
+            ex: e,
             status: 500,
           })
           .end();
       }
+      console.log(
+        `${new Date().toLocaleString()} [${chalk.red(
+          req.method,
+        )}] {${chalk.green(res.statusCode)}} ${chalk.red(req.path)} -> ${
+          routes[route].directory
+        }`,
+      );
     });
   }
 

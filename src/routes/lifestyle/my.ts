@@ -1,16 +1,16 @@
 /**
- * backend/src/routes/lifestyle/my/_date.ts
+ * backend/src/routes/lifestyle/my.ts
  *
  * Author: Ben Siebert <hello@ben-siebert.de>
  * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
  * License: Project License
- * Created At: 17.09.2023
+ * Created At: 16.09.2023
  *
  */
 
 import { Request, Response } from "express";
-import LifestyleSummaryModel from "../../../models/LifestyleSummaryModel";
-import { isAuthenticated } from "../../../util/isAuthenticated";
+import LifestyleModel from "../../models/LifestyleModel";
+import { isAuthenticated } from "../../util/isAuthenticated";
 
 export default async function (req: Request, res: Response) {
   try {
@@ -18,36 +18,32 @@ export default async function (req: Request, res: Response) {
 
     if (!auth) {
       res.status(401).json({
-        error: "Unauthorized",
         status: 401,
+        error: "Unauthorized",
       });
       return;
     }
 
-    const date = new Date(req.params.date);
-
-    date.setUTCHours(0, 0, 0, 0);
-
-    const lfsummary = await LifestyleSummaryModel.findOne({
+    let lfsm = await LifestyleModel.findOne({
       user: user._id,
-      date: date,
     });
 
-    if (!lfsummary) {
-      res.status(404).json({
-        error: "Not found",
-        status: 404,
+    if (!lfsm) {
+      lfsm = await LifestyleModel.create({
+        user: user._id,
+        actions: [],
+        goals: [],
       });
-      return;
     }
 
     res.status(200).json({
       status: 200,
-      data: lfsummary,
+      lifestyle: lfsm,
     });
   } catch (e) {
     res.status(500).json({
       error: e.message,
+      status: 500,
     });
   }
 }
