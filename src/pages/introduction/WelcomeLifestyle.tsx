@@ -133,6 +133,8 @@ export default function WelcomeLifestyle() {
             const actions = [];
 
             for (const a in state) {
+              if (state[a] === 0) continue;
+
               actions.push({
                 template: a,
                 currentPerWeek: state[a],
