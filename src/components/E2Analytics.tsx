@@ -53,7 +53,7 @@ export default function E2Analytics() {
         {
           label: "Erreichte Ziele",
           data: [],
-          backgroundColor: "#3880ff",
+          backgroundColor: "#2dd36f",
         },
         {
           label: "Gescheiterte Ziele",
@@ -144,7 +144,8 @@ export default function E2Analytics() {
             responsive: true,
             plugins: {
               legend: {
-                display: false,
+                display: true,
+                position: "bottom",
               },
               title: {
                 display: true,
