@@ -39,7 +39,7 @@ export default function NotFound() {
           <IonButton
             color={"success"}
             expand={"block"}
-            href={"mailto:hello@ben-siebert.de"}
+            href={"mailto:ben@saveworld.one"}
           >
             Support kontaktieren
           </IonButton>

@@ -66,6 +66,8 @@ import AppUrlListener from "./AppUrlListener";
 import AdminLifestyleTemplates from "./pages/admin/AdminLifestyleTemplates";
 import WelcomeLifestyle from "./pages/introduction/WelcomeLifestyle";
 import E2 from "./pages/e2/E2";
+import CommunityDashboard from "./pages/community/CommunityDashboard";
+import CommunityProfile from "./pages/community/CommunityProfile";
 
 setupIonicReact({
   mode: "ios",
@@ -152,6 +154,12 @@ export default function App() {
             </Route>
             <Route exact path="/e2">
               <E2 />
+            </Route>
+            <Route exact path="/community">
+              <CommunityDashboard />
+            </Route>
+            <Route exact path="/community/u/:username">
+              <CommunityProfile />
             </Route>
             <Route>
               <NotFound />

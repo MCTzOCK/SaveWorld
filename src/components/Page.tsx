@@ -16,14 +16,29 @@ import {
   IonButton,
   IonButtons,
   IonContent,
+  IonFab,
+  IonFabButton,
+  IonFabList,
   IonHeader,
   IonIcon,
   IonPage,
   IonTitle,
   IonToolbar,
+  useIonRouter,
 } from "@ionic/react";
 import { useUserData } from "../hooks/useUserData";
-import { search, searchSharp } from "ionicons/icons";
+import {
+  add,
+  addSharp,
+  chatbox,
+  chatboxSharp,
+  people,
+  peopleSharp,
+  person,
+  personSharp,
+  search,
+  searchSharp,
+} from "ionicons/icons";
 import { ENDPOINT } from "../env";
 
 export default function Page(props: {
@@ -39,6 +54,8 @@ export default function Page(props: {
   const ref = React.useRef<HTMLElement>(null);
 
   const { loggedIn, loaded, userInfo } = useUserData();
+
+  const router = useIonRouter();
 
   useEffect(() => {
     if (props.setPresentingElement && ref.current) {
@@ -100,6 +117,36 @@ export default function Page(props: {
           className={props.noPadding ? "" : "ion-padding"}
         >
           {props.children}
+          {router &&
+          router.routeInfo &&
+          router.routeInfo.pathname &&
+          router.routeInfo.pathname.startsWith("/community") ? (
+            <IonFab vertical="bottom" horizontal="end" slot="fixed">
+              <IonFabButton color={"success"}>
+                <IonIcon ios={people} md={peopleSharp} />
+              </IonFabButton>
+              <IonFabList side={"top"}>
+                <IonFabButton
+                  routerLink={"/community/u/" + userInfo.username}
+                  color={"success"}
+                >
+                  <IonIcon ios={person} md={personSharp} />
+                </IonFabButton>
+                <IonFabButton
+                  routerLink={"/community/messages"}
+                  color={"success"}
+                >
+                  <IonIcon ios={chatbox} md={chatboxSharp} />
+                </IonFabButton>
+                <IonFabButton
+                  routerLink={"/community/create"}
+                  color={"success"}
+                >
+                  <IonIcon ios={add} md={addSharp} />
+                </IonFabButton>
+              </IonFabList>
+            </IonFab>
+          ) : null}
         </IonContent>
       </IonPage>
     </>
