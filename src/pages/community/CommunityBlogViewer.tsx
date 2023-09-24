@@ -37,9 +37,11 @@ import {
   heart,
   heartOutline,
   heartSharp,
+  pricetag,
   send,
   time,
   timeSharp,
+  trash,
   watch,
   watchSharp,
 } from "ionicons/icons";
@@ -188,19 +190,8 @@ export default function CommunityBlogViewer() {
                           gap: "1rem",
                         }}
                       >
-                        <IonIcon ios={heart} md={heartSharp} />
-                        {blog.likes.length + " Likes"}
-                      </div>
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          alignItems: "center",
-                          gap: "1rem",
-                        }}
-                      >
-                        <IonIcon ios={chatbox} md={chatboxSharp} />
-                        {blog.comments.length + " Kommentare"}
+                        <IonIcon ios={pricetag} md={chatboxSharp} />
+                        {blog.tags.join(", ")}
                       </div>
                     </div>
                   </IonText>
@@ -221,7 +212,8 @@ export default function CommunityBlogViewer() {
                     fill={"outline"}
                     id={"create-comment"}
                   >
-                    <IonIcon icon={chatbox} />
+                    <IonIcon icon={chatbox} slot={"start"} />
+                    {blog.comments.length}
                   </IonButton>
                   <IonPopover
                     trigger={"create-comment"}
@@ -307,8 +299,36 @@ export default function CommunityBlogViewer() {
                           ? heart
                           : heartOutline
                       }
+                      slot={"start"}
                     />
+                    {blog.likes.length}
                   </IonButton>
+                  {userInfo.username === blog.username ? (
+                    <IonButton
+                      color={"danger"}
+                      fill={"outline"}
+                      size={"small"}
+                      onClick={async () => {
+                        if (!confirm("Bist du dir sicher?")) return;
+
+                        const res = await REST.Community.deleteBlogEntry(
+                          localStorage.getItem("token") as string,
+                          blog._id,
+                        );
+
+                        if (res.status !== 200) {
+                          alert(
+                            "Die Aktion ist fehlgeschlagen: " +
+                              res.payload.error,
+                          );
+                        } else {
+                          await router.push("/community", "back", "push");
+                        }
+                      }}
+                    >
+                      <IonIcon icon={trash} />
+                    </IonButton>
+                  ) : null}
                 </div>
               </IonCardContent>
             </IonCard>

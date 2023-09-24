@@ -37,6 +37,7 @@ import {
 } from "ionicons/icons";
 import CommunityEditProfileModal from "../../components/CommunityEditProfileModal";
 import { ENDPOINT } from "../../env";
+import CommunityProfileBlogList from "../../components/CommunityProfileBlogList";
 
 export default function CommunityProfile() {
   useRedirectForAnon();
@@ -270,6 +271,28 @@ export default function CommunityProfile() {
               </div>
             </IonCardContent>
           </IonCard>
+          <div
+            style={{
+              padding: "12px",
+              paddingTop: "0",
+            }}
+          >
+            <IonText>
+              <h1
+                style={{
+                  textAlign: "center",
+                }}
+              >
+                Beiträge
+              </h1>
+            </IonText>
+            <hr
+              style={{
+                backgroundColor: "var(--ion-color-success-shade)",
+              }}
+            />
+            <CommunityProfileBlogList username={username} />
+          </div>
         </div>
         <CommunityEditProfileModal
           modal={editModal}
