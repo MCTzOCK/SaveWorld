@@ -29,8 +29,7 @@ const CommunityBlogEntryModel = new mongoose.Schema({
     default: [],
   },
   likes: {
-    type: [mongoose.Schema.Types.ObjectId],
-    ref: "User",
+    type: [String],
     default: [],
     required: true,
   },
