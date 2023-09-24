@@ -32,6 +32,8 @@ import {
   mapSharp,
   menu,
   menuSharp,
+  people,
+  peopleSharp,
   trophy,
   trophySharp,
 } from "ionicons/icons";
@@ -55,6 +57,7 @@ export default function CommunityProfile() {
         showLevel: boolean;
         location: string;
         level?: number;
+        followers: string[];
       }
     | undefined
   >(undefined);
@@ -73,8 +76,6 @@ export default function CommunityProfile() {
           ...res.payload.profile,
           level: res.payload.level,
         });
-      } else {
-        router.push("/404", "forward", "replace");
       }
     });
   };
@@ -178,6 +179,20 @@ export default function CommunityProfile() {
                           (profile?.displayName || "@" + username)
                         }
                         subHeader={"@" + username}
+                        onIonActionSheetDidDismiss={async (ev) => {
+                          if (ev.detail.data.action === "follow") {
+                            const res = await REST.Community.follow(
+                              localStorage.getItem("token") as string,
+                              username,
+                            );
+
+                            if (res.status === 200) {
+                              reloadProfile();
+                            } else {
+                              alert("Fehler: " + res.payload.error);
+                            }
+                          }
+                        }}
                         buttons={[
                           {
                             text: "Nachricht senden",
@@ -186,7 +201,12 @@ export default function CommunityProfile() {
                             },
                           },
                           {
-                            text: "Folgen",
+                            text: profile?.followers.includes(userInfo.username)
+                              ? "Entfolgen"
+                              : "Folgen",
+                            role: profile?.followers.includes(userInfo.username)
+                              ? "destructive"
+                              : "normal",
                             data: {
                               action: "follow",
                             },
@@ -258,6 +278,18 @@ export default function CommunityProfile() {
                       ? "Mein Level ist geheim"
                       : "Level " + profile?.level}
                   </IonText>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "flex-start",
+                    gap: "1.2rem",
+                  }}
+                >
+                  <IonIcon ios={people} md={peopleSharp} />
+                  <IonText>{profile?.followers.length} Follower</IonText>
                 </div>
               </div>
               <div
