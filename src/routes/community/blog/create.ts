@@ -73,7 +73,7 @@ export default async function (req: Request, res: Response) {
       });
 
       if (uDoc) {
-        external_uids.push(uDoc.external_uid);
+        external_uids.push(uDoc._id);
       }
     }
 
