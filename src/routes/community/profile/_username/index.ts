@@ -56,30 +56,27 @@ export default async function (req: Request, res: Response) {
       return;
     }
 
-    let x = prefs.community_profile;
-
-    if (!x) {
-      x = {
-        banner: "",
-        biography: "",
-        displayName: "",
-        location: "",
-        showLevel: false,
-      };
+    if (!prefs.community_profile) {
+      prefs.community_profile = new Map<String, any>();
+      prefs.community_profile.set("banner", "");
+      prefs.community_profile.set("biography", "");
+      prefs.community_profile.set("displayName", "");
+      prefs.community_profile.set("location", "");
+      prefs.community_profile.set("showLevel", false);
+      prefs.community_profile.set("followers", []);
+      prefs.markModified("community_profile");
+      await prefs.save();
     }
 
     let lvl = 0;
 
-    if (
-      (prefs.community_profile as Map<String, any>).get("showLevel") === true
-    ) {
-      console.log(1);
+    if (prefs.community_profile.get("showLevel")) {
       lvl = (await getUserEcoLevel(userDoc)).level;
     }
 
     res.json({
       status: 200,
-      profile: x,
+      profile: prefs.community_profile,
       level: "" + JSON.stringify(lvl) + "",
     });
   } catch (e) {
