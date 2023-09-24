@@ -17,12 +17,17 @@ import { REST } from "@saveworld/api-js";
 import {
   IonAvatar,
   IonButton,
+  IonButtons,
   IonCard,
   IonCardContent,
   IonCardHeader,
+  IonCardSubtitle,
   IonCardTitle,
+  IonContent,
   IonIcon,
+  IonPopover,
   IonText,
+  IonTextarea,
   useIonRouter,
 } from "@ionic/react";
 import { ENDPOINT } from "../../env";
@@ -32,6 +37,7 @@ import {
   heart,
   heartOutline,
   heartSharp,
+  send,
   time,
   timeSharp,
   watch,
@@ -113,6 +119,8 @@ export default function CommunityBlogViewer() {
             <IonCard
               style={{
                 padding: "0px",
+                background: "transparent",
+                boxShadow: "0 0 10px rgba(0,155,0,0.75)",
               }}
             >
               <IonCardHeader>
@@ -209,6 +217,69 @@ export default function CommunityBlogViewer() {
                 >
                   <IonButton
                     size={"small"}
+                    color={"success"}
+                    fill={"outline"}
+                    id={"create-comment"}
+                  >
+                    <IonIcon icon={chatbox} />
+                  </IonButton>
+                  <IonPopover
+                    trigger={"create-comment"}
+                    triggerAction={"click"}
+                    size={"auto"}
+                    style={{
+                      minWidth: "90%",
+                    }}
+                  >
+                    <IonContent class={"ion-padding"}>
+                      <form
+                        onSubmit={async (e) => {
+                          e.preventDefault();
+
+                          const content = (
+                            (e.target as HTMLFormElement).elements.namedItem(
+                              "comment",
+                            ) as HTMLTextAreaElement
+                          ).value;
+
+                          const res = await REST.Community.commentBlogEntry(
+                            localStorage.getItem("token") as string,
+                            blog._id,
+                            content,
+                          );
+
+                          if (res.status !== 200) {
+                            alert(
+                              "Die Aktion ist fehlgeschlagen: " +
+                                res.payload.error,
+                            );
+                          } else {
+                            reload();
+                          }
+                        }}
+                      >
+                        <IonTextarea
+                          placeholder={"Kommentar"}
+                          style={{
+                            width: "100%",
+                            maxHeight: "200px",
+                          }}
+                          autoGrow
+                          name={"comment"}
+                        />
+                        <IonButton
+                          type={"submit"}
+                          color={"success"}
+                          fill={"outline"}
+                        >
+                          <IonIcon icon={send} slot={"start"} />
+                          Veröffentlichen
+                        </IonButton>
+                      </form>
+                    </IonContent>
+                  </IonPopover>
+                  <IonButton
+                    size={"small"}
                     onClick={async () => {
                       const res = await REST.Community.likeBlogEntry(
                         localStorage.getItem("token") as string,
@@ -247,9 +318,93 @@ export default function CommunityBlogViewer() {
               }}
             />
             <IonText>
-              <h1>{blog?.title}</h1>
+              <h1
+                style={{
+                  boxShadow: "0 0 10px rgba(0,155,0,0.75)",
+                  borderRadius: "12px",
+                  padding: "12px",
+                }}
+              >
+                {blog?.title}
+              </h1>
             </IonText>
             <ReactMarkdown children={blog.content} />
+            <hr
+              style={{
+                backgroundColor: "var(--ion-color-success-shade)",
+              }}
+            />
+            <IonText>
+              <h1
+                style={{
+                  boxShadow: "0 0 10px rgba(0,155,0,0.75)",
+                  borderRadius: "12px",
+                  padding: "12px",
+                }}
+              >
+                Kommentare
+              </h1>
+            </IonText>
+            {blog.comments
+              .sort(
+                (a, b) =>
+                  new Date(a.createdAt).getTime() -
+                  new Date(b.createdAt).getTime(),
+              )
+              .map((c) => {
+                return (
+                  <>
+                    <IonCard
+                      style={{
+                        background: "transparent",
+                        boxShadow: "0 0 10px rgba(0,155,0,0.75)",
+                      }}
+                    >
+                      <IonCardHeader>
+                        <IonCardSubtitle></IonCardSubtitle>
+                      </IonCardHeader>
+                      <IonCardContent>
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            gap: "1rem",
+                          }}
+                        >
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              gap: "1rem",
+                              alignItems: "start",
+                              textTransform: "lowercase",
+                              justifyContent: "center",
+                            }}
+                          >
+                            <IonAvatar>
+                              <img
+                                alt={"Avatar"}
+                                src={
+                                  ENDPOINT +
+                                  "/media/profile-picture-username/" +
+                                  c.username
+                                }
+                              />
+                            </IonAvatar>
+                            <IonText>
+                              <p>@{c.username}</p>
+                              <p>{new Date(c.createdAt).toLocaleString()}</p>
+                            </IonText>
+                          </div>
+                          {c.comment}
+                        </div>
+                      </IonCardContent>
+                    </IonCard>
+                  </>
+                );
+              })}
           </>
         )}
       </Page>
