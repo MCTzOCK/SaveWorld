@@ -1,5 +1,5 @@
 /**
- * backend/src/routes/community/profile/_username.ts
+ * backend/src/routes/community/profile/_username/index.ts
  *
  * Author: Ben Siebert <hello@ben-siebert.de>
  * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
@@ -9,10 +9,10 @@
  */
 
 import { Request, Response } from "express";
-import { isAuthenticated } from "../../../util/isAuthenticated";
-import UserPreferencesModel from "../../../models/UserPreferencesModel";
-import UserModel from "../../../models/UserModel";
-import { getUserEcoLevel } from "../../../util/getUserEcoLevel";
+import { isAuthenticated } from "../../../../util/isAuthenticated";
+import UserPreferencesModel from "../../../../models/UserPreferencesModel";
+import UserModel from "../../../../models/UserModel";
+import { getUserEcoLevel } from "../../../../util/getUserEcoLevel";
 
 export default async function (req: Request, res: Response) {
   try {
