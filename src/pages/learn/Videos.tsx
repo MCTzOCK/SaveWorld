@@ -152,7 +152,7 @@ export default function Videos() {
           <div
             style={{
               position: "fixed",
-              bottom: "0%",
+              bottom: "7%",
               left: "0%",
               width: "100%",
               height: "7.5vh",

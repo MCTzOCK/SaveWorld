@@ -1,12 +1,14 @@
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import {
   IonApp,
+  IonFooter,
   IonIcon,
   IonLabel,
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
   IonTabs,
+  IonToolbar,
   isPlatform,
   setupIonicReact,
 } from "@ionic/react";
@@ -90,128 +92,57 @@ export default function App() {
     } catch (e) {}
   }, [loggedIn, loaded]);
 
+  const routes: {
+    [key: string]: any;
+  } = {
+    "/register": Register,
+    "/login": Login,
+    "/onboarding": Onboarding,
+    "/welcome": Welcome,
+    "/welcome/lifestyle": WelcomeLifestyle,
+    "/welcome/finish": FinishWelcome,
+    "/account": ManageAccount,
+    "/account/interests": ManageAccountInterests,
+    "/admin": AdminDashboard,
+    "/admin/content": AdminContentDashboard,
+    "/admin/content/categories": AdminContentCategoryDashboard,
+    "/admin/content/videos": AdminVideosDashboard,
+    "/admin/content/videos/:id": AdminVideoDashboard,
+    "/admin/users": AdminUsersDashboard,
+    "/admin/users/:id": AdminUserDashboard,
+    "/admin/lifestyle-templates": AdminLifestyleTemplates,
+    "/learn": Videos,
+    "/learn/fts-search": VideoSearchFTS,
+    "/eco-tracker": EcoTracker,
+    "/e2": E2,
+    "/community": CommunityDashboard,
+    "/community/u/:username": CommunityProfile,
+    "/community/create/blog": CommunityCreateBlog,
+    "/community/r/:id": CommunityBlogViewer,
+  };
+
   return (
     <IonApp>
       <IonReactRouter>
         <AppUrlListener />
-        <IonTabs>
-          <IonRouterOutlet>
-            <Route exact path="/register">
-              <Register />
-            </Route>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <Route exact path="/onboarding">
-              <Onboarding />
-            </Route>
-            <Redirect to={"/onboarding"} from={"/"} exact />
-            <Route exact path="/welcome">
-              <Welcome />
-            </Route>
-            <Route exact path="/welcome/lifestyle">
-              <WelcomeLifestyle />
-            </Route>
-            <Route exact path="/welcome/finish">
-              <FinishWelcome />
-            </Route>
-            <Route exact path="/account">
-              <ManageAccount />
-            </Route>
-            <Route exact path="/account/interests">
-              <ManageAccountInterests />
-            </Route>
-            <Route exact path="/admin">
-              <AdminDashboard />
-            </Route>
-            <Route exact path="/admin/content">
-              <AdminContentDashboard />
-            </Route>
-            <Route exact path="/admin/content/categories">
-              <AdminContentCategoryDashboard />
-            </Route>
-            <Route exact path="/admin/content/videos">
-              <AdminVideosDashboard />
-            </Route>
-            <Route exact path="/admin/content/videos/:id">
-              <AdminVideoDashboard />
-            </Route>
-            <Route exact path="/admin/users">
-              <AdminUsersDashboard />
-            </Route>
-            <Route exact path="/admin/users/:id">
-              <AdminUserDashboard />
-            </Route>
-            <Route exact path="/admin/lifestyle-templates">
-              <AdminLifestyleTemplates />
-            </Route>
-            <Route exact path="/learn">
-              <Videos />
-            </Route>
-            <Route exact path="/learn/fts-search">
-              <VideoSearchFTS />
-            </Route>
-            <Route exact path="/eco-tracker">
-              <EcoTracker />
-            </Route>
-            <Route exact path="/e2">
-              <E2 />
-            </Route>
-            <Route exact path="/community">
-              <CommunityDashboard />
-            </Route>
-            <Route exact path="/community/u/:username">
-              <CommunityProfile />
-            </Route>
-            <Route exact path="/community/create/blog">
-              <CommunityCreateBlog />
-            </Route>
-            <Route exact path="/community/r/:id">
-              <CommunityBlogViewer />
-            </Route>
-            <Route>
-              <NotFound />
-            </Route>
-          </IonRouterOutlet>
-          <IonTabBar
-            slot="bottom"
-            style={{
-              "--background": "#444444",
-              "--border": "0px solid transparent",
-              "--color": "var(--ion-color-success-shade)",
-              borderTopRightRadius: "12px",
-              borderTopLeftRadius: "12px",
-            }}
-          >
-            <IonTabButton
-              tab="onboarding"
-              href="/onboarding"
-              disabled={!loggedIn}
-              selected={false}
-            >
-              <IonIcon aria-hidden="true" ios={home} md={homeSharp} />
-              <IonLabel>Home</IonLabel>
-            </IonTabButton>
-            <IonTabButton
-              tab="e2"
-              href="/e2"
-              disabled={!loggedIn}
-              selected={false}
-            >
-              <IonIcon aria-hidden="true" ios={leaf} md={leafSharp} />
-              <IonLabel>Tracker</IonLabel>
-            </IonTabButton>
-            <IonTabButton
-              tab="learn"
-              href="/learn"
-              disabled={!loggedIn}
-              selected={false}
-            >
-              <IonIcon aria-hidden="true" ios={book} md={bookSharp} />
-              <IonLabel>Lernen</IonLabel>
-            </IonTabButton>
-          </IonTabBar>
-        </IonTabs>
+        <Switch>
+          <Redirect to={"/onboarding"} from={"/"} exact />
+          {Object.keys(routes).map((route) => {
+            const Component = routes[route];
+            return (
+              <Route
+                exact
+                path={route}
+                render={(props) => {
+                  return <Component key={props.location.key} />;
+                }}
+              />
+            );
+          })}
+          <Route>
+            <NotFound />
+          </Route>
+        </Switch>
       </IonReactRouter>
     </IonApp>
   );
