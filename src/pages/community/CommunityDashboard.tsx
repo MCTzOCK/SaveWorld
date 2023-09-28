@@ -31,6 +31,7 @@ import {
 } from "ionicons/icons";
 import CommunityFollowingDashboard from "../../components/CommunityFollowingDashboard";
 import CommunitySuggestedDashboard from "../../components/CommunitySuggestedDashboard";
+import CommunitySearchDashboard from "../../components/CommunitySearchDashboard";
 
 export default function CommunityDashboard() {
   useRedirectForAnon();
@@ -62,7 +63,11 @@ export default function CommunityDashboard() {
             <CommunityFollowingDashboard />
           </>
         )}
-        {segment === "search" && <></>}
+        {segment === "search" && (
+          <>
+            <CommunitySearchDashboard />
+          </>
+        )}
       </Page>
     </>
   );
