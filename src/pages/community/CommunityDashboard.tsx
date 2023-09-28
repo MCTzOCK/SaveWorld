@@ -30,6 +30,7 @@ import {
   personSharp,
 } from "ionicons/icons";
 import CommunityFollowingDashboard from "../../components/CommunityFollowingDashboard";
+import CommunitySuggestedDashboard from "../../components/CommunitySuggestedDashboard";
 
 export default function CommunityDashboard() {
   useRedirectForAnon();
@@ -51,7 +52,11 @@ export default function CommunityDashboard() {
           <IonSegmentButton value={"following"}>Folge Ich</IonSegmentButton>
           <IonSegmentButton value={"search"}>Suchen</IonSegmentButton>
         </IonSegment>
-        {segment === "explore" && <></>}
+        {segment === "explore" && (
+          <>
+            <CommunitySuggestedDashboard />
+          </>
+        )}
         {segment === "following" && (
           <>
             <CommunityFollowingDashboard />

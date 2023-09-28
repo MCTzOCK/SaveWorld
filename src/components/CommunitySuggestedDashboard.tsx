@@ -1,0 +1,64 @@
+/**
+ * mobile/src/components/CommunitySuggestedDashboard.tsx
+ *
+ * Author: Ben Siebert <hello@ben-siebert.de>
+ * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
+ * License: Project License
+ * Created At: 28.09.2023
+ *
+ */
+
+import * as React from "react";
+import { REST } from "@saveworld/api-js";
+import { useEffect } from "react";
+import CommunityBlogList from "./CommunityBlogList";
+
+export default function CommunitySuggestedDashboard() {
+  const [page, setPage] = React.useState(0);
+
+  const [blogs, setBlogs] = React.useState<
+    {
+      _id: string;
+      username: string;
+      title: string;
+      content: string;
+      tags: string[];
+      likes: string[];
+      comments: any[];
+      createdAt: string;
+      __v: number;
+    }[]
+  >([]);
+
+  const [pages, setPages] = React.useState(0);
+
+  const loadPage = async (p: number) => {
+    const res = await REST.Community.suggestedBlogEntries(
+      localStorage.getItem("token") as string,
+      p,
+    );
+
+    if (res.status === 200) {
+      setBlogs(res.payload.entries);
+      setPages(res.payload.pages);
+    } else {
+      alert("Blogs konnten nicht geladen werden: " + res.payload.error);
+    }
+  };
+
+  useEffect(() => {
+    loadPage(page);
+  }, [page]);
+
+  return (
+    <>
+      <CommunityBlogList
+        blogs={blogs}
+        page={page}
+        pages={pages}
+        setPage={setPage}
+        showUsername={true}
+      />
+    </>
+  );
+}
