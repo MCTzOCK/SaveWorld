@@ -57,6 +57,11 @@ export default async function (req: Request, res: Response) {
           });
           return;
         }
+
+        if (key === "community_profile") {
+          update[key].followers = prefs[key].followers;
+        }
+
         prefs[key] = update[key];
       }
 
