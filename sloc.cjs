@@ -76,6 +76,11 @@ for (let i = 0; i < paths.length; i++) {
     lines += fLines;
 }
 
+if(process.argv.includes("--only-total-lines")) {
+    console.log(lines);
+    process.exit(0);
+}
+
 if (process.argv.includes("-v")) {
     console.log(JSON.stringify(paths, null, 2));
 }

@@ -1,28 +1,19 @@
 /**
- * mobile/src/components/CommunityProfileBlogList.tsx
+ * mobile/src/components/CommunityFollowingDashboard.tsx
  *
  * Author: Ben Siebert <hello@ben-siebert.de>
  * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
  * License: Project License
- * Created At: 24.09.2023
+ * Created At: 28.09.2023
  *
  */
 
 import * as React from "react";
-import { useEffect } from "react";
 import { REST } from "@saveworld/api-js";
-import {
-  IonButton,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonIcon,
-} from "@ionic/react";
-import { chatbox, heart, pricetag } from "ionicons/icons";
+import { useEffect } from "react";
 import CommunityBlogList from "./CommunityBlogList";
 
-export default function CommunityProfileBlogList(props: { username: string }) {
+export default function CommunityFollowingDashboard() {
   const [page, setPage] = React.useState(0);
 
   const [blogs, setBlogs] = React.useState<
@@ -42,9 +33,8 @@ export default function CommunityProfileBlogList(props: { username: string }) {
   const [pages, setPages] = React.useState(0);
 
   const loadPage = async (p: number) => {
-    const res = await REST.Community.blogEntries(
+    const res = await REST.Community.followingBlogEntries(
       localStorage.getItem("token") as string,
-      props.username,
       p,
     );
 
@@ -58,7 +48,7 @@ export default function CommunityProfileBlogList(props: { username: string }) {
 
   useEffect(() => {
     loadPage(page);
-  }, [props.username, page]);
+  }, [page]);
 
   return (
     <>
@@ -67,6 +57,7 @@ export default function CommunityProfileBlogList(props: { username: string }) {
         page={page}
         pages={pages}
         setPage={setPage}
+        showUsername={true}
       />
     </>
   );

@@ -11,16 +11,9 @@
 import * as React from "react";
 import {
   IonButton,
-  IonContent,
-  IonHeader,
   IonInput,
   IonItem,
   IonList,
-  IonPage,
-  IonText,
-  IonTextarea,
-  IonTitle,
-  IonToolbar,
   useIonRouter,
 } from "@ionic/react";
 import { REST } from "@saveworld/api-js";
