@@ -39,6 +39,7 @@ import { Browser } from "@capacitor/browser";
 import { useEffect } from "react";
 import { ENDPOINT } from "../../env";
 import PopupManager from "../../util/PopupManager";
+import { Avatar } from "@chakra-ui/react";
 
 export default function ManageAccount() {
   const { loggedIn, loaded, userInfo } = useUserData();
@@ -90,16 +91,13 @@ export default function ManageAccount() {
                 marginBottom: "1.2rem",
               }}
             >
-              <IonAvatar>
-                <img
-                  alt={""}
-                  src={
-                    preferences && preferences.picture
-                      ? preferences.picture
-                      : "/blank-profile-picture-973460_1280.png"
-                  }
-                />
-              </IonAvatar>
+              <Avatar
+                src={
+                  preferences && preferences.picture
+                    ? preferences.picture
+                    : "/blank-profile-picture-973460_1280.png"
+                }
+              />
             </div>
             <IonList inset>
               <IonItem

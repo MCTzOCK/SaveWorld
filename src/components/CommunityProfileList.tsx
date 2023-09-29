@@ -22,6 +22,7 @@ import {
 } from "@ionic/react";
 import { chatbox, heart, pricetag } from "ionicons/icons";
 import { ENDPOINT } from "../env";
+import { Avatar } from "@chakra-ui/react";
 
 export default function CommunityProfileList(props: {
   profiles: {
@@ -57,16 +58,13 @@ export default function CommunityProfileList(props: {
                     justifyContent: "center",
                   }}
                 >
-                  <IonAvatar>
-                    <img
-                      alt={"Avatar"}
-                      src={
-                        ENDPOINT +
-                        "/media/profile-picture-username/" +
-                        profile.username
-                      }
-                    />
-                  </IonAvatar>
+                  <Avatar
+                    src={
+                      ENDPOINT +
+                      "/media/profile-picture-username/" +
+                      profile.username
+                    }
+                  />
                   <IonText>
                     <h1
                       style={{
