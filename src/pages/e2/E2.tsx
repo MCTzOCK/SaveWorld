@@ -37,6 +37,7 @@ import E2SubmitModal from "../../components/E2SubmitModal";
 import E2Data from "../../components/E2Data";
 import E2Analytics from "../../components/E2Analytics";
 import ProgressBar from "@ramonak/react-progress-bar";
+import PopupManager from "../../util/PopupManager";
 
 export default function E2() {
   useRedirectForAnon();
@@ -51,7 +52,11 @@ export default function E2() {
         if (res.status === 200) {
           setLevel(res.payload.level);
         } else {
-          alert("Level konnte nicht geladen werden: " + res.payload.error);
+          PopupManager.alert({
+            title: "Fehler",
+            description:
+              "Level konnte nicht geladen werden: " + res.payload.error,
+          });
         }
       },
     );

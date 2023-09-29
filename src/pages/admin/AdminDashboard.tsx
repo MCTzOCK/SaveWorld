@@ -24,6 +24,7 @@ import {
   IonText,
 } from "@ionic/react";
 import { REST } from "@saveworld/api-js";
+import PopupManager from "../../util/PopupManager";
 
 export default function AdminDashboard() {
   useRedirectForAnon({
@@ -50,7 +51,11 @@ export default function AdminDashboard() {
       if (res.status === 200) {
         setStats(res.payload.stats);
       } else {
-        alert("Fehler beim Laden der Statistiken: " + res.payload.error);
+        PopupManager.alert({
+          title: "Fehler",
+          description:
+            "Fehler beim Laden der Statistiken: " + res.payload.error,
+        });
       }
       setLoading(false);
     });

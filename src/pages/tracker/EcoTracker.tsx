@@ -37,6 +37,7 @@ import {
   trashSharp,
 } from "ionicons/icons";
 import TrackerActionModal from "../../components/TrackerActionModal";
+import PopupManager from "../../util/PopupManager";
 
 export default function EcoTracker() {
   useRedirectForAnon();
@@ -64,7 +65,11 @@ export default function EcoTracker() {
     if (res.status === 200) {
       setActions(res.payload.data);
     } else {
-      alert("Aktionen konnten nicht geladen werden: " + res.payload.error);
+      PopupManager.alert({
+        title: "Fehler",
+        description:
+          "Aktionen konnten nicht geladen werden: " + res.payload.error,
+      });
     }
 
     const dRes = await REST.Tracker.dates(
@@ -74,7 +79,11 @@ export default function EcoTracker() {
     if (dRes.status === 200) {
       setDates(dRes.payload.data);
     } else {
-      alert("Daten konnten nicht geladen werden: " + dRes.payload.error);
+      PopupManager.alert({
+        title: "Fehler",
+        description:
+          "Daten konnten nicht geladen werden: " + dRes.payload.error,
+      });
     }
   };
 
@@ -146,7 +155,11 @@ export default function EcoTracker() {
                       color={"danger"}
                       onClick={async () => {
                         if (
-                          !confirm("Möchtest du diese Aktion wirklich löschen?")
+                          !(await PopupManager.confirmAsync({
+                            title: "Löschen",
+                            question:
+                              "Möchtest du die Aktion wirklich löschen?",
+                          }))
                         )
                           return;
 
@@ -158,10 +171,12 @@ export default function EcoTracker() {
                         if (res.status === 200) {
                           reloadData();
                         } else {
-                          alert(
-                            "Aktion konnte nicht gelöscht werden: " +
+                          PopupManager.alert({
+                            title: "Fehler",
+                            description:
+                              "Aktionen konnten nicht gelöscht werden: " +
                               res.payload.error,
-                          );
+                          });
                         }
                       }}
                     >

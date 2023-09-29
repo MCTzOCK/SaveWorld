@@ -47,6 +47,8 @@ import {
 } from "ionicons/icons";
 import ReactMarkdown from "react-markdown";
 import { useUserData } from "../../hooks/useUserData";
+import PopupManager from "../../util/PopupManager";
+import { Avatar } from "@chakra-ui/react";
 export default function CommunityBlogViewer() {
   useRedirectForAnon();
 
@@ -91,7 +93,10 @@ export default function CommunityBlogViewer() {
     if (res.status === 200) {
       setBlog(res.payload.entry);
     } else {
-      alert("Blog nicht gefunden!");
+      PopupManager.alert({
+        title: "Fehler",
+        description: "Blog nicht gefunden!",
+      });
     }
 
     const res2 = await REST.Community.profile(
@@ -105,7 +110,10 @@ export default function CommunityBlogViewer() {
         level: res2.payload.level,
       });
     } else {
-      alert("Profil nicht gefunden!");
+      PopupManager.alert({
+        title: "Fehler",
+        description: "Profil nicht gefunden!",
+      });
     }
   };
 
@@ -139,7 +147,12 @@ export default function CommunityBlogViewer() {
                     flexDirection: "row",
                   }}
                 >
-                  <IonAvatar
+                  <Avatar
+                    src={
+                      ENDPOINT +
+                      "/media/profile-picture-username/" +
+                      blog.username
+                    }
                     style={{
                       boxShadow: "0 0 10px rgba(0,155,0,0.75)",
                       width: "50px",
@@ -153,15 +166,8 @@ export default function CommunityBlogViewer() {
                         "push",
                       );
                     }}
-                  >
-                    <img
-                      src={
-                        ENDPOINT +
-                        "/media/profile-picture-username/" +
-                        blog.username
-                      }
-                    />
-                  </IonAvatar>
+                  />
+
                   <IonText>
                     <div
                       style={{
@@ -241,10 +247,12 @@ export default function CommunityBlogViewer() {
                           );
 
                           if (res.status !== 200) {
-                            alert(
-                              "Die Aktion ist fehlgeschlagen: " +
+                            PopupManager.alert({
+                              title: "Fehler",
+                              description:
+                                "Die Aktion ist fehlgeschlagen: " +
                                 res.payload.error,
-                            );
+                            });
                           } else {
                             reload();
                           }
@@ -279,9 +287,12 @@ export default function CommunityBlogViewer() {
                       );
 
                       if (res.status !== 200) {
-                        alert(
-                          "Die Aktion ist fehlgeschlagen: " + res.payload.error,
-                        );
+                        PopupManager.alert({
+                          title: "Fehler",
+                          description:
+                            "Die Aktion ist fehlgeschlagen: " +
+                            res.payload.error,
+                        });
                       } else {
                         await reload();
                       }
@@ -309,7 +320,14 @@ export default function CommunityBlogViewer() {
                       fill={"outline"}
                       size={"small"}
                       onClick={async () => {
-                        if (!confirm("Bist du dir sicher?")) return;
+                        if (
+                          !(await PopupManager.confirmAsync({
+                            title: "Löschen",
+                            question:
+                              "Möchtest du den Blog-Eintrag wirklich löschen?",
+                          }))
+                        )
+                          return;
 
                         const res = await REST.Community.deleteBlogEntry(
                           localStorage.getItem("token") as string,
@@ -317,10 +335,12 @@ export default function CommunityBlogViewer() {
                         );
 
                         if (res.status !== 200) {
-                          alert(
-                            "Die Aktion ist fehlgeschlagen: " +
+                          PopupManager.alert({
+                            title: "Fehler",
+                            description:
+                              "Die Aktion ist fehlgeschlagen: " +
                               res.payload.error,
-                          );
+                          });
                         } else {
                           await router.push("/community", "back", "push");
                         }
@@ -403,16 +423,14 @@ export default function CommunityBlogViewer() {
                               justifyContent: "center",
                             }}
                           >
-                            <IonAvatar>
-                              <img
-                                alt={"Avatar"}
-                                src={
-                                  ENDPOINT +
-                                  "/media/profile-picture-username/" +
-                                  c.username
-                                }
-                              />
-                            </IonAvatar>
+                            <Avatar
+                              src={
+                                ENDPOINT +
+                                "/media/profile-picture-username/" +
+                                c.username
+                              }
+                            />
+
                             <IonText>
                               <p>@{c.username}</p>
                               <p>{new Date(c.createdAt).toLocaleString()}</p>

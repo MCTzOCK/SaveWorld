@@ -35,6 +35,7 @@ import {
 } from "ionicons/icons";
 import { useEffect, useState } from "react";
 import { REST } from "@saveworld/api-js";
+import PopupManager from "../../util/PopupManager";
 
 export default function AdminLifestyleTemplates() {
   useRedirectForAnon({
@@ -54,7 +55,10 @@ export default function AdminLifestyleTemplates() {
     if (tplR.status === 200) {
       setTemplates(tplR.payload.lst);
     } else {
-      alert("Fehler beim Laden der Vorlagen: " + tplR.payload.error);
+      PopupManager.alert({
+        title: "Fehler",
+        description: "Fehler beim Laden der Vorlagen: " + tplR.payload.error,
+      });
     }
   };
 
@@ -111,9 +115,11 @@ export default function AdminLifestyleTemplates() {
                           switch (ev.detail.data.action) {
                             case "delete":
                               if (
-                                !confirm(
-                                  "Soll die Vorlage wirklich gelöscht werden?",
-                                )
+                                !(await PopupManager.confirmAsync({
+                                  title: "Löschen",
+                                  question:
+                                    "Möchtest du die Vorlage wirklich löschen?",
+                                }))
                               )
                                 return;
                               const delR =
@@ -124,15 +130,26 @@ export default function AdminLifestyleTemplates() {
                               if (delR.status === 200) {
                                 await reload();
                               } else {
-                                alert(
-                                  "Fehler beim Löschen der Vorlage: " +
+                                PopupManager.alert({
+                                  title: "Fehler",
+                                  description:
+                                    "Fehler beim Löschen der Vorlage: " +
                                     delR.payload.error,
-                                );
+                                });
                               }
                               break;
                             case "edit":
-                              const name = prompt("Name der Vorlage", tpl.name);
-                              const goal = prompt("Ziel der Vorlage", tpl.goal);
+                              const name = await PopupManager.promptAsync({
+                                title: "Name der Vorlage",
+                                helperText: "Name der Vorlage",
+                                inputType: "INPUT",
+                              });
+
+                              const goal = await PopupManager.promptAsync({
+                                title: "Ziel der Vorlage",
+                                helperText: "Ziel der Vorlage",
+                                inputType: "INPUT",
+                              });
                               if (name && goal) {
                                 const tplR =
                                   await REST.Admin.updateLifestyleTemplate(
@@ -144,10 +161,12 @@ export default function AdminLifestyleTemplates() {
                                 if (tplR.status === 200) {
                                   await reload();
                                 } else {
-                                  alert(
-                                    "Fehler beim Bearbeiten der Vorlage: " +
+                                  PopupManager.alert({
+                                    title: "Fehler",
+                                    description:
+                                      "Fehler beim Bearbeiten der Vorlage: " +
                                       tplR.payload.error,
-                                  );
+                                  });
                                 }
                               }
                               break;
@@ -188,8 +207,17 @@ export default function AdminLifestyleTemplates() {
           <IonFabButton
             color={"danger"}
             onClick={async () => {
-              const name = prompt("Name der Vorlage");
-              const goal = prompt("Ziel der Vorlage");
+              const name = await PopupManager.promptAsync({
+                title: "Name der Vorlage",
+                helperText: "Name der Vorlage",
+                inputType: "INPUT",
+              });
+
+              const goal = await PopupManager.promptAsync({
+                title: "Ziel der Vorlage",
+                helperText: "Ziel der Vorlage",
+                inputType: "INPUT",
+              });
 
               if (name && goal) {
                 const tplR = await REST.Admin.createLifestyleTemplate(
@@ -200,9 +228,12 @@ export default function AdminLifestyleTemplates() {
                 if (tplR.status === 200) {
                   await reload();
                 } else {
-                  alert(
-                    "Fehler beim Erstellen der Vorlage: " + tplR.payload.error,
-                  );
+                  PopupManager.alert({
+                    title: "Fehler",
+                    description:
+                      "Fehler beim Erstellen der Vorlage: " +
+                      tplR.payload.error,
+                  });
                 }
               }
             }}

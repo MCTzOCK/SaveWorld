@@ -40,6 +40,8 @@ import {
 import CommunityEditProfileModal from "../../components/CommunityEditProfileModal";
 import { ENDPOINT } from "../../env";
 import CommunityProfileBlogList from "../../components/CommunityProfileBlogList";
+import PopupManager from "../../util/PopupManager";
+import { Avatar } from "@chakra-ui/react";
 
 export default function CommunityProfile() {
   useRedirectForAnon();
@@ -124,14 +126,9 @@ export default function CommunityProfile() {
                   width: "100%",
                 }}
               >
-                <IonAvatar>
-                  <img
-                    alt={"Profilbild"}
-                    src={
-                      ENDPOINT + "/media/profile-picture-username/" + username
-                    }
-                  />
-                </IonAvatar>
+                <Avatar
+                  src={ENDPOINT + "/media/profile-picture-username/" + username}
+                />
                 <IonText color={"dark"}>
                   <h1>{profile?.displayName || username}</h1>
                   <h2>@{username}</h2>
@@ -189,7 +186,12 @@ export default function CommunityProfile() {
                             if (res.status === 200) {
                               reloadProfile();
                             } else {
-                              alert("Fehler: " + res.payload.error);
+                              PopupManager.alert({
+                                title: "Fehler",
+                                description:
+                                  "Es ist ein Fehler aufgetreten: " +
+                                  res.payload.error,
+                              });
                             }
                           }
                         }}

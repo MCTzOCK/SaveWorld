@@ -23,6 +23,7 @@ import { IResponse, REST } from "@saveworld/api-js";
 import { useEffect } from "react";
 import CommunityBlogList from "./CommunityBlogList";
 import CommunityProfileList from "./CommunityProfileList";
+import PopupManager from "../util/PopupManager";
 
 export default function CommunitySearchDashboard() {
   const [query, setQuery] = React.useState<string>("");
@@ -84,7 +85,10 @@ export default function CommunitySearchDashboard() {
       }
       setPages(res.payload.pages);
     } else {
-      alert("Daten konnten nicht geladen werden: " + res.payload.error);
+      PopupManager.alert({
+        title: "Fehler",
+        description: "Daten konnten nicht geladen werden: " + res.payload.error,
+      });
     }
   };
 

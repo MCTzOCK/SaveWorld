@@ -38,6 +38,7 @@ import { REST } from "@saveworld/api-js";
 import { informationCircle, informationCircleSharp } from "ionicons/icons";
 import { useEffect, useState } from "react";
 import { ENDPOINT } from "../env";
+import PopupManager from "../util/PopupManager";
 
 export default function CommunityEditProfileModal(props: {
   modal: React.RefObject<HTMLIonModalElement>;
@@ -109,7 +110,11 @@ export default function CommunityEditProfileModal(props: {
                     props.reloadProfile();
                     props.modal.current?.dismiss();
                   } else {
-                    alert("Fehler beim Bearbeiten: " + res.payload.error);
+                    PopupManager.alert({
+                      title: "Fehler",
+                      description:
+                        "Fehler beim Bearbeiten: " + res.payload.error,
+                    });
                   }
                 }}
               >
@@ -146,7 +151,11 @@ export default function CommunityEditProfileModal(props: {
                       if (mediaRes.status === 200) {
                         setBanner((await mediaRes.json()).data.url);
                       } else {
-                        alert("Fehler beim Upload: " + mediaRes.statusText);
+                        PopupManager.alert({
+                          title: "Fehler",
+                          description:
+                            "Fehler beim Upload: " + mediaRes.statusText,
+                        });
                       }
 
                       (

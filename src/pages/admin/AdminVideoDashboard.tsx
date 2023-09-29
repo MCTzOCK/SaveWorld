@@ -23,6 +23,7 @@ import {
   IonToggle,
   useIonRouter,
 } from "@ionic/react";
+import PopupManager from "../../util/PopupManager";
 
 export default function AdminVideoDashboard() {
   useRedirectForAnon({
@@ -59,14 +60,20 @@ export default function AdminVideoDashboard() {
         setVideo(res.payload.video);
         setSelectedCategories(res.payload.video.categories);
       } else {
-        alert("Fehler beim Laden des Videos: " + res.payload.error);
+        PopupManager.alert({
+          title: "Fehler",
+          description: "Fehler beim Laden des Videos: " + res.payload.error,
+        });
       }
     });
     REST.Content.categories().then((res) => {
       if (res.status === 200) {
         setCategories(res.payload as any);
       } else {
-        alert("Fehler beim Laden der Kategorien: " + res.payload.error);
+        PopupManager.alert({
+          title: "Fehler",
+          description: "Fehler beim Laden der Kategorien: " + res.payload.error,
+        });
       }
     });
   }, []);
@@ -141,13 +148,20 @@ export default function AdminVideoDashboard() {
                     selectedCategories,
                   );
                   if (res.status === 200) {
-                    alert("Video aktualisiert!");
-                    window.location.href = "/admin/content/videos";
+                    PopupManager.alert({
+                      title: "Erfolgreich",
+                      description: "Das Video wurde erfolgreich aktualisiert!",
+                      callback: () => {
+                        window.location.href = "/admin/content/videos";
+                      },
+                    });
                   } else {
-                    alert(
-                      "Fehler beim Aktualisieren des Videos: " +
+                    PopupManager.alert({
+                      title: "Fehler",
+                      description:
+                        "Fehler beim Aktualisieren des Videos: " +
                         res.payload.error,
-                    );
+                    });
                   }
                 }}
               >
@@ -158,9 +172,10 @@ export default function AdminVideoDashboard() {
                 detail
                 onClick={async () => {
                   if (
-                    !confirm(
-                      "Bist du sicher, dass du dieses Video löschen willst?",
-                    )
+                    !(await PopupManager.confirmAsync({
+                      title: "Löschen",
+                      question: "Möchtest du das Video wirklich löschen?",
+                    }))
                   )
                     return;
 
@@ -170,12 +185,19 @@ export default function AdminVideoDashboard() {
                   );
 
                   if (res.status === 200) {
-                    alert("Video gelöscht!");
-                    window.location.href = "/admin/content/videos";
+                    PopupManager.alert({
+                      title: "Erfolgreich",
+                      description: "Das Video wurde gelöscht!",
+                      callback: () => {
+                        window.location.href = "/admin/content/videos";
+                      },
+                    });
                   } else {
-                    alert(
-                      "Fehler beim Löschen des Videos: " + res.payload.error,
-                    );
+                    PopupManager.alert({
+                      title: "Fehler",
+                      description:
+                        "Fehler beim Löschen des Videos: " + res.payload.error,
+                    });
                   }
                 }}
               >

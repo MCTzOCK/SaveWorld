@@ -35,6 +35,7 @@ import {
 } from "ionicons/icons";
 import { useState } from "react";
 import { REST } from "@saveworld/api-js";
+import PopupManager from "../util/PopupManager";
 
 export default function E2SubmitModal(props: {
   modal: React.RefObject<HTMLIonModalElement>;
@@ -101,7 +102,10 @@ export default function E2SubmitModal(props: {
                     props.loadSummary(new Date().toISOString());
                     props.modal.current?.dismiss();
                   } else {
-                    alert("Fehler: " + res.payload.error);
+                    PopupManager.alert({
+                      title: "Fehler",
+                      description: res.payload.error,
+                    });
                   }
                 }}
               >

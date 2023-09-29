@@ -72,6 +72,8 @@ import CommunityDashboard from "./pages/community/CommunityDashboard";
 import CommunityProfile from "./pages/community/CommunityProfile";
 import CommunityCreateBlog from "./pages/community/CommunityCreateBlog";
 import CommunityBlogViewer from "./pages/community/CommunityBlogViewer";
+import { Button, ChakraProvider, Portal } from "@chakra-ui/react";
+import { theme } from "./theme/chakra";
 
 setupIonicReact({
   mode: "ios",
@@ -122,28 +124,33 @@ export default function App() {
   };
 
   return (
-    <IonApp>
-      <IonReactRouter>
-        <AppUrlListener />
-        <Switch>
-          <Redirect to={"/onboarding"} from={"/"} exact />
-          {Object.keys(routes).map((route) => {
-            const Component = routes[route];
-            return (
-              <Route
-                exact
-                path={route}
-                render={(props) => {
-                  return <Component key={props.location.key} />;
-                }}
-              />
-            );
-          })}
-          <Route>
-            <NotFound />
-          </Route>
-        </Switch>
-      </IonReactRouter>
-    </IonApp>
+    <>
+      <ChakraProvider theme={theme}>
+        <IonApp>
+          <IonReactRouter>
+            <AppUrlListener />
+            <Switch>
+              <Redirect to={"/onboarding"} from={"/"} exact />
+              {Object.keys(routes).map((route) => {
+                const Component = routes[route];
+                return (
+                  <Route
+                    exact
+                    path={route}
+                    render={(props) => {
+                      return <Component key={props.location.key} />;
+                    }}
+                  />
+                );
+              })}
+              <Route>
+                <NotFound />
+              </Route>
+            </Switch>
+          </IonReactRouter>
+        </IonApp>
+        <div id={"__chakra-manual-mount-point-do-not-use"}></div>
+      </ChakraProvider>
+    </>
   );
 }

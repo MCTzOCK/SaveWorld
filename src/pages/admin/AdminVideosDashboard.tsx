@@ -28,6 +28,7 @@ import {
 } from "@ionic/react";
 import { add, addSharp } from "ionicons/icons";
 import AdminCreateVideoModal from "../../components/AdminCreateVideoModal";
+import PopupManager from "../../util/PopupManager";
 
 export default function AdminVideosDashboard() {
   useRedirectForAnon({
@@ -63,7 +64,10 @@ export default function AdminVideosDashboard() {
         setPage(p + 1);
       }
     } else {
-      alert("Fehler beim Laden der Videos: " + res.payload.error);
+      PopupManager.alert({
+        title: "Fehler",
+        description: "Fehler beim Laden der Videos: " + res.payload.error,
+      });
     }
   };
   useEffect(() => {

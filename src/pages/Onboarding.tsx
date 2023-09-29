@@ -41,6 +41,7 @@ import { useUserData } from "../hooks/useUserData";
 import { useEffect } from "react";
 import Page from "../components/Page";
 import { useRedirectForAnon } from "../hooks/useRedirectForAnon";
+import PopupManager from "../util/PopupManager";
 
 export default function Onboarding() {
   const { userInfo } = useUserData();

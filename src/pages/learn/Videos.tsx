@@ -32,6 +32,7 @@ import {
 import { useSwipeable } from "react-swipeable";
 import VideoDetailsModal from "../../components/VideoDetailsModal";
 import { useLocation, useParams } from "react-router";
+import PopupManager from "../../util/PopupManager";
 
 export default function Videos() {
   useRedirectForAnon();
@@ -64,7 +65,10 @@ export default function Videos() {
 
       setVideo(res.payload.video);
     } else {
-      alert("Fehler beim Laden des nächsten Videos");
+      PopupManager.alert({
+        title: "Fehler",
+        description: "Fehler beim Laden des nächsten Videos",
+      });
     }
   };
 
@@ -81,7 +85,10 @@ export default function Videos() {
           if (res.status === 200) {
             setVideo(res.payload.video);
           } else {
-            alert("Fehler beim Laden des Videos");
+            PopupManager.alert({
+              title: "Fehler",
+              description: "Fehler beim Laden des Videos",
+            });
           }
         });
       }, 1500);

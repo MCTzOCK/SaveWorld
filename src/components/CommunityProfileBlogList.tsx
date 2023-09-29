@@ -21,6 +21,7 @@ import {
 } from "@ionic/react";
 import { chatbox, heart, pricetag } from "ionicons/icons";
 import CommunityBlogList from "./CommunityBlogList";
+import PopupManager from "../util/PopupManager";
 
 export default function CommunityProfileBlogList(props: { username: string }) {
   const [page, setPage] = React.useState(0);
@@ -52,7 +53,10 @@ export default function CommunityProfileBlogList(props: { username: string }) {
       setBlogs(res.payload.entries);
       setPages(res.payload.pages);
     } else {
-      alert("Blogs konnten nicht geladen werden: " + res.payload.error);
+      PopupManager.alert({
+        title: "Fehler",
+        description: "Blogs konnten nicht geladen werden: " + res.payload.error,
+      });
     }
   };
 

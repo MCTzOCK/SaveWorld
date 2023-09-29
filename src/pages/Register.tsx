@@ -18,6 +18,7 @@ import {
 } from "@ionic/react";
 import { REST } from "@saveworld/api-js";
 import Page from "../components/Page";
+import PopupManager from "../util/PopupManager";
 
 export default function Register() {
   const router = useIonRouter();
@@ -43,12 +44,18 @@ export default function Register() {
               !pass ||
               !passConf
             ) {
-              alert("Bitte fülle alle Felder aus!");
+              PopupManager.alert({
+                title: "Fehler",
+                description: "Bitte fülle alle Felder aus!",
+              });
               return;
             }
 
             if (pass !== passConf) {
-              alert("Passwörter stimmen nicht überein!");
+              PopupManager.alert({
+                title: "Fehler",
+                description: "Passwörter stimmen nicht überein!",
+              });
               return;
             }
 
@@ -61,12 +68,18 @@ export default function Register() {
             });
 
             if (res.status === 200) {
-              alert(
-                "Registrierung erfolgreich! Bitte bestätige deine E-Mail Adresse.",
-              );
+              PopupManager.alert({
+                title: "Erfolgreich",
+                description:
+                  "Registrierung erfolgreich! Bitte bestätige deine E-Mail Adresse.",
+              });
               router.push("/login", "none", "replace");
             } else {
-              alert("Registrierung fehlgeschlagen: " + res.payload.error);
+              PopupManager.alert({
+                title: "Fehler",
+                description:
+                  "Registrierung fehlgeschlagen: " + res.payload.error,
+              });
             }
           }}
         >

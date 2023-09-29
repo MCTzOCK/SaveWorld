@@ -30,6 +30,7 @@ import {
 import { useState } from "react";
 import { reloadCircle, reloadCircleSharp } from "ionicons/icons";
 import { REST } from "@saveworld/api-js";
+import PopupManager from "../../util/PopupManager";
 
 export default function AdminUsersDashboard() {
   useRedirectForAnon({
@@ -65,7 +66,10 @@ export default function AdminUsersDashboard() {
     if (res.status === 200) {
       setUsers(res.payload.users);
     } else {
-      alert("Fehler beim Laden der Benutzer: " + res.payload.error);
+      PopupManager.alert({
+        title: "Fehler",
+        description: "Fehler beim Laden der Benutzer: " + res.payload.error,
+      });
     }
     setLoading(false);
   };
