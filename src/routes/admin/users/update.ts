@@ -65,9 +65,9 @@ export default async function (req: Request, res: Response) {
     return;
   }
 
-  for (const key in req.body) {
-    if (req.body.hasOwnProperty(key)) {
-      pUser[key] = req.body[key];
+  for (const key in req.body["update"]) {
+    if (req.body["update"].hasOwnProperty(key)) {
+      pUser[key] = req.body["update"][key];
     }
   }
 
