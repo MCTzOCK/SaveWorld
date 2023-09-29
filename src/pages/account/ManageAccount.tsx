@@ -398,7 +398,11 @@ export default function ManageAccount() {
                       });
                     }
                   } else {
-                    const code = prompt("Bitte 2FA Code eingeben:");
+                    const code = await PopupManager.promptAsync({
+                      title: "2FA Code",
+                      helperText: "Bitte gebe den 2FA Code ein",
+                      inputType: "INPUT",
+                    });
 
                     if (!code) return;
 

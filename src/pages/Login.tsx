@@ -56,7 +56,11 @@ export default function Login() {
               }
             } else {
               if (res.payload.error === "TOTP Code incorrect") {
-                const code = prompt("Bitte gebe den 2FA Code ein");
+                const code = await PopupManager.promptAsync({
+                  title: "2FA Code",
+                  helperText: "Bitte gebe den 2FA Code ein",
+                  inputType: "INPUT",
+                });
 
                 if (!code) return;
                 const resp = await REST.Account.login(mail, pass, code);

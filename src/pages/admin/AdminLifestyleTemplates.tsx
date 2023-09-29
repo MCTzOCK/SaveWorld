@@ -137,8 +137,17 @@ export default function AdminLifestyleTemplates() {
                               }
                               break;
                             case "edit":
-                              const name = prompt("Name der Vorlage", tpl.name);
-                              const goal = prompt("Ziel der Vorlage", tpl.goal);
+                              const name = await PopupManager.promptAsync({
+                                title: "Name der Vorlage",
+                                helperText: "Name der Vorlage",
+                                inputType: "INPUT",
+                              });
+
+                              const goal = await PopupManager.promptAsync({
+                                title: "Ziel der Vorlage",
+                                helperText: "Ziel der Vorlage",
+                                inputType: "INPUT",
+                              });
                               if (name && goal) {
                                 const tplR =
                                   await REST.Admin.updateLifestyleTemplate(
@@ -196,8 +205,17 @@ export default function AdminLifestyleTemplates() {
           <IonFabButton
             color={"danger"}
             onClick={async () => {
-              const name = prompt("Name der Vorlage");
-              const goal = prompt("Ziel der Vorlage");
+              const name = await PopupManager.promptAsync({
+                title: "Name der Vorlage",
+                helperText: "Name der Vorlage",
+                inputType: "INPUT",
+              });
+
+              const goal = await PopupManager.promptAsync({
+                title: "Ziel der Vorlage",
+                helperText: "Ziel der Vorlage",
+                inputType: "INPUT",
+              });
 
               if (name && goal) {
                 const tplR = await REST.Admin.createLifestyleTemplate(
