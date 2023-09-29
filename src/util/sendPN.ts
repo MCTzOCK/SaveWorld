@@ -36,7 +36,7 @@ export async function sendPN(opts: {
       user: id,
       title: opts.title,
       content: opts.content,
-      url: opts.launch_url,
+      launch_url: opts.launch_url,
     });
   }
 }

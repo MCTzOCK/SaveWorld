@@ -28,7 +28,7 @@ const PushNotificationModel = new mongoose.Schema({
     type: String,
     required: false,
   },
-  viewed: {
+  read: {
     type: Boolean,
     required: true,
     default: false,
