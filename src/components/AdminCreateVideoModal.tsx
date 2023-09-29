@@ -28,6 +28,7 @@ import {
 import { REST } from "@saveworld/api-js";
 import { ENDPOINT } from "../env";
 import { useEffect } from "react";
+import PopupManager from "../util/PopupManager";
 
 export default function AdminCreateVideoModal(props: {
   modal: React.RefObject<HTMLIonModalElement>;
@@ -81,7 +82,10 @@ export default function AdminCreateVideoModal(props: {
                 disabled={uploading}
                 onClick={async () => {
                   if (selectedCategories.length < 1) {
-                    alert("Bitte wähle mindestens eine Kategorie aus.");
+                    PopupManager.alert({
+                      title: "Fehler",
+                      description: "Bitte wähle mindestens eine Kategorie aus.",
+                    });
                     return;
                   }
 
@@ -102,7 +106,10 @@ export default function AdminCreateVideoModal(props: {
                   ).value as string;
 
                   if (!name || !desc || !id) {
-                    alert("Bitte fülle alle Felder aus!");
+                    PopupManager.alert({
+                      title: "Fehler",
+                      description: "Bitte fülle alle Felder aus!",
+                    });
                     return;
                   }
 
@@ -132,9 +139,11 @@ export default function AdminCreateVideoModal(props: {
                     props.modal.current?.dismiss();
                   } else {
                     let x = await res.json();
-                    alert(
-                      "Fehler beim Hochladen des Videos: " + x.payload.error,
-                    );
+                    PopupManager.alert({
+                      title: "Fehler",
+                      description:
+                        "Fehler beim Hochladen des Videos: " + x.payload.error,
+                    });
                     props.modal.current?.dismiss();
                   }
                 }}

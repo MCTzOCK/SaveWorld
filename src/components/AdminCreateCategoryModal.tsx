@@ -26,6 +26,7 @@ import {
 import { ENDPOINT } from "../env";
 import { REST } from "@saveworld/api-js";
 import { useEffect } from "react";
+import PopupManager from "../util/PopupManager";
 
 export default function AdminCreateCategoryModal(props: {
   modal: React.RefObject<HTMLIonModalElement>;
@@ -70,7 +71,10 @@ export default function AdminCreateCategoryModal(props: {
                   ).value as string;
 
                   if (!name || !desc || image.length < 1) {
-                    alert("Bitte fülle alle Felder aus!");
+                    PopupManager.alert({
+                      title: "Fehler",
+                      description: "Bitte fülle alle Felder aus!",
+                    });
                     return;
                   }
 
@@ -84,7 +88,12 @@ export default function AdminCreateCategoryModal(props: {
                       props.callback(name, desc, image);
                       props.modal.current?.dismiss();
                     } else {
-                      alert("Fehler beim Erstellen der Kategorie!");
+                      PopupManager.alert({
+                        title: "Fehler",
+                        description:
+                          "Fehler beim Erstellen der Kategorie: " +
+                          res.payload.error,
+                      });
                     }
                   });
                 }}
@@ -119,7 +128,10 @@ export default function AdminCreateCategoryModal(props: {
                             setImage(ENDPOINT + res.data.url);
                           });
                         } else {
-                          alert("Fehler beim Upload: " + res.status);
+                          PopupManager.alert({
+                            title: "Fehler",
+                            description: "Fehler beim Upload: " + res.status,
+                          });
                         }
                       });
                     };

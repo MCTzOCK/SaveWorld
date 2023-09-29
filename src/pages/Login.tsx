@@ -21,6 +21,7 @@ import {
 } from "@ionic/react";
 import { REST } from "@saveworld/api-js";
 import Page from "../components/Page";
+import PopupManager from "../util/PopupManager";
 
 export default function Login() {
   const router = useIonRouter();
@@ -79,10 +80,16 @@ export default function Login() {
                     router.push("/onboarding", "none", "replace");
                   }
                 } else {
-                  alert("Fehler beim anmelden: " + resp.payload.error);
+                  PopupManager.alert({
+                    title: "Fehler",
+                    description: "Fehler beim Anmelden: " + res.payload.error,
+                  });
                 }
               } else {
-                alert("Fehler beim anmelden: " + res.payload.error);
+                PopupManager.alert({
+                  title: "Fehler",
+                  description: "Fehler beim Anmelden: " + res.payload.error,
+                });
               }
             }
           }}

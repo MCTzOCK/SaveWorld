@@ -21,6 +21,7 @@ import {
 } from "@ionic/react";
 import { REST } from "@saveworld/api-js";
 import { useEffect, useState } from "react";
+import PopupManager from "../../util/PopupManager";
 
 export default function VideoSearchFTS() {
   const [query, setQuery] = React.useState<string>("");
@@ -53,7 +54,10 @@ export default function VideoSearchFTS() {
         setVideos(res.payload.videos);
       }
     } else {
-      alert("Fehler beim Laden der Videos: " + res.payload.error);
+      PopupManager.alert({
+        title: "Fehler",
+        description: "Fehler beim Laden der Videos: " + res.payload.error,
+      });
     }
   };
 

@@ -27,6 +27,7 @@ import {
   useIonRouter,
 } from "@ionic/react";
 import { REST } from "@saveworld/api-js";
+import PopupManager from "../util/PopupManager";
 
 export default function WelcomeInterestModal(props: {
   modal: React.MutableRefObject<HTMLIonModalElement>;
@@ -76,10 +77,12 @@ export default function WelcomeInterestModal(props: {
                   );
 
                   if (res.status !== 200) {
-                    alert(
-                      "Fehler beim Speichern der Interessen: " +
+                    PopupManager.alert({
+                      title: "Fehler",
+                      description:
+                        "Fehler beim Speichern der Interessen: " +
                         res.payload.error,
-                    );
+                    });
                   }
 
                   props.modal.current?.dismiss();

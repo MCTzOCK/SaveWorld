@@ -38,6 +38,7 @@ import { REST } from "@saveworld/api-js";
 import { Browser } from "@capacitor/browser";
 import { useEffect } from "react";
 import { ENDPOINT } from "../../env";
+import PopupManager from "../../util/PopupManager";
 
 export default function ManageAccount() {
   const { loggedIn, loaded, userInfo } = useUserData();
@@ -127,13 +128,26 @@ export default function ManageAccount() {
                       );
 
                       if (res.status === 200) {
-                        alert("Erfolgreich gespeichert!");
-                        window.location.reload();
+                        PopupManager.alert({
+                          title: "Erfolg",
+                          description: "Der Upload war erfolgreich!",
+                          callback: () => {
+                            window.location.reload();
+                          },
+                        });
                       } else {
-                        alert("Fehler beim speichern: " + res.payload.error);
+                        PopupManager.alert({
+                          title: "Fehler",
+                          description:
+                            "Fehler beim Speichern: " + res.payload.error,
+                        });
                       }
                     } else {
-                      alert("Fehler beim Upload: " + mediaRes.statusText);
+                      PopupManager.alert({
+                        title: "Fehler",
+                        description:
+                          "Fehler beim Upload: " + mediaRes.statusText,
+                      });
                     }
 
                     (
@@ -172,10 +186,20 @@ export default function ManageAccount() {
                   );
 
                   if (res.status === 200) {
-                    alert("Erfolgreich gespeichert!");
-                    window.location.reload();
+                    PopupManager.alert({
+                      title: "Erfolg",
+                      description:
+                        "Dein Profilbild wurde erfolgreich entfernt!",
+                      callback: () => {
+                        window.location.reload();
+                      },
+                    });
                   } else {
-                    alert("Fehler beim speichern: " + res.payload.error);
+                    PopupManager.alert({
+                      title: "Fehler",
+                      description:
+                        "Dein Profilbild konnte nicht entfernt werden!",
+                    });
                   }
                 }}
               >
@@ -221,10 +245,19 @@ export default function ManageAccount() {
                   );
 
                   if (res.status === 200) {
-                    alert("Erfolgreich gespeichert!");
-                    window.location.reload();
+                    PopupManager.alert({
+                      title: "Erfolg",
+                      description: "Die Daten wurden erfolgreich gespeichert!",
+                      callback: () => {
+                        window.location.reload();
+                      },
+                    });
                   } else {
-                    alert("Fehler beim speichern: " + res.payload.error);
+                    PopupManager.alert({
+                      title: "Fehler",
+                      description:
+                        "Fehler beim Speichern: " + res.payload.error,
+                    });
                   }
                 }}
                 id={"acc_updateInfoForm"}
@@ -294,7 +327,10 @@ export default function ManageAccount() {
                   ).value;
 
                   if (pass !== passConf || pass === "" || passConf === "") {
-                    alert("Passwörter stimmen nicht überein!");
+                    PopupManager.alert({
+                      title: "Fehler",
+                      description: "Passwörter stimmen nicht überein!",
+                    });
                     return;
                   }
 
@@ -306,10 +342,22 @@ export default function ManageAccount() {
                   );
 
                   if (res.status === 200) {
-                    alert("Erfolgreich gespeichert!");
-                    window.location.reload();
+                    PopupManager.alert({
+                      title: "Erfolg",
+                      description: "Die Daten wurden erfolgreich gespeichert!",
+                      callback: () => {
+                        window.location.reload();
+                      },
+                    });
                   } else {
-                    alert("Fehler beim Speichern: " + res.payload.error);
+                    PopupManager.alert({
+                      title: "Fehler",
+                      description:
+                        "Fehler beim Speichern: " + res.payload.error,
+                      callback: () => {
+                        window.location.reload();
+                      },
+                    });
                   }
                 }}
               >
@@ -333,14 +381,21 @@ export default function ManageAccount() {
                     );
 
                     if (res.status === 200) {
-                      alert("Erfolgreich aktiviert!");
-                      prompt(
-                        "Trage den Code in deiner App ein:",
-                        res.payload.totpSecret,
-                      );
-                      window.location.reload();
+                      PopupManager.alert({
+                        title: "Erfolg",
+                        description:
+                          "Erfolgreich aktiviert! Trage folgenden Code in deiner App ein: " +
+                          res.payload.totpSecret,
+                        callback: () => {
+                          window.location.reload();
+                        },
+                      });
                     } else {
-                      alert("Fehler beim Aktivieren: " + res.payload.error);
+                      PopupManager.alert({
+                        title: "Fehler",
+                        description:
+                          "Fehler beim Aktivieren: " + res.payload.error,
+                      });
                     }
                   } else {
                     const code = prompt("Bitte 2FA Code eingeben:");
@@ -356,10 +411,20 @@ export default function ManageAccount() {
                     );
 
                     if (res.status === 200) {
-                      alert("Erfolgreich deaktiviert!");
-                      window.location.reload();
+                      PopupManager.alert({
+                        title: "Erfolgreich deaktiviert",
+                        description:
+                          "Zwei Faktor Authentifizierung deaktiviert",
+                        callback: () => {
+                          window.location.reload();
+                        },
+                      });
                     } else {
-                      alert("Fehler beim Deaktivieren: " + res.payload.error);
+                      PopupManager.alert({
+                        title: "Fehler",
+                        description:
+                          "Fehler beim Deaktivieren: " + res.payload.error,
+                      });
                     }
                   }
                 }}
@@ -406,10 +471,12 @@ export default function ManageAccount() {
                     localStorage.removeItem("token");
                     window.location.assign("/register");
                   } else {
-                    alert(
-                      "Fehler beim Löschen, bitte kontaktiere den Support: " +
+                    PopupManager.alert({
+                      title: "Fehler",
+                      description:
+                        "Fehler beim Löschen, bitte kontaktiere den Support: " +
                         res.payload.error,
-                    );
+                    });
                   }
                 }}
               >

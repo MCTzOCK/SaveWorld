@@ -29,6 +29,7 @@ import {
 import { REST } from "@saveworld/api-js";
 import { share, shareSharp, star, starSharp } from "ionicons/icons";
 import { Share } from "@capacitor/share";
+import PopupManager from "../util/PopupManager";
 
 export default function VideoDetailsModal(props: {
   modal: React.RefObject<HTMLIonModalElement>;
@@ -155,9 +156,16 @@ export default function VideoDetailsModal(props: {
               );
 
               if (res.status === 200) {
-                alert("Vielen Dank für deine Bewertung!");
+                PopupManager.alert({
+                  title: "Danke!",
+                  description: "Vielen Dank für deine Bewertung!",
+                });
               } else {
-                alert("Fehler beim Bewerten des Videos: " + res.payload.error);
+                PopupManager.alert({
+                  title: "Fehler!",
+                  description:
+                    "Fehler beim Bewerten des Videos: " + res.payload.error,
+                });
               }
             }}
           />

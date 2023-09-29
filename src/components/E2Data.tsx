@@ -31,6 +31,7 @@ import E2SubmitModal from "./E2SubmitModal";
 import { useEffect, useState } from "react";
 import { REST } from "@saveworld/api-js";
 import ProgressBar from "@ramonak/react-progress-bar";
+import PopupManager from "../util/PopupManager";
 
 export default function E2Data() {
   const [templates, setTemplates] = useState<
@@ -79,7 +80,11 @@ export default function E2Data() {
     if (tplRes.status === 200) {
       setTemplates(tplRes.payload.lst);
     } else {
-      alert("Vorlange konnten nicht geladen werden!");
+      PopupManager.alert({
+        title: "Fehler",
+        description:
+          "Vorlange konnten nicht geladen werden: " + tplRes.payload.error,
+      });
       return;
     }
 
@@ -90,7 +95,11 @@ export default function E2Data() {
     if (lfRes.status === 200) {
       setLifestyle(lfRes.payload.lifestyle);
     } else {
-      alert("Lifestyle konnte nicht geladen werden!");
+      PopupManager.alert({
+        title: "Fehler",
+        description:
+          "Lebensstil konnte nicht geladen werden: " + lfRes.payload.error,
+      });
       return;
     }
   };
@@ -105,7 +114,12 @@ export default function E2Data() {
       setWeekly(wRes.payload.goals);
       setWeeklyDates([wRes.payload.startDate, wRes.payload.endDate]);
     } else {
-      alert("Wöchentliche Ziele konnten nicht geladen werden!");
+      PopupManager.alert({
+        title: "Fehler",
+        description:
+          "Wöchentliche Ziele konnten nicht geladen werden: " +
+          wRes.payload.error,
+      });
       return;
     }
   };

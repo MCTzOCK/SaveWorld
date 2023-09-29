@@ -23,6 +23,7 @@ import {
   useIonRouter,
 } from "@ionic/react";
 import { add, addSharp, remove, removeSharp } from "ionicons/icons";
+import PopupManager from "../../util/PopupManager";
 
 export default function WelcomeLifestyle() {
   useRedirectForAnon();
@@ -157,9 +158,11 @@ export default function WelcomeLifestyle() {
             );
 
             if (res.status !== 200) {
-              alert(
-                "Fehler beim Speichern des Lifestyles: " + res.payload.error,
-              );
+              PopupManager.alert({
+                title: "Fehler",
+                description:
+                  "Fehler beim Speichern des Lifestyles: " + res.payload.error,
+              });
             } else {
               router.push("/welcome/finish", "forward", "replace");
             }

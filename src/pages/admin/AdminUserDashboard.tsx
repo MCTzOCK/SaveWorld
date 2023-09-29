@@ -31,6 +31,7 @@ import {
 } from "@ionic/react";
 import { warning, warningSharp } from "ionicons/icons";
 import { REST } from "@saveworld/api-js";
+import PopupManager from "../../util/PopupManager";
 
 export default function AdminUserDashboard() {
   useRedirectForAnon({
@@ -75,7 +76,11 @@ export default function AdminUserDashboard() {
           if (res.status === 200) {
             setUser(res.payload.users[0]);
           } else {
-            alert("Fehler beim Laden des Benutzers: " + res.payload.error);
+            PopupManager.alert({
+              title: "Fehler",
+              description:
+                "Fehler beim Laden des Benutzers: " + res.payload.error,
+            });
           }
           setLoading(false);
         },
@@ -146,10 +151,20 @@ export default function AdminUserDashboard() {
                     );
 
                     if (res.status === 200) {
-                      alert("Erfolgreich gespeichert!");
-                      window.location.reload();
+                      PopupManager.alert({
+                        title: "Erfolgreich",
+                        description:
+                          "Die Daten wurden erfolgreich gespeichert!",
+                        callback: () => {
+                          window.location.reload();
+                        },
+                      });
                     } else {
-                      alert("Fehler beim speichern: " + res.payload.error);
+                      PopupManager.alert({
+                        title: "Fehler",
+                        description:
+                          "Fehler beim speichern: " + res.payload.error,
+                      });
                     }
                   }}
                 >
@@ -248,10 +263,20 @@ export default function AdminUserDashboard() {
                         id,
                       );
                       if (res.status === 200) {
-                        alert("Benutzer gelöscht!");
-                        router.goBack();
+                        PopupManager.alert({
+                          title: "Erfolgreich",
+                          description:
+                            "Der Benutzer wurde erfolgreich gelöscht!",
+                          callback: () => {
+                            router.goBack();
+                          },
+                        });
                       } else {
-                        alert("Fehler beim Löschen: " + res.payload.error);
+                        PopupManager.alert({
+                          title: "Fehler",
+                          description:
+                            "Fehler beim Löschen: " + res.payload.error,
+                        });
                       }
                     }}
                   >

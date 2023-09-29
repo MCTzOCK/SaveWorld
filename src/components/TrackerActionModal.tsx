@@ -35,6 +35,7 @@ import {
   informationCircleSharp,
   informationSharp,
 } from "ionicons/icons";
+import PopupManager from "../util/PopupManager";
 
 const templates: {
   action: string;
@@ -108,7 +109,10 @@ export default function TrackerActionModal(props: {
                   ).value as string;
 
                   if (!action || !desc) {
-                    alert("Bitte fülle alle Felder aus!");
+                    PopupManager.alert({
+                      title: "Fehler",
+                      description: "Bitte fülle alle Felder aus!",
+                    });
                     return;
                   }
 
@@ -126,10 +130,12 @@ export default function TrackerActionModal(props: {
                       props.modal.current?.dismiss();
                       props.setAction(undefined);
                     } else {
-                      alert(
-                        "Fehler beim Erstellen der Aktion: " +
+                      PopupManager.alert({
+                        title: "Fehler",
+                        description:
+                          "Fehler beim Erstellen der Aktion: " +
                           res.payload.error,
-                      );
+                      });
                     }
                   } else {
                     const res = await REST.Tracker.createAction(
@@ -143,10 +149,12 @@ export default function TrackerActionModal(props: {
                       props.reload();
                       props.modal.current?.dismiss();
                     } else {
-                      alert(
-                        "Fehler beim Erstellen der Aktion: " +
+                      PopupManager.alert({
+                        title: "Fehler",
+                        description:
+                          "Fehler beim Erstellen der Aktion: " +
                           res.payload.error,
-                      );
+                      });
                     }
                   }
                 }}

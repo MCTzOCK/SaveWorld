@@ -22,6 +22,7 @@ import SimpleMdeReact from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import { send, sendSharp } from "ionicons/icons";
 import { REST } from "@saveworld/api-js";
+import PopupManager from "../../util/PopupManager";
 
 export default function CommunityCreateBlog() {
   useRedirectForAnon();
@@ -62,12 +63,18 @@ export default function CommunityCreateBlog() {
           color={"success"}
           onClick={async () => {
             if (v.length < 10) {
-              alert("Bitte gib mehr als 10 Zeichen ein.");
+              PopupManager.alert({
+                title: "Fehler",
+                description: "Bitte gib mehr als 10 Zeichen ein.",
+              });
               return;
             }
 
             if (!title) {
-              alert("Bitte gib einen Titel ein.");
+              PopupManager.alert({
+                title: "Fehler",
+                description: "Bitte gib einen Titel ein.",
+              });
               return;
             }
 
@@ -85,7 +92,11 @@ export default function CommunityCreateBlog() {
                 "replace",
               );
             } else {
-              alert("Es ist ein Fehler aufgetreten: " + res.payload.error);
+              PopupManager.alert({
+                title: "Fehler",
+                description:
+                  "Es ist ein Fehler aufgetreten: " + res.payload.error,
+              });
             }
           }}
         >

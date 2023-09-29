@@ -40,6 +40,7 @@ import {
 import CommunityEditProfileModal from "../../components/CommunityEditProfileModal";
 import { ENDPOINT } from "../../env";
 import CommunityProfileBlogList from "../../components/CommunityProfileBlogList";
+import PopupManager from "../../util/PopupManager";
 
 export default function CommunityProfile() {
   useRedirectForAnon();
@@ -189,7 +190,12 @@ export default function CommunityProfile() {
                             if (res.status === 200) {
                               reloadProfile();
                             } else {
-                              alert("Fehler: " + res.payload.error);
+                              PopupManager.alert({
+                                title: "Fehler",
+                                description:
+                                  "Es ist ein Fehler aufgetreten: " +
+                                  res.payload.error,
+                              });
                             }
                           }
                         }}

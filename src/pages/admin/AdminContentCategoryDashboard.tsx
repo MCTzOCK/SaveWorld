@@ -28,6 +28,7 @@ import {
 } from "@ionic/react";
 import { add, addSharp } from "ionicons/icons";
 import AdminCreateCategoryModal from "../../components/AdminCreateCategoryModal";
+import PopupManager from "../../util/PopupManager";
 
 export default function AdminContentCategoryDashboard() {
   useRedirectForAnon({
@@ -57,7 +58,10 @@ export default function AdminContentCategoryDashboard() {
       if (res.status === 200) {
         setCategories(res.payload as any);
       } else {
-        alert("Fehler beim Laden der Kategorien: " + res.payload.error);
+        PopupManager.alert({
+          title: "Fehler",
+          description: "Fehler beim Laden der Kategorien: " + res.payload.error,
+        });
       }
       setLoading(false);
     });
@@ -136,10 +140,12 @@ export default function AdminContentCategoryDashboard() {
                                 if (res.status === 200) {
                                   reload();
                                 } else {
-                                  alert(
-                                    "Fehler beim Löschen der Kategorie: " +
+                                  PopupManager.alert({
+                                    title: "Fehler",
+                                    description:
+                                      "Fehler beim Löschen der Kategorie: " +
                                       res.payload.error,
-                                  );
+                                  });
                                 }
                               }}
                             >

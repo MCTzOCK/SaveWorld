@@ -47,6 +47,7 @@ import {
 } from "ionicons/icons";
 import ReactMarkdown from "react-markdown";
 import { useUserData } from "../../hooks/useUserData";
+import PopupManager from "../../util/PopupManager";
 export default function CommunityBlogViewer() {
   useRedirectForAnon();
 
@@ -91,7 +92,10 @@ export default function CommunityBlogViewer() {
     if (res.status === 200) {
       setBlog(res.payload.entry);
     } else {
-      alert("Blog nicht gefunden!");
+      PopupManager.alert({
+        title: "Fehler",
+        description: "Blog nicht gefunden!",
+      });
     }
 
     const res2 = await REST.Community.profile(
@@ -105,7 +109,10 @@ export default function CommunityBlogViewer() {
         level: res2.payload.level,
       });
     } else {
-      alert("Profil nicht gefunden!");
+      PopupManager.alert({
+        title: "Fehler",
+        description: "Profil nicht gefunden!",
+      });
     }
   };
 
@@ -241,10 +248,12 @@ export default function CommunityBlogViewer() {
                           );
 
                           if (res.status !== 200) {
-                            alert(
-                              "Die Aktion ist fehlgeschlagen: " +
+                            PopupManager.alert({
+                              title: "Fehler",
+                              description:
+                                "Die Aktion ist fehlgeschlagen: " +
                                 res.payload.error,
-                            );
+                            });
                           } else {
                             reload();
                           }
@@ -279,9 +288,12 @@ export default function CommunityBlogViewer() {
                       );
 
                       if (res.status !== 200) {
-                        alert(
-                          "Die Aktion ist fehlgeschlagen: " + res.payload.error,
-                        );
+                        PopupManager.alert({
+                          title: "Fehler",
+                          description:
+                            "Die Aktion ist fehlgeschlagen: " +
+                            res.payload.error,
+                        });
                       } else {
                         await reload();
                       }
@@ -317,10 +329,12 @@ export default function CommunityBlogViewer() {
                         );
 
                         if (res.status !== 200) {
-                          alert(
-                            "Die Aktion ist fehlgeschlagen: " +
+                          PopupManager.alert({
+                            title: "Fehler",
+                            description:
+                              "Die Aktion ist fehlgeschlagen: " +
                               res.payload.error,
-                          );
+                          });
                         } else {
                           await router.push("/community", "back", "push");
                         }

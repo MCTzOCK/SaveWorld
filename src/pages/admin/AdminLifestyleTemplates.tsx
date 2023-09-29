@@ -35,6 +35,7 @@ import {
 } from "ionicons/icons";
 import { useEffect, useState } from "react";
 import { REST } from "@saveworld/api-js";
+import PopupManager from "../../util/PopupManager";
 
 export default function AdminLifestyleTemplates() {
   useRedirectForAnon({
@@ -54,7 +55,10 @@ export default function AdminLifestyleTemplates() {
     if (tplR.status === 200) {
       setTemplates(tplR.payload.lst);
     } else {
-      alert("Fehler beim Laden der Vorlagen: " + tplR.payload.error);
+      PopupManager.alert({
+        title: "Fehler",
+        description: "Fehler beim Laden der Vorlagen: " + tplR.payload.error,
+      });
     }
   };
 
@@ -124,10 +128,12 @@ export default function AdminLifestyleTemplates() {
                               if (delR.status === 200) {
                                 await reload();
                               } else {
-                                alert(
-                                  "Fehler beim Löschen der Vorlage: " +
+                                PopupManager.alert({
+                                  title: "Fehler",
+                                  description:
+                                    "Fehler beim Löschen der Vorlage: " +
                                     delR.payload.error,
-                                );
+                                });
                               }
                               break;
                             case "edit":
@@ -144,10 +150,12 @@ export default function AdminLifestyleTemplates() {
                                 if (tplR.status === 200) {
                                   await reload();
                                 } else {
-                                  alert(
-                                    "Fehler beim Bearbeiten der Vorlage: " +
+                                  PopupManager.alert({
+                                    title: "Fehler",
+                                    description:
+                                      "Fehler beim Bearbeiten der Vorlage: " +
                                       tplR.payload.error,
-                                  );
+                                  });
                                 }
                               }
                               break;
@@ -200,9 +208,12 @@ export default function AdminLifestyleTemplates() {
                 if (tplR.status === 200) {
                   await reload();
                 } else {
-                  alert(
-                    "Fehler beim Erstellen der Vorlage: " + tplR.payload.error,
-                  );
+                  PopupManager.alert({
+                    title: "Fehler",
+                    description:
+                      "Fehler beim Erstellen der Vorlage: " +
+                      tplR.payload.error,
+                  });
                 }
               }
             }}

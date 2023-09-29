@@ -47,16 +47,6 @@ export default function Onboarding() {
   const { userInfo } = useUserData();
   useRedirectForAnon();
 
-  useEffect(() => {
-    PopupManager.alertAsync({
-      title: "Willkommen!",
-      description:
-        "Willkommen bei SaveWorld! Hier kannst du die Welt verbessern!",
-    }).then(() => {
-      console.log(1);
-    });
-  }, []);
-
   return (
     <>
       <Page title={"SaveWorld"}>
