@@ -40,9 +40,8 @@ import {
 import CommunityEditProfileModal from "../../components/CommunityEditProfileModal";
 import { ENDPOINT } from "../../env";
 import CommunityProfileBlogList from "../../components/CommunityProfileBlogList";
-import PopupManager from "../../util/PopupManager";
 import { Avatar } from "@chakra-ui/react";
-
+import PopupManager from "../../util/PopupManager";
 export default function CommunityProfile() {
   useRedirectForAnon();
 
