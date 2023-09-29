@@ -50,6 +50,8 @@ import {
   searchSharp,
 } from "ionicons/icons";
 import { ENDPOINT } from "../env";
+import { Avatar, Button, ChakraProvider } from "@chakra-ui/react";
+import { theme } from "../theme/chakra";
 
 export default function Page(props: {
   title: string;
@@ -78,6 +80,7 @@ export default function Page(props: {
       <IonPage
         style={{
           overflow: "hidden",
+          "--background": "#000",
         }}
         ref={ref}
       >
@@ -106,13 +109,9 @@ export default function Page(props: {
               {loggedIn && userInfo._id ? (
                 <>
                   <IonButton routerLink={"/account"}>
-                    <IonAvatar>
-                      <img
-                        src={
-                          ENDPOINT + "/media/profile-picture/" + userInfo._id
-                        }
-                      />
-                    </IonAvatar>
+                    <Avatar
+                      src={ENDPOINT + "/media/profile-picture/" + userInfo._id}
+                    />
                   </IonButton>
                 </>
               ) : null}
