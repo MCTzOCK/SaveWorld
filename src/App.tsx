@@ -149,6 +149,7 @@ export default function App() {
             </Switch>
           </IonReactRouter>
         </IonApp>
+        <div id={"__chakra-manual-mount-point-do-not-use"}></div>
       </ChakraProvider>
     </>
   );
