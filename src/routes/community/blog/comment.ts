@@ -11,8 +11,8 @@
 import { Request, Response } from "express";
 import CommunityBlogEntryModel from "../../../models/CommunityBlogEntryModel";
 import { isAuthenticated } from "../../../util/isAuthenticated";
-import { getOS } from "../../../util/getOS";
 import UserModel from "../../../models/UserModel";
+import { sendPN } from "../../../util/sendPN";
 
 export default async function (req: Request, res: Response) {
   try {
@@ -67,19 +67,11 @@ export default async function (req: Request, res: Response) {
       entry,
     });
 
-    const os = getOS();
-    const notify = os.createNotification({
-      contents: {
-        en: `@${user.username} hat deinen Beitrag "${entry.title}" kommentiert!`,
-      },
-      headings: {
-        en: "SaveWorld",
-      },
-      include_external_user_ids: [
-        (await UserModel.findOne({ username: entry.username }))._id,
-      ],
-      app_id: process.env.ONE_SIGNAL_USER_KEY,
-      url: "https://app.saveworld.one/community/r/" + entry._id,
+    await sendPN({
+      title: "SaveWorld",
+      content: `@${user.username} hat deinen Beitrag "${entry.title}" kommentiert!`,
+      user_ids: [(await UserModel.findOne({ username: entry.username }))._id],
+      launch_url: "https://app.saveworld.one/community/r/" + entry._id,
     });
   } catch (e) {
     res.status(500).json({

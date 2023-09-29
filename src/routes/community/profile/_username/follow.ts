@@ -12,7 +12,7 @@ import { Request, Response } from "express";
 import UserPreferencesModel from "../../../../models/UserPreferencesModel";
 import { isAuthenticated } from "../../../../util/isAuthenticated";
 import UserModel from "../../../../models/UserModel";
-import { getOS } from "../../../../util/getOS";
+import { sendPN } from "../../../../util/sendPN";
 
 export default async function (req: Request, res: Response) {
   try {
@@ -90,17 +90,11 @@ export default async function (req: Request, res: Response) {
     });
 
     if (shouldNotify) {
-      const os = getOS();
-      const notify = os.createNotification({
-        contents: {
-          en: `@${user.username} folgt dir jetzt!`,
-        },
-        headings: {
-          en: "SaveWorld",
-        },
-        include_external_user_ids: [userDoc._id],
-        app_id: process.env.ONE_SIGNAL_USER_KEY,
-        url: "https://app.saveworld.one/community/u/" + userDoc.username,
+      await sendPN({
+        title: "SaveWorld",
+        content: `@${user.username} folgt dir jetzt!`,
+        user_ids: [userDoc._id],
+        launch_url: "https://app.saveworld.one/community/u/" + userDoc.username,
       });
     }
   } catch (e) {

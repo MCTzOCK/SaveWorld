@@ -14,6 +14,7 @@ import { isAuthenticated } from "../../../util/isAuthenticated";
 import UserPreferencesModel from "../../../models/UserPreferencesModel";
 import UserModel from "../../../models/UserModel";
 import { getOS } from "../../../util/getOS";
+import { sendPN } from "../../../util/sendPN";
 
 export default async function (req: Request, res: Response) {
   try {
@@ -77,18 +78,11 @@ export default async function (req: Request, res: Response) {
       }
     }
 
-    const os = getOS();
-
-    const notify = os.createNotification({
-      contents: {
-        en: `@${user.username} hat gerade einen Beitrag veröffentlicht!`,
-      },
-      headings: {
-        en: "SaveWorld",
-      },
-      include_external_user_ids: external_uids,
-      app_id: process.env.ONE_SIGNAL_USER_KEY,
-      url: "https://app.saveworld.one/community/r/" + entry._id,
+    await sendPN({
+      title: "SaveWorld",
+      content: `@${user.username} hat gerade einen Beitrag veröffentlicht!`,
+      user_ids: external_uids,
+      launch_url: "https://app.saveworld.one/community/r/" + entry._id,
     });
   } catch (e) {
     res.status(500).json({
