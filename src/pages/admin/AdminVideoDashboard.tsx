@@ -172,9 +172,10 @@ export default function AdminVideoDashboard() {
                 detail
                 onClick={async () => {
                   if (
-                    !confirm(
-                      "Bist du sicher, dass du dieses Video löschen willst?",
-                    )
+                    !(await PopupManager.confirmAsync({
+                      title: "Löschen",
+                      question: "Möchtest du das Video wirklich löschen?",
+                    }))
                   )
                     return;
 

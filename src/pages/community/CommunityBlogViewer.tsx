@@ -321,7 +321,14 @@ export default function CommunityBlogViewer() {
                       fill={"outline"}
                       size={"small"}
                       onClick={async () => {
-                        if (!confirm("Bist du dir sicher?")) return;
+                        if (
+                          !(await PopupManager.confirmAsync({
+                            title: "Löschen",
+                            question:
+                              "Möchtest du den Blog-Eintrag wirklich löschen?",
+                          }))
+                        )
+                          return;
 
                         const res = await REST.Community.deleteBlogEntry(
                           localStorage.getItem("token") as string,

@@ -155,7 +155,11 @@ export default function EcoTracker() {
                       color={"danger"}
                       onClick={async () => {
                         if (
-                          !confirm("Möchtest du diese Aktion wirklich löschen?")
+                          !(await PopupManager.confirmAsync({
+                            title: "Löschen",
+                            question:
+                              "Möchtest du die Aktion wirklich löschen?",
+                          }))
                         )
                           return;
 

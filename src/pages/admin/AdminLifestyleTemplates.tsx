@@ -115,9 +115,11 @@ export default function AdminLifestyleTemplates() {
                           switch (ev.detail.data.action) {
                             case "delete":
                               if (
-                                !confirm(
-                                  "Soll die Vorlage wirklich gelöscht werden?",
-                                )
+                                !(await PopupManager.confirmAsync({
+                                  title: "Löschen",
+                                  question:
+                                    "Möchtest du die Vorlage wirklich löschen?",
+                                }))
                               )
                                 return;
                               const delR =

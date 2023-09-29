@@ -130,7 +130,14 @@ export default function AdminContentCategoryDashboard() {
                               color={"danger"}
                               style={{ marginTop: "20px" }}
                               onClick={async () => {
-                                if (!confirm("Wirklich löschen?")) return;
+                                if (
+                                  !(await PopupManager.confirmAsync({
+                                    title: "Löschen",
+                                    question:
+                                      "Möchtest du die Kategorie wirklich löschen?",
+                                  }))
+                                )
+                                  return;
 
                                 const res = await REST.Admin.deleteCategory(
                                   localStorage.getItem("token") as string,

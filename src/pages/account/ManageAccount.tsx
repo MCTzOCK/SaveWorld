@@ -173,11 +173,14 @@ export default function ManageAccount() {
                 color={"light"}
                 onClick={async () => {
                   if (
-                    !confirm(
-                      "Bist du sicher, dass du dein Profilbild entfernen möchtest?",
-                    )
+                    !(await PopupManager.confirmAsync({
+                      title: "Profilbild entfernen",
+                      question:
+                        "Bist du sicher, dass du dein Profilbild entfernen möchtest?",
+                    }))
                   )
                     return;
+
                   const res = await REST.Account.updatePreferences(
                     localStorage.getItem("token") as string,
                     {
@@ -445,9 +448,13 @@ export default function ManageAccount() {
               <IonItem
                 color={"light"}
                 detail
-                onClick={() => {
+                onClick={async () => {
                   if (
-                    !confirm("Bist du sicher, dass du dich abmelden möchtest?")
+                    !(await PopupManager.confirmAsync({
+                      title: "Abmelden",
+                      question:
+                        "Bist du sicher, dass du dich abmelden möchtest?",
+                    }))
                   )
                     return;
                   localStorage.removeItem("token");
@@ -461,9 +468,11 @@ export default function ManageAccount() {
                 detail
                 onClick={async () => {
                   if (
-                    !confirm(
-                      "Bist du sicher, dass du dein Konto löschen möchtest?",
-                    )
+                    !(await PopupManager.confirmAsync({
+                      title: "Konto löschen",
+                      question:
+                        "Bist du sicher, dass du dein Konto löschen möchtest?",
+                    }))
                   )
                     return;
 
