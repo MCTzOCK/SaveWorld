@@ -22,8 +22,11 @@ import {
   IonFooter,
   IonHeader,
   IonIcon,
+  IonItem,
   IonLabel,
+  IonList,
   IonPage,
+  IonPopover,
   IonTabBar,
   IonTabButton,
   IonTitle,
@@ -38,10 +41,12 @@ import {
   bookSharp,
   chatbox,
   chatboxSharp,
+  cog,
   home,
   homeSharp,
   leaf,
   leafSharp,
+  mail,
   people,
   peopleSharp,
   person,
@@ -108,11 +113,36 @@ export default function Page(props: {
               {props.endButtons}
               {loggedIn && userInfo._id ? (
                 <>
-                  <IonButton routerLink={"/account"}>
-                    <Avatar
-                      src={ENDPOINT + "/media/profile-picture/" + userInfo._id}
-                    />
-                  </IonButton>
+                  <Avatar
+                    src={ENDPOINT + "/media/profile-picture/" + userInfo._id}
+                    id={"open-profile-popover"}
+                  />
+                  <IonPopover
+                    trigger={"open-profile-popover"}
+                    dismissOnSelect
+                    color={"light"}
+                  >
+                    <IonList>
+                      <IonItem
+                        button
+                        detail={false}
+                        color={"light"}
+                        routerLink={"/account"}
+                      >
+                        <IonIcon icon={cog} slot={"start"} />
+                        Einstellungen
+                      </IonItem>
+                      <IonItem
+                        button
+                        detail={false}
+                        color={"light"}
+                        routerLink={"/notifications"}
+                      >
+                        <IonIcon icon={mail} slot={"start"} />
+                        Push Nachrichten
+                      </IonItem>
+                    </IonList>
+                  </IonPopover>
                 </>
               ) : null}
             </IonButtons>
