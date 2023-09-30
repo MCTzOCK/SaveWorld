@@ -215,6 +215,88 @@ export default function AdminSupportRequestDashboard() {
                     </div>
                   </>
                 )}
+                {request.category === "REPORT-USER" && (
+                  <>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "1rem",
+                      }}
+                    >
+                      <IonButton
+                        disabled={request.processed}
+                        style={{
+                          width: "100%",
+                        }}
+                        color={"success"}
+                        routerLink={"/community/u/" + request.additionalData}
+                      >
+                        Profil öffnen
+                      </IonButton>
+                      <IonButton
+                        disabled={request.processed}
+                        style={{
+                          width: "100%",
+                        }}
+                        color={"success"}
+                        onClick={async () => {
+                          const action = await PopupManager.selectAsync({
+                            title: "Aktion auswählen",
+                            helperText:
+                              "Wähle die Aktion aus, die du durchführen möchtest",
+                            choices: ["Benutzer löschen", "Keine Aktion"],
+                          });
+                          if (!action) return;
+
+                          const message = await PopupManager.promptAsync({
+                            title: "Antwort",
+                            helperText: "Beantworte die Anfrage des Benutzers",
+                            inputType: "TEXTAREA",
+                          });
+                          if (!message) return;
+
+                          if (action === "Benutzer löschen") {
+                            const res = await REST.Admin.deleteUser(
+                              localStorage.getItem("token") as string,
+                              request.additionalData,
+                            );
+
+                            if (res.status !== 200) {
+                              PopupManager.alert({
+                                title: "Fehler",
+                                description:
+                                  "Fehler beim Löschen des Benutzers: " +
+                                  res.payload.error,
+                              });
+                              return;
+                            }
+                          }
+
+                          const res = await REST.Admin.processSupportRequest(
+                            localStorage.getItem("token") as string,
+                            id,
+                            message,
+                          );
+
+                          if (res.status === 200) {
+                            reload();
+                          } else {
+                            PopupManager.alert({
+                              title: "Fehler",
+                              description:
+                                "Fehler beim Abschließen der Anfrage: " +
+                                res.payload.error,
+                            });
+                          }
+                        }}
+                      >
+                        Abschließen
+                      </IonButton>
+                    </div>
+                  </>
+                )}
               </IonCardContent>
             </IonCard>
           </>
