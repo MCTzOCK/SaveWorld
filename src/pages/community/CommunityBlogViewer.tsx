@@ -34,6 +34,7 @@ import { ENDPOINT } from "../../env";
 import {
   chatbox,
   chatboxSharp,
+  flag,
   heart,
   heartOutline,
   heartSharp,
@@ -314,6 +315,21 @@ export default function CommunityBlogViewer() {
                     />
                     {blog.likes.length}
                   </IonButton>
+                  {userInfo.username !== blog.username && (
+                    <>
+                      <IonButton
+                        fill={"outline"}
+                        color={"danger"}
+                        size={"small"}
+                        routerLink={
+                          "/support?category=REPORT_POST&report_post=" +
+                          blog._id
+                        }
+                      >
+                        <IonIcon icon={flag} />
+                      </IonButton>
+                    </>
+                  )}
                   {userInfo.username === blog.username ? (
                     <IonButton
                       color={"danger"}
