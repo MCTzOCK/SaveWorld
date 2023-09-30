@@ -47,7 +47,15 @@ export default async function (req: Request, res: Response) {
     return;
   }
 
-  const pUser = await UserModel.findById(req.query.id);
+  let pUser;
+
+  try {
+    pUser = await UserModel.findById(req.query.id);
+  } catch (e) {
+    pUser = await UserModel.findOne({
+      username: req.query.id,
+    });
+  }
 
   if (!pUser) {
     res.status(404).json({
