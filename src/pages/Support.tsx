@@ -31,8 +31,11 @@ import { FaEnvelope, FaTag } from "react-icons/fa";
 import { useEffect } from "react";
 import PopupManager from "../util/PopupManager";
 import { REST } from "@saveworld/api-js";
+import { useRedirectForAnon } from "../hooks/useRedirectForAnon";
 
 export default function Support() {
+  useRedirectForAnon();
+
   const [category, setCategory] = React.useState<string>("GENERAL");
   const [email, setEmail] = React.useState<string>("");
   const [message, setMessage] = React.useState<string>("");

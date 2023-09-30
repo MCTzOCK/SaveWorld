@@ -78,7 +78,15 @@ export default function Notifications() {
                     n._id,
                   );
 
-                  router.push(n.launch_url.split(".one")[1], "none", "replace");
+                  if (n.launch_url) {
+                    router.push(
+                      n.launch_url.split(".one")[1],
+                      "none",
+                      "replace",
+                    );
+                  } else {
+                    loadPage(page);
+                  }
                 }}
               >
                 <IonCardHeader>

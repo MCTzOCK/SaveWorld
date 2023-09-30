@@ -77,6 +77,7 @@ import { theme } from "./theme/chakra";
 import Notifications from "./pages/Notifications";
 import Support from "./pages/Support";
 import AdminSupportRequestsDashboard from "./pages/admin/AdminSupportRequestsDashboard";
+import AdminSupportRequestDashboard from "./pages/admin/AdminSupportRequestDashboard";
 
 setupIonicReact({
   mode: "ios",
@@ -117,6 +118,7 @@ export default function App() {
     "/admin/users/:id": AdminUserDashboard,
     "/admin/lifestyle-templates": AdminLifestyleTemplates,
     "/admin/support-requests": AdminSupportRequestsDashboard,
+    "/admin/support-requests/:id": AdminSupportRequestDashboard,
     "/learn": Videos,
     "/learn/fts-search": VideoSearchFTS,
     "/eco-tracker": EcoTracker,
