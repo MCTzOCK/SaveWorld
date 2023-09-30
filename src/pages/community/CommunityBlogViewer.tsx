@@ -330,7 +330,8 @@ export default function CommunityBlogViewer() {
                       </IonButton>
                     </>
                   )}
-                  {userInfo.username === blog.username ? (
+                  {userInfo.username === blog.username ||
+                  userInfo.role === "admin" ? (
                     <IonButton
                       color={"danger"}
                       fill={"outline"}
