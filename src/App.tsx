@@ -75,6 +75,7 @@ import CommunityBlogViewer from "./pages/community/CommunityBlogViewer";
 import { Button, ChakraProvider, Portal } from "@chakra-ui/react";
 import { theme } from "./theme/chakra";
 import Notifications from "./pages/Notifications";
+import Support from "./pages/Support";
 
 setupIonicReact({
   mode: "ios",
@@ -123,6 +124,7 @@ export default function App() {
     "/community/create/blog": CommunityCreateBlog,
     "/community/r/:id": CommunityBlogViewer,
     "/notifications": Notifications,
+    "/support": Support,
   };
 
   return (

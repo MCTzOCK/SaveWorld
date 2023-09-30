@@ -37,6 +37,7 @@ import { useUserData } from "../hooks/useUserData";
 import {
   add,
   addSharp,
+  alertCircle,
   book,
   bookSharp,
   chatbox,
@@ -140,6 +141,15 @@ export default function Page(props: {
                       >
                         <IonIcon icon={mail} slot={"start"} />
                         Push Nachrichten
+                      </IonItem>
+                      <IonItem
+                        button
+                        detail={false}
+                        color={"light"}
+                        routerLink={"/support"}
+                      >
+                        <IonIcon icon={alertCircle} slot={"start"} />
+                        Support
                       </IonItem>
                     </IonList>
                   </IonPopover>
