@@ -25,6 +25,7 @@ export default function HomeCard(props: {
         style={{
           backgroundColor: "rgba(10,10,10,.5)",
           border: "1px solid rgba(100,100,100,1)",
+          maxWidth: "500px",
         }}
         routerLink={props.url}
       >

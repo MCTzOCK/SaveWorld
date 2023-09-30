@@ -68,35 +68,45 @@ export default function Home() {
         </div>
         <div
           style={{
-            marginTop: "5rem",
+            marginTop: "4.5rem",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
           }}
         >
-          {!hasEcoDetailsForToday && (
-            <>
-              <HomeCard
-                icon={<FaLeaf />}
-                text={"Gib Daten zu deinem Tag ein, um deine Ziele zu tracken!"}
-                url={"/e2"}
-              />
-            </>
-          )}
-          <HomeCard
-            icon={<FaVideo />}
-            text={"Schau dir Videos an, um mehr über Nachhaltigkeit zu lernen!"}
-            url={"/learn"}
-          />
-          <HomeCard
-            icon={<FaPeopleGroup />}
-            text={
-              "Tausche dich mit anderen aus, die auch die Welt verbessern wollen!"
-            }
-            url={"/community"}
-          />
-          <HomeCard
-            icon={<FaInfoCircle />}
-            text={"Du hast Fragen? Wir haben Antworten!"}
-            url={"/support"}
-          />
+          <div>
+            {!hasEcoDetailsForToday && (
+              <>
+                <HomeCard
+                  icon={<FaLeaf />}
+                  text={
+                    "Gib Daten zu deinem Tag ein, um deine Ziele zu tracken!"
+                  }
+                  url={"/e2"}
+                />
+              </>
+            )}
+            <HomeCard
+              icon={<FaVideo />}
+              text={
+                "Schau dir Videos an, um mehr über Nachhaltigkeit zu lernen!"
+              }
+              url={"/learn"}
+            />
+            <HomeCard
+              icon={<FaPeopleGroup />}
+              text={
+                "Tausche dich mit anderen aus, die auch die Welt verbessern wollen!"
+              }
+              url={"/community"}
+            />
+            <HomeCard
+              icon={<FaInfoCircle />}
+              text={"Du hast Fragen? Wir haben Antworten!"}
+              url={"/support"}
+            />
+          </div>
         </div>
       </Page>
     </>
