@@ -105,14 +105,19 @@ export default function Page(props: {
         <IonHeader>
           <IonToolbar
             style={{
-              "--background": props.noHeader
+              "--background": "black",
+              /*
+              props.noHeader
                 ? "black"
                 : props.redGradient
                 ? "var(--ion-color-danger-shade)"
-                : "var(--ion-color-success-shade)",
+                : "var(--ion-color-success-shade)"
+              */
               "--min-height": "75px",
+              /*
               borderBottomLeftRadius: props.noHeader ? 0 : "12px",
               borderBottomRightRadius: props.noHeader ? 0 : "12px",
+              */
               "--border-width": 0,
             }}
           >
@@ -127,8 +132,10 @@ export default function Page(props: {
             <IonTitle
               size={"large"}
               style={{
-                display: props.noHeader ? "none" : "initial",
+                fontFamily: "Inter, sans-serif",
+                fontWeight: 1000,
               }}
+              color={props.redGradient ? "danger" : "success"}
             >
               {props.title}
             </IonTitle>
@@ -145,9 +152,9 @@ export default function Page(props: {
                     size={"large"}
                     onClick={onOpen}
                     style={{
-                      "--color": props.noHeader
-                        ? "var(--ion-color-success-shade)"
-                        : "var(--ion-color-light-shade)",
+                      "--color": props.redGradient
+                        ? "var(--ion-color-danger-shade)"
+                        : "var(--ion-color-success-shade)",
                     }}
                   >
                     <IonIcon ios={menu} md={menuSharp} size={"large"} />

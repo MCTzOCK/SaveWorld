@@ -104,7 +104,7 @@ export default function App() {
   } = {
     "/register": Register,
     "/login": Login,
-    "/onboarding": Onboarding,
+    "/old-onboarding": Onboarding,
     "/welcome": Welcome,
     "/welcome/lifestyle": WelcomeLifestyle,
     "/welcome/finish": FinishWelcome,
@@ -130,7 +130,7 @@ export default function App() {
     "/community/r/:id": CommunityBlogViewer,
     "/notifications": Notifications,
     "/support": Support,
-    "/home": Home,
+    "/onboarding": Home,
   };
 
   return (
