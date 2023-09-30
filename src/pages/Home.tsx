@@ -17,8 +17,13 @@ import { FaLeaf, FaPeopleGroup, FaVideo } from "react-icons/fa6";
 import { IonCard, IonCardContent } from "@ionic/react";
 import HomeCard from "../components/HomeCard";
 import { FaInfoCircle } from "react-icons/fa";
+import { useRedirectForAnon } from "../hooks/useRedirectForAnon";
+import { useUserData } from "../hooks/useUserData";
+import HomeForAnon from "../components/HomeForAnon";
 
 export default function Home() {
+  const { loggedIn } = useUserData();
+
   const [hasEcoDetailsForToday, setHasEcoDetailsForToday] =
     React.useState<boolean>(true);
 
@@ -54,7 +59,9 @@ export default function Home() {
             }}
             maxWidth={["100%", "100%", "75%"]}
           >
-            Verbesser die&nbsp;
+            {loggedIn ? "Verbesser" : "Rette"}
+            &nbsp;die
+            <br />
             <span
               style={{
                 color: "var(--ion-color-success)",
@@ -66,48 +73,68 @@ export default function Home() {
             .
           </Heading>
         </div>
-        <div
-          style={{
-            marginTop: "4.5rem",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-          }}
-        >
-          <div>
-            {!hasEcoDetailsForToday && (
-              <>
+        {loggedIn ? (
+          <>
+            <div
+              style={{
+                marginTop: "4.5rem",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+              }}
+            >
+              <div>
+                {!hasEcoDetailsForToday && (
+                  <>
+                    <HomeCard
+                      icon={<FaLeaf />}
+                      text={
+                        "Gib Daten zu deinem Tag ein, um deine Ziele zu tracken!"
+                      }
+                      url={"/e2"}
+                    />
+                  </>
+                )}
                 <HomeCard
-                  icon={<FaLeaf />}
+                  icon={<FaVideo />}
                   text={
-                    "Gib Daten zu deinem Tag ein, um deine Ziele zu tracken!"
+                    "Schau dir Videos an, um mehr über Nachhaltigkeit zu lernen!"
                   }
-                  url={"/e2"}
+                  url={"/learn"}
                 />
-              </>
-            )}
-            <HomeCard
-              icon={<FaVideo />}
-              text={
-                "Schau dir Videos an, um mehr über Nachhaltigkeit zu lernen!"
-              }
-              url={"/learn"}
-            />
-            <HomeCard
-              icon={<FaPeopleGroup />}
-              text={
-                "Tausche dich mit anderen aus, die auch die Welt verbessern wollen!"
-              }
-              url={"/community"}
-            />
-            <HomeCard
-              icon={<FaInfoCircle />}
-              text={"Du hast Fragen? Wir haben Antworten!"}
-              url={"/support"}
-            />
-          </div>
-        </div>
+                <HomeCard
+                  icon={<FaPeopleGroup />}
+                  text={
+                    "Tausche dich mit anderen aus, die auch die Welt verbessern wollen!"
+                  }
+                  url={"/community"}
+                />
+                <HomeCard
+                  icon={<FaInfoCircle />}
+                  text={"Du hast Fragen? Wir haben Antworten!"}
+                  url={"/support"}
+                />
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div
+              style={{
+                marginTop: "2rem",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                flexDirection: "column",
+                gap: "2rem",
+              }}
+            >
+              <HomeForAnon />
+            </div>
+          </>
+        )}
       </Page>
     </>
   );
