@@ -43,7 +43,7 @@ export default async function (req: Request, res: Response) {
       return;
     }
 
-    if (entry.username != user.username) {
+    if (entry.username != user.username && user.role !== "admin") {
       res.status(403).json({
         error: "Forbidden",
         status: 403,

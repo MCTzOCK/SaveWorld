@@ -16,6 +16,14 @@ export async function sendPN(opts: {
   user_ids: string[];
   launch_url?: string;
 }) {
+  for (const id of opts.user_ids) {
+    const mNotification = PushNotificationModel.create({
+      user: id,
+      title: opts.title,
+      content: opts.content,
+      launch_url: opts.launch_url,
+    });
+  }
   const client = getOS();
 
   const notification = await client.createNotification({
@@ -30,13 +38,4 @@ export async function sendPN(opts: {
     url: opts.launch_url,
     include_external_user_ids: opts.user_ids,
   });
-
-  for (const id of opts.user_ids) {
-    const mNotification = PushNotificationModel.create({
-      user: id,
-      title: opts.title,
-      content: opts.content,
-      launch_url: opts.launch_url,
-    });
-  }
 }
