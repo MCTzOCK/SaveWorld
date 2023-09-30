@@ -129,6 +129,14 @@ export default function AdminDashboard() {
                 </IonText>
               </IonCardContent>
             </IonCard>
+            <IonCard color={"danger"} routerLink={"/admin/support-requests"}>
+              <IonCardHeader>
+                <IonCardTitle>Support</IonCardTitle>
+              </IonCardHeader>
+              <IonCardContent>
+                <IonText>Bearbeite Support Anfragen.</IonText>
+              </IonCardContent>
+            </IonCard>
             <IonList inset>Interne Werkzeuge:</IonList>
             <IonList inset>
               <IonItem

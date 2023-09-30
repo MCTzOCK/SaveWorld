@@ -76,6 +76,7 @@ import { Button, ChakraProvider, Portal } from "@chakra-ui/react";
 import { theme } from "./theme/chakra";
 import Notifications from "./pages/Notifications";
 import Support from "./pages/Support";
+import AdminSupportRequestsDashboard from "./pages/admin/AdminSupportRequestsDashboard";
 
 setupIonicReact({
   mode: "ios",
@@ -115,6 +116,7 @@ export default function App() {
     "/admin/users": AdminUsersDashboard,
     "/admin/users/:id": AdminUserDashboard,
     "/admin/lifestyle-templates": AdminLifestyleTemplates,
+    "/admin/support-requests": AdminSupportRequestsDashboard,
     "/learn": Videos,
     "/learn/fts-search": VideoSearchFTS,
     "/eco-tracker": EcoTracker,
