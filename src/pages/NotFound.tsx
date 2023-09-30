@@ -39,7 +39,8 @@ export default function NotFound() {
           <IonButton
             color={"success"}
             expand={"block"}
-            href={"mailto:ben@saveworld.one"}
+            style={{ marginTop: "1rem" }}
+            routerLink={"/support"}
           >
             Support kontaktieren
           </IonButton>

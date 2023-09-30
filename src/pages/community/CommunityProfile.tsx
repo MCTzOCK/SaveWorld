@@ -176,22 +176,37 @@ export default function CommunityProfile() {
                         }
                         subHeader={"@" + username}
                         onIonActionSheetDidDismiss={async (ev) => {
-                          if (ev.detail.data.action === "follow") {
-                            const res = await REST.Community.follow(
-                              localStorage.getItem("token") as string,
-                              username,
-                            );
+                          switch (ev.detail.data.action) {
+                            case "follow":
+                              const res = await REST.Community.follow(
+                                localStorage.getItem("token") as string,
+                                username,
+                              );
 
-                            if (res.status === 200) {
-                              reloadProfile();
-                            } else {
+                              if (res.status === 200) {
+                                reloadProfile();
+                              } else {
+                                PopupManager.alert({
+                                  title: "Fehler",
+                                  description:
+                                    "Es ist ein Fehler aufgetreten: " +
+                                    res.payload.error,
+                                });
+                              }
+                              break;
+                            case "report":
+                              router.push(
+                                "/support?category=REPORT_USER&report_user=" +
+                                  username,
+                              );
+                              break;
+                            default:
                               PopupManager.alert({
                                 title: "Fehler",
                                 description:
-                                  "Es ist ein Fehler aufgetreten: " +
-                                  res.payload.error,
+                                  "Diese Aktion wurde noch nicht implementiert",
                               });
-                            }
+                              break;
                           }
                         }}
                         buttons={[
