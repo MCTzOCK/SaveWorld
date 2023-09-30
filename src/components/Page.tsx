@@ -76,6 +76,8 @@ export default function Page(props: {
   >;
   noPadding?: boolean;
   endButtons?: React.ReactNode;
+  background?: string;
+  noHeader?: boolean;
 }) {
   const ref = React.useRef<HTMLElement>(null);
 
@@ -103,12 +105,15 @@ export default function Page(props: {
         <IonHeader>
           <IonToolbar
             style={{
-              "--background": props.redGradient
+              "--background": props.noHeader
+                ? "black"
+                : props.redGradient
                 ? "var(--ion-color-danger-shade)"
                 : "var(--ion-color-success-shade)",
               "--min-height": "75px",
-              borderBottomLeftRadius: "12px",
-              borderBottomRightRadius: "12px",
+              borderBottomLeftRadius: props.noHeader ? 0 : "12px",
+              borderBottomRightRadius: props.noHeader ? 0 : "12px",
+              "--border-width": 0,
             }}
           >
             <IonButtons slot="start">
@@ -119,7 +124,14 @@ export default function Page(props: {
                 }}
               />
             </IonButtons>
-            <IonTitle size={"large"}>{props.title}</IonTitle>
+            <IonTitle
+              size={"large"}
+              style={{
+                display: props.noHeader ? "none" : "initial",
+              }}
+            >
+              {props.title}
+            </IonTitle>
             <IonButtons slot={"end"}>
               {props.endButtons}
               {loggedIn && userInfo._id ? (
@@ -133,10 +145,12 @@ export default function Page(props: {
                     size={"large"}
                     onClick={onOpen}
                     style={{
-                      "--color": "var(--ion-color-light-shade)",
+                      "--color": props.noHeader
+                        ? "var(--ion-color-success-shade)"
+                        : "var(--ion-color-light-shade)",
                     }}
                   >
-                    <IonIcon ios={menu} md={menuSharp} />
+                    <IonIcon ios={menu} md={menuSharp} size={"large"} />
                   </IonButton>
                 </>
               ) : null}
@@ -147,6 +161,7 @@ export default function Page(props: {
           fullscreen
           style={{
             overflow: "hidden",
+            "--background": props.background,
           }}
           className={props.noPadding ? "" : "ion-padding"}
         >

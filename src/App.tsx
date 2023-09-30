@@ -78,6 +78,7 @@ import Notifications from "./pages/Notifications";
 import Support from "./pages/Support";
 import AdminSupportRequestsDashboard from "./pages/admin/AdminSupportRequestsDashboard";
 import AdminSupportRequestDashboard from "./pages/admin/AdminSupportRequestDashboard";
+import Home from "./pages/Home";
 
 setupIonicReact({
   mode: "ios",
@@ -129,6 +130,7 @@ export default function App() {
     "/community/r/:id": CommunityBlogViewer,
     "/notifications": Notifications,
     "/support": Support,
+    "/home": Home,
   };
 
   return (

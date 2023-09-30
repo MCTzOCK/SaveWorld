@@ -27,6 +27,7 @@ import {
   FaCogs,
   FaEnvelope,
   FaFile,
+  FaHome,
   FaInfoCircle,
   FaPen,
   FaSearch,
@@ -67,6 +68,18 @@ export default function DrawerMenu(props: {
 
   useEffect(() => {
     let gr: typeof groups = [
+      {
+        label: "SaveWorld",
+        items: [
+          {
+            label: "Home",
+            icon: <FaHome />,
+            onClick: () => {
+              router.push("/onboarding", "none", "replace");
+            },
+          },
+        ],
+      },
       {
         label: "Konto",
         items: [
