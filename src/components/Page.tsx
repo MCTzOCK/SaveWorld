@@ -48,6 +48,8 @@ import {
   leaf,
   leafSharp,
   mail,
+  menu,
+  menuSharp,
   people,
   peopleSharp,
   person,
@@ -56,8 +58,14 @@ import {
   searchSharp,
 } from "ionicons/icons";
 import { ENDPOINT } from "../env";
-import { Avatar, Button, ChakraProvider } from "@chakra-ui/react";
+import {
+  Avatar,
+  Button,
+  ChakraProvider,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { theme } from "../theme/chakra";
+import DrawerMenu from "./DrawerMenu";
 
 export default function Page(props: {
   title: string;
@@ -80,6 +88,8 @@ export default function Page(props: {
       props.setPresentingElement(ref.current);
     }
   }, []);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
@@ -114,45 +124,20 @@ export default function Page(props: {
               {props.endButtons}
               {loggedIn && userInfo._id ? (
                 <>
-                  <Avatar
-                    src={ENDPOINT + "/media/profile-picture/" + userInfo._id}
-                    id={"open-profile-popover"}
+                  <DrawerMenu
+                    isOpen={isOpen}
+                    onOpen={onOpen}
+                    onClose={onClose}
                   />
-                  <IonPopover
-                    trigger={"open-profile-popover"}
-                    dismissOnSelect
-                    color={"light"}
+                  <IonButton
+                    size={"large"}
+                    onClick={onOpen}
+                    style={{
+                      "--color": "var(--ion-color-light-shade)",
+                    }}
                   >
-                    <IonList>
-                      <IonItem
-                        button
-                        detail={false}
-                        color={"light"}
-                        routerLink={"/account"}
-                      >
-                        <IonIcon icon={cog} slot={"start"} />
-                        Einstellungen
-                      </IonItem>
-                      <IonItem
-                        button
-                        detail={false}
-                        color={"light"}
-                        routerLink={"/notifications"}
-                      >
-                        <IonIcon icon={mail} slot={"start"} />
-                        Push Nachrichten
-                      </IonItem>
-                      <IonItem
-                        button
-                        detail={false}
-                        color={"light"}
-                        routerLink={"/support"}
-                      >
-                        <IonIcon icon={alertCircle} slot={"start"} />
-                        Support
-                      </IonItem>
-                    </IonList>
-                  </IonPopover>
+                    <IonIcon ios={menu} md={menuSharp} />
+                  </IonButton>
                 </>
               ) : null}
             </IonButtons>
