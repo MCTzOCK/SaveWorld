@@ -17,7 +17,15 @@ export default async function (req: Request, res: Response) {
   try {
     const { email, category, message, additionalData } = req.body;
 
-    if (!email || !category || !message) {
+    if (!email || !category) {
+      res.status(400).json({
+        error: "Missing required fields",
+        status: 400,
+      });
+      return;
+    }
+
+    if (category.toLowerCase().startsWith("report") && !additionalData) {
       res.status(400).json({
         error: "Missing required fields",
         status: 400,
