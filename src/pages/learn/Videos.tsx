@@ -118,7 +118,7 @@ export default function Videos() {
               size={"large"}
               routerLink={"/learn/fts-search"}
               style={{
-                "--color": "var(--ion-color-light-shade)",
+                "--color": "var(--ion-color-success-shade)",
               }}
             >
               <IonIcon ios={search} md={searchSharp} />
@@ -159,7 +159,7 @@ export default function Videos() {
           <div
             style={{
               position: "fixed",
-              bottom: "7%",
+              bottom: "0%",
               left: "0%",
               width: "100%",
               height: "7.5vh",
@@ -176,6 +176,7 @@ export default function Videos() {
               onClick={() => {
                 modal.current?.present();
               }}
+              color={"success"}
             >
               <IonIcon
                 ios={ellipsisHorizontalCircle}
