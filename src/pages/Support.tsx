@@ -87,7 +87,8 @@ export default function Support() {
             padding={"1rem"}
             borderRadius={"12px"}
             border={"4px solid rgba(40,40,40,1)"}
-            w={"100%"}
+            w={["100%", "75%", "50%", "25%"]}
+            minW={"200px"}
           >
             <VStack spacing={"1rem"}>
               <Text>
