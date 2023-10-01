@@ -61,7 +61,7 @@ export default function Home() {
                 }}
                 maxWidth={["100%", "100%", "75%"]}
               >
-                Verbessere &nbsp;die
+                Rette &nbsp;die
                 <br />
                 <span
                   style={{
