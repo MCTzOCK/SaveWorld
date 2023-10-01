@@ -41,40 +41,40 @@ export default function Home() {
   return (
     <>
       <Page title={"SaveWorld"} noHeader>
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Heading
-            fontSize={["6xl", "8xl"]}
-            textAlign={"center"}
-            fontWeight={1000}
-            style={{
-              fontFamily: "Inter, sans-serif",
-            }}
-            maxWidth={["100%", "100%", "75%"]}
-          >
-            {loggedIn ? "Verbesser" : "Rette"}
-            &nbsp;die
-            <br />
-            <span
-              style={{
-                color: "var(--ion-color-success)",
-                textShadow: "0px 0px 40px rgba(0,255,0,1)",
-              }}
-            >
-              Welt
-            </span>
-            .
-          </Heading>
-        </div>
         {loggedIn ? (
           <>
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Heading
+                fontSize={["6xl", "8xl"]}
+                textAlign={"center"}
+                fontWeight={1000}
+                style={{
+                  fontFamily: "Inter, sans-serif",
+                }}
+                maxWidth={["100%", "100%", "75%"]}
+              >
+                Verbessere &nbsp;die
+                <br />
+                <span
+                  style={{
+                    color: "var(--ion-color-success)",
+                    textShadow: "0px 0px 40px rgba(0,255,0,1)",
+                  }}
+                >
+                  Welt
+                </span>
+                .
+              </Heading>
+            </div>
+
             <div
               style={{
                 marginTop: "4.5rem",
@@ -119,21 +119,7 @@ export default function Home() {
             </div>
           </>
         ) : (
-          <>
-            <div
-              style={{
-                marginTop: "2rem",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "100%",
-                flexDirection: "column",
-                gap: "2rem",
-              }}
-            >
-              <HomeForAnon />
-            </div>
-          </>
+          <HomeForAnon />
         )}
       </Page>
     </>
