@@ -10,42 +10,64 @@
 
 import * as React from "react";
 import Page from "../components/Page";
-import {
-  IonButton,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardTitle,
-  IonText,
-} from "@ionic/react";
+import { IonButton } from "@ionic/react";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 
 export default function NotFound() {
   return (
-    <Page title={"404"}>
-      <IonCard>
-        <img
-          alt={"Nicht gefunden - 404"}
-          src={"/assets/vectors/404.svg"}
-          width={"100%"}
-        />
-        <IonCardHeader>
-          <IonCardTitle>Nicht gefunden</IonCardTitle>
-        </IonCardHeader>
-        <IonCardContent>
-          <IonText>
-            Die Seite konnte nicht gefunden werden. Wenn du glaubst, dass dies
-            ein Fehler ist, wende dich bitte an den Support
-          </IonText>
-          <IonButton
-            color={"success"}
-            expand={"block"}
-            style={{ marginTop: "1rem" }}
-            routerLink={"/support"}
+    <Page title={""}>
+      <Flex
+        flexDirection={"column"}
+        alignItems={"center"}
+        justifyContent={"center"}
+      >
+        <Box maxW={["100%", "40%"]}>
+          <Heading
+            fontSize={["6xl", "8xl"]}
+            textAlign={"center"}
+            fontWeight={1000}
+            style={{
+              fontFamily: "Inter, sans-serif",
+            }}
+            maxWidth={"100%"}
           >
-            Support kontaktieren
-          </IonButton>
-        </IonCardContent>
-      </IonCard>
+            <span
+              style={{
+                color: "var(--ion-color-success)",
+                textShadow: "0px 0px 40px rgba(0,255,0,1)",
+              }}
+            >
+              404
+            </span>
+          </Heading>
+          <Text
+            style={{
+              fontFamily: "Inter, sans-serif",
+            }}
+            fontSize={"3xl"}
+            padding={"1rem"}
+            fontWeight={900}
+          >
+            Es sieht so aus, als ob du dich verlaufen hast!
+          </Text>
+          <Flex flexDirection={"row"} alignItems={"center"} gap={"2rem"}>
+            <IonButton
+              style={{ width: "100%" }}
+              color={"success"}
+              routerLink={"/support"}
+            >
+              Support
+            </IonButton>
+            <IonButton
+              style={{ width: "100%" }}
+              color={"success"}
+              routerLink={"/"}
+            >
+              nach Hause telefonieren
+            </IonButton>
+          </Flex>
+        </Box>
+      </Flex>
     </Page>
   );
 }
