@@ -19,20 +19,26 @@ import {
   IonCardTitle,
   IonText,
 } from "@ionic/react";
+import { Box, Flex } from "@chakra-ui/react";
 
 export default function FinishWelcome() {
   return (
     <>
       <Page title={"Fertig!"}>
-        <IonCard
-          style={{
-            boxShadow: "70px 50px 70px 50px rgba(0,100,0,0.75)",
-          }}
+        <Flex
+          w={"100%"}
+          justifyContent={["flex-start", "center"]}
+          alignItems={["flex-start", "center"]}
+          minH={"100vh"}
         >
-          <IonCardHeader>
-            <IonCardTitle>Einrichtung abgeschlossen!</IonCardTitle>
-          </IonCardHeader>
-          <IonCardContent>
+          <Box
+            backgroundColor={"rgba(10,10,10,0.5)"}
+            borderRadius={"12px"}
+            border={"4px solid rgba(40,40,40,1)"}
+            w={["100%", "75%", "50%", "25%"]}
+            minW={"200px"}
+            padding={"1rem"}
+          >
             <IonText>
               Du hast die Einrichtung erfolgreich abgeschlossen! Du kannst jetzt
               anfagen die Welt zu einem besseren Ort zu machen!
@@ -48,8 +54,8 @@ export default function FinishWelcome() {
             >
               Die Welt verbessern!
             </IonButton>
-          </IonCardContent>
-        </IonCard>
+          </Box>
+        </Flex>
       </Page>
     </>
   );

@@ -33,6 +33,7 @@ import { useSwipeable } from "react-swipeable";
 import VideoDetailsModal from "../../components/VideoDetailsModal";
 import { useLocation, useParams } from "react-router";
 import PopupManager from "../../util/PopupManager";
+import { Heading, useMediaQuery } from "@chakra-ui/react";
 
 export default function Videos() {
   useRedirectForAnon();
@@ -107,6 +108,8 @@ export default function Videos() {
     delta: 5,
   });
 
+  const isDesktop = useMediaQuery("(min-width: 768px)");
+
   return (
     <>
       <Page
@@ -126,65 +129,97 @@ export default function Videos() {
           </>
         }
       >
-        <div {...swipeHandlers}>
-          <Plyr
-            ref={videoRef}
-            source={{
-              type: "video",
-              sources: [
-                {
-                  provider: "youtube",
-                  src:
-                    (video?.streamUrl ||
-                      "https://www.youtube.com/embed/dQw4w9WgXcQ") +
-                    "?autoplay=1",
-                },
-              ],
-            }}
-            options={{
-              autoplay: true,
-              fullscreen: {
-                enabled: false,
-              },
-              hideControls: true,
-              controls: [],
-              loop: {
-                active: true,
-              },
-              ratio: "9:16",
-              clickToPlay: true,
-            }}
-            playsInline={true}
-          />
-          <div
-            style={{
-              position: "fixed",
-              bottom: "0%",
-              left: "0%",
-              width: "100%",
-              height: "7.5vh",
-              backgroundColor: "rgba(0,0,0,0.5)",
-              padding: "12px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <IonText>{video?.title}</IonText>
-            <IonButton
-              fill={"clear"}
-              onClick={() => {
-                modal.current?.present();
+        {isDesktop ? (
+          <>
+            <Heading
+              fontSize={["6xl", "8xl"]}
+              textAlign={"center"}
+              fontWeight={1000}
+              style={{
+                fontFamily: "Inter, sans-serif",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                height: "100vh",
+                flexDirection: "column",
               }}
-              color={"success"}
+              maxWidth={"100%"}
             >
-              <IonIcon
-                ios={ellipsisHorizontalCircle}
-                md={ellipsisHorizontalCircleSharp}
-              />
-            </IonButton>
+              Diese Funktion ist nur auf&nbsp;
+              <span
+                style={{
+                  color: "var(--ion-color-success)",
+                  textShadow: "0px 0px 40px rgba(0,255,0,1)",
+                }}
+              >
+                mobilen Geräten
+              </span>
+              &nbsp;verfügbar!
+            </Heading>
+          </>
+        ) : (
+          <div {...swipeHandlers}>
+            <Plyr
+              ref={videoRef}
+              source={{
+                type: "video",
+                sources: [
+                  {
+                    provider: "youtube",
+                    src:
+                      (video?.streamUrl ||
+                        "https://www.youtube.com/embed/dQw4w9WgXcQ") +
+                      "?autoplay=1",
+                  },
+                ],
+              }}
+              options={{
+                autoplay: true,
+                fullscreen: {
+                  enabled: false,
+                },
+                hideControls: true,
+                controls: [],
+                loop: {
+                  active: true,
+                },
+                ratio: "9:16",
+                clickToPlay: true,
+              }}
+              playsInline={true}
+            />
+            <div
+              style={{
+                position: "fixed",
+                bottom: "0%",
+                left: "0%",
+                width: "100%",
+                height: "7.5vh",
+                backgroundColor: "rgba(0,0,0,0.5)",
+                padding: "12px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <IonText>{video?.title}</IonText>
+              <IonButton
+                fill={"clear"}
+                onClick={() => {
+                  modal.current?.present();
+                }}
+                color={"success"}
+              >
+                <IonIcon
+                  ios={ellipsisHorizontalCircle}
+                  md={ellipsisHorizontalCircleSharp}
+                />
+              </IonButton>
+            </div>
           </div>
-        </div>
+        )}
+
         <VideoDetailsModal modal={modal} video={video} />
       </Page>
     </>

@@ -22,6 +22,7 @@ import {
 import { REST } from "@saveworld/api-js";
 import { useEffect, useState } from "react";
 import PopupManager from "../../util/PopupManager";
+import { Grid } from "@chakra-ui/react";
 
 export default function VideoSearchFTS() {
   const [query, setQuery] = React.useState<string>("");
@@ -74,20 +75,29 @@ export default function VideoSearchFTS() {
           onIonInput={(e) => setQuery(e.detail.value!)}
           placeholder={"Suchen..."}
         />
-        {videos.map((v) => (
-          <>
-            <IonCard routerLink={"/learn?vid=" + v._id}>
-              <IonCardHeader>
-                <IonCardTitle>{v.title}</IonCardTitle>
-              </IonCardHeader>
-              <IonCardContent>
-                {v.description.length > 100
-                  ? v.description.substr(0, 100) + "..."
-                  : v.description}
-              </IonCardContent>
-            </IonCard>
-          </>
-        ))}
+
+        <Grid
+          templateColumns={[
+            "repeat(1, 1fr)",
+            "repeat(2, 1fr)",
+            "repeat(3, 1fr)",
+          ]}
+        >
+          {videos.map((v) => (
+            <>
+              <IonCard routerLink={"/learn?vid=" + v._id}>
+                <IonCardHeader>
+                  <IonCardTitle>{v.title}</IonCardTitle>
+                </IonCardHeader>
+                <IonCardContent>
+                  {v.description.length > 100
+                    ? v.description.substr(0, 100) + "..."
+                    : v.description}
+                </IonCardContent>
+              </IonCard>
+            </>
+          ))}
+        </Grid>
         <IonInfiniteScroll
           threshold="100px"
           onIonInfinite={async (ev) => {

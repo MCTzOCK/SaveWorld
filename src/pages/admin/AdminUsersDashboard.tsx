@@ -31,6 +31,7 @@ import { useState } from "react";
 import { reloadCircle, reloadCircleSharp } from "ionicons/icons";
 import { REST } from "@saveworld/api-js";
 import PopupManager from "../../util/PopupManager";
+import { Grid } from "@chakra-ui/react";
 
 export default function AdminUsersDashboard() {
   useRedirectForAnon({
@@ -110,63 +111,74 @@ export default function AdminUsersDashboard() {
                 setQuery((e.target as any).value);
               }}
             />
-            {users
-              .filter((user) => {
-                if (query === "") {
-                  return true;
-                }
-                return (
-                  user.username.toLowerCase().includes(query.toLowerCase()) ||
-                  user.email.toLowerCase().includes(query.toLowerCase()) ||
-                  user.firstName.toLowerCase().includes(query.toLowerCase()) ||
-                  user.lastName.toLowerCase().includes(query.toLowerCase())
-                );
-              })
-              .map((user) => {
-                return (
-                  <>
-                    <IonCard routerLink={"/admin/users/" + user._id}>
-                      <IonCardHeader>
-                        <IonCardTitle>
-                          {user.firstName} {user.lastName}
-                        </IonCardTitle>
-                        <IonCardSubtitle>
-                          <IonText
-                            color={user.role === "admin" ? "danger" : ""}
-                          >
-                            {user.role === "admin"
-                              ? "Administrator"
-                              : "Benutzer"}
+
+            <Grid
+              templateColumns={[
+                "repeat(1, 1fr)",
+                "repeat(2, 1fr)",
+                "repeat(3, 1fr)",
+              ]}
+            >
+              {users
+                .filter((user) => {
+                  if (query === "") {
+                    return true;
+                  }
+                  return (
+                    user.username.toLowerCase().includes(query.toLowerCase()) ||
+                    user.email.toLowerCase().includes(query.toLowerCase()) ||
+                    user.firstName
+                      .toLowerCase()
+                      .includes(query.toLowerCase()) ||
+                    user.lastName.toLowerCase().includes(query.toLowerCase())
+                  );
+                })
+                .map((user) => {
+                  return (
+                    <>
+                      <IonCard routerLink={"/admin/users/" + user._id}>
+                        <IonCardHeader>
+                          <IonCardTitle>
+                            {user.firstName} {user.lastName}
+                          </IonCardTitle>
+                          <IonCardSubtitle>
+                            <IonText
+                              color={user.role === "admin" ? "danger" : ""}
+                            >
+                              {user.role === "admin"
+                                ? "Administrator"
+                                : "Benutzer"}
+                            </IonText>
+                            &nbsp;-&nbsp;
+                            <IonText color={user.active ? "success" : "danger"}>
+                              {user.active ? "Aktiv" : "Inaktiv"}
+                            </IonText>
+                          </IonCardSubtitle>
+                        </IonCardHeader>
+                        <IonCardContent>
+                          <IonText>
+                            {user.username} - {user.email}
                           </IonText>
-                          &nbsp;-&nbsp;
-                          <IonText color={user.active ? "success" : "danger"}>
-                            {user.active ? "Aktiv" : "Inaktiv"}
+                          <br />
+                          <IonText>
+                            2FA:&nbsp;
+                            <IonText
+                              color={!user.totpSecret ? "danger" : "success"}
+                            >
+                              {!user.totpSecret ? "Deaktiviert" : "Aktiviert"}
+                            </IonText>
                           </IonText>
-                        </IonCardSubtitle>
-                      </IonCardHeader>
-                      <IonCardContent>
-                        <IonText>
-                          {user.username} - {user.email}
-                        </IonText>
-                        <br />
-                        <IonText>
-                          2FA:&nbsp;
-                          <IonText
-                            color={!user.totpSecret ? "danger" : "success"}
-                          >
-                            {!user.totpSecret ? "Deaktiviert" : "Aktiviert"}
+                          <br />
+                          <IonText>
+                            Erstellt am:&nbsp;
+                            {new Date(user.createdAt).toLocaleString()}
                           </IonText>
-                        </IonText>
-                        <br />
-                        <IonText>
-                          Erstellt am:&nbsp;
-                          {new Date(user.createdAt).toLocaleString()}
-                        </IonText>
-                      </IonCardContent>
-                    </IonCard>
-                  </>
-                );
-              })}
+                        </IonCardContent>
+                      </IonCard>
+                    </>
+                  );
+                })}
+            </Grid>
           </>
         )}
       </Page>

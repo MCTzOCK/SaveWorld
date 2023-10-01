@@ -24,6 +24,7 @@ import {
 } from "@ionic/react";
 import { add, addSharp, remove, removeSharp } from "ionicons/icons";
 import PopupManager from "../../util/PopupManager";
+import { Box, Flex } from "@chakra-ui/react";
 
 export default function WelcomeLifestyle() {
   useRedirectForAnon();
@@ -59,117 +60,141 @@ export default function WelcomeLifestyle() {
   return (
     <>
       <Page title={"Lifestyle"}>
-        <IonList inset>
-          <IonText>
-            Bitte trag hier Daten zu deinem Lebensstil ein, damit du dir Ziele
-            setzen kannst, um diesen zu verbessern! In der linken Spalte siehst
-            du die Aktion und in der rechten Spalte kannst du eintragen, wie oft
-            du diese Aktion in der Woche normalerweise durchführst.
-          </IonText>
-        </IonList>
-        <IonList inset>
-          {templates.map((t) => {
-            return (
-              <>
-                <IonItem color={"light"}>
-                  <IonText
-                    style={{
-                      padding: "10px",
-                      marginRight: "2rem",
-                    }}
-                  >
-                    {t.name}
-                  </IonText>
-                  <div
-                    style={{
-                      display: "flex",
-                      gap: "10px",
-                      flexDirection: "row",
-                      alignItems: "center",
-                    }}
-                  >
-                    <IonButton
-                      color={"danger"}
-                      onClick={() => {
-                        if (state[t._id] > 0) {
-                          setState({
-                            ...state,
-                            [t._id]: state[t._id] - 1,
-                          });
-                        }
-                      }}
-                    >
-                      <IonIcon ios={remove} md={removeSharp} />
-                    </IonButton>
-                    <IonText>{state[t._id]}</IonText>
-                    <IonButton
-                      color={"success"}
-                      onClick={() => {
-                        setState({
-                          ...state,
-                          [t._id]: state[t._id] + 1,
-                        });
-                      }}
-                    >
-                      <IonIcon ios={add} md={addSharp} />
-                    </IonButton>
-                  </div>
-                </IonItem>
-                {state[t._id] > 1 && (
-                  <IonItem color={"light"}>
-                    <IonText>
-                      <b>Wöchentliches Ziel:</b> Diese Aktion&nbsp;
-                      {Math.round(state[t._id] / 2)} vermeiden.
-                    </IonText>
-                  </IonItem>
-                )}
-              </>
-            );
-          })}
-        </IonList>
-        <IonButton
-          color={"success"}
-          expand={"block"}
-          onClick={async () => {
-            const actions = [];
-
-            for (const a in state) {
-              if (state[a] === 0) continue;
-
-              actions.push({
-                template: a,
-                currentPerWeek: state[a],
-              });
-            }
-
-            const goals = [];
-
-            for (const a in state) {
-              goals.push({
-                template: a,
-                goalPerWeek: state[a] > 1 ? Math.round(state[a] / 2) : 0,
-              });
-            }
-
-            const res = await REST.Lifestyle.update(
-              localStorage.getItem("token") as string,
-              actions,
-              goals,
-            );
-
-            if (res.status !== 200) {
-              PopupManager.alert({
-                title: "Fehler",
-                description:
-                  "Fehler beim Speichern des Lifestyles: " + res.payload.error,
-              });
-            } else {
-              router.push("/welcome/finish", "forward", "replace");
-            }
-          }}
+        <Flex
+          w={"100%"}
+          justifyContent={["flex-start", "center"]}
+          alignItems={["flex-start", "center"]}
+          minH={"100vh"}
         >
-          Speichern
-        </IonButton>
+          <Box
+            backgroundColor={"rgba(10,10,10,0.5)"}
+            borderRadius={"12px"}
+            border={"4px solid rgba(40,40,40,1)"}
+            w={["100%", "75%", "50%", "25%"]}
+            minW={"200px"}
+            padding={"1rem"}
+          >
+            <IonList
+              inset
+              style={{
+                backgroundColor: "transparent",
+              }}
+            >
+              <IonText>
+                Bitte trag hier Daten zu deinem Lebensstil ein, damit du dir
+                Ziele setzen kannst, um diesen zu verbessern! In der linken
+                Spalte siehst du die Aktion und in der rechten Spalte kannst du
+                eintragen, wie oft du diese Aktion in der Woche normalerweise
+                durchführst.
+              </IonText>
+            </IonList>
+
+            <IonList inset>
+              {templates.map((t) => {
+                return (
+                  <>
+                    <IonItem color={"light"}>
+                      <IonText
+                        style={{
+                          padding: "10px",
+                          marginRight: "2rem",
+                        }}
+                      >
+                        {t.name}
+                      </IonText>
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: "10px",
+                          flexDirection: "row",
+                          alignItems: "center",
+                        }}
+                      >
+                        <IonButton
+                          color={"danger"}
+                          onClick={() => {
+                            if (state[t._id] > 0) {
+                              setState({
+                                ...state,
+                                [t._id]: state[t._id] - 1,
+                              });
+                            }
+                          }}
+                        >
+                          <IonIcon ios={remove} md={removeSharp} />
+                        </IonButton>
+                        <IonText>{state[t._id]}</IonText>
+                        <IonButton
+                          color={"success"}
+                          onClick={() => {
+                            setState({
+                              ...state,
+                              [t._id]: state[t._id] + 1,
+                            });
+                          }}
+                        >
+                          <IonIcon ios={add} md={addSharp} />
+                        </IonButton>
+                      </div>
+                    </IonItem>
+                    {state[t._id] > 1 && (
+                      <IonItem color={"light"}>
+                        <IonText>
+                          <b>Wöchentliches Ziel:</b> Diese Aktion&nbsp;
+                          {Math.round(state[t._id] / 2)} vermeiden.
+                        </IonText>
+                      </IonItem>
+                    )}
+                  </>
+                );
+              })}
+            </IonList>
+            <IonButton
+              color={"success"}
+              expand={"block"}
+              onClick={async () => {
+                const actions = [];
+
+                for (const a in state) {
+                  if (state[a] === 0) continue;
+
+                  actions.push({
+                    template: a,
+                    currentPerWeek: state[a],
+                  });
+                }
+
+                const goals = [];
+
+                for (const a in state) {
+                  goals.push({
+                    template: a,
+                    goalPerWeek: state[a] > 1 ? Math.round(state[a] / 2) : 0,
+                  });
+                }
+
+                const res = await REST.Lifestyle.update(
+                  localStorage.getItem("token") as string,
+                  actions,
+                  goals,
+                );
+
+                if (res.status !== 200) {
+                  PopupManager.alert({
+                    title: "Fehler",
+                    description:
+                      "Fehler beim Speichern des Lifestyles: " +
+                      res.payload.error,
+                  });
+                } else {
+                  router.push("/welcome/finish", "forward", "replace");
+                }
+              }}
+            >
+              Speichern
+            </IonButton>
+          </Box>
+        </Flex>
       </Page>
     </>
   );

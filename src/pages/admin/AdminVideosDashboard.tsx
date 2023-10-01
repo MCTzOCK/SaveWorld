@@ -29,6 +29,7 @@ import {
 import { add, addSharp } from "ionicons/icons";
 import AdminCreateVideoModal from "../../components/AdminCreateVideoModal";
 import PopupManager from "../../util/PopupManager";
+import { Grid } from "@chakra-ui/react";
 
 export default function AdminVideosDashboard() {
   useRedirectForAnon({
@@ -79,21 +80,29 @@ export default function AdminVideosDashboard() {
   return (
     <>
       <Page title={"Videos"} redGradient>
-        {videos.map((video) => {
-          return (
-            <IonCard
-              color={"danger"}
-              routerLink={"/admin/content/videos/" + video._id}
-            >
-              <IonCardHeader>
-                <IonCardTitle>{video.title}</IonCardTitle>
-              </IonCardHeader>
-              <IonCardContent>
-                <IonText>{video.description.slice(0, 150)}</IonText>
-              </IonCardContent>
-            </IonCard>
-          );
-        })}
+        <Grid
+          templateColumns={[
+            "repeat(1, 1fr)",
+            "repeat(2, 1fr)",
+            "repeat(3, 1fr)",
+          ]}
+        >
+          {videos.map((video) => {
+            return (
+              <IonCard
+                color={"danger"}
+                routerLink={"/admin/content/videos/" + video._id}
+              >
+                <IonCardHeader>
+                  <IonCardTitle>{video.title}</IonCardTitle>
+                </IonCardHeader>
+                <IonCardContent>
+                  <IonText>{video.description.slice(0, 150)}</IonText>
+                </IonCardContent>
+              </IonCard>
+            );
+          })}
+        </Grid>
         <IonInfiniteScroll
           threshold="100px"
           onIonInfinite={async (ev) => {

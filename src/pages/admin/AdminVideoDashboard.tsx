@@ -24,6 +24,7 @@ import {
   useIonRouter,
 } from "@ionic/react";
 import PopupManager from "../../util/PopupManager";
+import { Box, Flex } from "@chakra-ui/react";
 
 export default function AdminVideoDashboard() {
   useRedirectForAnon({
@@ -83,127 +84,140 @@ export default function AdminVideoDashboard() {
       <Page title={video?.title || "Laden..."} redGradient>
         {video && (
           <>
-            <IonList inset>
-              <IonItem color={"light"}>
-                <IonInput
-                  label={"Titel"}
-                  value={video.title}
-                  labelPlacement={"fixed"}
-                  id={"update-video-title"}
-                />
-              </IonItem>
-              <IonItem color={"light"}>
-                <IonTextarea
-                  label={"Beschreibung"}
-                  value={video.description}
-                  labelPlacement={"fixed"}
-                  id={"update-video-desc"}
-                />
-              </IonItem>
-              {categories.map((c) => {
-                return (
-                  <>
-                    <IonItem color={"light"}>
-                      <IonToggle
-                        slot={"end"}
-                        checked={selectedCategories.includes(c._id)}
-                        onIonChange={(ev) => {
-                          if (ev.detail.checked) {
-                            setSelectedCategories([
-                              ...selectedCategories,
-                              c._id,
-                            ]);
-                          } else {
-                            setSelectedCategories(
-                              selectedCategories.filter((sc) => sc !== c._id),
-                            );
-                          }
-                        }}
-                      />
-                      {c.name}
-                    </IonItem>
-                  </>
-                );
-              })}
-              <IonItem
-                color={"light"}
-                detail
-                onClick={async () => {
-                  const title = (
-                    document.getElementById(
-                      "update-video-title",
-                    ) as HTMLIonInputElement
-                  ).value as string;
-                  const desc = (
-                    document.getElementById(
-                      "update-video-desc",
-                    ) as HTMLIonTextareaElement
-                  ).value as string;
+            <Flex
+              w={"100%"}
+              justifyContent={["flex-start", "center"]}
+              alignItems={["flex-start", "center"]}
+              minH={"100vh"}
+            >
+              <Box w={["100%", "75%", "50%", "25%"]} minW={"200px"}>
+                <IonList inset>
+                  <IonItem color={"light"}>
+                    <IonInput
+                      label={"Titel"}
+                      value={video.title}
+                      labelPlacement={"fixed"}
+                      id={"update-video-title"}
+                    />
+                  </IonItem>
+                  <IonItem color={"light"}>
+                    <IonTextarea
+                      label={"Beschreibung"}
+                      value={video.description}
+                      labelPlacement={"fixed"}
+                      id={"update-video-desc"}
+                    />
+                  </IonItem>
+                  {categories.map((c) => {
+                    return (
+                      <>
+                        <IonItem color={"light"}>
+                          <IonToggle
+                            slot={"end"}
+                            checked={selectedCategories.includes(c._id)}
+                            onIonChange={(ev) => {
+                              if (ev.detail.checked) {
+                                setSelectedCategories([
+                                  ...selectedCategories,
+                                  c._id,
+                                ]);
+                              } else {
+                                setSelectedCategories(
+                                  selectedCategories.filter(
+                                    (sc) => sc !== c._id,
+                                  ),
+                                );
+                              }
+                            }}
+                          />
+                          {c.name}
+                        </IonItem>
+                      </>
+                    );
+                  })}
+                  <IonItem
+                    color={"light"}
+                    detail
+                    onClick={async () => {
+                      const title = (
+                        document.getElementById(
+                          "update-video-title",
+                        ) as HTMLIonInputElement
+                      ).value as string;
+                      const desc = (
+                        document.getElementById(
+                          "update-video-desc",
+                        ) as HTMLIonTextareaElement
+                      ).value as string;
 
-                  const res = await REST.Admin.updateVideo(
-                    localStorage.getItem("token") as string,
-                    video!._id,
-                    title,
-                    desc,
-                    selectedCategories,
-                  );
-                  if (res.status === 200) {
-                    PopupManager.alert({
-                      title: "Erfolgreich",
-                      description: "Das Video wurde erfolgreich aktualisiert!",
-                      callback: () => {
-                        window.location.href = "/admin/content/videos";
-                      },
-                    });
-                  } else {
-                    PopupManager.alert({
-                      title: "Fehler",
-                      description:
-                        "Fehler beim Aktualisieren des Videos: " +
-                        res.payload.error,
-                    });
-                  }
-                }}
-              >
-                <IonText color={"primary"}>Speichern</IonText>
-              </IonItem>
-              <IonItem
-                color={"light"}
-                detail
-                onClick={async () => {
-                  if (
-                    !(await PopupManager.confirmAsync({
-                      title: "Löschen",
-                      question: "Möchtest du das Video wirklich löschen?",
-                    }))
-                  )
-                    return;
+                      const res = await REST.Admin.updateVideo(
+                        localStorage.getItem("token") as string,
+                        video!._id,
+                        title,
+                        desc,
+                        selectedCategories,
+                      );
+                      if (res.status === 200) {
+                        PopupManager.alert({
+                          title: "Erfolgreich",
+                          description:
+                            "Das Video wurde erfolgreich aktualisiert!",
+                          callback: () => {
+                            window.location.href = "/admin/content/videos";
+                          },
+                        });
+                      } else {
+                        PopupManager.alert({
+                          title: "Fehler",
+                          description:
+                            "Fehler beim Aktualisieren des Videos: " +
+                            res.payload.error,
+                        });
+                      }
+                    }}
+                  >
+                    <IonText color={"primary"}>Speichern</IonText>
+                  </IonItem>
+                  <IonItem
+                    color={"light"}
+                    detail
+                    onClick={async () => {
+                      if (
+                        !(await PopupManager.confirmAsync({
+                          title: "Löschen",
+                          question: "Möchtest du das Video wirklich löschen?",
+                        }))
+                      )
+                        return;
 
-                  const res = await REST.Admin.deleteVideo(
-                    localStorage.getItem("token") as string,
-                    video?._id,
-                  );
+                      const res = await REST.Admin.deleteVideo(
+                        localStorage.getItem("token") as string,
+                        video?._id,
+                      );
 
-                  if (res.status === 200) {
-                    PopupManager.alert({
-                      title: "Erfolgreich",
-                      description: "Das Video wurde gelöscht!",
-                      callback: () => {
-                        window.location.href = "/admin/content/videos";
-                      },
-                    });
-                  } else {
-                    PopupManager.alert({
-                      title: "Fehler",
-                      description:
-                        "Fehler beim Löschen des Videos: " + res.payload.error,
-                    });
-                  }
-                }}
-              >
-                <IonText color={"danger"}>Löschen</IonText>
-              </IonItem>
-            </IonList>
+                      if (res.status === 200) {
+                        PopupManager.alert({
+                          title: "Erfolgreich",
+                          description: "Das Video wurde gelöscht!",
+                          callback: () => {
+                            window.location.href = "/admin/content/videos";
+                          },
+                        });
+                      } else {
+                        PopupManager.alert({
+                          title: "Fehler",
+                          description:
+                            "Fehler beim Löschen des Videos: " +
+                            res.payload.error,
+                        });
+                      }
+                    }}
+                  >
+                    <IonText color={"danger"}>Löschen</IonText>
+                  </IonItem>
+                </IonList>
+              </Box>
+            </Flex>
           </>
         )}
       </Page>

@@ -22,6 +22,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import WelcomeInterestModal from "../../components/WelcomeInterestModal";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
+import { Box, Flex } from "@chakra-ui/react";
 
 export default function Welcome() {
   useRedirectForAnon();
@@ -41,16 +42,20 @@ export default function Welcome() {
   return (
     <>
       <Page title={"Willkommen!"} setPresentingElement={setPresentingElement}>
-        <IonCard
-          style={{
-            boxShadow: "65px 50px 65px 50px rgba(0,100,0,0.75)",
-          }}
+        <Flex
+          w={"100%"}
+          justifyContent={["flex-start", "center"]}
+          alignItems={["flex-start", "center"]}
+          minH={"100vh"}
         >
-          <IonCardHeader>
-            <IonCardTitle>Einrichtung</IonCardTitle>
-            <IonCardSubtitle>an Interessen anpassen</IonCardSubtitle>
-          </IonCardHeader>
-          <IonCardContent>
+          <Box
+            backgroundColor={"rgba(10,10,10,0.5)"}
+            borderRadius={"12px"}
+            border={"4px solid rgba(40,40,40,1)"}
+            w={["100%", "75%", "50%", "25%"]}
+            minW={"200px"}
+            padding={"1rem"}
+          >
             <IonText>
               Hey, willkommen bei <b>SaveWorld</b>! Wir freuen uns, dass du die
               Welt verbessern willst! Für eine optimale Erfahrung, solltest du
@@ -81,8 +86,8 @@ export default function Welcome() {
             >
               Später auswählen
             </IonButton>
-          </IonCardContent>
-        </IonCard>
+          </Box>
+        </Flex>
         <WelcomeInterestModal
           modal={modal}
           presentingElement={presentingElement}

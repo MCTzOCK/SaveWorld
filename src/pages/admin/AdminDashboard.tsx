@@ -25,6 +25,7 @@ import {
 } from "@ionic/react";
 import { REST } from "@saveworld/api-js";
 import PopupManager from "../../util/PopupManager";
+import { Grid } from "@chakra-ui/react";
 
 export default function AdminDashboard() {
   useRedirectForAnon({
@@ -81,62 +82,74 @@ export default function AdminDashboard() {
         )}
         {!loading && (
           <>
-            <IonCard>
-              <IonCardHeader>
-                <IonCardTitle>Willkommen</IonCardTitle>
-                <IonCardSubtitle>Angepinnt - Admin Dashboard</IonCardSubtitle>
-              </IonCardHeader>
-              <IonCardContent>
-                <IonText>
-                  Mit dem Admin Dashboard kannst du die Nutzer verwalten und
-                  Statistiken einsehen. Doch Vorsicht: Mit großer Macht kommt
-                  große Verantwortung!
-                </IonText>
-              </IonCardContent>
-            </IonCard>
-            <IonCard color={"danger"} routerLink={"/admin/users"}>
-              <IonCardHeader>
-                <IonCardTitle>Benutzer</IonCardTitle>
-              </IonCardHeader>
-              <IonCardContent>
-                <IonText>
-                  Aktuell sind <b>{stats.users.count}</b> Benutzer registriert.
-                  Davon haben sich <b>{stats.users.inLastWeek}</b> in den
-                  letzten 7 Tagen registriert. <b>{stats.users.active}</b>&nbsp;
-                  Benutzerkonten sind aktiviert.
-                </IonText>
-              </IonCardContent>
-            </IonCard>
-            <IonCard color={"danger"} routerLink={"/admin/content"}>
-              <IonCardHeader>
-                <IonCardTitle>Inhalte</IonCardTitle>
-              </IonCardHeader>
-              <IonCardContent>
-                <IonText>
-                  Verwalte die Inhalte der App. Du kannst hier neue Inhalte
-                  erstellen, bearbeiten und löschen.
-                </IonText>
-              </IonCardContent>
-            </IonCard>
-            <IonCard color={"danger"} routerLink={"/admin/lifestyle-templates"}>
-              <IonCardHeader>
-                <IonCardTitle>Lifestyle Vorlagen</IonCardTitle>
-              </IonCardHeader>
-              <IonCardContent>
-                <IonText>
-                  Verwalte die Vorlagen für die Eingabe des Lifestyles eines
-                  Benutzers.
-                </IonText>
-              </IonCardContent>
-            </IonCard>
-            <IonCard color={"danger"} routerLink={"/admin/support-requests"}>
-              <IonCardHeader>
-                <IonCardTitle>Support</IonCardTitle>
-              </IonCardHeader>
-              <IonCardContent>
-                <IonText>Bearbeite Support Anfragen.</IonText>
-              </IonCardContent>
-            </IonCard>
+            <Grid
+              templateColumns={[
+                "repeat(1, 1fr)",
+                "repeat(2, 1fr)",
+                "repeat(3, 1fr)",
+              ]}
+            >
+              <IonCard>
+                <IonCardHeader>
+                  <IonCardTitle>Willkommen</IonCardTitle>
+                  <IonCardSubtitle>Angepinnt - Admin Dashboard</IonCardSubtitle>
+                </IonCardHeader>
+                <IonCardContent>
+                  <IonText>
+                    Mit dem Admin Dashboard kannst du die Nutzer verwalten und
+                    Statistiken einsehen. Doch Vorsicht: Mit großer Macht kommt
+                    große Verantwortung!
+                  </IonText>
+                </IonCardContent>
+              </IonCard>
+              <IonCard color={"danger"} routerLink={"/admin/users"}>
+                <IonCardHeader>
+                  <IonCardTitle>Benutzer</IonCardTitle>
+                </IonCardHeader>
+                <IonCardContent>
+                  <IonText>
+                    Aktuell sind <b>{stats.users.count}</b> Benutzer
+                    registriert. Davon haben sich{" "}
+                    <b>{stats.users.inLastWeek}</b> in den letzten 7 Tagen
+                    registriert. <b>{stats.users.active}</b>&nbsp;
+                    Benutzerkonten sind aktiviert.
+                  </IonText>
+                </IonCardContent>
+              </IonCard>
+              <IonCard color={"danger"} routerLink={"/admin/content"}>
+                <IonCardHeader>
+                  <IonCardTitle>Inhalte</IonCardTitle>
+                </IonCardHeader>
+                <IonCardContent>
+                  <IonText>
+                    Verwalte die Inhalte der App. Du kannst hier neue Inhalte
+                    erstellen, bearbeiten und löschen.
+                  </IonText>
+                </IonCardContent>
+              </IonCard>
+              <IonCard
+                color={"danger"}
+                routerLink={"/admin/lifestyle-templates"}
+              >
+                <IonCardHeader>
+                  <IonCardTitle>Lifestyle Vorlagen</IonCardTitle>
+                </IonCardHeader>
+                <IonCardContent>
+                  <IonText>
+                    Verwalte die Vorlagen für die Eingabe des Lifestyles eines
+                    Benutzers.
+                  </IonText>
+                </IonCardContent>
+              </IonCard>
+              <IonCard color={"danger"} routerLink={"/admin/support-requests"}>
+                <IonCardHeader>
+                  <IonCardTitle>Support</IonCardTitle>
+                </IonCardHeader>
+                <IonCardContent>
+                  <IonText>Bearbeite Support Anfragen.</IonText>
+                </IonCardContent>
+              </IonCard>
+            </Grid>
             <IonList inset>Interne Werkzeuge:</IonList>
             <IonList inset>
               <IonItem
