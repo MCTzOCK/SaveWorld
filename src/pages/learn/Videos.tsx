@@ -108,7 +108,7 @@ export default function Videos() {
     delta: 5,
   });
 
-  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const [isDesktop] = useMediaQuery("(min-width: 768px)");
 
   return (
     <>
