@@ -75,8 +75,14 @@ export default async function (req: Request, res: Response) {
         for (const p of profiles) {
           let x = p.community_profile as Map<String, any>;
 
+          const userDoc = await UserModel.findById(p.user);
+
+          if (!userDoc) {
+            continue;
+          }
+
           entries.push({
-            username: (await UserModel.findById(p.user)).username,
+            username: userDoc.username,
             displayName: x.get("displayName"),
             biography: x.get("biography"),
             location: x.get("location"),
