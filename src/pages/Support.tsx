@@ -20,10 +20,14 @@ import {
 } from "@ionic/react";
 import { useUserData } from "../hooks/useUserData";
 import {
+  Box,
+  Flex,
   Input,
   InputGroup,
   InputLeftAddon,
+  Link,
   Select,
+  Text,
   Textarea,
   VStack,
 } from "@chakra-ui/react";
@@ -72,12 +76,31 @@ export default function Support() {
   return (
     <>
       <Page title={"Support"}>
-        <IonCard>
-          <IonCardHeader>
-            <IonCardTitle>Anfrage</IonCardTitle>
-          </IonCardHeader>
-          <IonCardContent>
+        <Flex
+          w={"100%"}
+          justifyContent={["flex-start", "center"]}
+          alignItems={["flex-start", "center"]}
+          minH={"100vh"}
+        >
+          <Box
+            backgroundColor={"rgba(10,10,10,0.5)"}
+            padding={"1rem"}
+            borderRadius={"12px"}
+            border={"4px solid rgba(40,40,40,1)"}
+            w={"100%"}
+          >
             <VStack spacing={"1rem"}>
+              <Text>
+                Du hast eine Frage oder ein Problem? Dann schreib uns eine
+                Nachricht! Alternativ kannst du uns auch eine E-Mail an&nbsp;
+                <Link
+                  color={"saveworld_green.500"}
+                  href={"mailto:ben@saveworld.one"}
+                >
+                  ben@saveworld.one
+                </Link>
+                &nbsp;senden.
+              </Text>
               <InputGroup>
                 <InputLeftAddon>
                   <FaEnvelope />
@@ -180,8 +203,8 @@ export default function Support() {
             >
               Absenden
             </IonButton>
-          </IonCardContent>
-        </IonCard>
+          </Box>
+        </Flex>
       </Page>
     </>
   );
