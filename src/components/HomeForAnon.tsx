@@ -62,6 +62,7 @@ export default function HomeForAnon() {
               style={{
                 color: "var(--ion-color-success)",
                 textShadow: "0px 0px 40px rgba(0,255,0,1)",
+                wordWrap: "normal",
               }}
             >
               Planeten
