@@ -28,6 +28,7 @@ import {
 } from "@ionic/react";
 import { REST } from "@saveworld/api-js";
 import PopupManager from "../util/PopupManager";
+import { Grid } from "@chakra-ui/react";
 
 export default function WelcomeInterestModal(props: {
   modal: React.MutableRefObject<HTMLIonModalElement>;
@@ -124,43 +125,56 @@ export default function WelcomeInterestModal(props: {
               Keine Kategorien gefunden!
             </IonText>
           )}
-          {categories
-            .filter((c) => {
-              if (query.length < 1) return true;
-              return (
-                c.name.toLowerCase().includes(query.toLowerCase()) ||
-                c.description.toLowerCase().includes(query.toLowerCase())
-              );
-            })
-            .map((category) => (
-              <IonCard>
-                <img src={category.image} />
-                <IonCardHeader>
-                  <IonCardTitle>{category.name}</IonCardTitle>
-                </IonCardHeader>
-                <IonCardContent>
-                  {category.description}
-                  <IonButton
-                    expand={"block"}
-                    color={
-                      selected.includes(category._id) ? "danger" : "success"
-                    }
-                    style={{
-                      marginTop: "20px",
-                    }}
-                    onClick={() => {
-                      if (selected.includes(category._id)) {
-                        setSelected(selected.filter((s) => s !== category._id));
-                      } else {
-                        setSelected([...selected, category._id]);
+
+          <Grid
+            templateColumns={[
+              "repeat(1, 1fr)",
+              "repeat(2, 1fr)",
+              "repeat(3, 1fr)",
+            ]}
+          >
+            {categories
+              .filter((c) => {
+                if (query.length < 1) return true;
+                return (
+                  c.name.toLowerCase().includes(query.toLowerCase()) ||
+                  c.description.toLowerCase().includes(query.toLowerCase())
+                );
+              })
+              .map((category) => (
+                <IonCard>
+                  <img src={category.image} />
+                  <IonCardHeader>
+                    <IonCardTitle>{category.name}</IonCardTitle>
+                  </IonCardHeader>
+                  <IonCardContent>
+                    {category.description}
+                    <IonButton
+                      expand={"block"}
+                      color={
+                        selected.includes(category._id) ? "danger" : "success"
                       }
-                    }}
-                  >
-                    {selected.includes(category._id) ? "Abwählen" : "Auswählen"}
-                  </IonButton>
-                </IonCardContent>
-              </IonCard>
-            ))}
+                      style={{
+                        marginTop: "20px",
+                      }}
+                      onClick={() => {
+                        if (selected.includes(category._id)) {
+                          setSelected(
+                            selected.filter((s) => s !== category._id),
+                          );
+                        } else {
+                          setSelected([...selected, category._id]);
+                        }
+                      }}
+                    >
+                      {selected.includes(category._id)
+                        ? "Abwählen"
+                        : "Auswählen"}
+                    </IonButton>
+                  </IonCardContent>
+                </IonCard>
+              ))}
+          </Grid>
         </IonContent>
       </IonModal>
     </>

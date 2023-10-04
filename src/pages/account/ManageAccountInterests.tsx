@@ -14,6 +14,7 @@ import Page from "../../components/Page";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
 import { REST } from "@saveworld/api-js";
 import { IonItem, IonList, IonText, IonToggle } from "@ionic/react";
+import { Box, Flex } from "@chakra-ui/react";
 
 export default function ManageAccountInterests() {
   useRedirectForAnon();
@@ -51,70 +52,86 @@ export default function ManageAccountInterests() {
   return (
     <>
       <Page title={"Interessen"}>
-        <IonText>Aktuell hast du folgenden Interessen angegeben:</IonText>
-        <IonList
-          style={{
-            marginTop: "20px",
-          }}
-          inset
+        <Flex
+          w={"100%"}
+          justifyContent={["flex-start", "center"]}
+          alignItems={["flex-start", "center"]}
+          minH={"100vh"}
         >
-          {preferences.interests.map((interest) => {
-            return (
-              <IonItem color={"light"}>
-                <IonToggle
-                  checked={true}
-                  onIonChange={async () => {
-                    await REST.Account.updatePreferences(
-                      localStorage.getItem("token") as string,
-                      {
-                        interests: preferences.interests.filter(
-                          (i) => i !== interest,
-                        ),
-                      },
-                    );
-                    reload();
-                  }}
-                >
-                  <IonText>
-                    {categories.find((c) => c._id === interest)!.name}
-                  </IonText>
-                </IonToggle>
-              </IonItem>
-            );
-          })}
-        </IonList>
-        <IonText>
-          {categories.filter((c) => !preferences.interests.includes(c._id))
-            .length === 0
-            ? "Du hast alle verfügbaren Interessen ausgewählt!"
-            : "Du kannst zusätzlich noch folgenden Interessen auswählen:"}
-        </IonText>
-        <IonList inset>
-          {categories
-            .filter((c) => !preferences.interests.includes(c._id))
-            .map((i) => {
-              return (
-                <>
+          <Box
+            backgroundColor={"rgba(10,10,10,0.5)"}
+            borderRadius={"12px"}
+            border={"4px solid rgba(40,40,40,1)"}
+            w={["100%", "75%", "50%", "25%"]}
+            padding={"1rem"}
+            minW={"200px"}
+          >
+            <IonText>Aktuell hast du folgenden Interessen angegeben:</IonText>
+            <IonList
+              style={{
+                marginTop: "20px",
+              }}
+              inset
+            >
+              {preferences.interests.map((interest) => {
+                return (
                   <IonItem color={"light"}>
                     <IonToggle
-                      checked={false}
+                      checked={true}
                       onIonChange={async () => {
                         await REST.Account.updatePreferences(
                           localStorage.getItem("token") as string,
                           {
-                            interests: [...preferences.interests, i._id],
+                            interests: preferences.interests.filter(
+                              (i) => i !== interest,
+                            ),
                           },
                         );
                         reload();
                       }}
                     >
-                      <IonText>{i.name}</IonText>
+                      <IonText>
+                        {categories.find((c) => c._id === interest)!.name}
+                      </IonText>
                     </IonToggle>
                   </IonItem>
-                </>
-              );
-            })}
-        </IonList>
+                );
+              })}
+            </IonList>
+            <IonText>
+              {categories.filter((c) => !preferences.interests.includes(c._id))
+                .length === 0
+                ? "Du hast alle verfügbaren Interessen ausgewählt!"
+                : "Du kannst zusätzlich noch folgenden Interessen auswählen:"}
+            </IonText>
+            <IonList inset>
+              {categories
+                .filter((c) => !preferences.interests.includes(c._id))
+                .map((i) => {
+                  return (
+                    <>
+                      <IonItem color={"light"}>
+                        <IonToggle
+                          checked={false}
+                          onIonChange={async () => {
+                            await REST.Account.updatePreferences(
+                              localStorage.getItem("token") as string,
+                              {
+                                interests: [...preferences.interests, i._id],
+                              },
+                            );
+                            reload();
+                          }}
+                        >
+                          <IonText>{i.name}</IonText>
+                        </IonToggle>
+                      </IonItem>
+                    </>
+                  );
+                })}
+            </IonList>
+          </Box>
+        </Flex>
       </Page>
     </>
   );

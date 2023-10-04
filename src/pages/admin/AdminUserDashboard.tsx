@@ -32,6 +32,7 @@ import {
 import { warning, warningSharp } from "ionicons/icons";
 import { REST } from "@saveworld/api-js";
 import PopupManager from "../../util/PopupManager";
+import { Box, Flex } from "@chakra-ui/react";
 
 export default function AdminUserDashboard() {
   useRedirectForAnon({
@@ -110,181 +111,190 @@ export default function AdminUserDashboard() {
         )}
         {!loading && (
           <>
-            <IonCard>
-              <IonCardHeader>
-                <IonCardTitle>Einstellungen</IonCardTitle>
-                <IonCardSubtitle>
-                  {user.firstName} {user.lastName}
-                </IonCardSubtitle>
-              </IonCardHeader>
-              <IonCardContent>
-                <form
-                  onSubmit={async (e) => {
-                    e.preventDefault();
+            <Flex
+              w={"100%"}
+              justifyContent={["flex-start", "center"]}
+              alignItems={["flex-start", "center"]}
+              minH={"100vh"}
+            >
+              <Box w={["100%", "75%", "50%", "25%"]} minW={"200px"}>
+                <IonCard>
+                  <IonCardHeader>
+                    <IonCardTitle>Einstellungen</IonCardTitle>
+                    <IonCardSubtitle>
+                      {user.firstName} {user.lastName}
+                    </IonCardSubtitle>
+                  </IonCardHeader>
+                  <IonCardContent>
+                    <form
+                      onSubmit={async (e) => {
+                        e.preventDefault();
 
-                    const mail = (e.target as any).mail.value;
-                    const firstName = (e.target as any).firstName.value;
-                    const lastName = (e.target as any).lastName.value;
-                    const password = (e.target as any).password.value;
-                    const active = (
-                      document.getElementById(
-                        "admin_change_user_settings_active",
-                      ) as HTMLIonToggleElement
-                    ).checked;
-                    const admin = (
-                      document.getElementById(
-                        "admin_change_user_settings_admin",
-                      ) as HTMLIonToggleElement
-                    ).checked;
+                        const mail = (e.target as any).mail.value;
+                        const firstName = (e.target as any).firstName.value;
+                        const lastName = (e.target as any).lastName.value;
+                        const password = (e.target as any).password.value;
+                        const active = (
+                          document.getElementById(
+                            "admin_change_user_settings_active",
+                          ) as HTMLIonToggleElement
+                        ).checked;
+                        const admin = (
+                          document.getElementById(
+                            "admin_change_user_settings_admin",
+                          ) as HTMLIonToggleElement
+                        ).checked;
 
-                    const res = await REST.Admin.updateUser(
-                      localStorage.getItem("token") as string,
-                      id,
-                      {
-                        email: mail,
-                        firstName: firstName,
-                        lastName: lastName,
-                        password: password === "" ? undefined : password,
-                        active: active,
-                        admin: admin,
-                      },
-                    );
-
-                    if (res.status === 200) {
-                      PopupManager.alert({
-                        title: "Erfolgreich",
-                        description:
-                          "Die Daten wurden erfolgreich gespeichert!",
-                        callback: () => {
-                          window.location.reload();
-                        },
-                      });
-                    } else {
-                      PopupManager.alert({
-                        title: "Fehler",
-                        description:
-                          "Fehler beim speichern: " + res.payload.error,
-                      });
-                    }
-                  }}
-                >
-                  <IonList
-                    inset
-                    style={{
-                      margin: 0,
-                    }}
-                  >
-                    <IonItem color={"light"}>
-                      <IonInput
-                        labelPlacement={"fixed"}
-                        label={"Benutzername"}
-                        disabled
-                        value={user.username}
-                      />
-                    </IonItem>
-                    <IonItem color={"light"}>
-                      <IonInput
-                        labelPlacement={"fixed"}
-                        label={"E-Mail"}
-                        value={user.email}
-                        name={"mail"}
-                      />
-                    </IonItem>
-                    <IonItem color={"light"}>
-                      <IonInput
-                        labelPlacement={"fixed"}
-                        label={"Vorname"}
-                        value={user.firstName}
-                        name={"firstName"}
-                      />
-                    </IonItem>
-                    <IonItem color={"light"}>
-                      <IonInput
-                        labelPlacement={"fixed"}
-                        label={"Nachname"}
-                        value={user.lastName}
-                        name={"lastName"}
-                      />
-                    </IonItem>
-                    <IonItem color={"light"}>
-                      <IonInput
-                        labelPlacement={"fixed"}
-                        label={"Passwort"}
-                        value={""}
-                        type={"password"}
-                        name={"password"}
-                      />
-                    </IonItem>
-                    <IonItem color={"light"}>
-                      <IonToggle
-                        labelPlacement={"fixed"}
-                        id={"admin_change_user_settings_active"}
-                        checked={user.active}
-                        color={"danger"}
-                      >
-                        <IonLabel>Aktiv</IonLabel>
-                      </IonToggle>
-                    </IonItem>
-                    <IonItem color={"light"}>
-                      <IonIcon
-                        slot={"start"}
-                        ios={warning}
-                        md={warningSharp}
-                        color={"danger"}
-                      />
-                      <IonToggle
-                        labelPlacement={"fixed"}
-                        id={"admin_change_user_settings_admin"}
-                        checked={user.role === "admin"}
-                        color={"danger"}
-                      >
-                        <IonLabel color={"danger"}>Admin</IonLabel>
-                      </IonToggle>
-                    </IonItem>
-                  </IonList>
-                  <IonButton
-                    type={"submit"}
-                    expand={"block"}
-                    style={{
-                      marginTop: "1.2rem",
-                    }}
-                  >
-                    Speichern
-                  </IonButton>
-                  <IonButton
-                    expand={"block"}
-                    color={"danger"}
-                    style={{
-                      marginTop: "1.2rem",
-                    }}
-                    onClick={async () => {
-                      const res = await REST.Admin.deleteUser(
-                        localStorage.getItem("token") as string,
-                        id,
-                      );
-                      if (res.status === 200) {
-                        PopupManager.alert({
-                          title: "Erfolgreich",
-                          description:
-                            "Der Benutzer wurde erfolgreich gelöscht!",
-                          callback: () => {
-                            router.goBack();
+                        const res = await REST.Admin.updateUser(
+                          localStorage.getItem("token") as string,
+                          id,
+                          {
+                            email: mail,
+                            firstName: firstName,
+                            lastName: lastName,
+                            password: password === "" ? undefined : password,
+                            active: active,
+                            admin: admin,
                           },
-                        });
-                      } else {
-                        PopupManager.alert({
-                          title: "Fehler",
-                          description:
-                            "Fehler beim Löschen: " + res.payload.error,
-                        });
-                      }
-                    }}
-                  >
-                    Löschen
-                  </IonButton>
-                </form>
-              </IonCardContent>
-            </IonCard>
+                        );
+
+                        if (res.status === 200) {
+                          PopupManager.alert({
+                            title: "Erfolgreich",
+                            description:
+                              "Die Daten wurden erfolgreich gespeichert!",
+                            callback: () => {
+                              window.location.reload();
+                            },
+                          });
+                        } else {
+                          PopupManager.alert({
+                            title: "Fehler",
+                            description:
+                              "Fehler beim speichern: " + res.payload.error,
+                          });
+                        }
+                      }}
+                    >
+                      <IonList
+                        inset
+                        style={{
+                          margin: 0,
+                        }}
+                      >
+                        <IonItem color={"light"}>
+                          <IonInput
+                            labelPlacement={"fixed"}
+                            label={"Benutzername"}
+                            disabled
+                            value={user.username}
+                          />
+                        </IonItem>
+                        <IonItem color={"light"}>
+                          <IonInput
+                            labelPlacement={"fixed"}
+                            label={"E-Mail"}
+                            value={user.email}
+                            name={"mail"}
+                          />
+                        </IonItem>
+                        <IonItem color={"light"}>
+                          <IonInput
+                            labelPlacement={"fixed"}
+                            label={"Vorname"}
+                            value={user.firstName}
+                            name={"firstName"}
+                          />
+                        </IonItem>
+                        <IonItem color={"light"}>
+                          <IonInput
+                            labelPlacement={"fixed"}
+                            label={"Nachname"}
+                            value={user.lastName}
+                            name={"lastName"}
+                          />
+                        </IonItem>
+                        <IonItem color={"light"}>
+                          <IonInput
+                            labelPlacement={"fixed"}
+                            label={"Passwort"}
+                            value={""}
+                            type={"password"}
+                            name={"password"}
+                          />
+                        </IonItem>
+                        <IonItem color={"light"}>
+                          <IonToggle
+                            labelPlacement={"fixed"}
+                            id={"admin_change_user_settings_active"}
+                            checked={user.active}
+                            color={"danger"}
+                          >
+                            <IonLabel>Aktiv</IonLabel>
+                          </IonToggle>
+                        </IonItem>
+                        <IonItem color={"light"}>
+                          <IonIcon
+                            slot={"start"}
+                            ios={warning}
+                            md={warningSharp}
+                            color={"danger"}
+                          />
+                          <IonToggle
+                            labelPlacement={"fixed"}
+                            id={"admin_change_user_settings_admin"}
+                            checked={user.role === "admin"}
+                            color={"danger"}
+                          >
+                            <IonLabel color={"danger"}>Admin</IonLabel>
+                          </IonToggle>
+                        </IonItem>
+                      </IonList>
+                      <IonButton
+                        type={"submit"}
+                        expand={"block"}
+                        style={{
+                          marginTop: "1.2rem",
+                        }}
+                      >
+                        Speichern
+                      </IonButton>
+                      <IonButton
+                        expand={"block"}
+                        color={"danger"}
+                        style={{
+                          marginTop: "1.2rem",
+                        }}
+                        onClick={async () => {
+                          const res = await REST.Admin.deleteUser(
+                            localStorage.getItem("token") as string,
+                            id,
+                          );
+                          if (res.status === 200) {
+                            PopupManager.alert({
+                              title: "Erfolgreich",
+                              description:
+                                "Der Benutzer wurde erfolgreich gelöscht!",
+                              callback: () => {
+                                router.goBack();
+                              },
+                            });
+                          } else {
+                            PopupManager.alert({
+                              title: "Fehler",
+                              description:
+                                "Fehler beim Löschen: " + res.payload.error,
+                            });
+                          }
+                        }}
+                      >
+                        Löschen
+                      </IonButton>
+                    </form>
+                  </IonCardContent>
+                </IonCard>
+              </Box>
+            </Flex>
           </>
         )}
       </Page>

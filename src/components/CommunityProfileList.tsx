@@ -22,7 +22,7 @@ import {
 } from "@ionic/react";
 import { chatbox, heart, pricetag } from "ionicons/icons";
 import { ENDPOINT } from "../env";
-import { Avatar } from "@chakra-ui/react";
+import { Avatar, Grid } from "@chakra-ui/react";
 
 export default function CommunityProfileList(props: {
   profiles: {
@@ -37,62 +37,66 @@ export default function CommunityProfileList(props: {
 }) {
   return (
     <>
-      {props.profiles.map((profile) => {
-        return (
-          <>
-            <IonCard routerLink={"/community/u/" + profile.username}>
-              <IonCardContent
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "3rem",
-                }}
-              >
-                <div
+      <Grid
+        templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
+      >
+        {props.profiles.map((profile) => {
+          return (
+            <>
+              <IonCard routerLink={"/community/u/" + profile.username}>
+                <IonCardContent
                   style={{
                     display: "flex",
-                    flexDirection: "column",
-                    gap: "1rem",
-                    alignItems: "start",
-                    textTransform: "lowercase",
-                    justifyContent: "center",
+                    flexDirection: "row",
+                    gap: "3rem",
                   }}
                 >
-                  <Avatar
-                    src={
-                      ENDPOINT +
-                      "/media/profile-picture-username/" +
-                      profile.username
-                    }
-                  />
-                  <IonText>
-                    <h1
-                      style={{
-                        color: "var(--ion-color-dark)",
-                      }}
-                    >
-                      {profile.displayName}
-                    </h1>
-                    <p>@{profile.username}</p>
-                  </IonText>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1rem",
-                    alignItems: "start",
-                    textTransform: "lowercase",
-                    justifyContent: "center",
-                  }}
-                >
-                  {profile.biography}
-                </div>
-              </IonCardContent>
-            </IonCard>
-          </>
-        );
-      })}
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "1rem",
+                      alignItems: "start",
+                      textTransform: "lowercase",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Avatar
+                      src={
+                        ENDPOINT +
+                        "/media/profile-picture-username/" +
+                        profile.username
+                      }
+                    />
+                    <IonText>
+                      <h1
+                        style={{
+                          color: "var(--ion-color-dark)",
+                        }}
+                      >
+                        {profile.displayName}
+                      </h1>
+                      <p>@{profile.username}</p>
+                    </IonText>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "1rem",
+                      alignItems: "start",
+                      textTransform: "lowercase",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {profile.biography}
+                  </div>
+                </IonCardContent>
+              </IonCard>
+            </>
+          );
+        })}
+      </Grid>
       <div
         style={{
           display: "flex",

@@ -23,6 +23,7 @@ import {
   IonText,
   useIonRouter,
 } from "@ionic/react";
+import { Grid } from "@chakra-ui/react";
 
 export default function Notifications() {
   const [page, setPage] = React.useState(0);
@@ -68,48 +69,56 @@ export default function Notifications() {
   return (
     <>
       <Page title={"Nachrichten"}>
-        {notifications.map((n) => {
-          return (
-            <>
-              <IonCard
-                onClick={async () => {
-                  await REST.Notifications.read(
-                    localStorage.getItem("token") as string,
-                    n._id,
-                  );
-
-                  if (n.launch_url) {
-                    router.push(
-                      n.launch_url.split(".one")[1],
-                      "none",
-                      "replace",
+        <Grid
+          templateColumns={[
+            "repeat(1, 1fr)",
+            "repeat(2, 1fr)",
+            "repeat(3, 1fr)",
+          ]}
+        >
+          {notifications.map((n) => {
+            return (
+              <>
+                <IonCard
+                  onClick={async () => {
+                    await REST.Notifications.read(
+                      localStorage.getItem("token") as string,
+                      n._id,
                     );
-                  } else {
-                    loadPage(page);
-                  }
-                }}
-              >
-                <IonCardHeader>
-                  <IonCardSubtitle>
-                    {n.read ? (
-                      <>
-                        <IonText color={"success"}>Gelesen</IonText>
-                      </>
-                    ) : (
-                      <>
-                        <IonText color={"danger"}>Ungelesen</IonText>
-                      </>
-                    )}
-                    &nbsp;-&nbsp;
-                    {new Date(n.createdAt).toLocaleString()}
-                  </IonCardSubtitle>
-                  <IonCardTitle>{n.title}</IonCardTitle>
-                </IonCardHeader>
-                <IonCardContent>{n.content}</IonCardContent>
-              </IonCard>
-            </>
-          );
-        })}
+
+                    if (n.launch_url) {
+                      router.push(
+                        n.launch_url.split(".one")[1],
+                        "none",
+                        "replace",
+                      );
+                    } else {
+                      loadPage(page);
+                    }
+                  }}
+                >
+                  <IonCardHeader>
+                    <IonCardSubtitle>
+                      {n.read ? (
+                        <>
+                          <IonText color={"success"}>Gelesen</IonText>
+                        </>
+                      ) : (
+                        <>
+                          <IonText color={"danger"}>Ungelesen</IonText>
+                        </>
+                      )}
+                      &nbsp;-&nbsp;
+                      {new Date(n.createdAt).toLocaleString()}
+                    </IonCardSubtitle>
+                    <IonCardTitle>{n.title}</IonCardTitle>
+                  </IonCardHeader>
+                  <IonCardContent>{n.content}</IonCardContent>
+                </IonCard>
+              </>
+            );
+          })}
+        </Grid>
 
         <div
           style={{

@@ -22,7 +22,7 @@ import {
   IonCardSubtitle,
   IonCardTitle,
 } from "@ionic/react";
-import { VStack } from "@chakra-ui/react";
+import { Grid, VStack } from "@chakra-ui/react";
 
 export default function AdminSupportRequestsDashboard() {
   useRedirectForAnon({
@@ -69,34 +69,42 @@ export default function AdminSupportRequestsDashboard() {
   return (
     <>
       <Page title={"Support"} redGradient>
-        {requests.map((req) => (
-          <>
-            <IonCard
-              color={req.processed ? "success" : "danger"}
-              routerLink={"/admin/support-requests/" + req._id}
-            >
-              <IonCardHeader>
-                <IonCardSubtitle>
-                  {new Date(req.createdAt).toLocaleString()}
-                </IonCardSubtitle>
-                <IonCardTitle>
-                  {req.category === "REPORT-USER"
-                    ? "Benutzer Meldung"
-                    : req.category === "REPORT-POST"
-                    ? "Beitrag Meldung"
-                    : req.category === "REPORT-BUG"
-                    ? "Bug Meldung"
-                    : "Anderes"}
-                </IonCardTitle>
-              </IonCardHeader>
-              <IonCardContent>
-                <VStack gap={"1rem"}>
-                  <div>Anfrage von: {req.email}</div>
-                </VStack>
-              </IonCardContent>
-            </IonCard>
-          </>
-        ))}
+        <Grid
+          templateColumns={[
+            "repeat(1, 1fr)",
+            "repeat(2, 1fr)",
+            "repeat(3, 1fr)",
+          ]}
+        >
+          {requests.map((req) => (
+            <>
+              <IonCard
+                color={req.processed ? "success" : "danger"}
+                routerLink={"/admin/support-requests/" + req._id}
+              >
+                <IonCardHeader>
+                  <IonCardSubtitle>
+                    {new Date(req.createdAt).toLocaleString()}
+                  </IonCardSubtitle>
+                  <IonCardTitle>
+                    {req.category === "REPORT-USER"
+                      ? "Benutzer Meldung"
+                      : req.category === "REPORT-POST"
+                      ? "Beitrag Meldung"
+                      : req.category === "REPORT-BUG"
+                      ? "Bug Meldung"
+                      : "Anderes"}
+                  </IonCardTitle>
+                </IonCardHeader>
+                <IonCardContent>
+                  <VStack gap={"1rem"}>
+                    <div>Anfrage von: {req.email}</div>
+                  </VStack>
+                </IonCardContent>
+              </IonCard>
+            </>
+          ))}
+        </Grid>
         <div
           style={{
             display: "flex",

@@ -21,6 +21,7 @@ import {
 } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { REST } from "@saveworld/api-js";
+import { Grid } from "@chakra-ui/react";
 
 export default function AdminContentDashboard() {
   useRedirectForAnon({
@@ -30,24 +31,32 @@ export default function AdminContentDashboard() {
   return (
     <>
       <Page title={"Inhalte"} redGradient>
-        <IonCard color={"danger"} routerLink={"/admin/content/categories"}>
-          <IonCardHeader>
-            <IonCardTitle>Kategorien und Interessen</IonCardTitle>
-          </IonCardHeader>
-          <IonCardContent>
-            <IonText>
-              Hier kannst du Kategorien und Interessen verwalten.
-            </IonText>
-          </IonCardContent>
-        </IonCard>
-        <IonCard color={"danger"} routerLink={"/admin/content/videos"}>
-          <IonCardHeader>
-            <IonCardTitle>Videos</IonCardTitle>
-          </IonCardHeader>
-          <IonCardContent>
-            <IonText>Hier kannst du Videos verwalten.</IonText>
-          </IonCardContent>
-        </IonCard>
+        <Grid
+          templateColumns={[
+            "repeat(1, 1fr)",
+            "repeat(2, 1fr)",
+            "repeat(3, 1fr)",
+          ]}
+        >
+          <IonCard color={"danger"} routerLink={"/admin/content/categories"}>
+            <IonCardHeader>
+              <IonCardTitle>Kategorien und Interessen</IonCardTitle>
+            </IonCardHeader>
+            <IonCardContent>
+              <IonText>
+                Hier kannst du Kategorien und Interessen verwalten.
+              </IonText>
+            </IonCardContent>
+          </IonCard>
+          <IonCard color={"danger"} routerLink={"/admin/content/videos"}>
+            <IonCardHeader>
+              <IonCardTitle>Videos</IonCardTitle>
+            </IonCardHeader>
+            <IonCardContent>
+              <IonText>Hier kannst du Videos verwalten.</IonText>
+            </IonCardContent>
+          </IonCard>
+        </Grid>
       </Page>
     </>
   );

@@ -9,6 +9,7 @@
  */
 
 import * as React from "react";
+import { useEffect, useState } from "react";
 import Page from "../../components/Page";
 import {
   IonDatetime,
@@ -23,10 +24,8 @@ import {
   IonLabel,
   IonList,
   IonModal,
-  IonText,
 } from "@ionic/react";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
-import { useEffect, useState } from "react";
 import { REST } from "@saveworld/api-js";
 import {
   add,

@@ -274,8 +274,8 @@ export default function DrawerMenu(props: {
     <>
       <Drawer isOpen={props.isOpen} onClose={props.onClose} size={"sm"}>
         <DrawerOverlay />
-        <DrawerContent bgColor={"black"}>
-          <DrawerCloseButton />
+        <DrawerContent bgColor={"black"} pt={"2rem"}>
+          <DrawerCloseButton mt={"2rem"} />
           <DrawerHeader color={"var(--ion-color-success)"} fontWeight={1000}>
             SaveWorld
           </DrawerHeader>
