@@ -1,0 +1,29 @@
+{
+  "name": "@saveworld/api-js",
+  "version": "1.0.44",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "build:docs": "typedoc --name \"SaveWorld REST API JS Client\" --out docs src/index.ts",
+    "npm:push": "npm publish",
+    "git:push": "git push origin main",
+    "pipeline": "git add . && git commit -m \"Auto pipeline commit\" && npm version patch && npm run build && npm run build:docs && git add . && git commit -m \"Auto pipeline commit\" && npm run npm:push && npm run git:push"
+  },
+  "author": {
+    "name": "Ben Siebert",
+    "email": "hello@ben-siebert.de",
+    "url": "https://ben-siebert.com"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.ben-siebert.com"
+  },
+  "dependencies": {
+    "byte-size": "^8.1.1",
+    "typedoc": "^0.25.0",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.2"
+  }
+}
