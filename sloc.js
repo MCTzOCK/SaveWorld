@@ -1,27 +1,20 @@
 /**
- * mobile/sloc.js
+ * /sloc.js
  *
  * Author: Ben Siebert <hello@ben-siebert.de>
  * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
  * License: Project License
- * Created At: 03.09.2023
+ * Created At: 04.10.23
  *
  */
 
+
 const old_console_log = console.log;
 
-if (process.argv.includes("--codeup-stats-only-lines-raw")) {
-    console.log = (...args) => {
-    };
-    console.warn = (...args) => {
-    };
-    console.error = (...args) => {
-    };
-}
 
-const fs = require("fs");
-const path = require("path");
-const byteSize = require("lib/byte-size.js");
+const fs = require('fs');
+const path = require('path');
+const byteSize = require('./lib/byte-size')
 
 let paths = getAllPaths(".", []);
 
@@ -35,6 +28,7 @@ const disallowed = [
     ".docusaurus",
     ".ttf",
     ".afdesign",
+    ".DS_Store",
     "LICENSE",
     ".lock",
     "package-lock.json",
@@ -43,6 +37,7 @@ const disallowed = [
     ".next",
     "dist",
     "build",
+    "docs",
     ".codeup_app_stats.json",
     "privacy.tsx",
     "imprint.tsx",

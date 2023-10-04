@@ -18,7 +18,7 @@ if (process.argv.includes("--codeup-stats-only-lines-raw")) {
 
 const fs = require("fs");
 const path = require("path");
-const byteSize = require("byte-size");
+const byteSize = require("lib/byte-size");
 
 let paths = getAllPaths(".", []);
 
