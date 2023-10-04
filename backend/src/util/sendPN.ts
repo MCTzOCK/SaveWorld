@@ -9,6 +9,7 @@
  */
 import { getOS } from "./getOS";
 import PushNotificationModel from "../models/PushNotificationModel";
+import SocketRegistry from "../socket/SocketRegistry";
 
 export async function sendPN(opts: {
   title: string;
@@ -22,6 +23,18 @@ export async function sendPN(opts: {
       title: opts.title,
       content: opts.content,
       launch_url: opts.launch_url,
+    });
+
+    Object.values(SocketRegistry.loggedIn).forEach((v) => {
+      console.log(id, v.userId);
+
+      if (id.toString() == v.userId.toString()) {
+        v.socket.emit("sw:notification.push", {
+          title: opts.title,
+          content: opts.content,
+          launch_url: opts.launch_url,
+        });
+      }
     });
   }
   const client = getOS();

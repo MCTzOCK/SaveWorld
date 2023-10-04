@@ -85,10 +85,6 @@ export default async function (req: Request, res: Response) {
     pref.markModified("community_profile");
     await pref.save();
 
-    res.status(200).json({
-      status: 200,
-    });
-
     if (shouldNotify) {
       await sendPN({
         title: "SaveWorld",
@@ -97,6 +93,10 @@ export default async function (req: Request, res: Response) {
         launch_url: "https://app.saveworld.one/community/u/" + userDoc.username,
       });
     }
+
+    res.status(200).json({
+      status: 200,
+    });
   } catch (e) {
     res.status(500).json({
       error: e.message,

@@ -15,6 +15,48 @@ import * as chalk from "chalk";
 import mongoose from "mongoose";
 import * as schedule from "node-schedule";
 import { sendPN } from "./util/sendPN";
+import { Server } from "socket.io";
+import { createServer } from "http";
+import AuthenticateChannel from "./socket/channels/AuthenticateChannel";
+import SocketRegistry from "./socket/SocketRegistry";
+import ConnectionInfoChannel from "./socket/channels/ConnectionInfoChannel";
+
+/* LOGGER */
+
+const log = console.log;
+
+const fancyLog = (type: string, message: string) => {
+  const date = `[${new Date().toLocaleString()}]`;
+
+  switch (type) {
+    case "info":
+      log(`${chalk.blue("ⓘ")} ${date} ${message}`);
+      break;
+    case "warn":
+      log(`${chalk.yellow("⚠")} ${date} ${message}`);
+      break;
+    case "error":
+      log(`${chalk.bgRed.black("ERROR")} ${date} ${message}`);
+      break;
+    default:
+      break;
+  }
+};
+
+console.log = (...args: any[]) => {
+  fancyLog("info", args.join(" "));
+};
+console.info = (...args: any[]) => {
+  fancyLog("info", args.join(" "));
+};
+console.warn = (...args: any[]) => {
+  fancyLog("warn", args.join(" "));
+};
+console.error = (...args: any[]) => {
+  fancyLog("error", args.join(" "));
+};
+
+/* END LOGGER */
 
 config();
 
@@ -46,9 +88,7 @@ const port = process.env.PORT || 3000;
           .end();
       }
       console.log(
-        `${new Date().toLocaleString()} [${chalk.red(
-          req.method,
-        )}] {${chalk.green(res.statusCode)}} ${chalk.red(req.path)} -> ${
+        `{${chalk.green(res.statusCode)}} ${chalk.red(req.path)} -> ${
           routes[route].directory
         }`,
       );
@@ -75,10 +115,10 @@ const port = process.env.PORT || 3000;
       .end();
   });
 
-  console.log("Registered Routes:");
+  log("Registered Routes:");
   console.table(Object.keys(routes));
 
-  const notifyJob = schedule.scheduleJob("00 19 * * *", async () => {
+  const notifyJob = schedule.scheduleJob("00 17 * * *", async () => {
     await sendPN({
       title: "SaveWorld",
       content: "Es ist Zeit deinen Tagesbericht zu schreiben!",
@@ -87,7 +127,36 @@ const port = process.env.PORT || 3000;
     });
   });
 
-  app.listen(port, () => {
-    console.log(`App listening on port ${port}`);
+  const httpServer = createServer(app);
+
+  const io = new Server(httpServer, {
+    cors: {
+      origin: "*",
+      methods: ["GET", "POST"],
+    },
+    maxHttpBufferSize: 1e8,
+  });
+
+  io.on("connection", (socket) => {
+    console.log(
+      `[SIO] Socket ${socket.id} connected from ${socket.handshake.address}`,
+    );
+
+    new AuthenticateChannel(socket, "sw:auth.authenticate").register();
+    new ConnectionInfoChannel(socket, "sw:connection.info").register();
+
+    socket.on("disconnect", () => {
+      delete SocketRegistry.loggedIn[socket.id];
+      console.log(
+        `[SIO] Socket ${socket.id} disconnected from ${socket.handshake.address}`,
+      );
+    });
+  });
+
+  // @ts-ignore
+  global.io = io;
+
+  httpServer.listen(port, () => {
+    console.log(`Server is listening on port ${port}`);
   });
 })();

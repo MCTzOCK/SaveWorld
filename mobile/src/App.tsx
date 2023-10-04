@@ -11,6 +11,7 @@ import {
   IonToolbar,
   isPlatform,
   setupIonicReact,
+  useIonRouter,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import {
@@ -62,7 +63,7 @@ import { Redirect } from "react-router";
 import EcoTracker from "./pages/tracker/EcoTracker";
 
 import OneSignal from "onesignal-cordova-plugin";
-import { ONE_SIGNAL_APP_ID } from "./env";
+import { ENDPOINT, ONE_SIGNAL_APP_ID } from "./env";
 import { useEffect } from "react";
 import AppUrlListener from "./AppUrlListener";
 import AdminLifestyleTemplates from "./pages/admin/AdminLifestyleTemplates";
@@ -72,21 +73,74 @@ import CommunityDashboard from "./pages/community/CommunityDashboard";
 import CommunityProfile from "./pages/community/CommunityProfile";
 import CommunityCreateBlog from "./pages/community/CommunityCreateBlog";
 import CommunityBlogViewer from "./pages/community/CommunityBlogViewer";
-import { Button, ChakraProvider, Portal } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  ChakraProvider,
+  Heading,
+  Portal,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
 import { theme } from "./theme/chakra";
 import Notifications from "./pages/Notifications";
 import Support from "./pages/Support";
 import AdminSupportRequestsDashboard from "./pages/admin/AdminSupportRequestsDashboard";
 import AdminSupportRequestDashboard from "./pages/admin/AdminSupportRequestDashboard";
 import Home from "./pages/Home";
+import SocketTest from "./pages/SocketTest";
+import CommunityMessages from "./pages/community/CommunityMessages";
+import { io } from "socket.io-client";
 
 setupIonicReact({
   mode: "ios",
 });
 
+const socket = io(ENDPOINT);
+
 export default function App() {
   const { userInfo, loaded, loggedIn } = useUserData();
+  const toast = useToast();
   useEffect(() => {
+    if (loaded && loggedIn) {
+      socket.onAny((event, ...args) => {
+        console.log("SCKT " + event, args);
+      });
+
+      socket.on("sw:notification.push", (data) => {
+        toast({
+          title: data.title,
+          description: data.content,
+          render: () => (
+            <>
+              <Box
+                style={{ cursor: "pointer" }}
+                bgColor={"saveworld_green.500"}
+                borderRadius={"12px"}
+                padding={6}
+                onClick={() => {
+                  window.location.assign(data.launch_url.split(".one")[1]);
+                }}
+              >
+                <Text>{data.content}</Text>
+              </Box>
+            </>
+          ),
+          status: "info",
+          duration: 9000,
+          isClosable: true,
+        });
+      });
+
+      socket.on("sw:auth.authenticate", (data) => {
+        console.log("SCKT Authenticate Response: " + JSON.stringify(data));
+      });
+
+      socket.emit(
+        "sw:auth.authenticate",
+        localStorage.getItem("token") as string,
+      );
+    }
     try {
       if (!isPlatform("desktop")) {
         OneSignal.init(ONE_SIGNAL_APP_ID);
@@ -128,9 +182,11 @@ export default function App() {
     "/community/u/:username": CommunityProfile,
     "/community/create/blog": CommunityCreateBlog,
     "/community/r/:id": CommunityBlogViewer,
+    "/community/messages": CommunityMessages,
     "/notifications": Notifications,
     "/support": Support,
     "/onboarding": Home,
+    "/s2": SocketTest,
   };
 
   return (
@@ -148,7 +204,9 @@ export default function App() {
                     exact
                     path={route}
                     render={(props) => {
-                      return <Component key={props.location.key} />;
+                      return (
+                        <Component key={props.location.key} socket={socket} />
+                      );
                     }}
                   />
                 );

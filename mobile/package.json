@@ -47,6 +47,7 @@
     "react-router-dom": "^5.3.4",
     "react-simplemde-editor": "^5.2.0",
     "react-swipeable": "^7.0.1",
+    "socket.io-client": "^4.7.2",
     "vercel": "^32.4.1"
   },
   "devDependencies": {
