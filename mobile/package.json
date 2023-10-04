@@ -46,7 +46,8 @@
     "react-router": "^5.3.4",
     "react-router-dom": "^5.3.4",
     "react-simplemde-editor": "^5.2.0",
-    "react-swipeable": "^7.0.1"
+    "react-swipeable": "^7.0.1",
+    "vercel": "^32.4.1"
   },
   "devDependencies": {
     "@capacitor/cli": "5.2.3",
