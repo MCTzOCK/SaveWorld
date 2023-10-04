@@ -1,0 +1,179 @@
+/**
+ * /Login.tsx
+ *
+ * Author: Ben Siebert <hello@ben-siebert.de>
+ * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
+ * License: Project License
+ * Created At: 19.08.2023
+ *
+ */
+
+import * as React from "react";
+import {
+  IonButton,
+  IonContent,
+  IonInput,
+  IonItem,
+  IonList,
+  IonPage,
+  IonText,
+  useIonRouter,
+} from "@ionic/react";
+import { REST } from "@saveworld/api-js";
+import Page from "../components/Page";
+import PopupManager from "../util/PopupManager";
+import { Box, Flex } from "@chakra-ui/react";
+
+export default function Login() {
+  const router = useIonRouter();
+  return (
+    <>
+      <Page title={"Anmelden"}>
+        <Flex
+          w={"100%"}
+          justifyContent={["flex-start", "center"]}
+          alignItems={["flex-start", "center"]}
+          minH={"100vh"}
+        >
+          <Box
+            backgroundColor={"rgba(10,10,10,0.5)"}
+            padding={"2rem"}
+            borderRadius={"12px"}
+            border={"4px solid rgba(40,40,40,1)"}
+            w={["100%", "75%", "50%", "25%"]}
+            minW={"200px"}
+          >
+            <form
+              onSubmit={async (e) => {
+                e.preventDefault();
+
+                const mail = (e.target as any).mail.value;
+                const pass = (e.target as any).pass.value;
+
+                const res = await REST.Account.login(mail, pass);
+
+                if (res.status === 200) {
+                  localStorage.setItem("token", res.payload.token);
+                  const prefs = await REST.Account.preferences(
+                    res.payload.token,
+                  );
+
+                  let hasInterests = false;
+
+                  if (!prefs.payload.prefs.interests) {
+                    hasInterests = false;
+                  } else {
+                    hasInterests = prefs.payload.prefs.interests.length > 0;
+                  }
+
+                  if (!hasInterests) {
+                    router.push("/welcome", "none", "replace");
+                  } else {
+                    router.push("/onboarding", "none", "replace");
+                  }
+                } else {
+                  if (res.payload.error === "TOTP Code incorrect") {
+                    const code = await PopupManager.promptAsync({
+                      title: "2FA Code",
+                      helperText: "Bitte gebe den 2FA Code ein",
+                      inputType: "INPUT",
+                    });
+
+                    if (!code) return;
+                    const resp = await REST.Account.login(mail, pass, code);
+
+                    if (resp.status === 200) {
+                      localStorage.setItem("token", resp.payload.token);
+                      const prefs = await REST.Account.preferences(
+                        resp.payload.token,
+                      );
+                      let hasInterests = false;
+
+                      if (!prefs.payload.prefs.interests) {
+                        hasInterests = false;
+                      } else {
+                        hasInterests = prefs.payload.prefs.interests.length > 0;
+                      }
+
+                      if (!hasInterests) {
+                        router.push("/welcome", "none", "replace");
+                      } else {
+                        router.push("/onboarding", "none", "replace");
+                      }
+                    } else {
+                      PopupManager.alert({
+                        title: "Fehler",
+                        description:
+                          "Fehler beim Anmelden: " + res.payload.error,
+                      });
+                    }
+                  } else {
+                    PopupManager.alert({
+                      title: "Fehler",
+                      description: "Fehler beim Anmelden: " + res.payload.error,
+                    });
+                  }
+                }
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  width: "100%",
+                  gap: "1.2rem",
+                }}
+              >
+                <IonInput
+                  name={"mail"}
+                  type={"email"}
+                  placeholder={"E-Mail"}
+                  style={{
+                    borderBottom: "1px solid var(--ion-color-success-shade)",
+                  }}
+                />
+                <div
+                  style={{
+                    marginTop: "1.2rem",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    width: "100%",
+                    gap: "1.2rem",
+                  }}
+                >
+                  <IonInput
+                    name={"pass"}
+                    type={"password"}
+                    placeholder={"Passwort"}
+                    style={{
+                      borderBottom: "1px solid var(--ion-color-success-shade)",
+                    }}
+                  />
+                </div>
+              </div>
+              <IonButton
+                type={"submit"}
+                style={{ marginTop: "1.2rem", marginBottom: "1.2rem" }}
+                expand={"block"}
+                color={"success"}
+              >
+                Anmelden
+              </IonButton>
+              <IonList inset>
+                <IonItem
+                  color={"light"}
+                  routerLink={"/register"}
+                  routerDirection={"none"}
+                >
+                  Stattdessen registrieren
+                </IonItem>
+              </IonList>
+            </form>
+          </Box>
+        </Flex>
+      </Page>
+    </>
+  );
+}
