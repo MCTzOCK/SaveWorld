@@ -14,31 +14,30 @@ import { useEffect } from "react";
 import Page from "../../components/Page";
 import { useUserData } from "../../hooks/useUserData";
 import { Socket } from "socket.io-client";
+import { IonSegment, IonSegmentButton } from "@ionic/react";
+import CommunityMessagesChats from "../../components/CommunityMessagesChats";
 
 export default function CommunityMessages(props: { socket: Socket }) {
   useRedirectForAnon();
 
-  const { loggedIn, loaded, userInfo } = useUserData();
+  const [segment, setSegment] = React.useState<"chats" | "groups">("chats");
 
-  useEffect(() => {
-    if (loaded && loggedIn) {
-      props.socket.on("sw:auth.authenticate", (data) => {
-        props.socket.emit("sw:connection.info");
-      });
-
-      props.socket.on("sw:connection.info", (data) => {
-        alert(JSON.stringify(data));
-      });
-
-      props.socket.emit(
-        "sw:auth.authenticate",
-        localStorage.getItem("token") as string,
-      );
-    }
-  }, [loggedIn, loaded]);
   return (
     <>
-      <Page title={"Nachrichten"}>Nachrichten</Page>
+      <Page title={"Nachrichten"}>
+        <IonSegment
+          value={segment}
+          onIonChange={(e) => setSegment(e.detail.value as any)}
+        >
+          <IonSegmentButton value="chats">Chats</IonSegmentButton>
+          <IonSegmentButton value="groups">Gruppen</IonSegmentButton>
+        </IonSegment>
+        {segment === "chats" && (
+          <>
+            <CommunityMessagesChats socket={props.socket} />
+          </>
+        )}
+      </Page>
     </>
   );
 }
