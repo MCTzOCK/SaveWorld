@@ -64,7 +64,7 @@ import EcoTracker from "./pages/tracker/EcoTracker";
 
 import OneSignal from "onesignal-cordova-plugin";
 import { ENDPOINT, ONE_SIGNAL_APP_ID } from "./env";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AppUrlListener from "./AppUrlListener";
 import AdminLifestyleTemplates from "./pages/admin/AdminLifestyleTemplates";
 import WelcomeLifestyle from "./pages/introduction/WelcomeLifestyle";
@@ -101,6 +101,7 @@ const socket = io(ENDPOINT);
 export default function App() {
   const { userInfo, loaded, loggedIn } = useUserData();
   const toast = useToast();
+
   useEffect(() => {
     if (loaded && loggedIn) {
       socket.onAny((event, ...args) => {
@@ -131,15 +132,6 @@ export default function App() {
           isClosable: true,
         });
       });
-
-      socket.on("sw:auth.authenticate", (data) => {
-        console.log("SCKT Authenticate Response: " + JSON.stringify(data));
-      });
-
-      socket.emit(
-        "sw:auth.authenticate",
-        localStorage.getItem("token") as string,
-      );
     }
     try {
       if (!isPlatform("desktop")) {

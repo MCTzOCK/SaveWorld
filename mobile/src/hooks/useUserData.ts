@@ -49,7 +49,7 @@ export function useUserData(): {
 
                 const r = await REST.Account.verify(token as string);
 
-                if (r.status === 200) {
+                if (r.status === 200 || r.status === 304) {
                   setLoggedIn(true);
                   setUserInfo(r.payload.user);
                 } else {
@@ -78,7 +78,7 @@ export function useUserData(): {
         setLoggedIn(false);
         setLoaded(true);
       }
-    }, 100);
+    }, 500);
     return () => clearInterval(interval);
   }, []);
 

@@ -20,6 +20,15 @@ const ChatMessageModel = new mongoose.Schema({
     type: String,
     required: true,
   },
+  readBy: {
+    type: [String],
+    required: true,
+  },
+  senderId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "User",
+  },
   createdAt: {
     type: Date,
     default: Date.now,
