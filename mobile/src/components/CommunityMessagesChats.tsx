@@ -13,6 +13,7 @@ import { Socket } from "socket.io-client";
 import { useEffect } from "react";
 import {
   Avatar,
+  Box,
   Grid,
   Heading,
   HStack,
@@ -26,6 +27,7 @@ import { ENDPOINT } from "../env";
 import { useUserData } from "../hooks/useUserData";
 import socketAuth from "../util/socketAuth";
 import { useIonRouter } from "@ionic/react";
+import { FaTrash } from "react-icons/fa6";
 
 export default function CommunityMessagesChats(props: { socket: Socket }) {
   const { userInfo } = useUserData();
@@ -74,6 +76,17 @@ export default function CommunityMessagesChats(props: { socket: Socket }) {
       });
 
       props.socket.on("sw:chats.create", (data: any) => {
+        if (data.error) {
+          PopupManager.alert({
+            title: "Fehler",
+            description: data.error,
+          });
+        } else {
+          props.socket.emit("sw:chats.list");
+        }
+      });
+
+      props.socket.on("sw:chats.delete", (data: any) => {
         if (data.error) {
           PopupManager.alert({
             title: "Fehler",
@@ -151,33 +164,61 @@ export default function CommunityMessagesChats(props: { socket: Socket }) {
                 spacing={4}
                 w={"100%"}
                 bgColor={"rgba(120, 227, 162, .3)"}
-                padding={2}
                 alignItems={"center"}
-                cursor={"pointer"}
+                justifyContent={"space-between"}
                 rounded={"md"}
                 boxShadow={"xl"}
-                onClick={() => {
-                  router.push("/community/messages/" + chat._id);
-                }}
               >
-                <Avatar
-                  src={
-                    ENDPOINT +
-                    "/media/profile-picture-username/" +
-                    chat.users.find((u) => u._id !== userInfo._id)!.username
-                  }
-                />
-                <VStack alignItems={"center"} justifyContent={"center"}>
-                  <Heading>
-                    {chat.users.find((u) => u._id !== userInfo._id)!.username}
-                    <br />
-                    <Text fontWeight={200} fontSize={20}>
-                      {chat.lastMessagePreview
-                        ? chat.lastMessagePreview.content
-                        : "Neuer Chat"}
-                    </Text>
-                  </Heading>
-                </VStack>
+                <HStack
+                  onClick={() => {
+                    router.push("/community/messages/" + chat._id);
+                  }}
+                  cursor={"pointer"}
+                  w={"100%"}
+                  p={2}
+                >
+                  <Avatar
+                    src={
+                      ENDPOINT +
+                      "/media/profile-picture-username/" +
+                      chat.users.find((u) => u._id !== userInfo._id)!.username
+                    }
+                  />
+                  <VStack alignItems={"center"} justifyContent={"center"}>
+                    <Heading>
+                      {chat.users.find((u) => u._id !== userInfo._id)!.username}
+                      <br />
+                      <Text fontWeight={200} fontSize={20}>
+                        {chat.lastMessagePreview
+                          ? chat.lastMessagePreview.content
+                          : "Neuer Chat"}
+                      </Text>
+                    </Heading>
+                  </VStack>
+                </HStack>
+                <Box
+                  zIndex={12}
+                  bg={"rgba(255,0,0,1)"}
+                  h={"100%"}
+                  roundedRight={"md"}
+                  alignItems={"center"}
+                  justifyContent={"center"}
+                  display={"flex"}
+                  p={4}
+                  cursor={"pointer"}
+                  onClick={async () => {
+                    if (
+                      !(await PopupManager.confirmAsync({
+                        title: "Chat löschen",
+                        question: "Möchtest du diesen Chat wirklich löschen?",
+                      }))
+                    )
+                      return;
+                    props.socket.emit("sw:chats.delete", chat._id);
+                  }}
+                >
+                  <FaTrash fontSize={30} />
+                </Box>
               </HStack>
             </>
           );

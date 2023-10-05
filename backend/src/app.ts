@@ -22,6 +22,7 @@ import SocketRegistry from "./socket/SocketRegistry";
 import ConnectionInfoChannel from "./socket/channels/ConnectionInfoChannel";
 import ListChatsChannel from "./socket/channels/ListChatsChannel";
 import CreateChatChannel from "./socket/channels/CreateChatChannel";
+import DeleteChatChannel from "./socket/channels/DeleteChatChannel";
 
 /* LOGGER */
 
@@ -148,6 +149,7 @@ const port = process.env.PORT || 3000;
     new ConnectionInfoChannel(socket, "sw:connection.info").register();
     new ListChatsChannel(socket, "sw:chats.list").register();
     new CreateChatChannel(socket, "sw:chats.create").register();
+    new DeleteChatChannel(socket, "sw:chats.delete").register();
 
     socket.on("disconnect", () => {
       delete SocketRegistry.loggedIn[socket.id];
