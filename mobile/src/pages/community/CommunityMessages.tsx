@@ -37,6 +37,11 @@ export default function CommunityMessages(props: { socket: Socket }) {
             <CommunityMessagesChats socket={props.socket} />
           </>
         )}
+        {segment === "groups" && (
+          <>
+            <p>Diese Funktion ist noch nicht verfügbar</p>
+          </>
+        )}
       </Page>
     </>
   );
