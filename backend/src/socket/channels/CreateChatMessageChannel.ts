@@ -12,6 +12,7 @@ import { Socket } from "socket.io";
 import SocketRegistry from "../SocketRegistry";
 import ChatModel from "../../models/ChatModel";
 import ChatMessageModel from "../../models/ChatMessageModel";
+import { sendPN } from "../../util/sendPN";
 
 export default class CreateChatMessageChannel extends Channel {
   constructor(socket: Socket, channelName: string) {
@@ -59,6 +60,26 @@ export default class CreateChatMessageChannel extends Channel {
       this.emit({
         message: "Message created",
         chatMessage,
+      });
+
+      Object.values(SocketRegistry.loggedIn).forEach((v) => {
+        if (!chat.users.includes(v.userId)) return;
+
+        v.socket.emit("sw:chat.messages.new", {
+          chatId,
+          chatMessage,
+        });
+
+        if (v.userId !== SocketRegistry.loggedIn[this.socket.id].userId) {
+          sendPN({
+            title:
+              "Nachricht von: " +
+              SocketRegistry.loggedIn[this.socket.id].username,
+            content: chatMessage.content,
+            launch_url: `https://app.saveworld.one/community/messages/${chatMessage.chat}`,
+            user_ids: [v.userId],
+          });
+        }
       });
     });
   }

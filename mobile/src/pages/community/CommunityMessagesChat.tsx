@@ -20,6 +20,7 @@ import ChatContainer from "../../components/chat/ChatContainer";
 import ChatMessageList from "../../components/chat/ChatMessageList";
 import ChatMessage from "../../components/chat/ChatMessage";
 import ChatMessageInput from "../../components/chat/ChatMessageInput";
+import { ENDPOINT } from "../../env";
 
 export default function CommunityMessagesChat(props: { socket: Socket }) {
   const { id } = useParams<{ id: string }>();
@@ -94,6 +95,11 @@ export default function CommunityMessagesChat(props: { socket: Socket }) {
         },
       );
 
+      props.socket.on("sw:chat.messages.new", (data: any) => {
+        console.log(data);
+        setMessages((old) => [...old, data.chatMessage]);
+      });
+
       props.socket.emit("sw:chats.get", id);
       props.socket.emit("sw:chats.messages.get", id);
     });
@@ -112,20 +118,32 @@ export default function CommunityMessagesChat(props: { socket: Socket }) {
       <Page title={chat.users.find((u) => u._id !== userInfo._id)!.username}>
         <ChatContainer>
           <ChatMessageList>
-            {messages.map((m) => (
-              <>
-                <ChatMessage
-                  content={m.content}
-                  type={m.senderId === userInfo._id ? "out" : "in"}
-                  timestamp={new Date(m.createdAt).toLocaleString()}
-                  sender={{
-                    name: "Ben",
-                    avatar: "",
-                  }}
-                  read={false}
-                />
-              </>
-            ))}
+            {messages
+              // remove duplicates (by _id)
+              .filter((v, i, a) => a.findIndex((t) => t._id === v._id) === i)
+              .sort((a, b) => {
+                if (new Date(a.createdAt) > new Date(b.createdAt)) {
+                  return 1;
+                } else if (new Date(a.createdAt) < new Date(b.createdAt)) {
+                  return -1;
+                } else {
+                  return 0;
+                }
+              })
+              .map((m) => (
+                <>
+                  <ChatMessage
+                    content={m.content}
+                    type={m.senderId === userInfo._id ? "out" : "in"}
+                    timestamp={new Date(m.createdAt).toLocaleString()}
+                    sender={{
+                      name: "",
+                      avatar: ENDPOINT + "/media/profile-picture/" + m.senderId,
+                    }}
+                    read={false}
+                  />
+                </>
+              ))}
           </ChatMessageList>
           <ChatMessageInput
             onSubmit={(v: string) => {

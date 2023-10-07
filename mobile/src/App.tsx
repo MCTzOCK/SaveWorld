@@ -124,6 +124,7 @@ export default function App() {
                   window.location.assign(data.launch_url.split(".one")[1]);
                 }}
               >
+                <Heading size={"md"}>{data.title}</Heading>
                 <Text>{data.content}</Text>
               </Box>
             </>
