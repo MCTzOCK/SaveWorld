@@ -91,6 +91,7 @@ import Home from "./pages/Home";
 import SocketTest from "./pages/SocketTest";
 import CommunityMessages from "./pages/community/CommunityMessages";
 import { io } from "socket.io-client";
+import CommunityMessagesChat from "./pages/community/CommunityMessagesChat";
 
 setupIonicReact({
   mode: "ios",
@@ -175,6 +176,7 @@ export default function App() {
     "/community/create/blog": CommunityCreateBlog,
     "/community/r/:id": CommunityBlogViewer,
     "/community/messages": CommunityMessages,
+    "/community/messages/:id": CommunityMessagesChat,
     "/notifications": Notifications,
     "/support": Support,
     "/onboarding": Home,

@@ -1,0 +1,83 @@
+/**
+ * mobile/src/theme/chat-ui.scss
+ *
+ * Author: Ben Siebert <hello@ben-siebert.de>
+ * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
+ * License: Project License
+ * Created At: 07.10.23
+ *
+ */
+@import "variables.css";
+
+.chat {
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  margin: 0;
+  max-height: 80vh;
+  overflow-y: scroll;
+
+  .chat-message-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .chat-message {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: start;
+      gap: 1rem;
+      .chat-message-sender {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .chat-message-box {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 0.5rem;
+        background-color: darken(#92949c, 10%);
+        padding: 12px;
+        border-radius: 12px;
+        .chat-message-content {
+          font-weight: 500;
+        }
+        .chat-message-timestamp {
+          font-weight: 200;
+        }
+      }
+    }
+
+    .chat-message-out {
+      justify-content: right !important;
+      flex-direction: row-reverse !important;
+
+      .chat-message-box {
+        background-color: darken(#2dd36f, 10%);
+      }
+    }
+  }
+
+  .chat-message-input-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 30%;
+    z-index: 1000;
+    background-color: #000;
+    .chat-message-input {
+      form {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 12px;
+      }
+    }
+  }
+}
