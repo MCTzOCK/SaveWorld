@@ -66,8 +66,7 @@ export default function CommunityMessagesChat(props: { socket: Socket }) {
           setChat(data.chat);
         }
       });
-      props.socket.on("sw:chats.message", (data: any) => {});
-      props.socket.on("sw:chats.messages", (data: any) => {});
+      props.socket.on("sw:chats.messages.create", (data: any) => {});
 
       props.socket.emit("sw:chats.get", id);
     });
@@ -177,7 +176,14 @@ export default function CommunityMessagesChat(props: { socket: Socket }) {
               read={false}
             />
           </ChatMessageList>
-          <ChatMessageInput onSubmit={(v: string) => {}} />
+          <ChatMessageInput
+            onSubmit={(v: string) => {
+              props.socket.emit("sw:chats.messages.create", {
+                chatId: id,
+                content: v,
+              });
+            }}
+          />
         </ChatContainer>
       </Page>
     </>
