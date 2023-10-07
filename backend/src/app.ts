@@ -23,6 +23,7 @@ import ConnectionInfoChannel from "./socket/channels/ConnectionInfoChannel";
 import ListChatsChannel from "./socket/channels/ListChatsChannel";
 import CreateChatChannel from "./socket/channels/CreateChatChannel";
 import DeleteChatChannel from "./socket/channels/DeleteChatChannel";
+import GetChatChannel from "./socket/channels/GetChatChannel";
 
 /* LOGGER */
 
@@ -60,6 +61,14 @@ console.error = (...args: any[]) => {
 };
 
 /* END LOGGER */
+
+process.on("uncaughtException", (err) => {
+  console.error(err);
+});
+
+process.on("unhandledRejection", (err) => {
+  console.error(err);
+});
 
 config();
 
@@ -150,6 +159,13 @@ const port = process.env.PORT || 3000;
     new ListChatsChannel(socket, "sw:chats.list").register();
     new CreateChatChannel(socket, "sw:chats.create").register();
     new DeleteChatChannel(socket, "sw:chats.delete").register();
+    new GetChatChannel(socket, "sw:chats.get").register();
+
+    socket.onAny((event, ...args) => {
+      console.log(
+        `[SIO] Socket ${socket.id} called event ${event} with ${args}`,
+      );
+    });
 
     socket.on("disconnect", () => {
       delete SocketRegistry.loggedIn[socket.id];
