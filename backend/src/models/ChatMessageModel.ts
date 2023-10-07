@@ -10,12 +10,6 @@
 import mongoose, { Schema } from "mongoose";
 
 const ChatMessageModel = new mongoose.Schema({
-  users: {
-    type: [mongoose.Schema.Types.ObjectId],
-    required: true,
-    default: [],
-    ref: "User",
-  },
   content: {
     type: String,
     required: true,
