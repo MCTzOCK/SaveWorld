@@ -42,7 +42,9 @@ import { ENDPOINT } from "../../env";
 import CommunityProfileBlogList from "../../components/CommunityProfileBlogList";
 import { Avatar } from "@chakra-ui/react";
 import PopupManager from "../../util/PopupManager";
-export default function CommunityProfile() {
+import { Socket } from "socket.io-client";
+import socketAuth from "../../util/socketAuth";
+export default function CommunityProfile(props: { socket: Socket }) {
   useRedirectForAnon();
 
   const { userInfo, loggedIn, loaded } = useUserData();
@@ -64,6 +66,22 @@ export default function CommunityProfile() {
   >(undefined);
 
   const [editable, setEditable] = useState<boolean>(false);
+
+  useEffect(() => {
+    socketAuth(props.socket, () => {
+      props.socket.on("sw:chats.create", (data: any) => {
+        if (data.error) {
+          PopupManager.alert({
+            title: "Fehler",
+            description: "Es ist ein Fehler aufgetreten: " + data.error,
+          });
+          return;
+        }
+
+        router.push("/community/messages/" + data.chatId);
+      });
+    });
+  }, []);
 
   const reloadProfile = () => {
     if (!username) return;
@@ -199,6 +217,9 @@ export default function CommunityProfile() {
                                 "/support?category=REPORT_USER&report_user=" +
                                   username,
                               );
+                              break;
+                            case "message":
+                              props.socket.emit("sw:chats.create", username);
                               break;
                             default:
                               PopupManager.alert({
