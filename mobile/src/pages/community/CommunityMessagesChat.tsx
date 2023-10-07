@@ -25,6 +25,16 @@ export default function CommunityMessagesChat(props: { socket: Socket }) {
   const { id } = useParams<{ id: string }>();
   const { userInfo } = useUserData();
 
+  const [messages, setMessages] = React.useState<
+    {
+      _id: string;
+      content: string;
+      senderId: string;
+      readBy: string[];
+      createdAt: string;
+    }[]
+  >([]);
+
   const [chat, setChat] = React.useState<{
     _id: string;
     users: {
@@ -67,8 +77,25 @@ export default function CommunityMessagesChat(props: { socket: Socket }) {
         }
       });
       props.socket.on("sw:chats.messages.create", (data: any) => {});
+      props.socket.on(
+        "sw:chats.messages.get",
+        (data: { messages: any[]; error?: any }) => {
+          if (!data.messages) {
+            setTimeout(() => {
+              //props.socket.emit("sw:chats.messages.get", id);
+            }, 100);
+            return;
+          }
+
+          if (!data.error) {
+            setMessages(data.messages);
+          } else {
+          }
+        },
+      );
 
       props.socket.emit("sw:chats.get", id);
+      props.socket.emit("sw:chats.messages.get", id);
     });
   }, [id]);
 
@@ -85,96 +112,20 @@ export default function CommunityMessagesChat(props: { socket: Socket }) {
       <Page title={chat.users.find((u) => u._id !== userInfo._id)!.username}>
         <ChatContainer>
           <ChatMessageList>
-            <ChatMessage
-              content={"Hello World"}
-              type={"in"}
-              timestamp={new Date().toLocaleString()}
-              sender={{
-                name: "test",
-                avatar: "https://avatars.githubusercontent.com/u/13332774",
-              }}
-              read={false}
-            />
-            <ChatMessage
-              content={"Hello World 2"}
-              type={"out"}
-              timestamp={new Date().toLocaleString()}
-              sender={{
-                name: "ben",
-                avatar: "https://avatars.githubusercontent.com/u/13332774",
-              }}
-              read={false}
-            />
-            <ChatMessage
-              content={"Hello World 2"}
-              type={"out"}
-              timestamp={new Date().toLocaleString()}
-              sender={{
-                name: "ben",
-                avatar: "https://avatars.githubusercontent.com/u/13332774",
-              }}
-              read={false}
-            />
-            <ChatMessage
-              content={"Hello World 2"}
-              type={"out"}
-              timestamp={new Date().toLocaleString()}
-              sender={{
-                name: "ben",
-                avatar: "https://avatars.githubusercontent.com/u/13332774",
-              }}
-              read={false}
-            />
-            <ChatMessage
-              content={"Hello World 2"}
-              type={"out"}
-              timestamp={new Date().toLocaleString()}
-              sender={{
-                name: "ben",
-                avatar: "https://avatars.githubusercontent.com/u/13332774",
-              }}
-              read={false}
-            />
-            <ChatMessage
-              content={"Hello World 2"}
-              type={"out"}
-              timestamp={new Date().toLocaleString()}
-              sender={{
-                name: "ben",
-                avatar: "https://avatars.githubusercontent.com/u/13332774",
-              }}
-              read={false}
-            />
-            <ChatMessage
-              content={"Hello World 2"}
-              type={"out"}
-              timestamp={new Date().toLocaleString()}
-              sender={{
-                name: "ben",
-                avatar: "https://avatars.githubusercontent.com/u/13332774",
-              }}
-              read={false}
-            />
-            <ChatMessage
-              content={"Hello World 2"}
-              type={"out"}
-              timestamp={new Date().toLocaleString()}
-              sender={{
-                name: "ben",
-                avatar: "https://avatars.githubusercontent.com/u/13332774",
-              }}
-              read={false}
-            />
-            <ChatMessage
-              content={"Hello World 2"}
-              type={"out"}
-              timestamp={new Date().toLocaleString()}
-              sender={{
-                name: "ben",
-                avatar: "https://avatars.githubusercontent.com/u/13332774",
-              }}
-              read={false}
-            />
+            {messages.map((m) => (
+              <>
+                <ChatMessage
+                  content={m.content}
+                  type={m.senderId === userInfo._id ? "out" : "in"}
+                  timestamp={new Date(m.createdAt).toLocaleString()}
+                  sender={{
+                    name: "Ben",
+                    avatar: "",
+                  }}
+                  read={false}
+                />
+              </>
+            ))}
           </ChatMessageList>
           <ChatMessageInput
             onSubmit={(v: string) => {
