@@ -10,9 +10,13 @@
 import mongoose from "mongoose";
 
 const VideoCommentModel = new mongoose.Schema({
-  author: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
+    required: true,
+  },
+  username: {
+    type: String,
     required: true,
   },
   video: {

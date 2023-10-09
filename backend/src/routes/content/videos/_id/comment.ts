@@ -49,6 +49,7 @@ export default async function (req: Request, res: Response) {
 
     const comment = await VideoCommentModel.create({
       user: user._id,
+      username: user.username,
       content,
       createdAt: new Date(),
       video: video._id,
