@@ -23,11 +23,12 @@ import "easymde/dist/easymde.min.css";
 import { send, sendSharp } from "ionicons/icons";
 import { REST } from "@saveworld/api-js";
 import PopupManager from "../../util/PopupManager";
+import MDEditor from "@uiw/react-md-editor";
 
 export default function CommunityCreateBlog() {
   useRedirectForAnon();
 
-  const [v, setV] = React.useState<string>("");
+  const [v, setV] = React.useState<string | undefined>("");
   const [title, setTitle] = React.useState<string>("");
   const [tags, setTags] = React.useState<string>("");
   const router = useIonRouter();
@@ -64,32 +65,15 @@ export default function CommunityCreateBlog() {
           type={"text"}
           onIonInput={(e) => setTags(e.detail.value!)}
         />
-        <SimpleMdeReact
-          options={{
-            theme: "dark",
-            spellChecker: false,
-            status: false,
-            toolbar: [
-              "bold",
-              "italic",
-              "heading",
-              "|",
-              "quote",
-              "unordered-list",
-              "ordered-list",
-              "|",
-              "link",
-              "|",
-              "preview",
-            ],
-          }}
-          value={v}
-          onInput={(v1) => setV((v1.target as any).value as string)}
-        />
+        <MDEditor value={v} onChange={setV} hideToolbar={true}>
+          <MDEditor.Markdown source={v} style={{ whiteSpace: "pre-wrap" }} />
+        </MDEditor>
         <IonButton
           expand={"block"}
           color={"success"}
           onClick={async () => {
+            if (!v) return;
+
             if (v.length < 10) {
               PopupManager.alert({
                 title: "Fehler",

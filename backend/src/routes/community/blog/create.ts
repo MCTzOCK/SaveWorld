@@ -84,6 +84,29 @@ export default async function (req: Request, res: Response) {
       user_ids: external_uids,
       launch_url: "https://app.saveworld.one/community/r/" + entry._id,
     });
+
+    // mentions
+
+    const mentions = content.match(/@([a-zA-Z0-9_]+)/g);
+
+    if (mentions) {
+      for (const m of mentions) {
+        const username = m.replace("@", "");
+
+        const userDoc = await UserModel.findOne({
+          username: username,
+        });
+
+        if (!userDoc) continue;
+
+        await sendPN({
+          title: "SaveWorld",
+          content: `@${user.username} hat dich gerade in einem Beitrag erwähnt!`,
+          user_ids: [userDoc._id],
+          launch_url: "https://app.saveworld.one/community/r/" + entry._id,
+        });
+      }
+    }
   } catch (e) {
     res.status(500).json({
       error: e.message,
