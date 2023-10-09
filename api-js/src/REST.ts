@@ -444,6 +444,36 @@ export class REST {
         },
       });
     },
+    /**
+     * Posts a comment to a video
+     * @param id of the video to get
+     * @param content the comment to post
+     * @param token used to authenticate
+     */
+    comment: async (id: string, content: string, token: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/content/videos/" + id + "/comment",
+        method: "POST",
+        token: token,
+        body: {
+          content: content,
+        },
+      });
+    },
+    /**
+     * @return the requested comments
+     * @param id of the video to get
+     * @param page the page to get
+     * @param token used to authenticate
+     */
+    comments: async (id: string, page: number, token: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL + "/content/videos/" + id + "/comments?page=" + page,
+        method: "GET",
+        token: token,
+      });
+    },
   };
 
   public static Tracker = {

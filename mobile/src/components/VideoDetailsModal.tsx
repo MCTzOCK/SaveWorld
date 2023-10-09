@@ -17,6 +17,7 @@ import {
   IonCard,
   IonCardContent,
   IonCardHeader,
+  IonCardSubtitle,
   IonCardTitle,
   IonContent,
   IonHeader,
@@ -30,6 +31,7 @@ import { REST } from "@saveworld/api-js";
 import { share, shareSharp, star, starSharp } from "ionicons/icons";
 import { Share } from "@capacitor/share";
 import PopupManager from "../util/PopupManager";
+import { Text } from "@chakra-ui/react";
 
 export default function VideoDetailsModal(props: {
   modal: React.RefObject<HTMLIonModalElement>;
@@ -59,6 +61,47 @@ export default function VideoDetailsModal(props: {
   }, []);
 
   const asRef = React.useRef<HTMLIonActionSheetElement>(null);
+
+  const [page, setPage] = React.useState(0);
+
+  const [comments, setComments] = React.useState<
+    {
+      _id: string;
+      user: string;
+      username: string;
+      content: string;
+      video: string;
+      createdAt: string;
+      __v: number;
+    }[]
+  >([]);
+
+  const [pages, setPages] = React.useState(0);
+
+  const loadPage = async (p: number) => {
+    const res = await REST.Content.comments(
+      props.video?._id as string,
+      p,
+      localStorage.getItem("token") as string,
+    );
+
+    if (res.status === 200) {
+      setComments(res.payload.entries);
+      setPages(res.payload.pages);
+    } else {
+      PopupManager.alert({
+        title: "Fehler",
+        description:
+          "Kommentare konnten nicht geladen werden: " + res.payload.error,
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (!props.video) return;
+
+    loadPage(page);
+  }, [props.video, page]);
 
   return (
     <>
@@ -286,6 +329,102 @@ export default function VideoDetailsModal(props: {
               })}
             </div>
           ) : null}
+          <IonText>
+            <h1
+              style={{
+                textAlign: "center",
+              }}
+            >
+              Kommentare &nbsp;
+              <IonButton
+                color={"success"}
+                size={"small"}
+                onClick={async () => {
+                  props.modal.current?.dismiss();
+                  const content = await PopupManager.promptAsync({
+                    title: "Video Kommentieren",
+                    inputType: "INPUT",
+                    helperText: "Gib dein Kommentar ein",
+                  });
+                  props.modal.current?.present();
+
+                  if (!content) return;
+
+                  const res = await REST.Content.comment(
+                    props.video?._id as string,
+                    content as string,
+                    localStorage.getItem("token") as string,
+                  );
+
+                  if (res.status === 200) {
+                    setPage(0);
+                    loadPage(0);
+                  } else {
+                    await PopupManager.alertAsync({
+                      title: "Fehler",
+                      description:
+                        "Das Kommentar konnte nicht veröffentlicht werden: " +
+                        res.payload.error,
+                    });
+                  }
+                }}
+              >
+                Kommentieren
+              </IonButton>
+            </h1>
+          </IonText>
+          {comments && comments.length > 0 ? (
+            <>
+              {comments.map((comment) => {
+                return (
+                  <IonCard>
+                    <IonCardHeader>
+                      <IonCardSubtitle>
+                        {new Date(comment.createdAt).toLocaleString()}
+                      </IonCardSubtitle>
+                      <IonCardTitle>{comment.username}</IonCardTitle>
+                    </IonCardHeader>
+                    <IonCardContent>{comment.content}</IonCardContent>
+                  </IonCard>
+                );
+              })}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "1rem",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "100%",
+                }}
+              >
+                {page > 0 ? (
+                  <IonButton
+                    color={"danger"}
+                    onClick={() => setPage(page - 1)}
+                    expand={"block"}
+                  >
+                    Zurück
+                  </IonButton>
+                ) : null}
+                {page < pages - 1 ? (
+                  <IonButton
+                    color={"success"}
+                    onClick={() => setPage(page + 1)}
+                    expand={"block"}
+                  >
+                    Weiter
+                  </IonButton>
+                ) : null}
+              </div>
+            </>
+          ) : (
+            <>
+              <Text textAlign={"center"}>
+                Es gib noch keine Kommentare zu diesem Video.
+              </Text>
+            </>
+          )}
         </IonContent>
       </IonModal>
     </>
