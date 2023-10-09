@@ -27,7 +27,14 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import { REST } from "@saveworld/api-js";
-import { share, shareSharp, star, starSharp } from "ionicons/icons";
+import {
+  share,
+  shareSharp,
+  star,
+  starSharp,
+  chatbubble,
+  chatbubbleSharp,
+} from "ionicons/icons";
 import { Share } from "@capacitor/share";
 import PopupManager from "../util/PopupManager";
 
@@ -94,6 +101,9 @@ export default function VideoDetailsModal(props: {
             </IonButtons>
             <IonTitle>{props.video?.title}</IonTitle>
             <IonButtons slot={"end"}>
+              <IonButton color={"success"} onClick={async () => {}}>
+                <IonIcon ios={chatbubble} md={chatbubbleSharp} />
+              </IonButton>
               <IonButton
                 color={"success"}
                 onClick={() => {
