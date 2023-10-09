@@ -43,6 +43,13 @@ export default function CommunityCreateBlog() {
             teilen.
           </p>
         </IonText>
+        <IonText>
+          <p>
+            <b>TIPP</b>: verwende @Benutzername um andere Benutzer zu markieren.
+            Hierdurch erhalten diese eine Benachrichtigung und andere Benutzer
+            können auf deren Profil gelangen!
+          </p>
+        </IonText>
         <IonInput
           labelPlacement={"fixed"}
           label={"Titel"}
@@ -57,7 +64,28 @@ export default function CommunityCreateBlog() {
           type={"text"}
           onIonInput={(e) => setTags(e.detail.value!)}
         />
-        <SimpleMdeReact value={v} onChange={(v1) => setV(v1)} />
+        <SimpleMdeReact
+          options={{
+            theme: "dark",
+            spellChecker: false,
+            status: false,
+            toolbar: [
+              "bold",
+              "italic",
+              "heading",
+              "|",
+              "quote",
+              "unordered-list",
+              "ordered-list",
+              "|",
+              "link",
+              "|",
+              "preview",
+            ],
+          }}
+          value={v}
+          onInput={(v1) => setV((v1.target as any).value as string)}
+        />
         <IonButton
           expand={"block"}
           color={"success"}
