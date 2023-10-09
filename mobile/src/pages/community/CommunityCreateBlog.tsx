@@ -12,15 +12,24 @@ import * as React from "react";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
 import Page from "../../components/Page";
 import {
+  IonAccordion,
+  IonAccordionGroup,
   IonButton,
   IonIcon,
   IonInput,
+  IonItem,
+  IonLabel,
   IonText,
   useIonRouter,
 } from "@ionic/react";
 import SimpleMdeReact from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
-import { send, sendSharp } from "ionicons/icons";
+import {
+  accessibilityOutline,
+  informationCircle,
+  send,
+  sendSharp,
+} from "ionicons/icons";
 import { REST } from "@saveworld/api-js";
 import PopupManager from "../../util/PopupManager";
 import MDEditor from "@uiw/react-md-editor";
@@ -36,21 +45,52 @@ export default function CommunityCreateBlog() {
   return (
     <>
       <Page title={"Neuer Blog"}>
-        <IonText>
-          <p>
-            Hier kannst du einen neuen Blog eintrag erstellen. Du kannst von
-            deinen Bemühungen im Bezug auf ein umweltbewussteres Leben
-            berichten, oder auch einfach nur deine Gedanken mit der Community
-            teilen.
-          </p>
-        </IonText>
-        <IonText>
-          <p>
-            <b>TIPP</b>: verwende @Benutzername um andere Benutzer zu markieren.
-            Hierdurch erhalten diese eine Benachrichtigung und andere Benutzer
-            können auf deren Profil gelangen!
-          </p>
-        </IonText>
+        <IonAccordionGroup>
+          <IonAccordion value={"information"}>
+            <IonItem slot="header" color="light">
+              <IonLabel>Informationen (klicken)</IonLabel>
+              <IonIcon slot="end" icon={informationCircle} />
+            </IonItem>
+            <div className="ion-padding" slot="content">
+              <IonText>
+                <p>
+                  Hier kannst du einen neuen Blog eintrag erstellen. Du kannst
+                  von deinen Bemühungen im Bezug auf ein umweltbewussteres Leben
+                  berichten, oder auch einfach nur deine Gedanken mit der
+                  Community teilen.
+                </p>
+              </IonText>
+              <IonText>
+                <p>
+                  Blogs werden mit Markdown geschrieben. Markdown ist eine
+                  einfache Auszeichnungssprache, die es dir ermöglicht, deinen
+                  Text zu formatieren. Falls du noch nie mit Markdown gearbeitet
+                  hast, kannst du dir{" "}
+                  <a
+                    onClick={() => {
+                      router.push("/resources/md-help", "none", "replace");
+                    }}
+                    style={{
+                      color: "var(--ion-color-success)",
+                      fontWeight: 900,
+                    }}
+                  >
+                    hier
+                  </a>{" "}
+                  eine Übersicht über die wichtigsten Befehle verschaffen.
+                </p>
+              </IonText>
+              <IonText>
+                <p>
+                  <b style={{ color: "var(--ion-color-success)" }}>TIPP</b>:
+                  verwende @Benutzername um andere Benutzer zu markieren.
+                  Hierdurch erhalten diese eine Benachrichtigung und andere
+                  Benutzer können auf deren Profil gelangen!
+                </p>
+              </IonText>
+            </div>
+          </IonAccordion>
+        </IonAccordionGroup>
         <IonInput
           labelPlacement={"fixed"}
           label={"Titel"}

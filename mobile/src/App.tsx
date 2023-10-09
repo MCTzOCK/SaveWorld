@@ -92,6 +92,7 @@ import SocketTest from "./pages/SocketTest";
 import CommunityMessages from "./pages/community/CommunityMessages";
 import { io } from "socket.io-client";
 import CommunityMessagesChat from "./pages/community/CommunityMessagesChat";
+import MdHelp from "./pages/resources/MdHelp";
 
 setupIonicReact({
   mode: "ios",
@@ -182,6 +183,7 @@ export default function App() {
     "/support": Support,
     "/onboarding": Home,
     "/s2": SocketTest,
+    "/resources/md-help": MdHelp,
   };
 
   return (
