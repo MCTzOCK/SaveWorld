@@ -7,7 +7,7 @@
     "build:docs": "typedoc --name \"SaveWorld REST API JS Client\" --out docs src/index.ts",
     "npm:push": "npm publish",
     "git:push": "git push origin main",
-    "pipeline": "git add . && git commit -m \"Auto pipeline commit\" && npm version patch && npm run build && npm run build:docs && git add . && git commit -m \"Auto pipeline commit\" && npm run npm:push && npm run git:push"
+    "pipeline": "git add . && git commit -m \"[api-js] Auto pipeline commit\" && npm version patch && npm run build && npm run build:docs && git add . && git commit -m \"[api-js] Auto pipeline commit\" && npm run npm:push && npm run git:push"
   },
   "author": {
     "name": "Ben Siebert",

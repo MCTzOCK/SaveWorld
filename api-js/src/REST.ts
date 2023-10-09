@@ -444,6 +444,22 @@ export class REST {
         },
       });
     },
+    /**
+     * Posts a comment to a video
+     * @param id of the video to get
+     * @param content the comment to post
+     * @param token used to authenticate
+     */
+    comment: async (id: string, content: string, token: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/content/videos/" + id + "/comment",
+        method: "POST",
+        token: token,
+        body: {
+          content: content,
+        },
+      });
+    },
   };
 
   public static Tracker = {
