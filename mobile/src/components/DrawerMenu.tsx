@@ -42,6 +42,7 @@ import {
   FaVideo,
 } from "react-icons/fa6";
 import PopupManager from "../util/PopupManager";
+import OneSignal from "onesignal-cordova-plugin";
 
 export default function DrawerMenu(props: {
   isOpen: boolean;
@@ -115,7 +116,7 @@ export default function DrawerMenu(props: {
                 }))
               )
                 return;
-
+              OneSignal.logout();
               localStorage.removeItem("token");
               router.push("/login", "none", "replace");
             },

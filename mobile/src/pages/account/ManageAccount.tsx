@@ -40,6 +40,7 @@ import { useEffect } from "react";
 import { ENDPOINT } from "../../env";
 import PopupManager from "../../util/PopupManager";
 import { Avatar, Box, Flex } from "@chakra-ui/react";
+import OneSignal from "onesignal-cordova-plugin";
 
 export default function ManageAccount() {
   const { loggedIn, loaded, userInfo } = useUserData();
@@ -501,6 +502,7 @@ export default function ManageAccount() {
                         }))
                       )
                         return;
+                      OneSignal.logout();
                       localStorage.removeItem("token");
                       window.location.assign("/register");
                     }}
