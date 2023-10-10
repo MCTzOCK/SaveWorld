@@ -21,6 +21,7 @@ import {
   IonList,
   IonSpinner,
   IonText,
+  isPlatform,
   useIonRouter,
 } from "@ionic/react";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
@@ -502,7 +503,10 @@ export default function ManageAccount() {
                         }))
                       )
                         return;
-                      OneSignal.logout();
+
+                      if (!isPlatform("desktop")) {
+                        OneSignal.logout();
+                      }
                       localStorage.removeItem("token");
                       window.location.assign("/register");
                     }}
