@@ -103,6 +103,14 @@ export default function CommunityProfile(props: { socket: Socket }) {
           ...res.payload.profile,
           level: res.payload.level,
         });
+      } else {
+        PopupManager.alert({
+          title: "Fehler",
+          description: "Es ist ein Fehler aufgetreten: " + res.payload.error,
+          callback: () => {
+            router.push("/community", "none", "replace");
+          },
+        });
       }
     });
   };

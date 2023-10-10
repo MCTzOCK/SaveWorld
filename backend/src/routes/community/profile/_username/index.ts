@@ -80,7 +80,7 @@ export default async function (req: Request, res: Response) {
       lvl = (await getUserEcoLevel(userDoc)).level;
     }
 
-    if (prefs.blocked_users.includes(user._id.toString())) {
+    if (prefs.blocked_users.includes(user.username.toString())) {
       res.status(403).json({
         error: "User blocked",
         status: 403,
