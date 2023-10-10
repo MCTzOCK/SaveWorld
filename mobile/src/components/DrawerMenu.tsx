@@ -29,6 +29,7 @@ import {
   FaFile,
   FaHome,
   FaInfoCircle,
+  FaMarkdown,
   FaPen,
   FaSearch,
 } from "react-icons/fa";
@@ -187,6 +188,18 @@ export default function DrawerMenu(props: {
                 "none",
                 "replace",
               );
+            },
+          },
+        ],
+      },
+      {
+        label: "Ressourcen",
+        items: [
+          {
+            label: "Markdown-Hilfe",
+            icon: <FaMarkdown />,
+            onClick: () => {
+              router.push("/resources/md-help", "none", "replace");
             },
           },
         ],
