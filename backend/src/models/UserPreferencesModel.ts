@@ -31,6 +31,12 @@ const UserPreferencesModel = new mongoose.Schema({
     type: Map,
     of: mongoose.Schema.Types.Mixed,
   },
+  /** PUBLICLY AVAILABLE **/
+  blocked_users: {
+    type: [String],
+    required: false,
+    default: [],
+  },
 });
 
 export default mongoose.models?.UserPreferences ||
