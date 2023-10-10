@@ -99,7 +99,7 @@ export default function CommunityBlogViewer() {
       const m_entions = res.payload.entry.content.match(/@([a-zA-Z0-9_]+)/g);
 
       if (m_entions) {
-        setMentions(m_entions.map((m) => m.replace("@", "")));
+        setMentions(m_entions.map((m: any) => m.replace("@", "")));
       }
     } else {
       PopupManager.alert({
