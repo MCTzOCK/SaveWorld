@@ -48,6 +48,14 @@ export default function CommunityProfile(props: { socket: Socket }) {
   useRedirectForAnon();
 
   const { userInfo, loggedIn, loaded } = useUserData();
+
+  const [preferences, setPreferences] = useState<{
+    user: string;
+    interests: string[];
+    picture: string;
+    commuity_profile: any;
+    blocked_users: string[];
+  } | null>(null);
   const { username } = useParams<{ username: string }>();
   const editModal = React.useRef<HTMLIonModalElement>(null);
   const router = useIonRouter();
@@ -107,6 +115,14 @@ export default function CommunityProfile(props: { socket: Socket }) {
     if (userInfo.username === username) {
       setEditable(true);
     }
+
+    REST.Account.preferences(localStorage.getItem("token") as string).then(
+      (res) => {
+        if (res.status === 200) {
+          setPreferences(res.payload.prefs);
+        }
+      },
+    );
   }, [loaded, userInfo, loggedIn]);
 
   return (
@@ -221,6 +237,41 @@ export default function CommunityProfile(props: { socket: Socket }) {
                             case "message":
                               props.socket.emit("sw:chats.create", username);
                               break;
+                            case "block":
+                              if (!preferences) return;
+                              let newBlockedUsers: string[] = [
+                                ...preferences.blocked_users,
+                              ];
+                              if (newBlockedUsers.includes(username)) {
+                                newBlockedUsers = newBlockedUsers.filter(
+                                  (u) => u !== username,
+                                );
+                              } else {
+                                newBlockedUsers.push(username);
+                              }
+
+                              const resX = await REST.Account.updatePreferences(
+                                localStorage.getItem("token") as string,
+                                {
+                                  blocked_users: newBlockedUsers,
+                                },
+                              );
+
+                              if (resX.status === 200) {
+                                setPreferences({
+                                  ...preferences,
+                                  blocked_users: newBlockedUsers,
+                                });
+                              } else {
+                                PopupManager.alert({
+                                  title: "Fehler",
+                                  description:
+                                    "Es ist ein Fehler aufgetreten: " +
+                                    resX.payload.error,
+                                });
+                              }
+
+                              break;
                             default:
                               PopupManager.alert({
                                 title: "Fehler",
@@ -249,7 +300,9 @@ export default function CommunityProfile(props: { socket: Socket }) {
                             },
                           },
                           {
-                            text: "Blockieren",
+                            text: preferences?.blocked_users.includes(username)
+                              ? "Entblocken"
+                              : "Blockieren",
                             role: "destructive",
                             data: {
                               action: "block",
