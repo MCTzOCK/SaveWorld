@@ -68,10 +68,24 @@ export default async function (req: Request, res: Response) {
       await prefs.save();
     }
 
+    if (!prefs.blocked_users) {
+      prefs.blocked_users = [];
+      prefs.markModified("blocked_users");
+      await prefs.save();
+    }
+
     let lvl = 0;
 
     if (prefs.community_profile.get("showLevel")) {
       lvl = (await getUserEcoLevel(userDoc)).level;
+    }
+
+    if (prefs.blocked_users.includes(user.username.toString())) {
+      res.status(403).json({
+        error: "User blocked",
+        status: 403,
+      });
+      return;
     }
 
     res.json({

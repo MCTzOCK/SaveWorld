@@ -12,6 +12,7 @@ import Channel from "./Channel";
 import SocketRegistry from "../SocketRegistry";
 import ChatModel from "../../models/ChatModel";
 import UserModel from "../../models/UserModel";
+import UserPreferencesModel from "../../models/UserPreferencesModel";
 
 export default class CreateChatChannel extends Channel {
   constructor(socket: Socket, channelName: string) {
@@ -31,6 +32,9 @@ export default class CreateChatChannel extends Channel {
       const otherUserDoc = await UserModel.findOne({
         username: otherUsername,
       });
+      const otherUserPrefs = await UserPreferencesModel.findOne({
+        user: otherUserDoc?._id,
+      });
 
       if (!otherUserDoc) {
         this.emit({
@@ -39,7 +43,16 @@ export default class CreateChatChannel extends Channel {
         return;
       }
 
-      // TODO: Block Logic
+      if (
+        otherUserPrefs?.blocked_users.includes(
+          SocketRegistry.loggedIn[this.socket.id].username,
+        )
+      ) {
+        this.emit({
+          error: "User not found",
+        });
+        return;
+      }
 
       const existingChat = await ChatModel.findOne({
         users: {

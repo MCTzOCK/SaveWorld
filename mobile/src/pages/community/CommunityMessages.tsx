@@ -39,7 +39,7 @@ export default function CommunityMessages(props: { socket: Socket }) {
         )}
         {segment === "groups" && (
           <>
-            <p>Diese Funktion ist noch nicht verfügbar</p>
+            <p>Diese Funktion befindet sich aktuell in der Entwicklung.</p>
           </>
         )}
       </Page>

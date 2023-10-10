@@ -31,6 +31,20 @@ export default async function (req: Request, res: Response) {
 
     const PAGE_SIZE = 4;
 
+    const blocked_by_users_ids = (
+      await UserPreferencesModel.find({
+        blocked_users: user.username,
+      })
+    ).map((e) => e.user);
+
+    const blocked_by_users_usernames = (
+      await UserModel.find({
+        _id: {
+          $in: blocked_by_users_ids,
+        },
+      })
+    ).map((e) => e.username);
+
     let entries: any[] = [];
 
     switch (type) {
@@ -40,6 +54,9 @@ export default async function (req: Request, res: Response) {
             { title: { $regex: req.query.q.toString(), $options: "i" } },
             { content: { $regex: req.query.q.toString(), $options: "i" } },
           ],
+          username: {
+            $nin: blocked_by_users_usernames,
+          },
         });
         entries = posts.sort((a, b) => {
           return (
@@ -50,6 +67,9 @@ export default async function (req: Request, res: Response) {
         break;
       case "profiles":
         const profiles = await UserPreferencesModel.find({
+          user: {
+            $nin: blocked_by_users_ids,
+          },
           $or: [
             {
               "community_profile.displayName": {
