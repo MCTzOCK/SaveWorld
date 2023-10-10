@@ -10,6 +10,7 @@
 import { useEffect, useState } from "react";
 import { REST } from "@saveworld/api-js";
 import OneSignal from "onesignal-cordova-plugin";
+import { isPlatform } from "@ionic/react";
 
 export function useUserData(): {
   loggedIn: boolean;
@@ -68,7 +69,10 @@ export function useUserData(): {
               });
             } else {
               token = null;
-              OneSignal.logout();
+
+              if (!isPlatform("desktop")) {
+                OneSignal.logout();
+              }
               setLoggedIn(false);
               localStorage.removeItem("token");
             }
@@ -77,7 +81,10 @@ export function useUserData(): {
         }
       } else {
         token = null;
-        OneSignal.logout();
+
+        if (!isPlatform("desktop")) {
+          OneSignal.logout();
+        }
         setLoggedIn(false);
         setLoaded(true);
       }

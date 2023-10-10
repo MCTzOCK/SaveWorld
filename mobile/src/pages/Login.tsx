@@ -87,7 +87,7 @@ export default function Login() {
                       const prefs = await REST.Account.preferences(
                         resp.payload.token,
                       );
-                      let hasInterests = false;
+                      let hasInterests: boolean;
 
                       if (!prefs.payload.prefs.interests) {
                         hasInterests = false;

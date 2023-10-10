@@ -21,7 +21,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useUserData } from "../hooks/useUserData";
-import { IonList, IonSearchbar, useIonRouter } from "@ionic/react";
+import { IonList, IonSearchbar, isPlatform, useIonRouter } from "@ionic/react";
 import { useEffect } from "react";
 import {
   FaCogs,
@@ -117,7 +117,10 @@ export default function DrawerMenu(props: {
                 }))
               )
                 return;
-              OneSignal.logout();
+
+              if (!isPlatform("desktop")) {
+                OneSignal.logout();
+              }
               localStorage.removeItem("token");
               router.push("/login", "none", "replace");
             },
