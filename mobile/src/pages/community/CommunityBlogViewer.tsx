@@ -26,6 +26,7 @@ import {
   IonContent,
   IonIcon,
   IonPopover,
+  IonRouterLink,
   IonText,
   IonTextarea,
   useIonRouter,
@@ -85,6 +86,8 @@ export default function CommunityBlogViewer() {
     | undefined
   >(undefined);
 
+  const [mentions, setMentions] = useState<string[]>([]);
+
   const reload = async () => {
     const res = await REST.Community.blogEntry(
       localStorage.getItem("token") as string,
@@ -93,6 +96,11 @@ export default function CommunityBlogViewer() {
 
     if (res.status === 200) {
       setBlog(res.payload.entry);
+      const m_entions = res.payload.entry.content.match(/@([a-zA-Z0-9_]+)/g);
+
+      if (m_entions) {
+        setMentions(m_entions.map((m) => m.replace("@", "")));
+      }
     } else {
       PopupManager.alert({
         title: "Fehler",
@@ -385,9 +393,33 @@ export default function CommunityBlogViewer() {
                 {blog?.title}
               </h1>
             </IonText>
+            {mentions.length > 0 && (
+              <div
+                style={{
+                  marginBottom: "20px",
+                }}
+              >
+                <IonText>
+                  <p>
+                    <b>In diesem Beitrag sind folgende Konten verlinkt:</b>
+                    {mentions.map((m) => {
+                      return (
+                        <>
+                          <br />
+                          <IonRouterLink routerLink={"/community/u/" + m}>
+                            @{m}
+                          </IonRouterLink>
+                        </>
+                      );
+                    })}
+                  </p>
+                </IonText>
+              </div>
+            )}
             <ReactMarkdown children={blog.content} />
             <hr
               style={{
+                marginTop: "20px",
                 backgroundColor: "var(--ion-color-success-shade)",
               }}
             />
