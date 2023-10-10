@@ -11,6 +11,8 @@
 import { Request, Response } from "express";
 import VideoModel from "../../../models/VideoModel";
 import { isAuthenticated } from "../../../util/isAuthenticated";
+import UserPreferencesModel from "../../../models/UserPreferencesModel";
+import WatchHistoryModel from "../../../models/WatchHistoryModel";
 
 /**
  * <b style='color: red'>ATTENTION</b>
@@ -36,15 +38,68 @@ export default async function (req: Request, res: Response) {
       return;
     }
 
-    const count = await VideoModel.countDocuments();
-
-    const random = Math.floor(Math.random() * count);
-
-    const video = await VideoModel.findOne().skip(random);
-
-    res.status(200).json({
-      video: video,
+    const prefs = await UserPreferencesModel.findOne({
+      user: user._id,
     });
+
+    const watchHistory = await WatchHistoryModel.find({
+      user: user._id,
+    })
+      .sort({
+        watchedAt: -1,
+      })
+      .limit(10);
+
+    let watchedInterests = 0;
+
+    for (const v of watchHistory) {
+      const video = await VideoModel.findById(v.video);
+      if (!video) continue;
+      for (const c of video.categories) {
+        if (prefs?.interests.includes(c.toString())) {
+          watchedInterests++;
+        }
+      }
+    }
+
+    const watchedInterestsPercent = watchedInterests / prefs?.interests.length;
+
+    if (watchedInterestsPercent >= 0.6) {
+      const count = await VideoModel.countDocuments();
+
+      const random = Math.floor(Math.random() * count);
+
+      const video = await VideoModel.findOne().skip(random);
+
+      res.status(200).json({
+        video: video,
+      });
+    } else {
+      const videos = await VideoModel.find({
+        categories: {
+          $in: prefs?.interests,
+        },
+      });
+
+      if (videos.length === 0) {
+        const count = await VideoModel.countDocuments();
+
+        const random = Math.floor(Math.random() * count);
+
+        const video = await VideoModel.findOne().skip(random);
+
+        res.status(200).json({
+          video: video,
+        });
+        return;
+      }
+
+      const random = Math.floor(Math.random() * videos.length);
+
+      res.status(200).json({
+        video: videos[random],
+      });
+    }
   } catch (e) {
     res.status(500).json({
       error: "Internal Server Error",
