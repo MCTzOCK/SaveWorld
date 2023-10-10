@@ -11,6 +11,8 @@
 import { Request, Response } from "express";
 import CommunityBlogEntryModel from "../../../../models/CommunityBlogEntryModel";
 import { isAuthenticated } from "../../../../util/isAuthenticated";
+import UserModel from "../../../../models/UserModel";
+import UserPreferencesModel from "../../../../models/UserPreferencesModel";
 
 export default async function (req: Request, res: Response) {
   try {
@@ -30,6 +32,20 @@ export default async function (req: Request, res: Response) {
       res.status(400).json({
         error: "Please provide a username",
         status: 400,
+      });
+      return;
+    }
+
+    const userDoc = await UserModel.findOne({ username: username });
+    const userPrefs = await UserPreferencesModel.findOne({
+      user: userDoc._id,
+    });
+
+    if (userPrefs.blocked_users.includes(user.username)) {
+      res.status(200).json({
+        entries: [],
+        pages: 0,
+        status: 200,
       });
       return;
     }
