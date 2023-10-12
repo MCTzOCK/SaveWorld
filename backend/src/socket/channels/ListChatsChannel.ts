@@ -29,10 +29,15 @@ export default class ListChatsChannel extends Channel {
         return;
       }
 
+      console.log(data);
+
+      const onlyGroups = data === "groups";
+
       const chats = await ChatModel.find({
         users: {
           $in: [SocketRegistry.loggedIn[this.socket.id].userId],
         },
+        isGroup: onlyGroups,
       });
 
       let returnChats: {
@@ -64,7 +69,6 @@ export default class ListChatsChannel extends Channel {
           chatObj.users.push({
             _id: user,
             username: userDoc.username,
-            displayName: userPref.community_profile.displayName,
           });
         }
 
@@ -85,9 +89,17 @@ export default class ListChatsChannel extends Channel {
         returnChats.push(chatObj);
       }
 
-      this.emit({
-        chats: returnChats,
-      });
+      let retObj: any = {
+        for: onlyGroups ? "groups" : "chats",
+      };
+
+      if (onlyGroups) {
+        retObj.groups = returnChats;
+      } else {
+        retObj.chats = returnChats;
+      }
+
+      this.emit(retObj);
     });
   }
   emit(data: any) {

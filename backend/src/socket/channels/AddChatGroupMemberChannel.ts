@@ -1,20 +1,20 @@
 /**
- * backend/src/socket/channels/CreateChatChannel.ts
+ * backend/src/socket/channels/AddChatGroupMemberChannel.ts
  *
  * Author: Ben Siebert <hello@ben-siebert.de>
  * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
  * License: Project License
- * Created At: 05.10.23
+ * Created At: 12.10.2023
  *
  */
-import { Socket } from "socket.io";
 import Channel from "./Channel";
+import { Socket } from "socket.io";
 import SocketRegistry from "../SocketRegistry";
-import ChatModel from "../../models/ChatModel";
 import UserModel from "../../models/UserModel";
 import UserPreferencesModel from "../../models/UserPreferencesModel";
+import ChatModel from "../../models/ChatModel";
 
-export default class CreateChatChannel extends Channel {
+export default class AddChatGroupMemberChannel extends Channel {
   constructor(socket: Socket, channelName: string) {
     super(socket, channelName);
   }
@@ -28,16 +28,17 @@ export default class CreateChatChannel extends Channel {
         return;
       }
 
-      let otherUsername = data;
-      let group = false;
+      const { groupId, username } = data;
 
-      if (data.startsWith("group,")) {
-        otherUsername = data.split(",")[1];
-        group = true;
+      if (!groupId || !username) {
+        this.emit({
+          error: "Missing data",
+        });
+        return;
       }
 
       const otherUserDoc = await UserModel.findOne({
-        username: otherUsername,
+        username: username,
       });
       const otherUserPrefs = await UserPreferencesModel.findOne({
         user: otherUserDoc?._id,
@@ -61,38 +62,37 @@ export default class CreateChatChannel extends Channel {
         return;
       }
 
-      if (!group) {
-        const existingChat = await ChatModel.findOne({
-          users: {
-            $all: [
-              SocketRegistry.loggedIn[this.socket.id].userId,
-              otherUserDoc._id,
-            ],
-          },
-        });
+      const chat = await ChatModel.findById(groupId);
 
-        if (existingChat) {
-          this.emit({
-            chatId: existingChat._id,
-          });
-          return;
-        }
+      if (
+        !chat ||
+        !chat.users.includes(SocketRegistry.loggedIn[this.socket.id].userId)
+      ) {
+        this.emit({
+          error: "Chat not found",
+        });
+        return;
       }
 
-      const chat = await ChatModel.create({
-        users: [
-          SocketRegistry.loggedIn[this.socket.id].userId,
-          otherUserDoc._id,
-        ],
-        isGroup: group,
-      });
+      if (chat.users.includes(otherUserDoc._id)) {
+        this.emit({
+          error: "User already in group",
+        });
+        return;
+      }
+
+      chat.users.push(otherUserDoc._id);
+
+      chat.markModified("users");
+
+      await chat.save();
 
       this.emit({
-        chatId: chat._id,
+        message: "User added",
+        chat: chat,
       });
     });
   }
-
   emit(data: any) {
     this.socket.emit(this.channelName, data);
   }

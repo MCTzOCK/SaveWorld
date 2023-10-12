@@ -1,27 +1,6 @@
 import { Route, Switch } from "react-router-dom";
-import {
-  IonApp,
-  IonFooter,
-  IonIcon,
-  IonLabel,
-  IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
-  IonToolbar,
-  isPlatform,
-  setupIonicReact,
-  useIonRouter,
-} from "@ionic/react";
+import { IonApp, isPlatform, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import {
-  book,
-  bookSharp,
-  home,
-  homeSharp,
-  leaf,
-  leafSharp,
-} from "ionicons/icons";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -64,7 +43,7 @@ import EcoTracker from "./pages/tracker/EcoTracker";
 
 import OneSignal from "onesignal-cordova-plugin";
 import { ENDPOINT, ONE_SIGNAL_APP_ID } from "./env";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import AppUrlListener from "./AppUrlListener";
 import AdminLifestyleTemplates from "./pages/admin/AdminLifestyleTemplates";
 import WelcomeLifestyle from "./pages/introduction/WelcomeLifestyle";
@@ -73,15 +52,7 @@ import CommunityDashboard from "./pages/community/CommunityDashboard";
 import CommunityProfile from "./pages/community/CommunityProfile";
 import CommunityCreateBlog from "./pages/community/CommunityCreateBlog";
 import CommunityBlogViewer from "./pages/community/CommunityBlogViewer";
-import {
-  Box,
-  Button,
-  ChakraProvider,
-  Heading,
-  Portal,
-  Text,
-  useToast,
-} from "@chakra-ui/react";
+import { Box, ChakraProvider, Heading, Text, useToast } from "@chakra-ui/react";
 import { theme } from "./theme/chakra";
 import Notifications from "./pages/Notifications";
 import Support from "./pages/Support";
@@ -89,10 +60,11 @@ import AdminSupportRequestsDashboard from "./pages/admin/AdminSupportRequestsDas
 import AdminSupportRequestDashboard from "./pages/admin/AdminSupportRequestDashboard";
 import Home from "./pages/Home";
 import SocketTest from "./pages/SocketTest";
-import CommunityMessages from "./pages/community/CommunityMessages";
 import { io } from "socket.io-client";
 import CommunityMessagesChat from "./pages/community/CommunityMessagesChat";
 import MdHelp from "./pages/resources/MdHelp";
+import CommunityMessagesChatsList from "./pages/community/CommunityMessagesChatsList";
+import CommunityMessagesGroupsList from "./pages/community/CommunityMessagesGroupsList";
 
 setupIonicReact({
   mode: "ios",
@@ -177,7 +149,8 @@ export default function App() {
     "/community/u/:username": CommunityProfile,
     "/community/create/blog": CommunityCreateBlog,
     "/community/r/:id": CommunityBlogViewer,
-    "/community/messages": CommunityMessages,
+    "/community/messages": CommunityMessagesChatsList,
+    "/community/messages-groups": CommunityMessagesGroupsList,
     "/community/messages/:id": CommunityMessagesChat,
     "/notifications": Notifications,
     "/support": Support,

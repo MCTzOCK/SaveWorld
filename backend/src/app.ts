@@ -26,6 +26,7 @@ import DeleteChatChannel from "./socket/channels/DeleteChatChannel";
 import GetChatChannel from "./socket/channels/GetChatChannel";
 import CreateChatMessageChannel from "./socket/channels/CreateChatMessageChannel";
 import ChatMessagesChannel from "./socket/channels/ChatMessagesChannel";
+import AddChatGroupMemberChannel from "./socket/channels/AddChatGroupMemberChannel";
 
 /* LOGGER */
 
@@ -164,6 +165,10 @@ const port = process.env.PORT || 3000;
     new GetChatChannel(socket, "sw:chats.get").register();
     new CreateChatMessageChannel(socket, "sw:chats.messages.create").register();
     new ChatMessagesChannel(socket, "sw:chats.messages.get").register();
+    new AddChatGroupMemberChannel(
+      socket,
+      "sw:chats.groups.add.member",
+    ).register();
 
     socket.onAny((event, ...args) => {
       console.log(

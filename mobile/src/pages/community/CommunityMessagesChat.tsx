@@ -21,6 +21,8 @@ import ChatMessageList from "../../components/chat/ChatMessageList";
 import ChatMessage from "../../components/chat/ChatMessage";
 import ChatMessageInput from "../../components/chat/ChatMessageInput";
 import { ENDPOINT } from "../../env";
+import { IonButton, IonIcon } from "@ionic/react";
+import { add } from "ionicons/icons";
 
 export default function CommunityMessagesChat(props: { socket: Socket }) {
   const { id } = useParams<{ id: string }>();
@@ -43,6 +45,7 @@ export default function CommunityMessagesChat(props: { socket: Socket }) {
       username: string;
       displayName: string;
     }[];
+    isGroup: boolean;
     lastMessagePreview: {
       _id: string;
       content: string;
@@ -100,6 +103,20 @@ export default function CommunityMessagesChat(props: { socket: Socket }) {
         setMessages((old) => [...old, data.chatMessage]);
       });
 
+      props.socket.on("sw:chats.groups.add.member", (data) => {
+        if (data.error) {
+          PopupManager.alert({
+            title: "Fehler",
+            description: data.error,
+          });
+        } else {
+          PopupManager.alert({
+            title: "Erfolg",
+            description: "Der Benutzer wurde erfolgreich hinzugefügt.",
+          });
+        }
+      });
+
       props.socket.emit("sw:chats.get", id);
       props.socket.emit("sw:chats.messages.get", id);
     });
@@ -115,7 +132,41 @@ export default function CommunityMessagesChat(props: { socket: Socket }) {
 
   return (
     <>
-      <Page title={chat.users.find((u) => u._id !== userInfo._id)!.username}>
+      <Page
+        title={chat.users
+          .map((u) =>
+            u.username !== userInfo.username ? u.username : undefined,
+          )
+          .filter((x) => x !== undefined)
+          .join(",")}
+        endButtons={
+          <>
+            {chat.isGroup ? (
+              <IonButton
+                style={{
+                  "--color": "var(--ion-color-success-shade)",
+                }}
+                onClick={async () => {
+                  const username = await PopupManager.promptAsync({
+                    title: "Benutzer hinzufügen",
+                    helperText: "Gib den Benutzernamen des Benutzers ein",
+                    inputType: "INPUT",
+                  });
+
+                  if (!username) return;
+
+                  props.socket.emit("sw:chats.groups.add.member", {
+                    groupId: id,
+                    username: username,
+                  });
+                }}
+              >
+                <IonIcon icon={add} />
+              </IonButton>
+            ) : null}
+          </>
+        }
+      >
         <ChatContainer>
           <ChatMessageList>
             {messages

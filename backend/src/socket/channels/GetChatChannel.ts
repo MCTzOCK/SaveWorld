@@ -60,7 +60,6 @@ export default class GetChatChannel extends Channel {
         chatObj.users.push({
           _id: user,
           username: userDoc.username,
-          displayName: userPref.community_profile.displayName,
         });
       }
 
@@ -77,6 +76,8 @@ export default class GetChatChannel extends Channel {
           readBy: lastMessage.readBy,
         };
       }
+
+      chatObj.isGroup = chat.isGroup;
 
       this.emit({
         chat: chatObj,

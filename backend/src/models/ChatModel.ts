@@ -16,6 +16,11 @@ const ChatModel = new mongoose.Schema({
     default: [],
     ref: "User",
   },
+  isGroup: {
+    type: Boolean,
+    required: true,
+    default: false,
+  }
 });
 
 export default mongoose.models?.Chat || mongoose.model("Chat", ChatModel);
