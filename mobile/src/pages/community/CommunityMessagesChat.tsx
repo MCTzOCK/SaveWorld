@@ -43,6 +43,7 @@ export default function CommunityMessagesChat(props: { socket: Socket }) {
       username: string;
       displayName: string;
     }[];
+    isGroup: boolean;
     lastMessagePreview: {
       _id: string;
       content: string;
@@ -115,7 +116,14 @@ export default function CommunityMessagesChat(props: { socket: Socket }) {
 
   return (
     <>
-      <Page title={chat.users.find((u) => u._id !== userInfo._id)!.username}>
+      <Page
+        title={chat.users
+          .map((u) =>
+            u.username !== userInfo.username ? u.username : undefined,
+          )
+          .filter((x) => x !== undefined)
+          .join(",")}
+      >
         <ChatContainer>
           <ChatMessageList>
             {messages
