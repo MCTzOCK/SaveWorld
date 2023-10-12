@@ -69,7 +69,6 @@ export default class ListChatsChannel extends Channel {
           chatObj.users.push({
             _id: user,
             username: userDoc.username,
-            displayName: userPref.community_profile.displayName,
           });
         }
 
