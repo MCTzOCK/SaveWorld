@@ -882,4 +882,52 @@ export class REST {
       });
     },
   };
+
+  public static Nominatim = {
+    /**
+     * @return the requested search results
+     * @param query the query to search for
+     * @param nominatimUrl the url of the nominatim instance
+     */
+    search: async (query: string, nominatimUrl: string) => {
+      return await makeRequest({
+        path:
+          nominatimUrl +
+          "/search?q=" +
+          query +
+          "&format=jsonv2&polygon_geojson=0&addressdetails=1&limit=3",
+        method: "GET",
+      });
+    },
+  };
+
+  public static EcoProjects = {
+    /**
+     * Creates a new eco project
+     * @param token used to authenticate
+     * @param name of the project
+     * @param startDate of the project
+     * @param lastsDays of the project
+     * @param geoLocation of the project
+     */
+    create: async (
+      token: string,
+      name: string,
+      startDate: string,
+      lastsDays: number,
+      geoLocation: string,
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eco-projects/create",
+        method: "POST",
+        token: token,
+        body: {
+          name: name,
+          startDate: startDate,
+          lastsDays: lastsDays,
+          geoLocation: geoLocation,
+        },
+      });
+    },
+  };
 }
