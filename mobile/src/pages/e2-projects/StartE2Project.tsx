@@ -26,11 +26,29 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { AnimatePresence, easeInOut, motion } from "framer-motion";
+import { useEffect } from "react";
+import { REST } from "@saveworld/api-js";
+import { NOMINATIM_ENDPOINT } from "../../env";
 
 export default function StartE2Project() {
   useRedirectForAnon();
 
   const [step, setStep] = React.useState(0);
+
+  const [locationQuery, setLocationQuery] = React.useState("");
+  const [searchResults, setSearchResults] = React.useState<string[]>([]);
+
+  useEffect(() => {
+    if (locationQuery.length < 5) return;
+
+    REST.Nominatim.search(locationQuery, NOMINATIM_ENDPOINT).then((res) => {
+      let lst: string[] = (res.payload as any[])
+        .map((r) => r.display_name)
+        .filter((v, i, a) => a.indexOf(v) === i);
+      console.log(lst);
+      setSearchResults(lst);
+    });
+  }, [locationQuery]);
 
   return (
     <>
@@ -166,6 +184,54 @@ export default function StartE2Project() {
                             Wie lange soll dein Projekt dauern? (in Tagen)
                           </FormHelperText>
                         </FormControl>
+                        <FormControl>
+                          <FormLabel>Ort</FormLabel>
+                          <Input
+                            name={"geoLocation"}
+                            type={"text"}
+                            value={locationQuery}
+                            onChange={(e) => {
+                              setLocationQuery(e.target.value);
+                            }}
+                            placeholder={"Unter den Linden, Berlin 10117"}
+                          />
+                          <FormHelperText>
+                            Wo findet dein Projekt statt? TIPP: Ab 5 Zeichen
+                            werden Vorschläge angezeigt. Klicke auf einen
+                            Vorschlag um ihn zu übernehmen.
+                          </FormHelperText>
+                        </FormControl>
+                        {searchResults.length > 0 && (
+                          <>
+                            <VStack>
+                              <Text>
+                                <b>Suchergebnisse</b>
+                              </Text>
+                              {searchResults.map((s) => {
+                                return (
+                                  <Box
+                                    key={s}
+                                    onClick={() => {
+                                      setLocationQuery(s);
+                                    }}
+                                    bgColor={"var(--ion-color-primary)"}
+                                    p={1}
+                                    rounded={"md"}
+                                  >
+                                    {s}
+                                  </Box>
+                                );
+                              })}
+                            </VStack>
+                          </>
+                        )}
+                        <Button
+                          color={"var(--ion-color-success)"}
+                          type={"submit"}
+                          w={"100%"}
+                        >
+                          Projekt starten
+                        </Button>
                       </VStack>
                     </form>
                   </motion.div>
