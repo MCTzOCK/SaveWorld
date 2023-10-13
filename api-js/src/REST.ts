@@ -900,4 +900,34 @@ export class REST {
       });
     },
   };
+
+  public static EcoProjects = {
+    /**
+     * Creates a new eco project
+     * @param token used to authenticate
+     * @param name of the project
+     * @param startDate of the project
+     * @param lastsDays of the project
+     * @param geoLocation of the project
+     */
+    create: async (
+      token: string,
+      name: string,
+      startDate: string,
+      lastsDays: number,
+      geoLocation: string,
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eco-projects/create",
+        method: "POST",
+        token: token,
+        body: {
+          name: name,
+          startDate: startDate,
+          lastsDays: lastsDays,
+          geoLocation: geoLocation,
+        },
+      });
+    },
+  };
 }
