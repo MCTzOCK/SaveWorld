@@ -30,6 +30,7 @@ import { useEffect } from "react";
 import { REST } from "@saveworld/api-js";
 import { NOMINATIM_ENDPOINT } from "../../env";
 import PopupManager from "../../util/PopupManager";
+import { useIonRouter } from "@ionic/react";
 
 export default function StartE2Project() {
   useRedirectForAnon();
@@ -50,6 +51,8 @@ export default function StartE2Project() {
       setSearchResults(lst);
     });
   }, [locationQuery]);
+
+  const router = useIonRouter();
 
   return (
     <>
@@ -186,6 +189,7 @@ export default function StartE2Project() {
                             description:
                               "Dein Projekt wurde erfolgreich erstellt.",
                           });
+                          router.push("/e2-projects/my", "none", "replace");
                         } else {
                           await PopupManager.alertAsync({
                             title: "Fehler",
@@ -254,7 +258,8 @@ export default function StartE2Project() {
                                     onClick={() => {
                                       setLocationQuery(s);
                                     }}
-                                    bgColor={"var(--ion-color-primary)"}
+                                    color={"var(--ion-color-success)"}
+                                    bg={"whiteAlpha.200"}
                                     p={1}
                                     rounded={"md"}
                                   >
