@@ -8,8 +8,7 @@
  *
  */
 
-import mongoose from "mongoose";
-
+import mongoose, { Schema } from "mongoose";
 const EcoProjectModel = new mongoose.Schema({
   owner: {
     type: mongoose.Schema.Types.ObjectId,
@@ -42,9 +41,21 @@ const EcoProjectModel = new mongoose.Schema({
       },
     },
   ],
-  geoLocation: {
+  geoLocationType: {
     type: String,
     required: true,
+  },
+  geoLocationDisplayName: {
+    type: String,
+    required: true,
+  },
+  geoLocationLat: {
+    type: String,
+    required: false,
+  },
+  geoLocationLon: {
+    type: String,
+    required: false,
   },
 });
 
