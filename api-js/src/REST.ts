@@ -882,4 +882,22 @@ export class REST {
       });
     },
   };
+
+  public static Nominatim = {
+    /**
+     * @return the requested search results
+     * @param query the query to search for
+     * @param nominatimUrl the url of the nominatim instance
+     */
+    search: async (query: string, nominatimUrl: string) => {
+      return await makeRequest({
+        path:
+          nominatimUrl +
+          "/search?q=" +
+          query +
+          "&format=jsonv2&polygon_geojson=0&addressdetails=1&limit=3",
+        method: "GET",
+      });
+    },
+  };
 }

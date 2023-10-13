@@ -1,0 +1,192 @@
+/**
+ * mobile/src/pages/e2-projects/StartE2Project.tsx
+ *
+ * Author: Ben Siebert <hello@ben-siebert.de>
+ * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
+ * License: Project License
+ * Created At: 13.10.2023
+ *
+ */
+
+import * as React from "react";
+import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
+import Page from "../../components/Page";
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  FormControl,
+  FormHelperText,
+  FormLabel,
+  Input,
+  Stack,
+  Text,
+  UnorderedList,
+  VStack,
+} from "@chakra-ui/react";
+import { AnimatePresence, easeInOut, motion } from "framer-motion";
+
+export default function StartE2Project() {
+  useRedirectForAnon();
+
+  const [step, setStep] = React.useState(0);
+
+  return (
+    <>
+      <Page title={"Projekt starten"}>
+        <Flex
+          w={"100%"}
+          justifyContent={["flex-start", "center"]}
+          alignItems={["flex-start", "center"]}
+          minH={"100vh"}
+        >
+          <Box
+            backgroundColor={"rgba(10,10,10,0.5)"}
+            borderRadius={"12px"}
+            border={"4px solid rgba(40,40,40,1)"}
+            w={["100%", "75%", "50%", "25%"]}
+            minW={"200px"}
+            p={2}
+          >
+            <AnimatePresence>
+              {step === 0 && (
+                <>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <Text>
+                      <HighlightedText>
+                        Wer sollte ein neues Projekt starten?
+                      </HighlightedText>
+                      <br />
+                      Nun ja, jeder der ein Projekt starten möchte. Das ist ja
+                      auch der Sinn der Sache. Aber es gibt ein paar
+                      Dinge,&nbsp;
+                      <HighlightedText>
+                        die du beachten solltest
+                      </HighlightedText>
+                      :
+                      <UnorderedList>
+                        <li>
+                          Dein Projekt sollte einen{" "}
+                          <HighlightedText>positiven Einfluss</HighlightedText>{" "}
+                          auf die Umwelt haben.
+                        </li>
+                        <li>
+                          Dein Projekt darf nicht gegen{" "}
+                          <HighlightedText>geltendes Recht</HighlightedText>{" "}
+                          verstoßen. (bspw. auf die Straße kleben)
+                        </li>
+                        <li>
+                          Dein Projekt sollte auf{" "}
+                          <HighlightedText>Zusammenarbeit</HighlightedText> mit
+                          anderen Benutzern ausgelegt sein.
+                        </li>
+                        <li>
+                          Dein Projekt sollte einen{" "}
+                          <HighlightedText>konkreten Nutzen</HighlightedText>{" "}
+                          haben (bspw. Müll sammeln, Bäume pflanzen, ...)
+                        </li>
+                        <li>
+                          Dein Projekt sollte einem{" "}
+                          <HighlightedText>ausgeklügelten Plan</HighlightedText>{" "}
+                          folgen.
+                        </li>
+                      </UnorderedList>
+                      <Divider mt={4} mb={4} />
+                      <Text>
+                        <HighlightedText>
+                          Du bist bereit ein Projekt zu starten?
+                        </HighlightedText>
+                        <br />
+                        Dann klicke auf den Button unten und fülle das Formular
+                        aus.
+                        <br />
+                        <Button
+                          mt={4}
+                          w={"100%"}
+                          color={"var(--ion-color-success)"}
+                          onClick={() => {
+                            setStep(1);
+                          }}
+                        >
+                          Projekt starten
+                        </Button>
+                      </Text>
+                    </Text>
+                  </motion.div>
+                </>
+              )}
+            </AnimatePresence>
+            <AnimatePresence>
+              {step === 1 && (
+                <>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0 }}
+                    transition={{ duration: 0.5, delay: 0.7 }}
+                  >
+                    <Text>
+                      <HighlightedText>Neues Projekt</HighlightedText>
+                    </Text>
+                    <form
+                      onSubmit={async (e) => {
+                        e.preventDefault();
+                      }}
+                    >
+                      <VStack spacing={4} mt={4}>
+                        <FormControl>
+                          <FormLabel>Name</FormLabel>
+                          <Input placeholder={"Mein Projekt"} name={"name"} />
+                          <FormHelperText>
+                            Gib deinem Projekt einen Namen, der es bestmöglich
+                            beschreibt.
+                          </FormHelperText>
+                        </FormControl>
+                        <FormControl>
+                          <FormLabel>Startdatum</FormLabel>
+                          <Input name={"startDate"} type={"date"} />
+                          <FormHelperText>
+                            Wann soll dein Projekt starten?
+                          </FormHelperText>
+                        </FormControl>
+                        <FormControl>
+                          <FormLabel>Länge</FormLabel>
+                          <Input
+                            name={"lastsDays"}
+                            type={"number"}
+                            placeholder={"1"}
+                          />
+                          <FormHelperText>
+                            Wie lange soll dein Projekt dauern? (in Tagen)
+                          </FormHelperText>
+                        </FormControl>
+                      </VStack>
+                    </form>
+                  </motion.div>
+                </>
+              )}
+            </AnimatePresence>
+          </Box>
+        </Flex>
+      </Page>
+    </>
+  );
+}
+
+function HighlightedText(props: { children: React.ReactNode }) {
+  return (
+    <b
+      style={{
+        color: "var(--ion-color-success)",
+      }}
+    >
+      {props.children}
+    </b>
+  );
+}

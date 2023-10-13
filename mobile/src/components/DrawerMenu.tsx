@@ -24,6 +24,7 @@ import { useUserData } from "../hooks/useUserData";
 import { IonList, IonSearchbar, isPlatform, useIonRouter } from "@ionic/react";
 import { useEffect } from "react";
 import {
+  FaCalendar,
   FaCogs,
   FaEnvelope,
   FaFile,
@@ -31,6 +32,7 @@ import {
   FaInfoCircle,
   FaMarkdown,
   FaPen,
+  FaProjectDiagram,
   FaSearch,
 } from "react-icons/fa";
 import {
@@ -38,6 +40,7 @@ import {
   FaLeaf,
   FaPeopleGroup,
   FaPerson,
+  FaPlus,
   FaRightFromBracket,
   FaUsers,
   FaVideo,
@@ -154,6 +157,32 @@ export default function DrawerMenu(props: {
             icon: <FaLeaf />,
             onClick: () => {
               router.push("/e2", "none", "replace");
+            },
+          },
+        ],
+      },
+      {
+        label: "Öko-Projecte",
+        items: [
+          {
+            label: "Meine Projekte",
+            icon: <FaProjectDiagram />,
+            onClick: () => {
+              router.push("/e2-projects/my", "none", "replace");
+            },
+          },
+          {
+            label: "Projekt starten",
+            icon: <FaPlus />,
+            onClick: () => {
+              router.push("/e2-projects/new", "none", "replace");
+            },
+          },
+          {
+            label: "Projekte finden",
+            icon: <FaSearch />,
+            onClick: () => {
+              router.push("/e2-projects/search", "none", "replace");
             },
           },
         ],
