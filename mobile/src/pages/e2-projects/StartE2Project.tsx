@@ -29,6 +29,7 @@ import { AnimatePresence, easeInOut, motion } from "framer-motion";
 import { useEffect } from "react";
 import { REST } from "@saveworld/api-js";
 import { NOMINATIM_ENDPOINT } from "../../env";
+import PopupManager from "../../util/PopupManager";
 
 export default function StartE2Project() {
   useRedirectForAnon();
@@ -155,6 +156,45 @@ export default function StartE2Project() {
                     <form
                       onSubmit={async (e) => {
                         e.preventDefault();
+
+                        let data = new FormData(e.target as HTMLFormElement);
+
+                        const name = data.get("name") as string;
+                        const startDate = data.get("startDate") as string;
+                        const lastsDays = data.get("lastsDays") as string;
+                        const geoLocation = data.get("geoLocation") as string;
+
+                        if (!name || !startDate || !lastsDays || !geoLocation) {
+                          await PopupManager.alertAsync({
+                            title: "Fehler",
+                            description: "Bitte fülle alle Felder aus.",
+                          });
+                          return;
+                        }
+
+                        const res = await REST.EcoProjects.create(
+                          localStorage.getItem("token") as string,
+                          name,
+                          startDate,
+                          parseInt(lastsDays),
+                          geoLocation,
+                        );
+
+                        if (res.status === 200) {
+                          await PopupManager.alertAsync({
+                            title: "Projekt erstellt",
+                            description:
+                              "Dein Projekt wurde erfolgreich erstellt.",
+                          });
+                        } else {
+                          await PopupManager.alertAsync({
+                            title: "Fehler",
+                            description:
+                              "Das Projekt konnte nicht erstellt werden: " +
+                              res.payload.error,
+                          });
+                          return;
+                        }
                       }}
                     >
                       <VStack spacing={4} mt={4}>
