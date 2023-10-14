@@ -22,7 +22,7 @@ export default async function (req: Request, res: Response) {
     }
 
     const { projectId, id } = req.query;
-    const { title, content, type } = req.body;
+    const { title, content, type, pinned } = req.body;
 
     if (!type || !title || !content) {
       res.status(400).json({ error: "Bad Request" });
@@ -73,6 +73,7 @@ export default async function (req: Request, res: Response) {
     segment.title = title;
     segment.content = content;
     segment.type = type;
+    segment.pinned = pinned;
 
     await segment.save();
   } catch (e) {

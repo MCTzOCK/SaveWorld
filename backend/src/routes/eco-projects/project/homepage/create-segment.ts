@@ -26,7 +26,7 @@ export default async function (req: Request, res: Response) {
     }
 
     const { id } = req.query;
-    const { title, content, type } = req.body;
+    const { title, content, type, pinned } = req.body;
 
     if (!type || !title || !content) {
       res.status(400).json({
@@ -62,6 +62,7 @@ export default async function (req: Request, res: Response) {
       title: title,
       content: content,
       type: type,
+      pinned: pinned,
     });
 
     res.status(200).json({
