@@ -1,0 +1,237 @@
+/**
+ * mobile/src/pages/e2-projects/MyE2Projects.tsx
+ *
+ * Author: Ben Siebert <hello@ben-siebert.de>
+ * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
+ * License: Project License
+ * Created At: 14.10.2023
+ *
+ */
+
+import * as React from "react";
+import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
+import Page from "../../components/Page";
+import { useEffect, useState } from "react";
+import { REST } from "@saveworld/api-js";
+import PopupManager from "../../util/PopupManager";
+import { E2Projects } from "../../util/types/E2Project";
+import {
+  IonButton,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonContent,
+  IonIcon,
+  IonItem,
+  IonList,
+  IonPopover,
+  IonSearchbar,
+} from "@ionic/react";
+import { List, ListIcon, ListItem } from "@chakra-ui/react";
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+import HighlightedText from "../../components/HighlightedText";
+import { useUserData } from "../../hooks/useUserData";
+import { checkmark, chevronDown } from "ionicons/icons";
+
+export default function MyE2Projects() {
+  useRedirectForAnon();
+
+  const [projects, setProjects] = React.useState<E2Projects>([]);
+
+  const [query, setQuery] = useState<string>("");
+
+  const { userInfo } = useUserData();
+  const [filter, setFilter] = useState<"all" | "owner" | "only-upcoming">(
+    "all",
+  );
+
+  useEffect(() => {
+    reloadProjects();
+  }, []);
+
+  const reloadProjects = async () => {
+    const res = await REST.EcoProjects.my(
+      localStorage.getItem("token") as string,
+    );
+
+    if (res.status === 200) {
+      setProjects(res.payload.projects);
+    } else {
+      await PopupManager.alertAsync({
+        title: "Fehler",
+        description: "Es ist ein Fehler aufgetreten: " + res.payload.error,
+      });
+    }
+  };
+
+  return (
+    <>
+      <Page title={"Meine Projekte"}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "5px",
+            alignItems: "center",
+          }}
+        >
+          <IonSearchbar
+            placeholder={"Suche"}
+            onIonInput={(e) => {
+              setQuery(e.detail.value || "");
+            }}
+            style={{
+              padding: 0,
+            }}
+          />
+          <IonButton
+            id={"open-type-popover"}
+            size={"small"}
+            fill={"outline"}
+            color={"success"}
+          >
+            {filter === "all"
+              ? "Alle"
+              : filter === "owner"
+              ? "Meine Projekte"
+              : "Nur anstehende"}
+            <IonIcon icon={chevronDown} slot={"end"} />
+          </IonButton>
+          <IonPopover trigger={"open-type-popover"} dismissOnSelect>
+            <IonContent>
+              <IonList>
+                <IonItem
+                  button={true}
+                  detail={false}
+                  onClick={() => {
+                    setFilter("all");
+                  }}
+                  color={"light"}
+                >
+                  {filter === "all" && (
+                    <IonIcon icon={checkmark} color={"success"} slot={"end"} />
+                  )}
+                  Alle
+                </IonItem>
+                <IonItem
+                  button={true}
+                  detail={false}
+                  onClick={() => {
+                    setFilter("owner");
+                  }}
+                  color={"light"}
+                >
+                  {filter === "owner" && (
+                    <IonIcon icon={checkmark} color={"success"} slot={"end"} />
+                  )}
+                  Meine
+                </IonItem>
+                <IonItem
+                  button={true}
+                  detail={false}
+                  onClick={() => {
+                    setFilter("only-upcoming");
+                  }}
+                  color={"light"}
+                >
+                  {filter === "only-upcoming" && (
+                    <IonIcon icon={checkmark} color={"success"} slot={"end"} />
+                  )}
+                  Nur anstehende
+                </IonItem>
+              </IonList>
+            </IonContent>
+          </IonPopover>
+        </div>
+        {projects
+          .filter((p) => {
+            if (query === "") {
+              return true;
+            }
+            return (
+              p.name.toLowerCase().includes(query.toLowerCase()) ||
+              p.geoLocationDisplayName
+                .toLowerCase()
+                .includes(query.toLowerCase())
+            );
+          })
+          .filter((p) => {
+            if (filter === "all") return true;
+            if (filter === "owner") return p.owner === userInfo._id;
+            if (filter === "only-upcoming") {
+              return (
+                new Date(p.startDate).getTime() +
+                  p.lastsDays * 24 * 60 * 60 * 1000 >
+                new Date().getTime()
+              );
+            }
+            return false;
+          })
+          .map((p) => {
+            return (
+              <>
+                <IonCard routerLink={"/e2-projects/project/" + p._id}>
+                  <IonCardHeader>
+                    <IonCardTitle>{p.name}</IonCardTitle>
+                    <IonCardSubtitle>
+                      {new Date(p.startDate).toLocaleDateString()}-
+                      {new Date(
+                        new Date(p.startDate).getTime() +
+                          p.lastsDays * 24 * 60 * 60 * 1000,
+                      ).toLocaleDateString()}
+                    </IonCardSubtitle>
+                  </IonCardHeader>
+                  <IonCardContent>
+                    <List spacing={3}>
+                      <ListItem>
+                        <ListIcon
+                          as={FaCheckCircle}
+                          color={"saveworld_green.500"}
+                        />
+                        {p.geoLocationDisplayName}
+                        {p.geoLocationLon.length > 0 &&
+                          p.geoLocationLat.length > 0 && (
+                            <>
+                              <br />({p.geoLocationLat}, {p.geoLocationLon})
+                            </>
+                          )}
+                      </ListItem>
+                      <ListItem>
+                        <ListIcon
+                          as={
+                            p.geoLocationType === "nominatim"
+                              ? FaCheckCircle
+                              : FaTimesCircle
+                          }
+                          color={
+                            p.geoLocationType === "nominatim"
+                              ? "saveworld_green.500"
+                              : "var(--ion-color-danger)"
+                          }
+                        />
+                        {p.geoLocationType === "nominatim"
+                          ? `Auf der Karte auffindbar`
+                          : "Nicht auf der Karte angezeigt"}
+                      </ListItem>
+                      {p.geoLocationType !== "nominatim" && (
+                        <ListItem>
+                          Dein Projekt kann nicht auf der Karte angezeigt
+                          werden, da die genaue Adresse nicht bekannt ist. Die
+                          Adresse kann in den Projekteinstellungen geändert
+                          werden. <HighlightedText>WICHTIG</HighlightedText>:
+                          Klicke auf eine vorgeschlagene Adresse, um diese zu
+                          übernehmen.
+                        </ListItem>
+                      )}
+                    </List>
+                  </IonCardContent>
+                </IonCard>
+              </>
+            );
+          })}
+      </Page>
+    </>
+  );
+}
