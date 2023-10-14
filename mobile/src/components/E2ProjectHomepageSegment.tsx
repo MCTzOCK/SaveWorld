@@ -211,7 +211,9 @@ export default function E2ProjectHomepageSegment(props: {
           ) : (
             <>
               {props.segment.type === "text" && (
-                <Text>{props.segment.content}</Text>
+                <Text>
+                  <pre>{props.segment.content}</pre>
+                </Text>
               )}
               {props.segment.type === "image" && (
                 <>
