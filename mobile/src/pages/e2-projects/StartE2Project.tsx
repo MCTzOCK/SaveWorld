@@ -167,6 +167,17 @@ export default function StartE2Project() {
                         const lastsDays = data.get("lastsDays") as string;
                         const geoLocation = data.get("geoLocation") as string;
 
+                        const date = new Date(startDate);
+
+                        if (date.getTime() < Date.now()) {
+                          await PopupManager.alertAsync({
+                            title: "Fehler",
+                            description:
+                              "Das Startdatum muss in der Zukunft liegen.",
+                          });
+                          return;
+                        }
+
                         if (!name || !startDate || !lastsDays || !geoLocation) {
                           await PopupManager.alertAsync({
                             title: "Fehler",
