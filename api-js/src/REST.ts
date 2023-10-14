@@ -940,5 +940,17 @@ export class REST {
         token: token,
       });
     },
+    /**
+     * @return the requested project
+     * @param token used to authenticate
+     * @param id of the project to get
+     */
+    project: async (token: string, id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eco-projects/project/receive?id=" + id,
+        method: "GET",
+        token: token,
+      });
+    },
   };
 }
