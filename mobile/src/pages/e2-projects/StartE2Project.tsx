@@ -31,6 +31,7 @@ import { REST } from "@saveworld/api-js";
 import { NOMINATIM_ENDPOINT } from "../../env";
 import PopupManager from "../../util/PopupManager";
 import { useIonRouter } from "@ionic/react";
+import HighlightedText from "../../components/HighlightedText";
 
 export default function StartE2Project() {
   useRedirectForAnon();
@@ -298,17 +299,5 @@ export default function StartE2Project() {
         </Flex>
       </Page>
     </>
-  );
-}
-
-function HighlightedText(props: { children: React.ReactNode }) {
-  return (
-    <b
-      style={{
-        color: "var(--ion-color-success)",
-      }}
-    >
-      {props.children}
-    </b>
   );
 }

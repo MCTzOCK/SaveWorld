@@ -66,6 +66,7 @@ import MdHelp from "./pages/resources/MdHelp";
 import CommunityMessagesChatsList from "./pages/community/CommunityMessagesChatsList";
 import CommunityMessagesGroupsList from "./pages/community/CommunityMessagesGroupsList";
 import StartE2Project from "./pages/e2-projects/StartE2Project";
+import MyE2Projects from "./pages/e2-projects/MyE2Projects";
 
 setupIonicReact({
   mode: "ios",
@@ -147,6 +148,7 @@ export default function App() {
     "/eco-tracker": EcoTracker,
     "/e2": E2,
     "/e2-projects/new": StartE2Project,
+    "/e2-projects/my": MyE2Projects,
     "/community": CommunityDashboard,
     "/community/u/:username": CommunityProfile,
     "/community/create/blog": CommunityCreateBlog,

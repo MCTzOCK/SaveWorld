@@ -1,13 +1,13 @@
 {
   "name": "@saveworld/api-js",
-  "version": "1.0.49",
+  "version": "1.0.50",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "build:docs": "typedoc --name \"SaveWorld REST API JS Client\" --out docs src/index.ts",
     "npm:push": "npm publish",
     "git:push": "git push origin main",
-    "pipeline": "git add . && git commit -m \"[api-js] Auto pipeline commit\" && npm version patch && npm run build && npm run build:docs && git add . && git commit -m \"[api-js] Auto pipeline commit\" && npm run npm:push && npm run git:push"
+    "pipeline": "npm version patch && npm run build && npm run build:docs && git add . && git commit -m \"[api-js] Auto update api docs\" && npm run npm:push"
   },
   "author": {
     "name": "Ben Siebert",

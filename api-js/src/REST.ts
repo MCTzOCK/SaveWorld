@@ -929,5 +929,16 @@ export class REST {
         },
       });
     },
+    /**
+     * @return the projects the user is in
+     * @param token used to authenticate
+     */
+    my: async (token: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eco-projects/my",
+        method: "GET",
+        token: token,
+      });
+    },
   };
 }
