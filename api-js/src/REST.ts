@@ -981,5 +981,107 @@ export class REST {
         },
       });
     },
+    /**
+     * Receives all homepage segments of a project
+     * @param token used to authenticate
+     * @param id of the project to get
+     */
+    homepage: async (token: string, id: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL + "/eco-projects/project/homepage/segments?id=" + id,
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * Creates a new homepage segment
+     * @param token used to authenticate
+     * @param id of the project to create the segment for
+     * @param title of the segment
+     * @param content of the segment
+     * @param type of the segment
+     */
+    createHomepageSegment: async (
+      token: string,
+      id: string,
+      title: string,
+      content: string,
+      type: string,
+      pinned: boolean,
+    ) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/homepage/create-segment?id=" +
+          id,
+        method: "POST",
+        token: token,
+        body: {
+          title: title,
+          content: content,
+          type: type,
+          pinned: pinned,
+        },
+      });
+    },
+    /**
+     * Deletes a homepage segment
+     * @param token used to authenticate
+     * @param id of the segment to delete
+     * @param projectId of the project to delete the segment from
+     */
+    deleteHomepageSegment: async (
+      token: string,
+      id: string,
+      projectId: string,
+    ) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/homepage/delete-segment?id=" +
+          id +
+          "&projectId=" +
+          projectId,
+        method: "DELETE",
+        token: token,
+      });
+    },
+    /**
+     * Updates a homepage segment
+     * @param token used to authenticate
+     * @param id of the segment to update
+     * @param projectId of the project to update the segment from
+     * @param title of the segment
+     * @param content of the segment
+     * @param type of the segment
+     * @param pinned if the segment is pinned
+     */
+    updateHomepageSegment: async (
+      token: string,
+      id: string,
+      projectId: string,
+      title: string,
+      content: string,
+      type: string,
+      pinned: boolean,
+    ) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/homepage/update-segment?id=" +
+          id +
+          "&projectId=" +
+          projectId,
+        method: "POST",
+        token: token,
+        body: {
+          title: title,
+          content: content,
+          type: type,
+          pinned: pinned,
+        },
+      });
+    },
   };
 }

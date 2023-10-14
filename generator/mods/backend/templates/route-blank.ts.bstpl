@@ -1,0 +1,23 @@
+/**
+ * //path
+ *
+ * Author: Ben Siebert <hello@ben-siebert.de>
+ * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
+ * License: Project License
+ * Created At: //path
+ *
+ */
+import { Request, Response } from "express";
+//NEEDS_AUTH_IMPORT
+//NEEDS_MODEL_IMPORT
+
+export default async function (req: Request, res: Response) {
+  try {
+    //NEEDS_AUTH
+  } catch (e) {
+    res.status(500).json({
+      status: 500,
+      error: e.message,
+    });
+  }
+}

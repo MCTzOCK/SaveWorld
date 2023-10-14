@@ -65,7 +65,11 @@ export default function SelectPopupComponent(props: {
             <AlertDialogBody>
               <FormControl isRequired>
                 <FormLabel>Eingabe</FormLabel>
-                <Select id={"input-" + id} placeholder="Wähle eine Option">
+                <Select
+                  id={"input-" + id}
+                  placeholder="Wähle eine Option"
+                  size={"lg"}
+                >
                   {props.choices.map((c, i) => {
                     return <option key={i}>{c}</option>;
                   })}

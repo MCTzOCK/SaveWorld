@@ -13,7 +13,7 @@ import { useRedirectForAnon } from "../../../hooks/useRedirectForAnon";
 import { E2Project } from "../../../util/types/E2Project";
 import Page from "../../../components/Page";
 import { useParams } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { REST } from "@saveworld/api-js";
 import PopupManager from "../../../util/PopupManager";
 import { useIonRouter } from "@ionic/react";
@@ -26,6 +26,8 @@ import {
   Box,
   Button,
 } from "@chakra-ui/react";
+import { E2HomepageSegments } from "../../../util/types/E2HomepageSegment";
+import E2ProjectHomepageSegment from "../../../components/E2ProjectHomepageSegment";
 
 export default function E2ProjectHomepage() {
   useRedirectForAnon();
@@ -40,6 +42,31 @@ export default function E2ProjectHomepage() {
   useEffect(() => {
     reloadProject();
   }, [id]);
+
+  const [segments, setSegments] = useState<E2HomepageSegments>([]);
+
+  useEffect(() => {
+    reloadSegments();
+  }, [project]);
+
+  const reloadSegments = async () => {
+    if (!project) return;
+
+    const res = await REST.EcoProjects.homepage(
+      localStorage.getItem("token") as string,
+      project._id,
+    );
+
+    if (res.status !== 200) {
+      await PopupManager.alert({
+        title: "Fehler",
+        description:
+          "Homepage konnte nicht geladen werden: " + res.payload.error,
+      });
+    } else {
+      setSegments(res.payload.segments);
+    }
+  };
 
   const reloadProject = async () => {
     const res = await REST.EcoProjects.project(
@@ -93,7 +120,21 @@ export default function E2ProjectHomepage() {
             </Alert>
           </>
         )}
-        {project.name}
+        {segments
+          .sort((a, b) => {
+            return a.pinned === b.pinned ? 0 : a.pinned ? -1 : 1;
+          })
+          .map((segment) => {
+            return (
+              <>
+                <E2ProjectHomepageSegment
+                  segment={segment}
+                  editable={false}
+                  reloadSegments={reloadSegments}
+                />
+              </>
+            );
+          })}
       </Page>
     </>
   );
