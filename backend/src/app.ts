@@ -27,6 +27,7 @@ import GetChatChannel from "./socket/channels/GetChatChannel";
 import CreateChatMessageChannel from "./socket/channels/CreateChatMessageChannel";
 import ChatMessagesChannel from "./socket/channels/ChatMessagesChannel";
 import AddChatGroupMemberChannel from "./socket/channels/AddChatGroupMemberChannel";
+//KEEP_IMPORT_ADD_POINT
 
 /* LOGGER */
 
@@ -169,6 +170,7 @@ const port = process.env.PORT || 3000;
       socket,
       "sw:chats.groups.add.member",
     ).register();
+    //KEEP_CHANNEL_ADD_POINT
 
     socket.onAny((event, ...args) => {
       console.log(

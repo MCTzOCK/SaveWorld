@@ -1,35 +1,25 @@
 /**
- * backend/src/routes/notifications/my.ts
+ * //path
  *
  * Author: Ben Siebert <hello@ben-siebert.de>
  * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
  * License: Project License
- * Created At: 30.09.2023
+ * Created At: //date
  *
  */
-
-import { isAuthenticated } from "../../util/isAuthenticated";
 import { Request, Response } from "express";
-import PushNotificationModel from "../../models/PushNotificationModel";
+import //MODEL_NAME from "//MODEL_PATH";
+//NEEDS_AUTH_IMPORT
 
 export default async function (req: Request, res: Response) {
   try {
-    const { auth, user } = await isAuthenticated(req, res);
 
-    if (!auth) {
-      res.status(401).json({
-        error: "Unauthorized",
-        status: 401,
-      });
-      return;
-    }
+    //NEEDS_AUTH
 
-    const PAGE_SIZE = 10;
+    const PAGE_SIZE = //PAGE_SIZE;
     const page = req.query.page ? parseInt(req.query.page.toString()) : 0;
 
-    const entries = await PushNotificationModel.find({
-      user: user._id,
-    });
+    const entries = await //MODEL_NAME.find({});
 
     entries.sort((a, b) => {
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
