@@ -28,8 +28,9 @@ import {
   IonList,
   IonPopover,
   IonSearchbar,
+  useIonRouter,
 } from "@ionic/react";
-import { List, ListIcon, ListItem } from "@chakra-ui/react";
+import { Button, Grid, List, ListIcon, ListItem } from "@chakra-ui/react";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import HighlightedText from "../../components/HighlightedText";
 import { useUserData } from "../../hooks/useUserData";
@@ -65,6 +66,8 @@ export default function MyE2Projects() {
       });
     }
   };
+
+  const router = useIonRouter();
 
   return (
     <>
@@ -145,92 +148,142 @@ export default function MyE2Projects() {
             </IonContent>
           </IonPopover>
         </div>
-        {projects
-          .filter((p) => {
-            if (query === "") {
-              return true;
-            }
-            return (
-              p.name.toLowerCase().includes(query.toLowerCase()) ||
-              p.geoLocationDisplayName
-                .toLowerCase()
-                .includes(query.toLowerCase())
-            );
-          })
-          .filter((p) => {
-            if (filter === "all") return true;
-            if (filter === "owner") return p.owner === userInfo._id;
-            if (filter === "only-upcoming") {
+        <Grid
+          templateColumns={[
+            "repeat(1, 1fr)",
+            "repeat(2, 1fr)",
+            "repeat(3, 1fr)",
+          ]}
+        >
+          {projects
+            .filter((p) => {
+              if (query === "") {
+                return true;
+              }
               return (
-                new Date(p.startDate).getTime() +
-                  p.lastsDays * 24 * 60 * 60 * 1000 >
-                new Date().getTime()
+                p.name.toLowerCase().includes(query.toLowerCase()) ||
+                p.geoLocationDisplayName
+                  .toLowerCase()
+                  .includes(query.toLowerCase())
               );
-            }
-            return false;
-          })
-          .map((p) => {
-            return (
-              <>
-                <IonCard routerLink={"/e2-projects/project/" + p._id}>
-                  <IonCardHeader>
-                    <IonCardTitle>{p.name}</IonCardTitle>
-                    <IonCardSubtitle>
-                      {new Date(p.startDate).toLocaleDateString()}-
-                      {new Date(
-                        new Date(p.startDate).getTime() +
-                          p.lastsDays * 24 * 60 * 60 * 1000,
-                      ).toLocaleDateString()}
-                    </IonCardSubtitle>
-                  </IonCardHeader>
-                  <IonCardContent>
-                    <List spacing={3}>
-                      <ListItem>
-                        <ListIcon
-                          as={FaCheckCircle}
-                          color={"saveworld_green.500"}
-                        />
-                        {p.geoLocationDisplayName}
-                        {p.geoLocationLon.length > 0 &&
-                          p.geoLocationLat.length > 0 && (
-                            <>
-                              <br />({p.geoLocationLat}, {p.geoLocationLon})
-                            </>
-                          )}
-                      </ListItem>
-                      <ListItem>
-                        <ListIcon
-                          as={
-                            p.geoLocationType === "nominatim"
-                              ? FaCheckCircle
-                              : FaTimesCircle
-                          }
-                          color={
-                            p.geoLocationType === "nominatim"
-                              ? "saveworld_green.500"
-                              : "var(--ion-color-danger)"
-                          }
-                        />
-                        {p.geoLocationType === "nominatim"
-                          ? `Auf der Karte auffindbar`
-                          : "Nicht auf der Karte angezeigt"}
-                      </ListItem>
-                      {p.geoLocationType !== "nominatim" && (
+            })
+            .filter((p) => {
+              if (filter === "all") return true;
+              if (filter === "owner") return p.owner === userInfo._id;
+              if (filter === "only-upcoming") {
+                return (
+                  new Date(p.startDate).getTime() +
+                    p.lastsDays * 24 * 60 * 60 * 1000 >
+                  new Date().getTime()
+                );
+              }
+              return false;
+            })
+            .map((p) => {
+              return (
+                <>
+                  <IonCard routerLink={"/e2-projects/project/" + p._id}>
+                    <IonCardHeader>
+                      <IonCardTitle>{p.name}</IonCardTitle>
+                      <IonCardSubtitle>
+                        {new Date(p.startDate).toLocaleDateString()}-
+                        {new Date(
+                          new Date(p.startDate).getTime() +
+                            p.lastsDays * 24 * 60 * 60 * 1000,
+                        ).toLocaleDateString()}
+                      </IonCardSubtitle>
+                    </IonCardHeader>
+                    <IonCardContent>
+                      <List spacing={3}>
                         <ListItem>
-                          Dein Projekt kann nicht auf der Karte angezeigt
-                          werden, da die genaue Adresse nicht bekannt ist. Die
-                          Adresse kann in den Projekteinstellungen geändert
-                          werden. <HighlightedText>WICHTIG</HighlightedText>:
-                          Klicke auf eine vorgeschlagene Adresse, um diese zu
-                          übernehmen.
+                          <ListIcon
+                            as={FaCheckCircle}
+                            color={"saveworld_green.500"}
+                          />
+                          {p.geoLocationDisplayName}
+                          {p.geoLocationLon.length > 0 &&
+                            p.geoLocationLat.length > 0 && (
+                              <>
+                                <br />({p.geoLocationLat}, {p.geoLocationLon})
+                              </>
+                            )}
                         </ListItem>
-                      )}
-                    </List>
-                  </IonCardContent>
-                </IonCard>
-              </>
-            );
-          })}
+                        <ListItem>
+                          <ListIcon
+                            as={
+                              p.geoLocationType === "nominatim"
+                                ? FaCheckCircle
+                                : FaTimesCircle
+                            }
+                            color={
+                              p.geoLocationType === "nominatim"
+                                ? "saveworld_green.500"
+                                : "var(--ion-color-danger)"
+                            }
+                          />
+                          {p.geoLocationType === "nominatim"
+                            ? `Auf der Karte auffindbar`
+                            : "Nicht auf der Karte angezeigt"}
+                        </ListItem>
+                        {p.geoLocationType !== "nominatim" && (
+                          <ListItem>
+                            Dein Projekt kann nicht auf der Karte angezeigt
+                            werden, da die genaue Adresse nicht bekannt ist. Die
+                            Adresse kann in den Projekteinstellungen geändert
+                            werden. <HighlightedText>WICHTIG</HighlightedText>:
+                            Klicke auf eine vorgeschlagene Adresse, um diese zu
+                            übernehmen.
+                          </ListItem>
+                        )}
+                      </List>
+                    </IonCardContent>
+                  </IonCard>
+                </>
+              );
+            })}
+          {projects
+            .filter((p) => {
+              if (query === "") {
+                return true;
+              }
+              return (
+                p.name.toLowerCase().includes(query.toLowerCase()) ||
+                p.geoLocationDisplayName
+                  .toLowerCase()
+                  .includes(query.toLowerCase())
+              );
+            })
+            .filter((p) => {
+              if (filter === "all") return true;
+              if (filter === "owner") return p.owner === userInfo._id;
+              if (filter === "only-upcoming") {
+                return (
+                  new Date(p.startDate).getTime() +
+                    p.lastsDays * 24 * 60 * 60 * 1000 >
+                  new Date().getTime()
+                );
+              }
+              return false;
+            }).length === 0 && (
+            <>
+              <IonCard>
+                <IonCardContent>
+                  Keine Projekte gefunden.
+                  <Button
+                    color={"saveworld_green.500"}
+                    w={"100%"}
+                    mt={4}
+                    onClick={() => {
+                      router.push("/e2-projects/new", "none", "replace");
+                    }}
+                  >
+                    Projekt erstellen
+                  </Button>
+                </IonCardContent>
+              </IonCard>
+            </>
+          )}
+        </Grid>
       </Page>
     </>
   );
