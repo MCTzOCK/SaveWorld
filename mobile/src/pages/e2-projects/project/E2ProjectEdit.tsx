@@ -82,7 +82,10 @@ export default function E2ProjectEdit() {
             </TabList>
             <TabPanels>
               <TabPanel>
-                <E2ProjectEditDetails project={project} />
+                <E2ProjectEditDetails
+                  project={project}
+                  setProject={setProject}
+                />
               </TabPanel>
               <TabPanel>
                 <h1>Homepage</h1>

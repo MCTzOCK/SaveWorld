@@ -22,8 +22,12 @@ import * as React from "react";
 import { useEffect } from "react";
 import { REST } from "@saveworld/api-js";
 import { NOMINATIM_ENDPOINT } from "../env";
+import PopupManager from "../util/PopupManager";
 
-export default function E2ProjectEditDetails(props: { project: E2Project }) {
+export default function E2ProjectEditDetails(props: {
+  project: E2Project;
+  setProject: (p: E2Project) => void;
+}) {
   const [locationQuery, setLocationQuery] = React.useState("");
   const [searchResults, setSearchResults] = React.useState<string[]>([]);
 
@@ -50,6 +54,44 @@ export default function E2ProjectEditDetails(props: { project: E2Project }) {
       <form
         onSubmit={async (e) => {
           e.preventDefault();
+
+          const data = new FormData(e.target as HTMLFormElement);
+          const name = data.get("name") as string;
+          const startDate = data.get("startDate") as string;
+          const lastsDays = data.get("lastsDays") as string;
+          const geoLocation = data.get("geoLocation") as string;
+
+          if (new Date(startDate).getTime() < new Date().getTime()) {
+            await PopupManager.alertAsync({
+              title: "Fehler",
+              description: "Das Startdatum muss in der Zukunft liegen.",
+            });
+            return;
+          }
+
+          const res = await REST.EcoProjects.update(
+            localStorage.getItem("token") as string,
+            props.project._id,
+            name,
+            startDate,
+            parseInt(lastsDays),
+            geoLocation,
+          );
+
+          if (res.status === 200) {
+            props.setProject(res.payload.project);
+            await PopupManager.alertAsync({
+              title: "Erfolgreich",
+              description: "Dein Projekt wurde erfolgreich gespeichert.",
+            });
+          } else {
+            await PopupManager.alertAsync({
+              title: "Fehler",
+              description:
+                "Dein Projekt konnte nicht gespeichert werden: " +
+                res.payload.error,
+            });
+          }
         }}
       >
         <VStack spacing={4}>
