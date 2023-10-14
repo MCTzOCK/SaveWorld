@@ -940,5 +940,46 @@ export class REST {
         token: token,
       });
     },
+    /**
+     * @return the requested project
+     * @param token used to authenticate
+     * @param id of the project to get
+     */
+    project: async (token: string, id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eco-projects/project/receive?id=" + id,
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * Updates a project
+     * @param token used to authenticate
+     * @param id of the project to update
+     * @param name of the project
+     * @param startDate of the project
+     * @param lastsDays of the project
+     * @param geoLocation of the project
+     */
+    update: async (
+      token: string,
+      id: string,
+      name: string,
+      startDate: string,
+      lastsDays: number,
+      geoLocation: string,
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eco-projects/project/edit?id=" + id,
+        method: "POST",
+        token: token,
+        body: {
+          name: name,
+          startDate: startDate,
+          lastsDays: lastsDays,
+          geoLocation: geoLocation,
+        },
+      });
+    },
   };
 }

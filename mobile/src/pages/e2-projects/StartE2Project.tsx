@@ -272,7 +272,7 @@ export default function StartE2Project() {
                                     }}
                                     color={"var(--ion-color-success)"}
                                     bg={"whiteAlpha.200"}
-                                    p={1}
+                                    p={2}
                                     rounded={"md"}
                                   >
                                     {s}

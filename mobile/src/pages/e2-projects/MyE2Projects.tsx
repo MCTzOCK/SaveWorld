@@ -182,7 +182,7 @@ export default function MyE2Projects() {
             .map((p) => {
               return (
                 <>
-                  <IonCard routerLink={"/e2-projects/project/" + p._id}>
+                  <IonCard routerLink={"/e2-projects/" + p._id}>
                     <IonCardHeader>
                       <IonCardTitle>{p.name}</IonCardTitle>
                       <IonCardSubtitle>
