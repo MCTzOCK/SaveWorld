@@ -76,6 +76,11 @@ export default async function (req: Request, res: Response) {
     segment.pinned = pinned;
 
     await segment.save();
+
+    res.status(200).json({
+      status: 200,
+      segment: segment,
+    });
   } catch (e) {
     res.status(500).json({
       status: 500,

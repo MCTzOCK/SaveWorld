@@ -63,7 +63,7 @@ export default async function (req: Request, res: Response) {
       return;
     }
 
-    await segment.remove();
+    await segment.deleteOne();
 
     res.status(200).json({
       status: 200,
