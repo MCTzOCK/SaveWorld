@@ -95,7 +95,7 @@ export default function E2ProjectEdit() {
               <TabPanel>
                 <E2ProjectEditMembers
                   project={project}
-                  setProject={setProject}
+                  reloadProject={reloadProject}
                 />
               </TabPanel>
             </TabPanels>

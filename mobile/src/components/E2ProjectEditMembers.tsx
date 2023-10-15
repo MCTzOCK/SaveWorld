@@ -13,7 +13,7 @@ import { E2Project } from "../util/types/E2Project";
 
 export default function E2ProjectEditMembers(props: {
   project: E2Project;
-  setProject: (p: E2Project) => void;
+  reloadProject: () => void;
 }) {
   return (
     <>
