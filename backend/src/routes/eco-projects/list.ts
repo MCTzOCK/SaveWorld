@@ -22,13 +22,14 @@ export default async function (req: Request, res: Response) {
 
     const PAGE_SIZE = 4;
     const page = req.query.page ? parseInt(req.query.page.toString()) : 0;
-    const search = req.query.q ? req.query.search.toString() : "";
+    const search = req.query.q ? req.query.q.toString() : "";
 
     const entries = await EcoProjectModel.find({
       $or: [
-        { title: { $regex: search, $options: "i" } },
+        { name: { $regex: search, $options: "i" } },
         { geoLocationDisplayName: { $regex: search, $options: "i" } },
       ],
+      startDate: { $gte: new Date() },
     });
 
     entries.sort((a, b) => {

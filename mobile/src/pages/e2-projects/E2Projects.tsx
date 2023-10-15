@@ -13,6 +13,7 @@ import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
 import Page from "../../components/Page";
 import MobileBox from "../../components/MobileBox";
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import E2FindProjectsList from "../../components/E2FindProjectsList";
 
 export default function E2Projects() {
   useRedirectForAnon();
@@ -29,7 +30,7 @@ export default function E2Projects() {
             </TabList>
             <TabPanels>
               <TabPanel>
-                <h1>Liste</h1>
+                <E2FindProjectsList />
               </TabPanel>
               <TabPanel>
                 <h1>Karte</h1>
