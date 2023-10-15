@@ -110,7 +110,30 @@ module.exports = async function () {
     fs.mkdirSync(path.dirname(routeFile), { recursive: true });
   }
 
+  const appFilePath = path.join(mobileRoot, "src", "App.tsx");
+
+  const appFileContent = fs.readFileSync(appFilePath, "utf8");
+
+  let rtName = routeFile
+    .replaceAll("\\", "/")
+    .split("/")
+    .slice(-1)[0]
+    .split(".")[0];
+
+  const newAppFileContent = await processTemplate(appFileContent, {
+    KEEP_IMPORTS: `import ${rtName} from "./${path
+      .relative(
+        path.dirname(appFilePath),
+        path.join(mobileRoot, "src", "pages", config.routePath + ".tsx"),
+      )
+      .replaceAll("\\", "/")
+      .replaceAll(".tsx", "")}";`,
+    KEEP_ROUTES: `"${routeName.value}": ${rtName},\n`,
+  });
+
   fs.writeFileSync(routeFile, output);
+
+  fs.writeFileSync(appFilePath, newAppFileContent);
 
   console.log("Route created at " + routeFile + "!");
 };
