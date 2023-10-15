@@ -69,6 +69,7 @@ import StartE2Project from "./pages/e2-projects/StartE2Project";
 import MyE2Projects from "./pages/e2-projects/MyE2Projects";
 import E2ProjectHomepage from "./pages/e2-projects/project/E2ProjectHomepage";
 import E2ProjectEdit from "./pages/e2-projects/project/E2ProjectEdit";
+import E2Projects from "./pages/e2-projects/E2Projects";
 
 setupIonicReact({
   mode: "ios",
@@ -151,6 +152,7 @@ export default function App() {
     "/e2": E2,
     "/e2-projects/new": StartE2Project,
     "/e2-projects/my": MyE2Projects,
+    "/e2-projects/search": E2Projects,
     "/e2-projects/:id": E2ProjectHomepage,
     "/e2-projects/:id/edit": E2ProjectEdit,
     "/community": CommunityDashboard,

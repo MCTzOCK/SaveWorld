@@ -1083,5 +1083,37 @@ export class REST {
         },
       });
     },
+    /**
+     * @return the requested projects
+     * @param token used to authenticate
+     * @param page the page to get
+     * @param query the query to search for
+     */
+    projects: async (token: string, page: number, query?: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/list?page=" +
+          page +
+          (query ? "&q=" + query : ""),
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * Toggles the membership of a user
+     * @param token used to authenticate
+     * @param projectId of the project to toggle the membership for
+     */
+    toggleMembership: async (token: string, projectId: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/toggle-member-status?projectId=" +
+          projectId,
+        method: "POST",
+        token: token,
+      });
+    },
   };
 }

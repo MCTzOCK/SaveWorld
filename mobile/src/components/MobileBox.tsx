@@ -27,7 +27,7 @@ export default function MobileBox(props: {
           backgroundColor={"rgba(10,10,10,0.5)"}
           borderRadius={"12px"}
           border={"4px solid rgba(40,40,40,1)"}
-          w={["100%", "75%", "50%", "25%"]}
+          w={["100%", "75%", "50%"]}
           minW={"200px"}
           p={props.padding || "2"}
         >
