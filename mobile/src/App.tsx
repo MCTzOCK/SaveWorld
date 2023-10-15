@@ -70,6 +70,7 @@ import MyE2Projects from "./pages/e2-projects/MyE2Projects";
 import E2ProjectHomepage from "./pages/e2-projects/project/E2ProjectHomepage";
 import E2ProjectEdit from "./pages/e2-projects/project/E2ProjectEdit";
 import E2Projects from "./pages/e2-projects/E2Projects";
+//KEEP_IMPORTS
 
 setupIonicReact({
   mode: "ios",
@@ -167,6 +168,7 @@ export default function App() {
     "/onboarding": Home,
     "/s2": SocketTest,
     "/resources/md-help": MdHelp,
+    //KEEP_ROUTES
   };
 
   return (

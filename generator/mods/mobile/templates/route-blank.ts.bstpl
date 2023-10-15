@@ -1,0 +1,22 @@
+/**
+ * //path
+ *
+ * Author: Ben Siebert <hello@ben-siebert.de>
+ * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
+ * License: Project License
+ * Created At: //path
+ *
+ */
+import * as React from "react";
+//NEEDS_AUTH_IMPORT
+//PAGE_IMPORT
+
+export default function //ROUTE_NAME() {
+    //NEEDS_AUTH
+
+    return (
+        <Page title={"//ROUTE_TITLE"}>
+            //ROUTE_TITLE
+        </Page>
+    );
+}
