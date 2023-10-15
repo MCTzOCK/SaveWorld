@@ -28,6 +28,7 @@ import {
 } from "@chakra-ui/react";
 import { E2HomepageSegments } from "../../../util/types/E2HomepageSegment";
 import E2ProjectHomepageSegment from "../../../components/E2ProjectHomepageSegment";
+import MobileBox from "../../../components/MobileBox";
 
 export default function E2ProjectHomepage() {
   useRedirectForAnon();
@@ -92,49 +93,97 @@ export default function E2ProjectHomepage() {
   return (
     <>
       <Page title={project.name}>
-        {(project.owner === userInfo._id ||
-          project.users.find(
-            (u) => u.userId === userInfo._id && u.permissions !== "MEMBER",
-          )) && (
-          <>
-            <Alert status={"info"}>
-              <AlertIcon />
-              <AlertDescription>
-                Du kannst dieses Projekt bearbeiten!
-                <Box w={"100%"}>
-                  <Button
-                    w={"100%"}
-                    color={"var(--ion-color-success)"}
-                    onClick={() => {
-                      router.push(
-                        "/e2-projects/" + project._id + "/edit",
-                        "none",
-                        "replace",
-                      );
-                    }}
-                  >
-                    Bearbeiten
-                  </Button>
-                </Box>
-              </AlertDescription>
-            </Alert>
-          </>
-        )}
-        {segments
-          .sort((a, b) => {
-            return a.pinned === b.pinned ? 0 : a.pinned ? -1 : 1;
-          })
-          .map((segment) => {
-            return (
-              <>
-                <E2ProjectHomepageSegment
-                  segment={segment}
-                  editable={false}
-                  reloadSegments={reloadSegments}
-                />
-              </>
-            );
-          })}
+        <MobileBox>
+          {(project.owner === userInfo._id ||
+            project.users.find(
+              (u) => u.userId === userInfo._id && u.permissions !== "MEMBER",
+            )) && (
+            <>
+              <Alert status={"info"}>
+                <AlertIcon />
+                <AlertDescription>
+                  Du kannst dieses Projekt bearbeiten!
+                  <Box w={"100%"}>
+                    <Button
+                      w={"100%"}
+                      color={"var(--ion-color-success)"}
+                      onClick={() => {
+                        router.push(
+                          "/e2-projects/" + project._id + "/edit",
+                          "none",
+                          "replace",
+                        );
+                      }}
+                    >
+                      Bearbeiten
+                    </Button>
+                  </Box>
+                </AlertDescription>
+              </Alert>
+            </>
+          )}
+          {project.owner !== userInfo._id && (
+            <>
+              <Alert status={"info"}>
+                <AlertIcon />
+                <AlertDescription w={"100%"}>
+                  {project.users.find((u) => u.userId === userInfo._id)
+                    ? "Möchtest du kein Teil des Projektes mehr sein?"
+                    : "Möchtest du Teil dieses Projektes werden und mitwirken?"}
+                  <Box w={"100%"}>
+                    <Button
+                      w={"100%"}
+                      color={
+                        "var(--ion-color-" +
+                        (project.users.find((u) => u.userId === userInfo._id)
+                          ? "danger"
+                          : "success") +
+                        ")"
+                      }
+                      onClick={async () => {
+                        const res = await REST.EcoProjects.toggleMembership(
+                          localStorage.getItem("token") as string,
+                          project._id,
+                        );
+
+                        if (res.status === 200) {
+                          await PopupManager.alertAsync({
+                            title: "Erfolgreich",
+                            description:
+                              "Du bist ab jetzt " +
+                              (res.payload.memberStatus === 0
+                                ? "kein Teil des Projektes mehr."
+                                : "Teil des Projektes!"),
+                          });
+                          await reloadProject();
+                        }
+                      }}
+                    >
+                      {project.users.find((u) => u.userId === userInfo._id)
+                        ? "Verlassen"
+                        : "Beitreten"}
+                    </Button>
+                  </Box>
+                </AlertDescription>
+              </Alert>
+            </>
+          )}
+          {segments
+            .sort((a, b) => {
+              return a.pinned === b.pinned ? 0 : a.pinned ? -1 : 1;
+            })
+            .map((segment) => {
+              return (
+                <>
+                  <E2ProjectHomepageSegment
+                    segment={segment}
+                    editable={false}
+                    reloadSegments={reloadSegments}
+                  />
+                </>
+              );
+            })}
+        </MobileBox>
       </Page>
     </>
   );

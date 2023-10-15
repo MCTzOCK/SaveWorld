@@ -79,9 +79,7 @@ export default function E2FindProjectsList() {
           padding: 0,
         }}
       />
-      <Grid
-        templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
-      >
+      <Grid templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]}>
         {projects.map((p) => {
           return (
             <>
@@ -89,7 +87,7 @@ export default function E2FindProjectsList() {
                 routerLink={"/e2-projects/" + p._id}
                 style={{
                   padding: 0,
-                  marginInline: 0,
+                  margin: 4,
                 }}
               >
                 <IonCardHeader>

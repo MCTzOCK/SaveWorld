@@ -37,8 +37,12 @@ export default async function (req: Request, res: Response) {
       return;
     }
 
-    if (project.users.find((u) => u.userId === user._id)) {
-      project.users = project.users.filter((u) => u.userId !== user._id);
+    if (
+      project.users.find((u) => u.userId.toString() === user._id.toString())
+    ) {
+      project.users = project.users.filter(
+        (u) => u.userId.toString() !== user._id.toString(),
+      );
     } else {
       project.users.push({
         userId: user._id,
@@ -52,7 +56,11 @@ export default async function (req: Request, res: Response) {
 
     res.status(200).json({
       status: 200,
-      memberStatus: project.users.find((u) => u.userId === user._id) ? 1 : 0,
+      memberStatus: project.users.find(
+        (u) => u.userId.toString() === user._id.toString(),
+      )
+        ? 1
+        : 0,
     });
   } catch (e) {
     res.status(500).json({
