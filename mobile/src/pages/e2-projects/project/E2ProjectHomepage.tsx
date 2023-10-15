@@ -75,7 +75,7 @@ export default function E2ProjectHomepage() {
     );
 
     if (res.status !== 200) {
-      router.push("/eco-projects/my", "none", "replace");
+      router.push("/e2-projects/my", "none", "replace");
     } else {
       setProject(res.payload.project);
     }

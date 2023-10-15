@@ -1083,5 +1083,22 @@ export class REST {
         },
       });
     },
+    /**
+     * @return the requested projects
+     * @param token used to authenticate
+     * @param page the page to get
+     * @param query the query to search for
+     */
+    projects: async (token: string, page: number, query?: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/list?page=" +
+          page +
+          (query ? "&q=" + query : ""),
+        method: "GET",
+        token: token,
+      });
+    },
   };
 }
