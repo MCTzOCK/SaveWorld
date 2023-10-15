@@ -1100,5 +1100,20 @@ export class REST {
         token: token,
       });
     },
+    /**
+     * Toggles the membership of a user
+     * @param token used to authenticate
+     * @param projectId of the project to toggle the membership for
+     */
+    toggleMembership: async (token: string, projectId: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/toggle-member-status?projectId=" +
+          projectId,
+        method: "POST",
+        token: token,
+      });
+    },
   };
 }
