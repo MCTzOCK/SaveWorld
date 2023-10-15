@@ -8,4 +8,31 @@
  *
  */
 
-console.log("Not implemented yet!");
+const fs = require("fs");
+const path = require("path");
+const prompts = require("prompts");
+const createRoute = require("./create-route");
+
+(async () => {
+  const response = await prompts({
+    type: "select",
+    name: "value",
+    message: "What do you want to create?",
+    choices: [
+      {
+        title: "A new Route",
+        value: "route",
+      },
+    ],
+  });
+
+  if (!response.value) {
+    return;
+  }
+
+  if (response.value === "route") {
+    await createRoute();
+  } else {
+    console.log("Not implemented yet!");
+  }
+})();
