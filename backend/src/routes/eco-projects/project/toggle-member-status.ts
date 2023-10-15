@@ -42,7 +42,7 @@ export default async function (req: Request, res: Response) {
     } else {
       project.users.push({
         userId: user._id,
-        role: "MEMBER",
+        permissions: "MEMBER",
       });
     }
 
