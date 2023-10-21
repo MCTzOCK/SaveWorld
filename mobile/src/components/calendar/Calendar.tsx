@@ -42,7 +42,14 @@ export default function Calendar(props: {
     const endWeekNumber =
       moment().year(props.year).month(props.month).endOf("month").week() + 1;
 
-    for (let weekNum = startWeekNumber; weekNum < endWeekNumber; weekNum++) {
+    console.log(startWeekNumber, endWeekNumber);
+
+    for (
+      let weekNum = startWeekNumber;
+      weekNum <
+      (endWeekNumber < startWeekNumber ? endWeekNumber + 52 : endWeekNumber);
+      weekNum++
+    ) {
       for (let dayNum = 1; dayNum <= 7; dayNum++) {
         const day = moment()
           .year(props.year)

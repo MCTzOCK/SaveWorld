@@ -10,8 +10,14 @@
 
 import * as React from "react";
 import Calendar from "./calendar/Calendar";
+import { ButtonGroup, IconButton, Text } from "@chakra-ui/react";
+import moment from "moment";
+import { FaBackward, FaForward } from "react-icons/fa";
 
 export default function E2FindProjectsCalendar() {
+  const minMonth = new Date().getUTCMonth();
+  const minYear = new Date().getUTCFullYear();
+
   const [currentMonth, setCurrentMonth] = React.useState<number>(
     new Date().getUTCMonth(),
   );
@@ -23,6 +29,43 @@ export default function E2FindProjectsCalendar() {
 
   return (
     <>
+      <Text textAlign={"center"} mb={2}>
+        {new Date(currentYear, currentMonth).toLocaleString("default", {
+          month: "long",
+          year: "numeric",
+        })}
+      </Text>
+      <ButtonGroup mb={4} display={"flex"} justifyContent={"center"}>
+        <IconButton
+          aria-label={"Zurück"}
+          icon={<FaBackward />}
+          onClick={() => {
+            let newMonth = currentMonth - 1;
+            let newYear = currentYear;
+            if (newMonth < 1) {
+              newMonth = 11;
+              newYear--;
+            }
+            setCurrentMonth(newMonth);
+            setCurrentYear(newYear);
+          }}
+          isDisabled={currentMonth === minMonth && currentYear === minYear}
+        />
+        <IconButton
+          aria-label={"Vorwärts"}
+          icon={<FaForward />}
+          onClick={() => {
+            let newMonth = currentMonth + 1;
+            let newYear = currentYear;
+            if (newMonth > 11) {
+              newMonth = 0;
+              newYear++;
+            }
+            setCurrentMonth(newMonth);
+            setCurrentYear(newYear);
+          }}
+        />
+      </ButtonGroup>
       <Calendar
         month={currentMonth}
         year={currentYear}
