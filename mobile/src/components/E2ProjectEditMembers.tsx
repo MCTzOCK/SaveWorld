@@ -20,9 +20,11 @@ import {
 import {
   Avatar,
   Box,
+  ButtonGroup,
   chakra,
   Flex,
   Heading,
+  IconButton,
   List,
   ListIcon,
   ListItem,
@@ -30,8 +32,10 @@ import {
   UnorderedList,
 } from "@chakra-ui/react";
 import { ENDPOINT } from "../env";
-import { FaHammer } from "react-icons/fa6";
+import { FaHammer, FaTrash } from "react-icons/fa6";
 import { FaPen, FaUser } from "react-icons/fa";
+import PopupManager from "../util/PopupManager";
+import { REST } from "@saveworld/api-js";
 
 export default function E2ProjectEditMembers(props: {
   project: E2Project;
@@ -98,7 +102,12 @@ export default function E2ProjectEditMembers(props: {
                 }}
               >
                 <IonCardContent>
-                  <Flex direction={"row"} gap={4} alignItems={"center"}>
+                  <Flex
+                    direction={"row"}
+                    gap={4}
+                    alignItems={"center"}
+                    justifyContent={"space-between"}
+                  >
                     <Avatar
                       src={
                         ENDPOINT +
@@ -137,6 +146,38 @@ export default function E2ProjectEditMembers(props: {
                           : "Mitglied"}
                       </Text>
                     </Flex>
+                    <ButtonGroup>
+                      <IconButton
+                        aria-label={"Entfernen"}
+                        icon={<FaTrash />}
+                        colorScheme={"red"}
+                        onClick={async () => {
+                          if (
+                            !(await PopupManager.confirmAsync({
+                              title: "Mitglied entfernen",
+                              question:
+                                "Möchtest du das Mitglied wirklich entfernen?",
+                            }))
+                          )
+                            return;
+
+                          const res = await REST.EcoProjects.removeMember(
+                            localStorage.getItem("token") as string,
+                            props.project._id,
+                            user.userId,
+                          );
+
+                          if (res.status !== 200) {
+                            await PopupManager.alertAsync({
+                              title: "Fehler",
+                              description: res.payload.error,
+                            });
+                          } else {
+                            props.reloadProject();
+                          }
+                        }}
+                      />
+                    </ButtonGroup>
                   </Flex>
                 </IonCardContent>
               </IonCard>
