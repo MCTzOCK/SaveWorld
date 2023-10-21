@@ -20,6 +20,7 @@ export type E2Project = {
   geoLocationLon: string;
   users: {
     userId: string;
+    username: string;
     permissions: "ADMINISTRATOR" | "EDITOR" | "MEMBER";
   }[];
   _v: number;

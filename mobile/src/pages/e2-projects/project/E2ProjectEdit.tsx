@@ -21,6 +21,7 @@ import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import E2ProjectEditDetails from "../../../components/E2ProjectEditDetails";
 import MobileBox from "../../../components/MobileBox";
 import E2ProjectEditHomepage from "../../../components/E2ProjectEditHomepage";
+import E2ProjectEditMembers from "../../../components/E2ProjectEditMembers";
 
 export default function E2ProjectEdit() {
   useRedirectForAnon();
@@ -92,7 +93,10 @@ export default function E2ProjectEdit() {
                 <E2ProjectEditHomepage project={project} />
               </TabPanel>
               <TabPanel>
-                <h1>Mitglieder</h1>
+                <E2ProjectEditMembers
+                  project={project}
+                  reloadProject={reloadProject}
+                />
               </TabPanel>
             </TabPanels>
           </Tabs>

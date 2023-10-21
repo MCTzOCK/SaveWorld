@@ -34,6 +34,10 @@ const EcoProjectModel = new mongoose.Schema({
         ref: "User",
         required: true,
       },
+      username: {
+        type: String,
+        required: true,
+      },
       // ADMINISTRATOR | EDITOR | MEMBER
       permissions: {
         type: String,

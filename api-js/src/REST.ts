@@ -1115,5 +1115,49 @@ export class REST {
         token: token,
       });
     },
+    /**
+     * Removes a member from a project
+     * @param token used to authenticate
+     * @param projectId of the project to remove the member from
+     * @param userId of the user to remove
+     */
+    removeMember: async (token: string, projectId: string, userId: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/members/delete?projectId=" +
+          projectId +
+          "&userId=" +
+          userId,
+        method: "DELETE",
+        token: token,
+      });
+    },
+    /**
+     * Changes the role of a member
+     * @param token used to authenticate
+     * @param projectId of the project to change the role for
+     * @param userId of the user to change the role for
+     * @param newRole the new role to set
+     */
+    changeMemberRole: async (
+      token: string,
+      projectId: string,
+      userId: string,
+      newRole: string,
+    ) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/members/change-role?projectId=" +
+          projectId +
+          "&userId=" +
+          userId +
+          "&newRole=" +
+          newRole,
+        method: "POST",
+        token: token,
+      });
+    },
   };
 }

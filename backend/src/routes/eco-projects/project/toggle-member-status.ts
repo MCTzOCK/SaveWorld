@@ -47,6 +47,7 @@ export default async function (req: Request, res: Response) {
       project.users.push({
         userId: user._id,
         permissions: "MEMBER",
+        username: user.username,
       });
     }
 
