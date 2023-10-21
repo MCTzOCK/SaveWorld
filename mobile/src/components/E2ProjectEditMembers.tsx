@@ -36,12 +36,15 @@ import { FaHammer, FaTrash } from "react-icons/fa6";
 import { FaPen, FaUser } from "react-icons/fa";
 import PopupManager from "../util/PopupManager";
 import { REST } from "@saveworld/api-js";
+import { useUserData } from "../hooks/useUserData";
 
 export default function E2ProjectEditMembers(props: {
   project: E2Project;
   reloadProject: () => void;
 }) {
   const [query, setQuery] = useState<string>("");
+
+  const { userInfo } = useUserData();
 
   return (
     <>
@@ -65,7 +68,7 @@ export default function E2ProjectEditMembers(props: {
                 Editor
               </chakra.span>
               : Kann alles, was ein Administrator kann, außer das Projekt
-              löschen.
+              löschen und die Rollen von Mitglieder ändern.
             </ListItem>
             <ListItem>
               <ListIcon as={FaUser} color={"gray.500"} />
@@ -180,6 +183,16 @@ export default function E2ProjectEditMembers(props: {
                       <IconButton
                         aria-label={"Rolle Ändern"}
                         icon={<FaHammer />}
+                        display={
+                          props.project.owner === userInfo._id ||
+                          props.project.users.find(
+                            (u) =>
+                              u.userId === userInfo._id &&
+                              u.permissions === "ADMINISTRATOR",
+                          )
+                            ? "inherit"
+                            : "none"
+                        }
                         colorScheme={"saveworld_green"}
                         onClick={async () => {
                           let newRoleS = await PopupManager.selectAsync({
