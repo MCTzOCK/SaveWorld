@@ -1115,5 +1115,23 @@ export class REST {
         token: token,
       });
     },
+    /**
+     * Removes a member from a project
+     * @param token used to authenticate
+     * @param projectId of the project to remove the member from
+     * @param userId of the user to remove
+     */
+    removeMember: async (token: string, projectId: string, userId: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/members/delete?projectId=" +
+          projectId +
+          "&userId=" +
+          userId,
+        method: "DELETE",
+        token: token,
+      });
+    },
   };
 }
