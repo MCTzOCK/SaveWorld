@@ -1163,20 +1163,20 @@ export class REST {
      * @return the projects in the requested time period
      * @param token used to authenticate
      * @param startDate of the period
-     * @param lastsDays of the period
+     * @param endDate of the period
      */
     projectsInPeriod: async (
       token: string,
       startDate: string,
-      lastsDays: number,
+      endDate: number,
     ) => {
       return await makeRequest({
         path:
           RESTEnv.API_URL +
           "/eco-projects/calendar?startDate=" +
           startDate +
-          "&lastsDays=" +
-          lastsDays,
+          "&endDate=" +
+          endDate,
         method: "GET",
         token: token,
       });

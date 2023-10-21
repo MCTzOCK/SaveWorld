@@ -13,6 +13,8 @@ import Calendar from "./calendar/Calendar";
 import { ButtonGroup, IconButton, Text } from "@chakra-ui/react";
 import moment from "moment";
 import { FaBackward, FaForward } from "react-icons/fa";
+import { useEffect } from "react";
+import { REST } from "@saveworld/api-js";
 
 export default function E2FindProjectsCalendar() {
   const minMonth = new Date().getUTCMonth();
@@ -26,6 +28,38 @@ export default function E2FindProjectsCalendar() {
   );
 
   const [datesWithEvents, setDatesWithEvents] = React.useState<number[]>([]);
+
+  useEffect(() => {
+    REST.EcoProjects.projectsInPeriod(
+      localStorage.getItem("token") as string,
+      moment()
+        .year(currentYear)
+        .month(currentMonth)
+        .startOf("month")
+        .format("YYYY-MM-DD"),
+      moment().year(currentYear).month(currentMonth).daysInMonth(),
+    ).then((res) => {
+      let x = [];
+
+      for (const project of res.payload.results) {
+        for (
+          let i = moment(project.startDate).day();
+          i < project.lastsDays;
+          i++
+        ) {
+          if (
+            i ==
+            moment().year(currentYear).month(currentMonth).endOf("month").day()
+          )
+            break;
+
+          x.push(i);
+        }
+      }
+
+      setDatesWithEvents([]);
+    });
+  }, [currentMonth, currentYear]);
 
   return (
     <>
