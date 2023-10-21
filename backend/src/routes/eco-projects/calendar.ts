@@ -31,20 +31,14 @@ export default async function (req: Request, res: Response) {
     const sDate = new Date(startDate as string);
     const eDate = new Date(endDate as string);
 
-    const projects = await EcoProjectModel.find();
-
-    const result = projects.filter((project) => {
-      const pStartDate = new Date(project.startDate);
-      const pEndDate = new Date(project.startDate);
-      pEndDate.setDate(pEndDate.getDate() + project.lastsDays);
-
-      return (
-        (pStartDate >= sDate && pStartDate <= eDate) ||
-        (pEndDate >= sDate && pEndDate <= eDate)
-      );
+    const projects = await EcoProjectModel.find({
+      startDate: {
+        $gte: sDate,
+        $lte: eDate,
+      },
     });
 
-    res.status(200).json({ result });
+    res.status(200).json({ result: projects });
   } catch (e) {
     res.status(500).json({
       status: 500,

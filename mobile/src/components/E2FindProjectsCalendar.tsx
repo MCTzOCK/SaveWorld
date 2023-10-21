@@ -37,27 +37,21 @@ export default function E2FindProjectsCalendar() {
         .month(currentMonth)
         .startOf("month")
         .format("YYYY-MM-DD"),
-      moment().year(currentYear).month(currentMonth).daysInMonth(),
+      // @ts-ignore
+      moment()
+        .year(currentYear)
+        .month(currentMonth)
+        .endOf("month")
+        .format("YYYY-MM-DD"),
     ).then((res) => {
       let x = [];
 
-      for (const project of res.payload.results) {
-        for (
-          let i = moment(project.startDate).day();
-          i < project.lastsDays;
-          i++
-        ) {
-          if (
-            i ==
-            moment().year(currentYear).month(currentMonth).endOf("month").day()
-          )
-            break;
-
-          x.push(i);
-        }
+      for (const project of res.payload.result) {
+        x.push(moment(project.startDate).date());
       }
 
-      setDatesWithEvents([]);
+      console.log(x);
+      setDatesWithEvents(x);
     });
   }, [currentMonth, currentYear]);
 

@@ -42,8 +42,6 @@ export default function Calendar(props: {
     const endWeekNumber =
       moment().year(props.year).month(props.month).endOf("month").week() + 1;
 
-    console.log(startWeekNumber, endWeekNumber);
-
     for (
       let weekNum = startWeekNumber;
       weekNum <

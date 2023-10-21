@@ -1168,7 +1168,7 @@ export class REST {
     projectsInPeriod: async (
       token: string,
       startDate: string,
-      endDate: number,
+      endDate: string,
     ) => {
       return await makeRequest({
         path:
