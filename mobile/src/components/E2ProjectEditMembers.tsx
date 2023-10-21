@@ -177,6 +177,45 @@ export default function E2ProjectEditMembers(props: {
                           }
                         }}
                       />
+                      <IconButton
+                        aria-label={"Rolle Ändern"}
+                        icon={<FaHammer />}
+                        colorScheme={"saveworld_green"}
+                        onClick={async () => {
+                          let newRoleS = await PopupManager.selectAsync({
+                            title: "Rolle Ändern",
+                            helperText:
+                              "Wähle eine neue Rolle für das Mitglied",
+                            choices: ["Administrator", "Editor", "Mitglied"],
+                          });
+
+                          if (!newRoleS) return;
+
+                          let newRole: "ADMINISTRATOR" | "EDITOR" | "MEMBER" =
+                            newRoleS === "Administrator"
+                              ? "ADMINISTRATOR"
+                              : newRoleS === "Editor"
+                              ? "EDITOR"
+                              : "MEMBER";
+
+                          const res = await REST.EcoProjects.changeMemberRole(
+                            localStorage.getItem("token") as string,
+                            props.project._id,
+                            user.userId,
+                            newRole,
+                          );
+
+                          if (res.status !== 200) {
+                            await PopupManager.alertAsync({
+                              title: "Fehler",
+                              description: res.payload.error,
+                            });
+                            return;
+                          }
+
+                          props.reloadProject();
+                        }}
+                      />
                     </ButtonGroup>
                   </Flex>
                 </IonCardContent>
