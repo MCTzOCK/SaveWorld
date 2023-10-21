@@ -13,7 +13,7 @@
   .cal-grid {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 5px;
     width: 100%;
     height: fit-content;
     padding: 10px;
@@ -24,7 +24,10 @@
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       grid-template-rows: 1fr;
-      grid-gap: 10px;
+      grid-gap: 5px;
+    }
+    .cal-grid-row-hide {
+      display: none;
     }
 
     .cal-grid-item {

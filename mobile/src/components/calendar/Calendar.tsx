@@ -102,7 +102,14 @@ export default function Calendar(props: {
           {calModel.weeks.map((week, i) => {
             return (
               <>
-                <div className={"cal-grid-row"}>
+                <div
+                  className={`cal-grid-row ${
+                    week.days.filter((day) => day.isOtherMonth).length ===
+                    week.days.length
+                      ? "cal-grid-row-hide"
+                      : ""
+                  }`}
+                >
                   {week.days.map((day, i) => {
                     return (
                       <div
