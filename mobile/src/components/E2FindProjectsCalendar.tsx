@@ -9,12 +9,20 @@
  */
 
 import * as React from "react";
+import { useEffect } from "react";
 import Calendar from "./calendar/Calendar";
-import { ButtonGroup, IconButton, Text } from "@chakra-ui/react";
+import { ButtonGroup, Grid, IconButton, Text } from "@chakra-ui/react";
 import moment from "moment";
 import { FaBackward, FaForward } from "react-icons/fa";
-import { useEffect } from "react";
 import { REST } from "@saveworld/api-js";
+import PopupManager from "../util/PopupManager";
+import {
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+} from "@ionic/react";
 
 export default function E2FindProjectsCalendar() {
   const minMonth = new Date().getUTCMonth();
@@ -28,6 +36,7 @@ export default function E2FindProjectsCalendar() {
   );
 
   const [datesWithEvents, setDatesWithEvents] = React.useState<number[]>([]);
+  const [projects, setProjects] = React.useState<any[]>([]);
 
   useEffect(() => {
     REST.EcoProjects.projectsInPeriod(
@@ -45,6 +54,8 @@ export default function E2FindProjectsCalendar() {
         .format("YYYY-MM-DD"),
     ).then((res) => {
       let x = [];
+
+      setProjects(res.payload.result);
 
       for (const project of res.payload.result) {
         x.push(moment(project.startDate).date());
@@ -98,9 +109,53 @@ export default function E2FindProjectsCalendar() {
         month={currentMonth}
         year={currentYear}
         onDayClick={(d) => {
-          alert(d);
+          PopupManager.alert({
+            title:
+              "Projekte am " + d + "." + (currentMonth + 1) + "." + currentYear,
+            description: (
+              <>
+                <Grid
+                  templateColumns={[
+                    "repeat(1, 1fr)",
+                    "repeat(2, 1fr)",
+                    "repeat(3, 1fr)",
+                  ]}
+                >
+                  {projects
+                    .filter((p) => {
+                      return moment(p.startDate).date() === d;
+                    })
+                    .map((p) => {
+                      return (
+                        <IonCard
+                          style={{
+                            padding: 0,
+                            margin: 0,
+                          }}
+                          routerLink={"/e2-projects/" + p._id}
+                        >
+                          <IonCardHeader>
+                            <IonCardSubtitle>
+                              {moment(p.startDate).format("DD.MM.YYYY")}-
+                              {moment(p.startDate)
+                                .add(p.lastsDays, "days")
+                                .format("DD.MM.YYYY")}
+                            </IonCardSubtitle>
+                            <IonCardTitle>{p.name}</IonCardTitle>
+                          </IonCardHeader>
+                          <IonCardContent>
+                            {p.geoLocationDisplayName}
+                          </IonCardContent>
+                        </IonCard>
+                      );
+                    })}
+                </Grid>
+              </>
+            ),
+          });
         }}
         datesWithEvents={datesWithEvents}
+        onlyOnEventClick={true}
       />
     </>
   );

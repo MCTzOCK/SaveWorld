@@ -18,6 +18,7 @@ export default function Calendar(props: {
   year: number;
   onDayClick: (day: number) => void;
   datesWithEvents: number[];
+  onlyOnEventClick?: boolean;
 }) {
   const [calModel, setCalModel] = React.useState<{
     weeks: {
@@ -120,6 +121,7 @@ export default function Calendar(props: {
                         }`}
                         onClick={() => {
                           if (!day.isOtherMonth && !day.isPast) {
+                            if (props.onlyOnEventClick && !day.isEvent) return;
                             props.onDayClick(day.day);
                           }
                         }}
