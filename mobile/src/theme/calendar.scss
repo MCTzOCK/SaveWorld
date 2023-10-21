@@ -1,0 +1,68 @@
+/**
+ * mobile/src/theme/calendar.scss
+ *
+ * Author: Ben Siebert <hello@ben-siebert.de>
+ * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
+ * License: Project License
+ * Created At: 21.10.23
+ *
+ */
+@import "variables.css";
+
+.cal-container {
+  .cal-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    height: fit-content;
+    padding: 10px;
+    background-color: var(--ion-color-light);
+    border-radius: 12px;
+
+    .cal-grid-row {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-template-rows: 1fr;
+      grid-gap: 10px;
+    }
+
+    .cal-grid-item {
+      cursor: pointer;
+      font-weight: 700;
+      text-align: center;
+      border-radius: 12px;
+      background-color: #000;
+      aspect-ratio: 1 / 1;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+    }
+
+    .cal-grid-item-today {
+      background-color: var(--ion-color-primary) !important;
+      color: var(--ion-color-light) !important;
+    }
+
+    .cal-grid-item-past {
+      background-color: var(--ion-color-light-shade) !important;
+      color: var(--ion-color-light-tint) !important;
+      cursor: default !important;
+    }
+    .cal-grid-item-other-month {
+      visibility: hidden;
+    }
+
+    .cal-grid-item-event {
+      background-color: var(--ion-color-success) !important;
+      color: var(--ion-color-light) !important;
+    }
+
+    .cal-grid-header-item {
+      cursor: default !important;
+      font-weight: 900;
+      color: var(--ion-color-success) !important;
+      background-color: transparent !important;
+    }
+  }
+}
