@@ -1133,5 +1133,31 @@ export class REST {
         token: token,
       });
     },
+    /**
+     * Changes the role of a member
+     * @param token used to authenticate
+     * @param projectId of the project to change the role for
+     * @param userId of the user to change the role for
+     * @param newRole the new role to set
+     */
+    changeMemberRole: async (
+      token: string,
+      projectId: string,
+      userId: string,
+      newRole: string,
+    ) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/members/change-role?projectId=" +
+          projectId +
+          "&userId=" +
+          userId +
+          "&newRole=" +
+          newRole,
+        method: "POST",
+        token: token,
+      });
+    },
   };
 }
