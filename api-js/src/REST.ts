@@ -1181,5 +1181,34 @@ export class REST {
         token: token,
       });
     },
+    /**
+     * @return all geo locations of the projects
+     * @param token used to authenticate
+     */
+    geoLocations: async (token: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eco-projects/all-geo-locations",
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * @return all geo locations of the projects
+     * @param token used to authenticate
+     * @param lat of the location
+     * @param lon of the location
+     */
+    getByLatLon: async (token: string, lat: string, lon: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/by-lat-lon?lat=" +
+          lat +
+          "&lon=" +
+          lon,
+        method: "GET",
+        token: token,
+      });
+    },
   };
 }
