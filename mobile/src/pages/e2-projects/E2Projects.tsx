@@ -16,6 +16,7 @@ import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import E2FindProjectsList from "../../components/E2FindProjectsList";
 import Calendar from "../../components/calendar/Calendar";
 import E2FindProjectsCalendar from "../../components/E2FindProjectsCalendar";
+import E2FindProjectsMap from "../../components/E2FindProjectsMap";
 
 export default function E2Projects() {
   useRedirectForAnon();
@@ -35,7 +36,7 @@ export default function E2Projects() {
                 <E2FindProjectsList />
               </TabPanel>
               <TabPanel>
-                <h1>Karte</h1>
+                <E2FindProjectsMap />
               </TabPanel>
               <TabPanel>
                 <E2FindProjectsCalendar />
