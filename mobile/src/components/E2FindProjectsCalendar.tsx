@@ -11,7 +11,15 @@
 import * as React from "react";
 import { useEffect } from "react";
 import Calendar from "./calendar/Calendar";
-import { ButtonGroup, Grid, IconButton, Text } from "@chakra-ui/react";
+import {
+  Button,
+  ButtonGroup,
+  Flex,
+  Grid,
+  IconButton,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import moment from "moment";
 import { FaBackward, FaForward } from "react-icons/fa";
 import { REST } from "@saveworld/api-js";
@@ -22,7 +30,9 @@ import {
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
+  useIonRouter,
 } from "@ionic/react";
+import { ENDPOINT } from "../env";
 
 export default function E2FindProjectsCalendar() {
   const minMonth = new Date().getUTCMonth();
@@ -65,6 +75,8 @@ export default function E2FindProjectsCalendar() {
       setDatesWithEvents(x);
     });
   }, [currentMonth, currentYear]);
+
+  const router = useIonRouter();
 
   return (
     <>
@@ -132,7 +144,6 @@ export default function E2FindProjectsCalendar() {
                             padding: 0,
                             margin: 0,
                           }}
-                          routerLink={"/e2-projects/" + p._id}
                         >
                           <IonCardHeader>
                             <IonCardSubtitle>
@@ -145,6 +156,35 @@ export default function E2FindProjectsCalendar() {
                           </IonCardHeader>
                           <IonCardContent>
                             {p.geoLocationDisplayName}
+                            <VStack>
+                              <Button
+                                w={"100%"}
+                                color={"saveworld_green.500"}
+                                onClick={() => {
+                                  window.open(
+                                    ENDPOINT +
+                                      "/eco-projects/project/calendar.ics?id=" +
+                                      p._id,
+                                    "_blank",
+                                  );
+                                }}
+                              >
+                                Zum Kalender hinzufügen
+                              </Button>
+                              <Button
+                                w={"100%"}
+                                color={"saveworld_green.500"}
+                                onClick={() => {
+                                  router.push(
+                                    "/e2-projects/" + p._id,
+                                    "none",
+                                    "replace",
+                                  );
+                                }}
+                              >
+                                Zum Projekt
+                              </Button>
+                            </VStack>
                           </IonCardContent>
                         </IonCard>
                       );
