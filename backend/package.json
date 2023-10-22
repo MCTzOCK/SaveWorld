@@ -42,7 +42,7 @@
     "jsonwebtoken": "^9.0.1",
     "minio": "^7.1.2",
     "moment": "^2.29.4",
-    "mongoose": "^7.4.4",
+    "mongoose": "^7.6.3",
     "node-schedule": "^2.1.1",
     "nodemailer": "^6.9.4",
     "nodemon": "^3.0.1",
