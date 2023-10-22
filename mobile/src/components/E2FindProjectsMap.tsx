@@ -51,6 +51,8 @@ export default function E2FindProjectsMap() {
           token={APPLE_MAP_KIT_TOKEN}
           showsCompass={0}
           allowWheelToZoom={true}
+          showsUserLocation={true}
+          tracksUserLocation={true}
         >
           {geoLocs.map((loc, i) => {
             return (
