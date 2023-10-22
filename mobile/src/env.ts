@@ -9,5 +9,5 @@
  */
 
 export const ENDPOINT = import.meta.env.VITE_ENDPOINT;
-export const ONE_SIGNAL_APP_ID = import.meta.env.ONE_SIGNAL_APP_ID;
+export const ONE_SIGNAL_APP_ID = import.meta.env.VITE_ONE_SIGNAL_APP_ID;
 export const NOMINATIM_ENDPOINT = import.meta.env.VITE_NOMINATIM_ENDPOINT;
