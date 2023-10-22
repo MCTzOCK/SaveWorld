@@ -14,6 +14,8 @@ import Page from "../../components/Page";
 import MobileBox from "../../components/MobileBox";
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import E2FindProjectsList from "../../components/E2FindProjectsList";
+import Calendar from "../../components/calendar/Calendar";
+import E2FindProjectsCalendar from "../../components/E2FindProjectsCalendar";
 
 export default function E2Projects() {
   useRedirectForAnon();
@@ -36,7 +38,7 @@ export default function E2Projects() {
                 <h1>Karte</h1>
               </TabPanel>
               <TabPanel>
-                <h1>Kalender</h1>
+                <E2FindProjectsCalendar />
               </TabPanel>
             </TabPanels>
           </Tabs>

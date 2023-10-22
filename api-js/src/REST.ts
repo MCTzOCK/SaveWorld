@@ -1159,5 +1159,27 @@ export class REST {
         token: token,
       });
     },
+    /**
+     * @return the projects in the requested time period
+     * @param token used to authenticate
+     * @param startDate of the period
+     * @param endDate of the period
+     */
+    projectsInPeriod: async (
+      token: string,
+      startDate: string,
+      endDate: string,
+    ) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/calendar?startDate=" +
+          startDate +
+          "&endDate=" +
+          endDate,
+        method: "GET",
+        token: token,
+      });
+    },
   };
 }
