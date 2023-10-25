@@ -1,1 +1,0 @@
-pdflatex -output-directory pdf -job-name "Schriftliche Arbeit - SaveWorld" tex/entry.tex
