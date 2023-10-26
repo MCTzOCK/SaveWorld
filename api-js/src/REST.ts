@@ -130,6 +130,7 @@ export class REST {
      * @param title of the video
      * @param description of the video
      * @param categories of the video
+     * @param sources of the video
      */
     updateVideo: async (
       token: string,
