@@ -38,6 +38,7 @@ export default function AdminVideoDashboard() {
     streamUrl: string;
     thumbnailUrl: string;
     categories: string[];
+    sources: string[];
   } | null>(null);
 
   const [categories, setCategories] = React.useState<
@@ -55,11 +56,14 @@ export default function AdminVideoDashboard() {
     [],
   );
 
+  const [sources, setSources] = React.useState<string[]>([]);
+
   useEffect(() => {
     REST.Content.videoMetadata(id).then((res) => {
       if (res.status === 200) {
         setVideo(res.payload.video);
         setSelectedCategories(res.payload.video.categories);
+        setSources(res.payload.video.sources);
       } else {
         PopupManager.alert({
           title: "Fehler",
@@ -106,6 +110,19 @@ export default function AdminVideoDashboard() {
                       value={video.description}
                       labelPlacement={"fixed"}
                       id={"update-video-desc"}
+                    />
+                  </IonItem>
+                  <IonItem color={"light"}>
+                    <IonTextarea
+                      placeholder={"Quellen (eine pro Zeile)"}
+                      label={"Quellen"}
+                      labelPlacement={"fixed"}
+                      autoGrow
+                      id={"create-vid-sources"}
+                      value={sources.join("\n")}
+                      onIonChange={(ev) => {
+                        setSources(ev.detail.value?.split("\n") || []);
+                      }}
                     />
                   </IonItem>
                   {categories.map((c) => {
@@ -156,6 +173,7 @@ export default function AdminVideoDashboard() {
                         title,
                         desc,
                         selectedCategories,
+                        sources,
                       );
                       if (res.status === 200) {
                         PopupManager.alert({
