@@ -137,6 +137,7 @@ export class REST {
       title: string,
       description: string,
       categories: string[],
+      sources: string[],
     ) => {
       return await makeRequest({
         path: RESTEnv.API_URL + "/admin/content/videos/update?id=" + id,
@@ -146,6 +147,7 @@ export class REST {
           title: title,
           description: description,
           categories: categories,
+          sources: sources,
         },
       });
     },
