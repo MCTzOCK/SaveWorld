@@ -43,6 +43,11 @@ const VideoModel = new mongoose.Schema({
     required: true,
     default: [],
   },
+  sources: {
+    type: [String],
+    required: true,
+    default: [],
+  },
 });
 
 export default mongoose.models?.Video || mongoose.model("Video", VideoModel);

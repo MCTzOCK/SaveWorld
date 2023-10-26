@@ -24,6 +24,7 @@ import {
   IonIcon,
   IonModal,
   IonText,
+  IonTextarea,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
@@ -31,7 +32,8 @@ import { REST } from "@saveworld/api-js";
 import { share, shareSharp, star, starSharp } from "ionicons/icons";
 import { Share } from "@capacitor/share";
 import PopupManager from "../util/PopupManager";
-import { Text } from "@chakra-ui/react";
+import { List, ListIcon, ListItem, Text } from "@chakra-ui/react";
+import { FaGlobe } from "react-icons/fa";
 
 export default function VideoDetailsModal(props: {
   modal: React.RefObject<HTMLIonModalElement>;
@@ -41,6 +43,7 @@ export default function VideoDetailsModal(props: {
     categories: string[];
     _id: string;
     ratings: number[];
+    sources: string[];
   } | null;
 }) {
   const [categories, setCategories] = React.useState<
@@ -305,6 +308,20 @@ export default function VideoDetailsModal(props: {
                 )
               </div>
               <IonText>{props.video?.description}</IonText>
+              <br />
+              <IonText>
+                <b>Quellen</b>
+                <List>
+                  {props.video?.sources.map((source) => {
+                    return (
+                      <ListItem>
+                        <ListIcon as={FaGlobe} color="green.500" />
+                        {source}
+                      </ListItem>
+                    );
+                  })}
+                </List>
+              </IonText>
               {props.video?.categories.map((category) => {
                 return (
                   <>

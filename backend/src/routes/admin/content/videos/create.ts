@@ -37,8 +37,15 @@ export default async function (req: Request, res: Response) {
       }
 
       try {
-        const { title, description, categories, youtubeVideoId } = fields;
-        if (!title || !description || !categories || !youtubeVideoId) {
+        const { title, description, categories, youtubeVideoId, sources } =
+          fields;
+        if (
+          !title ||
+          !description ||
+          !categories ||
+          !youtubeVideoId ||
+          !sources
+        ) {
           res.status(400).json({
             error: "Bad Request",
             status: 400,
@@ -51,6 +58,7 @@ export default async function (req: Request, res: Response) {
           categories: JSON.parse(categories[0]),
           streamUrl: "https://youtube.com/embed/" + youtubeVideoId[0],
           thumbnailUrl: "/media/file/" + "" + "_thumbnail.png",
+          sources: JSON.parse(sources[0]),
         });
 
         video.streamUrl = "/content/videos/" + video._id + "/stream";

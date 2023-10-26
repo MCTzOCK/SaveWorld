@@ -130,6 +130,7 @@ export class REST {
      * @param title of the video
      * @param description of the video
      * @param categories of the video
+     * @param sources of the video
      */
     updateVideo: async (
       token: string,
@@ -137,6 +138,7 @@ export class REST {
       title: string,
       description: string,
       categories: string[],
+      sources: string[],
     ) => {
       return await makeRequest({
         path: RESTEnv.API_URL + "/admin/content/videos/update?id=" + id,
@@ -146,6 +148,7 @@ export class REST {
           title: title,
           description: description,
           categories: categories,
+          sources: sources,
         },
       });
     },
