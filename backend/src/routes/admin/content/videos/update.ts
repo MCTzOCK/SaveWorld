@@ -44,13 +44,14 @@ export default async function (req: Request, res: Response) {
       return;
     }
 
-    const { title, description, categories } = req.body as {
+    const { title, description, categories, sources } = req.body as {
       title: string;
       description: string;
       categories: string[];
+      sources: string[];
     };
 
-    if (!title || !description || !categories) {
+    if (!title || !description || !categories || !sources) {
       res.status(400).json({
         error: "Bad Request",
         status: 400,
@@ -71,6 +72,7 @@ export default async function (req: Request, res: Response) {
     video.title = title;
     video.description = description;
     video.categories = categories;
+    video.sources = sources;
 
     await video.save();
 
