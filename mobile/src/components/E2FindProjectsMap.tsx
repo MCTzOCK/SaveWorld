@@ -71,13 +71,7 @@ export default function E2FindProjectsMap() {
                       title: "Projekte an diesem Ort",
                       description: (
                         <>
-                          <Grid
-                            templateColumns={[
-                              "repeat(1, 1fr)",
-                              "repeat(2, 1fr)",
-                              "repeat(3, 1fr)",
-                            ]}
-                          >
+                          <Grid templateColumns={["repeat(1, 1fr)"]}>
                             {res.payload.entries.map((p: any) => {
                               return (
                                 <IonCard

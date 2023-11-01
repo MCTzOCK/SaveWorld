@@ -126,13 +126,7 @@ export default function E2FindProjectsCalendar() {
               "Projekte am " + d + "." + (currentMonth + 1) + "." + currentYear,
             description: (
               <>
-                <Grid
-                  templateColumns={[
-                    "repeat(1, 1fr)",
-                    "repeat(2, 1fr)",
-                    "repeat(3, 1fr)",
-                  ]}
-                >
+                <Grid templateColumns={["repeat(1, 1fr)"]}>
                   {projects
                     .filter((p) => {
                       return moment(p.startDate).date() === d;
