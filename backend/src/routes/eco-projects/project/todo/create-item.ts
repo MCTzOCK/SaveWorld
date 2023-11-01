@@ -22,7 +22,7 @@ export default async function (req: Request, res: Response) {
       return;
     }
 
-    const { listId } = req.query;
+    const { id, listId } = req.query;
 
     if (!listId) {
       res.status(400).json({ error: "Bad Request", status: 400 });
