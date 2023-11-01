@@ -25,10 +25,16 @@ import {
   AlertTitle,
   Box,
   Button,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
 } from "@chakra-ui/react";
 import { E2HomepageSegments } from "../../../util/types/E2HomepageSegment";
 import E2ProjectHomepageSegment from "../../../components/E2ProjectHomepageSegment";
 import MobileBox from "../../../components/MobileBox";
+import E2ProjectTodoLists from "../../../components/E2ProjectTodoLists";
 
 export default function E2ProjectHomepage() {
   useRedirectForAnon();
@@ -168,21 +174,49 @@ export default function E2ProjectHomepage() {
               </Alert>
             </>
           )}
-          {segments
-            .sort((a, b) => {
-              return a.pinned === b.pinned ? 0 : a.pinned ? -1 : 1;
-            })
-            .map((segment) => {
-              return (
-                <>
-                  <E2ProjectHomepageSegment
-                    segment={segment}
-                    editable={false}
-                    reloadSegments={reloadSegments}
-                  />
-                </>
-              );
-            })}
+          <Tabs
+            colorScheme={"saveworld_green"}
+            size={"md"}
+            isFitted
+            mt={4}
+            isLazy
+          >
+            <TabList>
+              <Tab>Homepage</Tab>
+              <Tab>ToDos</Tab>
+            </TabList>
+            <TabPanels>
+              <TabPanel>
+                {segments
+                  .sort((a, b) => {
+                    return a.pinned === b.pinned ? 0 : a.pinned ? -1 : 1;
+                  })
+                  .map((segment) => {
+                    return (
+                      <>
+                        <E2ProjectHomepageSegment
+                          segment={segment}
+                          editable={false}
+                          reloadSegments={reloadSegments}
+                        />
+                      </>
+                    );
+                  })}
+              </TabPanel>
+              <TabPanel>
+                <E2ProjectTodoLists
+                  projectId={project._id}
+                  canAdd={
+                    project.owner === userInfo._id ||
+                    project.users.find(
+                      (u) =>
+                        u.userId === userInfo._id && u.permissions !== "MEMBER",
+                    ) !== undefined
+                  }
+                />
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
         </MobileBox>
       </Page>
     </>
