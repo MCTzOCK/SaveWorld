@@ -44,10 +44,9 @@ export default function AlertPopupComponent(props: {
         isCentered
         // @ts-ignore
         leastDestructiveRef={whatEverRef}
-        size={props.customSize ? props.customSize : "sm"}
       >
         <AlertDialogOverlay bg="blackAlpha.300" backdropFilter="blur(10px)">
-          <AlertDialogContent bg={"black"} maxWidth={"85%"}>
+          <AlertDialogContent bg={"black"}>
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
               {props.title ? props.title : "Meldung"}
             </AlertDialogHeader>
