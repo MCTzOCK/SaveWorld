@@ -1213,5 +1213,17 @@ export class REST {
         token: token,
       });
     },
+    /**
+     * Deletes a project
+     * @param token used to authenticate
+     * @param id of the project to delete
+     */
+    deleteProject: async (token: string, id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eco-projects/delete?id=" + id,
+        method: "DELETE",
+        token: token,
+      });
+    },
   };
 }
