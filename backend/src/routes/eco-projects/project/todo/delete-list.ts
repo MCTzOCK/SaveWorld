@@ -50,7 +50,7 @@ export default async function (req: Request, res: Response) {
 
     const list = await EcoProjectToDoListModel.findById(listId);
 
-    if (!list) {
+    if (!list || project._id.toString() !== list.project.toString()) {
       res.status(404).json({
         error: "Not Found",
         status: 404,

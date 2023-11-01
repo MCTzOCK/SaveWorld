@@ -1,10 +1,10 @@
 /**
- * backend/src/routes/eco-projects/project/todo/create-item.ts
+ * backend/src/routes/eco-projects/project/todo/delete-item.ts
  *
  * Author: Ben Siebert <hello@ben-siebert.de>
  * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
  * License: Project License
- * Created At: backend/src/routes/eco-projects/project/todo/create-item.ts
+ * Created At: backend/src/routes/eco-projects/project/todo/delete-item.ts
  *
  */
 import { Request, Response } from "express";
@@ -22,9 +22,9 @@ export default async function (req: Request, res: Response) {
       return;
     }
 
-    const { id, listId } = req.query;
+    const { id, itemId, listId } = req.query;
 
-    if (!id || !listId) {
+    if (!id || !itemId || !listId) {
       res.status(400).json({ error: "Bad Request", status: 400 });
       return;
     }
@@ -52,22 +52,28 @@ export default async function (req: Request, res: Response) {
     const list = await EcoProjectToDoListModel.findById(listId);
 
     if (!list || project._id.toString() !== list.project.toString()) {
-      res.status(404).json({ error: "Not Found", status: 404 });
+      res.status(404).json({
+        error: "Not Found",
+        status: 404,
+      });
       return;
     }
 
-    const { title, description } = req.body;
+    const item = await EcoProjectToDoListItemModel.findById(itemId);
 
-    const item = await EcoProjectToDoListItemModel.create({
-      list: list._id,
-      title,
-      description,
-    });
+    if (!item || item.list.toString() !== list._id.toString()) {
+      res.status(404).json({
+        error: "Not Found",
+        status: 404,
+      });
+      return;
+    }
+
+    await item.deleteOne();
 
     res.status(200).json({
       status: 200,
-      message: "Item created",
-      item: item,
+      message: "Item deleted",
     });
   } catch (e) {
     res.status(500).json({
