@@ -1226,4 +1226,149 @@ export class REST {
       });
     },
   };
+
+  public static EcoProjectsToDo = {
+    /**
+     * Creates a new todo list
+     * @param token used to authenticate
+     * @param id of the project to create the todo list for
+     * @param title of the todo list
+     */
+    createList: async (token: string, id: string, title: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL + "/eco-projects/project/todo/create-list?id=" + id,
+        method: "POST",
+        token: token,
+        body: {
+          title: title,
+        },
+      });
+    },
+    /**
+     * Deletes a todo list
+     * @param token used to authenticate
+     * @param id of the project
+     * @param listId of the list to delete
+     */
+    deleteList: async (token: string, id: string, listId: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/todo/delete-list?id=" +
+          id +
+          "&listId=" +
+          listId,
+        method: "DELETE",
+        token: token,
+      });
+    },
+    /**
+     * Gets all todo lists of a project
+     * @param token used to authenticate
+     * @param id of the project
+     */
+    lists: async (token: string, id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eco-projects/project/todo/lists?id=" + id,
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * Creates a new todo item
+     * @param token used to authenticate
+     * @param id of the project
+     * @param listId of the list to create the item for
+     * @param title of the item
+     * @param description of the item
+     */
+    createItem: async (
+      token: string,
+      id: string,
+      listId: string,
+      title: string,
+      description: string,
+    ) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/todo/create-item?id=" +
+          id +
+          "&listId=" +
+          listId,
+        method: "POST",
+        token: token,
+        body: {
+          title: title,
+          description: description,
+        },
+      });
+    },
+    /**
+     * Deletes a todo item
+     * @param token used to authenticate
+     * @param id of the project
+     * @param listId of the list to delete the item from
+     * @param itemId of the item to delete
+     */
+    deleteItem: async (
+      token: string,
+      id: string,
+      listId: string,
+      itemId: string,
+    ) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/todo/delete-item?id=" +
+          id +
+          "&listId=" +
+          listId +
+          "&itemId=" +
+          itemId,
+        method: "DELETE",
+        token: token,
+      });
+    },
+    /**
+     * Gets all todo items of a list
+     * @param token used to authenticate
+     * @param listId of the list to get the items from
+     */
+    items: async (token: string, listId: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL + "/eco-projects/project/todo/items?listId=" + listId,
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * Checks a todo item
+     * @param token used to authenticate
+     * @param id of the project
+     * @param listId of the list to check the item from
+     * @param itemId of the item to check
+     */
+    checkItem: async (
+      token: string,
+      id: string,
+      listId: string,
+      itemId: string,
+    ) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/todo/check-item?id=" +
+          id +
+          "&listId=" +
+          listId +
+          "&itemId=" +
+          itemId,
+        method: "POST",
+        token: token,
+      });
+    },
+  };
 }
