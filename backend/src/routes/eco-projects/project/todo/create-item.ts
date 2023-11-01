@@ -24,8 +24,28 @@ export default async function (req: Request, res: Response) {
 
     const { id, listId } = req.query;
 
-    if (!listId) {
+    if (!id || !listId) {
       res.status(400).json({ error: "Bad Request", status: 400 });
+      return;
+    }
+
+    const project = await EcoProjectModel.findById(id);
+
+    if (!project) {
+      res.status(404).json({ error: "Not Found", status: 404 });
+      return;
+    }
+
+    if (
+      project.owner.toString() !== user._id.toString() &&
+      !["ADMINISTRATOR", "EDITOR"].includes(
+        project.users.find((u) => u.userId).permissions || "NONE",
+      )
+    ) {
+      res.status(403).json({
+        error: "Forbidden",
+        status: 403,
+      });
       return;
     }
 
