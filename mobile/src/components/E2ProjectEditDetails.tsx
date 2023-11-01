@@ -23,6 +23,8 @@ import { useEffect } from "react";
 import { REST } from "@saveworld/api-js";
 import { NOMINATIM_ENDPOINT } from "../env";
 import PopupManager from "../util/PopupManager";
+import { useIonRouter } from "@ionic/react";
+import { useUserData } from "../hooks/useUserData";
 
 export default function E2ProjectEditDetails(props: {
   project: E2Project;
@@ -30,6 +32,8 @@ export default function E2ProjectEditDetails(props: {
 }) {
   const [locationQuery, setLocationQuery] = React.useState("");
   const [searchResults, setSearchResults] = React.useState<string[]>([]);
+
+  const { userInfo } = useUserData();
 
   useEffect(() => {
     if (props.project) {
@@ -48,6 +52,8 @@ export default function E2ProjectEditDetails(props: {
       setSearchResults(lst);
     });
   }, [locationQuery]);
+
+  const router = useIonRouter();
 
   return (
     <>
@@ -172,6 +178,42 @@ export default function E2ProjectEditDetails(props: {
           )}
           <Button color={"var(--ion-color-success)"} type={"submit"} w={"100%"}>
             Speichern
+          </Button>
+          <Button
+            color={"var(--ion-color-danger)"}
+            isDisabled={
+              props.project.owner.toString() !== userInfo._id.toString()
+            }
+            onClick={async () => {
+              if (
+                !(await PopupManager.confirmAsync({
+                  title: "Projekt löschen",
+                  question:
+                    "Willst du das Projekt wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden!",
+                }))
+              )
+                return;
+
+              const res = await REST.EcoProjects.deleteProject(
+                localStorage.getItem("token") as string,
+                props.project._id,
+              );
+
+              if (res.status !== 200) {
+                await PopupManager.alertAsync({
+                  title: "Fehler",
+                  description:
+                    "Das Projekt konnte nicht gelöscht werden: " +
+                    res.payload.error,
+                });
+                return;
+              }
+
+              router.push("/e2-projects", "none", "replace");
+            }}
+            w={"100%"}
+          >
+            Löschen
           </Button>
         </VStack>
       </form>

@@ -1220,7 +1220,7 @@ export class REST {
      */
     deleteProject: async (token: string, id: string) => {
       return await makeRequest({
-        path: RESTEnv.API_URL + "/eco-projects/delete?id=" + id,
+        path: RESTEnv.API_URL + "/eco-projects/project/delete?id=" + id,
         method: "DELETE",
         token: token,
       });
