@@ -83,6 +83,15 @@ export default function C02() {
   return (
     <>
       <Page title={"CO2-Rechner"}>
+        <IonSearchbar
+          placeholder={"Suchen..."}
+          onIonInput={(e) => {
+            setQuery(e.detail.value!);
+          }}
+          style={{
+            padding: 0,
+          }}
+        />
         <Grid
           templateColumns={[
             "repeat(1, 1fr)",
@@ -91,15 +100,6 @@ export default function C02() {
           ]}
           gap={4}
         >
-          <IonSearchbar
-            placeholder={"Suchen..."}
-            onIonInput={(e) => {
-              setQuery(e.detail.value!);
-            }}
-            style={{
-              padding: 0,
-            }}
-          />
           {calculators.filter((calc) => {
             if (query === "") return true;
             return (
