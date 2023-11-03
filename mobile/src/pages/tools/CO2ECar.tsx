@@ -24,39 +24,25 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { FaGasPump, FaHashtag } from "react-icons/fa";
+import { FaGasPump, FaHashtag, FaPlug } from "react-icons/fa";
 import PopupManager from "../../util/PopupManager";
 
-export default function CO2Car() {
-  const [fuel, setFuel] = React.useState("diesel");
+export default function CO2ECar() {
   const [distance, setDistance] = React.useState(0);
   const [consumption, setConsumption] = React.useState(0);
 
   return (
     <>
-      <Page title={"CO2-Rechner: Auto"}>
+      <Page title={"CO2-Rechner: E-Auto"}>
         <MobileBox>
           <Text>
             Berechne, wie viel CO2 du mit deinem Auto auf einer Strecke
             ausstößt. Die Berechnung basiert auf Daten des Umweltbundesamtes
             (UBA) aus dem Jahr 2022. <br />
             Für die Berechnung benötigst du die Länge der Strecke (in km) und
-            den Kraftstoffverbrauch deines Autos (in l/100km). <br />
+            den Stromverbrauch deines Autos (in kWh/100km). <br />
           </Text>
           <Stack mt={6} gap={4}>
-            <FormControl>
-              <FormLabel>Kraftstoff Art</FormLabel>
-              <Select
-                placeholder={"Kraftstoff Art"}
-                onChange={(e) => {
-                  setFuel(e.target.value);
-                }}
-                value={fuel}
-              >
-                <option value={"diesel"}>Diesel</option>
-                <option value={"gasoline"}>Benzin</option>
-              </Select>
-            </FormControl>
             <FormControl>
               <FormLabel>Distanz</FormLabel>
               <InputGroup>
@@ -74,14 +60,14 @@ export default function CO2Car() {
               </InputGroup>
             </FormControl>
             <FormControl>
-              <FormLabel>Kraftstoff Verbrauch auf 100km</FormLabel>
+              <FormLabel>Stromverbrauch auf 100km</FormLabel>
               <InputGroup>
                 <InputLeftAddon>
-                  <FaGasPump />
+                  <FaPlug />
                 </InputLeftAddon>
                 <Input
                   type={"number"}
-                  placeholder={"Liter/100km"}
+                  placeholder={"kWh/100km"}
                   value={consumption}
                   onChange={(e) => {
                     setConsumption(parseFloat(e.target.value));
@@ -92,12 +78,7 @@ export default function CO2Car() {
             <Button
               color={"saveworld_green.500"}
               onClick={() => {
-                let co2 = 0;
-                if (fuel === "diesel") {
-                  co2 = 0.00341;
-                } else {
-                  co2 = 0.00303;
-                }
+                let co2 = 0.000485;
 
                 let driven = (distance / 100) * consumption;
 
@@ -111,7 +92,7 @@ export default function CO2Car() {
                     distance +
                     "km mit einem Verbrauch von " +
                     consumption +
-                    "l/100km verursacht etwa " +
+                    "kWh/100km verursacht etwa " +
                     result +
                     "kg CO2.",
                 });

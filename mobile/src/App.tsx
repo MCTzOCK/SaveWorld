@@ -74,6 +74,7 @@ import E2ProjectTodoListViewer from "./pages/e2-projects/project/todos/E2Project
 import Tools from "./pages/Tools";
 import C02 from "./pages/tools/C02";
 import CO2Car from "./pages/tools/CO2Car";
+import CO2ECar from "./pages/tools/CO2ECar";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -175,6 +176,7 @@ export default function App() {
     "/resources/md-help": MdHelp,
     "/tools/co2": C02,
     "/tools/co2/car": CO2Car,
+    "/tools/co2/e-car": CO2ECar,
     //KEEP_ROUTES
   };
 
