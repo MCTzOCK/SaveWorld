@@ -71,10 +71,10 @@ import E2ProjectHomepage from "./pages/e2-projects/project/E2ProjectHomepage";
 import E2ProjectEdit from "./pages/e2-projects/project/E2ProjectEdit";
 import E2Projects from "./pages/e2-projects/E2Projects";
 import E2ProjectTodoListViewer from "./pages/e2-projects/project/todos/E2ProjectTodoListViewer";
-import Tools from "./pages/Tools";
 import C02 from "./pages/tools/C02";
 import CO2Car from "./pages/tools/CO2Car";
 import CO2ECar from "./pages/tools/CO2ECar";
+import CO2HCar from "./pages/tools/CO2HCar";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -177,6 +177,7 @@ export default function App() {
     "/tools/co2": C02,
     "/tools/co2/car": CO2Car,
     "/tools/co2/e-car": CO2ECar,
+    "/tools/co2/h-car": CO2HCar,
     //KEEP_ROUTES
   };
 

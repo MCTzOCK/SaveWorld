@@ -1,5 +1,5 @@
 /**
- * mobile/src/pages/tools/CO2ECar.tsx
+ * mobile/src/pages/tools/CO2HCar.tsx
  *
  * Author: Ben Siebert <hello@ben-siebert.de>
  * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
@@ -28,23 +28,23 @@ import {
   StatNumber,
   Text,
 } from "@chakra-ui/react";
-import { FaGasPump, FaHashtag, FaPlug } from "react-icons/fa";
+import { FaAtom, FaGasPump, FaHashtag, FaPlug } from "react-icons/fa";
 import PopupManager from "../../util/PopupManager";
 
-export default function CO2ECar() {
+export default function CO2HCar() {
   const [distance, setDistance] = React.useState(0);
   const [consumption, setConsumption] = React.useState(0);
 
   return (
     <>
-      <Page title={"CO2-Rechner: E-Auto"}>
+      <Page title={"CO2-Rechner: Wasserstoff-Auto"}>
         <MobileBox>
           <Text>
             Berechne, wie viel CO2 du mit deinem Auto auf einer Strecke
             ausstößt. Die Berechnung basiert auf Daten des Umweltbundesamtes
             (UBA) aus dem Jahr 2022. <br />
             Für die Berechnung benötigst du die Länge der Strecke (in km) und
-            den Stromverbrauch deines Autos (in kWh/100km). <br />
+            den Wasserstoffverbrauch deines Autos (in kg/100km). <br />
           </Text>
           <Stack mt={6} gap={4}>
             <FormControl>
@@ -64,14 +64,14 @@ export default function CO2ECar() {
               </InputGroup>
             </FormControl>
             <FormControl>
-              <FormLabel>Stromverbrauch auf 100km</FormLabel>
+              <FormLabel>Wasserstoffverbrauch auf 100km</FormLabel>
               <InputGroup>
                 <InputLeftAddon>
-                  <FaPlug />
+                  <FaAtom />
                 </InputLeftAddon>
                 <Input
                   type={"number"}
-                  placeholder={"kWh/100km"}
+                  placeholder={"kg/100km"}
                   value={consumption}
                   onChange={(e) => {
                     setConsumption(parseFloat(e.target.value));
@@ -82,7 +82,7 @@ export default function CO2ECar() {
             <Button
               color={"saveworld_green.500"}
               onClick={() => {
-                let co2 = 0.000485;
+                let co2 = 0.007499;
 
                 let driven = (distance / 100) * consumption;
 

@@ -109,6 +109,39 @@ export default function C02() {
               </ButtonGroup>
             </CardBody>
           </Card>
+          <Card
+            backgroundColor={
+              "var(--ion-card-background, var(--ion-item-background, var(--ion-background-color, #fff)))"
+            }
+          >
+            <CardHeader>
+              <Image src={"/assets/calculator/co2/h-car.jpg"} rounded={"md"} />
+              <p>
+                <b>Quelle</b>: <i>Unsplash, Darren Halstead</i>
+              </p>
+              <Heading size={"lg"}>Wasserstoff Auto</Heading>
+            </CardHeader>
+            <CardBody>
+              <Text>
+                Rechne aus, wie viel CO2 du mit deinem Elektro Auto auf einer
+                bestimmten Strecke, durch den Wasserstoffverbrauch, ausstößt.{" "}
+                <br />
+                <b>Quelle</b>:&nbsp;
+                <i>UBA 2022: Emissionsbilanz erneuerbarer Energieträger</i>
+              </Text>
+              <ButtonGroup w={"100%"} mt={4}>
+                <Button
+                  color={"saveworld_green.500"}
+                  w={"100%"}
+                  onClick={() => {
+                    router.push("/tools/co2/h-car", "none", "push");
+                  }}
+                >
+                  Berechnen
+                </Button>
+              </ButtonGroup>
+            </CardBody>
+          </Card>
         </Grid>
       </Page>
     </>
