@@ -22,6 +22,10 @@ import {
   InputLeftElement,
   Select,
   Stack,
+  Stat,
+  StatHelpText,
+  StatLabel,
+  StatNumber,
   Text,
 } from "@chakra-ui/react";
 import { FaGasPump, FaHashtag, FaPlug } from "react-icons/fa";
@@ -87,14 +91,23 @@ export default function CO2ECar() {
 
                 PopupManager.alertAsync({
                   title: "Ergebnis",
-                  description:
-                    "Eine Strecke von " +
-                    distance +
-                    "km mit einem Verbrauch von " +
-                    consumption +
-                    "kWh/100km verursacht etwa " +
-                    result +
-                    "kg CO2.",
+                  description: (
+                    <>
+                      <Stat>
+                        <StatLabel>Dein CO2-Ausstoß beträgt</StatLabel>
+                        <StatNumber
+                          color={"saveworld_green.500"}
+                          fontWeight={900}
+                        >
+                          {result}kg CO2
+                        </StatNumber>
+                        <StatHelpText>
+                          auf einer Strecke von {distance}km mit einem
+                          Stromverbrauch von {consumption}kWh/100km
+                        </StatHelpText>
+                      </Stat>
+                    </>
+                  ),
                 });
               }}
             >
