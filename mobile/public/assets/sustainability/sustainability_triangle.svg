@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 2048 2048" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,0.751918,0,216.536)">
+        <path d="M1024,0L2048,2048L0,2048L1024,0Z" style="fill:rgb(56,128,255);"/>
+        <clipPath id="_clip1">
+            <path d="M1024,0L2048,2048L0,2048L1024,0Z"/>
+        </clipPath>
+        <g clip-path="url(#_clip1)">
+            <g transform="matrix(1,0,0,1.32993,0,-287.978)">
+                <rect x="-107.237" y="90.582" width="1131.24" height="1809.68" style="fill:rgb(45,211,111);"/>
+            </g>
+            <g transform="matrix(1,0,0,1.32993,0,-287.978)">
+                <rect x="1024" y="90.582" width="1024" height="1809.68" style="fill:rgb(235,68,90);"/>
+            </g>
+            <g transform="matrix(1,0,0,1.32993,0,-287.978)">
+                <rect x="0" y="1316.24" width="2048" height="731.761" style="fill:rgb(56,128,255);"/>
+            </g>
+        </g>
+    </g>
+    <g transform="matrix(1.27549,0,0,1.27549,297.48,-374.233)">
+        <g transform="matrix(130.669,0,0,130.669,838.37,1575.51)">
+        </g>
+        <text x="300px" y="1575.51px" style="font-family:'Bauhaus93', 'Bauhaus 93', fantasy;font-size:130.669px;">Ökologie</text>
+    </g>
+    <g transform="matrix(0.625586,-1.11154,1.11154,0.625586,-1327.16,609.735)">
+        <g transform="matrix(130.669,0,0,130.669,897.068,1575.51)">
+        </g>
+        <text x="300px" y="1575.51px" style="font-family:'Bauhaus93', 'Bauhaus 93', fantasy;font-size:130.669px;">Ökonomie</text>
+    </g>
+    <g transform="matrix(0.626144,1.11123,-1.11123,0.626144,2680.23,-643.218)">
+        <g transform="matrix(130.669,0,0,130.669,764.358,1575.51)">
+        </g>
+        <text x="300px" y="1575.51px" style="font-family:'Bauhaus93', 'Bauhaus 93', fantasy;font-size:130.669px;">Soziales</text>
+    </g>
+</svg>

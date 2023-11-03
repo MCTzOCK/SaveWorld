@@ -37,6 +37,7 @@ import {
   FaSearch,
 } from "react-icons/fa";
 import {
+  FaEarthEurope,
   FaHammer,
   FaLeaf,
   FaPeopleGroup,
@@ -158,6 +159,18 @@ export default function DrawerMenu(props: {
             icon: <FaLeaf />,
             onClick: () => {
               router.push("/e2", "none", "replace");
+            },
+          },
+        ],
+      },
+      {
+        label: "Nachhaltigkeit",
+        items: [
+          {
+            label: "Was ist Nachhaltigkeit?",
+            icon: <FaEarthEurope />,
+            onClick: () => {
+              router.push("/sustainability", "none", "replace");
             },
           },
         ],

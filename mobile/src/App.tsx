@@ -75,6 +75,7 @@ import C02 from "./pages/tools/C02";
 import CO2Car from "./pages/tools/CO2Car";
 import CO2ECar from "./pages/tools/CO2ECar";
 import CO2HCar from "./pages/tools/CO2HCar";
+import Sustainability from "./pages/sustainability/Sustainability";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -178,6 +179,7 @@ export default function App() {
     "/tools/co2/car": CO2Car,
     "/tools/co2/e-car": CO2ECar,
     "/tools/co2/h-car": CO2HCar,
+    "/sustainability": Sustainability,
     //KEEP_ROUTES
   };
 
