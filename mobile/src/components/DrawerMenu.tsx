@@ -24,6 +24,7 @@ import { useUserData } from "../hooks/useUserData";
 import { IonList, IonSearchbar, isPlatform, useIonRouter } from "@ionic/react";
 import { useEffect } from "react";
 import {
+  FaCalculator,
   FaCalendar,
   FaCogs,
   FaEnvelope,
@@ -162,7 +163,19 @@ export default function DrawerMenu(props: {
         ],
       },
       {
-        label: "Öko-Projecte",
+        label: "Werkzeuge",
+        items: [
+          {
+            label: "CO2-Rechner",
+            icon: <FaCalculator />,
+            onClick: () => {
+              router.push("/tools/co2", "none", "replace");
+            },
+          },
+        ],
+      },
+      {
+        label: "Öko-Projekte",
         items: [
           {
             label: "Meine Projekte",
