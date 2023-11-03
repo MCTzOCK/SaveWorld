@@ -77,7 +77,6 @@ export default function C02() {
               </ButtonGroup>
             </CardBody>
           </Card>
-
           <Card
             backgroundColor={
               "var(--ion-card-background, var(--ion-item-background, var(--ion-background-color, #fff)))"
