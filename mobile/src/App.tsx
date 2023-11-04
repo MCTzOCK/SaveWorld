@@ -76,6 +76,8 @@ import CO2Car from "./pages/tools/CO2Car";
 import CO2ECar from "./pages/tools/CO2ECar";
 import CO2HCar from "./pages/tools/CO2HCar";
 import Sustainability from "./pages/sustainability/Sustainability";
+import SustainabilityPosts from "./pages/sustainability/SustainabilityPosts";
+import SustainabilityPost from "./pages/sustainability/SustainabilityPost";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -180,6 +182,8 @@ export default function App() {
     "/tools/co2/e-car": CO2ECar,
     "/tools/co2/h-car": CO2HCar,
     "/sustainability": Sustainability,
+    "/sustainability/articles": SustainabilityPosts,
+    "/sustainability/articles/:id": SustainabilityPost,
     //KEEP_ROUTES
   };
 
