@@ -1,18 +1,19 @@
 /**
- * mobile/src/pages/sustainability/SustainabilityPosts.tsx
+ * mobile/src/components/GhostArticles.tsx
  *
  * Author: Ben Siebert <hello@ben-siebert.de>
  * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
  * License: Project License
- * Created At: 04.11.2023
+ * Created At: 05.11.2023
  *
  */
 
 import * as React from "react";
-import Page from "../../components/Page";
-import { useEffect } from "react";
-import { getGhostContentApi } from "../../env";
 import { PostOrPage } from "@tryghost/content-api";
+import { useIonRouter } from "@ionic/react";
+import { getGhostContentApi } from "../env";
+import { useEffect } from "react";
+import Page from "./Page";
 import {
   Button,
   ButtonGroup,
@@ -23,9 +24,12 @@ import {
   Heading,
   Image,
 } from "@chakra-ui/react";
-import { IonButton, IonSearchbar, useIonRouter } from "@ionic/react";
 
-export default function SustainabilityPosts() {
+export default function GhostArticles(props: {
+  pageTitle?: string;
+  ghostFilter: string;
+  postBaseUrl: string;
+}) {
   const [posts, setPosts] = React.useState<PostOrPage[]>([]);
   const [page, setPage] = React.useState<number>(1);
   const [pages, setPages] = React.useState<number>(1);
@@ -36,7 +40,7 @@ export default function SustainabilityPosts() {
   useEffect(() => {
     ghostApi.posts
       .browse({
-        filter: "tag:sustainability",
+        filter: props.ghostFilter,
         include: "count.posts",
         page: page,
         limit: 2,
@@ -50,7 +54,7 @@ export default function SustainabilityPosts() {
 
   return (
     <>
-      <Page title={"Artikel"}>
+      <Page title={props.pageTitle ? props.pageTitle : "Artikel"}>
         <Grid
           templateColumns={[
             "repeat(1, 1fr)",
@@ -79,7 +83,7 @@ export default function SustainabilityPosts() {
                         color={"saveworld_green.500"}
                         onClick={() => {
                           router.push(
-                            `/sustainability/articles/${post.id}`,
+                            `${props.postBaseUrl}/${post.id}`,
                             "none",
                             "push",
                           );

@@ -38,7 +38,7 @@ import AdminVideosDashboard from "./pages/admin/AdminVideosDashboard";
 import AdminVideoDashboard from "./pages/admin/AdminVideoDashboard";
 import Videos from "./pages/learn/Videos";
 import VideoSearchFTS from "./pages/learn/VideoSearchFTS";
-import { Redirect } from "react-router";
+import { Redirect, useParams } from "react-router";
 import EcoTracker from "./pages/tracker/EcoTracker";
 
 import OneSignal from "onesignal-cordova-plugin";
@@ -76,8 +76,9 @@ import CO2Car from "./pages/tools/CO2Car";
 import CO2ECar from "./pages/tools/CO2ECar";
 import CO2HCar from "./pages/tools/CO2HCar";
 import Sustainability from "./pages/sustainability/Sustainability";
-import SustainabilityPosts from "./pages/sustainability/SustainabilityPosts";
-import SustainabilityPost from "./pages/sustainability/SustainabilityPost";
+import GhostArticles from "./components/GhostArticles";
+import * as React from "react";
+import GhostArticle from "./components/GhostArticle";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -182,8 +183,31 @@ export default function App() {
     "/tools/co2/e-car": CO2ECar,
     "/tools/co2/h-car": CO2HCar,
     "/sustainability": Sustainability,
-    "/sustainability/articles": SustainabilityPosts,
-    "/sustainability/articles/:id": SustainabilityPost,
+    "/sustainability/articles": () => {
+      return (
+        <GhostArticles
+          ghostFilter={"tag:sustainability"}
+          postBaseUrl={"/sustainability/articles"}
+        />
+      );
+    },
+    "/sustainability/articles/:id": () => {
+      const { id } = useParams<{ id: string }>();
+      return <GhostArticle postId={id} />;
+    },
+    "/news": () => {
+      return (
+        <GhostArticles
+          ghostFilter={"tag:news"}
+          postBaseUrl={"/news"}
+          pageTitle={"Neuigkeiten"}
+        />
+      );
+    },
+    "/news/:id": () => {
+      const { id } = useParams<{ id: string }>();
+      return <GhostArticle postId={id} />;
+    },
     //KEEP_ROUTES
   };
 

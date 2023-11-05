@@ -1,34 +1,22 @@
 /**
- * mobile/src/pages/sustainability/SustainabilityPost.tsx
+ * mobile/src/components/GhostArticle.tsx
  *
  * Author: Ben Siebert <hello@ben-siebert.de>
  * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
  * License: Project License
- * Created At: 04.11.2023
+ * Created At: 05.11.2023
  *
  */
 
 import * as React from "react";
-import Page from "../../components/Page";
-import { useEffect } from "react";
-import { getGhostContentApi } from "../../env";
-import { PostOrPage } from "@tryghost/content-api";
-import {
-  Button,
-  ButtonGroup,
-  Card,
-  CardBody,
-  CardHeader,
-  Grid,
-  Heading,
-  Image,
-} from "@chakra-ui/react";
-import { IonButton, IonSearchbar, useIonRouter } from "@ionic/react";
 import { useParams } from "react-router";
+import { PostOrPage } from "@tryghost/content-api";
+import { getGhostContentApi } from "../env";
+import { useEffect } from "react";
+import Page from "./Page";
+import { Image } from "@chakra-ui/react";
 
-export default function SustainabilityPost() {
-  const { id } = useParams<{ id: string }>();
-
+export default function GhostArticle(props: { postId: string }) {
   const [post, setPost] = React.useState<PostOrPage>();
 
   const ghostApi = getGhostContentApi();
@@ -36,7 +24,7 @@ export default function SustainabilityPost() {
   useEffect(() => {
     ghostApi.posts
       .read({
-        id: id,
+        id: props.postId,
       })
       .then((post) => {
         setPost(post);

@@ -40,6 +40,7 @@ import {
   FaEarthEurope,
   FaHammer,
   FaLeaf,
+  FaNewspaper,
   FaPeopleGroup,
   FaPerson,
   FaPlus,
@@ -83,6 +84,13 @@ export default function DrawerMenu(props: {
             icon: <FaHome />,
             onClick: () => {
               router.push("/onboarding", "none", "replace");
+            },
+          },
+          {
+            label: "Neuigkeiten",
+            icon: <FaNewspaper />,
+            onClick: () => {
+              router.push("/news", "none", "replace");
             },
           },
         ],
