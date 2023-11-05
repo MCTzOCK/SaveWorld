@@ -103,7 +103,7 @@ export default function CO2HCar() {
                         </StatNumber>
                         <StatHelpText>
                           auf einer Strecke von {distance}km mit einem
-                          Stromverbrauch von {consumption}kWh/100km
+                          Wasserstoffverbrauch von {consumption}kg/100km
                         </StatHelpText>
                       </Stat>
                     </>

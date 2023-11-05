@@ -121,7 +121,7 @@ export default function CO2Car() {
                       </StatNumber>
                       <StatHelpText>
                         auf einer Strecke von {distance}km mit einem
-                        Stromverbrauch von {consumption}l/100km
+                        Kraftstoffverbrauch von {consumption}l/100km
                       </StatHelpText>
                     </Stat>
                   ),
