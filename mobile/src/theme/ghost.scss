@@ -11,6 +11,14 @@
 
 .ghost-post {
   padding: 10px;
+  font-size: 1.2rem;
+  a {
+    color: var(--ion-color-success);
+  }
+  @media (min-width: 768px) {
+    padding: 20px;
+    font-size: 1.1rem;
+  }
 
   img {
     border-radius: 12px;

@@ -15,11 +15,13 @@ import { getGhostContentApi } from "../env";
 import { useEffect } from "react";
 import Page from "./Page";
 import {
+  Avatar,
   Button,
   ButtonGroup,
   Card,
   CardBody,
   CardHeader,
+  Flex,
   Grid,
   Heading,
   Image,
@@ -41,7 +43,7 @@ export default function GhostArticles(props: {
     ghostApi.posts
       .browse({
         filter: props.ghostFilter,
-        include: "count.posts",
+        include: ["count.posts", "authors"],
         page: page,
         limit: 2,
       })
@@ -75,7 +77,29 @@ export default function GhostArticles(props: {
                     {post.feature_image && <Image src={post.feature_image} />}
                     <Heading size={"lg"}>{post.title}</Heading>
                   </CardHeader>
-                  <CardBody>
+                  <CardBody mt={-2} pt={0}>
+                    {post.primary_author && (
+                      <>
+                        <Flex
+                          w={"100%"}
+                          gap={4}
+                          flexDirection={"row"}
+                          mb={4}
+                          alignItems={"center"}
+                        >
+                          <Avatar
+                            src={
+                              post.primary_author.profile_image ||
+                              "/blank-profile-picture-973460_1280.png"
+                            }
+                            size={"md"}
+                          />
+                          <Heading size={"md"}>
+                            {post.primary_author.name}
+                          </Heading>
+                        </Flex>
+                      </>
+                    )}
                     {post.excerpt}
                     <ButtonGroup w={"100%"} mt={2}>
                       <Button
