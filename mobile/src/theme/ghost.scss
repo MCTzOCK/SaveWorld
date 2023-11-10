@@ -11,13 +11,13 @@
 
 .ghost-post {
   padding: 10px;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   a {
     color: var(--ion-color-success);
   }
-  @media (min-width: 768px) {
-    padding: 20px;
-    font-size: 1.1rem;
+
+  p {
+    margin-bottom: 1rem;
   }
 
   img {

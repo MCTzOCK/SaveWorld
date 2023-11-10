@@ -79,6 +79,8 @@ import Sustainability from "./pages/sustainability/Sustainability";
 import GhostArticles from "./components/GhostArticles";
 import * as React from "react";
 import GhostArticle from "./components/GhostArticle";
+import DirectusPosts from "./components/DirectusPosts";
+import DirectusPost from "./components/DirectusPost";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -185,28 +187,48 @@ export default function App() {
     "/sustainability": Sustainability,
     "/sustainability/articles": () => {
       return (
-        <GhostArticles
-          ghostFilter={"tag:sustainability"}
+        <DirectusPosts
           postBaseUrl={"/sustainability/articles"}
+          pageTitle={"Nachhaltigkeit"}
+          tagFilter={"sustainability"}
         />
       );
     },
     "/sustainability/articles/:id": () => {
       const { id } = useParams<{ id: string }>();
-      return <GhostArticle postId={id} />;
+      //return <GhostArticle postId={id} />;
+      return <DirectusPost postId={id} />;
     },
     "/news": () => {
+      return (
+        <DirectusPosts
+          postBaseUrl={"/news"}
+          pageTitle={"Neuigkeiten"}
+          tagFilter={"news"}
+        />
+      );
+      /*
       return (
         <GhostArticles
           ghostFilter={"tag:news"}
           postBaseUrl={"/news"}
           pageTitle={"Neuigkeiten"}
         />
-      );
+      );*/
     },
     "/news/:id": () => {
       const { id } = useParams<{ id: string }>();
-      return <GhostArticle postId={id} />;
+      return <DirectusPost postId={id} />;
+      //return <GhostArticle postId={id} />;
+    },
+    "/directus": () => {
+      return (
+        <DirectusPosts
+          postBaseUrl={"/n"}
+          pageTitle={"Neuigkeiten"}
+          tagFilter={"news"}
+        />
+      );
     },
     //KEEP_ROUTES
   };

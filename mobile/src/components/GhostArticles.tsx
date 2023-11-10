@@ -45,7 +45,7 @@ export default function GhostArticles(props: {
         filter: props.ghostFilter,
         include: ["count.posts", "authors"],
         page: page,
-        limit: 2,
+        limit: 4,
       })
       .then((posts) => {
         setPosts(posts);

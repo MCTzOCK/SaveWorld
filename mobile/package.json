@@ -23,6 +23,7 @@
     "@capacitor/share": "^5.0.6",
     "@capacitor/status-bar": "5.0.6",
     "@chakra-ui/react": "^2.8.1",
+    "@directus/sdk": "^13.0.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@ionic/react": "^7.0.0",
@@ -56,6 +57,7 @@
     "react-router-dom": "^5.3.4",
     "react-simplemde-editor": "^5.2.0",
     "react-swipeable": "^7.0.1",
+    "remark-gfm": "^3.0.1",
     "socket.io-client": "^4.7.2",
     "vercel": "^32.4.1"
   },
