@@ -12,6 +12,7 @@ import * as React from "react";
 import Logo from "@/components/Logo";
 import { Box, Button, Flex, Heading } from "@chakra-ui/react";
 import DownloadButton from "@/components/DownloadButton";
+import Link from "next/link";
 
 export default function NavigationBar() {
   return (
@@ -25,7 +26,7 @@ export default function NavigationBar() {
         gap={4}
         direction={["column", "row"]}
       >
-        <Flex gap={4} alignItems={"center"}>
+        <Flex gap={4} alignItems={"center"} as={Link} href={"/"}>
           <Logo s={64} />
           <Heading fontWeight={1000} color={"primary.500"}>
             SaveWorld

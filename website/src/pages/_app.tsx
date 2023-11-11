@@ -4,6 +4,7 @@ import Head from "next/head";
 import NavigationBar from "@/components/NavigationBar";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { theme } from "@/theme";
+import Footer from "@/components/Footer";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -16,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <ChakraProvider theme={theme}>
         <NavigationBar />
         <Component {...pageProps} />
+        <Footer />
       </ChakraProvider>
     </>
   );
