@@ -45,11 +45,7 @@ export default function EcoProjectsSegment() {
               <chakra.span fontWeight={900} color={"primary.500"}>
                 in deiner Nähe
               </chakra.span>{" "}
-              um dich zu engagieren.{" "}
-              <chakra.span fontWeight={900} color={"primary.500"}>
-                Fakten
-              </chakra.span>{" "}
-              erstellt. Organisiere deine Projekte mit{" "}
+              um dich zu engagieren. Organisiere deine Projekte mit{" "}
               <chakra.span fontWeight={900} color={"primary.500"}>
                 erstklassigen Werkzeugen
               </chakra.span>

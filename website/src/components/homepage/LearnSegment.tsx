@@ -44,7 +44,7 @@ export default function LearnSegment() {
               Alle Inhalte sind{" "}
               <chakra.span fontWeight={900} color={"primary.500"}>
                 kostenlos
-              </chakra.span>
+              </chakra.span>{" "}
               verfügbar und werden auf Basis von{" "}
               <chakra.span fontWeight={900} color={"primary.500"}>
                 Fakten
