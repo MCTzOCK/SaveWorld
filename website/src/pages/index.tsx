@@ -15,6 +15,7 @@ import DownloadButton from "@/components/DownloadButton";
 import TrackerSegment from "@/components/homepage/TrackerSegment";
 import HeaderSegment from "@/components/homepage/HeaderSegment";
 import ArticlesSegment from "@/components/homepage/ArticlesSegment";
+import EcoProjectsSegment from "@/components/homepage/EcoProjectsSegment";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
       <LearnSegment />
       <ArticlesSegment />
       <TrackerSegment />
+      <EcoProjectsSegment />
     </>
   );
 }
