@@ -16,6 +16,7 @@ import TrackerSegment from "@/components/homepage/TrackerSegment";
 import HeaderSegment from "@/components/homepage/HeaderSegment";
 import ArticlesSegment from "@/components/homepage/ArticlesSegment";
 import EcoProjectsSegment from "@/components/homepage/EcoProjectsSegment";
+import CommunitySegment from "@/components/homepage/CommunitySegment";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
       <ArticlesSegment />
       <TrackerSegment />
       <EcoProjectsSegment />
+      <CommunitySegment />
     </>
   );
 }
