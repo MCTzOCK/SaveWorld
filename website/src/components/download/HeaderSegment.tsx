@@ -75,11 +75,9 @@ export default function HeaderSegment() {
                 iOS
               </Button>
               <Button
+                colorScheme={"purple"}
                 w={"100%"}
-                backgroundColor={"black"}
                 size={"lg"}
-                _hover={{ backgroundColor: "black" }}
-                _active={{ backgroundColor: "black" }}
                 as={"a"}
                 href={"https://app.saveworld.one"}
                 target={"_blank"}
