@@ -10,17 +10,29 @@
 
 import * as React from "react";
 import Logo from "@/components/Logo";
-import { Box, Flex, Heading } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading } from "@chakra-ui/react";
+import DownloadButton from "@/components/DownloadButton";
 
 export default function NavigationBar() {
   return (
     <>
-      <Flex w={"100%"} bg={"black"} p={4} alignItems={"center"} gap={4}>
+      <Flex
+        w={"100%"}
+        bg={"black"}
+        p={4}
+        alignItems={"center"}
+        justifyContent={"space-between"}
+        gap={4}
+        direction={["column", "row"]}
+      >
         <Flex gap={4} alignItems={"center"}>
           <Logo s={64} />
           <Heading fontWeight={1000} color={"primary.500"}>
             SaveWorld
           </Heading>
+        </Flex>
+        <Flex gap={4} alignItems={"center"}>
+          <DownloadButton />
         </Flex>
       </Flex>
     </>
