@@ -66,7 +66,30 @@ export const RFAppNodes: Node<any, string | undefined>[] | undefined = [
     },
     parentNode: "group-mobile",
     extent: "parent",
-    position: { x: 150, y: 250 },
+    position: { x: 175, y: 250 },
+  },
+  {
+    id: "socket-io",
+    type: "pictureNode",
+    data: {
+      text: "Socket.IO",
+      handles: [
+        {
+          type: "target",
+          position: Position.Top,
+          id: "t1",
+        },
+        {
+          type: "source",
+          position: Position.Bottom,
+          id: "t2",
+        },
+      ],
+      imgUrl: "https://cdn.worldvectorlogo.com/logos/socket-io.svg",
+    },
+    parentNode: "group-mobile",
+    extent: "parent",
+    position: { x: 10, y: 250 },
   },
 ];
 export const RFAppEdges: Edge<any>[] | undefined = [
@@ -91,5 +114,19 @@ export const RFAppEdges: Edge<any>[] | undefined = [
     targetHandle: "t2",
     animated: true,
     label: "Geo-Lookups",
+  },
+  {
+    id: "ionic-socket-io",
+    source: "ionic",
+    target: "socket-io",
+    animated: true,
+    label: "Web Socket",
+  },
+  {
+    id: "socket-io-express",
+    source: "socket-io",
+    target: "express",
+    animated: true,
+    label: "Web Socket",
   },
 ];
