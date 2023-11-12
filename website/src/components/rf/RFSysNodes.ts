@@ -23,6 +23,19 @@ export const RFSYSNodes: Node<any, string | undefined>[] | undefined = [
       height: 700,
     },
   },
+  {
+    id: "B",
+    type: "group",
+    data: {
+      label: null,
+    },
+    position: { x: 0, y: -750 },
+    style: {
+      backgroundColor: "",
+      width: 840,
+      height: 700,
+    },
+  },
 ];
 
 export const RFSYSEdges: Edge<any>[] | undefined = [];

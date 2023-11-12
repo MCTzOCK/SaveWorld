@@ -28,7 +28,7 @@ export const RFBackendNodes: Node<any, string | undefined>[] | undefined = [
     data: {
       imgUrl: "https://cdn.worldvectorlogo.com/logos/express-109.svg",
       text: "Backend",
-      target: false,
+      target: true,
       source: true,
     },
     parentNode: "A",

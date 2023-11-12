@@ -16,6 +16,7 @@ import PictureNode from "@/components/rf/PictureNode";
 import { RFBackendEdges, RFBackendNodes } from "@/components/rf/RFBackendNodes";
 import TextNode from "@/components/rf/TextNode";
 import { RFSYSEdges, RFSYSNodes } from "@/components/rf/RFSysNodes";
+import { RFAppEdges, RFAppNodes } from "@/components/rf/RFAppNodes";
 
 export default function Technical() {
   const nodeTypes = {
@@ -27,8 +28,16 @@ export default function Technical() {
     <>
       <ReactFlow
         fitView
-        nodes={[...(RFSYSNodes as []), ...(RFBackendNodes as [])]}
-        edges={[...(RFSYSEdges as []), ...(RFBackendEdges as [])]}
+        nodes={[
+          ...(RFSYSNodes as []),
+          ...(RFBackendNodes as []),
+          ...(RFAppNodes as []),
+        ]}
+        edges={[
+          ...(RFSYSEdges as []),
+          ...(RFBackendEdges as []),
+          ...(RFAppEdges as []),
+        ]}
         nodeTypes={nodeTypes}
         onNodesChange={() => {}}
         onEdgesChange={() => {}}
