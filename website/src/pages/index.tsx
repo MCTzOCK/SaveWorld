@@ -19,14 +19,21 @@ import EcoProjectsSegment from "@/components/homepage/EcoProjectsSegment";
 import CommunitySegment from "@/components/homepage/CommunitySegment";
 
 export default function Home() {
+  const p = [32, 16];
   return (
     <>
       <HeaderSegment />
+      <Box p={p}></Box>
       <LearnSegment />
+      <Box p={p}></Box>
       <ArticlesSegment />
+      <Box p={p}></Box>
       <TrackerSegment />
+      <Box p={p}></Box>
       <EcoProjectsSegment />
+      <Box p={p}></Box>
       <CommunitySegment />
+      <Box p={p}></Box>
     </>
   );
 }
