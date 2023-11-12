@@ -53,6 +53,8 @@ export default function AdminCreateVideoModal(props: {
     [],
   );
 
+  const [sources, setSources] = React.useState<string[]>([]);
+
   const [uploading, setUploading] = React.useState<boolean>(false);
 
   return (
@@ -117,6 +119,7 @@ export default function AdminCreateVideoModal(props: {
                   data.append("title", name);
                   data.append("description", desc);
                   data.append("categories", JSON.stringify(selectedCategories));
+                  data.append("sources", JSON.stringify(sources));
                   data.append("youtubeVideoId", id);
 
                   setUploading(true);
@@ -185,6 +188,18 @@ export default function AdminCreateVideoModal(props: {
                     labelPlacement={"fixed"}
                     autoGrow
                     id={"create-vid-desc"}
+                  />
+                </IonItem>
+                <IonItem color={"light"}>
+                  <IonTextarea
+                    placeholder={"Quellen (eine pro Zeile)"}
+                    label={"Quellen"}
+                    labelPlacement={"fixed"}
+                    autoGrow
+                    id={"create-vid-sources"}
+                    onIonChange={(ev) => {
+                      setSources(ev.detail.value?.split("\n") || []);
+                    }}
                   />
                 </IonItem>
                 {categories.map((c) => {

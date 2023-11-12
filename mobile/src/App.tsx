@@ -1,27 +1,6 @@
 import { Route, Switch } from "react-router-dom";
-import {
-  IonApp,
-  IonFooter,
-  IonIcon,
-  IonLabel,
-  IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
-  IonToolbar,
-  isPlatform,
-  setupIonicReact,
-  useIonRouter,
-} from "@ionic/react";
+import { IonApp, isPlatform, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import {
-  book,
-  bookSharp,
-  home,
-  homeSharp,
-  leaf,
-  leafSharp,
-} from "ionicons/icons";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -59,12 +38,12 @@ import AdminVideosDashboard from "./pages/admin/AdminVideosDashboard";
 import AdminVideoDashboard from "./pages/admin/AdminVideoDashboard";
 import Videos from "./pages/learn/Videos";
 import VideoSearchFTS from "./pages/learn/VideoSearchFTS";
-import { Redirect } from "react-router";
+import { Redirect, useParams } from "react-router";
 import EcoTracker from "./pages/tracker/EcoTracker";
 
 import OneSignal from "onesignal-cordova-plugin";
 import { ENDPOINT, ONE_SIGNAL_APP_ID } from "./env";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import AppUrlListener from "./AppUrlListener";
 import AdminLifestyleTemplates from "./pages/admin/AdminLifestyleTemplates";
 import WelcomeLifestyle from "./pages/introduction/WelcomeLifestyle";
@@ -73,15 +52,7 @@ import CommunityDashboard from "./pages/community/CommunityDashboard";
 import CommunityProfile from "./pages/community/CommunityProfile";
 import CommunityCreateBlog from "./pages/community/CommunityCreateBlog";
 import CommunityBlogViewer from "./pages/community/CommunityBlogViewer";
-import {
-  Box,
-  Button,
-  ChakraProvider,
-  Heading,
-  Portal,
-  Text,
-  useToast,
-} from "@chakra-ui/react";
+import { Box, ChakraProvider, Heading, Text, useToast } from "@chakra-ui/react";
 import { theme } from "./theme/chakra";
 import Notifications from "./pages/Notifications";
 import Support from "./pages/Support";
@@ -89,10 +60,28 @@ import AdminSupportRequestsDashboard from "./pages/admin/AdminSupportRequestsDas
 import AdminSupportRequestDashboard from "./pages/admin/AdminSupportRequestDashboard";
 import Home from "./pages/Home";
 import SocketTest from "./pages/SocketTest";
-import CommunityMessages from "./pages/community/CommunityMessages";
 import { io } from "socket.io-client";
 import CommunityMessagesChat from "./pages/community/CommunityMessagesChat";
 import MdHelp from "./pages/resources/MdHelp";
+import CommunityMessagesChatsList from "./pages/community/CommunityMessagesChatsList";
+import CommunityMessagesGroupsList from "./pages/community/CommunityMessagesGroupsList";
+import StartE2Project from "./pages/e2-projects/StartE2Project";
+import MyE2Projects from "./pages/e2-projects/MyE2Projects";
+import E2ProjectHomepage from "./pages/e2-projects/project/E2ProjectHomepage";
+import E2ProjectEdit from "./pages/e2-projects/project/E2ProjectEdit";
+import E2Projects from "./pages/e2-projects/E2Projects";
+import E2ProjectTodoListViewer from "./pages/e2-projects/project/todos/E2ProjectTodoListViewer";
+import C02 from "./pages/tools/C02";
+import CO2Car from "./pages/tools/CO2Car";
+import CO2ECar from "./pages/tools/CO2ECar";
+import CO2HCar from "./pages/tools/CO2HCar";
+import Sustainability from "./pages/sustainability/Sustainability";
+import GhostArticles from "./components/GhostArticles";
+import * as React from "react";
+import GhostArticle from "./components/GhostArticle";
+import DirectusPosts from "./components/DirectusPosts";
+import DirectusPost from "./components/DirectusPost";
+//KEEP_IMPORTS
 
 setupIonicReact({
   mode: "ios",
@@ -173,17 +162,75 @@ export default function App() {
     "/learn/fts-search": VideoSearchFTS,
     "/eco-tracker": EcoTracker,
     "/e2": E2,
+    "/e2-projects/new": StartE2Project,
+    "/e2-projects/my": MyE2Projects,
+    "/e2-projects/search": E2Projects,
+    "/e2-projects/:id": E2ProjectHomepage,
+    "/e2-projects/:id/edit": E2ProjectEdit,
+    "/e2-projects/:id/todos/:listId": E2ProjectTodoListViewer,
     "/community": CommunityDashboard,
     "/community/u/:username": CommunityProfile,
     "/community/create/blog": CommunityCreateBlog,
     "/community/r/:id": CommunityBlogViewer,
-    "/community/messages": CommunityMessages,
+    "/community/messages": CommunityMessagesChatsList,
+    "/community/messages-groups": CommunityMessagesGroupsList,
     "/community/messages/:id": CommunityMessagesChat,
     "/notifications": Notifications,
     "/support": Support,
     "/onboarding": Home,
     "/s2": SocketTest,
     "/resources/md-help": MdHelp,
+    "/tools/co2": C02,
+    "/tools/co2/car": CO2Car,
+    "/tools/co2/e-car": CO2ECar,
+    "/tools/co2/h-car": CO2HCar,
+    "/sustainability": Sustainability,
+    "/sustainability/articles": () => {
+      return (
+        <DirectusPosts
+          postBaseUrl={"/sustainability/articles"}
+          pageTitle={"Nachhaltigkeit"}
+          tagFilter={"sustainability"}
+        />
+      );
+    },
+    "/sustainability/articles/:id": () => {
+      const { id } = useParams<{ id: string }>();
+      //return <GhostArticle postId={id} />;
+      return <DirectusPost postId={id} />;
+    },
+    "/news": () => {
+      return (
+        <DirectusPosts
+          postBaseUrl={"/news"}
+          pageTitle={"Neuigkeiten"}
+          tagFilter={"news"}
+        />
+      );
+      /*
+      return (
+        <GhostArticles
+          ghostFilter={"tag:news"}
+          postBaseUrl={"/news"}
+          pageTitle={"Neuigkeiten"}
+        />
+      );*/
+    },
+    "/news/:id": () => {
+      const { id } = useParams<{ id: string }>();
+      return <DirectusPost postId={id} />;
+      //return <GhostArticle postId={id} />;
+    },
+    "/directus": () => {
+      return (
+        <DirectusPosts
+          postBaseUrl={"/n"}
+          pageTitle={"Neuigkeiten"}
+          tagFilter={"news"}
+        />
+      );
+    },
+    //KEEP_ROUTES
   };
 
   return (

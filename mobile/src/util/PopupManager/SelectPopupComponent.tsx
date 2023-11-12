@@ -57,7 +57,7 @@ export default function SelectPopupComponent(props: {
         leastDestructiveRef={whatEverRef}
       >
         <AlertDialogOverlay bg="blackAlpha.300" backdropFilter="blur(10px)">
-          <AlertDialogContent bg={"black"} maxWidth={"85%"}>
+          <AlertDialogContent bg={"black"}>
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
               {props.title}
             </AlertDialogHeader>
@@ -65,7 +65,11 @@ export default function SelectPopupComponent(props: {
             <AlertDialogBody>
               <FormControl isRequired>
                 <FormLabel>Eingabe</FormLabel>
-                <Select id={"input-" + id} placeholder="Wähle eine Option">
+                <Select
+                  id={"input-" + id}
+                  placeholder="Wähle eine Option"
+                  size={"lg"}
+                >
                   {props.choices.map((c, i) => {
                     return <option key={i}>{c}</option>;
                   })}

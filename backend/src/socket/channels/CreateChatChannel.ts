@@ -28,7 +28,14 @@ export default class CreateChatChannel extends Channel {
         return;
       }
 
-      const otherUsername = data;
+      let otherUsername = data;
+      let group = false;
+
+      if (data.startsWith("group,")) {
+        otherUsername = data.split(",")[1];
+        group = true;
+      }
+
       const otherUserDoc = await UserModel.findOne({
         username: otherUsername,
       });
@@ -54,20 +61,22 @@ export default class CreateChatChannel extends Channel {
         return;
       }
 
-      const existingChat = await ChatModel.findOne({
-        users: {
-          $all: [
-            SocketRegistry.loggedIn[this.socket.id].userId,
-            otherUserDoc._id,
-          ],
-        },
-      });
-
-      if (existingChat) {
-        this.emit({
-          chatId: existingChat._id,
+      if (!group) {
+        const existingChat = await ChatModel.findOne({
+          users: {
+            $all: [
+              SocketRegistry.loggedIn[this.socket.id].userId,
+              otherUserDoc._id,
+            ],
+          },
         });
-        return;
+
+        if (existingChat) {
+          this.emit({
+            chatId: existingChat._id,
+          });
+          return;
+        }
       }
 
       const chat = await ChatModel.create({
@@ -75,6 +84,7 @@ export default class CreateChatChannel extends Channel {
           SocketRegistry.loggedIn[this.socket.id].userId,
           otherUserDoc._id,
         ],
+        isGroup: group,
       });
 
       this.emit({

@@ -3,9 +3,10 @@
     "module": "commonjs",
     "target": "ESNEXT",
     "sourceMap": true,
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "route-generator.js"
   ]
 }

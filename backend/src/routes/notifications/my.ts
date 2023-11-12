@@ -10,7 +10,6 @@
 
 import { isAuthenticated } from "../../util/isAuthenticated";
 import { Request, Response } from "express";
-import UserModel from "../../models/UserModel";
 import PushNotificationModel from "../../models/PushNotificationModel";
 
 export default async function (req: Request, res: Response) {

@@ -130,6 +130,7 @@ export class REST {
      * @param title of the video
      * @param description of the video
      * @param categories of the video
+     * @param sources of the video
      */
     updateVideo: async (
       token: string,
@@ -137,6 +138,7 @@ export class REST {
       title: string,
       description: string,
       categories: string[],
+      sources: string[],
     ) => {
       return await makeRequest({
         path: RESTEnv.API_URL + "/admin/content/videos/update?id=" + id,
@@ -146,6 +148,7 @@ export class REST {
           title: title,
           description: description,
           categories: categories,
+          sources: sources,
         },
       });
     },
@@ -879,6 +882,492 @@ export class REST {
           message: message,
           additionalData: additionalData,
         },
+      });
+    },
+  };
+
+  public static Nominatim = {
+    /**
+     * @return the requested search results
+     * @param query the query to search for
+     * @param nominatimUrl the url of the nominatim instance
+     */
+    search: async (query: string, nominatimUrl: string) => {
+      return await makeRequest({
+        path:
+          nominatimUrl +
+          "/search?q=" +
+          query +
+          "&format=jsonv2&polygon_geojson=0&addressdetails=1&limit=3",
+        method: "GET",
+      });
+    },
+  };
+
+  public static EcoProjects = {
+    /**
+     * Creates a new eco project
+     * @param token used to authenticate
+     * @param name of the project
+     * @param startDate of the project
+     * @param lastsDays of the project
+     * @param geoLocation of the project
+     */
+    create: async (
+      token: string,
+      name: string,
+      startDate: string,
+      lastsDays: number,
+      geoLocation: string,
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eco-projects/create",
+        method: "POST",
+        token: token,
+        body: {
+          name: name,
+          startDate: startDate,
+          lastsDays: lastsDays,
+          geoLocation: geoLocation,
+        },
+      });
+    },
+    /**
+     * @return the projects the user is in
+     * @param token used to authenticate
+     */
+    my: async (token: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eco-projects/my",
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * @return the requested project
+     * @param token used to authenticate
+     * @param id of the project to get
+     */
+    project: async (token: string, id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eco-projects/project/receive?id=" + id,
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * Updates a project
+     * @param token used to authenticate
+     * @param id of the project to update
+     * @param name of the project
+     * @param startDate of the project
+     * @param lastsDays of the project
+     * @param geoLocation of the project
+     */
+    update: async (
+      token: string,
+      id: string,
+      name: string,
+      startDate: string,
+      lastsDays: number,
+      geoLocation: string,
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eco-projects/project/edit?id=" + id,
+        method: "POST",
+        token: token,
+        body: {
+          name: name,
+          startDate: startDate,
+          lastsDays: lastsDays,
+          geoLocation: geoLocation,
+        },
+      });
+    },
+    /**
+     * Receives all homepage segments of a project
+     * @param token used to authenticate
+     * @param id of the project to get
+     */
+    homepage: async (token: string, id: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL + "/eco-projects/project/homepage/segments?id=" + id,
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * Creates a new homepage segment
+     * @param token used to authenticate
+     * @param id of the project to create the segment for
+     * @param title of the segment
+     * @param content of the segment
+     * @param type of the segment
+     */
+    createHomepageSegment: async (
+      token: string,
+      id: string,
+      title: string,
+      content: string,
+      type: string,
+      pinned: boolean,
+    ) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/homepage/create-segment?id=" +
+          id,
+        method: "POST",
+        token: token,
+        body: {
+          title: title,
+          content: content,
+          type: type,
+          pinned: pinned,
+        },
+      });
+    },
+    /**
+     * Deletes a homepage segment
+     * @param token used to authenticate
+     * @param id of the segment to delete
+     * @param projectId of the project to delete the segment from
+     */
+    deleteHomepageSegment: async (
+      token: string,
+      id: string,
+      projectId: string,
+    ) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/homepage/delete-segment?id=" +
+          id +
+          "&projectId=" +
+          projectId,
+        method: "DELETE",
+        token: token,
+      });
+    },
+    /**
+     * Updates a homepage segment
+     * @param token used to authenticate
+     * @param id of the segment to update
+     * @param projectId of the project to update the segment from
+     * @param title of the segment
+     * @param content of the segment
+     * @param type of the segment
+     * @param pinned if the segment is pinned
+     */
+    updateHomepageSegment: async (
+      token: string,
+      id: string,
+      projectId: string,
+      title: string,
+      content: string,
+      type: string,
+      pinned: boolean,
+    ) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/homepage/update-segment?id=" +
+          id +
+          "&projectId=" +
+          projectId,
+        method: "POST",
+        token: token,
+        body: {
+          title: title,
+          content: content,
+          type: type,
+          pinned: pinned,
+        },
+      });
+    },
+    /**
+     * @return the requested projects
+     * @param token used to authenticate
+     * @param page the page to get
+     * @param query the query to search for
+     */
+    projects: async (token: string, page: number, query?: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/list?page=" +
+          page +
+          (query ? "&q=" + query : ""),
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * Toggles the membership of a user
+     * @param token used to authenticate
+     * @param projectId of the project to toggle the membership for
+     */
+    toggleMembership: async (token: string, projectId: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/toggle-member-status?projectId=" +
+          projectId,
+        method: "POST",
+        token: token,
+      });
+    },
+    /**
+     * Removes a member from a project
+     * @param token used to authenticate
+     * @param projectId of the project to remove the member from
+     * @param userId of the user to remove
+     */
+    removeMember: async (token: string, projectId: string, userId: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/members/delete?projectId=" +
+          projectId +
+          "&userId=" +
+          userId,
+        method: "DELETE",
+        token: token,
+      });
+    },
+    /**
+     * Changes the role of a member
+     * @param token used to authenticate
+     * @param projectId of the project to change the role for
+     * @param userId of the user to change the role for
+     * @param newRole the new role to set
+     */
+    changeMemberRole: async (
+      token: string,
+      projectId: string,
+      userId: string,
+      newRole: string,
+    ) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/members/change-role?projectId=" +
+          projectId +
+          "&userId=" +
+          userId +
+          "&newRole=" +
+          newRole,
+        method: "POST",
+        token: token,
+      });
+    },
+    /**
+     * @return the projects in the requested time period
+     * @param token used to authenticate
+     * @param startDate of the period
+     * @param endDate of the period
+     */
+    projectsInPeriod: async (
+      token: string,
+      startDate: string,
+      endDate: string,
+    ) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/calendar?startDate=" +
+          startDate +
+          "&endDate=" +
+          endDate,
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * @return all geo locations of the projects
+     * @param token used to authenticate
+     */
+    geoLocations: async (token: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eco-projects/all-geo-locations",
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * @return all geo locations of the projects
+     * @param token used to authenticate
+     * @param lat of the location
+     * @param lon of the location
+     */
+    getByLatLon: async (token: string, lat: string, lon: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/by-lat-lon?lat=" +
+          lat +
+          "&lon=" +
+          lon,
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * Deletes a project
+     * @param token used to authenticate
+     * @param id of the project to delete
+     */
+    deleteProject: async (token: string, id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eco-projects/project/delete?id=" + id,
+        method: "DELETE",
+        token: token,
+      });
+    },
+  };
+
+  public static EcoProjectsToDo = {
+    /**
+     * Creates a new todo list
+     * @param token used to authenticate
+     * @param id of the project to create the todo list for
+     * @param title of the todo list
+     */
+    createList: async (token: string, id: string, title: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL + "/eco-projects/project/todo/create-list?id=" + id,
+        method: "POST",
+        token: token,
+        body: {
+          title: title,
+        },
+      });
+    },
+    /**
+     * Deletes a todo list
+     * @param token used to authenticate
+     * @param id of the project
+     * @param listId of the list to delete
+     */
+    deleteList: async (token: string, id: string, listId: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/todo/delete-list?id=" +
+          id +
+          "&listId=" +
+          listId,
+        method: "DELETE",
+        token: token,
+      });
+    },
+    /**
+     * Gets all todo lists of a project
+     * @param token used to authenticate
+     * @param id of the project
+     */
+    lists: async (token: string, id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eco-projects/project/todo/lists?id=" + id,
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * Creates a new todo item
+     * @param token used to authenticate
+     * @param id of the project
+     * @param listId of the list to create the item for
+     * @param title of the item
+     * @param description of the item
+     */
+    createItem: async (
+      token: string,
+      id: string,
+      listId: string,
+      title: string,
+      description: string,
+    ) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/todo/create-item?id=" +
+          id +
+          "&listId=" +
+          listId,
+        method: "POST",
+        token: token,
+        body: {
+          title: title,
+          description: description,
+        },
+      });
+    },
+    /**
+     * Deletes a todo item
+     * @param token used to authenticate
+     * @param id of the project
+     * @param listId of the list to delete the item from
+     * @param itemId of the item to delete
+     */
+    deleteItem: async (
+      token: string,
+      id: string,
+      listId: string,
+      itemId: string,
+    ) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/todo/delete-item?id=" +
+          id +
+          "&listId=" +
+          listId +
+          "&itemId=" +
+          itemId,
+        method: "DELETE",
+        token: token,
+      });
+    },
+    /**
+     * Gets all todo items of a list
+     * @param token used to authenticate
+     * @param listId of the list to get the items from
+     */
+    items: async (token: string, listId: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL + "/eco-projects/project/todo/items?listId=" + listId,
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * Checks a todo item
+     * @param token used to authenticate
+     * @param id of the project
+     * @param listId of the list to check the item from
+     * @param itemId of the item to check
+     */
+    checkItem: async (
+      token: string,
+      id: string,
+      listId: string,
+      itemId: string,
+    ) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/eco-projects/project/todo/check-item?id=" +
+          id +
+          "&listId=" +
+          listId +
+          "&itemId=" +
+          itemId,
+        method: "POST",
+        token: token,
       });
     },
   };

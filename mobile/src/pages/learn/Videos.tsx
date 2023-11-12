@@ -50,6 +50,7 @@ export default function Videos() {
     thumbnailUrl: string;
     categories: string[];
     ratings: number[];
+    sources: string[];
   } | null>(null);
 
   const nextVideo = async () => {

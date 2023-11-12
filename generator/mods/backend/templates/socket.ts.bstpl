@@ -1,0 +1,24 @@
+/**
+ * //path
+ *
+ * Author: Ben Siebert <hello@ben-siebert.de>
+ * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
+ * License: Project License
+ * Created At: //date
+ *
+ */
+import Channel from "./Channel";
+import { Socket } from "socket.io";
+import SocketRegistry from "../SocketRegistry";
+
+export default class //CHANNEL_CLASS_NAME extends Channel {
+  constructor(socket: Socket, channelName: string) {
+    super(socket, channelName);
+  }
+
+  register() {}
+
+  emit(data: any) {
+    this.socket.emit(this.channelName, data);
+  }
+}

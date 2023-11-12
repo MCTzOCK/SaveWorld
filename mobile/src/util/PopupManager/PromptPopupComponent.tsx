@@ -57,7 +57,7 @@ export default function PromptPopupComponent(props: {
         leastDestructiveRef={whatEverRef}
       >
         <AlertDialogOverlay bg="blackAlpha.300" backdropFilter="blur(10px)">
-          <AlertDialogContent bg={"black"} maxWidth={"85%"}>
+          <AlertDialogContent bg={"black"}>
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
               {props.title}
             </AlertDialogHeader>

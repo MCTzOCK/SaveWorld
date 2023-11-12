@@ -1,0 +1,37 @@
+/**
+ * mobile/src/theme/ghost.scss
+ *
+ * Author: Ben Siebert <hello@ben-siebert.de>
+ * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
+ * License: Project License
+ * Created At: 05.11.23
+ *
+ */
+@import "variables.css";
+
+.ghost-post {
+  padding: 10px;
+  font-size: 1.3rem;
+  a {
+    color: var(--ion-color-success);
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  img {
+    border-radius: 12px;
+  }
+
+  .ghost-post-image-caption {
+    margin-bottom: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    a {
+      color: var(--ion-color-success);
+    }
+  }
+}

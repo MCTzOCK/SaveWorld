@@ -29,4 +29,11 @@ export const theme = extendTheme({
       "900": "#092A16",
     },
   },
+  components: {
+    Heading: {
+      baseStyle: {
+        color: "saveworld_green.500",
+      },
+    },
+  },
 });
