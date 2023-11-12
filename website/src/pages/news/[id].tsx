@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * website/src/pages/news/[id].tsx
  *
@@ -13,12 +15,12 @@ import { Flex, Heading, Stack, Image } from "@chakra-ui/react";
 import { getDirectusApi } from "@/directus";
 import { useEffect } from "react";
 import { readItem } from "@directus/sdk";
-import { useParams } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import * as remarkGfm from "remark-gfm";
+import { useRouter } from "next/router";
 
 export default function PostReader() {
-  const { id: postId } = useParams();
+  const router = useRouter();
 
   const directus = getDirectusApi();
 
@@ -34,10 +36,13 @@ export default function PostReader() {
   } | null>(null);
 
   useEffect(() => {
-    directus.request(readItem("Posts", postId as string)).then((post) => {
-      setPost(post as any);
-    });
-  }, [postId]);
+    if (!router || !router.query || !router.query.id) return;
+    directus
+      .request(readItem("Posts", router.query.id as string))
+      .then((post) => {
+        setPost(post as any);
+      });
+  }, [router, router.query, router.query.id]);
 
   if (post == null) return <>Laden...</>;
   return (
