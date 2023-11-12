@@ -16,32 +16,31 @@ export default function PictureNode(props: {
   data: {
     imgUrl: string;
     text: string;
-    target: boolean;
-    source: boolean;
+    handles: {
+      type: "source" | "target";
+      position: Position;
+      id: string;
+    }[];
   };
 }) {
   return (
     <>
-      {props.data.target && (
-        <Handle
-          type="target"
-          position={Position.Top}
-          style={{ background: "#555" }}
-        />
-      )}
+      {props.data.handles.map((handle) => {
+        return (
+          <Handle
+            type={handle.type}
+            position={handle.position}
+            id={handle.id}
+            key={handle.id}
+          />
+        );
+      })}
       <Box backgroundColor={"gray.800"} rounded={"md"} p={2}>
         <Image src={props.data.imgUrl} w={128} />
         <Text textAlign={"center"} mt={2}>
           {props.data.text}
         </Text>
       </Box>
-      {props.data.source && (
-        <Handle
-          type="source"
-          position={Position.Bottom}
-          style={{ background: "#555" }}
-        />
-      )}
     </>
   );
 }

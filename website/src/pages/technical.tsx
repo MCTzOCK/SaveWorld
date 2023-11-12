@@ -13,7 +13,7 @@ import { Background, Controls, ReactFlow } from "reactflow";
 import "reactflow/dist/style.css";
 import { useMemo } from "react";
 import PictureNode from "@/components/rf/PictureNode";
-import { RFBackendEdges, RFBackendNodes } from "@/components/rf/RFBackendNodes";
+import { RFBackendNodes } from "@/components/rf/RFBackendNodes";
 import TextNode from "@/components/rf/TextNode";
 import { RFSYSEdges, RFSYSNodes } from "@/components/rf/RFSysNodes";
 import { RFAppEdges, RFAppNodes } from "@/components/rf/RFAppNodes";
@@ -33,11 +33,7 @@ export default function Technical() {
           ...(RFBackendNodes as []),
           ...(RFAppNodes as []),
         ]}
-        edges={[
-          ...(RFSYSEdges as []),
-          ...(RFBackendEdges as []),
-          ...(RFAppEdges as []),
-        ]}
+        edges={[...(RFSYSEdges as []), ...(RFAppEdges as [])]}
         nodeTypes={nodeTypes}
         onNodesChange={() => {}}
         onEdgesChange={() => {}}
