@@ -18,7 +18,7 @@ import ReactMarkdown from "react-markdown";
 import * as remarkGfm from "remark-gfm";
 
 export default function PostReader() {
-  const postId = useParams().id;
+  const { id: postId } = useParams();
 
   const directus = getDirectusApi();
 
