@@ -66,7 +66,7 @@ export default function ConfirmPopupComponent(props: {
                 Nein
               </Button>
               <Button
-                colorScheme="saveworld_green"
+                colorScheme="brand"
                 variant={"outline"}
                 onClick={() => {
                   onClose();

@@ -196,10 +196,7 @@ export default function MyE2Projects() {
                     <IonCardContent>
                       <List spacing={3}>
                         <ListItem>
-                          <ListIcon
-                            as={FaCheckCircle}
-                            color={"saveworld_green.500"}
-                          />
+                          <ListIcon as={FaCheckCircle} color={"brand.500"} />
                           {p.geoLocationDisplayName}
                           {p.geoLocationLon.length > 0 &&
                             p.geoLocationLat.length > 0 && (
@@ -217,7 +214,7 @@ export default function MyE2Projects() {
                             }
                             color={
                               p.geoLocationType === "nominatim"
-                                ? "saveworld_green.500"
+                                ? "brand.500"
                                 : "var(--ion-color-danger)"
                             }
                           />
@@ -270,7 +267,7 @@ export default function MyE2Projects() {
                 <IonCardContent>
                   Keine Projekte gefunden.
                   <Button
-                    color={"saveworld_green.500"}
+                    color={"brand.500"}
                     w={"100%"}
                     mt={4}
                     onClick={() => {

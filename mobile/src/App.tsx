@@ -107,7 +107,7 @@ export default function App() {
             <>
               <Box
                 style={{ cursor: "pointer" }}
-                bgColor={"saveworld_green.500"}
+                bgColor={"brand.500"}
                 borderRadius={"12px"}
                 padding={6}
                 onClick={() => {
@@ -208,13 +208,13 @@ export default function App() {
         />
       );
       /*
-      return (
-        <GhostArticles
-          ghostFilter={"tag:news"}
-          postBaseUrl={"/news"}
-          pageTitle={"Neuigkeiten"}
-        />
-      );*/
+            return (
+              <GhostArticles
+                ghostFilter={"tag:news"}
+                postBaseUrl={"/news"}
+                pageTitle={"Neuigkeiten"}
+              />
+            );*/
     },
     "/news/:id": () => {
       const { id } = useParams<{ id: string }>();
@@ -236,7 +236,7 @@ export default function App() {
   return (
     <>
       <ChakraProvider theme={theme}>
-        <div id={"__chakra-manual-mount-point-do-not-use"}></div>
+        <div id={"__chakra-manual-mount-point-do-not-use"} />
         <IonApp>
           <IonReactRouter>
             <AppUrlListener />

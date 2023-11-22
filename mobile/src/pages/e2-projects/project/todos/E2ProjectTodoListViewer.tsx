@@ -228,7 +228,7 @@ export default function E2ProjectTodoListViewer() {
                                       await reload();
                                     }}
                                     size={"lg"}
-                                    colorScheme={"saveworld_green"}
+                                    colorScheme={"brand"}
                                   />
                                 </>
                               )}

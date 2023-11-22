@@ -207,42 +207,6 @@ export default function Page(props: {
             </IonFab>
           ) : null}
         </IonContent>
-
-        {false && (
-          <>
-            <IonFooter>
-              <IonTabBar>
-                <IonTabButton
-                  tab="onboarding"
-                  href="/onboarding"
-                  disabled={!loggedIn}
-                  selected={false}
-                >
-                  <IonIcon aria-hidden="true" ios={home} md={homeSharp} />
-                  <IonLabel>Home</IonLabel>
-                </IonTabButton>
-                <IonTabButton
-                  tab="e2"
-                  href="/e2"
-                  disabled={!loggedIn}
-                  selected={false}
-                >
-                  <IonIcon aria-hidden="true" ios={leaf} md={leafSharp} />
-                  <IonLabel>Tracker</IonLabel>
-                </IonTabButton>
-                <IonTabButton
-                  tab="learn"
-                  href="/learn"
-                  disabled={!loggedIn}
-                  selected={false}
-                >
-                  <IonIcon aria-hidden="true" ios={book} md={bookSharp} />
-                  <IonLabel>Lernen</IonLabel>
-                </IonTabButton>
-              </IonTabBar>
-            </IonFooter>
-          </>
-        )}
       </IonPage>
     </>
   );

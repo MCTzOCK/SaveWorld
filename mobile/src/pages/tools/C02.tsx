@@ -145,7 +145,7 @@ export default function C02() {
                       </Text>
                       <ButtonGroup w={"100%"} mt={4}>
                         <Button
-                          color={"saveworld_green.500"}
+                          color={"brand.500"}
                           w={"100%"}
                           onClick={() => {
                             router.push(calc.url, "none", "push");

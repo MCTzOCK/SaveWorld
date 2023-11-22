@@ -80,7 +80,7 @@ export default function CO2HCar() {
               </InputGroup>
             </FormControl>
             <Button
-              color={"saveworld_green.500"}
+              color={"brand.500"}
               onClick={() => {
                 let co2 = 0.007499;
 
@@ -95,10 +95,7 @@ export default function CO2HCar() {
                     <>
                       <Stat>
                         <StatLabel>Dein CO2-Ausstoß beträgt</StatLabel>
-                        <StatNumber
-                          color={"saveworld_green.500"}
-                          fontWeight={900}
-                        >
+                        <StatNumber color={"brand.500"} fontWeight={900}>
                           {result}kg CO2
                         </StatNumber>
                         <StatHelpText>

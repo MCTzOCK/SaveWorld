@@ -389,7 +389,7 @@ export default function DrawerMenu(props: {
                   <>
                     <Text
                       fontWeight={1000}
-                      color={group.color ? group.color : "saveworld_green.500"}
+                      color={group.color ? group.color : "brand.500"}
                     >
                       {group.label}
                     </Text>
@@ -408,11 +408,7 @@ export default function DrawerMenu(props: {
                             alignItems: "center",
                           }}
                         >
-                          <Text
-                            color={
-                              group.color ? group.color : "saveworld_green.500"
-                            }
-                          >
+                          <Text color={group.color ? group.color : "brand.500"}>
                             &#8735;
                           </Text>
                           {item.icon}

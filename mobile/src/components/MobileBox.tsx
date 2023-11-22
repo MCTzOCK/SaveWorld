@@ -21,15 +21,14 @@ export default function MobileBox(props: {
         w={"100%"}
         justifyContent={["flex-start", "center"]}
         alignItems={["flex-start", "center"]}
-        minH={"100vh"}
       >
         <Box
-          backgroundColor={"rgba(10,10,10,0.5)"}
+          backgroundColor={"gray.900"}
           borderRadius={"12px"}
-          border={"4px solid rgba(40,40,40,1)"}
+          border={"0px solid rgba(40,40,40,1)"}
           w={["100%", "75%", "50%"]}
           minW={"200px"}
-          p={props.padding || "2"}
+          p={props.padding || [2, "6"]}
         >
           {props.children}
         </Box>

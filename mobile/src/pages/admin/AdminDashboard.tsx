@@ -26,6 +26,7 @@ import {
 import { REST } from "@saveworld/api-js";
 import PopupManager from "../../util/PopupManager";
 import { Grid } from "@chakra-ui/react";
+import MobileBox from "../../components/MobileBox";
 
 export default function AdminDashboard() {
   useRedirectForAnon({
@@ -87,6 +88,7 @@ export default function AdminDashboard() {
                 "repeat(1, 1fr)",
                 "repeat(2, 1fr)",
                 "repeat(3, 1fr)",
+                "repeat(4, 1fr)",
               ]}
             >
               <IonCard>

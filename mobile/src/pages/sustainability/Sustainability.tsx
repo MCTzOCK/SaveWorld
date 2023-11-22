@@ -39,7 +39,7 @@ export default function Sustainability() {
           Deswegen findest du in diesem Bereich auch Informationen zu den Themen
           Wirtschaft und Gesellschaft.
           <Button
-            color={"saveworld_green.500"}
+            color={"brand.500"}
             w={"100%"}
             mt={4}
             onClick={() => {

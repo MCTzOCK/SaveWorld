@@ -39,6 +39,7 @@ import E2Analytics from "../../components/E2Analytics";
 import ProgressBar from "@ramonak/react-progress-bar";
 import PopupManager from "../../util/PopupManager";
 import { Box, Flex } from "@chakra-ui/react";
+import MobileBox from "../../components/MobileBox";
 
 export default function E2() {
   useRedirectForAnon();
@@ -66,60 +67,46 @@ export default function E2() {
   return (
     <>
       <Page title={"Tracker"}>
-        <Flex
-          w={"100%"}
-          justifyContent={["flex-start", "center"]}
-          alignItems={["flex-start", "center"]}
-          minH={"100vh"}
-        >
-          <Box
-            backgroundColor={"rgba(10,10,10,0.5)"}
-            padding={".75rem"}
-            borderRadius={"12px"}
-            border={"4px solid rgba(40,40,40,1)"}
-            w={["100%", "75%", "50%", "25%"]}
-            minW={"200px"}
+        <MobileBox>
+          <div
+            style={{
+              marginBottom: "2rem",
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+            }}
           >
-            <div
-              style={{
-                marginBottom: "2rem",
-                display: "flex",
-                flexDirection: "column",
-                gap: "10px",
-              }}
-            >
-              <IonText>Aktueller Level</IonText>
-              <ProgressBar
-                completed={level}
-                maxCompleted={10}
-                customLabel={level + ""}
-                bgColor={
-                  level < 3
-                    ? "var(--ion-color-danger)"
-                    : level < 6
-                    ? "var(--ion-color-warning)"
-                    : level < 9
-                    ? "var(--ion-color-success)"
-                    : "var(--ion-color-primary)"
-                }
-              />
-            </div>
-            <IonSegment
-              value={segment}
-              onIonChange={(ev) => {
-                setSegment(ev.detail.value as any);
-              }}
-            >
-              <IonSegmentButton value={"data"}>
-                <IonLabel>Übersicht</IonLabel>
-              </IonSegmentButton>
-              <IonSegmentButton value={"analytics"}>
-                <IonLabel>Analyse</IonLabel>
-              </IonSegmentButton>
-            </IonSegment>
-            {segment === "data" ? <E2Data /> : <E2Analytics />}
-          </Box>
-        </Flex>
+            <IonText>Aktueller Level</IonText>
+            <ProgressBar
+              completed={level}
+              maxCompleted={10}
+              customLabel={level + ""}
+              bgColor={
+                level < 3
+                  ? "var(--ion-color-danger)"
+                  : level < 6
+                  ? "var(--ion-color-warning)"
+                  : level < 9
+                  ? "var(--ion-color-success)"
+                  : "var(--ion-color-primary)"
+              }
+            />
+          </div>
+          <IonSegment
+            value={segment}
+            onIonChange={(ev) => {
+              setSegment(ev.detail.value as any);
+            }}
+          >
+            <IonSegmentButton value={"data"}>
+              <IonLabel>Übersicht</IonLabel>
+            </IonSegmentButton>
+            <IonSegmentButton value={"analytics"}>
+              <IonLabel>Analyse</IonLabel>
+            </IonSegmentButton>
+          </IonSegment>
+          {segment === "data" ? <E2Data /> : <E2Analytics />}
+        </MobileBox>
       </Page>
     </>
   );

@@ -111,7 +111,7 @@ export default function E2ProjectHomepageSegment(props: {
               )}
               <ButtonGroup w={"100%"} mt={4}>
                 <Button
-                  color={"saveworld_green.500"}
+                  color={"brand.500"}
                   w={"100%"}
                   leftIcon={<FaSave />}
                   onClick={async () => {
@@ -175,9 +175,7 @@ export default function E2ProjectHomepageSegment(props: {
               </ButtonGroup>
               <Button
                 color={
-                  props.segment.pinned
-                    ? "var(--ion-color-danger)"
-                    : "saveworld_green.500"
+                  props.segment.pinned ? "var(--ion-color-danger)" : "brand.500"
                 }
                 w={"100%"}
                 leftIcon={props.segment.pinned ? <FaTimes /> : <FaThumbtack />}

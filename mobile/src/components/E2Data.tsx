@@ -148,7 +148,11 @@ export default function E2Data() {
 
   return (
     <>
-      <IonCard>
+      <IonCard
+        style={{
+          "--background": "var(--ion-color-light)",
+        }}
+      >
         <IonCardHeader>
           <IonCardTitle>Wochenübersicht</IonCardTitle>
           <IonCardSubtitle>
@@ -261,7 +265,11 @@ export default function E2Data() {
         </>
       ) : (
         <>
-          <IonCard>
+          <IonCard
+            style={{
+              "--background": "var(--ion-color-light)",
+            }}
+          >
             <IonCardHeader>
               <IonCardTitle>Keine Daten</IonCardTitle>
             </IonCardHeader>

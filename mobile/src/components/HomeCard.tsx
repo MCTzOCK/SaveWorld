@@ -37,7 +37,7 @@ export default function HomeCard(props: {
             alignItems: "center",
           }}
         >
-          <chakra.span color={"saveworld_green.500"} fontSize={"4xl"}>
+          <chakra.span color={"brand.500"} fontSize={"4xl"}>
             {props.icon}
           </chakra.span>
           <div>

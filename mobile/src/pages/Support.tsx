@@ -21,6 +21,7 @@ import {
 import { useUserData } from "../hooks/useUserData";
 import {
   Box,
+  Button,
   Flex,
   Input,
   InputGroup,
@@ -36,6 +37,7 @@ import { useEffect } from "react";
 import PopupManager from "../util/PopupManager";
 import { REST } from "@saveworld/api-js";
 import { useRedirectForAnon } from "../hooks/useRedirectForAnon";
+import MobileBox from "../components/MobileBox";
 
 export default function Support() {
   useRedirectForAnon();
@@ -76,136 +78,117 @@ export default function Support() {
   return (
     <>
       <Page title={"Support"}>
-        <Flex
-          w={"100%"}
-          justifyContent={["flex-start", "center"]}
-          alignItems={["flex-start", "center"]}
-          minH={"100vh"}
-        >
-          <Box
-            backgroundColor={"rgba(10,10,10,0.5)"}
-            padding={"1rem"}
-            borderRadius={"12px"}
-            border={"4px solid rgba(40,40,40,1)"}
-            w={["100%", "75%", "50%", "25%"]}
-            minW={"200px"}
-          >
-            <VStack spacing={"1rem"}>
-              <Text>
-                Du hast eine Frage oder ein Problem? Dann schreib uns eine
-                Nachricht! Alternativ kannst du uns auch eine E-Mail an&nbsp;
-                <Link
-                  color={"saveworld_green.500"}
-                  href={"mailto:ben@saveworld.one"}
-                >
-                  ben@saveworld.one
-                </Link>
-                &nbsp;senden.
-              </Text>
-              <InputGroup>
-                <InputLeftAddon>
-                  <FaEnvelope />
-                </InputLeftAddon>
-                <Input
-                  placeholder={"E-Mail"}
-                  disabled={loggedIn}
-                  defaultValue={loggedIn ? userInfo.email : ""}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                  type={"email"}
-                />
-              </InputGroup>
-              <Select
-                placeholder={"Kategorie auswählen"}
-                value={category}
+        <MobileBox>
+          <VStack spacing={"1rem"}>
+            <Text>
+              Du hast eine Frage oder ein Problem? Dann schreib uns eine
+              Nachricht! Alternativ kannst du uns auch eine E-Mail an&nbsp;
+              <Link color={"brand.500"} href={"mailto:ben@saveworld.one"}>
+                ben@saveworld.one
+              </Link>
+              &nbsp;senden.
+            </Text>
+            <InputGroup>
+              <InputLeftAddon>
+                <FaEnvelope />
+              </InputLeftAddon>
+              <Input
+                placeholder={"E-Mail"}
+                disabled={loggedIn}
+                defaultValue={loggedIn ? userInfo.email : ""}
                 onChange={(e) => {
-                  setCategory(e.target.value);
+                  setEmail(e.target.value);
                 }}
-                disabled={reportContent}
-              >
-                <option value={"GENERAL"}>Genereller Support</option>
-                <option value={"REPORT-BUG"}>Fehler melden</option>
-                {reportContent && (
-                  <>
-                    <option value={"REPORT-USER"}>Benutzer melden</option>
-                    <option value={"REPORT-POST"}>Beitrag melden</option>
-                  </>
-                )}
-              </Select>
-              <Textarea
-                value={message}
-                onChange={(e) => {
-                  setMessage(e.target.value);
-                }}
-                placeholder={"Weitere Details"}
+                type={"email"}
               />
-              {additional && (
+            </InputGroup>
+            <Select
+              placeholder={"Kategorie auswählen"}
+              value={category}
+              onChange={(e) => {
+                setCategory(e.target.value);
+              }}
+              disabled={reportContent}
+            >
+              <option value={"GENERAL"}>Genereller Support</option>
+              <option value={"REPORT-BUG"}>Fehler melden</option>
+              {reportContent && (
                 <>
-                  <IonText>
-                    Deiner Anfrage werden die Details des zu meldenden Inhalts
-                    automatisch hinzugefügt.
-                  </IonText>
+                  <option value={"REPORT-USER"}>Benutzer melden</option>
+                  <option value={"REPORT-POST"}>Beitrag melden</option>
                 </>
               )}
-            </VStack>
-            <IonButton
-              color={"success"}
-              expand={"block"}
-              style={{
-                marginTop: "1rem",
+            </Select>
+            <Textarea
+              value={message}
+              onChange={(e) => {
+                setMessage(e.target.value);
               }}
-              onClick={async () => {
-                if (!category) {
-                  await PopupManager.alertAsync({
-                    title: "Fehler",
-                    description: "Bitte wähle eine Kategorie aus.",
-                  });
-                  return;
-                }
+              placeholder={"Weitere Details"}
+            />
+            {additional && (
+              <>
+                <IonText>
+                  Deiner Anfrage werden die Details des zu meldenden Inhalts
+                  automatisch hinzugefügt.
+                </IonText>
+              </>
+            )}
+          </VStack>
+          <Button
+            mt={4}
+            w={"100%"}
+            color={"brand.500"}
+            onClick={async () => {
+              if (!category) {
+                await PopupManager.alertAsync({
+                  title: "Fehler",
+                  description: "Bitte wähle eine Kategorie aus.",
+                });
+                return;
+              }
 
-                if (!message) {
-                  await PopupManager.alertAsync({
-                    title: "Fehler",
-                    description: "Bitte gib eine Nachricht ein.",
-                  });
-                  return;
-                }
+              if (!message) {
+                await PopupManager.alertAsync({
+                  title: "Fehler",
+                  description: "Bitte gib eine Nachricht ein.",
+                });
+                return;
+              }
 
-                if (
-                  !(await PopupManager.confirmAsync({
-                    title: "Bestätigen",
-                    question: "Möchtest du diese Anfrage wirklich absenden?",
-                  }))
-                )
-                  return;
+              if (
+                !(await PopupManager.confirmAsync({
+                  title: "Bestätigen",
+                  question: "Möchtest du diese Anfrage wirklich absenden?",
+                }))
+              )
+                return;
 
-                const res = await REST.Support.submit(
-                  email,
-                  category,
-                  message,
-                  additional,
-                );
+              const res = await REST.Support.submit(
+                email,
+                category,
+                message,
+                additional,
+              );
 
-                if (res.status === 200) {
-                  await PopupManager.alertAsync({
-                    title: "Abgeschlossen",
-                    description: "Deine Anfrage wurde erfolgreich abgeschickt.",
-                  });
-                } else {
-                  await PopupManager.alertAsync({
-                    title: "Fehler",
-                    description:
-                      "Deine Anfrage konnte nicht abgeschickt werden: " +
-                      res.payload.error,
-                  });
-                }
-              }}
-            >
-              Absenden
-            </IonButton>
-          </Box>
-        </Flex>
+              if (res.status === 200) {
+                await PopupManager.alertAsync({
+                  title: "Abgeschlossen",
+                  description: "Deine Anfrage wurde erfolgreich abgeschickt.",
+                });
+              } else {
+                await PopupManager.alertAsync({
+                  title: "Fehler",
+                  description:
+                    "Deine Anfrage konnte nicht abgeschickt werden: " +
+                    res.payload.error,
+                });
+              }
+            }}
+          >
+            Absenden
+          </Button>
+        </MobileBox>
       </Page>
     </>
   );

@@ -44,6 +44,7 @@ import { Avatar } from "@chakra-ui/react";
 import PopupManager from "../../util/PopupManager";
 import { Socket } from "socket.io-client";
 import socketAuth from "../../util/socketAuth";
+import MobileBox from "../../components/MobileBox";
 export default function CommunityProfile(props: { socket: Socket }) {
   useRedirectForAnon();
 
@@ -136,294 +137,305 @@ export default function CommunityProfile(props: { socket: Socket }) {
   return (
     <>
       <Page title={username} noPadding>
-        <div>
-          <img
-            alt={"Banner"}
-            src={
-              profile && profile.banner.length > 0
-                ? ENDPOINT + profile.banner
-                : "/community_blank_banner.jpg"
-            }
-            style={{
-              aspectRatio: "16/9",
-              width: "100%",
-              objectFit: "cover",
-            }}
-          />
-          <IonCard
-            style={{
-              marginTop: "-20%",
-              "--background": "rgba(20,20,20,0.85)",
-              boxShadow: "0 0 10px rgba(0,155,0,0.5)",
-            }}
-          >
-            <IonCardContent>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  width: "100%",
-                }}
-              >
-                <Avatar
-                  src={ENDPOINT + "/media/profile-picture-username/" + username}
-                />
-                <IonText color={"dark"}>
-                  <h1>{profile?.displayName || username}</h1>
-                  <h2>@{username}</h2>
-                </IonText>
-                <div>
-                  <IonButton color={"success"} id={"open-profile-menu"}>
-                    <IonIcon ios={menu} md={menuSharp} />
-                  </IonButton>
-                  {editable ? (
-                    <>
-                      <IonActionSheet
-                        trigger={"open-profile-menu"}
-                        header={
-                          "Aktionen für " +
-                          (profile?.displayName || "@" + username)
-                        }
-                        subHeader={"@" + username}
-                        onIonActionSheetDidDismiss={(ev) => {
-                          if (ev.detail.data.action === "edit")
-                            editModal.current?.present();
-                        }}
-                        buttons={[
-                          {
-                            text: "Profil bearbeiten",
-                            data: {
-                              action: "edit",
-                            },
-                          },
-                          {
-                            text: "Abbrechen",
-                            role: "cancel",
-                            data: {
-                              action: "cancel",
-                            },
-                          },
-                        ]}
-                      />
-                    </>
-                  ) : (
-                    <>
-                      <IonActionSheet
-                        trigger={"open-profile-menu"}
-                        header={
-                          "Aktionen für " +
-                          (profile?.displayName || "@" + username)
-                        }
-                        subHeader={"@" + username}
-                        onIonActionSheetDidDismiss={async (ev) => {
-                          switch (ev.detail.data.action) {
-                            case "follow":
-                              const res = await REST.Community.follow(
-                                localStorage.getItem("token") as string,
-                                username,
-                              );
-
-                              if (res.status === 200) {
-                                reloadProfile();
-                              } else {
-                                PopupManager.alert({
-                                  title: "Fehler",
-                                  description:
-                                    "Es ist ein Fehler aufgetreten: " +
-                                    res.payload.error,
-                                });
-                              }
-                              break;
-                            case "report":
-                              router.push(
-                                "/support?category=REPORT_USER&report_user=" +
-                                  username,
-                              );
-                              break;
-                            case "message":
-                              props.socket.emit("sw:chats.create", username);
-                              break;
-                            case "block":
-                              if (!preferences) return;
-                              let newBlockedUsers: string[] = [
-                                ...preferences.blocked_users,
-                              ];
-                              if (newBlockedUsers.includes(username)) {
-                                newBlockedUsers = newBlockedUsers.filter(
-                                  (u) => u !== username,
-                                );
-                              } else {
-                                newBlockedUsers.push(username);
-                              }
-
-                              const resX = await REST.Account.updatePreferences(
-                                localStorage.getItem("token") as string,
-                                {
-                                  blocked_users: newBlockedUsers,
-                                },
-                              );
-
-                              if (resX.status === 200) {
-                                setPreferences({
-                                  ...preferences,
-                                  blocked_users: newBlockedUsers,
-                                });
-                              } else {
-                                PopupManager.alert({
-                                  title: "Fehler",
-                                  description:
-                                    "Es ist ein Fehler aufgetreten: " +
-                                    resX.payload.error,
-                                });
-                              }
-
-                              break;
-                            default:
-                              PopupManager.alert({
-                                title: "Fehler",
-                                description:
-                                  "Diese Aktion wurde noch nicht implementiert",
-                              });
-                              break;
-                          }
-                        }}
-                        buttons={[
-                          {
-                            text: "Nachricht senden",
-                            data: {
-                              action: "message",
-                            },
-                          },
-                          {
-                            text: profile?.followers.includes(userInfo.username)
-                              ? "Entfolgen"
-                              : "Folgen",
-                            role: profile?.followers.includes(userInfo.username)
-                              ? "destructive"
-                              : "normal",
-                            data: {
-                              action: "follow",
-                            },
-                          },
-                          {
-                            text: preferences?.blocked_users.includes(username)
-                              ? "Entblocken"
-                              : "Blockieren",
-                            role: "destructive",
-                            data: {
-                              action: "block",
-                            },
-                          },
-                          {
-                            text: "Melden",
-                            role: "destructive",
-                            data: {
-                              action: "report",
-                            },
-                          },
-                          {
-                            text: "Abbrechen",
-                            role: "cancel",
-                            data: {
-                              action: "cancel",
-                            },
-                          },
-                        ]}
-                      />
-                    </>
-                  )}
-                </div>
-              </div>
-              <div
-                style={{
-                  paddingTop: "12px",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                  justifyContent: "flex-start",
-                  gap: ".75rem",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "flex-start",
-                    gap: "1.2rem",
-                  }}
-                >
-                  <IonIcon ios={map} md={mapSharp} />
-                  <IonText>
-                    {profile?.location || "Kein Standort angegeben"}
-                  </IonText>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "flex-start",
-                    gap: "1.2rem",
-                  }}
-                >
-                  <IonIcon ios={trophy} md={trophySharp} />
-                  <IonText>
-                    {/* TODO */}
-                    {!profile?.showLevel
-                      ? "Mein Level ist geheim"
-                      : "Level " + profile?.level}
-                  </IonText>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "flex-start",
-                    gap: "1.2rem",
-                  }}
-                >
-                  <IonIcon ios={people} md={peopleSharp} />
-                  <IonText>{profile?.followers.length} Follower</IonText>
-                </div>
-              </div>
-              <div
-                style={{
-                  paddingTop: "12px",
-                }}
-              >
-                <IonText>
-                  <h3>{profile?.biography}</h3>
-                </IonText>
-              </div>
-            </IonCardContent>
-          </IonCard>
-          <div
-            style={{
-              padding: "12px",
-              paddingTop: "0",
-            }}
-          >
-            <IonText>
-              <h1
-                style={{
-                  textAlign: "center",
-                }}
-              >
-                Beiträge
-              </h1>
-            </IonText>
-            <hr
+        <MobileBox>
+          <div>
+            <img
+              alt={"Banner"}
+              src={
+                profile && profile.banner.length > 0
+                  ? ENDPOINT + profile.banner
+                  : "/community_blank_banner.jpg"
+              }
               style={{
-                backgroundColor: "var(--ion-color-success-shade)",
+                aspectRatio: "16/9",
+                width: "100%",
+                objectFit: "cover",
               }}
             />
-            <CommunityProfileBlogList username={username} />
+            <IonCard
+              style={{
+                marginTop: "-20%",
+                "--background": "rgba(20,20,20,0.85)",
+                boxShadow: "0 0 10px rgba(0,155,0,0.5)",
+              }}
+            >
+              <IonCardContent>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    width: "100%",
+                  }}
+                >
+                  <Avatar
+                    src={
+                      ENDPOINT + "/media/profile-picture-username/" + username
+                    }
+                  />
+                  <IonText color={"dark"}>
+                    <h1>{profile?.displayName || username}</h1>
+                    <h2>@{username}</h2>
+                  </IonText>
+                  <div>
+                    <IonButton color={"success"} id={"open-profile-menu"}>
+                      <IonIcon ios={menu} md={menuSharp} />
+                    </IonButton>
+                    {editable ? (
+                      <>
+                        <IonActionSheet
+                          trigger={"open-profile-menu"}
+                          header={
+                            "Aktionen für " +
+                            (profile?.displayName || "@" + username)
+                          }
+                          subHeader={"@" + username}
+                          onIonActionSheetDidDismiss={(ev) => {
+                            if (ev.detail.data.action === "edit")
+                              editModal.current?.present();
+                          }}
+                          buttons={[
+                            {
+                              text: "Profil bearbeiten",
+                              data: {
+                                action: "edit",
+                              },
+                            },
+                            {
+                              text: "Abbrechen",
+                              role: "cancel",
+                              data: {
+                                action: "cancel",
+                              },
+                            },
+                          ]}
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <IonActionSheet
+                          trigger={"open-profile-menu"}
+                          header={
+                            "Aktionen für " +
+                            (profile?.displayName || "@" + username)
+                          }
+                          subHeader={"@" + username}
+                          onIonActionSheetDidDismiss={async (ev) => {
+                            switch (ev.detail.data.action) {
+                              case "follow":
+                                const res = await REST.Community.follow(
+                                  localStorage.getItem("token") as string,
+                                  username,
+                                );
+
+                                if (res.status === 200) {
+                                  reloadProfile();
+                                } else {
+                                  PopupManager.alert({
+                                    title: "Fehler",
+                                    description:
+                                      "Es ist ein Fehler aufgetreten: " +
+                                      res.payload.error,
+                                  });
+                                }
+                                break;
+                              case "report":
+                                router.push(
+                                  "/support?category=REPORT_USER&report_user=" +
+                                    username,
+                                );
+                                break;
+                              case "message":
+                                props.socket.emit("sw:chats.create", username);
+                                break;
+                              case "block":
+                                if (!preferences) return;
+                                let newBlockedUsers: string[] = [
+                                  ...preferences.blocked_users,
+                                ];
+                                if (newBlockedUsers.includes(username)) {
+                                  newBlockedUsers = newBlockedUsers.filter(
+                                    (u) => u !== username,
+                                  );
+                                } else {
+                                  newBlockedUsers.push(username);
+                                }
+
+                                const resX =
+                                  await REST.Account.updatePreferences(
+                                    localStorage.getItem("token") as string,
+                                    {
+                                      blocked_users: newBlockedUsers,
+                                    },
+                                  );
+
+                                if (resX.status === 200) {
+                                  setPreferences({
+                                    ...preferences,
+                                    blocked_users: newBlockedUsers,
+                                  });
+                                } else {
+                                  PopupManager.alert({
+                                    title: "Fehler",
+                                    description:
+                                      "Es ist ein Fehler aufgetreten: " +
+                                      resX.payload.error,
+                                  });
+                                }
+
+                                break;
+                              default:
+                                PopupManager.alert({
+                                  title: "Fehler",
+                                  description:
+                                    "Diese Aktion wurde noch nicht implementiert",
+                                });
+                                break;
+                            }
+                          }}
+                          buttons={[
+                            {
+                              text: "Nachricht senden",
+                              data: {
+                                action: "message",
+                              },
+                            },
+                            {
+                              text: profile?.followers.includes(
+                                userInfo.username,
+                              )
+                                ? "Entfolgen"
+                                : "Folgen",
+                              role: profile?.followers.includes(
+                                userInfo.username,
+                              )
+                                ? "destructive"
+                                : "normal",
+                              data: {
+                                action: "follow",
+                              },
+                            },
+                            {
+                              text: preferences?.blocked_users.includes(
+                                username,
+                              )
+                                ? "Entblocken"
+                                : "Blockieren",
+                              role: "destructive",
+                              data: {
+                                action: "block",
+                              },
+                            },
+                            {
+                              text: "Melden",
+                              role: "destructive",
+                              data: {
+                                action: "report",
+                              },
+                            },
+                            {
+                              text: "Abbrechen",
+                              role: "cancel",
+                              data: {
+                                action: "cancel",
+                              },
+                            },
+                          ]}
+                        />
+                      </>
+                    )}
+                  </div>
+                </div>
+                <div
+                  style={{
+                    paddingTop: "12px",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    justifyContent: "flex-start",
+                    gap: ".75rem",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                      justifyContent: "flex-start",
+                      gap: "1.2rem",
+                    }}
+                  >
+                    <IonIcon ios={map} md={mapSharp} />
+                    <IonText>
+                      {profile?.location || "Kein Standort angegeben"}
+                    </IonText>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                      justifyContent: "flex-start",
+                      gap: "1.2rem",
+                    }}
+                  >
+                    <IonIcon ios={trophy} md={trophySharp} />
+                    <IonText>
+                      {/* TODO */}
+                      {!profile?.showLevel
+                        ? "Mein Level ist geheim"
+                        : "Level " + profile?.level}
+                    </IonText>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                      justifyContent: "flex-start",
+                      gap: "1.2rem",
+                    }}
+                  >
+                    <IonIcon ios={people} md={peopleSharp} />
+                    <IonText>{profile?.followers.length} Follower</IonText>
+                  </div>
+                </div>
+                <div
+                  style={{
+                    paddingTop: "12px",
+                  }}
+                >
+                  <IonText>
+                    <h3>{profile?.biography}</h3>
+                  </IonText>
+                </div>
+              </IonCardContent>
+            </IonCard>
+            <div
+              style={{
+                padding: "12px",
+                paddingTop: "0",
+              }}
+            >
+              <IonText>
+                <h1
+                  style={{
+                    textAlign: "center",
+                  }}
+                >
+                  Beiträge
+                </h1>
+              </IonText>
+              <hr
+                style={{
+                  backgroundColor: "var(--ion-color-success-shade)",
+                }}
+              />
+              <CommunityProfileBlogList username={username} />
+            </div>
           </div>
-        </div>
+        </MobileBox>
         <CommunityEditProfileModal
           modal={editModal}
           profile={profile}

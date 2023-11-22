@@ -51,6 +51,7 @@ import ReactMarkdown from "react-markdown";
 import { useUserData } from "../../hooks/useUserData";
 import PopupManager from "../../util/PopupManager";
 import { Avatar } from "@chakra-ui/react";
+import MobileBox from "../../components/MobileBox";
 export default function CommunityBlogViewer() {
   useRedirectForAnon();
 
@@ -134,12 +135,12 @@ export default function CommunityBlogViewer() {
     <>
       <Page title={"Blog"}>
         {blog && profile && (
-          <>
+          <MobileBox>
             <IonCard
               style={{
                 padding: "0px",
-                background: "transparent",
-                boxShadow: "0 0 10px rgba(0,155,0,0.75)",
+                //boxShadow: "0 0 10px rgba(0,155,0,0.75)",
+                "--background": "var(--ion-color-light)",
               }}
             >
               <IonCardHeader>
@@ -163,7 +164,7 @@ export default function CommunityBlogViewer() {
                       blog.username
                     }
                     style={{
-                      boxShadow: "0 0 10px rgba(0,155,0,0.75)",
+                      //boxShadow: "0 0 10px rgba(0,155,0,0.75)",
                       width: "50px",
                       height: "50px",
                       aspectRatio: "1/1",
@@ -380,12 +381,13 @@ export default function CommunityBlogViewer() {
             <hr
               style={{
                 backgroundColor: "var(--ion-color-success-shade)",
+                display: "none",
               }}
             />
             <IonText>
               <h1
                 style={{
-                  boxShadow: "0 0 10px rgba(0,155,0,0.75)",
+                  //boxShadow: "0 0 10px rgba(0,155,0,0.75)",
                   borderRadius: "12px",
                   padding: "12px",
                 }}
@@ -426,7 +428,7 @@ export default function CommunityBlogViewer() {
             <IonText>
               <h1
                 style={{
-                  boxShadow: "0 0 10px rgba(0,155,0,0.75)",
+                  //boxShadow: "0 0 10px rgba(0,155,0,0.75)",
                   borderRadius: "12px",
                   padding: "12px",
                 }}
@@ -445,8 +447,9 @@ export default function CommunityBlogViewer() {
                   <>
                     <IonCard
                       style={{
-                        background: "transparent",
-                        boxShadow: "0 0 10px rgba(0,155,0,0.75)",
+                        //background: "transparent",
+                        //boxShadow: "0 0 10px rgba(0,155,0,0.75)",
+                        "--background": "var(--ion-color-light)",
                       }}
                     >
                       <IonCardHeader>
@@ -492,7 +495,7 @@ export default function CommunityBlogViewer() {
                   </>
                 );
               })}
-          </>
+          </MobileBox>
         )}
       </Page>
     </>

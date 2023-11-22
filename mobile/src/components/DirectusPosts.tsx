@@ -14,12 +14,19 @@ import { useEffect, useState } from "react";
 import { readItems } from "@directus/sdk";
 import Page from "./Page";
 import {
+  Button,
+  ButtonGroup,
+  Card,
+  CardBody,
+  CardHeader,
+  Grid,
   Heading,
   Image,
   Table,
   TableContainer,
   Tbody,
   Td,
+  Text,
   Tr,
 } from "@chakra-ui/react";
 import MobileBox from "./MobileBox";
@@ -69,25 +76,48 @@ export default function DirectusPosts(props: {
   return (
     <>
       <Page title={props.pageTitle ? props.pageTitle : "Artikel"}>
-        <MobileBox>
-          <IonSearchbar
-            placeholder={"Suchen..."}
-            onIonInput={(e) => {
-              setQuery(e.detail.value || "");
-            }}
-          />
-
-          <TableContainer>
-            <Table>
-              <Tbody>
-                {posts.map((post) => {
-                  return (
-                    <>
-                      <Tr
-                        _hover={{
-                          background: "var(--ion-card-background)",
-                        }}
-                        cursor={"pointer"}
+        <IonSearchbar
+          placeholder={"Suchen..."}
+          onIonInput={(e) => {
+            setQuery(e.detail.value || "");
+          }}
+          style={{
+            padding: 0,
+          }}
+        />
+        <Grid
+          templateColumns={[
+            "repeat(1, 1fr)",
+            "repeat(2, 1fr)",
+            "repeat(3, 1fr)",
+            "repeat(4, 1fr)",
+          ]}
+          gap={4}
+        >
+          {posts.map((post) => {
+            return (
+              <>
+                <Card
+                  backgroundColor={
+                    "var(--ion-card-background, var(--ion-item-background, var(--ion-background-color, #fff)))"
+                  }
+                >
+                  <CardHeader>
+                    <Image
+                      src={DIRECTUS_ENDPOINT + "/assets/" + post.feature_image}
+                      rounded={"md"}
+                      mb={2}
+                    />
+                    <p>
+                      <b>Quelle</b>: <i>{post.feature_image_author}</i>
+                    </p>
+                    <Heading size={"lg"}>{post.title}</Heading>
+                  </CardHeader>
+                  <CardBody>
+                    <ButtonGroup w={"100%"} mt={4}>
+                      <Button
+                        color={"brand.500"}
+                        w={"100%"}
                         onClick={() => {
                           router.push(
                             props.postBaseUrl + "/" + post.id,
@@ -96,27 +126,15 @@ export default function DirectusPosts(props: {
                           );
                         }}
                       >
-                        <Td maxW={"100px"}>
-                          <Image
-                            src={
-                              DIRECTUS_ENDPOINT +
-                              "/assets/" +
-                              post.feature_image
-                            }
-                            maxW={"100px"}
-                          />
-                        </Td>
-                        <Td w={"100%"} pl={"20%"}>
-                          <Heading>{post.title}</Heading>
-                        </Td>
-                      </Tr>
-                    </>
-                  );
-                })}
-              </Tbody>
-            </Table>
-          </TableContainer>
-        </MobileBox>
+                        Weiterlesen
+                      </Button>
+                    </ButtonGroup>
+                  </CardBody>
+                </Card>
+              </>
+            );
+          })}
+        </Grid>
       </Page>
     </>
   );

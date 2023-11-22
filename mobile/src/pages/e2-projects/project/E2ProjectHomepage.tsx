@@ -174,7 +174,7 @@ export default function E2ProjectHomepage() {
               </Alert>
             </>
           )}
-          <Tabs colorScheme={"saveworld_green"} size={"md"} isFitted mt={4}>
+          <Tabs colorScheme={"brand"} size={"md"} isFitted mt={4}>
             <TabList>
               <Tab>Homepage</Tab>
               <Tab>ToDos</Tab>

@@ -90,7 +90,7 @@ export default function SelectPopupComponent(props: {
                 Abbrechen
               </Button>
               <Button
-                colorScheme="saveworld_green"
+                colorScheme="brand"
                 variant={"outline"}
                 onClick={() => {
                   const data = document.getElementById(

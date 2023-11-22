@@ -94,7 +94,7 @@ export default function CO2Car() {
               </InputGroup>
             </FormControl>
             <Button
-              color={"saveworld_green.500"}
+              color={"brand.500"}
               onClick={() => {
                 let co2 = 0;
                 if (fuel === "diesel") {
@@ -113,10 +113,7 @@ export default function CO2Car() {
                   description: (
                     <Stat>
                       <StatLabel>Dein CO2-Ausstoß beträgt</StatLabel>
-                      <StatNumber
-                        color={"saveworld_green.500"}
-                        fontWeight={900}
-                      >
+                      <StatNumber color={"brand.500"} fontWeight={900}>
                         {result}kg CO2
                       </StatNumber>
                       <StatHelpText>

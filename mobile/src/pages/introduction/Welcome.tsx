@@ -23,6 +23,7 @@ import { useEffect, useRef, useState } from "react";
 import WelcomeInterestModal from "../../components/WelcomeInterestModal";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
 import { Box, Flex } from "@chakra-ui/react";
+import MobileBox from "../../components/MobileBox";
 
 export default function Welcome() {
   useRedirectForAnon();
@@ -42,52 +43,38 @@ export default function Welcome() {
   return (
     <>
       <Page title={"Willkommen!"} setPresentingElement={setPresentingElement}>
-        <Flex
-          w={"100%"}
-          justifyContent={["flex-start", "center"]}
-          alignItems={["flex-start", "center"]}
-          minH={"100vh"}
-        >
-          <Box
-            backgroundColor={"rgba(10,10,10,0.5)"}
-            borderRadius={"12px"}
-            border={"4px solid rgba(40,40,40,1)"}
-            w={["100%", "75%", "50%", "25%"]}
-            minW={"200px"}
-            padding={"1rem"}
+        <MobileBox>
+          <IonText>
+            Hey, willkommen bei <b>SaveWorld</b>! Wir freuen uns, dass du die
+            Welt verbessern willst! Für eine optimale Erfahrung, solltest du
+            hier deine Interessen auswählen! Du kannst diese später jederzeit
+            ändern.
+          </IonText>
+          <IonButton
+            expand={"block"}
+            color={"success"}
+            style={{
+              marginTop: "2rem",
+            }}
+            onClick={() => {
+              modal.current?.present();
+            }}
           >
-            <IonText>
-              Hey, willkommen bei <b>SaveWorld</b>! Wir freuen uns, dass du die
-              Welt verbessern willst! Für eine optimale Erfahrung, solltest du
-              hier deine Interessen auswählen! Du kannst diese später jederzeit
-              ändern.
-            </IonText>
-            <IonButton
-              expand={"block"}
-              color={"success"}
-              style={{
-                marginTop: "2rem",
-              }}
-              onClick={() => {
-                modal.current?.present();
-              }}
-            >
-              Weiter
-            </IonButton>
-            <IonButton
-              expand={"block"}
-              color={"danger"}
-              fill={"outline"}
-              style={{
-                marginTop: "1.2rem",
-              }}
-              routerLink={"/onboarding"}
-              routerDirection={"none"}
-            >
-              Später auswählen
-            </IonButton>
-          </Box>
-        </Flex>
+            Weiter
+          </IonButton>
+          <IonButton
+            expand={"block"}
+            color={"danger"}
+            fill={"outline"}
+            style={{
+              marginTop: "1.2rem",
+            }}
+            routerLink={"/onboarding"}
+            routerDirection={"none"}
+          >
+            Später auswählen
+          </IonButton>
+        </MobileBox>
         <WelcomeInterestModal
           modal={modal}
           presentingElement={presentingElement}
