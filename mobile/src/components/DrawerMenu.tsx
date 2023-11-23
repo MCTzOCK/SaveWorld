@@ -16,6 +16,12 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerOverlay,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
   Text,
   useDisclosure,
   VStack,
@@ -352,18 +358,17 @@ export default function DrawerMenu(props: {
 
   return (
     <>
-      <Drawer isOpen={props.isOpen} onClose={props.onClose} size={"sm"}>
-        <DrawerOverlay />
-        <DrawerContent bgColor={"#121212"} pt={"2rem"}>
-          <DrawerCloseButton mt={"2rem"} />
-          <DrawerHeader color={"var(--ion-color-success)"} fontWeight={1000}>
-            SaveWorld
-          </DrawerHeader>
-          <DrawerBody
-            style={{
-              overflow: "hidden",
-            }}
-          >
+      <Modal
+        isOpen={props.isOpen}
+        onClose={props.onClose}
+        size={["full", "full", "2xl"]}
+        scrollBehavior={"inside"}
+      >
+        <ModalOverlay />
+        <ModalContent bgColor={"#121212"}>
+          <ModalHeader>SaveWorld</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
             <IonSearchbar
               style={{
                 padding: 0,
@@ -379,7 +384,7 @@ export default function DrawerMenu(props: {
                 gap: "1rem",
                 display: "flex",
                 flexDirection: "column",
-                maxHeight: "80vh",
+                paddingBottom: "2rem",
                 height: "fit-content",
                 overflow: "auto",
               }}
@@ -420,9 +425,9 @@ export default function DrawerMenu(props: {
                 );
               })}
             </div>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </>
   );
 }
