@@ -4,7 +4,7 @@
  * Author: Ben Siebert <hello@ben-siebert.de>
  * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
  * License: Project License
- * Created At: 30.09.2023
+ * Created At: 23.11.2023
  *
  */
 
@@ -38,7 +38,7 @@ export default function HomeCardV2(props: {
         rounded={"lg"}
         as={Link}
         href={props.url}
-        shadow={"xl"}
+        shadow={"2xl"}
       >
         <Flex direction={"column"} w={"100%"} alignItems={"center"}>
           <chakra.span fontSize={"6xl"}>{props.icon}</chakra.span>

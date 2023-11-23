@@ -366,7 +366,9 @@ export default function DrawerMenu(props: {
       >
         <ModalOverlay />
         <ModalContent bgColor={"#121212"}>
-          <ModalHeader>SaveWorld</ModalHeader>
+          <ModalHeader fontWeight={900} color={"brand.500"}>
+            SaveWorld
+          </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <IonSearchbar
