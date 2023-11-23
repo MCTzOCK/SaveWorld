@@ -32,12 +32,13 @@ export default function HomeCardV2(props: {
     <>
       <Box
         bgColor={props.color}
-        p={6}
+        p={5}
         w={"100%"}
         h={"100%"}
-        rounded={"md"}
+        rounded={"lg"}
         as={Link}
         href={props.url}
+        shadow={"xl"}
       >
         <Flex direction={"column"} w={"100%"} alignItems={"center"}>
           <chakra.span fontSize={"6xl"}>{props.icon}</chakra.span>

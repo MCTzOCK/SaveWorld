@@ -105,7 +105,7 @@ export default function Page(props: {
         <IonHeader>
           <IonToolbar
             style={{
-              "--background": "black",
+              "--background": "#121212",
               /*
               props.noHeader
                 ? "black"
