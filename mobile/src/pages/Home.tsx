@@ -10,33 +10,31 @@
 
 import * as React from "react";
 import Page from "../components/Page";
-import { Card, CardBody, Heading, chakra, Text } from "@chakra-ui/react";
+import { Card, CardBody, Heading, chakra, Text, Grid } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { REST } from "@saveworld/api-js";
-import { FaLeaf, FaPeopleGroup, FaVideo } from "react-icons/fa6";
+import {
+  FaFileLines,
+  FaLeaf,
+  FaMessage,
+  FaPeopleGroup,
+  FaVideo,
+} from "react-icons/fa6";
 import { IonCard, IonCardContent } from "@ionic/react";
 import HomeCard from "../components/HomeCard";
-import { FaInfoCircle } from "react-icons/fa";
+import {
+  FaCalculator,
+  FaCogs,
+  FaHandPaper,
+  FaInfoCircle,
+} from "react-icons/fa";
 import { useRedirectForAnon } from "../hooks/useRedirectForAnon";
 import { useUserData } from "../hooks/useUserData";
 import HomeForAnon from "../components/HomeForAnon";
+import HomeCardV2 from "../components/HomeCardV2";
 
 export default function Home() {
   const { loggedIn } = useUserData();
-
-  const [hasEcoDetailsForToday, setHasEcoDetailsForToday] =
-    React.useState<boolean>(true);
-
-  useEffect(() => {
-    REST.Lifestyle.summary(
-      localStorage.getItem("token") as string,
-      new Date().toISOString(),
-    ).then((res) => {
-      if (res.status !== 200) {
-        setHasEcoDetailsForToday(false);
-      }
-    });
-  }, []);
 
   return (
     <>
@@ -84,38 +82,61 @@ export default function Home() {
                 width: "100%",
               }}
             >
-              <div>
-                {!hasEcoDetailsForToday && (
-                  <>
-                    <HomeCard
-                      icon={<FaLeaf />}
-                      text={
-                        "Gib Daten zu deinem Tag ein, um deine Ziele zu tracken!"
-                      }
-                      url={"/e2"}
-                    />
-                  </>
-                )}
-                <HomeCard
+              <Grid
+                templateColumns={["repeat(2, 1fr)", "repeat(3, 1fr)"]}
+                gap={4}
+                w={"100%"}
+                maxW={["600px"]}
+              >
+                <HomeCardV2
+                  color={"green.500"}
+                  icon={<FaLeaf />}
+                  text={"Tracker"}
+                  url={"/e2"}
+                />
+                <HomeCardV2
+                  color={"orange.500"}
                   icon={<FaVideo />}
-                  text={
-                    "Schau dir Videos an, um mehr über Nachhaltigkeit zu lernen!"
-                  }
+                  text={"Videos"}
                   url={"/learn"}
                 />
-                <HomeCard
-                  icon={<FaPeopleGroup />}
-                  text={
-                    "Tausche dich mit anderen aus, die auch die Welt verbessern wollen!"
-                  }
-                  url={"/community"}
-                />
-                <HomeCard
+                <HomeCardV2
+                  color={"red.500"}
                   icon={<FaInfoCircle />}
-                  text={"Du hast Fragen? Wir haben Antworten!"}
+                  text={"Support"}
                   url={"/support"}
                 />
-              </div>
+                <HomeCardV2
+                  color={"yellow.500"}
+                  icon={<FaCalculator />}
+                  text={"Rechner"}
+                  url={"/tools/co2"}
+                />
+                <HomeCardV2
+                  color={"purple.500"}
+                  icon={<FaPeopleGroup />}
+                  text={"Forum"}
+                  url={"/community"}
+                />
+                <HomeCardV2
+                  color={"blue.500"}
+                  icon={<FaFileLines />}
+                  text={"Artikel"}
+                  url={"/sustainability/articles"}
+                />
+                <HomeCardV2
+                  color={"pink.500"}
+                  icon={<FaCogs />}
+                  text={"Einst."}
+                  url={"/account"}
+                />
+                <HomeCardV2
+                  color={"teal.500"}
+                  icon={<FaMessage />}
+                  text={"Nachr."}
+                  url={"/notifications"}
+                />
+              </Grid>
             </div>
           </>
         ) : (

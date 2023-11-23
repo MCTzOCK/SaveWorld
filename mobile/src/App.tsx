@@ -196,7 +196,6 @@ export default function App() {
     },
     "/sustainability/articles/:id": () => {
       const { id } = useParams<{ id: string }>();
-      //return <GhostArticle postId={id} />;
       return <DirectusPost postId={id} />;
     },
     "/news": () => {
@@ -207,19 +206,10 @@ export default function App() {
           tagFilter={"news"}
         />
       );
-      /*
-            return (
-              <GhostArticles
-                ghostFilter={"tag:news"}
-                postBaseUrl={"/news"}
-                pageTitle={"Neuigkeiten"}
-              />
-            );*/
     },
     "/news/:id": () => {
       const { id } = useParams<{ id: string }>();
       return <DirectusPost postId={id} />;
-      //return <GhostArticle postId={id} />;
     },
     "/directus": () => {
       return (
