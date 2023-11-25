@@ -10,7 +10,6 @@
 
 import * as React from "react";
 import { ReactNode } from "react";
-import { IonCard, IonCardContent } from "@ionic/react";
 import {
   BackgroundProps,
   Box,
@@ -18,9 +17,7 @@ import {
   Flex,
   Heading,
   Link,
-  Text,
 } from "@chakra-ui/react";
-import { FaLeaf } from "react-icons/fa6";
 
 export default function HomeCardV2(props: {
   icon: ReactNode;
@@ -31,18 +28,20 @@ export default function HomeCardV2(props: {
   return (
     <>
       <Box
-        bgColor={props.color}
+        bgColor={"gray.900"}
         p={5}
         w={"100%"}
         h={"100%"}
-        rounded={"lg"}
+        rounded={"xl"}
         as={Link}
         href={props.url}
         shadow={"2xl"}
       >
-        <Flex direction={"column"} w={"100%"} alignItems={"center"}>
-          <chakra.span fontSize={"6xl"}>{props.icon}</chakra.span>
-          <Heading color={"white"} fontSize={"2xl"}>
+        <Flex direction={"column"} w={"100%"} alignItems={"center"} zIndex={12}>
+          <chakra.span color={props.color} fontSize={"6xl"}>
+            {props.icon}
+          </chakra.span>
+          <Heading color={"white"} fontSize={"2xl"} fontWeight={1000}>
             {props.text}
           </Heading>
         </Flex>

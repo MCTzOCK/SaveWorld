@@ -34,7 +34,6 @@ import Welcome from "./pages/introduction/Welcome";
 import AdminContentDashboard from "./pages/admin/AdminContentDashboard";
 import AdminContentCategoryDashboard from "./pages/admin/AdminContentCategoryDashboard";
 import FinishWelcome from "./pages/introduction/FinishWelcome";
-import ManageAccountInterests from "./pages/account/ManageAccountInterests";
 import AdminVideosDashboard from "./pages/admin/AdminVideosDashboard";
 import AdminVideoDashboard from "./pages/admin/AdminVideoDashboard";
 import Videos from "./pages/learn/Videos";
@@ -148,7 +147,6 @@ export default function App() {
     "/welcome/lifestyle": WelcomeLifestyle,
     "/welcome/finish": FinishWelcome,
     "/account": ManageAccount,
-    "/account/interests": ManageAccountInterests,
     "/admin": AdminDashboard,
     "/admin/content": AdminContentDashboard,
     "/admin/content/categories": AdminContentCategoryDashboard,

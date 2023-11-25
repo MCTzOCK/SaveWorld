@@ -56,6 +56,25 @@ import {
 } from "react-icons/fa6";
 import PopupManager from "../util/PopupManager";
 import OneSignal from "onesignal-cordova-plugin";
+import {
+  BiCalculator,
+  BiCog,
+  BiEnvelope,
+  BiFile,
+  BiGroup,
+  BiHome,
+  BiInfoCircle,
+  BiLeaf,
+  BiLogoMarkdown,
+  BiLogOut,
+  BiNews,
+  BiPen,
+  BiPlanet,
+  BiPlus,
+  BiSearch,
+  BiUser,
+  BiVideo,
+} from "react-icons/bi";
 
 export default function DrawerMenu(props: {
   isOpen: boolean;
@@ -87,14 +106,14 @@ export default function DrawerMenu(props: {
         items: [
           {
             label: "Home",
-            icon: <FaHome />,
+            icon: <BiHome />,
             onClick: () => {
               router.push("/onboarding", "none", "replace");
             },
           },
           {
             label: "Neuigkeiten",
-            icon: <FaNewspaper />,
+            icon: <BiNews />,
             onClick: () => {
               router.push("/news", "none", "replace");
             },
@@ -106,28 +125,28 @@ export default function DrawerMenu(props: {
         items: [
           {
             label: "Einstellungen",
-            icon: <FaCogs />,
+            icon: <BiCog />,
             onClick: () => {
               router.push("/account", "none", "replace");
             },
           },
           {
             label: "Benachrichtigungen",
-            icon: <FaEnvelope />,
+            icon: <BiEnvelope />,
             onClick: () => {
               router.push("/notifications", "none", "replace");
             },
           },
           {
             label: "Hilfe",
-            icon: <FaInfoCircle />,
+            icon: <BiInfoCircle />,
             onClick: () => {
               router.push("/support", "none", "replace");
             },
           },
           {
             label: "Abmelden",
-            icon: <FaRightFromBracket />,
+            icon: <BiLogOut />,
             onClick: async () => {
               if (
                 !(await PopupManager.confirmAsync({
@@ -151,14 +170,14 @@ export default function DrawerMenu(props: {
         items: [
           {
             label: "Videos",
-            icon: <FaVideo />,
+            icon: <BiVideo />,
             onClick: () => {
               router.push("/learn", "none", "replace");
             },
           },
           {
             label: "Suchen",
-            icon: <FaSearch />,
+            icon: <BiSearch />,
             onClick: () => {
               router.push("/learn/fts-search", "none", "replace");
             },
@@ -170,7 +189,7 @@ export default function DrawerMenu(props: {
         items: [
           {
             label: "Übersicht",
-            icon: <FaLeaf />,
+            icon: <BiLeaf />,
             onClick: () => {
               router.push("/e2", "none", "replace");
             },
@@ -182,7 +201,7 @@ export default function DrawerMenu(props: {
         items: [
           {
             label: "Was ist Nachhaltigkeit?",
-            icon: <FaEarthEurope />,
+            icon: <BiPlanet />,
             onClick: () => {
               router.push("/sustainability", "none", "replace");
             },
@@ -194,7 +213,7 @@ export default function DrawerMenu(props: {
         items: [
           {
             label: "CO2-Rechner",
-            icon: <FaCalculator />,
+            icon: <BiCalculator />,
             onClick: () => {
               router.push("/tools/co2", "none", "replace");
             },
@@ -213,14 +232,14 @@ export default function DrawerMenu(props: {
           },
           {
             label: "Projekt starten",
-            icon: <FaPlus />,
+            icon: <BiPlus />,
             onClick: () => {
               router.push("/e2-projects/new", "none", "replace");
             },
           },
           {
             label: "Projekte finden",
-            icon: <FaSearch />,
+            icon: <BiSearch />,
             onClick: () => {
               router.push("/e2-projects/search", "none", "replace");
             },
@@ -232,28 +251,28 @@ export default function DrawerMenu(props: {
         items: [
           {
             label: "Home",
-            icon: <FaPeopleGroup />,
+            icon: <BiGroup />,
             onClick: () => {
               router.push("/community", "none", "replace");
             },
           },
           {
             label: "Neuer Blog",
-            icon: <FaPen />,
+            icon: <BiPen />,
             onClick: () => {
               router.push("/community/create/blog", "none", "replace");
             },
           },
           {
             label: "Nachrichten",
-            icon: <FaEnvelope />,
+            icon: <BiEnvelope />,
             onClick: () => {
               router.push("/community/messages", "none", "replace");
             },
           },
           {
             label: "Mein Profil",
-            icon: <FaPerson />,
+            icon: <BiUser />,
             onClick: () => {
               router.push(
                 "/community/u/" + userInfo.username,
@@ -269,7 +288,7 @@ export default function DrawerMenu(props: {
         items: [
           {
             label: "Markdown-Hilfe",
-            icon: <FaMarkdown />,
+            icon: <BiLogoMarkdown />,
             onClick: () => {
               router.push("/resources/md-help", "none", "replace");
             },
@@ -292,35 +311,35 @@ export default function DrawerMenu(props: {
           },
           {
             label: "Benutzer",
-            icon: <FaUsers />,
+            icon: <BiGroup />,
             onClick: () => {
               router.push("/admin/users", "none", "replace");
             },
           },
           {
             label: "Support-Anfragen",
-            icon: <FaInfoCircle />,
+            icon: <BiInfoCircle />,
             onClick: () => {
               router.push("/admin/support-requests", "none", "replace");
             },
           },
           {
             label: "Videos",
-            icon: <FaVideo />,
+            icon: <BiVideo />,
             onClick: () => {
               router.push("/admin/videos", "none", "replace");
             },
           },
           {
             label: "Lifestyle-Vorlagen",
-            icon: <FaFile />,
+            icon: <BiFile />,
             onClick: () => {
               router.push("/admin/lifestyle-templates", "none", "replace");
             },
           },
           {
             label: "Interessen",
-            icon: <FaLeaf />,
+            icon: <BiLeaf />,
             onClick: () => {
               router.push("/admin/content/categories", "none", "replace");
             },

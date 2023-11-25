@@ -105,7 +105,7 @@ export default function E2ProjectHomepage() {
               (u) => u.userId === userInfo._id && u.permissions !== "MEMBER",
             )) && (
             <>
-              <Alert status={"info"}>
+              <Alert status={"info"} rounded={"xl"}>
                 <AlertIcon />
                 <AlertDescription>
                   Du kannst dieses Projekt bearbeiten!
@@ -130,7 +130,7 @@ export default function E2ProjectHomepage() {
           )}
           {project.owner !== userInfo._id && (
             <>
-              <Alert status={"info"}>
+              <Alert status={"info"} rounded={"xl"}>
                 <AlertIcon />
                 <AlertDescription w={"100%"}>
                   {project.users.find((u) => u.userId === userInfo._id)

@@ -158,6 +158,7 @@ export default function CommunityBlogViewer() {
                   }}
                 >
                   <Avatar
+                    size={["md", "lg"]}
                     src={
                       ENDPOINT +
                       "/media/profile-picture-username/" +
@@ -165,8 +166,6 @@ export default function CommunityBlogViewer() {
                     }
                     style={{
                       //boxShadow: "0 0 10px rgba(0,155,0,0.75)",
-                      width: "50px",
-                      height: "50px",
                       aspectRatio: "1/1",
                     }}
                     onClick={() => {
