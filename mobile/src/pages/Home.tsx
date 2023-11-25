@@ -32,6 +32,17 @@ import { useRedirectForAnon } from "../hooks/useRedirectForAnon";
 import { useUserData } from "../hooks/useUserData";
 import HomeForAnon from "../components/HomeForAnon";
 import HomeCardV2 from "../components/HomeCardV2";
+import {
+  BiCalculator,
+  BiCog,
+  BiFile,
+  BiGroup,
+  BiInfoCircle,
+  BiLeaf,
+  BiMessage,
+  BiUser,
+  BiVideo,
+} from "react-icons/bi";
 
 export default function Home() {
   const { loggedIn } = useUserData();
@@ -85,49 +96,49 @@ export default function Home() {
               >
                 <HomeCardV2
                   color={"green.500"}
-                  icon={<FaLeaf />}
+                  icon={<BiLeaf />}
                   text={"Tracker"}
                   url={"/e2"}
                 />
                 <HomeCardV2
                   color={"orange.500"}
-                  icon={<FaVideo />}
+                  icon={<BiVideo />}
                   text={"Videos"}
                   url={"/learn"}
                 />
                 <HomeCardV2
                   color={"red.500"}
-                  icon={<FaInfoCircle />}
+                  icon={<BiInfoCircle />}
                   text={"Support"}
                   url={"/support"}
                 />
                 <HomeCardV2
                   color={"yellow.500"}
-                  icon={<FaCalculator />}
+                  icon={<BiCalculator />}
                   text={"Rechner"}
                   url={"/tools/co2"}
                 />
                 <HomeCardV2
                   color={"purple.500"}
-                  icon={<FaPeopleGroup />}
+                  icon={<BiGroup />}
                   text={"Forum"}
                   url={"/community"}
                 />
                 <HomeCardV2
                   color={"blue.500"}
-                  icon={<FaFileLines />}
+                  icon={<BiFile />}
                   text={"Artikel"}
                   url={"/sustainability/articles"}
                 />
                 <HomeCardV2
                   color={"pink.500"}
-                  icon={<FaCogs />}
+                  icon={<BiCog />}
                   text={"Einst."}
                   url={"/account"}
                 />
                 <HomeCardV2
                   color={"teal.500"}
-                  icon={<FaMessage />}
+                  icon={<BiMessage />}
                   text={"Nachr."}
                   url={"/notifications"}
                 />
