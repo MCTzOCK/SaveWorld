@@ -11,7 +11,7 @@
 import * as React from "react";
 import Page from "../../components/Page";
 import MobileBox from "../../components/MobileBox";
-import { Box, Button, Image } from "@chakra-ui/react";
+import { Box, Button, Flex, Image } from "@chakra-ui/react";
 import { useIonRouter } from "@ionic/react";
 
 export default function Sustainability() {
@@ -21,6 +21,18 @@ export default function Sustainability() {
     <>
       <Page title={"Nachhaltigkeit"}>
         <MobileBox>
+          <Flex
+            justifyContent={"center"}
+            direction={"column"}
+            w={"100%"}
+            alignItems={"center"}
+          >
+            <Image
+              src={"/assets/sustainability/sustainability_triangle.svg"}
+              maxW={"50%"}
+              rounded={"xl"}
+            />
+          </Flex>
           Nachhaltigkeit ist ein sehr wichtiges Thema. Es umfasst allerdings
           nicht nur die Umwelt, sondern besteht aus drei Säulen: Ökologie
           (Unwelt), Ökonomie (Wirtschaft) und Soziales (Gesellschaft).
@@ -28,11 +40,10 @@ export default function Sustainability() {
           Diese drei Säulen müssen im Gleichgewicht sein, damit wir eine
           nachhaltige Zukunft haben. Oft werden diese drei Säulen auch als ein
           Dreieck dargestellt, welches auf einer Seite liegt. Das bedeutet, dass
-          alle drei Säulen gleich wichtig sind.
-          <Image src={"/assets/sustainability/sustainability_triangle.svg"} />
-          Wenn eine Säule zu kurz kommt, wird das Dreieck instabil und kann
-          umkippen. Das bedeutet, dass wir eine nachhaltige Zukunft nur dann
-          haben, wenn alle drei Säulen gleich wichtig sind.
+          alle drei Säulen gleich wichtig sind. Wenn eine Säule zu kurz kommt,
+          wird das Dreieck instabil und kann umkippen. Das bedeutet, dass wir
+          eine nachhaltige Zukunft nur dann haben, wenn alle drei Säulen gleich
+          wichtig sind.
           <br />
           Auch, wenn sich SaveWorld vor allem auf die Umwelt konzentriert,
           wollen wir auch die anderen beiden Säulen nicht vernachlässigen.
