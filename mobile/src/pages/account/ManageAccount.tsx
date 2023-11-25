@@ -40,12 +40,29 @@ import { Browser } from "@capacitor/browser";
 import { useEffect } from "react";
 import { ENDPOINT } from "../../env";
 import PopupManager from "../../util/PopupManager";
-import { Avatar, Box, Flex, Grid, Heading, Text } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  Flex,
+  Grid,
+  Heading,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import OneSignal from "onesignal-cordova-plugin";
 import MobileBox from "../../components/MobileBox";
+import ManageAccountInterests from "../../components/ManageAccountInterests";
 
 export default function ManageAccount() {
   const { loggedIn, loaded, userInfo } = useUserData();
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [preferences, setPreferences] = React.useState<{
     picture: string;
@@ -336,7 +353,10 @@ export default function ManageAccount() {
                     <IonItem
                       color={"light"}
                       detail
-                      routerLink={"/account/interests"}
+                      button
+                      onClick={() => {
+                        onOpen();
+                      }}
                     >
                       <IonText>Interessen</IonText>
                     </IonItem>
@@ -655,6 +675,25 @@ export default function ManageAccount() {
             </MobileBox>
           </>
         )}
+        <Modal
+          isOpen={isOpen}
+          onClose={onClose}
+          size={["full", "full", "2xl"]}
+          scrollBehavior={"inside"}
+        >
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader bgColor={"gray.900"}>
+              <Heading fontSize={"xl"} fontWeight={1000}>
+                Interessen
+              </Heading>
+            </ModalHeader>
+            <ModalCloseButton />
+            <ModalBody bgColor={"gray.900"}>
+              <ManageAccountInterests />
+            </ModalBody>
+          </ModalContent>
+        </Modal>
       </Page>
     </>
   );
