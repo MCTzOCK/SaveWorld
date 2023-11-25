@@ -17,10 +17,10 @@ import {
   chakra,
   Flex,
   Heading,
+  Image,
   Link,
   Text,
 } from "@chakra-ui/react";
-import { FaLeaf } from "react-icons/fa6";
 
 export default function HomeCardV2(props: {
   icon: ReactNode;
@@ -40,7 +40,7 @@ export default function HomeCardV2(props: {
         href={props.url}
         shadow={"2xl"}
       >
-        <Flex direction={"column"} w={"100%"} alignItems={"center"}>
+        <Flex direction={"column"} w={"100%"} alignItems={"center"} zIndex={12}>
           <chakra.span fontSize={"6xl"}>{props.icon}</chakra.span>
           <Heading color={"white"} fontSize={"2xl"}>
             {props.text}
