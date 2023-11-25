@@ -38,5 +38,17 @@ export const getDirectusApi = () => {
       markdown: string;
       tags: string;
     }[];
+    Quizzes: {
+      id: string;
+      user_created: string;
+      date_created: string;
+      question: string;
+      answer_1: string;
+      answer_2: string;
+      answer_3: string;
+      answer_4: string;
+      image: string;
+      correct: number;
+    }[];
   }>(DIRECTUS_ENDPOINT).with(rest());
 };

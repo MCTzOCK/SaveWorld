@@ -81,6 +81,7 @@ import * as React from "react";
 import GhostArticle from "./components/GhostArticle";
 import DirectusPosts from "./components/DirectusPosts";
 import DirectusPost from "./components/DirectusPost";
+import Quizzes from "./pages/quizzes/Quizzes";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -183,6 +184,7 @@ export default function App() {
     "/tools/co2/car": CO2Car,
     "/tools/co2/e-car": CO2ECar,
     "/tools/co2/h-car": CO2HCar,
+    "/quizzes": Quizzes,
     "/sustainability": Sustainability,
     "/sustainability/articles": () => {
       return (
