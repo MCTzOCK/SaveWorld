@@ -22,6 +22,7 @@ import {
   BiInfoCircle,
   BiLeaf,
   BiMessage,
+  BiQuestionMark,
   BiVideo,
 } from "react-icons/bi";
 
@@ -86,6 +87,12 @@ export default function Home() {
                   icon={<BiVideo />}
                   text={"Videos"}
                   url={"/learn"}
+                />
+                <HomeCardV2
+                  color={"teal.500"}
+                  icon={<BiQuestionMark />}
+                  text={"Quizze"}
+                  url={"/quizzes"}
                 />
                 <HomeCardV2
                   color={"red.500"}
