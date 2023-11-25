@@ -8,9 +8,15 @@
  *
  */
 
+@font-face {
+  font-family: Geist;
+  src: url("/assets/fonts/geist/GeistVariableVF.ttf") format("truetype");
+}
+
 *,
 *::before,
 *::after {
+  font-family: Geist !important;
   scrollbar-width: thin;
 }
 
