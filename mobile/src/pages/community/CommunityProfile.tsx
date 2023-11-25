@@ -40,7 +40,7 @@ import {
 import CommunityEditProfileModal from "../../components/CommunityEditProfileModal";
 import { ENDPOINT } from "../../env";
 import CommunityProfileBlogList from "../../components/CommunityProfileBlogList";
-import { Avatar } from "@chakra-ui/react";
+import { Avatar, Box, Image } from "@chakra-ui/react";
 import PopupManager from "../../util/PopupManager";
 import { Socket } from "socket.io-client";
 import socketAuth from "../../util/socketAuth";
@@ -139,13 +139,14 @@ export default function CommunityProfile(props: { socket: Socket }) {
       <Page title={username} noPadding>
         <MobileBox>
           <div>
-            <img
+            <Image
               alt={"Banner"}
               src={
                 profile && profile.banner.length > 0
                   ? ENDPOINT + profile.banner
                   : "/community_blank_banner.jpg"
               }
+              rounded={"md"}
               style={{
                 aspectRatio: "16/9",
                 width: "100%",
@@ -412,12 +413,7 @@ export default function CommunityProfile(props: { socket: Socket }) {
                 </div>
               </IonCardContent>
             </IonCard>
-            <div
-              style={{
-                padding: "12px",
-                paddingTop: "0",
-              }}
-            >
+            <Box mt={["1rem", "3rem"]}>
               <IonText>
                 <h1
                   style={{
@@ -433,7 +429,7 @@ export default function CommunityProfile(props: { socket: Socket }) {
                 }}
               />
               <CommunityProfileBlogList username={username} />
-            </div>
+            </Box>
           </div>
         </MobileBox>
         <CommunityEditProfileModal

@@ -53,6 +53,7 @@ export default function E2ProjectHomepageSegment(props: {
       <IonCard
         style={{
           marginInline: 0,
+          "--background": "var(--chakra-colors-gray-800)",
         }}
       >
         <IonCardHeader>
