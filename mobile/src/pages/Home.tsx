@@ -62,7 +62,7 @@ export default function Home() {
 
             <div
               style={{
-                marginTop: "4.5rem",
+                marginTop: "2rem",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
