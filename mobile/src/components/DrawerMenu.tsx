@@ -71,6 +71,7 @@ import {
   BiPen,
   BiPlanet,
   BiPlus,
+  BiQuestionMark,
   BiSearch,
   BiUser,
   BiVideo,
@@ -180,6 +181,13 @@ export default function DrawerMenu(props: {
             icon: <BiSearch />,
             onClick: () => {
               router.push("/learn/fts-search", "none", "replace");
+            },
+          },
+          {
+            label: "Quizze",
+            icon: <BiQuestionMark />,
+            onClick: () => {
+              router.push("/quizzes", "none", "replace");
             },
           },
         ],
