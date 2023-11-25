@@ -10,16 +10,13 @@
 
 import * as React from "react";
 import { ReactNode } from "react";
-import { IonCard, IonCardContent } from "@ionic/react";
 import {
   BackgroundProps,
   Box,
   chakra,
   Flex,
   Heading,
-  Image,
   Link,
-  Text,
 } from "@chakra-ui/react";
 
 export default function HomeCardV2(props: {

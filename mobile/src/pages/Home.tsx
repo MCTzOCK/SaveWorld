@@ -10,25 +10,7 @@
 
 import * as React from "react";
 import Page from "../components/Page";
-import { Card, CardBody, Heading, chakra, Text, Grid } from "@chakra-ui/react";
-import { useEffect } from "react";
-import { REST } from "@saveworld/api-js";
-import {
-  FaFileLines,
-  FaLeaf,
-  FaMessage,
-  FaPeopleGroup,
-  FaVideo,
-} from "react-icons/fa6";
-import { IonCard, IonCardContent } from "@ionic/react";
-import HomeCard from "../components/HomeCard";
-import {
-  FaCalculator,
-  FaCogs,
-  FaHandPaper,
-  FaInfoCircle,
-} from "react-icons/fa";
-import { useRedirectForAnon } from "../hooks/useRedirectForAnon";
+import { chakra, Grid, Heading } from "@chakra-ui/react";
 import { useUserData } from "../hooks/useUserData";
 import HomeForAnon from "../components/HomeForAnon";
 import HomeCardV2 from "../components/HomeCardV2";
@@ -40,7 +22,6 @@ import {
   BiInfoCircle,
   BiLeaf,
   BiMessage,
-  BiUser,
   BiVideo,
 } from "react-icons/bi";
 
