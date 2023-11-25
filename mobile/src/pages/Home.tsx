@@ -54,22 +54,17 @@ export default function Home() {
                 fontSize={["6xl", "8xl"]}
                 textAlign={"center"}
                 fontWeight={1000}
-                style={{
-                  fontFamily: "Inter, sans-serif",
-                }}
                 maxWidth={["100%", "100%", "75%"]}
               >
                 Rette &nbsp;die
                 <br />
-                <span
+                <chakra.span
                   style={{
-                    color: "var(--ion-color-success)",
                     textShadow: "0px 0px 40px rgba(0,255,0,1)",
                   }}
                 >
-                  Welt
-                </span>
-                .
+                  Welt!
+                </chakra.span>
               </Heading>
             </div>
 

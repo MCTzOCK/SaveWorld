@@ -31,18 +31,20 @@ export default function HomeCardV2(props: {
   return (
     <>
       <Box
-        bgColor={props.color}
+        bgColor={"gray.900"}
         p={5}
         w={"100%"}
         h={"100%"}
-        rounded={"lg"}
+        rounded={"xl"}
         as={Link}
         href={props.url}
         shadow={"2xl"}
       >
         <Flex direction={"column"} w={"100%"} alignItems={"center"} zIndex={12}>
-          <chakra.span fontSize={"6xl"}>{props.icon}</chakra.span>
-          <Heading color={"white"} fontSize={"2xl"}>
+          <chakra.span color={props.color} fontSize={"6xl"}>
+            {props.icon}
+          </chakra.span>
+          <Heading color={"white"} fontSize={"2xl"} fontWeight={1000}>
             {props.text}
           </Heading>
         </Flex>
