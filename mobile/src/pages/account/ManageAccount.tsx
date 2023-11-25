@@ -161,6 +161,7 @@ export default function ManageAccount() {
                     <IonItem
                       color={"light"}
                       detail
+                      button
                       onClick={() => {
                         const fileInput = document.createElement("input");
                         fileInput.type = "file";
@@ -230,6 +231,7 @@ export default function ManageAccount() {
                     </IonItem>
                     <IonItem
                       detail
+                      button
                       color={"light"}
                       onClick={async () => {
                         if (
