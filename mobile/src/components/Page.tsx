@@ -66,6 +66,7 @@ import {
 } from "@chakra-ui/react";
 import { theme } from "../theme/chakra";
 import DrawerMenu from "./DrawerMenu";
+import FloatingNavbar from "./FloatingNavbar";
 
 export default function Page(props: {
   title: string;
@@ -206,6 +207,7 @@ export default function Page(props: {
               </IonFabList>
             </IonFab>
           ) : null}
+          <FloatingNavbar />
         </IonContent>
       </IonPage>
     </>
