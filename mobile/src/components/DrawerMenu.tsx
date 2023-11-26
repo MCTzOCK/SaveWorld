@@ -76,6 +76,7 @@ import {
   BiUser,
   BiVideo,
 } from "react-icons/bi";
+import SaveWorldModal from "./SaveWorldModal";
 
 export default function DrawerMenu(props: {
   isOpen: boolean;
@@ -385,78 +386,68 @@ export default function DrawerMenu(props: {
 
   return (
     <>
-      <Modal
+      <SaveWorldModal
+        title={"SaveWorld"}
         isOpen={props.isOpen}
         onClose={props.onClose}
-        size={["full", "full", "2xl"]}
-        scrollBehavior={"inside"}
       >
-        <ModalOverlay />
-        <ModalContent bgColor={"#121212"} pt={8}>
-          <ModalHeader fontWeight={900} color={"brand.500"}>
-            SaveWorld
-          </ModalHeader>
-          <ModalCloseButton mt={16}/>
-          <ModalBody>
-            <IonSearchbar
-              style={{
-                padding: 0,
-              }}
-              value={query}
-              onIonInput={(e) => {
-                setQuery(e.detail.value as string);
-              }}
-              placeholder={"Suchen"}
-            />
-            <div
-              style={{
-                gap: "1rem",
-                display: "flex",
-                flexDirection: "column",
-                paddingBottom: "2rem",
-                height: "fit-content",
-                overflow: "auto",
-              }}
-            >
-              {currentGroups.map((group) => {
-                return (
-                  <>
+        <IonSearchbar
+          style={{
+            padding: 0,
+          }}
+          value={query}
+          onIonInput={(e) => {
+            setQuery(e.detail.value as string);
+          }}
+          placeholder={"Suchen"}
+        />
+        <div
+          style={{
+            gap: "1rem",
+            display: "flex",
+            flexDirection: "column",
+            paddingBottom: "2rem",
+            height: "fit-content",
+            overflow: "auto",
+          }}
+        >
+          {currentGroups.map((group) => {
+            return (
+              <>
+                <Text
+                  fontWeight={1000}
+                  color={group.color ? group.color : "brand.500"}
+                >
+                  {group.label}
+                </Text>
+                {group.items.map((item) => {
+                  return (
                     <Text
-                      fontWeight={1000}
-                      color={group.color ? group.color : "brand.500"}
+                      onClick={() => {
+                        item.onClick();
+                        props.onClose();
+                      }}
+                      style={{
+                        cursor: "pointer",
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "1rem",
+                        alignItems: "center",
+                      }}
                     >
-                      {group.label}
+                      <Text color={group.color ? group.color : "brand.500"}>
+                        &#8735;
+                      </Text>
+                      {item.icon}
+                      {item.label}
                     </Text>
-                    {group.items.map((item) => {
-                      return (
-                        <Text
-                          onClick={() => {
-                            item.onClick();
-                            props.onClose();
-                          }}
-                          style={{
-                            cursor: "pointer",
-                            display: "flex",
-                            flexDirection: "row",
-                            gap: "1rem",
-                            alignItems: "center",
-                          }}
-                        >
-                          <Text color={group.color ? group.color : "brand.500"}>
-                            &#8735;
-                          </Text>
-                          {item.icon}
-                          {item.label}
-                        </Text>
-                      );
-                    })}
-                  </>
-                );
-              })}
-            </div>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+                  );
+                })}
+              </>
+            );
+          })}
+        </div>
+      </SaveWorldModal>
     </>
   );
 }

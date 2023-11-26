@@ -58,6 +58,7 @@ import {
 import OneSignal from "onesignal-cordova-plugin";
 import MobileBox from "../../components/MobileBox";
 import ManageAccountInterests from "../../components/ManageAccountInterests";
+import SaveWorldModal from "../../components/SaveWorldModal";
 
 export default function ManageAccount() {
   const { loggedIn, loaded, userInfo } = useUserData();
@@ -677,25 +678,9 @@ export default function ManageAccount() {
             </MobileBox>
           </>
         )}
-        <Modal
-          isOpen={isOpen}
-          onClose={onClose}
-          size={["full", "full", "2xl"]}
-          scrollBehavior={"inside"}
-        >
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader bgColor={"gray.900"}>
-              <Heading fontSize={"xl"} fontWeight={1000}>
-                Interessen
-              </Heading>
-            </ModalHeader>
-            <ModalCloseButton />
-            <ModalBody bgColor={"gray.900"}>
-              <ManageAccountInterests />
-            </ModalBody>
-          </ModalContent>
-        </Modal>
+        <SaveWorldModal title={"Interessen"} isOpen={isOpen} onClose={onClose}>
+          <ManageAccountInterests />
+        </SaveWorldModal>
       </Page>
     </>
   );

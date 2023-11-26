@@ -34,6 +34,7 @@ import {
 } from "@chakra-ui/react";
 import ManageAccountInterests from "../../components/ManageAccountInterests";
 import PopupManager from "../../util/PopupManager";
+import SaveWorldModal from "../../components/SaveWorldModal";
 
 export default function Quizzes() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -125,78 +126,62 @@ export default function Quizzes() {
             })}
           </Grid>
         </MobileBox>
-        <Modal
-          isOpen={isOpen}
-          onClose={onClose}
-          size={["full", "full", "2xl"]}
-          scrollBehavior={"inside"}
-        >
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader bgColor={"gray.900"}>
-              <Heading fontSize={"xl"} fontWeight={1000}>
-                Quiz Time!
+        <SaveWorldModal title={"Quiz Time!"} isOpen={isOpen} onClose={onClose}>
+          {currentQuiz ? (
+            <>
+              <Heading size={"md"}>
+                {
+                  quizzes.filter((quiz) => {
+                    return quiz.id == currentQuiz;
+                  })[0].question
+                }
               </Heading>
-            </ModalHeader>
-            <ModalCloseButton />
-            <ModalBody bgColor={"gray.900"}>
-              {currentQuiz ? (
-                <>
-                  <Heading size={"md"}>
-                    {
-                      quizzes.filter((quiz) => {
-                        return quiz.id == currentQuiz;
-                      })[0].question
-                    }
-                  </Heading>
-                  <Stack>
-                    {[1, 2, 3, 4].map((answer) => {
-                      return (
-                        <>
-                          <Button
-                            color={"brand.500"}
-                            w={"100%"}
-                            onClick={() => {
-                              const correct = quizzes.filter((quiz) => {
-                                return quiz.id == currentQuiz;
-                              })[0].correct;
-                              const correctAnswer = (
-                                quizzes.filter((quiz) => {
-                                  return quiz.id == currentQuiz;
-                                })[0] as any
-                              )["answer_" + correct] as string;
+              <Stack>
+                {[1, 2, 3, 4].map((answer) => {
+                  return (
+                    <>
+                      <Button
+                        color={"brand.500"}
+                        w={"100%"}
+                        onClick={() => {
+                          const correct = quizzes.filter((quiz) => {
+                            return quiz.id == currentQuiz;
+                          })[0].correct;
+                          const correctAnswer = (
+                            quizzes.filter((quiz) => {
+                              return quiz.id == currentQuiz;
+                            })[0] as any
+                          )["answer_" + correct] as string;
 
-                              PopupManager.alertAsync({
-                                title: "Ergebnis",
-                                description:
-                                  "Du hast " +
-                                  (correct === answer ? "richtig" : "falsch") +
-                                  " geantwortet!" +
-                                  (correct !== answer
-                                    ? "\n\nDie richtige Antwort ist: " +
-                                      correctAnswer
-                                    : ""),
-                              });
-                              onClose();
-                            }}
-                          >
-                            {
-                              (
-                                quizzes.filter((quiz) => {
-                                  return quiz.id == currentQuiz;
-                                })[0] as any
-                              )["answer_" + answer] as string
-                            }
-                          </Button>
-                        </>
-                      );
-                    })}
-                  </Stack>
-                </>
-              ) : null}
-            </ModalBody>
-          </ModalContent>
-        </Modal>
+                          PopupManager.alertAsync({
+                            title: "Ergebnis",
+                            description:
+                              "Du hast " +
+                              (correct === answer ? "richtig" : "falsch") +
+                              " geantwortet!" +
+                              (correct !== answer
+                                ? "\n\nDie richtige Antwort ist: " +
+                                  correctAnswer
+                                : ""),
+                          });
+                          onClose();
+                        }}
+                      >
+                        {
+                          (
+                            quizzes.filter((quiz) => {
+                              return quiz.id == currentQuiz;
+                            })[0] as any
+                          )["answer_" + answer] as string
+                        }
+                      </Button>
+                    </>
+                  );
+                })}
+              </Stack>
+            </>
+          ) : null}
+        </SaveWorldModal>
       </Page>
     </>
   );
