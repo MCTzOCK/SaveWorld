@@ -49,15 +49,8 @@ export default function Home() {
                 fontWeight={1000}
                 maxWidth={["100%", "100%", "75%"]}
               >
-                Rette &nbsp;die
-                <br />
-                <chakra.span
-                  style={{
-                    textShadow: "0px 0px 10px rgba(0,255,0,1)",
-                  }}
-                >
-                  Welt!
-                </chakra.span>
+                Rette die <br />
+                Welt!
               </Heading>
             </div>
 
