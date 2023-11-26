@@ -53,7 +53,7 @@ export default function Home() {
                 <br />
                 <chakra.span
                   style={{
-                    textShadow: "0px 0px 40px rgba(0,255,0,1)",
+                    textShadow: "0px 0px 10px rgba(0,255,0,1)",
                   }}
                 >
                   Welt!

@@ -392,7 +392,7 @@ export default function DrawerMenu(props: {
         scrollBehavior={"inside"}
       >
         <ModalOverlay />
-        <ModalContent bgColor={"#121212"}>
+        <ModalContent bgColor={"#121212"} pt={8}>
           <ModalHeader fontWeight={900} color={"brand.500"}>
             SaveWorld
           </ModalHeader>
