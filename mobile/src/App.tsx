@@ -93,7 +93,16 @@ setupIonicReact({
 const socket = io(ENDPOINT);
 
 export default function App() {
-  const flags = useFlags(["videos"]);
+  const flags = useFlags([
+    "videos",
+    "quizzes",
+    "tracker",
+    "news",
+    "sustainability_articles",
+    "tools_co2_calc",
+    "eco_projects",
+    "community",
+  ]);
 
   const { userInfo, loaded, loggedIn } = useUserData();
   const toast = useToast();
@@ -163,67 +172,88 @@ export default function App() {
       "/admin/support-requests/:id": AdminSupportRequestDashboard,
       "/learn": flags.videos.enabled ? Videos : NotFound,
       "/learn/fts-search": flags.videos.enabled ? VideoSearchFTS : NotFound,
-      "/eco-tracker": EcoTracker,
-      "/e2": E2,
-      "/e2-projects/new": StartE2Project,
-      "/e2-projects/my": MyE2Projects,
-      "/e2-projects/search": E2Projects,
-      "/e2-projects/:id": E2ProjectHomepage,
-      "/e2-projects/:id/edit": E2ProjectEdit,
-      "/e2-projects/:id/todos/:listId": E2ProjectTodoListViewer,
-      "/community": CommunityDashboard,
-      "/community/u/:username": CommunityProfile,
-      "/community/create/blog": CommunityCreateBlog,
-      "/community/r/:id": CommunityBlogViewer,
-      "/community/messages": CommunityMessagesChatsList,
-      "/community/messages-groups": CommunityMessagesGroupsList,
-      "/community/messages/:id": CommunityMessagesChat,
+      "/eco-tracker": flags.tracker.enabled ? EcoTracker : NotFound,
+      "/e2": flags.tracker.enabled ? E2 : NotFound,
+      "/e2-projects/new": flags.eco_projects.enabled
+        ? StartE2Project
+        : NotFound,
+      "/e2-projects/my": flags.eco_projects.enabled ? MyE2Projects : NotFound,
+      "/e2-projects/search": flags.eco_projects.enabled ? E2Projects : NotFound,
+      "/e2-projects/:id": flags.eco_projects.enabled
+        ? E2ProjectHomepage
+        : NotFound,
+      "/e2-projects/:id/edit": flags.eco_projects.enabled
+        ? E2ProjectEdit
+        : NotFound,
+      "/e2-projects/:id/todos/:listId": flags.eco_projects.enabled
+        ? E2ProjectTodoListViewer
+        : NotFound,
+      "/community": flags.community.enabled ? CommunityDashboard : NotFound,
+      "/community/u/:username": flags.community.enabled
+        ? CommunityProfile
+        : NotFound,
+      "/community/create/blog": flags.community.enabled
+        ? CommunityCreateBlog
+        : NotFound,
+      "/community/r/:id": flags.community.enabled
+        ? CommunityBlogViewer
+        : NotFound,
+      "/community/messages": flags.community.enabled
+        ? CommunityMessagesChatsList
+        : NotFound,
+      "/community/messages-groups": flags.community.enabled
+        ? CommunityMessagesGroupsList
+        : NotFound,
+      "/community/messages/:id": flags.community.enabled
+        ? CommunityMessagesChat
+        : NotFound,
       "/notifications": Notifications,
       "/support": Support,
       "/onboarding": Home,
       "/s2": SocketTest,
       "/resources/md-help": MdHelp,
-      "/tools/co2": C02,
-      "/tools/co2/car": CO2Car,
-      "/tools/co2/e-car": CO2ECar,
-      "/tools/co2/h-car": CO2HCar,
-      "/quizzes": Quizzes,
-      "/sustainability": Sustainability,
-      "/sustainability/articles": () => {
-        return (
-          <DirectusPosts
-            postBaseUrl={"/sustainability/articles"}
-            pageTitle={"Nachhaltigkeit"}
-            tagFilter={"sustainability"}
-          />
-        );
-      },
-      "/sustainability/articles/:id": () => {
-        const { id } = useParams<{ id: string }>();
-        return <DirectusPost postId={id} />;
-      },
-      "/news": () => {
-        return (
-          <DirectusPosts
-            postBaseUrl={"/news"}
-            pageTitle={"Neuigkeiten"}
-            tagFilter={"news"}
-          />
-        );
-      },
-      "/news/:id": () => {
-        const { id } = useParams<{ id: string }>();
-        return <DirectusPost postId={id} />;
-      },
-      "/directus": () => {
-        return (
-          <DirectusPosts
-            postBaseUrl={"/n"}
-            pageTitle={"Neuigkeiten"}
-            tagFilter={"news"}
-          />
-        );
-      },
+      "/tools/co2": flags.tools_co2_calc.enabled ? C02 : NotFound,
+      "/tools/co2/car": flags.tools_co2_calc.enabled ? CO2Car : NotFound,
+      "/tools/co2/e-car": flags.tools_co2_calc.enabled ? CO2ECar : NotFound,
+      "/tools/co2/h-car": flags.tools_co2_calc.enabled ? CO2HCar : NotFound,
+      "/quizzes": flags.quizzes.enabled ? Quizzes : NotFound,
+      "/sustainability": flags.sustainability_articles.enabled
+        ? Sustainability
+        : NotFound,
+      "/sustainability/articles": flags.sustainability_articles.enabled
+        ? () => {
+            return (
+              <DirectusPosts
+                postBaseUrl={"/sustainability/articles"}
+                pageTitle={"Nachhaltigkeit"}
+                tagFilter={"sustainability"}
+              />
+            );
+          }
+        : NotFound,
+      "/sustainability/articles/:id": flags.sustainability_articles.enabled
+        ? () => {
+            const { id } = useParams<{ id: string }>();
+            return <DirectusPost postId={id} />;
+          }
+        : NotFound,
+      "/news": flags.news.enabled
+        ? () => {
+            return (
+              <DirectusPosts
+                postBaseUrl={"/news"}
+                pageTitle={"Neuigkeiten"}
+                tagFilter={"news"}
+              />
+            );
+          }
+        : NotFound,
+      "/news/:id": flags.news.enabled
+        ? () => {
+            const { id } = useParams<{ id: string }>();
+            return <DirectusPost postId={id} />;
+          }
+        : NotFound,
       //KEEP_ROUTES
     });
   }, [flags]);

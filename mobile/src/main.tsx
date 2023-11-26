@@ -17,6 +17,29 @@ root.render(
       options={{
         environmentID: FLAGSMITH_ENVIRONMENT_ID,
         api: FLAGSMITH_ENDPOINT,
+        defaultFlags: {
+          news: {
+            enabled: true,
+          },
+          community: {
+            enabled: true,
+          },
+          eco_projects: {
+            enabled: true,
+          },
+          quizzes: {
+            enabled: true,
+          },
+          tools_co2_calc: {
+            enabled: true,
+          },
+          tracker: {
+            enabled: true,
+          },
+          videos: {
+            enabled: true,
+          },
+        },
       }}
     >
       <App />
