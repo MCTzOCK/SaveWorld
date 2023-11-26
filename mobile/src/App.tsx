@@ -82,7 +82,7 @@ import GhostArticle from "./components/GhostArticle";
 import DirectusPosts from "./components/DirectusPosts";
 import DirectusPost from "./components/DirectusPost";
 import Quizzes from "./pages/quizzes/Quizzes";
-import { FlagsmithProvider } from "flagsmith/react";
+import { FlagsmithProvider, useFlags } from "flagsmith/react";
 import flagsmith from "flagsmith";
 //KEEP_IMPORTS
 
@@ -93,6 +93,8 @@ setupIonicReact({
 const socket = io(ENDPOINT);
 
 export default function App() {
+  const flags = useFlags(["videos"]);
+
   const { userInfo, loaded, loggedIn } = useUserData();
   const toast = useToast();
 
@@ -140,129 +142,125 @@ export default function App() {
     } catch (e) {}
   }, [loggedIn, loaded]);
 
-  const routes: {
+  useEffect(() => {
+    setRoutes({
+      "/register": Register,
+      "/login": Login,
+      "/old-onboarding": Onboarding,
+      "/welcome": Welcome,
+      "/welcome/lifestyle": WelcomeLifestyle,
+      "/welcome/finish": FinishWelcome,
+      "/account": ManageAccount,
+      "/admin": AdminDashboard,
+      "/admin/content": AdminContentDashboard,
+      "/admin/content/categories": AdminContentCategoryDashboard,
+      "/admin/content/videos": AdminVideosDashboard,
+      "/admin/content/videos/:id": AdminVideoDashboard,
+      "/admin/users": AdminUsersDashboard,
+      "/admin/users/:id": AdminUserDashboard,
+      "/admin/lifestyle-templates": AdminLifestyleTemplates,
+      "/admin/support-requests": AdminSupportRequestsDashboard,
+      "/admin/support-requests/:id": AdminSupportRequestDashboard,
+      "/learn": flags.videos.enabled ? Videos : NotFound,
+      "/learn/fts-search": flags.videos.enabled ? VideoSearchFTS : NotFound,
+      "/eco-tracker": EcoTracker,
+      "/e2": E2,
+      "/e2-projects/new": StartE2Project,
+      "/e2-projects/my": MyE2Projects,
+      "/e2-projects/search": E2Projects,
+      "/e2-projects/:id": E2ProjectHomepage,
+      "/e2-projects/:id/edit": E2ProjectEdit,
+      "/e2-projects/:id/todos/:listId": E2ProjectTodoListViewer,
+      "/community": CommunityDashboard,
+      "/community/u/:username": CommunityProfile,
+      "/community/create/blog": CommunityCreateBlog,
+      "/community/r/:id": CommunityBlogViewer,
+      "/community/messages": CommunityMessagesChatsList,
+      "/community/messages-groups": CommunityMessagesGroupsList,
+      "/community/messages/:id": CommunityMessagesChat,
+      "/notifications": Notifications,
+      "/support": Support,
+      "/onboarding": Home,
+      "/s2": SocketTest,
+      "/resources/md-help": MdHelp,
+      "/tools/co2": C02,
+      "/tools/co2/car": CO2Car,
+      "/tools/co2/e-car": CO2ECar,
+      "/tools/co2/h-car": CO2HCar,
+      "/quizzes": Quizzes,
+      "/sustainability": Sustainability,
+      "/sustainability/articles": () => {
+        return (
+          <DirectusPosts
+            postBaseUrl={"/sustainability/articles"}
+            pageTitle={"Nachhaltigkeit"}
+            tagFilter={"sustainability"}
+          />
+        );
+      },
+      "/sustainability/articles/:id": () => {
+        const { id } = useParams<{ id: string }>();
+        return <DirectusPost postId={id} />;
+      },
+      "/news": () => {
+        return (
+          <DirectusPosts
+            postBaseUrl={"/news"}
+            pageTitle={"Neuigkeiten"}
+            tagFilter={"news"}
+          />
+        );
+      },
+      "/news/:id": () => {
+        const { id } = useParams<{ id: string }>();
+        return <DirectusPost postId={id} />;
+      },
+      "/directus": () => {
+        return (
+          <DirectusPosts
+            postBaseUrl={"/n"}
+            pageTitle={"Neuigkeiten"}
+            tagFilter={"news"}
+          />
+        );
+      },
+      //KEEP_ROUTES
+    });
+  }, [flags]);
+
+  const [routes, setRoutes] = React.useState<{
     [key: string]: any;
-  } = {
-    "/register": Register,
-    "/login": Login,
-    "/old-onboarding": Onboarding,
-    "/welcome": Welcome,
-    "/welcome/lifestyle": WelcomeLifestyle,
-    "/welcome/finish": FinishWelcome,
-    "/account": ManageAccount,
-    "/admin": AdminDashboard,
-    "/admin/content": AdminContentDashboard,
-    "/admin/content/categories": AdminContentCategoryDashboard,
-    "/admin/content/videos": AdminVideosDashboard,
-    "/admin/content/videos/:id": AdminVideoDashboard,
-    "/admin/users": AdminUsersDashboard,
-    "/admin/users/:id": AdminUserDashboard,
-    "/admin/lifestyle-templates": AdminLifestyleTemplates,
-    "/admin/support-requests": AdminSupportRequestsDashboard,
-    "/admin/support-requests/:id": AdminSupportRequestDashboard,
-    "/learn": Videos,
-    "/learn/fts-search": VideoSearchFTS,
-    "/eco-tracker": EcoTracker,
-    "/e2": E2,
-    "/e2-projects/new": StartE2Project,
-    "/e2-projects/my": MyE2Projects,
-    "/e2-projects/search": E2Projects,
-    "/e2-projects/:id": E2ProjectHomepage,
-    "/e2-projects/:id/edit": E2ProjectEdit,
-    "/e2-projects/:id/todos/:listId": E2ProjectTodoListViewer,
-    "/community": CommunityDashboard,
-    "/community/u/:username": CommunityProfile,
-    "/community/create/blog": CommunityCreateBlog,
-    "/community/r/:id": CommunityBlogViewer,
-    "/community/messages": CommunityMessagesChatsList,
-    "/community/messages-groups": CommunityMessagesGroupsList,
-    "/community/messages/:id": CommunityMessagesChat,
-    "/notifications": Notifications,
-    "/support": Support,
-    "/onboarding": Home,
-    "/s2": SocketTest,
-    "/resources/md-help": MdHelp,
-    "/tools/co2": C02,
-    "/tools/co2/car": CO2Car,
-    "/tools/co2/e-car": CO2ECar,
-    "/tools/co2/h-car": CO2HCar,
-    "/quizzes": Quizzes,
-    "/sustainability": Sustainability,
-    "/sustainability/articles": () => {
-      return (
-        <DirectusPosts
-          postBaseUrl={"/sustainability/articles"}
-          pageTitle={"Nachhaltigkeit"}
-          tagFilter={"sustainability"}
-        />
-      );
-    },
-    "/sustainability/articles/:id": () => {
-      const { id } = useParams<{ id: string }>();
-      return <DirectusPost postId={id} />;
-    },
-    "/news": () => {
-      return (
-        <DirectusPosts
-          postBaseUrl={"/news"}
-          pageTitle={"Neuigkeiten"}
-          tagFilter={"news"}
-        />
-      );
-    },
-    "/news/:id": () => {
-      const { id } = useParams<{ id: string }>();
-      return <DirectusPost postId={id} />;
-    },
-    "/directus": () => {
-      return (
-        <DirectusPosts
-          postBaseUrl={"/n"}
-          pageTitle={"Neuigkeiten"}
-          tagFilter={"news"}
-        />
-      );
-    },
-    //KEEP_ROUTES
-  };
+  }>({});
 
   return (
     <>
       <ChakraProvider theme={theme}>
-        <FlagsmithProvider
-          flagsmith={flagsmith}
-          options={{
-            environmentID: "ZMzrfNv4gUm6MiQaANZrxU",
-            api: FLAGSMITH_ENDPOINT,
-          }}
-        >
-          <div id={"__chakra-manual-mount-point-do-not-use"} />
-          <IonApp>
-            <IonReactRouter>
-              <AppUrlListener />
-              <Switch>
-                <Redirect to={"/onboarding"} from={"/"} exact />
-                {Object.keys(routes).map((route) => {
-                  const Component = routes[route];
-                  return (
-                    <Route
-                      exact
-                      path={route}
-                      render={(props) => {
-                        return (
-                          <Component key={props.location.key} socket={socket} />
-                        );
-                      }}
-                    />
-                  );
-                })}
-                <Route>
-                  <NotFound />
-                </Route>
-              </Switch>
-            </IonReactRouter>
-          </IonApp>
-        </FlagsmithProvider>
+        <div id={"__chakra-manual-mount-point-do-not-use"} />
+        <IonApp>
+          <IonReactRouter>
+            <AppUrlListener />
+            <Switch>
+              <Redirect to={"/onboarding"} from={"/"} exact />
+              {Object.keys(routes).map((route) => {
+                const Component = routes[route];
+                return (
+                  <Route
+                    exact
+                    path={route}
+                    render={(props) => {
+                      return (
+                        <Component key={props.location.key} socket={socket} />
+                      );
+                    }}
+                  />
+                );
+              })}
+              <Route>
+                <NotFound />
+              </Route>
+            </Switch>
+          </IonReactRouter>
+        </IonApp>
       </ChakraProvider>
     </>
   );

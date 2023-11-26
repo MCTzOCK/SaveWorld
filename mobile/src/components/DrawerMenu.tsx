@@ -77,12 +77,24 @@ import {
   BiVideo,
 } from "react-icons/bi";
 import SaveWorldModal from "./SaveWorldModal";
+import { useFlags } from "flagsmith/react";
 
 export default function DrawerMenu(props: {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
 }) {
+  const flags = useFlags([
+    "videos",
+    "quizzes",
+    "tracker",
+    "news",
+    "sustainability_articles",
+    "tools_co2_calc",
+    "eco_projects",
+    "community",
+  ]);
+
   const { userInfo, loggedIn } = useUserData();
 
   const [query, setQuery] = React.useState<string>("");
@@ -111,13 +123,6 @@ export default function DrawerMenu(props: {
             icon: <BiHome />,
             onClick: () => {
               router.push("/onboarding", "none", "replace");
-            },
-          },
-          {
-            label: "Neuigkeiten",
-            icon: <BiNews />,
-            onClick: () => {
-              router.push("/news", "none", "replace");
             },
           },
         ],
@@ -169,31 +174,47 @@ export default function DrawerMenu(props: {
       },
       {
         label: "Lernen",
-        items: [
-          {
-            label: "Videos",
-            icon: <BiVideo />,
-            onClick: () => {
-              router.push("/learn", "none", "replace");
-            },
-          },
-          {
-            label: "Suchen",
-            icon: <BiSearch />,
-            onClick: () => {
-              router.push("/learn/fts-search", "none", "replace");
-            },
-          },
-          {
-            label: "Quizze",
-            icon: <BiQuestionMark />,
-            onClick: () => {
-              router.push("/quizzes", "none", "replace");
-            },
-          },
-        ],
+        items: [],
       },
-      {
+    ];
+
+    if (flags.news.enabled) {
+      gr[0].items.push({
+        label: "Neuigkeiten",
+        icon: <BiNews />,
+        onClick: () => {
+          router.push("/news", "none", "replace");
+        },
+      });
+    }
+
+    if (flags.videos.enabled) {
+      gr[2].items.push({
+        label: "Videos",
+        icon: <BiVideo />,
+        onClick: () => {
+          router.push("/learn", "none", "replace");
+        },
+      });
+      gr[2].items.push({
+        label: "Suchen",
+        icon: <BiSearch />,
+        onClick: () => {
+          router.push("/learn/fts-search", "none", "replace");
+        },
+      });
+    }
+    if (flags.quizzes.enabled) {
+      gr[2].items.push({
+        label: "Quizze",
+        icon: <BiQuestionMark />,
+        onClick: () => {
+          router.push("/quizzes", "none", "replace");
+        },
+      });
+    }
+    if (flags.tracker.enabled) {
+      gr.push({
         label: "Tracker",
         items: [
           {
@@ -204,8 +225,10 @@ export default function DrawerMenu(props: {
             },
           },
         ],
-      },
-      {
+      });
+    }
+    if (flags.sustainability_articles.enabled) {
+      gr.push({
         label: "Nachhaltigkeit",
         items: [
           {
@@ -216,8 +239,10 @@ export default function DrawerMenu(props: {
             },
           },
         ],
-      },
-      {
+      });
+    }
+    if (flags.tools_co2_calc.enabled) {
+      gr.push({
         label: "Werkzeuge",
         items: [
           {
@@ -228,8 +253,10 @@ export default function DrawerMenu(props: {
             },
           },
         ],
-      },
-      {
+      });
+    }
+    if (flags.eco_projects.enabled) {
+      gr.push({
         label: "Öko-Projekte",
         items: [
           {
@@ -254,8 +281,11 @@ export default function DrawerMenu(props: {
             },
           },
         ],
-      },
-      {
+      });
+    }
+
+    if (flags.community.enabled) {
+      gr.push({
         label: "Community",
         items: [
           {
@@ -291,20 +321,23 @@ export default function DrawerMenu(props: {
             },
           },
         ],
-      },
-      {
-        label: "Ressourcen",
-        items: [
-          {
-            label: "Markdown-Hilfe",
-            icon: <BiLogoMarkdown />,
-            onClick: () => {
-              router.push("/resources/md-help", "none", "replace");
-            },
+      });
+    }
+
+    gr.push({
+      label: "Ressourcen",
+      items: [
+        {
+          label: "Markdown-Hilfe",
+          icon: <BiLogoMarkdown />,
+          onClick: () => {
+            router.push("/resources/md-help", "none", "replace");
           },
-        ],
-      },
-    ];
+        },
+      ],
+    });
+
+    gr = gr.filter((g) => g.items.length > 0);
 
     if (userInfo.role === "admin") {
       gr.push({
@@ -359,7 +392,7 @@ export default function DrawerMenu(props: {
 
     setGroups(gr);
     setCurrentGroups(gr);
-  }, [userInfo, loggedIn]);
+  }, [userInfo, loggedIn, flags]);
 
   const [currentGroups, setCurrentGroups] =
     React.useState<typeof groups>(groups);
