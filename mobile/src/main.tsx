@@ -39,6 +39,9 @@ root.render(
           videos: {
             enabled: true,
           },
+          sustainability_articles: {
+            enabled: true,
+          },
         },
       }}
     >

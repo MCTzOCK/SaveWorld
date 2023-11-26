@@ -80,60 +80,60 @@ export default function Home() {
                 w={"100%"}
                 maxW={["600px"]}
               >
-                {flags.tracker.enabled && (
+                {flags.tracker.enabled ? (
                   <HomeCardV2
                     color={"green.500"}
                     icon={<BiLeaf />}
                     text={"Tracker"}
                     url={"/e2"}
                   />
-                )}
-                {flags.videos.enabled && (
+                ) : null}
+                {flags.videos.enabled ? (
                   <HomeCardV2
                     color={"orange.500"}
                     icon={<BiVideo />}
                     text={"Videos"}
                     url={"/learn"}
                   />
-                )}
-                {flags.quizzes.enabled && (
+                ) : null}
+                {flags.quizzes.enabled ? (
                   <HomeCardV2
                     color={"teal.500"}
                     icon={<BiQuestionMark />}
                     text={"Quizze"}
                     url={"/quizzes"}
                   />
-                )}
+                ) : null}
                 <HomeCardV2
                   color={"red.500"}
                   icon={<BiInfoCircle />}
                   text={"Support"}
                   url={"/support"}
                 />
-                {flags.tools_co2_calc.enabled && (
+                {flags.tools_co2_calc.enabled ? (
                   <HomeCardV2
                     color={"yellow.500"}
                     icon={<BiCalculator />}
                     text={"Rechner"}
                     url={"/tools/co2"}
                   />
-                )}
-                {flags.community.enabled && (
+                ) : null}
+                {flags.community.enabled ? (
                   <HomeCardV2
                     color={"purple.500"}
                     icon={<BiGroup />}
                     text={"Forum"}
                     url={"/community"}
                   />
-                )}
-                {flags.sustainability_articles.enabled && (
+                ) : null}
+                {flags.sustainability_articles.enabled ? (
                   <HomeCardV2
                     color={"blue.500"}
                     icon={<BiFile />}
                     text={"Artikel"}
                     url={"/sustainability/articles"}
                   />
-                )}
+                ) : null}
                 <HomeCardV2
                   color={"pink.500"}
                   icon={<BiCog />}
