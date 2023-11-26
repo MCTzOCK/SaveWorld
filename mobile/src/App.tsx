@@ -42,7 +42,7 @@ import { Redirect, useParams } from "react-router";
 import EcoTracker from "./pages/tracker/EcoTracker";
 
 import OneSignal from "onesignal-cordova-plugin";
-import { ENDPOINT, ONE_SIGNAL_APP_ID } from "./env";
+import { ENDPOINT, FLAGSMITH_ENDPOINT, ONE_SIGNAL_APP_ID } from "./env";
 import { useEffect } from "react";
 import AppUrlListener from "./AppUrlListener";
 import AdminLifestyleTemplates from "./pages/admin/AdminLifestyleTemplates";
@@ -82,6 +82,8 @@ import GhostArticle from "./components/GhostArticle";
 import DirectusPosts from "./components/DirectusPosts";
 import DirectusPost from "./components/DirectusPost";
 import Quizzes from "./pages/quizzes/Quizzes";
+import { FlagsmithProvider } from "flagsmith/react";
+import flagsmith from "flagsmith";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -227,32 +229,40 @@ export default function App() {
   return (
     <>
       <ChakraProvider theme={theme}>
-        <div id={"__chakra-manual-mount-point-do-not-use"} />
-        <IonApp>
-          <IonReactRouter>
-            <AppUrlListener />
-            <Switch>
-              <Redirect to={"/onboarding"} from={"/"} exact />
-              {Object.keys(routes).map((route) => {
-                const Component = routes[route];
-                return (
-                  <Route
-                    exact
-                    path={route}
-                    render={(props) => {
-                      return (
-                        <Component key={props.location.key} socket={socket} />
-                      );
-                    }}
-                  />
-                );
-              })}
-              <Route>
-                <NotFound />
-              </Route>
-            </Switch>
-          </IonReactRouter>
-        </IonApp>
+        <FlagsmithProvider
+          flagsmith={flagsmith}
+          options={{
+            environmentID: "ZMzrfNv4gUm6MiQaANZrxU",
+            api: FLAGSMITH_ENDPOINT,
+          }}
+        >
+          <div id={"__chakra-manual-mount-point-do-not-use"} />
+          <IonApp>
+            <IonReactRouter>
+              <AppUrlListener />
+              <Switch>
+                <Redirect to={"/onboarding"} from={"/"} exact />
+                {Object.keys(routes).map((route) => {
+                  const Component = routes[route];
+                  return (
+                    <Route
+                      exact
+                      path={route}
+                      render={(props) => {
+                        return (
+                          <Component key={props.location.key} socket={socket} />
+                        );
+                      }}
+                    />
+                  );
+                })}
+                <Route>
+                  <NotFound />
+                </Route>
+              </Switch>
+            </IonReactRouter>
+          </IonApp>
+        </FlagsmithProvider>
       </ChakraProvider>
     </>
   );

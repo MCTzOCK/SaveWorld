@@ -67,6 +67,7 @@ import {
 import { theme } from "../theme/chakra";
 import DrawerMenu from "./DrawerMenu";
 import FloatingNavbar from "./FloatingNavbar";
+import { useFlags } from "flagsmith/react";
 
 export default function Page(props: {
   title: string;
@@ -80,6 +81,8 @@ export default function Page(props: {
   background?: string;
   noHeader?: boolean;
 }) {
+  const flags = useFlags(["floating_navbar"]);
+
   const ref = React.useRef<HTMLElement>(null);
 
   const { loggedIn, loaded, userInfo } = useUserData();
@@ -207,7 +210,7 @@ export default function Page(props: {
               </IonFabList>
             </IonFab>
           ) : null}
-          <FloatingNavbar />
+          {flags.floating_navbar.enabled && <FloatingNavbar />}
         </IonContent>
       </IonPage>
     </>

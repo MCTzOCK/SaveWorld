@@ -17,6 +17,7 @@ export const NOMINATIM_ENDPOINT = import.meta.env.VITE_NOMINATIM_ENDPOINT;
 export const APPLE_MAP_KIT_TOKEN = import.meta.env.VITE_APPLE_MAP_KIT_TOKEN;
 export const GHOST_CONTENT_API_KEY = import.meta.env.VITE_GHOST_CONTENT_API_KEY;
 export const DIRECTUS_ENDPOINT = import.meta.env.VITE_DIRECTUS_ENDPOINT;
+export const FLAGSMITH_ENDPOINT = import.meta.env.VITE_FLAGSMITH_ENDPOINT;
 
 export const getGhostContentApi = () => {
   return new GhostContentAPI({
