@@ -22,11 +22,17 @@ export default function FloatingNavbar() {
         bottom={"5%"}
         left={"5%"}
         width={"60%"}
+        maxWidth={"300px"}
         rounded={"xl"}
-        bgColor={"rgba(0,0,0,0.4)"}
+        bgColor={"rgba(0,0,0,1)"}
+        opacity={[0.6, 0.3]}
+        _hover={{
+          opacity: 1,
+        }}
+        transition={"opacity 0.2s ease-in-out"}
         p={3}
         borderColor={"brand.500"}
-        //borderWidth={2}
+        borderWidth={2}
         borderStyle={"solid"}
       >
         <Grid templateColumns={"repeat(4, 1fr)"} gap={3}>
