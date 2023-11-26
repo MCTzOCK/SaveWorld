@@ -1,0 +1,15 @@
+{
+  "name": "@saveworld/essay",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "cd src && pdflatex -output-directory ../pdf -job-name \"Schriftliche Arbeit - SaveWorld\" main.tex && cd .."
+  },
+  "keywords": [],
+  "author": {
+    "email": "hello@ben-siebert.de",
+    "name": "Ben Siebert",
+    "url": "https://ben-siebert.com"
+  },
+  "license": "UNLICENSED",
+}
