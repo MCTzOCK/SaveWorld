@@ -396,7 +396,7 @@ export default function DrawerMenu(props: {
           <ModalHeader fontWeight={900} color={"brand.500"}>
             SaveWorld
           </ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton mt={16}/>
           <ModalBody>
             <IonSearchbar
               style={{
