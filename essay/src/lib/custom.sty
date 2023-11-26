@@ -1,0 +1,12 @@
+%! Package = PACKAGE_NAME
+%! Author = ben
+%! Date = 26.11.2023
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{lib/custom}[custom package]
+
+\usepackage{titlesec}
+
+\newcommand{\bslinespacing}[1]{\renewcommand{\baselinestretch}{#1}\normalsize}
+\newcommand{\bsremovechaptertitle}{\titleformat{\chapter}{\normalfont\LARGE}{\thechapter.}{15pt}{\LARGE}\titlespacing*{\chapter}{0pt}{*0}{10pt}}
+
