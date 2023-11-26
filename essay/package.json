@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "cd src && pdflatex -output-directory ../pdf -job-name \"Schriftliche Arbeit - SaveWorld\" main.tex && cd .."
+    "latex:compile": "cd src && pdflatex -output-directory ../pdf -job-name \"Schriftliche Arbeit - SaveWorld\" main.tex && cd ..",
+    "build": "npm run latex:compile && npm run latex:compile && npm run latex:compile"
   },
   "keywords": [],
   "author": {

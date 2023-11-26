@@ -2,22 +2,27 @@
 %! Date = 26.11.2023
 
 % Preamble
-\documentclass[11pt,a4paper]{report}
+\documentclass[10pt,a4paper]{report}
 
 % Packages
-\usepackage{lib/custom}
 \usepackage{subfiles}
+\usepackage{lib/custom}
+\usepackage{bookman}
 \usepackage{tabularx}
 \usepackage{ngerman}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage[left=2.5cm,right=2.5cm,top=2cm,bottom=2cm]{geometry}
 
 % Document
 \begin{document}
 
     \bslinespacing{1.5}
     \bsremovechaptertitle
-    
+
     \subfile{subfiles/title.tex}
+    \subfile{subfiles/overview.tex}
+
+    \setcounter{page}{1}
 
 \end{document}
