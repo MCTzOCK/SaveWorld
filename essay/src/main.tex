@@ -13,13 +13,26 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[left=2.5cm,right=2.5cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{hyperref}
+\usepackage{color}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=blue,
+    pdftitle={Schriftliche Arbeit - SaveWorld},
+    pdfpagemode=FullScreen,
+}
+\urlstyle{same}
 
 % Document
 \begin{document}
 
     \bslinespacing{1.5}
     \bsremovechaptertitle
-
+	 \setcounter{secnumdepth}{4}
+	
     \subfile{subfiles/title.tex}
     \subfile{subfiles/overview.tex}
     \clearpage
