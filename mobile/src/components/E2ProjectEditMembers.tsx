@@ -193,7 +193,7 @@ export default function E2ProjectEditMembers(props: {
                             ? "inherit"
                             : "none"
                         }
-                        colorScheme={"saveworld_green"}
+                        colorScheme={"brand"}
                         onClick={async () => {
                           let newRoleS = await PopupManager.selectAsync({
                             title: "Rolle Ändern",

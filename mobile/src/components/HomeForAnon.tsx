@@ -12,10 +12,12 @@ import * as React from "react";
 import {
   Box,
   Button,
+  ButtonGroup,
   chakra,
   Flex,
   Heading,
   Image,
+  Link,
   Stack,
   Text,
 } from "@chakra-ui/react";
@@ -25,16 +27,20 @@ import { IonCard, IonCardContent, useIonRouter } from "@ionic/react";
 
 export default function HomeForAnon() {
   const router = useIonRouter();
+
   return (
-    <>
+    <Box h={"100vh"} minH={"fit-content"} w={"100%"}>
       <Flex
-        flexDirection={"column"}
-        height={"100vh"}
-        justifyContent={"center"}
+        w={"100%"}
+        h={"100%"}
+        minH={"fit-content"}
         alignItems={"center"}
+        justifyContent={"center"}
+        direction={["column", "row"]}
+        gap={4}
       >
         <Image
-          src={"/assets/images/earth-shattered.png"}
+          src={"/maksim-shutov-cj0VP7HzQbw-unsplash.jpg"}
           width={"100%"}
           height={"100vh"}
           objectFit={"cover"}
@@ -43,74 +49,43 @@ export default function HomeForAnon() {
           filter={"blur(10px)"}
           alt={""}
         />
-        <Stack
-          textAlign={["center", "left"]}
-          w={"fit-content"}
-          spacing={6}
-          maxW={"100%"}
-        >
+        <Flex justifyContent={"center"} direction={"column"} gap={4} p={4}>
           <Heading
-            fontSize={["5xl", "8xl"]}
-            textAlign={"center"}
-            fontWeight={1000}
-            style={{
-              fontFamily: "Inter, sans-serif",
-            }}
+            color={"brand.500"}
+            fontSize={["6xl", "8xl"]}
+            fontWeight={900}
           >
-            Rette&nbsp;unseren&nbsp;
-            <span
-              style={{
-                color: "var(--ion-color-success)",
-                textShadow: "0px 0px 40px rgba(0,255,0,1)",
-                wordWrap: "normal",
-              }}
-            >
-              Planeten
-            </span>
-            .
+            SaveWorld
           </Heading>
-          <Heading
-            fontSize={["5xl", "8xl"]}
-            textAlign={"center"}
-            fontWeight={1000}
-            style={{
-              fontFamily: "Inter, sans-serif",
-            }}
-          >
-            Schütze die&nbsp;
-            <span
-              style={{
-                color: "var(--ion-color-success)",
-                textShadow: "0px 0px 40px rgba(0,255,0,1)",
-              }}
+          <Text fontSize={["2xl", "4xl"]} fontWeight={700}>
+            Unser Planet braucht deine{" "}
+            <chakra.span color={"brand.500"} fontWeight={900}>
+              Hilfe
+            </chakra.span>
+            !
+          </Text>
+          <Text fontSize={["2xl", "4xl"]} fontWeight={700}>
+            Leiste deinen{" "}
+            <chakra.span color={"brand.500"} fontWeight={900}>
+              Beitrag
+            </chakra.span>
+            !
+          </Text>
+          <ButtonGroup w={"100%"} justifyContent={["center", "right"]}>
+            <Button
+              backgroundColor={"brand.600"}
+              size={"lg"}
+              _hover={{ backgroundColor: "brand.500" }}
+              _active={{ backgroundColor: "brand.700" }}
+              as={Link}
+              href={"/register"}
+              fontSize={"xl"}
             >
-              Umwelt
-            </span>
-            .
-          </Heading>
-          <Flex justifyContent={["center", "flex-end"]}>
-            <Box
-              backgroundColor={"var(--ion-color-success)"}
-              border={"none"}
-              borderRadius={"12px"}
-              padding={"1rem"}
-              fontFamily={"Inter, sans-serif"}
-              fontWeight={900}
-              fontSize={"4xl"}
-              w={"fit-content"}
-              cursor={"pointer"}
-              _hover={{
-                backgroundColor: "var(--ion-color-success-shade)",
-              }}
-              onClick={() => {
-                router.push("/register", "none", "push");
-              }}
-            >
-              Jetzt loslegen
-            </Box>
-          </Flex>
-        </Stack>
+              Los geht's
+            </Button>
+          </ButtonGroup>
+        </Flex>
       </Flex>
-    </>
+    </Box>
   );
 }

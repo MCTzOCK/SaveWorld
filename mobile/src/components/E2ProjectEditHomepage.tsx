@@ -45,7 +45,7 @@ export default function E2ProjectEditHomepage(props: { project: E2Project }) {
   return (
     <>
       <Button
-        color={"saveworld_green.500"}
+        color={"brand.500"}
         w={"100%"}
         leftIcon={<FaPlus />}
         onClick={async () => {

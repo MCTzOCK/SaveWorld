@@ -104,7 +104,7 @@ export default function GhostArticles(props: {
                     <ButtonGroup w={"100%"} mt={2}>
                       <Button
                         w={"100%"}
-                        color={"saveworld_green.500"}
+                        color={"brand.500"}
                         onClick={() => {
                           router.push(
                             `${props.postBaseUrl}/${post.id}`,
@@ -146,7 +146,7 @@ export default function GhostArticles(props: {
             ) : null}
             {page < pages ? (
               <Button
-                color={"saveworld_green.500"}
+                color={"brand.500"}
                 onClick={() => setPage(page + 1)}
                 w={"100%"}
               >

@@ -17,6 +17,9 @@ export const NOMINATIM_ENDPOINT = import.meta.env.VITE_NOMINATIM_ENDPOINT;
 export const APPLE_MAP_KIT_TOKEN = import.meta.env.VITE_APPLE_MAP_KIT_TOKEN;
 export const GHOST_CONTENT_API_KEY = import.meta.env.VITE_GHOST_CONTENT_API_KEY;
 export const DIRECTUS_ENDPOINT = import.meta.env.VITE_DIRECTUS_ENDPOINT;
+export const FLAGSMITH_ENDPOINT = import.meta.env.VITE_FLAGSMITH_ENDPOINT;
+export const FLAGSMITH_ENVIRONMENT_ID = import.meta.env
+  .VITE_FLAGSMITH_ENVIRONMENT_ID;
 
 export const getGhostContentApi = () => {
   return new GhostContentAPI({
@@ -37,6 +40,18 @@ export const getDirectusApi = () => {
       title: string;
       markdown: string;
       tags: string;
+    }[];
+    Quizzes: {
+      id: string;
+      user_created: string;
+      date_created: string;
+      question: string;
+      answer_1: string;
+      answer_2: string;
+      answer_3: string;
+      answer_4: string;
+      image: string;
+      correct: number;
     }[];
   }>(DIRECTUS_ENDPOINT).with(rest());
 };

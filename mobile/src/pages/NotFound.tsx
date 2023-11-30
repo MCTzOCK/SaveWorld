@@ -11,7 +11,15 @@
 import * as React from "react";
 import Page from "../components/Page";
 import { IonButton } from "@ionic/react";
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  Flex,
+  Heading,
+  Link,
+  Text,
+} from "@chakra-ui/react";
 
 export default function NotFound() {
   return (
@@ -30,15 +38,9 @@ export default function NotFound() {
               fontFamily: "Inter, sans-serif",
             }}
             maxWidth={"100%"}
+            color={"brand.500"}
           >
-            <span
-              style={{
-                color: "var(--ion-color-success)",
-                textShadow: "0px 0px 40px rgba(0,255,0,1)",
-              }}
-            >
-              404
-            </span>
+            404
           </Heading>
           <Text
             style={{
@@ -48,23 +50,26 @@ export default function NotFound() {
             padding={"1rem"}
             fontWeight={900}
           >
-            Es sieht so aus, als ob du dich verlaufen hast!
+            Diese Funktion ist leider aktuell nicht verfügbar. Wenn du der
+            Meinung bist, dass das ein Fehler ist, melde dich bitte bei uns.
           </Text>
-          <Flex flexDirection={"row"} alignItems={"center"} gap={"2rem"}>
-            <IonButton
-              style={{ width: "100%" }}
-              color={"success"}
-              routerLink={"/support"}
+          <Flex
+            flexDirection={["column", "row"]}
+            w={"100%"}
+            gap={"2"}
+            alignItems={"center"}
+          >
+            <Button
+              w={"100%"}
+              colorScheme={"brand"}
+              as={Link}
+              href={"/support"}
             >
               Support
-            </IonButton>
-            <IonButton
-              style={{ width: "100%" }}
-              color={"success"}
-              routerLink={"/"}
-            >
+            </Button>
+            <Button w={"100%"} colorScheme={"brand"} as={Link} href={"/"}>
               nach Hause telefonieren
-            </IonButton>
+            </Button>
           </Flex>
         </Box>
       </Flex>

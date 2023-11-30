@@ -26,6 +26,7 @@ import {
 import { REST } from "@saveworld/api-js";
 import PopupManager from "../../util/PopupManager";
 import { Grid } from "@chakra-ui/react";
+import MobileBox from "../../components/MobileBox";
 
 export default function AdminDashboard() {
   useRedirectForAnon({
@@ -87,6 +88,7 @@ export default function AdminDashboard() {
                 "repeat(1, 1fr)",
                 "repeat(2, 1fr)",
                 "repeat(3, 1fr)",
+                "repeat(4, 1fr)",
               ]}
             >
               <IonCard>
@@ -150,7 +152,14 @@ export default function AdminDashboard() {
                 </IonCardContent>
               </IonCard>
             </Grid>
-            <IonList inset>Interne Werkzeuge:</IonList>
+            <IonList
+              inset
+              style={{
+                background: "transparent",
+              }}
+            >
+              Interne Werkzeuge:
+            </IonList>
             <IonList inset>
               <IonItem
                 color={"light"}
@@ -175,13 +184,6 @@ export default function AdminDashboard() {
               </IonItem>
               <IonItem
                 color={"light"}
-                href={"https://saveworld.one/wp-admin"}
-                target={"_blank"}
-              >
-                Website-Admin
-              </IonItem>
-              <IonItem
-                color={"light"}
                 href={"https://status.saveworld.one"}
                 target={"_blank"}
               >
@@ -195,6 +197,20 @@ export default function AdminDashboard() {
                 target={"_blank"}
               >
                 OneSignal (Push)
+              </IonItem>
+              <IonItem
+                color={"light"}
+                href={"https://features.saveworld.one"}
+                target={"_blank"}
+              >
+                Features
+              </IonItem>
+              <IonItem
+                color={"light"}
+                href={"https://content.saveworld.one"}
+                target={"_blank"}
+              >
+                Content
               </IonItem>
             </IonList>
           </>

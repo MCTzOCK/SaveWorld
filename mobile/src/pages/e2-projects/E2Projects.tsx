@@ -25,7 +25,7 @@ export default function E2Projects() {
     <>
       <Page title={"Projekte"}>
         <MobileBox>
-          <Tabs colorScheme={"saveworld_green"} size={"md"} isFitted>
+          <Tabs colorScheme={"brand"} size={"md"} isFitted>
             <TabList>
               <Tab>Liste</Tab>
               <Tab>Karte</Tab>

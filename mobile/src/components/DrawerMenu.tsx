@@ -16,6 +16,12 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerOverlay,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
   Text,
   useDisclosure,
   VStack,
@@ -50,12 +56,45 @@ import {
 } from "react-icons/fa6";
 import PopupManager from "../util/PopupManager";
 import OneSignal from "onesignal-cordova-plugin";
+import {
+  BiCalculator,
+  BiCog,
+  BiEnvelope,
+  BiFile,
+  BiGroup,
+  BiHome,
+  BiInfoCircle,
+  BiLeaf,
+  BiLogoMarkdown,
+  BiLogOut,
+  BiNews,
+  BiPen,
+  BiPlanet,
+  BiPlus,
+  BiQuestionMark,
+  BiSearch,
+  BiUser,
+  BiVideo,
+} from "react-icons/bi";
+import SaveWorldModal from "./SaveWorldModal";
+import { useFlags } from "flagsmith/react";
 
 export default function DrawerMenu(props: {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
 }) {
+  const flags = useFlags([
+    "videos",
+    "quizzes",
+    "tracker",
+    "news",
+    "sustainability_articles",
+    "tools_co2_calc",
+    "eco_projects",
+    "community",
+  ]);
+
   const { userInfo, loggedIn } = useUserData();
 
   const [query, setQuery] = React.useState<string>("");
@@ -81,16 +120,9 @@ export default function DrawerMenu(props: {
         items: [
           {
             label: "Home",
-            icon: <FaHome />,
+            icon: <BiHome />,
             onClick: () => {
               router.push("/onboarding", "none", "replace");
-            },
-          },
-          {
-            label: "Neuigkeiten",
-            icon: <FaNewspaper />,
-            onClick: () => {
-              router.push("/news", "none", "replace");
             },
           },
         ],
@@ -100,28 +132,28 @@ export default function DrawerMenu(props: {
         items: [
           {
             label: "Einstellungen",
-            icon: <FaCogs />,
+            icon: <BiCog />,
             onClick: () => {
               router.push("/account", "none", "replace");
             },
           },
           {
             label: "Benachrichtigungen",
-            icon: <FaEnvelope />,
+            icon: <BiEnvelope />,
             onClick: () => {
               router.push("/notifications", "none", "replace");
             },
           },
           {
             label: "Hilfe",
-            icon: <FaInfoCircle />,
+            icon: <BiInfoCircle />,
             onClick: () => {
               router.push("/support", "none", "replace");
             },
           },
           {
             label: "Abmelden",
-            icon: <FaRightFromBracket />,
+            icon: <BiLogOut />,
             onClick: async () => {
               if (
                 !(await PopupManager.confirmAsync({
@@ -142,60 +174,89 @@ export default function DrawerMenu(props: {
       },
       {
         label: "Lernen",
-        items: [
-          {
-            label: "Videos",
-            icon: <FaVideo />,
-            onClick: () => {
-              router.push("/learn", "none", "replace");
-            },
-          },
-          {
-            label: "Suchen",
-            icon: <FaSearch />,
-            onClick: () => {
-              router.push("/learn/fts-search", "none", "replace");
-            },
-          },
-        ],
+        items: [],
       },
-      {
+    ];
+
+    if (flags.news.enabled) {
+      gr[0].items.push({
+        label: "Neuigkeiten",
+        icon: <BiNews />,
+        onClick: () => {
+          router.push("/news", "none", "replace");
+        },
+      });
+    }
+
+    if (flags.videos.enabled) {
+      gr[2].items.push({
+        label: "Videos",
+        icon: <BiVideo />,
+        onClick: () => {
+          router.push("/learn", "none", "replace");
+        },
+      });
+      gr[2].items.push({
+        label: "Suchen",
+        icon: <BiSearch />,
+        onClick: () => {
+          router.push("/learn/fts-search", "none", "replace");
+        },
+      });
+    }
+    if (flags.quizzes.enabled) {
+      gr[2].items.push({
+        label: "Quizze",
+        icon: <BiQuestionMark />,
+        onClick: () => {
+          router.push("/quizzes", "none", "replace");
+        },
+      });
+    }
+    if (flags.tracker.enabled) {
+      gr.push({
         label: "Tracker",
         items: [
           {
             label: "Übersicht",
-            icon: <FaLeaf />,
+            icon: <BiLeaf />,
             onClick: () => {
               router.push("/e2", "none", "replace");
             },
           },
         ],
-      },
-      {
+      });
+    }
+    if (flags.sustainability_articles.enabled) {
+      gr.push({
         label: "Nachhaltigkeit",
         items: [
           {
             label: "Was ist Nachhaltigkeit?",
-            icon: <FaEarthEurope />,
+            icon: <BiPlanet />,
             onClick: () => {
               router.push("/sustainability", "none", "replace");
             },
           },
         ],
-      },
-      {
+      });
+    }
+    if (flags.tools_co2_calc.enabled) {
+      gr.push({
         label: "Werkzeuge",
         items: [
           {
             label: "CO2-Rechner",
-            icon: <FaCalculator />,
+            icon: <BiCalculator />,
             onClick: () => {
               router.push("/tools/co2", "none", "replace");
             },
           },
         ],
-      },
-      {
+      });
+    }
+    if (flags.eco_projects.enabled) {
+      gr.push({
         label: "Öko-Projekte",
         items: [
           {
@@ -207,47 +268,50 @@ export default function DrawerMenu(props: {
           },
           {
             label: "Projekt starten",
-            icon: <FaPlus />,
+            icon: <BiPlus />,
             onClick: () => {
               router.push("/e2-projects/new", "none", "replace");
             },
           },
           {
             label: "Projekte finden",
-            icon: <FaSearch />,
+            icon: <BiSearch />,
             onClick: () => {
               router.push("/e2-projects/search", "none", "replace");
             },
           },
         ],
-      },
-      {
+      });
+    }
+
+    if (flags.community.enabled) {
+      gr.push({
         label: "Community",
         items: [
           {
             label: "Home",
-            icon: <FaPeopleGroup />,
+            icon: <BiGroup />,
             onClick: () => {
               router.push("/community", "none", "replace");
             },
           },
           {
             label: "Neuer Blog",
-            icon: <FaPen />,
+            icon: <BiPen />,
             onClick: () => {
               router.push("/community/create/blog", "none", "replace");
             },
           },
           {
             label: "Nachrichten",
-            icon: <FaEnvelope />,
+            icon: <BiEnvelope />,
             onClick: () => {
               router.push("/community/messages", "none", "replace");
             },
           },
           {
             label: "Mein Profil",
-            icon: <FaPerson />,
+            icon: <BiUser />,
             onClick: () => {
               router.push(
                 "/community/u/" + userInfo.username,
@@ -257,20 +321,23 @@ export default function DrawerMenu(props: {
             },
           },
         ],
-      },
-      {
-        label: "Ressourcen",
-        items: [
-          {
-            label: "Markdown-Hilfe",
-            icon: <FaMarkdown />,
-            onClick: () => {
-              router.push("/resources/md-help", "none", "replace");
-            },
+      });
+    }
+
+    gr.push({
+      label: "Ressourcen",
+      items: [
+        {
+          label: "Markdown-Hilfe",
+          icon: <BiLogoMarkdown />,
+          onClick: () => {
+            router.push("/resources/md-help", "none", "replace");
           },
-        ],
-      },
-    ];
+        },
+      ],
+    });
+
+    gr = gr.filter((g) => g.items.length > 0);
 
     if (userInfo.role === "admin") {
       gr.push({
@@ -286,35 +353,35 @@ export default function DrawerMenu(props: {
           },
           {
             label: "Benutzer",
-            icon: <FaUsers />,
+            icon: <BiGroup />,
             onClick: () => {
               router.push("/admin/users", "none", "replace");
             },
           },
           {
             label: "Support-Anfragen",
-            icon: <FaInfoCircle />,
+            icon: <BiInfoCircle />,
             onClick: () => {
               router.push("/admin/support-requests", "none", "replace");
             },
           },
           {
             label: "Videos",
-            icon: <FaVideo />,
+            icon: <BiVideo />,
             onClick: () => {
               router.push("/admin/videos", "none", "replace");
             },
           },
           {
             label: "Lifestyle-Vorlagen",
-            icon: <FaFile />,
+            icon: <BiFile />,
             onClick: () => {
               router.push("/admin/lifestyle-templates", "none", "replace");
             },
           },
           {
             label: "Interessen",
-            icon: <FaLeaf />,
+            icon: <BiLeaf />,
             onClick: () => {
               router.push("/admin/content/categories", "none", "replace");
             },
@@ -325,7 +392,7 @@ export default function DrawerMenu(props: {
 
     setGroups(gr);
     setCurrentGroups(gr);
-  }, [userInfo, loggedIn]);
+  }, [userInfo, loggedIn, flags]);
 
   const [currentGroups, setCurrentGroups] =
     React.useState<typeof groups>(groups);
@@ -352,81 +419,68 @@ export default function DrawerMenu(props: {
 
   return (
     <>
-      <Drawer isOpen={props.isOpen} onClose={props.onClose} size={"sm"}>
-        <DrawerOverlay />
-        <DrawerContent bgColor={"black"} pt={"2rem"}>
-          <DrawerCloseButton mt={"2rem"} />
-          <DrawerHeader color={"var(--ion-color-success)"} fontWeight={1000}>
-            SaveWorld
-          </DrawerHeader>
-          <DrawerBody
-            style={{
-              overflow: "hidden",
-            }}
-          >
-            <IonSearchbar
-              style={{
-                padding: 0,
-              }}
-              value={query}
-              onIonInput={(e) => {
-                setQuery(e.detail.value as string);
-              }}
-              placeholder={"Suchen"}
-            />
-            <div
-              style={{
-                gap: "1rem",
-                display: "flex",
-                flexDirection: "column",
-                maxHeight: "80vh",
-                height: "fit-content",
-                overflow: "auto",
-              }}
-            >
-              {currentGroups.map((group) => {
-                return (
-                  <>
+      <SaveWorldModal
+        title={"SaveWorld"}
+        isOpen={props.isOpen}
+        onClose={props.onClose}
+      >
+        <IonSearchbar
+          style={{
+            padding: 0,
+          }}
+          value={query}
+          onIonInput={(e) => {
+            setQuery(e.detail.value as string);
+          }}
+          placeholder={"Suchen"}
+        />
+        <div
+          style={{
+            gap: "1rem",
+            display: "flex",
+            flexDirection: "column",
+            paddingBottom: "2rem",
+            height: "fit-content",
+            overflow: "auto",
+          }}
+        >
+          {currentGroups.map((group) => {
+            return (
+              <>
+                <Text
+                  fontWeight={1000}
+                  color={group.color ? group.color : "brand.500"}
+                >
+                  {group.label}
+                </Text>
+                {group.items.map((item) => {
+                  return (
                     <Text
-                      fontWeight={1000}
-                      color={group.color ? group.color : "saveworld_green.500"}
+                      onClick={() => {
+                        item.onClick();
+                        props.onClose();
+                      }}
+                      style={{
+                        cursor: "pointer",
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "1rem",
+                        alignItems: "center",
+                      }}
                     >
-                      {group.label}
+                      <Text color={group.color ? group.color : "brand.500"}>
+                        &#8735;
+                      </Text>
+                      {item.icon}
+                      {item.label}
                     </Text>
-                    {group.items.map((item) => {
-                      return (
-                        <Text
-                          onClick={() => {
-                            item.onClick();
-                            props.onClose();
-                          }}
-                          style={{
-                            cursor: "pointer",
-                            display: "flex",
-                            flexDirection: "row",
-                            gap: "1rem",
-                            alignItems: "center",
-                          }}
-                        >
-                          <Text
-                            color={
-                              group.color ? group.color : "saveworld_green.500"
-                            }
-                          >
-                            &#8735;
-                          </Text>
-                          {item.icon}
-                          {item.label}
-                        </Text>
-                      );
-                    })}
-                  </>
-                );
-              })}
-            </div>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
+                  );
+                })}
+              </>
+            );
+          })}
+        </div>
+      </SaveWorldModal>
     </>
   );
 }

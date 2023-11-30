@@ -66,6 +66,8 @@ import {
 } from "@chakra-ui/react";
 import { theme } from "../theme/chakra";
 import DrawerMenu from "./DrawerMenu";
+import FloatingNavbar from "./FloatingNavbar";
+import { useFlags } from "flagsmith/react";
 
 export default function Page(props: {
   title: string;
@@ -79,6 +81,8 @@ export default function Page(props: {
   background?: string;
   noHeader?: boolean;
 }) {
+  const flags = useFlags(["floating_navbar"]);
+
   const ref = React.useRef<HTMLElement>(null);
 
   const { loggedIn, loaded, userInfo } = useUserData();
@@ -105,7 +109,7 @@ export default function Page(props: {
         <IonHeader>
           <IonToolbar
             style={{
-              "--background": "black",
+              "--background": "#121212",
               /*
               props.noHeader
                 ? "black"
@@ -132,7 +136,6 @@ export default function Page(props: {
             <IonTitle
               size={"large"}
               style={{
-                fontFamily: "Inter, sans-serif",
                 fontWeight: 1000,
               }}
               color={props.redGradient ? "danger" : "success"}
@@ -206,43 +209,8 @@ export default function Page(props: {
               </IonFabList>
             </IonFab>
           ) : null}
+          {flags.floating_navbar.enabled && <FloatingNavbar />}
         </IonContent>
-
-        {false && (
-          <>
-            <IonFooter>
-              <IonTabBar>
-                <IonTabButton
-                  tab="onboarding"
-                  href="/onboarding"
-                  disabled={!loggedIn}
-                  selected={false}
-                >
-                  <IonIcon aria-hidden="true" ios={home} md={homeSharp} />
-                  <IonLabel>Home</IonLabel>
-                </IonTabButton>
-                <IonTabButton
-                  tab="e2"
-                  href="/e2"
-                  disabled={!loggedIn}
-                  selected={false}
-                >
-                  <IonIcon aria-hidden="true" ios={leaf} md={leafSharp} />
-                  <IonLabel>Tracker</IonLabel>
-                </IonTabButton>
-                <IonTabButton
-                  tab="learn"
-                  href="/learn"
-                  disabled={!loggedIn}
-                  selected={false}
-                >
-                  <IonIcon aria-hidden="true" ios={book} md={bookSharp} />
-                  <IonLabel>Lernen</IonLabel>
-                </IonTabButton>
-              </IonTabBar>
-            </IonFooter>
-          </>
-        )}
       </IonPage>
     </>
   );

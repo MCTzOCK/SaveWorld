@@ -22,90 +22,69 @@ import {
 import { REST } from "@saveworld/api-js";
 import Page from "../components/Page";
 import PopupManager from "../util/PopupManager";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, Link } from "@chakra-ui/react";
+import MobileBox from "../components/MobileBox";
 
 export default function Login() {
   const router = useIonRouter();
   return (
     <>
       <Page title={"Anmelden"}>
-        <Flex
-          w={"100%"}
-          justifyContent={["flex-start", "center"]}
-          alignItems={["flex-start", "center"]}
-          minH={"100vh"}
-        >
-          <Box
-            backgroundColor={"rgba(10,10,10,0.5)"}
-            padding={"2rem"}
-            borderRadius={"12px"}
-            border={"4px solid rgba(40,40,40,1)"}
-            w={["100%", "75%", "50%", "25%"]}
-            minW={"200px"}
-          >
-            <form
-              onSubmit={async (e) => {
-                e.preventDefault();
+        <MobileBox>
+          <form
+            onSubmit={async (e) => {
+              e.preventDefault();
 
-                const mail = (e.target as any).mail.value;
-                const pass = (e.target as any).pass.value;
+              const mail = (e.target as any).mail.value;
+              const pass = (e.target as any).pass.value;
 
-                const res = await REST.Account.login(mail, pass);
+              const res = await REST.Account.login(mail, pass);
 
-                if (res.status === 200) {
-                  localStorage.setItem("token", res.payload.token);
-                  const prefs = await REST.Account.preferences(
-                    res.payload.token,
-                  );
+              if (res.status === 200) {
+                localStorage.setItem("token", res.payload.token);
+                const prefs = await REST.Account.preferences(res.payload.token);
 
-                  let hasInterests = false;
+                let hasInterests = false;
 
-                  if (!prefs.payload.prefs.interests) {
-                    hasInterests = false;
-                  } else {
-                    hasInterests = prefs.payload.prefs.interests.length > 0;
-                  }
-
-                  if (!hasInterests) {
-                    router.push("/welcome", "none", "replace");
-                  } else {
-                    router.push("/onboarding", "none", "replace");
-                  }
+                if (!prefs.payload.prefs.interests) {
+                  hasInterests = false;
                 } else {
-                  if (res.payload.error === "TOTP Code incorrect") {
-                    const code = await PopupManager.promptAsync({
-                      title: "2FA Code",
-                      helperText: "Bitte gebe den 2FA Code ein",
-                      inputType: "INPUT",
-                    });
+                  hasInterests = prefs.payload.prefs.interests.length > 0;
+                }
 
-                    if (!code) return;
-                    const resp = await REST.Account.login(mail, pass, code);
+                if (!hasInterests) {
+                  router.push("/welcome", "none", "replace");
+                } else {
+                  router.push("/onboarding", "none", "replace");
+                }
+              } else {
+                if (res.payload.error === "TOTP Code incorrect") {
+                  const code = await PopupManager.promptAsync({
+                    title: "2FA Code",
+                    helperText: "Bitte gebe den 2FA Code ein",
+                    inputType: "INPUT",
+                  });
 
-                    if (resp.status === 200) {
-                      localStorage.setItem("token", resp.payload.token);
-                      const prefs = await REST.Account.preferences(
-                        resp.payload.token,
-                      );
-                      let hasInterests: boolean;
+                  if (!code) return;
+                  const resp = await REST.Account.login(mail, pass, code);
 
-                      if (!prefs.payload.prefs.interests) {
-                        hasInterests = false;
-                      } else {
-                        hasInterests = prefs.payload.prefs.interests.length > 0;
-                      }
+                  if (resp.status === 200) {
+                    localStorage.setItem("token", resp.payload.token);
+                    const prefs = await REST.Account.preferences(
+                      resp.payload.token,
+                    );
+                    let hasInterests: boolean;
 
-                      if (!hasInterests) {
-                        router.push("/welcome", "none", "replace");
-                      } else {
-                        router.push("/onboarding", "none", "replace");
-                      }
+                    if (!prefs.payload.prefs.interests) {
+                      hasInterests = false;
                     } else {
-                      PopupManager.alert({
-                        title: "Fehler",
-                        description:
-                          "Fehler beim Anmelden: " + res.payload.error,
-                      });
+                      hasInterests = prefs.payload.prefs.interests.length > 0;
+                    }
+
+                    if (!hasInterests) {
+                      router.push("/welcome", "none", "replace");
+                    } else {
+                      router.push("/onboarding", "none", "replace");
                     }
                   } else {
                     PopupManager.alert({
@@ -113,11 +92,35 @@ export default function Login() {
                       description: "Fehler beim Anmelden: " + res.payload.error,
                     });
                   }
+                } else {
+                  PopupManager.alert({
+                    title: "Fehler",
+                    description: "Fehler beim Anmelden: " + res.payload.error,
+                  });
                 }
+              }
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                width: "100%",
+                gap: "1.2rem",
               }}
             >
+              <IonInput
+                name={"mail"}
+                type={"email"}
+                placeholder={"E-Mail"}
+                style={{
+                  borderBottom: "1px solid var(--ion-color-success-shade)",
+                }}
+              />
               <div
                 style={{
+                  marginTop: "1.2rem",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
@@ -126,53 +129,38 @@ export default function Login() {
                 }}
               >
                 <IonInput
-                  name={"mail"}
-                  type={"email"}
-                  placeholder={"E-Mail"}
+                  name={"pass"}
+                  type={"password"}
+                  placeholder={"Passwort"}
                   style={{
                     borderBottom: "1px solid var(--ion-color-success-shade)",
                   }}
                 />
-                <div
-                  style={{
-                    marginTop: "1.2rem",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    width: "100%",
-                    gap: "1.2rem",
-                  }}
-                >
-                  <IonInput
-                    name={"pass"}
-                    type={"password"}
-                    placeholder={"Passwort"}
-                    style={{
-                      borderBottom: "1px solid var(--ion-color-success-shade)",
-                    }}
-                  />
-                </div>
               </div>
-              <IonButton
+            </div>
+            <Flex w={"100%"} direction={["column", "row"]} gap={4}>
+              <Button
                 type={"submit"}
                 style={{ marginTop: "1.2rem", marginBottom: "1.2rem" }}
-                expand={"block"}
-                color={"success"}
+                w={"100%"}
+                colorScheme={"brand"}
+                size={"lg"}
               >
                 Anmelden
-              </IonButton>
-              <IonList inset>
-                <IonItem
-                  color={"light"}
-                  routerLink={"/register"}
-                  routerDirection={"none"}
-                >
-                  Stattdessen registrieren
-                </IonItem>
-              </IonList>
-            </form>
-          </Box>
-        </Flex>
+              </Button>
+              <Button
+                as={Link}
+                href={"/register"}
+                style={{ marginTop: "1.2rem", marginBottom: "1.2rem" }}
+                w={"100%"}
+                color={"brand.500"}
+                size={"lg"}
+              >
+                Stattdessen registrieren
+              </Button>
+            </Flex>
+          </form>
+        </MobileBox>
       </Page>
     </>
   );

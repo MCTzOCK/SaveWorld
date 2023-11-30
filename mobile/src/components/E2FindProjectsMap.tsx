@@ -95,7 +95,7 @@ export default function E2FindProjectsMap() {
                                     <VStack>
                                       <Button
                                         w={"100%"}
-                                        color={"saveworld_green.500"}
+                                        color={"brand.500"}
                                         onClick={() => {
                                           window.open(
                                             ENDPOINT +
@@ -109,7 +109,7 @@ export default function E2FindProjectsMap() {
                                       </Button>
                                       <Button
                                         w={"100%"}
-                                        color={"saveworld_green.500"}
+                                        color={"brand.500"}
                                         onClick={() => {
                                           router.push(
                                             "/e2-projects/" + p._id,

@@ -57,7 +57,7 @@ export default function PromptPopupComponent(props: {
         leastDestructiveRef={whatEverRef}
       >
         <AlertDialogOverlay bg="blackAlpha.300" backdropFilter="blur(10px)">
-          <AlertDialogContent bg={"black"}>
+          <AlertDialogContent bg={"#121212"} maxW={"90%"}>
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
               {props.title}
             </AlertDialogHeader>
@@ -91,7 +91,7 @@ export default function PromptPopupComponent(props: {
                 Abbrechen
               </Button>
               <Button
-                colorScheme="saveworld_green"
+                colorScheme="brand"
                 variant={"outline"}
                 onClick={() => {
                   const data = document.getElementById(

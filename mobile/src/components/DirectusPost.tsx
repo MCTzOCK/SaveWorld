@@ -17,7 +17,6 @@ import MobileBox from "./MobileBox";
 import Markdown from "@uiw/react-md-editor/lib/components/TextArea/Markdown";
 import { Flex, Heading, Image } from "@chakra-ui/react";
 import ReactMarkdown from "react-markdown";
-import remarkPlugins = ReactMarkdown.propTypes.remarkPlugins;
 import remarkGfm from "remark-gfm";
 
 export default function DirectusPost(props: { postId: string }) {

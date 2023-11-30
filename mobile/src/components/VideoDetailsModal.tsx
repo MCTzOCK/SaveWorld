@@ -114,7 +114,11 @@ export default function VideoDetailsModal(props: {
         breakpoints={[0, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
       >
         <IonHeader>
-          <IonToolbar>
+          <IonToolbar
+            style={{
+              "--background": "var(--chakra-colors-gray-900)",
+            }}
+          >
             <IonButtons slot={"start"}>
               <IonButton
                 color={"success"}
@@ -151,7 +155,11 @@ export default function VideoDetailsModal(props: {
             </IonButtons>
           </IonToolbar>
         </IonHeader>
-        <IonContent>
+        <IonContent
+          style={{
+            "--background": "var(--chakra-colors-gray-800)",
+          }}
+        >
           <IonActionSheet
             ref={asRef}
             header={"Bewerten"}
@@ -394,7 +402,11 @@ export default function VideoDetailsModal(props: {
             <>
               {comments.map((comment) => {
                 return (
-                  <IonCard>
+                  <IonCard
+                    style={{
+                      "--background": "var(--chakra-colors-gray-900)",
+                    }}
+                  >
                     <IonCardHeader>
                       <IonCardSubtitle>
                         {new Date(comment.createdAt).toLocaleString()}

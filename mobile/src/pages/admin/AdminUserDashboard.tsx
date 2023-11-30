@@ -154,7 +154,7 @@ export default function AdminUserDashboard() {
                             lastName: lastName,
                             password: password === "" ? undefined : password,
                             active: active,
-                            admin: admin,
+                            role: admin ? "admin" : "user",
                           },
                         );
 

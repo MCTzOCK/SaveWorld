@@ -1,0 +1,26 @@
+/**
+ * mobile/src/theme/globals.scss
+ *
+ * Author: Ben Siebert <hello@ben-siebert.de>
+ * Copyright: Copyright (c) 2018-2023 Ben Siebert. All rights reserved.
+ * License: Project License
+ * Created At: 23.11.23
+ *
+ */
+
+@font-face {
+  font-family: Geist;
+  src: url("/assets/fonts/geist/GeistVariableVF.ttf") format("truetype");
+}
+
+*,
+*::before,
+*::after {
+  font-family: Geist !important;
+  scrollbar-width: thin;
+}
+
+html,
+body {
+  scrollbar-width: thin;
+}

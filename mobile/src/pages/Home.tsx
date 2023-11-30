@@ -10,33 +10,35 @@
 
 import * as React from "react";
 import Page from "../components/Page";
-import { Card, CardBody, Heading, chakra, Text } from "@chakra-ui/react";
-import { useEffect } from "react";
-import { REST } from "@saveworld/api-js";
-import { FaLeaf, FaPeopleGroup, FaVideo } from "react-icons/fa6";
-import { IonCard, IonCardContent } from "@ionic/react";
-import HomeCard from "../components/HomeCard";
-import { FaInfoCircle } from "react-icons/fa";
-import { useRedirectForAnon } from "../hooks/useRedirectForAnon";
+import { chakra, Grid, Heading } from "@chakra-ui/react";
 import { useUserData } from "../hooks/useUserData";
 import HomeForAnon from "../components/HomeForAnon";
+import HomeCardV2 from "../components/HomeCardV2";
+import {
+  BiCalculator,
+  BiCog,
+  BiFile,
+  BiGroup,
+  BiInfoCircle,
+  BiLeaf,
+  BiMessage,
+  BiQuestionMark,
+  BiVideo,
+} from "react-icons/bi";
+import { useFlags } from "flagsmith/react";
 
 export default function Home() {
+  const flags = useFlags([
+    "videos",
+    "quizzes",
+    "tracker",
+    "news",
+    "sustainability_articles",
+    "tools_co2_calc",
+    "eco_projects",
+    "community",
+  ]);
   const { loggedIn } = useUserData();
-
-  const [hasEcoDetailsForToday, setHasEcoDetailsForToday] =
-    React.useState<boolean>(true);
-
-  useEffect(() => {
-    REST.Lifestyle.summary(
-      localStorage.getItem("token") as string,
-      new Date().toISOString(),
-    ).then((res) => {
-      if (res.status !== 200) {
-        setHasEcoDetailsForToday(false);
-      }
-    });
-  }, []);
 
   return (
     <>
@@ -56,66 +58,95 @@ export default function Home() {
                 fontSize={["6xl", "8xl"]}
                 textAlign={"center"}
                 fontWeight={1000}
-                style={{
-                  fontFamily: "Inter, sans-serif",
-                }}
                 maxWidth={["100%", "100%", "75%"]}
               >
-                Rette &nbsp;die
-                <br />
-                <span
-                  style={{
-                    color: "var(--ion-color-success)",
-                    textShadow: "0px 0px 40px rgba(0,255,0,1)",
-                  }}
-                >
-                  Welt
-                </span>
-                .
+                Rette die <br />
+                Welt!
               </Heading>
             </div>
 
             <div
               style={{
-                marginTop: "4.5rem",
+                marginTop: "2rem",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 width: "100%",
               }}
             >
-              <div>
-                {!hasEcoDetailsForToday && (
-                  <>
-                    <HomeCard
-                      icon={<FaLeaf />}
-                      text={
-                        "Gib Daten zu deinem Tag ein, um deine Ziele zu tracken!"
-                      }
-                      url={"/e2"}
-                    />
-                  </>
-                )}
-                <HomeCard
-                  icon={<FaVideo />}
-                  text={
-                    "Schau dir Videos an, um mehr über Nachhaltigkeit zu lernen!"
-                  }
-                  url={"/learn"}
-                />
-                <HomeCard
-                  icon={<FaPeopleGroup />}
-                  text={
-                    "Tausche dich mit anderen aus, die auch die Welt verbessern wollen!"
-                  }
-                  url={"/community"}
-                />
-                <HomeCard
-                  icon={<FaInfoCircle />}
-                  text={"Du hast Fragen? Wir haben Antworten!"}
+              <Grid
+                templateColumns={["repeat(2, 1fr)", "repeat(3, 1fr)"]}
+                gap={4}
+                w={"100%"}
+                maxW={["600px"]}
+              >
+                {flags.tracker.enabled ? (
+                  <HomeCardV2
+                    color={"green.500"}
+                    icon={<BiLeaf />}
+                    text={"Tracker"}
+                    url={"/e2"}
+                  />
+                ) : null}
+                {flags.videos.enabled ? (
+                  <HomeCardV2
+                    color={"orange.500"}
+                    icon={<BiVideo />}
+                    text={"Videos"}
+                    url={"/learn"}
+                  />
+                ) : null}
+                {flags.quizzes.enabled ? (
+                  <HomeCardV2
+                    color={"teal.500"}
+                    icon={<BiQuestionMark />}
+                    text={"Quizze"}
+                    url={"/quizzes"}
+                  />
+                ) : null}
+                <HomeCardV2
+                  color={"red.500"}
+                  icon={<BiInfoCircle />}
+                  text={"Support"}
                   url={"/support"}
                 />
-              </div>
+                {flags.tools_co2_calc.enabled ? (
+                  <HomeCardV2
+                    color={"yellow.500"}
+                    icon={<BiCalculator />}
+                    text={"Rechner"}
+                    url={"/tools/co2"}
+                  />
+                ) : null}
+                {flags.community.enabled ? (
+                  <HomeCardV2
+                    color={"purple.500"}
+                    icon={<BiGroup />}
+                    text={"Forum"}
+                    url={"/community"}
+                  />
+                ) : null}
+                {flags.sustainability_articles.enabled ? (
+                  <HomeCardV2
+                    color={"blue.500"}
+                    icon={<BiFile />}
+                    text={"Artikel"}
+                    url={"/sustainability/articles"}
+                  />
+                ) : null}
+                <HomeCardV2
+                  color={"pink.500"}
+                  icon={<BiCog />}
+                  text={"Einst."}
+                  url={"/account"}
+                />
+                <HomeCardV2
+                  color={"teal.500"}
+                  icon={<BiMessage />}
+                  text={"Nachr."}
+                  url={"/notifications"}
+                />
+              </Grid>
             </div>
           </>
         ) : (

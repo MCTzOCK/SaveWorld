@@ -76,7 +76,7 @@ export default function E2ProjectEdit() {
     <>
       <Page title={"Projekt bearbeiten"}>
         <MobileBox>
-          <Tabs colorScheme={"saveworld_green"} size={"md"} isFitted>
+          <Tabs colorScheme={"brand"} size={"md"} isFitted>
             <TabList>
               <Tab>Informationen</Tab>
               <Tab>Homepage</Tab>

@@ -46,7 +46,12 @@ export default function CommunityBlogList(props: {
         {props.blogs.map((blog) => {
           return (
             <>
-              <IonCard routerLink={"/community/r/" + blog._id}>
+              <IonCard
+                routerLink={"/community/r/" + blog._id}
+                style={{
+                  "--background": "var(--ion-color-light)",
+                }}
+              >
                 <IonCardHeader>
                   <IonCardSubtitle>
                     {new Date(blog.createdAt).toLocaleString() +

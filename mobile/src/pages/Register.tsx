@@ -19,183 +19,173 @@ import {
 import { REST } from "@saveworld/api-js";
 import Page from "../components/Page";
 import PopupManager from "../util/PopupManager";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, Link } from "@chakra-ui/react";
+import MobileBox from "../components/MobileBox";
 
 export default function Register() {
   const router = useIonRouter();
   return (
     <>
       <Page title={"Willkommen"}>
-        <Flex
-          w={"100%"}
-          justifyContent={["flex-start", "center"]}
-          alignItems={["flex-start", "center"]}
-          minH={"100vh"}
-        >
-          <Box
-            backgroundColor={"rgba(10,10,10,0.5)"}
-            padding={"2rem"}
-            borderRadius={"12px"}
-            border={"4px solid rgba(40,40,40,1)"}
-            w={["100%", "75%", "50%", "25%"]}
-            minW={"200px"}
-          >
-            <form
-              onSubmit={async (e) => {
-                e.preventDefault();
+        <MobileBox>
+          <form
+            onSubmit={async (e) => {
+              e.preventDefault();
 
-                const mail = (e.target as any).mail.value;
-                const user = (e.target as any).user.value;
-                const firstName = (e.target as any).firstName.value;
-                const lastName = (e.target as any).lastName.value;
-                const pass = (e.target as any).pass.value;
-                const passConf = (e.target as any).passConf.value;
+              const mail = (e.target as any).mail.value;
+              const user = (e.target as any).user.value;
+              const firstName = (e.target as any).firstName.value;
+              const lastName = (e.target as any).lastName.value;
+              const pass = (e.target as any).pass.value;
+              const passConf = (e.target as any).passConf.value;
 
-                if (
-                  !mail ||
-                  !user ||
-                  !firstName ||
-                  !lastName ||
-                  !pass ||
-                  !passConf
-                ) {
-                  PopupManager.alert({
-                    title: "Fehler",
-                    description: "Bitte fülle alle Felder aus!",
-                  });
-                  return;
-                }
-
-                if (pass !== passConf) {
-                  PopupManager.alert({
-                    title: "Fehler",
-                    description: "Passwörter stimmen nicht überein!",
-                  });
-                  return;
-                }
-
-                const res = await REST.Account.register({
-                  mail: mail,
-                  firstName: firstName,
-                  lastName: lastName,
-                  password: pass,
-                  username: user,
+              if (
+                !mail ||
+                !user ||
+                !firstName ||
+                !lastName ||
+                !pass ||
+                !passConf
+              ) {
+                PopupManager.alert({
+                  title: "Fehler",
+                  description: "Bitte fülle alle Felder aus!",
                 });
+                return;
+              }
 
-                if (res.status === 200) {
-                  PopupManager.alert({
-                    title: "Erfolgreich",
-                    description:
-                      "Registrierung erfolgreich! Bitte bestätige deine E-Mail Adresse.",
-                  });
-                  router.push("/login", "none", "replace");
-                } else {
-                  PopupManager.alert({
-                    title: "Fehler",
-                    description:
-                      "Registrierung fehlgeschlagen: " + res.payload.error,
-                  });
-                }
+              if (pass !== passConf) {
+                PopupManager.alert({
+                  title: "Fehler",
+                  description: "Passwörter stimmen nicht überein!",
+                });
+                return;
+              }
+
+              const res = await REST.Account.register({
+                mail: mail,
+                firstName: firstName,
+                lastName: lastName,
+                password: pass,
+                username: user,
+              });
+
+              if (res.status === 200) {
+                PopupManager.alert({
+                  title: "Erfolgreich",
+                  description:
+                    "Registrierung erfolgreich! Bitte bestätige deine E-Mail Adresse.",
+                });
+                router.push("/login", "none", "replace");
+              } else {
+                PopupManager.alert({
+                  title: "Fehler",
+                  description:
+                    "Registrierung fehlgeschlagen: " + res.payload.error,
+                });
+              }
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                width: "100%",
+                gap: "1.2rem",
               }}
             >
-              <div
+              <IonInput
+                name={"user"}
+                placeholder={"Benutzername"}
                 style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  width: "100%",
-                  gap: "1.2rem",
+                  borderBottom: "1px solid var(--ion-color-success-shade)",
                 }}
-              >
-                <IonInput
-                  name={"user"}
-                  placeholder={"Benutzername"}
-                  style={{
-                    borderBottom: "1px solid var(--ion-color-success-shade)",
-                  }}
-                />
-                <IonInput
-                  name={"mail"}
-                  type={"email"}
-                  placeholder={"E-Mail"}
-                  style={{
-                    borderBottom: "1px solid var(--ion-color-success-shade)",
-                  }}
-                />
-              </div>
-              <div
+              />
+              <IonInput
+                name={"mail"}
+                type={"email"}
+                placeholder={"E-Mail"}
                 style={{
-                  marginTop: "1.2rem",
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  width: "100%",
-                  gap: "1.2rem",
+                  borderBottom: "1px solid var(--ion-color-success-shade)",
                 }}
-              >
-                <IonInput
-                  name={"firstName"}
-                  placeholder={"Vorname"}
-                  style={{
-                    borderBottom: "1px solid var(--ion-color-success-shade)",
-                  }}
-                />
-                <IonInput
-                  name={"lastName"}
-                  placeholder={"Nachname"}
-                  style={{
-                    borderBottom: "1px solid var(--ion-color-success-shade)",
-                  }}
-                />
-              </div>
-              <div
+              />
+            </div>
+            <div
+              style={{
+                marginTop: "1.2rem",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                width: "100%",
+                gap: "1.2rem",
+              }}
+            >
+              <IonInput
+                name={"firstName"}
+                placeholder={"Vorname"}
                 style={{
-                  marginTop: "1.2rem",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  width: "100%",
-                  gap: "1.2rem",
+                  borderBottom: "1px solid var(--ion-color-success-shade)",
                 }}
-              >
-                <IonInput
-                  name={"pass"}
-                  type={"password"}
-                  placeholder={"Passwort"}
-                  style={{
-                    borderBottom: "1px solid var(--ion-color-success-shade)",
-                  }}
-                />
-                <IonInput
-                  name={"passConf"}
-                  type={"password"}
-                  placeholder={"Passwort bestätigen"}
-                  style={{
-                    borderBottom: "1px solid var(--ion-color-success-shade)",
-                  }}
-                />
-              </div>
-              <IonButton
+              />
+              <IonInput
+                name={"lastName"}
+                placeholder={"Nachname"}
+                style={{
+                  borderBottom: "1px solid var(--ion-color-success-shade)",
+                }}
+              />
+            </div>
+            <div
+              style={{
+                marginTop: "1.2rem",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                width: "100%",
+                gap: "1.2rem",
+              }}
+            >
+              <IonInput
+                name={"pass"}
+                type={"password"}
+                placeholder={"Passwort"}
+                style={{
+                  borderBottom: "1px solid var(--ion-color-success-shade)",
+                }}
+              />
+              <IonInput
+                name={"passConf"}
+                type={"password"}
+                placeholder={"Passwort bestätigen"}
+                style={{
+                  borderBottom: "1px solid var(--ion-color-success-shade)",
+                }}
+              />
+            </div>
+            <Flex w={"100%"} direction={["column", "row"]} gap={4}>
+              <Button
                 type={"submit"}
                 style={{ marginTop: "1.2rem", marginBottom: "1.2rem" }}
-                expand={"block"}
-                color={"success"}
+                w={"100%"}
+                colorScheme={"brand"}
+                size={"lg"}
               >
                 Registrieren
-              </IonButton>
-
-              <IonList inset>
-                <IonItem
-                  color={"light"}
-                  routerLink={"/login"}
-                  routerDirection={"none"}
-                >
-                  Stattdessen anmelden
-                </IonItem>
-              </IonList>
-            </form>
-          </Box>
-        </Flex>
+              </Button>
+              <Button
+                as={Link}
+                href={"/login"}
+                style={{ marginTop: "1.2rem", marginBottom: "1.2rem" }}
+                w={"100%"}
+                color={"brand.500"}
+                size={"lg"}
+              >
+                Stattdessen anmelden
+              </Button>
+            </Flex>
+          </form>
+        </MobileBox>
       </Page>
     </>
   );

@@ -116,7 +116,7 @@ export default function E2ProjectTodoLists(props: {
                       <IconButton
                         aria-label={"Öffnen"}
                         icon={<FaEye />}
-                        color={"saveworld_green.500"}
+                        color={"brand.500"}
                         onClick={() => {
                           router.push(
                             "/e2-projects/" +
