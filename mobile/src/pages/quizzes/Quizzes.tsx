@@ -16,6 +16,7 @@ import { readItems } from "@directus/sdk";
 import { DIRECTUS_ENDPOINT, getDirectusApi } from "../../env";
 import { IonSearchbar } from "@ionic/react";
 import {
+  Box,
   Button,
   Card,
   CardBody,
@@ -140,8 +141,13 @@ export default function Quizzes() {
                 {[1, 2, 3, 4].map((answer) => {
                   return (
                     <>
-                      <Button
+                      <Box
+                        rounded={"lg"}
                         color={"brand.500"}
+                        backgroundColor={"gray.800"}
+                        p={4}
+                        fontSize={"lg"}
+                        cursor={"pointer"}
                         w={"100%"}
                         onClick={() => {
                           const correct = quizzes.filter((quiz) => {
@@ -174,7 +180,7 @@ export default function Quizzes() {
                             })[0] as any
                           )["answer_" + answer] as string
                         }
-                      </Button>
+                      </Box>
                     </>
                   );
                 })}
