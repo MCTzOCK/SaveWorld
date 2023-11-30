@@ -552,12 +552,15 @@ export default function ManageAccount() {
                             question:
                               "Bist du sicher, dass du dich abmelden möchtest?",
                           }))
-                        )
+                        ) {
                           return;
-
-                        if (!isPlatform("desktop")) {
-                          OneSignal.logout();
                         }
+
+                        try {
+                          if (!isPlatform("desktop")) {
+                            OneSignal.logout();
+                          }
+                        } catch (e) {}
                         localStorage.removeItem("token");
                         window.location.assign("/register");
                       }}
