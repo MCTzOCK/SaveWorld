@@ -22,7 +22,7 @@ import {
 import { REST } from "@saveworld/api-js";
 import Page from "../components/Page";
 import PopupManager from "../util/PopupManager";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, Link } from "@chakra-ui/react";
 import MobileBox from "../components/MobileBox";
 
 export default function Login() {
@@ -138,23 +138,27 @@ export default function Login() {
                 />
               </div>
             </div>
-            <IonButton
-              type={"submit"}
-              style={{ marginTop: "1.2rem", marginBottom: "1.2rem" }}
-              expand={"block"}
-              color={"success"}
-            >
-              Anmelden
-            </IonButton>
-            <IonList inset>
-              <IonItem
-                color={"light"}
-                routerLink={"/register"}
-                routerDirection={"none"}
+            <Flex w={"100%"} direction={["column", "row"]} gap={4}>
+              <Button
+                type={"submit"}
+                style={{ marginTop: "1.2rem", marginBottom: "1.2rem" }}
+                w={"100%"}
+                colorScheme={"brand"}
+                size={"lg"}
+              >
+                Anmelden
+              </Button>
+              <Button
+                as={Link}
+                href={"/register"}
+                style={{ marginTop: "1.2rem", marginBottom: "1.2rem" }}
+                w={"100%"}
+                color={"brand.500"}
+                size={"lg"}
               >
                 Stattdessen registrieren
-              </IonItem>
-            </IonList>
+              </Button>
+            </Flex>
           </form>
         </MobileBox>
       </Page>
