@@ -184,13 +184,6 @@ export default function AdminDashboard() {
               </IonItem>
               <IonItem
                 color={"light"}
-                href={"https://saveworld.one/wp-admin"}
-                target={"_blank"}
-              >
-                Website-Admin
-              </IonItem>
-              <IonItem
-                color={"light"}
                 href={"https://status.saveworld.one"}
                 target={"_blank"}
               >
@@ -204,6 +197,20 @@ export default function AdminDashboard() {
                 target={"_blank"}
               >
                 OneSignal (Push)
+              </IonItem>
+              <IonItem
+                color={"light"}
+                href={"https://features.saveworld.one"}
+                target={"_blank"}
+              >
+                Features
+              </IonItem>
+              <IonItem
+                color={"light"}
+                href={"https://content.saveworld.one"}
+                target={"_blank"}
+              >
+                Content
               </IonItem>
             </IonList>
           </>
