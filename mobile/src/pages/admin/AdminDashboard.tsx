@@ -152,7 +152,14 @@ export default function AdminDashboard() {
                 </IonCardContent>
               </IonCard>
             </Grid>
-            <IonList inset>Interne Werkzeuge:</IonList>
+            <IonList
+              inset
+              style={{
+                background: "transparent",
+              }}
+            >
+              Interne Werkzeuge:
+            </IonList>
             <IonList inset>
               <IonItem
                 color={"light"}

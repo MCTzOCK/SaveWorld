@@ -136,7 +136,6 @@ export default function Page(props: {
             <IonTitle
               size={"large"}
               style={{
-                fontFamily: "Inter, sans-serif",
                 fontWeight: 1000,
               }}
               color={props.redGradient ? "danger" : "success"}
