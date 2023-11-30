@@ -82,51 +82,50 @@ export default function Quizzes() {
   return (
     <>
       <Page title={"Quizze"}>
-        <MobileBox>
-          <IonSearchbar
-            placeholder={"Suchen..."}
-            onIonInput={(e) => {
-              setQuery(e.detail.value || "");
-            }}
-            style={{
-              padding: 0,
-            }}
-          />
-          <Grid
-            templateColumns={[
-              "repeat(1, 1fr)",
-              "repeat(2, 1fr)",
-              "repeat(3, 1fr)",
-            ]}
-            gap={6}
-          >
-            {quizzes.map((quiz) => {
-              return (
-                <>
-                  <Card bgColor={"gray.800"}>
-                    <Image
-                      src={DIRECTUS_ENDPOINT + "/assets/" + quiz.image}
-                      rounded={"lg"}
-                    />
-                    <CardHeader fontSize={"lg"}>{quiz.question}</CardHeader>
-                    <CardBody>
-                      <Button
-                        color={"brand.500"}
-                        w={"100%"}
-                        onClick={() => {
-                          setCurrentQuiz(quiz.id);
-                          onOpen();
-                        }}
-                      >
-                        Beantworten
-                      </Button>
-                    </CardBody>
-                  </Card>
-                </>
-              );
-            })}
-          </Grid>
-        </MobileBox>
+        <IonSearchbar
+          placeholder={"Suchen..."}
+          onIonInput={(e) => {
+            setQuery(e.detail.value || "");
+          }}
+          style={{
+            padding: 0,
+          }}
+        />
+        <Grid
+          templateColumns={[
+            "repeat(1, 1fr)",
+            "repeat(3, 1fr)",
+            "repeat(4, 1fr)",
+            "repeat(5, 1fr)",
+          ]}
+          gap={6}
+        >
+          {quizzes.map((quiz) => {
+            return (
+              <>
+                <Card bgColor={"gray.800"}>
+                  <Image
+                    src={DIRECTUS_ENDPOINT + "/assets/" + quiz.image}
+                    rounded={"lg"}
+                  />
+                  <CardHeader fontSize={"lg"}>{quiz.question}</CardHeader>
+                  <CardBody>
+                    <Button
+                      color={"brand.500"}
+                      w={"100%"}
+                      onClick={() => {
+                        setCurrentQuiz(quiz.id);
+                        onOpen();
+                      }}
+                    >
+                      Beantworten
+                    </Button>
+                  </CardBody>
+                </Card>
+              </>
+            );
+          })}
+        </Grid>
         <SaveWorldModal title={"Quiz Time!"} isOpen={isOpen} onClose={onClose}>
           {currentQuiz ? (
             <>
