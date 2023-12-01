@@ -156,7 +156,7 @@ export default function Login() {
                 color={"brand.500"}
                 size={"lg"}
               >
-                Stattdessen registrieren
+                Registrieren
               </Button>
             </Flex>
           </form>

@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Used for photo uploading</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Used for photo uploading</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Used for photo uploading</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your location is used to show eco-projects near you</string>
 	<key>UIBackgroundModes</key>
