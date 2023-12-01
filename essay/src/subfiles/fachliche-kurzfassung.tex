@@ -9,4 +9,17 @@
 % Document
 \begin{document}
 	\chapter{Fachliche Kurzfassung}
+	
+	Für die Umsetzung der App haben wir das App-Framework Ionic verwendet.
+	Dieses ermöglicht es, eine sogenannte Hybrid-App zu entwickeln.
+	Eine solche Hybrid-App besteht aus einem eingebetteten Browser, welche die Benutzeroberfläche darstellt und Bindungen zu nativen Programmierschnittstellen.
+	Die App verwendet für die Benutzeroberfläche die Bibliothek chakra-ui und teile des Ionic Frameworks.
+	Bestimmte Teile, wie der Kalender, sind von Hand mit SCSS entwickelt.
+	Im Generellen ist die verwendete Programmiersprache TypeScript, welches ein Superset der Programmiersprache JavaScript ist.
+	Die App kommuniziert mit dem Backend über zwei Wege. Zum einen über eine REST-API, aber auch, mittels der Bibliothek Socket.IO, über WebSockets.
+	Das Backend ist in einer Entwicklungs- und einer Produktivumgebung verfügbar, wobei der Unterschied die Umgebungsvariablen sind.
+	Zum Speichern von Daten auf Seite des Backends wird MongoDB, bzw. MinIO für Bilder und andere Medien, verwendet.
+	Der Backendserver ist auf Basis des Express.js Frameworks entwickelt.
+	Für die Darstellung von Karten wird in der App auf Apple Maps zurückgegriffen und für die automatische Vervollständigung von Orten die Nominatim-Schnittstelle von OpenStreetMap.
+	Für Inhalte, wie Artikel und Neuigkeiten wird das headless CMS directus verwendet.
 \end{document}
