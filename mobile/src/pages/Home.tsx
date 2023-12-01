@@ -61,7 +61,7 @@ export default function Home() {
                 maxWidth={["100%", "100%", "75%"]}
               >
                 Rette die <br />
-                Erde!
+                Welt!
               </Heading>
             </div>
 
