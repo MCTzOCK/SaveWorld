@@ -15,11 +15,14 @@
 \usepackage[left=2.5cm,right=2.5cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{hyperref}
 \usepackage{color}
+\usepackage{caption}
+\usepackage{graphicx}
+\graphicspath{ {./assets/} }
 
 \hypersetup{
     colorlinks=true,
     linkcolor=black,
-    filecolor=magenta,      
+    filecolor=magenta,
     urlcolor=blue,
     pdftitle={Schriftliche Arbeit - SaveWorld},
     pdfpagemode=FullScreen,
@@ -31,8 +34,8 @@
 
     \bslinespacing{1.5}
     \bsremovechaptertitle
-	 \setcounter{secnumdepth}{4}
-	
+	\setcounter{secnumdepth}{4}
+
     \subfile{subfiles/title.tex}
     \subfile{subfiles/overview.tex}
     \clearpage
