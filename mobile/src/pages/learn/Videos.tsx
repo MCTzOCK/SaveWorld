@@ -33,7 +33,8 @@ import { useSwipeable } from "react-swipeable";
 import VideoDetailsModal from "../../components/VideoDetailsModal";
 import { useLocation, useParams } from "react-router";
 import PopupManager from "../../util/PopupManager";
-import { Heading, useMediaQuery } from "@chakra-ui/react";
+import { Heading, IconButton, Link, useMediaQuery } from "@chakra-ui/react";
+import { FaSearch } from "react-icons/fa";
 
 export default function Videos() {
   useRedirectForAnon();
@@ -118,15 +119,15 @@ export default function Videos() {
         noPadding
         endButtons={
           <>
-            <IonButton
-              size={"large"}
-              routerLink={"/learn/fts-search"}
-              style={{
-                "--color": "var(--ion-color-success-shade)",
-              }}
-            >
-              <IonIcon ios={search} md={searchSharp} />
-            </IonButton>
+            <IconButton
+              aria-label={"Suchen"}
+              as={Link}
+              href={"/learn/fts-search"}
+              icon={<FaSearch />}
+              color={"brand.500"}
+              variant={"ghost"}
+              size={"lg"}
+            />
           </>
         }
       >
