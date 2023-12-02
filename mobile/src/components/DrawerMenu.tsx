@@ -369,7 +369,7 @@ export default function DrawerMenu(props: {
             label: "Videos",
             icon: <BiVideo />,
             onClick: () => {
-              router.push("/admin/videos", "none", "replace");
+              router.push("/admin/content/videos", "none", "replace");
             },
           },
           {
