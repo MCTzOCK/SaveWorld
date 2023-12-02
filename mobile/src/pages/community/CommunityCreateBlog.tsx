@@ -19,6 +19,8 @@ import {
   IonInput,
   IonItem,
   IonLabel,
+  IonSegment,
+  IonSegmentButton,
   IonText,
   useIonRouter,
 } from "@ionic/react";
@@ -44,12 +46,23 @@ export default function CommunityCreateBlog() {
   const [tags, setTags] = React.useState<string>("");
   const router = useIonRouter();
 
+  const [preview, setPreview] = React.useState<boolean>(false);
+
   return (
     <>
       <Page title={"Neuer Blog"}>
         <MobileBox>
-          <IonAccordionGroup>
-            <IonAccordion value={"information"}>
+          <IonAccordionGroup
+            style={{
+              borderRadius: "var(--chakra-radii-lg)",
+            }}
+          >
+            <IonAccordion
+              value={"information"}
+              style={{
+                borderRadius: "var(--chakra-radii-lg)",
+              }}
+            >
               <IonItem slot="header" color="light">
                 <IonLabel>Informationen (klicken)</IonLabel>
                 <IonIcon slot="end" icon={informationCircle} />
@@ -108,22 +121,41 @@ export default function CommunityCreateBlog() {
             type={"text"}
             onIonInput={(e) => setTags(e.detail.value!)}
           />
+          <IonSegment
+            value={preview ? "preview" : "edit"}
+            style={{
+              marginBottom: "1rem",
+              marginTop: ".75rem",
+            }}
+          >
+            <IonSegmentButton
+              onClick={() => {
+                setPreview(false);
+              }}
+              value={"edit"}
+            >
+              Bearbeiten
+            </IonSegmentButton>
+            <IonSegmentButton
+              onClick={() => {
+                setPreview(true);
+              }}
+              value={"preview"}
+            >
+              Vorschau
+            </IonSegmentButton>
+          </IonSegment>
           <MDEditor
             value={v}
             onChange={setV}
             hideToolbar={true}
+            preview={preview ? "preview" : "edit"}
             style={{
               backgroundColor: "var(--ion-color-light)",
+              color: "#fff",
+              borderRadius: "10px",
             }}
-          >
-            <MDEditor.Markdown
-              source={v}
-              style={{
-                whiteSpace: "pre-wrap",
-                backgroundColor: "var(--ion-color-light)",
-              }}
-            />
-          </MDEditor>
+          ></MDEditor>
           <Button
             w={"100%"}
             color={"brand.500"}
