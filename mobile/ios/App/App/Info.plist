@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Used for photo uploading</string>
+	<string>Das hochgeladene Foto wird für dein Profilbild oder deine Forum-Beiträge verwendet.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Used for photo uploading</string>
+	<string>Das hochgeladene Foto wird für dein Profilbild oder deine Forum-Beiträge verwendet.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Used for photo uploading</string>
+	<string>Das hochgeladene Foto wird für dein Profilbild oder deine Forum-Beiträge verwendet.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your location is used to show eco-projects near you</string>
 	<key>UIBackgroundModes</key>
