@@ -67,10 +67,9 @@ export default function HeaderSegment() {
                 _hover={{ backgroundColor: "black" }}
                 _active={{ backgroundColor: "black" }}
                 as={Link}
-                href={"/download"}
+                href={"https://apps.apple.com/de/app/saveworld/id6462684063"}
                 fontSize={"xl"}
                 leftIcon={<FaApple />}
-                isDisabled
               >
                 iOS
               </Button>
