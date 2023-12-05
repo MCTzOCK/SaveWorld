@@ -13,7 +13,7 @@ import VideoModel from "../../../models/VideoModel";
 
 export default async function (req: Request, res: Response) {
   try {
-    const { query, category } = req.query;
+    const { q, category } = req.query;
 
     let videos = await VideoModel.find({
       categories: {
@@ -21,9 +21,9 @@ export default async function (req: Request, res: Response) {
       },
     });
 
-    if (query) {
+    if (q) {
       videos = videos.filter((v) => {
-        return v.title.toLowerCase().includes((query as string).toLowerCase());
+        return v.title.toLowerCase().includes((q as string).toLowerCase());
       });
     }
 

@@ -93,6 +93,7 @@ export default function DrawerMenu(props: {
     "tools_co2_calc",
     "eco_projects",
     "community",
+    "video_category_channels",
   ]);
 
   const { userInfo, loggedIn } = useUserData();
@@ -203,6 +204,16 @@ export default function DrawerMenu(props: {
           router.push("/learn/fts-search", "none", "replace");
         },
       });
+
+      if (flags.video_category_channels.enabled) {
+        gr[2].items.push({
+          label: "Kanäle",
+          icon: <BiGroup />,
+          onClick: () => {
+            router.push("/learn/channels", "none", "replace");
+          },
+        });
+      }
     }
     if (flags.quizzes.enabled) {
       gr[2].items.push({

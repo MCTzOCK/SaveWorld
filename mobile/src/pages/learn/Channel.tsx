@@ -145,29 +145,6 @@ export default function Channel() {
                     <div
                       style={{
                         paddingTop: "12px",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "flex-start",
-                        justifyContent: "flex-start",
-                        gap: ".75rem",
-                      }}
-                    >
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          alignItems: "center",
-                          justifyContent: "flex-start",
-                          gap: "1.2rem",
-                        }}
-                      >
-                        <IonIcon ios={videocam} />
-                        <IonText>{"0 Videos"}</IonText>
-                      </div>
-                    </div>
-                    <div
-                      style={{
-                        paddingTop: "12px",
                       }}
                     >
                       <IonText>
