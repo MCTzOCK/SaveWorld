@@ -84,6 +84,7 @@ import DirectusPost from "./components/DirectusPost";
 import Quizzes from "./pages/quizzes/Quizzes";
 import { FlagsmithProvider, useFlags } from "flagsmith/react";
 import flagsmith from "flagsmith";
+import Channels from "./pages/learn/Channels";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -102,6 +103,7 @@ export default function App() {
     "tools_co2_calc",
     "eco_projects",
     "community",
+    "video_category_channels",
   ]);
 
   const { userInfo, loaded, loggedIn } = useUserData();
@@ -171,6 +173,9 @@ export default function App() {
       "/admin/support-requests": AdminSupportRequestsDashboard,
       "/admin/support-requests/:id": AdminSupportRequestDashboard,
       "/learn": flags.videos.enabled ? Videos : NotFound,
+      "/learn/channels": flags.video_category_channels.enabled
+        ? Channels
+        : NotFound,
       "/learn/fts-search": flags.videos.enabled ? VideoSearchFTS : NotFound,
       "/eco-tracker": flags.tracker.enabled ? EcoTracker : NotFound,
       "/e2": flags.tracker.enabled ? E2 : NotFound,

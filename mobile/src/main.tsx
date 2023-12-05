@@ -42,6 +42,9 @@ root.render(
           sustainability_articles: {
             enabled: true,
           },
+          video_category_channels: {
+            enabled: true,
+          },
         },
       }}
     >
