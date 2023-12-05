@@ -13,15 +13,17 @@ import { Box, Grid, IconButton, Link } from "@chakra-ui/react";
 import { BiHome } from "react-icons/bi";
 import { FaHome, FaProjectDiagram } from "react-icons/fa";
 import { FaLeaf, FaVideo } from "react-icons/fa6";
+import { useFlags } from "flagsmith/react";
 
 export default function FloatingNavbar() {
+  const flags = useFlags(["videos", "tracker", "eco_projects"]);
   return (
     <>
       <Box
         position={"fixed"}
         bottom={"5%"}
         left={"5%"}
-        width={"60%"}
+        width={"fit-content"}
         maxWidth={"300px"}
         rounded={"xl"}
         bgColor={"rgba(0,0,0,1)"}
@@ -43,27 +45,33 @@ export default function FloatingNavbar() {
             as={Link}
             href={"/onboarding"}
           />
-          <IconButton
-            aria-label={"Tracker"}
-            icon={<FaLeaf />}
-            variant={"ghost"}
-            as={Link}
-            href={"/e2"}
-          />
-          <IconButton
-            aria-label={"Videos"}
-            icon={<FaVideo />}
-            variant={"ghost"}
-            as={Link}
-            href={"/learn"}
-          />
-          <IconButton
-            aria-label={"Projekte"}
-            icon={<FaProjectDiagram />}
-            variant={"ghost"}
-            as={Link}
-            href={"/e2-projects/my"}
-          />
+          {flags.tracker.enabled && (
+            <IconButton
+              aria-label={"Tracker"}
+              icon={<FaLeaf />}
+              variant={"ghost"}
+              as={Link}
+              href={"/e2"}
+            />
+          )}
+          {flags.videos.enabled && (
+            <IconButton
+              aria-label={"Videos"}
+              icon={<FaVideo />}
+              variant={"ghost"}
+              as={Link}
+              href={"/learn"}
+            />
+          )}
+          {flags.eco_projects.enabled && (
+            <IconButton
+              aria-label={"Projekte"}
+              icon={<FaProjectDiagram />}
+              variant={"ghost"}
+              as={Link}
+              href={"/e2-projects/my"}
+            />
+          )}
         </Grid>
       </Box>
     </>
