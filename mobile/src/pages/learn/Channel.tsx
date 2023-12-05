@@ -18,6 +18,7 @@ import {
   IonCard,
   IonCardContent,
   IonIcon,
+  IonSearchbar,
   IonSpinner,
   IonText,
 } from "@ionic/react";
@@ -41,6 +42,7 @@ import CommunityProfileBlogList from "../../components/CommunityProfileBlogList"
 
 export default function Channel() {
   const { id } = useParams<{ id: string }>();
+  const [videoQuery, setVideoQuery] = useState<string>("");
 
   const [channel, setChannel] = useState<{
     _id: string;
@@ -150,6 +152,15 @@ export default function Channel() {
                   <hr
                     style={{
                       backgroundColor: "var(--ion-color-success-shade)",
+                    }}
+                  />
+                  <IonSearchbar
+                    placeholder={"Video suchen"}
+                    style={{
+                      padding: 0,
+                    }}
+                    onIonInput={(e) => {
+                      setVideoQuery(e.detail.value!);
                     }}
                   />
                 </Box>
