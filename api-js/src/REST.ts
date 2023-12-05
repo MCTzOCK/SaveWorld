@@ -477,6 +477,22 @@ export class REST {
         token: token,
       });
     },
+    /**
+     * Searches for videos in a category
+     * @param category the category to search in
+     * @param q the query to search for
+     */
+    searchCategory: async (category: string, q: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/content/videos/search-category?category=" +
+          category +
+          "&q=" +
+          q,
+        method: "GET",
+      });
+    },
   };
 
   public static Tracker = {

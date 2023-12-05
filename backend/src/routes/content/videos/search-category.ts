@@ -15,11 +15,17 @@ export default async function (req: Request, res: Response) {
   try {
     const { query, category } = req.query;
 
-    const videos = await VideoModel.find({
+    let videos = await VideoModel.find({
       categories: {
         $in: [category],
       },
     });
+
+    if (query) {
+      videos = videos.filter((v) => {
+        return v.title.toLowerCase().includes((query as string).toLowerCase());
+      });
+    }
 
     res.status(200).json({
       videos,
