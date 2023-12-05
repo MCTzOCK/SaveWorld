@@ -85,6 +85,7 @@ import Quizzes from "./pages/quizzes/Quizzes";
 import { FlagsmithProvider, useFlags } from "flagsmith/react";
 import flagsmith from "flagsmith";
 import Channels from "./pages/learn/Channels";
+import Channel from "./pages/learn/Channel";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -175,6 +176,9 @@ export default function App() {
       "/learn": flags.videos.enabled ? Videos : NotFound,
       "/learn/channels": flags.video_category_channels.enabled
         ? Channels
+        : NotFound,
+      "/learn/channels/:id": flags.video_category_channels.enabled
+        ? Channel
         : NotFound,
       "/learn/fts-search": flags.videos.enabled ? VideoSearchFTS : NotFound,
       "/eco-tracker": flags.tracker.enabled ? EcoTracker : NotFound,
