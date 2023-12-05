@@ -33,7 +33,7 @@ export default function FloatingNavbar() {
     <>
       <Box
         position={"fixed"}
-        bottom={"5%"}
+        bottom={"2.5%"}
         left={"5%"}
         width={"fit-content"}
         maxWidth={"300px"}
