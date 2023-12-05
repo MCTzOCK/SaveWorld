@@ -138,7 +138,7 @@ export default function Page(props: {
                 icon={<FaBars />}
                 aria-label={"Menu"}
                 variant={"ghost"}
-                color={"brand.500"}
+                color={props.redGradient ? "red.500" : "brand.500"}
               />
             </ButtonGroup>
           </Flex>
