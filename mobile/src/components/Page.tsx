@@ -125,7 +125,7 @@ export default function Page(props: {
             <DrawerMenu isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
             <Heading
               fontWeight={1000}
-              color={props.redGradient ? "danger.500" : "brand.500"}
+              color={props.redGradient ? "red.500" : "brand.500"}
               size={"lg"}
             >
               {props.title}
