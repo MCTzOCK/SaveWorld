@@ -23,7 +23,17 @@ import {
   IonText,
 } from "@ionic/react";
 import { useParams } from "react-router";
-import { Avatar, Box, Image } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  Card,
+  CardBody,
+  CardHeader,
+  Heading,
+  Image,
+  Link,
+  Text,
+} from "@chakra-ui/react";
 import MobileBox from "../../components/MobileBox";
 import { ENDPOINT } from "../../env";
 import {
@@ -50,9 +60,20 @@ export default function Channel() {
     description: string;
     image: string;
   } | null>(null);
+  const [videos, setVideos] = React.useState<
+    {
+      _id: string;
+      title: string;
+      description: string;
+      streamUrl: string;
+      thumbnailUrl: string;
+      categories: string[];
+    }[]
+  >([]);
 
   useEffect(() => {
     reload();
+    reloadVideos();
   }, [id]);
 
   const reload = () => {
@@ -65,6 +86,22 @@ export default function Channel() {
         );
       }
     });
+  };
+
+  useEffect(() => {
+    reloadVideos();
+  }, [videoQuery]);
+
+  const reloadVideos = async () => {
+    const res = await REST.Content.searchCategory(id, videoQuery);
+    if (res.status === 200) {
+      setVideos(res.payload.videos);
+    } else {
+      PopupManager.alert({
+        title: "Fehler",
+        description: "Fehler beim Laden der Videos: " + res.payload.error,
+      });
+    }
   };
 
   return (
@@ -164,6 +201,22 @@ export default function Channel() {
                     }}
                   />
                 </Box>
+                {videos.map((v) => {
+                  return (
+                    <>
+                      <Card
+                        bg={"gray.800"}
+                        as={Link}
+                        href={"/learn?vid=" + v._id}
+                      >
+                        <CardHeader>
+                          <Text fontSize={"xl"}>{v.title}</Text>
+                          <Text fontSize={"lg"}>{v.description}</Text>
+                        </CardHeader>
+                      </Card>
+                    </>
+                  );
+                })}
               </div>
             </MobileBox>
           </>
