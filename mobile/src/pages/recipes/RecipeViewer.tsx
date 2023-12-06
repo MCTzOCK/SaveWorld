@@ -163,7 +163,27 @@ export default function RecipeViewer() {
           <Button color={"brand.500"} mt={5} w={"100%"}>
             Rezept zubereiten
           </Button>
-          <Button color={"brand.500"} mt={5} w={"100%"}>
+          <Button
+            color={"brand.500"}
+            mt={5}
+            w={"100%"}
+            onClick={() => {
+              const data: {
+                title: string;
+                ingredients: string[];
+                steps: string[];
+              } = {
+                title: recipe.title,
+                ingredients: recipe.ingredients,
+                steps: recipe.steps,
+              };
+
+              const b64 = btoa(JSON.stringify(data));
+
+              window.location.href =
+                "/recipes/create?saveworld.data.recipe.edit=" + b64;
+            }}
+          >
             Rezept bearbeiten
           </Button>
         </MobileBox>

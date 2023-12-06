@@ -32,11 +32,26 @@ import { FaPlus, FaTrash } from "react-icons/fa6";
 import * as async_hooks from "async_hooks";
 import { REST } from "@saveworld/api-js";
 import PopupManager from "../../util/PopupManager";
+import { useParams } from "react-router";
+import { useEffect } from "react";
 
 export default function CreateRecipe() {
   const [title, setTitle] = React.useState<string>("");
   const [ingredients, setIngredients] = React.useState<string[]>([]);
   const [steps, setSteps] = React.useState<string[]>([]);
+
+  useEffect(() => {
+    const usp = new URLSearchParams(window.location.search);
+
+    if (usp.get("saveworld.data.recipe.edit")) {
+      const data = JSON.parse(
+        atob(usp.get("saveworld.data.recipe.edit") as string),
+      );
+      setTitle(data.title);
+      setIngredients(data.ingredients);
+      setSteps(data.steps);
+    }
+  }, []);
 
   return (
     <>
