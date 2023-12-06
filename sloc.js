@@ -46,6 +46,7 @@ const disallowed = [
   "ios",
   "android",
   "pdf",
+  "webp",
 ];
 
 // filter disallowed files

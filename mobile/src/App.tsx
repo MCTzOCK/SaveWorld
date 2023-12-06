@@ -88,6 +88,7 @@ import Channels from "./pages/learn/Channels";
 import Channel from "./pages/learn/Channel";
 import Recipes from "./pages/recipes/Recipes";
 import CreateRecipe from "./pages/recipes/CreateRecipe";
+import RecipeViewer from "./pages/recipes/RecipeViewer";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -268,6 +269,7 @@ export default function App() {
         : NotFound,
       "/recipes": flags.recipes.enabled ? Recipes : NotFound,
       "/recipes/create": flags.recipes.enabled ? CreateRecipe : NotFound,
+      "/recipes/:id": flags.recipes.enabled ? RecipeViewer : NotFound,
       //KEEP_ROUTES
     });
   }, [flags]);
