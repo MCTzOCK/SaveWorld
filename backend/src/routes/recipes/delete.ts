@@ -39,7 +39,7 @@ export default async function (req: Request, res: Response) {
       return;
     }
 
-    await recipe.delete();
+    await recipe.deleteOne();
 
     res.status(200).json(recipe);
   } catch (e) {

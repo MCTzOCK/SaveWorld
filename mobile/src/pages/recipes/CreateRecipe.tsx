@@ -42,6 +42,9 @@ export default function CreateRecipe() {
   const [title, setTitle] = React.useState<string>("");
   const [ingredients, setIngredients] = React.useState<string[]>([]);
   const [steps, setSteps] = React.useState<string[]>([]);
+  const [recipeIdToUpdate, setRecipeIdToUpdate] = React.useState<string | null>(
+    null,
+  );
 
   useEffect(() => {
     const usp = new URLSearchParams(window.location.search);
@@ -53,12 +56,16 @@ export default function CreateRecipe() {
       setTitle(data.title);
       setIngredients(data.ingredients);
       setSteps(data.steps);
+
+      if (usp.get("saveworld.data.recipe.id")) {
+        setRecipeIdToUpdate(usp.get("saveworld.data.recipe.id") as string);
+      }
     }
   }, []);
 
   return (
     <>
-      <Page title={"Neues Rezept"}>
+      <Page title={recipeIdToUpdate ? "Rezept bearbeiten" : "Neues Rezept"}>
         <MobileBox padding={"4"}>
           <Stack gap={8}>
             <FormControl>
@@ -157,30 +164,56 @@ export default function CreateRecipe() {
               w={"100%"}
               onClick={async () => {
                 if (!title || !ingredients || !steps) return;
-                const res = await REST.Recipes.create(
-                  localStorage.getItem("token") as string,
-                  title,
-                  steps,
-                  ingredients,
-                );
 
-                if (res.status === 200) {
-                  await PopupManager.alertAsync({
-                    title: "Rezept erstellt",
-                    description: "Das Rezept wurde erfolgreich erstellt.",
-                  });
-                  window.location.href = "/recipes";
+                if (!recipeIdToUpdate) {
+                  const res = await REST.Recipes.create(
+                    localStorage.getItem("token") as string,
+                    title,
+                    steps,
+                    ingredients,
+                  );
+
+                  if (res.status === 200) {
+                    await PopupManager.alertAsync({
+                      title: "Rezept erstellt",
+                      description: "Das Rezept wurde erfolgreich erstellt.",
+                    });
+                    window.location.href = "/recipes";
+                  } else {
+                    await PopupManager.alertAsync({
+                      title: "Fehler",
+                      description:
+                        "Das Rezept konnte nicht erstellt werden: " +
+                        res.payload.error,
+                    });
+                  }
                 } else {
-                  await PopupManager.alertAsync({
-                    title: "Fehler",
-                    description:
-                      "Das Rezept konnte nicht erstellt werden: " +
-                      res.payload.error,
-                  });
+                  const res = await REST.Recipes.update(
+                    localStorage.getItem("token") as string,
+                    recipeIdToUpdate,
+                    title,
+                    steps,
+                    ingredients,
+                  );
+
+                  if (res.status === 200) {
+                    await PopupManager.alertAsync({
+                      title: "Rezept bearbeitet",
+                      description: "Das Rezept wurde erfolgreich bearbeitet.",
+                    });
+                    window.location.href = "/recipes";
+                  } else {
+                    await PopupManager.alertAsync({
+                      title: "Fehler",
+                      description:
+                        "Das Rezept konnte nicht gespeichert werden: " +
+                        res.payload.error,
+                    });
+                  }
                 }
               }}
             >
-              Rezept erstellen
+              Rezept {recipeIdToUpdate ? "bearbeiten" : "erstellen"}
             </Button>
           </Stack>
         </MobileBox>

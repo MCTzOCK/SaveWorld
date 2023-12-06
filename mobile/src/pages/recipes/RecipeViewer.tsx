@@ -41,8 +41,11 @@ import { FaBookmark, FaShareNodes } from "react-icons/fa6";
 import { FaShare, FaShareAlt, FaShareSquare } from "react-icons/fa";
 import { Share } from "@capacitor/share";
 import RecipeModal from "../../components/RecipeModal";
+import { useUserData } from "../../hooks/useUserData";
 
 export default function RecipeViewer() {
+  const { userInfo, loggedIn } = useUserData();
+
   const { id } = useParams<{ id: string }>();
   const [recipe, setRecipe] = React.useState<{
     _id: string;
@@ -94,6 +97,73 @@ export default function RecipeViewer() {
     <>
       <Page title={recipe.title}>
         <MobileBox padding={"4"}>
+          {loggedIn && userInfo.username === recipe.created_by ? (
+            <ButtonGroup mb={4} w={"100%"}>
+              <Button
+                w={"100%"}
+                color={"brand.500"}
+                onClick={() => {
+                  const data: {
+                    title: string;
+                    ingredients: string[];
+                    steps: string[];
+                  } = {
+                    title: recipe.title,
+                    ingredients: recipe.ingredients,
+                    steps: recipe.steps,
+                  };
+
+                  const b64 = btoa(JSON.stringify(data));
+
+                  window.location.href =
+                    "/recipes/create?saveworld.data.recipe.edit=" +
+                    b64 +
+                    "&saveworld.data.recipe.id=" +
+                    recipe._id;
+                }}
+              >
+                Bearb.
+              </Button>
+              <Button
+                w={"100%"}
+                color={"red.500"}
+                onClick={async () => {
+                  if (
+                    !(await PopupManager.confirmAsync({
+                      title: "Löschen?",
+                      question: "Möchtest du dieses Rezept wirklich löschen?",
+                    }))
+                  )
+                    return;
+
+                  const res = await REST.Recipes.delete(
+                    localStorage.getItem("token") as string,
+                    recipe._id,
+                  );
+
+                  if (res.status !== 200) {
+                    PopupManager.alert({
+                      title: "Fehler",
+                      description:
+                        "Rezept konnte nicht gelöscht werden: " +
+                        res.payload.error,
+                    });
+                    return;
+                  } else {
+                    PopupManager.alert({
+                      title: "Erfolg",
+                      description: "Rezept wurde erfolgreich gelöscht.",
+                      callback: () => {
+                        window.location.href = "/recipes";
+                      },
+                    });
+                  }
+                }}
+              >
+                Löschen
+              </Button>
+            </ButtonGroup>
+          ) : null}
           <Flex
             w={"100%"}
             justifyContent={"space-between"}

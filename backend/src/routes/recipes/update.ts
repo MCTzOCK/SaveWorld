@@ -20,7 +20,7 @@ export default async function (req: Request, res: Response) {
       return;
     }
 
-    if (req.method !== "PUT") {
+    if (req.method !== "POST") {
       res.status(405).json({ error: "Method not allowed" });
       return;
     }
