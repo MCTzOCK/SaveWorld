@@ -46,7 +46,6 @@ export async function sendPN(opts: {
     headings: {
       en: opts.title,
     },
-    included_segments: ["All"],
     app_id: process.env.ONE_SIGNAL_USER_KEY,
     url: opts.launch_url,
     include_external_user_ids: opts.user_ids,

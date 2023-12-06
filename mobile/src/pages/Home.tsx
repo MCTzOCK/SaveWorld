@@ -59,6 +59,7 @@ export default function Home() {
                 textAlign={"center"}
                 fontWeight={1000}
                 maxWidth={["100%", "100%", "75%"]}
+                fontFamily={"fantasy"}
               >
                 Rette die <br />
                 Welt!
