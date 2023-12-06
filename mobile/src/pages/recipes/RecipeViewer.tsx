@@ -34,11 +34,13 @@ import {
   OrderedList,
   Text,
   UnorderedList,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { informationCircle } from "ionicons/icons";
 import { FaBookmark, FaShareNodes } from "react-icons/fa6";
 import { FaShare, FaShareAlt, FaShareSquare } from "react-icons/fa";
 import { Share } from "@capacitor/share";
+import RecipeModal from "../../components/RecipeModal";
 
 export default function RecipeViewer() {
   const { id } = useParams<{ id: string }>();
@@ -49,6 +51,7 @@ export default function RecipeViewer() {
     steps: string[];
     ingredients: string[];
   } | null>(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     REST.Recipes.recipe(localStorage.getItem("token") as string, id).then(
@@ -160,7 +163,7 @@ export default function RecipeViewer() {
               </div>
             </IonAccordion>
           </IonAccordionGroup>
-          <Button color={"brand.500"} mt={5} w={"100%"}>
+          <Button color={"brand.500"} mt={5} w={"100%"} onClick={onOpen}>
             Rezept zubereiten
           </Button>
           <Button
@@ -187,6 +190,7 @@ export default function RecipeViewer() {
             Rezept bearbeiten
           </Button>
         </MobileBox>
+        <RecipeModal open={isOpen} onClose={onClose} recipe={recipe} />
       </Page>
     </>
   );

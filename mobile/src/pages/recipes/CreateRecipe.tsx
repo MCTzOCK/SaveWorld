@@ -23,9 +23,11 @@ import {
   InputLeftAddon,
   InputRightElement,
   Stack,
+  Stepper,
   Tag,
   TagCloseButton,
   TagLabel,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { FaPen } from "react-icons/fa";
 import { FaPlus, FaTrash } from "react-icons/fa6";
@@ -34,6 +36,7 @@ import { REST } from "@saveworld/api-js";
 import PopupManager from "../../util/PopupManager";
 import { useParams } from "react-router";
 import { useEffect } from "react";
+import RecipeModal from "../../components/RecipeModal";
 
 export default function CreateRecipe() {
   const [title, setTitle] = React.useState<string>("");
