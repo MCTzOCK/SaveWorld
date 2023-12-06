@@ -22,6 +22,7 @@ import {
   Grid,
   Heading,
   HStack,
+  Link,
   Stack,
   Text,
   VStack,
@@ -32,6 +33,7 @@ export default function AllRecipes() {
   const [query, setQuery] = React.useState<string>("");
   const [recipes, setRecipes] = React.useState<
     {
+      _id: string;
       title: string;
       created_by: string;
       steps: string[];
@@ -90,7 +92,14 @@ export default function AllRecipes() {
       >
         {recipes.map((r) => {
           return (
-            <Box bgColor={"gray.800"} rounded={"md"} shadow={"xl"} p={4}>
+            <Box
+              bgColor={"gray.800"}
+              rounded={"md"}
+              shadow={"xl"}
+              p={4}
+              as={Link}
+              href={"/recipes/" + r._id}
+            >
               <Flex
                 w={"100%"}
                 direction={"row"}
