@@ -1485,5 +1485,17 @@ export class REST {
         token: token,
       });
     },
+    /**
+     * @return the requested recipe
+     * @param token used to authenticate
+     * @param id of the recipe to get
+     */
+    recipe: async (token: string, id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/recipes/receive?id=" + id,
+        method: "GET",
+        token: token,
+      });
+    },
   };
 }
