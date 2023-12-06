@@ -31,7 +31,11 @@ export default function Recipes() {
               <Tab>Entdecken</Tab>
             </TabList>
             <TabPanels>
-              <TabPanel>
+              <TabPanel
+                style={{
+                  padding: 0,
+                }}
+              >
                 <MyRecipes />
               </TabPanel>
               <TabPanel

@@ -9,7 +9,139 @@
  */
 
 import * as React from "react";
+import { REST } from "@saveworld/api-js";
+import PopupManager from "../util/PopupManager";
+import { useEffect } from "react";
+import { IonButton, IonSearchbar } from "@ionic/react";
+import {
+  Avatar,
+  Box,
+  Flex,
+  Grid,
+  Heading,
+  Stack,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+import { ENDPOINT } from "../env";
 
 export default function MyRecipes() {
-  return <>My</>;
+  const [query, setQuery] = React.useState<string>("");
+  const [recipes, setRecipes] = React.useState<
+    {
+      title: string;
+      created_by: string;
+      steps: string[];
+      ingredients: string[];
+    }[]
+  >([]);
+  const [pages, setPages] = React.useState(0);
+  const [page, setPage] = React.useState(0);
+
+  const loadPage = async (p: number) => {
+    const res = await REST.Recipes.myRecipes(
+      localStorage.getItem("token") as string,
+      p,
+      query,
+    );
+
+    if (res.status === 200) {
+      setRecipes(res.payload.entries);
+      setPages(res.payload.pages);
+    } else {
+      PopupManager.alert({
+        title: "Fehler",
+        description:
+          "Rezepte konnten nicht geladen werden: " + res.payload.error,
+      });
+    }
+  };
+
+  useEffect(() => {
+    setPage(0);
+    loadPage(0);
+  }, [query]);
+
+  useEffect(() => {
+    loadPage(page);
+  }, [page]);
+
+  return (
+    <>
+      <IonSearchbar
+        placeholder={"Suchen"}
+        value={query}
+        onIonInput={(e) => setQuery(e.detail.value as string)}
+        style={{
+          padding: 0,
+        }}
+      />
+      <Grid
+        templateColumns={[
+          "repeat(1, 1fr)",
+          "repeat(2, 1fr)",
+          "repeat(3, 1fr)",
+          "repeat(4, 1fr)",
+        ]}
+        gap={4}
+      >
+        {recipes.map((r) => {
+          return (
+            <Box bgColor={"gray.800"} rounded={"md"} shadow={"xl"} p={4}>
+              <Flex
+                w={"100%"}
+                direction={"row"}
+                alignItems={"center"}
+                justifyContent={"space-between"}
+                gap={4}
+              >
+                <Heading>Kekse</Heading>
+                <Stack>
+                  <VStack>
+                    <Avatar
+                      src={
+                        ENDPOINT +
+                        "/media/profile-picture-username/" +
+                        r.created_by
+                      }
+                    />
+                    <Text>@{r.created_by}</Text>
+                  </VStack>
+                </Stack>
+              </Flex>
+            </Box>
+          );
+        })}
+      </Grid>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          gap: "1rem",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+        }}
+      >
+        {page > 0 ? (
+          <IonButton
+            color={"danger"}
+            onClick={() => setPage(page - 1)}
+            expand={"block"}
+          >
+            Zurück
+          </IonButton>
+        ) : null}
+        {page < pages - 1 ? (
+          <IonButton
+            color={"success"}
+            onClick={() => setPage(page + 1)}
+            expand={"block"}
+          >
+            Weiter
+          </IonButton>
+        ) : null}
+      </div>
+    </>
+  );
 }

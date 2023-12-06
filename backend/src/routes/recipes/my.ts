@@ -22,7 +22,7 @@ export default async function (req: Request, res: Response) {
 
     const PAGE_SIZE = 5;
     const page = req.query.page ? parseInt(req.query.page.toString()) : 0;
-    const search = req.query.search ? req.query.search.toString() : "";
+    const search = req.query.q ? req.query.q.toString() : "";
 
     const entries = await RecipeModel.find({
       $or: [{ title: { $regex: search, $options: "i" } }],
