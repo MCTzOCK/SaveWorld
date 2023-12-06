@@ -26,6 +26,7 @@ import {
   BiVideo,
 } from "react-icons/bi";
 import { useFlags } from "flagsmith/react";
+import { FaUtensils } from "react-icons/fa6";
 
 export default function Home() {
   const flags = useFlags([
@@ -37,6 +38,7 @@ export default function Home() {
     "tools_co2_calc",
     "eco_projects",
     "community",
+    "recipes",
   ]);
   const { loggedIn } = useUserData();
 
@@ -125,6 +127,14 @@ export default function Home() {
                     icon={<BiGroup />}
                     text={"Forum"}
                     url={"/community"}
+                  />
+                ) : null}
+                {flags.recipes.enabled ? (
+                  <HomeCardV2
+                    color={"orange.500"}
+                    icon={<FaUtensils />}
+                    text={"Rezepte"}
+                    url={"/recipes"}
                   />
                 ) : null}
                 {flags.sustainability_articles.enabled ? (

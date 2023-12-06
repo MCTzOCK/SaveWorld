@@ -45,6 +45,9 @@ root.render(
           video_category_channels: {
             enabled: true,
           },
+          recipes: {
+            enabled: true,
+          },
         },
       }}
     >

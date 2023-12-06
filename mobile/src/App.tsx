@@ -86,6 +86,8 @@ import { FlagsmithProvider, useFlags } from "flagsmith/react";
 import flagsmith from "flagsmith";
 import Channels from "./pages/learn/Channels";
 import Channel from "./pages/learn/Channel";
+import Recipes from "./pages/recipes/Recipes";
+import CreateRecipe from "./pages/recipes/CreateRecipe";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -105,6 +107,7 @@ export default function App() {
     "eco_projects",
     "community",
     "video_category_channels",
+    "recipes",
   ]);
 
   const { userInfo, loaded, loggedIn } = useUserData();
@@ -263,6 +266,8 @@ export default function App() {
             return <DirectusPost postId={id} />;
           }
         : NotFound,
+      "/recipes": flags.recipes.enabled ? Recipes : NotFound,
+      "/recipes/create": flags.recipes.enabled ? CreateRecipe : NotFound,
       //KEEP_ROUTES
     });
   }, [flags]);

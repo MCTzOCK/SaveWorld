@@ -52,6 +52,7 @@ import {
   FaPlus,
   FaRightFromBracket,
   FaUsers,
+  FaUtensils,
   FaVideo,
 } from "react-icons/fa6";
 import PopupManager from "../util/PopupManager";
@@ -94,6 +95,7 @@ export default function DrawerMenu(props: {
     "eco_projects",
     "community",
     "video_category_channels",
+    "recipes",
   ]);
 
   const { userInfo, loggedIn } = useUserData();
@@ -247,6 +249,27 @@ export default function DrawerMenu(props: {
             icon: <BiPlanet />,
             onClick: () => {
               router.push("/sustainability", "none", "replace");
+            },
+          },
+        ],
+      });
+    }
+    if (flags.recipes.enabled) {
+      gr.push({
+        label: "Rezepte",
+        items: [
+          {
+            label: "Rezepte",
+            icon: <FaUtensils />,
+            onClick: () => {
+              router.push("/recipes", "none", "replace");
+            },
+          },
+          {
+            label: "Neues Rezept",
+            icon: <FaPlus />,
+            onClick: () => {
+              router.push("/recipes/create", "none", "replace");
             },
           },
         ],
