@@ -300,11 +300,38 @@ export default function ManageAccount() {
                         disabled={true}
                       />
                     </IonItem>
-                    <form
-                      onSubmit={async (e) => {
-                        e.preventDefault();
-                        const firstName = (e.target as any).firstName.value;
-                        const lastName = (e.target as any).lastName.value;
+                    <IonItem color={"light"}>
+                      <IonInput
+                        labelPlacement={"fixed"}
+                        label={"Vorname"}
+                        value={userInfo.firstName}
+                        name={"firstName"}
+                        id={"firstName_upd"}
+                      />
+                    </IonItem>
+                    <IonItem color={"light"}>
+                      <IonInput
+                        labelPlacement={"fixed"}
+                        label={"Nachname"}
+                        value={userInfo.lastName}
+                        name={"lastName"}
+                        id={"lastName_upd"}
+                      />
+                    </IonItem>
+                    <IonItem
+                      color={"light"}
+                      button
+                      onClick={async () => {
+                        const firstName = (
+                          document.getElementById(
+                            "firstName_upd",
+                          ) as HTMLInputElement
+                        ).value;
+                        const lastName = (
+                          document.getElementById(
+                            "lastName_upd",
+                          ) as HTMLInputElement
+                        ).value;
 
                         const res = await REST.Account.update(
                           localStorage.getItem("token") as string,
@@ -331,28 +358,9 @@ export default function ManageAccount() {
                           });
                         }
                       }}
-                      id={"acc_updateInfoForm"}
                     >
-                      <IonItem color={"light"}>
-                        <IonInput
-                          labelPlacement={"fixed"}
-                          label={"Vorname"}
-                          value={userInfo.firstName}
-                          name={"firstName"}
-                        />
-                      </IonItem>
-                      <IonItem color={"light"}>
-                        <IonInput
-                          labelPlacement={"fixed"}
-                          label={"Nachname"}
-                          value={userInfo.lastName}
-                          name={"lastName"}
-                        />
-                      </IonItem>
-                      <IonItem color={"light"} type={"submit"} button>
-                        <IonText color={"primary"}>Speichern</IonText>
-                      </IonItem>
-                    </form>
+                      <IonText color={"primary"}>Speichern</IonText>
+                    </IonItem>
                     <IonItem
                       color={"light"}
                       detail
