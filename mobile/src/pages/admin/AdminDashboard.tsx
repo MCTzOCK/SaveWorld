@@ -14,18 +14,34 @@ import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
 import MobileBox from "../../components/MobileBox";
 import AdminStats from "../../components/AdminStats";
 import AdminInternTools from "../../components/AdminInternTools";
+import { Heading } from "@chakra-ui/react";
+import AdminTools from "../../components/AdminTools";
+import { IonSearchbar } from "@ionic/react";
 
 export default function AdminDashboard() {
   useRedirectForAnon({
     onlyAdmins: true,
   });
 
+  const [query, setQuery] = React.useState<string>("");
+
   return (
     <>
       <Page title={"Admin"} redGradient>
         <MobileBox bg={"#101010"}>
-          <AdminStats />
-          <AdminInternTools />
+          <IonSearchbar
+            placeholder={"Suchen"}
+            value={query}
+            onIonInput={(e) => {
+              setQuery(e.detail.value!!);
+            }}
+            style={{
+              padding: 0,
+            }}
+          />
+          <AdminStats query={query} />
+          <AdminTools query={query} />
+          <AdminInternTools query={query} />
         </MobileBox>
       </Page>
     </>

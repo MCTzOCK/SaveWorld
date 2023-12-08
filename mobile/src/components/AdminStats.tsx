@@ -23,7 +23,7 @@ import {
 import { FaFileLines, FaMessage, FaUtensils, FaVideo } from "react-icons/fa6";
 import { BiNotification } from "react-icons/bi";
 
-export default function AdminStats() {
+export default function AdminStats(props: { query: string }) {
   const [stats, setStats] = useState<{
     users: {
       count: number;
@@ -70,7 +70,61 @@ export default function AdminStats() {
   useEffect(() => {
     REST.Admin.stats(localStorage.getItem("token") as string).then((res) => {
       if (res.status === 200) {
+        let s = res.payload.stats;
         setStats(res.payload.stats);
+
+        const dps: typeof displayStats = [
+          {
+            icon: <FaUser />,
+            title: "Benutzer",
+            value: s.users.count + " (+" + s.users.inLastWeek + ")",
+            subtitle: "davon aktiv: " + s.users.active,
+          },
+          {
+            icon: <FaFileLines />,
+            title: "Kategorien",
+            value: s.content.categories,
+          },
+          {
+            icon: <FaVideo />,
+            title: "Videos",
+            value: s.content.videos,
+            subtitle: "Aufrufe: " + s.content.videosWatched,
+          },
+          {
+            icon: <FaUtensils />,
+            title: "Rezepte",
+            value: s.recipes,
+          },
+          {
+            icon: <FaHandsHelping />,
+            title: "Support-Anfragen",
+            value: s.supportRequests,
+          },
+          {
+            icon: <FaProjectDiagram />,
+            title: "Öko-Projekte",
+            value: s.ecoProjects,
+          },
+          {
+            icon: <FaFile />,
+            title: "Forum Blogs",
+            value: s.community.blogs,
+          },
+          {
+            icon: <FaMessage />,
+            title: "Forum Chats",
+            value: s.community.chats,
+            subtitle: "Nachrichten: " + s.community.chatMessages,
+          },
+          {
+            icon: <BiNotification />,
+            title: "Push-Nachr.",
+            value: s.pushNotifications,
+          },
+        ];
+
+        setDisplayStats(dps);
       } else {
         PopupManager.alert({
           title: "Fehler",
@@ -81,6 +135,16 @@ export default function AdminStats() {
       setLoading(false);
     });
   }, []);
+
+  const [displayStats, setDisplayStats] = useState<
+    {
+      icon: React.ReactNode;
+      title: string;
+      value: string;
+      subtitle?: string;
+    }[]
+  >([]);
+
   return (
     <>
       <Heading size={"lg"} mb={4} color={"red.500"}>
@@ -95,54 +159,22 @@ export default function AdminStats() {
         ]}
         gap={4}
       >
-        <AdminStat
-          title={"Benutzer"}
-          value={stats.users.count + " (+" + stats.users.inLastWeek + ")"}
-          icon={<FaUser />}
-          subtitle={"davon aktiv: " + stats.users.active}
-        />
-        <AdminStat
-          title={"Kategorien"}
-          value={stats.content.categories}
-          icon={<FaFileLines />}
-        />
-        <AdminStat
-          title={"Videos"}
-          value={stats.content.videos}
-          icon={<FaVideo />}
-          subtitle={"Aufrufe: " + stats.content.videosWatched}
-        />
-        <AdminStat
-          title={"Rezepte"}
-          value={stats.recipes}
-          icon={<FaUtensils />}
-        />
-        <AdminStat
-          title={"Support-Anfragen"}
-          value={stats.supportRequests}
-          icon={<FaHandsHelping />}
-        />
-        <AdminStat
-          title={"Öko-Projekte"}
-          value={stats.ecoProjects}
-          icon={<FaProjectDiagram />}
-        />
-        <AdminStat
-          title={"Forum Blogs"}
-          value={stats.community.blogs}
-          icon={<FaFile />}
-        />
-        <AdminStat
-          title={"Forum Chats"}
-          value={stats.community.chats}
-          icon={<FaMessage />}
-          subtitle={"Nachrichten: " + stats.community.chatMessages}
-        />
-        <AdminStat
-          title={"Push-Nachr."}
-          value={stats.pushNotifications}
-          icon={<BiNotification />}
-        />
+        {displayStats
+          .filter((s) =>
+            s.title.toLowerCase().includes(props.query.toLowerCase()),
+          )
+          .map((s) => {
+            return (
+              <>
+                <AdminStat
+                  title={s.title}
+                  value={s.value}
+                  icon={s.icon}
+                  subtitle={s.subtitle}
+                />
+              </>
+            );
+          })}
       </Grid>
     </>
   );

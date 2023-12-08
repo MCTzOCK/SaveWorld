@@ -16,7 +16,58 @@ import { MdHttps } from "react-icons/md";
 import { HiStatusOnline } from "react-icons/hi";
 import { BiNotification } from "react-icons/bi";
 
-export default function AdminInternTools() {
+export default function AdminInternTools(props: { query: string }) {
+  const tools: {
+    icon: JSX.Element;
+    text: string;
+    url: string;
+    color: string;
+    newTab?: boolean;
+  }[] = [
+    {
+      icon: <FaDatabase />,
+      text: "S3 Admin",
+      url: "https://s3.ben-siebert.com",
+      color: "purple.500",
+    },
+    {
+      icon: <FaDocker />,
+      text: "Portainer",
+      url: "https://portainer.cluster.ben-siebert.com",
+      color: "blue.500",
+    },
+    {
+      icon: <MdHttps />,
+      text: "NGINX",
+      url: "https://http.cluster.ben-siebert.com",
+      color: "brand.500",
+    },
+    {
+      icon: <HiStatusOnline />,
+      text: "Server Status",
+      url: "https://status.saveworld.one",
+      color: "red.500",
+    },
+    {
+      icon: <BiNotification />,
+      text: "OneSignal",
+      url: "https://dashboard.onesignal.com/apps/7575751a-432d-44b0-baa2-84dcfc925f45",
+      color: "yellow.500",
+    },
+    {
+      icon: <FaToggleOn />,
+      text: "Features",
+      url: "https://features.saveworld.one",
+      color: "pink.500",
+    },
+    {
+      icon: <FaFileLines />,
+      text: "Content",
+      url: "https://content.saveworld.one",
+      color: "blue.500",
+    },
+  ];
+
   return (
     <>
       <Heading size={"lg"} mb={4} color={"red.500"}>
@@ -31,57 +82,23 @@ export default function AdminInternTools() {
         ]}
         gap={4}
       >
-        <HomeCardV2
-          icon={<FaDatabase />}
-          text={"S3 Admin"}
-          url={"https://s3.ben-siebert.com"}
-          color={"purple.500"}
-          newTab
-        />
-        <HomeCardV2
-          icon={<FaDocker />}
-          text={"Portainer"}
-          url={"https://portainer.cluster.ben-siebert.com"}
-          color={"blue.500"}
-          newTab
-        />
-        <HomeCardV2
-          icon={<MdHttps />}
-          text={"NGINX"}
-          url={"https://http.cluster.ben-siebert.com"}
-          color={"brand.500"}
-          newTab
-        />
-        <HomeCardV2
-          icon={<HiStatusOnline />}
-          text={"Server Status"}
-          url={"https://status.saveworld.one"}
-          color={"red.500"}
-          newTab
-        />
-        <HomeCardV2
-          icon={<BiNotification />}
-          text={"OneSignal"}
-          url={
-            "https://dashboard.onesignal.com/apps/7575751a-432d-44b0-baa2-84dcfc925f45"
-          }
-          color={"yellow.500"}
-          newTab
-        />
-        <HomeCardV2
-          icon={<FaToggleOn />}
-          text={"Features"}
-          url={"https://features.saveworld.one"}
-          color={"pink.500"}
-          newTab
-        />
-        <HomeCardV2
-          icon={<FaFileLines />}
-          text={"Content"}
-          url={"https://content.saveworld.one"}
-          color={"blue.500"}
-          newTab
-        />
+        {tools
+          .filter((t) =>
+            t.text.toLowerCase().includes(props.query.toLowerCase()),
+          )
+          .map((t) => {
+            return (
+              <>
+                <HomeCardV2
+                  icon={t.icon}
+                  text={t.text}
+                  url={t.url}
+                  color={t.color}
+                  newTab
+                />
+              </>
+            );
+          })}
       </Grid>
     </>
   );
