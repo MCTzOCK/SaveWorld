@@ -14,6 +14,7 @@ import { Box, Flex } from "@chakra-ui/react";
 export default function MobileBox(props: {
   children: React.ReactNode;
   padding?: string;
+  bg?: string;
 }) {
   return (
     <>
@@ -23,7 +24,7 @@ export default function MobileBox(props: {
         alignItems={["flex-start", "center"]}
       >
         <Box
-          backgroundColor={"gray.900"}
+          backgroundColor={props.bg ? props.bg : "gray.900"}
           borderRadius={"12px"}
           border={"0px solid rgba(40,40,40,1)"}
           w={["100%", "75%", "50%"]}
