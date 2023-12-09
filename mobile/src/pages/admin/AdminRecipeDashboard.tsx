@@ -165,6 +165,25 @@ export default function AdminRecipeDashboard() {
                       variant={"ghost"}
                       colorScheme={"brand"}
                       w={"100%"}
+                      onClick={() => {
+                        const data: {
+                          title: string;
+                          ingredients: string[];
+                          steps: string[];
+                        } = {
+                          title: r.title,
+                          ingredients: r.ingredients,
+                          steps: r.steps,
+                        };
+
+                        const b64 = btoa(JSON.stringify(data));
+
+                        window.location.href =
+                          "/recipes/create?saveworld.data.recipe.edit=" +
+                          b64 +
+                          "&saveworld.data.recipe.id=" +
+                          r._id;
+                      }}
                     />
                   </ButtonGroup>
                 </Box>
