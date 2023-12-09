@@ -77,7 +77,7 @@ export default function E2ProjectEdit() {
       <Page title={"Projekt bearbeiten"}>
         <MobileBox>
           <Tabs colorScheme={"brand"} size={"md"} isFitted>
-            <TabList>
+            <TabList maxW={"100%"} overflow={"auto"} overflowY={"hidden"}>
               <Tab>Informationen</Tab>
               <Tab>Homepage</Tab>
               <Tab>Mitglieder</Tab>

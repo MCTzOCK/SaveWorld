@@ -52,6 +52,7 @@ import {
   FaPlus,
   FaRightFromBracket,
   FaUsers,
+  FaUtensils,
   FaVideo,
 } from "react-icons/fa6";
 import PopupManager from "../util/PopupManager";
@@ -93,6 +94,8 @@ export default function DrawerMenu(props: {
     "tools_co2_calc",
     "eco_projects",
     "community",
+    "video_category_channels",
+    "recipes",
   ]);
 
   const { userInfo, loggedIn } = useUserData();
@@ -203,6 +206,16 @@ export default function DrawerMenu(props: {
           router.push("/learn/fts-search", "none", "replace");
         },
       });
+
+      if (flags.video_category_channels.enabled) {
+        gr[2].items.push({
+          label: "Kanäle",
+          icon: <BiGroup />,
+          onClick: () => {
+            router.push("/learn/channels", "none", "replace");
+          },
+        });
+      }
     }
     if (flags.quizzes.enabled) {
       gr[2].items.push({
@@ -236,6 +249,27 @@ export default function DrawerMenu(props: {
             icon: <BiPlanet />,
             onClick: () => {
               router.push("/sustainability", "none", "replace");
+            },
+          },
+        ],
+      });
+    }
+    if (flags.recipes.enabled) {
+      gr.push({
+        label: "Rezepte",
+        items: [
+          {
+            label: "Rezepte",
+            icon: <FaUtensils />,
+            onClick: () => {
+              router.push("/recipes", "none", "replace");
+            },
+          },
+          {
+            label: "Neues Rezept",
+            icon: <FaPlus />,
+            onClick: () => {
+              router.push("/recipes/create", "none", "replace");
             },
           },
         ],
@@ -369,7 +403,7 @@ export default function DrawerMenu(props: {
             label: "Videos",
             icon: <BiVideo />,
             onClick: () => {
-              router.push("/admin/videos", "none", "replace");
+              router.push("/admin/content/videos", "none", "replace");
             },
           },
           {

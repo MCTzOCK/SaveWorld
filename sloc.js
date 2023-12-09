@@ -45,6 +45,8 @@ const disallowed = [
   ".react-email",
   "ios",
   "android",
+  "pdf",
+  "webp",
 ];
 
 // filter disallowed files

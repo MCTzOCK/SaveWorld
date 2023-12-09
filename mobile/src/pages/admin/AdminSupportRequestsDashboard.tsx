@@ -21,8 +21,11 @@ import {
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
+  IonText,
 } from "@ionic/react";
-import { Grid, VStack } from "@chakra-ui/react";
+import { Grid, useDisclosure, VStack } from "@chakra-ui/react";
+import MobileBox from "../../components/MobileBox";
+import AdminSupportRequestModal from "../../components/AdminSupportRequestModal";
 
 export default function AdminSupportRequestsDashboard() {
   useRedirectForAnon({
@@ -43,6 +46,21 @@ export default function AdminSupportRequestsDashboard() {
       __v: number;
     }[]
   >([]);
+
+  const [currentRequest, setCurrentRequest] = React.useState<
+    (typeof requests)[0]
+  >({
+    _id: "",
+    email: "",
+    category: "",
+    additionalData: "",
+    message: "",
+    createdAt: "",
+    processed: false,
+    __v: 0,
+  });
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const loadPage = async (p: number) => {
     const res = await REST.Admin.supportRequests(
@@ -69,71 +87,87 @@ export default function AdminSupportRequestsDashboard() {
   return (
     <>
       <Page title={"Support"} redGradient>
-        <Grid
-          templateColumns={[
-            "repeat(1, 1fr)",
-            "repeat(2, 1fr)",
-            "repeat(3, 1fr)",
-          ]}
-        >
-          {requests.map((req) => (
-            <>
-              <IonCard
-                color={req.processed ? "success" : "danger"}
-                routerLink={"/admin/support-requests/" + req._id}
-              >
-                <IonCardHeader>
-                  <IonCardSubtitle>
-                    {new Date(req.createdAt).toLocaleString()}
-                  </IonCardSubtitle>
-                  <IonCardTitle>
-                    {req.category === "REPORT-USER"
-                      ? "Benutzer Meldung"
-                      : req.category === "REPORT-POST"
-                      ? "Beitrag Meldung"
-                      : req.category === "REPORT-BUG"
-                      ? "Bug Meldung"
-                      : "Anderes"}
-                  </IonCardTitle>
-                </IonCardHeader>
-                <IonCardContent>
-                  <VStack gap={"1rem"}>
+        <MobileBox bg={"#101010"}>
+          <Grid
+            templateColumns={[
+              "repeat(1, 1fr)",
+              "repeat(2, 1fr)",
+              "repeat(3, 1fr)",
+            ]}
+          >
+            {requests.map((req) => (
+              <>
+                <IonCard
+                  onClick={() => {
+                    setCurrentRequest(req);
+                    onOpen();
+                  }}
+                >
+                  <IonCardHeader>
+                    <IonCardTitle>
+                      {req.category === "REPORT-USER"
+                        ? "Benutzer Meldung"
+                        : req.category === "REPORT-POST"
+                        ? "Beitrag Meldung"
+                        : req.category === "REPORT-BUG"
+                        ? "Bug Meldung"
+                        : "Anderes"}
+                    </IonCardTitle>
+                    <IonCardSubtitle>
+                      {req.processed ? (
+                        <IonText color={"success"}>Bearbeitet</IonText>
+                      ) : (
+                        <IonText color={"danger"}>Offen</IonText>
+                      )}
+                      &nbsp;
+                      {new Date(req.createdAt).toLocaleString()}
+                    </IonCardSubtitle>
+                  </IonCardHeader>
+                  <IonCardContent>
                     <div>Anfrage von: {req.email}</div>
-                  </VStack>
-                </IonCardContent>
-              </IonCard>
-            </>
-          ))}
-        </Grid>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            gap: "1rem",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "100%",
+                  </IonCardContent>
+                </IonCard>
+              </>
+            ))}
+          </Grid>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "1rem",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "100%",
+            }}
+          >
+            {page > 0 ? (
+              <IonButton
+                color={"danger"}
+                onClick={() => setPage(page - 1)}
+                expand={"block"}
+              >
+                Zurück
+              </IonButton>
+            ) : null}
+            {page < pages - 1 ? (
+              <IonButton
+                color={"success"}
+                onClick={() => setPage(page + 1)}
+                expand={"block"}
+              >
+                Weiter
+              </IonButton>
+            ) : null}
+          </div>
+        </MobileBox>
+        <AdminSupportRequestModal
+          request={currentRequest}
+          onClose={onClose}
+          isOpen={isOpen}
+          reload={() => {
+            loadPage(page);
           }}
-        >
-          {page > 0 ? (
-            <IonButton
-              color={"danger"}
-              onClick={() => setPage(page - 1)}
-              expand={"block"}
-            >
-              Zurück
-            </IonButton>
-          ) : null}
-          {page < pages - 1 ? (
-            <IonButton
-              color={"success"}
-              onClick={() => setPage(page + 1)}
-              expand={"block"}
-            >
-              Weiter
-            </IonButton>
-          ) : null}
-        </div>
+        />
       </Page>
     </>
   );

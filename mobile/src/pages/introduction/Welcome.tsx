@@ -46,9 +46,8 @@ export default function Welcome() {
         <MobileBox>
           <IonText>
             Hey, willkommen bei <b>SaveWorld</b>! Wir freuen uns, dass du die
-            Welt verbessern willst! Für eine optimale Erfahrung, solltest du
-            hier deine Interessen auswählen! Du kannst diese später jederzeit
-            ändern.
+            Welt verbessern willst! Für eine optimale Erfahrung solltest du hier
+            deine Interessen auswählen! Du kannst diese später jederzeit ändern.
           </IonText>
           <IonButton
             expand={"block"}

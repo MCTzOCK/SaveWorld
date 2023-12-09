@@ -38,7 +38,8 @@ export default function ChatMessageInput(props: {
           <IconButton
             aria-label={"senden"}
             icon={<FaPaperPlane />}
-            colorScheme={"brand"}
+            color={"brand.500"}
+            variant={"ghost"}
             type={"submit"}
           />
         </form>

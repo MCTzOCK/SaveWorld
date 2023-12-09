@@ -24,6 +24,7 @@ export default function HomeCardV2(props: {
   text: string;
   url: string;
   color: BackgroundProps["bgColor"];
+  newTab?: boolean;
 }) {
   return (
     <>
@@ -35,6 +36,7 @@ export default function HomeCardV2(props: {
         rounded={"xl"}
         as={Link}
         href={props.url}
+        target={props.newTab ? "_blank" : undefined}
         shadow={"2xl"}
       >
         <Flex direction={"column"} w={"100%"} alignItems={"center"} zIndex={12}>

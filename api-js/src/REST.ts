@@ -477,6 +477,22 @@ export class REST {
         token: token,
       });
     },
+    /**
+     * Searches for videos in a category
+     * @param category the category to search in
+     * @param q the query to search for
+     */
+    searchCategory: async (category: string, q: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/content/videos/search-category?category=" +
+          category +
+          "&q=" +
+          q,
+        method: "GET",
+      });
+    },
   };
 
   public static Tracker = {
@@ -1367,6 +1383,117 @@ export class REST {
           "&itemId=" +
           itemId,
         method: "POST",
+        token: token,
+      });
+    },
+  };
+
+  public static Recipes = {
+    /**
+     * Creates a new recipe
+     * @param token used to authenticate
+     * @param title of the recipe
+     * @param steps of the recipe
+     * @param ingredients of the recipe
+     */
+    create: async (
+      token: string,
+      title: string,
+      steps: string[],
+      ingredients: string[],
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/recipes/create",
+        method: "POST",
+        token: token,
+        body: {
+          title: title,
+          steps: steps,
+          ingredients: ingredients,
+        },
+      });
+    },
+    /**
+     * Updates a recipe
+     * @param token used to authenticate
+     * @param id of the recipe to update
+     * @param title of the recipe
+     * @param steps of the recipe
+     * @param ingredients of the recipe
+     */
+    update: async (
+      token: string,
+      id: string,
+      title: string,
+      steps: string[],
+      ingredients: string[],
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/recipes/update?id=" + id,
+        method: "POST",
+        token: token,
+        body: {
+          title: title,
+          steps: steps,
+          ingredients: ingredients,
+        },
+      });
+    },
+    /**
+     * Deletes a recipe
+     * @param token used to authenticate
+     * @param id of the recipe to delete
+     */
+    delete: async (token: string, id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/recipes/delete?id=" + id,
+        method: "DELETE",
+        token: token,
+      });
+    },
+    /**
+     * @return the requested recipes
+     * @param token used to authenticate
+     * @param page the page to get
+     * @param query the query to search for
+     */
+    recipes: async (token: string, page: number, query?: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/recipes/all?page=" +
+          page +
+          (query ? "&q=" + query : ""),
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * @return the requested recipes
+     * @param token used to authenticate
+     * @param page the page to get
+     * @param query the query to search for
+     */
+    myRecipes: async (token: string, page: number, query?: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/recipes/my?page=" +
+          page +
+          (query ? "&q=" + query : ""),
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * @return the requested recipe
+     * @param token used to authenticate
+     * @param id of the recipe to get
+     */
+    recipe: async (token: string, id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/recipes/receive?id=" + id,
+        method: "GET",
         token: token,
       });
     },

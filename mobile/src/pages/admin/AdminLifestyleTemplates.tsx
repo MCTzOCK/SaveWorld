@@ -36,6 +36,17 @@ import {
 import { useEffect, useState } from "react";
 import { REST } from "@saveworld/api-js";
 import PopupManager from "../../util/PopupManager";
+import MobileBox from "../../components/MobileBox";
+import {
+  ButtonGroup,
+  Card,
+  CardBody,
+  CardHeader,
+  Grid,
+  IconButton,
+} from "@chakra-ui/react";
+import { FaTrash } from "react-icons/fa6";
+import { FaPen } from "react-icons/fa";
 
 export default function AdminLifestyleTemplates() {
   useRedirectForAnon({
@@ -71,176 +82,165 @@ export default function AdminLifestyleTemplates() {
   return (
     <>
       <Page title={"Lifestyle"} redGradient>
-        <IonSearchbar
-          placeholder={"Suche"}
-          value={query}
-          onIonInput={(ev) => {
-            setQuery((ev.detail.value || "").trim());
-          }}
-        />
-
-        {templates && (
-          <div>
-            <IonGrid>
-              <IonRow>
-                <IonCol>
-                  <b>Name</b>
-                </IonCol>
-                <IonCol>
-                  <b>Ziel</b>
-                </IonCol>
-              </IonRow>
-              {templates
-                .filter((tpl) => {
-                  if (query === "") return true;
-                  return (
-                    tpl.name.toLowerCase().includes(query.toLowerCase()) ||
-                    tpl.goal.toLowerCase().includes(query.toLowerCase())
-                  );
-                })
-                .map((tpl) => {
-                  return (
-                    <>
-                      {
-                        //@ts-ignore
-                      }
-                      <IonRow id={"open-as-" + (tpl as any)._id}>
-                        <IonCol>{tpl.name}</IonCol>
-                        <IonCol>{tpl.goal}</IonCol>
-                      </IonRow>
-                      <IonActionSheet
-                        trigger={"open-as-" + (tpl as any)._id}
-                        header={tpl.name}
-                        onIonActionSheetDidDismiss={async (ev) => {
-                          switch (ev.detail.data.action) {
-                            case "delete":
-                              if (
-                                !(await PopupManager.confirmAsync({
-                                  title: "Löschen",
-                                  question:
-                                    "Möchtest du die Vorlage wirklich löschen?",
-                                }))
-                              )
-                                return;
-                              const delR =
-                                await REST.Admin.deleteLifestyleTemplate(
-                                  localStorage.getItem("token") as string,
-                                  (tpl as any)._id,
-                                );
-                              if (delR.status === 200) {
-                                await reload();
-                              } else {
-                                PopupManager.alert({
-                                  title: "Fehler",
-                                  description:
-                                    "Fehler beim Löschen der Vorlage: " +
-                                    delR.payload.error,
-                                });
-                              }
-                              break;
-                            case "edit":
-                              const name = await PopupManager.promptAsync({
-                                title: "Name der Vorlage",
-                                helperText: "Name der Vorlage",
-                                inputType: "INPUT",
-                              });
-
-                              const goal = await PopupManager.promptAsync({
-                                title: "Ziel der Vorlage",
-                                helperText: "Ziel der Vorlage",
-                                inputType: "INPUT",
-                              });
-                              if (name && goal) {
-                                const tplR =
-                                  await REST.Admin.updateLifestyleTemplate(
-                                    localStorage.getItem("token") as string,
-                                    (tpl as any)._id,
-                                    name,
-                                    goal,
-                                  );
-                                if (tplR.status === 200) {
-                                  await reload();
-                                } else {
-                                  PopupManager.alert({
-                                    title: "Fehler",
-                                    description:
-                                      "Fehler beim Bearbeiten der Vorlage: " +
-                                      tplR.payload.error,
-                                  });
-                                }
-                              }
-                              break;
-                            default:
-                              break;
-                          }
-                        }}
-                        buttons={[
-                          {
-                            text: "Löschen",
-                            role: "destructive",
-                            data: {
-                              action: "delete",
-                            },
-                          },
-                          {
-                            text: "Bearbeiten",
-                            data: {
-                              action: "edit",
-                            },
-                          },
-                          {
-                            text: "Abbrechen",
-                            role: "cancel",
-                            data: {
-                              action: "cancel",
-                            },
-                          },
-                        ]}
-                      ></IonActionSheet>
-                    </>
-                  );
-                })}
-            </IonGrid>
-          </div>
-        )}
-        <IonFab vertical="bottom" horizontal="end" slot="fixed">
-          <IonFabButton
-            color={"danger"}
-            onClick={async () => {
-              const name = await PopupManager.promptAsync({
-                title: "Name der Vorlage",
-                helperText: "Name der Vorlage",
-                inputType: "INPUT",
-              });
-
-              const goal = await PopupManager.promptAsync({
-                title: "Ziel der Vorlage",
-                helperText: "Ziel der Vorlage",
-                inputType: "INPUT",
-              });
-
-              if (name && goal) {
-                const tplR = await REST.Admin.createLifestyleTemplate(
-                  localStorage.getItem("token") as string,
-                  name,
-                  goal,
-                );
-                if (tplR.status === 200) {
-                  await reload();
-                } else {
-                  PopupManager.alert({
-                    title: "Fehler",
-                    description:
-                      "Fehler beim Erstellen der Vorlage: " +
-                      tplR.payload.error,
-                  });
-                }
-              }
+        <MobileBox bg={"#101010"}>
+          <IonSearchbar
+            placeholder={"Suche"}
+            value={query}
+            onIonInput={(ev) => {
+              setQuery((ev.detail.value || "").trim());
             }}
-          >
-            <IonIcon ios={add} md={addSharp} />
-          </IonFabButton>
-        </IonFab>
+            style={{
+              padding: 0,
+            }}
+          />
+          {templates && (
+            <div>
+              <Grid
+                templateColumns={[
+                  "repeat(1, 1fr)",
+                  "repeat(2, 1fr)",
+                  "repeat(3, 1fr)",
+                  "repeat(4, 1fr)",
+                ]}
+                gap={4}
+              >
+                {templates
+                  .filter((tpl) => {
+                    if (query === "") return true;
+                    return (
+                      tpl.name.toLowerCase().includes(query.toLowerCase()) ||
+                      tpl.goal.toLowerCase().includes(query.toLowerCase())
+                    );
+                  })
+                  .map((tpl) => {
+                    return (
+                      <>
+                        <Card bgColor={"gray.900"}>
+                          <CardBody>
+                            {tpl.name}
+                            <br />
+                            <br />
+                            {tpl.goal}
+                            <ButtonGroup w={"100%"} mt={6}>
+                              <IconButton
+                                aria-label={"Delete"}
+                                icon={<FaTrash />}
+                                colorScheme={"red"}
+                                w={"100%"}
+                                variant={"ghost"}
+                                onClick={async () => {
+                                  if (
+                                    !(await PopupManager.confirmAsync({
+                                      title: "Löschen",
+                                      question:
+                                        "Möchtest du die Vorlage wirklich löschen?",
+                                    }))
+                                  )
+                                    return;
+                                  const delR =
+                                    await REST.Admin.deleteLifestyleTemplate(
+                                      localStorage.getItem("token") as string,
+                                      (tpl as any)._id,
+                                    );
+                                  if (delR.status === 200) {
+                                    await reload();
+                                  } else {
+                                    PopupManager.alert({
+                                      title: "Fehler",
+                                      description:
+                                        "Fehler beim Löschen der Vorlage: " +
+                                        delR.payload.error,
+                                    });
+                                  }
+                                }}
+                              />
+                              <IconButton
+                                aria-label={"Edit"}
+                                icon={<FaPen />}
+                                w={"100%"}
+                                colorScheme={"brand"}
+                                variant={"ghost"}
+                                onClick={async () => {
+                                  const name = await PopupManager.promptAsync({
+                                    title: "Name der Vorlage",
+                                    helperText: "Name der Vorlage",
+                                    inputType: "INPUT",
+                                  });
+
+                                  const goal = await PopupManager.promptAsync({
+                                    title: "Ziel der Vorlage",
+                                    helperText: "Ziel der Vorlage",
+                                    inputType: "INPUT",
+                                  });
+                                  if (name && goal) {
+                                    const tplR =
+                                      await REST.Admin.updateLifestyleTemplate(
+                                        localStorage.getItem("token") as string,
+                                        (tpl as any)._id,
+                                        name,
+                                        goal,
+                                      );
+                                    if (tplR.status === 200) {
+                                      await reload();
+                                    } else {
+                                      PopupManager.alert({
+                                        title: "Fehler",
+                                        description:
+                                          "Fehler beim Bearbeiten der Vorlage: " +
+                                          tplR.payload.error,
+                                      });
+                                    }
+                                  }
+                                }}
+                              />
+                            </ButtonGroup>
+                          </CardBody>
+                        </Card>
+                      </>
+                    );
+                  })}
+              </Grid>
+            </div>
+          )}
+          <IonFab vertical="bottom" horizontal="end" slot="fixed">
+            <IonFabButton
+              color={"danger"}
+              onClick={async () => {
+                const name = await PopupManager.promptAsync({
+                  title: "Name der Vorlage",
+                  helperText: "Name der Vorlage",
+                  inputType: "INPUT",
+                });
+
+                const goal = await PopupManager.promptAsync({
+                  title: "Ziel der Vorlage",
+                  helperText: "Ziel der Vorlage",
+                  inputType: "INPUT",
+                });
+
+                if (name && goal) {
+                  const tplR = await REST.Admin.createLifestyleTemplate(
+                    localStorage.getItem("token") as string,
+                    name,
+                    goal,
+                  );
+                  if (tplR.status === 200) {
+                    await reload();
+                  } else {
+                    PopupManager.alert({
+                      title: "Fehler",
+                      description:
+                        "Fehler beim Erstellen der Vorlage: " +
+                        tplR.payload.error,
+                    });
+                  }
+                }
+              }}
+            >
+              <IonIcon ios={add} md={addSharp} />
+            </IonFabButton>
+          </IonFab>
+        </MobileBox>
       </Page>
     </>
   );

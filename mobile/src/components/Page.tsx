@@ -60,14 +60,20 @@ import {
 import { ENDPOINT } from "../env";
 import {
   Avatar,
+  Box,
   Button,
+  ButtonGroup,
   ChakraProvider,
+  Flex,
+  Heading,
+  IconButton,
   useDisclosure,
 } from "@chakra-ui/react";
 import { theme } from "../theme/chakra";
 import DrawerMenu from "./DrawerMenu";
 import FloatingNavbar from "./FloatingNavbar";
 import { useFlags } from "flagsmith/react";
+import { FaBars } from "react-icons/fa6";
 
 export default function Page(props: {
   title: string;
@@ -107,65 +113,35 @@ export default function Page(props: {
         ref={ref}
       >
         <IonHeader>
-          <IonToolbar
-            style={{
-              "--background": "#121212",
-              /*
-              props.noHeader
-                ? "black"
-                : props.redGradient
-                ? "var(--ion-color-danger-shade)"
-                : "var(--ion-color-success-shade)"
-              */
-              "--min-height": "75px",
-              /*
-              borderBottomLeftRadius: props.noHeader ? 0 : "12px",
-              borderBottomRightRadius: props.noHeader ? 0 : "12px",
-              */
-              "--border-width": 0,
-            }}
+          <Flex
+            direction={"row"}
+            justifyContent={"space-between"}
+            alignItems={"center"}
+            backgroundColor={"#121212"}
+            pl={4}
+            pr={4}
+            pt={[2, 0]}
           >
-            <IonButtons slot="start">
-              <IonBackButton
-                text={"Zurück"}
-                style={{
-                  "--color": props.redGradient ? "white" : "black",
-                }}
-              />
-            </IonButtons>
-            <IonTitle
-              size={"large"}
-              style={{
-                fontWeight: 1000,
-              }}
-              color={props.redGradient ? "danger" : "success"}
+            <DrawerMenu isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+            <Heading
+              fontWeight={1000}
+              color={props.redGradient ? "red.500" : "brand.500"}
+              size={"lg"}
             >
               {props.title}
-            </IonTitle>
-            <IonButtons slot={"end"}>
+            </Heading>
+            <ButtonGroup>
               {props.endButtons}
-              {loggedIn && userInfo._id ? (
-                <>
-                  <DrawerMenu
-                    isOpen={isOpen}
-                    onOpen={onOpen}
-                    onClose={onClose}
-                  />
-                  <IonButton
-                    size={"large"}
-                    onClick={onOpen}
-                    style={{
-                      "--color": props.redGradient
-                        ? "var(--ion-color-danger-shade)"
-                        : "var(--ion-color-success-shade)",
-                    }}
-                  >
-                    <IonIcon ios={menu} md={menuSharp} size={"large"} />
-                  </IonButton>
-                </>
-              ) : null}
-            </IonButtons>
-          </IonToolbar>
+              <IconButton
+                size={"lg"}
+                onClick={onOpen}
+                icon={<FaBars />}
+                aria-label={"Menu"}
+                variant={"ghost"}
+                color={props.redGradient ? "red.500" : "brand.500"}
+              />
+            </ButtonGroup>
+          </Flex>
         </IonHeader>
         <IonContent
           fullscreen

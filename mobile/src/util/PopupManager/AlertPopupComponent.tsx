@@ -46,7 +46,7 @@ export default function AlertPopupComponent(props: {
         leastDestructiveRef={whatEverRef}
       >
         <AlertDialogOverlay bg="blackAlpha.300" backdropFilter="blur(10px)">
-          <AlertDialogContent bg={"#121212"} maxW={"90%"}>
+          <AlertDialogContent bg={"#121212"}>
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
               {props.title ? props.title : "Meldung"}
             </AlertDialogHeader>

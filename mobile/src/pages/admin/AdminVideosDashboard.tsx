@@ -26,10 +26,12 @@ import {
   IonText,
   useIonRouter,
 } from "@ionic/react";
-import { add, addSharp } from "ionicons/icons";
+import { add, addSharp, star, starSharp } from "ionicons/icons";
 import AdminCreateVideoModal from "../../components/AdminCreateVideoModal";
 import PopupManager from "../../util/PopupManager";
-import { Grid } from "@chakra-ui/react";
+import { Grid, UnorderedList, useDisclosure } from "@chakra-ui/react";
+import MobileBox from "../../components/MobileBox";
+import AdminVideoEditModal from "../../components/AdminVideoEditModal";
 
 export default function AdminVideosDashboard() {
   useRedirectForAnon({
@@ -44,9 +46,31 @@ export default function AdminVideosDashboard() {
       streamUrl: string;
       thumbnailUrl: string;
       categories: string[];
+      sources: string[];
+      ratings: number[];
     }[]
   >([]);
   const [videoCount, setVideoCount] = useState<number>(0);
+
+  const [currentVideo, setCurrentVideo] = useState<{
+    _id: string;
+    title: string;
+    description: string;
+    streamUrl: string;
+    thumbnailUrl: string;
+    categories: string[];
+    sources: string[];
+    ratings: number[];
+  }>({
+    _id: "",
+    title: "",
+    description: "",
+    streamUrl: "",
+    thumbnailUrl: "",
+    categories: [],
+    sources: [],
+    ratings: [],
+  });
 
   const [page, setPage] = useState(1);
 
@@ -77,60 +101,166 @@ export default function AdminVideosDashboard() {
 
   const modal = React.useRef<HTMLIonModalElement>(null);
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
       <Page title={"Videos"} redGradient>
-        <Grid
-          templateColumns={[
-            "repeat(1, 1fr)",
-            "repeat(2, 1fr)",
-            "repeat(3, 1fr)",
-          ]}
-        >
-          {videos.map((video) => {
-            return (
-              <IonCard
-                color={"danger"}
-                routerLink={"/admin/content/videos/" + video._id}
-              >
-                <IonCardHeader>
-                  <IonCardTitle>{video.title}</IonCardTitle>
-                </IonCardHeader>
-                <IonCardContent>
-                  <IonText>{video.description.slice(0, 150)}</IonText>
-                </IonCardContent>
-              </IonCard>
-            );
-          })}
-        </Grid>
-        <IonInfiniteScroll
-          threshold="100px"
-          onIonInfinite={async (ev) => {
-            if (videos.length >= videoCount) {
-              ev.target.disabled = true;
-            } else {
-              await reload();
-              ev.target.complete();
-            }
-          }}
-        >
-          <IonInfiniteScrollContent />
-        </IonInfiniteScroll>
-        <IonFab vertical="bottom" horizontal="end" slot="fixed">
-          <IonFabButton
-            color={"danger"}
-            onClick={() => {
-              modal.current?.present();
+        <MobileBox bg={"#101010"}>
+          <Grid
+            templateColumns={[
+              "repeat(1, 1fr)",
+              "repeat(2, 1fr)",
+              "repeat(3, 1fr)",
+            ]}
+          >
+            {videos.map((video) => {
+              return (
+                <IonCard
+                  onClick={() => {
+                    setCurrentVideo(video);
+                    onOpen();
+                  }}
+                >
+                  <IonCardHeader>
+                    <IonCardTitle>{video.title}</IonCardTitle>
+                  </IonCardHeader>
+                  <IonCardContent>
+                    <IonText>{video.description}</IonText>
+                    <br />
+                    <br />
+                    {video.streamUrl}
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        width: "100%",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "1rem",
+                        marginTop: "1rem",
+                        marginBottom: "1rem",
+                      }}
+                    >
+                      <IonIcon
+                        ios={star}
+                        md={starSharp}
+                        color={
+                          (Math.round(
+                            (video?.ratings as number[]).reduce(
+                              (a, b) => a + b,
+                              0,
+                            ) / (video?.ratings as number[]).length,
+                          ) || 0) > 0
+                            ? "warning"
+                            : "medium"
+                        }
+                      />
+                      <IonIcon
+                        ios={star}
+                        md={starSharp}
+                        color={
+                          (Math.round(
+                            (video?.ratings as number[]).reduce(
+                              (a, b) => a + b,
+                              0,
+                            ) / (video?.ratings as number[]).length,
+                          ) || 0) > 1
+                            ? "warning"
+                            : "medium"
+                        }
+                      />
+                      <IonIcon
+                        ios={star}
+                        md={starSharp}
+                        color={
+                          (Math.round(
+                            (video?.ratings as number[]).reduce(
+                              (a, b) => a + b,
+                              0,
+                            ) / (video?.ratings as number[]).length,
+                          ) || 0) > 2
+                            ? "warning"
+                            : "medium"
+                        }
+                      />
+                      <IonIcon
+                        ios={star}
+                        md={starSharp}
+                        color={
+                          (Math.round(
+                            (video?.ratings as number[]).reduce(
+                              (a, b) => a + b,
+                              0,
+                            ) / (video?.ratings as number[]).length,
+                          ) || 0) > 3
+                            ? "warning"
+                            : "medium"
+                        }
+                      />
+                      <IonIcon
+                        ios={star}
+                        md={starSharp}
+                        color={
+                          (Math.round(
+                            (video?.ratings as number[]).reduce(
+                              (a, b) => a + b,
+                              0,
+                            ) / (video?.ratings as number[]).length,
+                          ) || 0) > 4
+                            ? "warning"
+                            : "medium"
+                        }
+                      />
+                      (
+                      {Math.round(
+                        (video?.ratings as number[]).reduce(
+                          (a, b) => a + b,
+                          0,
+                        ) / (video?.ratings as number[]).length,
+                      ) || "0"}
+                      )
+                    </div>
+                  </IonCardContent>
+                </IonCard>
+              );
+            })}
+          </Grid>
+          <IonInfiniteScroll
+            threshold="100px"
+            onIonInfinite={async (ev) => {
+              if (videos.length >= videoCount) {
+                ev.target.disabled = true;
+              } else {
+                await reload();
+                ev.target.complete();
+              }
             }}
           >
-            <IonIcon ios={add} md={addSharp} />
-          </IonFabButton>
-        </IonFab>
+            <IonInfiniteScrollContent />
+          </IonInfiniteScroll>
+          <IonFab vertical="bottom" horizontal="end" slot="fixed">
+            <IonFabButton
+              color={"danger"}
+              onClick={() => {
+                modal.current?.present();
+              }}
+            >
+              <IonIcon ios={add} md={addSharp} />
+            </IonFabButton>
+          </IonFab>
+        </MobileBox>
         <AdminCreateVideoModal
           modal={modal}
           callback={() => {
             window.location.reload();
           }}
+        />
+        <AdminVideoEditModal
+          isOpen={isOpen}
+          onClose={onClose}
+          reload={reload}
+          video={currentVideo}
         />
       </Page>
     </>

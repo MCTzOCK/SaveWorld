@@ -30,6 +30,7 @@ import { add, addSharp } from "ionicons/icons";
 import AdminCreateCategoryModal from "../../components/AdminCreateCategoryModal";
 import PopupManager from "../../util/PopupManager";
 import { Grid } from "@chakra-ui/react";
+import MobileBox from "../../components/MobileBox";
 
 export default function AdminContentCategoryDashboard() {
   useRedirectForAnon({
@@ -88,94 +89,96 @@ export default function AdminContentCategoryDashboard() {
         )}
         {!loading && (
           <>
-            <IonSearchbar
-              value={query}
-              onIonInput={(e) => {
-                setQuery(e.detail.value || "");
-              }}
-            />
-            {categories.filter((c) => {
-              if (query.length === 0) return true;
-              return (
-                c.name.toLowerCase().includes(query.toLowerCase()) ||
-                c.description.toLowerCase().includes(query.toLowerCase())
-              );
-            }).length === 0 ? (
-              <>
-                <IonText className={"ion-padding"}>
-                  Keine Kategorien gefunden.
-                </IonText>
-              </>
-            ) : (
-              <>
-                <Grid
-                  templateColumns={[
-                    "repeat(1, 1fr)",
-                    "repeat(2, 1fr)",
-                    "repeat(3, 1fr)",
-                  ]}
-                >
-                  {categories
-                    .filter((c) => {
-                      if (query.length === 0) return true;
-                      return (
-                        c.name.toLowerCase().includes(query.toLowerCase()) ||
-                        c.description
-                          .toLowerCase()
-                          .includes(query.toLowerCase())
-                      );
-                    })
-                    .map((c) => {
-                      return (
-                        <>
-                          <IonCard>
-                            <img src={c.image} />
-                            <IonCardHeader>
-                              <IonCardTitle>{c.name}</IonCardTitle>
-                            </IonCardHeader>
-                            <IonCardContent>
-                              {c.description}
-                              <IonButton
-                                expand={"block"}
-                                color={"danger"}
-                                style={{ marginTop: "20px" }}
-                                onClick={async () => {
-                                  if (
-                                    !(await PopupManager.confirmAsync({
-                                      title: "Löschen",
-                                      question:
-                                        "Möchtest du die Kategorie wirklich löschen?",
-                                    }))
-                                  )
-                                    return;
+            <MobileBox bg={"#101010"}>
+              <IonSearchbar
+                value={query}
+                onIonInput={(e) => {
+                  setQuery(e.detail.value || "");
+                }}
+              />
+              {categories.filter((c) => {
+                if (query.length === 0) return true;
+                return (
+                  c.name.toLowerCase().includes(query.toLowerCase()) ||
+                  c.description.toLowerCase().includes(query.toLowerCase())
+                );
+              }).length === 0 ? (
+                <>
+                  <IonText className={"ion-padding"}>
+                    Keine Kategorien gefunden.
+                  </IonText>
+                </>
+              ) : (
+                <>
+                  <Grid
+                    templateColumns={[
+                      "repeat(1, 1fr)",
+                      "repeat(2, 1fr)",
+                      "repeat(3, 1fr)",
+                    ]}
+                  >
+                    {categories
+                      .filter((c) => {
+                        if (query.length === 0) return true;
+                        return (
+                          c.name.toLowerCase().includes(query.toLowerCase()) ||
+                          c.description
+                            .toLowerCase()
+                            .includes(query.toLowerCase())
+                        );
+                      })
+                      .map((c) => {
+                        return (
+                          <>
+                            <IonCard>
+                              <img src={c.image} />
+                              <IonCardHeader>
+                                <IonCardTitle>{c.name}</IonCardTitle>
+                              </IonCardHeader>
+                              <IonCardContent>
+                                {c.description}
+                                <IonButton
+                                  expand={"block"}
+                                  color={"danger"}
+                                  style={{ marginTop: "20px" }}
+                                  onClick={async () => {
+                                    if (
+                                      !(await PopupManager.confirmAsync({
+                                        title: "Löschen",
+                                        question:
+                                          "Möchtest du die Kategorie wirklich löschen?",
+                                      }))
+                                    )
+                                      return;
 
-                                  const res = await REST.Admin.deleteCategory(
-                                    localStorage.getItem("token") as string,
-                                    c._id,
-                                  );
+                                    const res = await REST.Admin.deleteCategory(
+                                      localStorage.getItem("token") as string,
+                                      c._id,
+                                    );
 
-                                  if (res.status === 200) {
-                                    reload();
-                                  } else {
-                                    PopupManager.alert({
-                                      title: "Fehler",
-                                      description:
-                                        "Fehler beim Löschen der Kategorie: " +
-                                        res.payload.error,
-                                    });
-                                  }
-                                }}
-                              >
-                                Löschen
-                              </IonButton>
-                            </IonCardContent>
-                          </IonCard>
-                        </>
-                      );
-                    })}
-                </Grid>
-              </>
-            )}
+                                    if (res.status === 200) {
+                                      reload();
+                                    } else {
+                                      PopupManager.alert({
+                                        title: "Fehler",
+                                        description:
+                                          "Fehler beim Löschen der Kategorie: " +
+                                          res.payload.error,
+                                      });
+                                    }
+                                  }}
+                                >
+                                  Löschen
+                                </IonButton>
+                              </IonCardContent>
+                            </IonCard>
+                          </>
+                        );
+                      })}
+                  </Grid>
+                </>
+              )}
+            </MobileBox>
             <IonFab vertical="bottom" horizontal="end" slot="fixed">
               <IonFabButton
                 onClick={() => {

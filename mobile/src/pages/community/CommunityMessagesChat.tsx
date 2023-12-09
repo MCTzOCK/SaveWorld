@@ -23,6 +23,8 @@ import ChatMessageInput from "../../components/chat/ChatMessageInput";
 import { ENDPOINT } from "../../env";
 import { IonButton, IonIcon } from "@ionic/react";
 import { add } from "ionicons/icons";
+import { IconButton } from "@chakra-ui/react";
+import { FaPlus } from "react-icons/fa6";
 
 export default function CommunityMessagesChat(props: { socket: Socket }) {
   const { id } = useParams<{ id: string }>();
@@ -142,10 +144,8 @@ export default function CommunityMessagesChat(props: { socket: Socket }) {
         endButtons={
           <>
             {chat.isGroup ? (
-              <IonButton
-                style={{
-                  "--color": "var(--ion-color-success-shade)",
-                }}
+              <IconButton
+                aria-label={"Hinzufügen"}
                 onClick={async () => {
                   const username = await PopupManager.promptAsync({
                     title: "Benutzer hinzufügen",
@@ -160,9 +160,11 @@ export default function CommunityMessagesChat(props: { socket: Socket }) {
                     username: username,
                   });
                 }}
-              >
-                <IonIcon icon={add} />
-              </IonButton>
+                color={"brand.500"}
+                variant={"ghost"}
+                size={"lg"}
+                icon={<FaPlus />}
+              />
             ) : null}
           </>
         }

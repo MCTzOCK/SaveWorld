@@ -42,7 +42,13 @@ import { Redirect, useParams } from "react-router";
 import EcoTracker from "./pages/tracker/EcoTracker";
 
 import OneSignal from "onesignal-cordova-plugin";
-import { ENDPOINT, FLAGSMITH_ENDPOINT, ONE_SIGNAL_APP_ID } from "./env";
+import {
+  ENDPOINT,
+  FLAGSMITH_ENDPOINT,
+  ONE_SIGNAL_APP_ID,
+  POSTHOG_ENDPOINT,
+  POSTHOG_KEY,
+} from "./env";
 import { useEffect } from "react";
 import AppUrlListener from "./AppUrlListener";
 import AdminLifestyleTemplates from "./pages/admin/AdminLifestyleTemplates";
@@ -84,6 +90,15 @@ import DirectusPost from "./components/DirectusPost";
 import Quizzes from "./pages/quizzes/Quizzes";
 import { FlagsmithProvider, useFlags } from "flagsmith/react";
 import flagsmith from "flagsmith";
+import Channels from "./pages/learn/Channels";
+import Channel from "./pages/learn/Channel";
+import Recipes from "./pages/recipes/Recipes";
+import CreateRecipe from "./pages/recipes/CreateRecipe";
+import RecipeViewer from "./pages/recipes/RecipeViewer";
+import { PostHogProvider } from "posthog-js/react";
+import posthog from "posthog-js";
+import AdminRecipeDashboard from "./pages/admin/AdminRecipeDashboard";
+import AdminEcoProjectsDashboard from "./pages/admin/AdminEcoProjectsDashboard";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -102,6 +117,8 @@ export default function App() {
     "tools_co2_calc",
     "eco_projects",
     "community",
+    "video_category_channels",
+    "recipes",
   ]);
 
   const { userInfo, loaded, loggedIn } = useUserData();
@@ -170,7 +187,15 @@ export default function App() {
       "/admin/lifestyle-templates": AdminLifestyleTemplates,
       "/admin/support-requests": AdminSupportRequestsDashboard,
       "/admin/support-requests/:id": AdminSupportRequestDashboard,
+      "/admin/recipes": AdminRecipeDashboard,
+      "/admin/eco-projects": AdminEcoProjectsDashboard,
       "/learn": flags.videos.enabled ? Videos : NotFound,
+      "/learn/channels": flags.video_category_channels.enabled
+        ? Channels
+        : NotFound,
+      "/learn/channels/:id": flags.video_category_channels.enabled
+        ? Channel
+        : NotFound,
       "/learn/fts-search": flags.videos.enabled ? VideoSearchFTS : NotFound,
       "/eco-tracker": flags.tracker.enabled ? EcoTracker : NotFound,
       "/e2": flags.tracker.enabled ? E2 : NotFound,
@@ -254,6 +279,9 @@ export default function App() {
             return <DirectusPost postId={id} />;
           }
         : NotFound,
+      "/recipes": flags.recipes.enabled ? Recipes : NotFound,
+      "/recipes/create": flags.recipes.enabled ? CreateRecipe : NotFound,
+      "/recipes/:id": flags.recipes.enabled ? RecipeViewer : NotFound,
       //KEEP_ROUTES
     });
   }, [flags]);
@@ -262,36 +290,57 @@ export default function App() {
     [key: string]: any;
   }>({});
 
+  useEffect(() => {
+    if (loaded && loggedIn) {
+      posthog?.identify(userInfo.email, {
+        name: userInfo.firstName + " " + userInfo.lastName,
+        email: userInfo.email,
+        username: userInfo.username,
+      });
+    }
+  }, [loaded, loggedIn]);
+
   return (
     <>
-      <ChakraProvider theme={theme}>
-        <div id={"__chakra-manual-mount-point-do-not-use"} />
-        <IonApp>
-          <IonReactRouter>
-            <AppUrlListener />
-            <Switch>
-              <Redirect to={"/onboarding"} from={"/"} exact />
-              {Object.keys(routes).map((route) => {
-                const Component = routes[route];
-                return (
-                  <Route
-                    exact
-                    path={route}
-                    render={(props) => {
-                      return (
-                        <Component key={props.location.key} socket={socket} />
-                      );
-                    }}
-                  />
-                );
-              })}
-              <Route>
-                <NotFound />
-              </Route>
-            </Switch>
-          </IonReactRouter>
-        </IonApp>
-      </ChakraProvider>
+      <PostHogProvider
+        apiKey={POSTHOG_KEY}
+        options={{
+          api_host: POSTHOG_ENDPOINT,
+          loaded: (posthog) => {
+            if (process.env.NODE_ENV === "development") posthog.debug();
+          },
+          autocapture: true,
+        }}
+      >
+        <ChakraProvider theme={theme}>
+          <div id={"__chakra-manual-mount-point-do-not-use"} />
+          <IonApp>
+            <IonReactRouter>
+              <AppUrlListener />
+              <Switch>
+                <Redirect to={"/onboarding"} from={"/"} exact />
+                {Object.keys(routes).map((route) => {
+                  const Component = routes[route];
+                  return (
+                    <Route
+                      exact
+                      path={route}
+                      render={(props) => {
+                        return (
+                          <Component key={props.location.key} socket={socket} />
+                        );
+                      }}
+                    />
+                  );
+                })}
+                <Route>
+                  <NotFound />
+                </Route>
+              </Switch>
+            </IonReactRouter>
+          </IonApp>
+        </ChakraProvider>
+      </PostHogProvider>
     </>
   );
 }
