@@ -82,7 +82,7 @@ export default function AdminLifestyleTemplates() {
   return (
     <>
       <Page title={"Lifestyle"} redGradient>
-        <MobileBox>
+        <MobileBox bg={"#101010"}>
           <IonSearchbar
             placeholder={"Suche"}
             value={query}
@@ -115,7 +115,7 @@ export default function AdminLifestyleTemplates() {
                   .map((tpl) => {
                     return (
                       <>
-                        <Card bgColor={"gray.800"}>
+                        <Card bgColor={"gray.900"}>
                           <CardBody>
                             {tpl.name}
                             <br />
