@@ -15,6 +15,7 @@ import { FaDatabase, FaDocker, FaFileLines, FaToggleOn } from "react-icons/fa6";
 import { MdHttps } from "react-icons/md";
 import { HiStatusOnline } from "react-icons/hi";
 import { BiNotification } from "react-icons/bi";
+import { SiPosthog } from "react-icons/si";
 
 export default function AdminInternTools(props: { query: string }) {
   const tools: {
@@ -65,6 +66,12 @@ export default function AdminInternTools(props: { query: string }) {
       text: "Content",
       url: "https://content.saveworld.one",
       color: "blue.500",
+    },
+    {
+      icon: <SiPosthog />,
+      text: "Posthog",
+      url: "https://app.posthog.com",
+      color: "purple.500",
     },
   ];
 
