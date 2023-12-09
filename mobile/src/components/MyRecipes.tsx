@@ -104,7 +104,7 @@ export default function MyRecipes() {
                 justifyContent={"space-between"}
                 gap={4}
               >
-                <Heading>{r.title}</Heading>
+                <Heading fontSize={"xl"}>{r.title}</Heading>
                 <Stack>
                   <VStack>
                     <Avatar

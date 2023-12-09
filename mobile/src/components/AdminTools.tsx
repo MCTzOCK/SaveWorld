@@ -18,7 +18,7 @@ import {
   FaStarOfLife,
   FaUser,
 } from "react-icons/fa";
-import { FaLifeRing, FaUsers, FaVideo } from "react-icons/fa6";
+import { FaLifeRing, FaUsers, FaUtensils, FaVideo } from "react-icons/fa6";
 
 export default function AdminTools(props: { query: string }) {
   const tools: {
@@ -56,6 +56,12 @@ export default function AdminTools(props: { query: string }) {
       icon: <FaStarOfLife />,
       text: "Lifestyle",
       url: "/admin/lifestyle-templates",
+      color: "red.500",
+    },
+    {
+      icon: <FaUtensils />,
+      text: "Rezepte",
+      url: "/admin/recipes",
       color: "red.500",
     },
   ];
