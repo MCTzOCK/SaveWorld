@@ -26,7 +26,7 @@ import {
   IonText,
   useIonRouter,
 } from "@ionic/react";
-import { add, addSharp } from "ionicons/icons";
+import { add, addSharp, star, starSharp } from "ionicons/icons";
 import AdminCreateVideoModal from "../../components/AdminCreateVideoModal";
 import PopupManager from "../../util/PopupManager";
 import { Grid, UnorderedList, useDisclosure } from "@chakra-ui/react";
@@ -47,6 +47,7 @@ export default function AdminVideosDashboard() {
       thumbnailUrl: string;
       categories: string[];
       sources: string[];
+      ratings: number[];
     }[]
   >([]);
   const [videoCount, setVideoCount] = useState<number>(0);
@@ -59,6 +60,7 @@ export default function AdminVideosDashboard() {
     thumbnailUrl: string;
     categories: string[];
     sources: string[];
+    ratings: number[];
   }>({
     _id: "",
     title: "",
@@ -67,6 +69,7 @@ export default function AdminVideosDashboard() {
     thumbnailUrl: "",
     categories: [],
     sources: [],
+    ratings: [],
   });
 
   const [page, setPage] = useState(1);
@@ -123,10 +126,101 @@ export default function AdminVideosDashboard() {
                     <IonCardTitle>{video.title}</IonCardTitle>
                   </IonCardHeader>
                   <IonCardContent>
-                    <IonText>{video.description.slice(0, 150)}</IonText>
+                    <IonText>{video.description}</IonText>
                     <br />
                     <br />
                     {video.streamUrl}
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        width: "100%",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "1rem",
+                        marginTop: "1rem",
+                        marginBottom: "1rem",
+                      }}
+                    >
+                      <IonIcon
+                        ios={star}
+                        md={starSharp}
+                        color={
+                          (Math.round(
+                            (video?.ratings as number[]).reduce(
+                              (a, b) => a + b,
+                              0,
+                            ) / (video?.ratings as number[]).length,
+                          ) || 0) > 0
+                            ? "warning"
+                            : "medium"
+                        }
+                      />
+                      <IonIcon
+                        ios={star}
+                        md={starSharp}
+                        color={
+                          (Math.round(
+                            (video?.ratings as number[]).reduce(
+                              (a, b) => a + b,
+                              0,
+                            ) / (video?.ratings as number[]).length,
+                          ) || 0) > 1
+                            ? "warning"
+                            : "medium"
+                        }
+                      />
+                      <IonIcon
+                        ios={star}
+                        md={starSharp}
+                        color={
+                          (Math.round(
+                            (video?.ratings as number[]).reduce(
+                              (a, b) => a + b,
+                              0,
+                            ) / (video?.ratings as number[]).length,
+                          ) || 0) > 2
+                            ? "warning"
+                            : "medium"
+                        }
+                      />
+                      <IonIcon
+                        ios={star}
+                        md={starSharp}
+                        color={
+                          (Math.round(
+                            (video?.ratings as number[]).reduce(
+                              (a, b) => a + b,
+                              0,
+                            ) / (video?.ratings as number[]).length,
+                          ) || 0) > 3
+                            ? "warning"
+                            : "medium"
+                        }
+                      />
+                      <IonIcon
+                        ios={star}
+                        md={starSharp}
+                        color={
+                          (Math.round(
+                            (video?.ratings as number[]).reduce(
+                              (a, b) => a + b,
+                              0,
+                            ) / (video?.ratings as number[]).length,
+                          ) || 0) > 4
+                            ? "warning"
+                            : "medium"
+                        }
+                      />
+                      (
+                      {Math.round(
+                        (video?.ratings as number[]).reduce(
+                          (a, b) => a + b,
+                          0,
+                        ) / (video?.ratings as number[]).length,
+                      ) || "0"}
+                      )
+                    </div>
                   </IonCardContent>
                 </IonCard>
               );
