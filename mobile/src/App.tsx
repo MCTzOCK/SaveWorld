@@ -98,6 +98,7 @@ import RecipeViewer from "./pages/recipes/RecipeViewer";
 import { PostHogProvider } from "posthog-js/react";
 import posthog from "posthog-js";
 import AdminRecipeDashboard from "./pages/admin/AdminRecipeDashboard";
+import AdminEcoProjectsDashboard from "./pages/admin/AdminEcoProjectsDashboard";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -187,6 +188,7 @@ export default function App() {
       "/admin/support-requests": AdminSupportRequestsDashboard,
       "/admin/support-requests/:id": AdminSupportRequestDashboard,
       "/admin/recipes": AdminRecipeDashboard,
+      "/admin/eco-projects": AdminEcoProjectsDashboard,
       "/learn": flags.videos.enabled ? Videos : NotFound,
       "/learn/channels": flags.video_category_channels.enabled
         ? Channels

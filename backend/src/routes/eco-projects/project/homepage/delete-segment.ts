@@ -36,7 +36,8 @@ export default async function (req: Request, res: Response) {
       project.owner.toString() !== user._id.toString() &&
       !["ADMINISTRATOR", "EDITOR"].includes(
         project.users.find((u) => u.userId).permissions || "NONE",
-      )
+      ) &&
+      user.role !== "admin"
     ) {
       res.status(403).json({
         status: 403,

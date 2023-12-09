@@ -39,7 +39,8 @@ export default async function (req: Request, res: Response) {
         ) &&
         project.users.find((u) => u.userId.toString() === user._id.toString())
           .permissions === "ADMINISTRATOR"
-      )
+      ) &&
+      user.role !== "admin"
     ) {
       res.status(403).json({ error: "Forbidden", status: 403 });
       return;

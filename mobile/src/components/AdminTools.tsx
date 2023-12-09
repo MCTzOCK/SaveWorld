@@ -14,6 +14,7 @@ import HomeCardV2 from "./HomeCardV2";
 import {
   FaFile,
   FaHandsHelping,
+  FaProjectDiagram,
   FaRing,
   FaStarOfLife,
   FaUser,
@@ -62,6 +63,12 @@ export default function AdminTools(props: { query: string }) {
       icon: <FaUtensils />,
       text: "Rezepte",
       url: "/admin/recipes",
+      color: "red.500",
+    },
+    {
+      icon: <FaProjectDiagram />,
+      text: "Projekte",
+      url: "/admin/eco-projects",
       color: "red.500",
     },
   ];
