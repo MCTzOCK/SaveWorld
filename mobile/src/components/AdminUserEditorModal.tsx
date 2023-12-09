@@ -12,6 +12,7 @@ import * as React from "react";
 import SaveWorldModal from "./SaveWorldModal";
 import {
   Button,
+  ButtonGroup,
   Checkbox,
   FormControl,
   FormHelperText,
@@ -24,6 +25,7 @@ import {
 import { FaSave } from "react-icons/fa";
 import { REST } from "@saveworld/api-js";
 import PopupManager from "../util/PopupManager";
+import { FaTrash } from "react-icons/fa6";
 
 export default function AdminUserEditorModal(props: {
   user: {
@@ -111,63 +113,104 @@ export default function AdminUserEditorModal(props: {
               </FormHelperText>
             </FormControl>
           </HStack>
-          <Button
-            color={"brand.500"}
-            variant={"ghost"}
-            w={"100%"}
-            leftIcon={<FaSave />}
-            onClick={async () => {
-              const email = (
-                document.getElementById("user-email") as HTMLInputElement
-              ).value;
-              const firstName = (
-                document.getElementById("user-firstname") as HTMLInputElement
-              ).value;
-              const lastName = (
-                document.getElementById("user-lastname") as HTMLInputElement
-              ).value;
-              const passwd = (
-                document.getElementById("user-passwd") as HTMLInputElement
-              ).value;
-              const active = (
-                document.getElementById("user-active") as HTMLInputElement
-              ).checked;
-              const admin = (
-                document.getElementById("user-admin") as HTMLInputElement
-              ).checked;
+          <ButtonGroup>
+            <Button
+              color={"brand.500"}
+              variant={"ghost"}
+              w={"100%"}
+              leftIcon={<FaSave />}
+              onClick={async () => {
+                const email = (
+                  document.getElementById("user-email") as HTMLInputElement
+                ).value;
+                const firstName = (
+                  document.getElementById("user-firstname") as HTMLInputElement
+                ).value;
+                const lastName = (
+                  document.getElementById("user-lastname") as HTMLInputElement
+                ).value;
+                const passwd = (
+                  document.getElementById("user-passwd") as HTMLInputElement
+                ).value;
+                const active = (
+                  document.getElementById("user-active") as HTMLInputElement
+                ).checked;
+                const admin = (
+                  document.getElementById("user-admin") as HTMLInputElement
+                ).checked;
 
-              const res = await REST.Admin.updateUser(
-                localStorage.getItem("token") as string,
-                props.user._id,
-                {
-                  email: email,
-                  firstName: firstName,
-                  lastName: lastName,
-                  password: passwd === "" ? undefined : passwd,
-                  active: active,
-                  role: admin ? "admin" : "user",
-                },
-              );
-
-              if (res.status === 200) {
-                PopupManager.alert({
-                  title: "Erfolgreich",
-                  description: "Die Daten wurden erfolgreich gespeichert!",
-                  callback: () => {
-                    props.onClose();
-                    props.reload();
+                const res = await REST.Admin.updateUser(
+                  localStorage.getItem("token") as string,
+                  props.user._id,
+                  {
+                    email: email,
+                    firstName: firstName,
+                    lastName: lastName,
+                    password: passwd === "" ? undefined : passwd,
+                    active: active,
+                    role: admin ? "admin" : "user",
                   },
-                });
-              } else {
-                PopupManager.alert({
-                  title: "Fehler",
-                  description: "Fehler beim Speichern: " + res.payload.error,
-                });
-              }
-            }}
-          >
-            Speichern
-          </Button>
+                );
+
+                if (res.status === 200) {
+                  PopupManager.alert({
+                    title: "Erfolgreich",
+                    description: "Die Daten wurden erfolgreich gespeichert!",
+                    callback: () => {
+                      props.onClose();
+                      props.reload();
+                    },
+                  });
+                } else {
+                  PopupManager.alert({
+                    title: "Fehler",
+                    description: "Fehler beim Speichern: " + res.payload.error,
+                  });
+                }
+              }}
+            >
+              Speichern
+            </Button>
+            <Button
+              color={"red.500"}
+              variant={"ghost"}
+              w={"100%"}
+              leftIcon={<FaTrash />}
+              onClick={async () => {
+                if (
+                  !(await PopupManager.confirmAsync({
+                    title: "Löschen?",
+                    question: "Willst du den Benutzer wirklich löschen?",
+                  }))
+                )
+                  return;
+
+                const res = await REST.Admin.deleteUser(
+                  localStorage.getItem("token") as string,
+                  props.user._id,
+                );
+
+                if (res.status === 200) {
+                  await PopupManager.alertAsync({
+                    title: "Gelöscht",
+                    description: "Der Benutzer wurde erfolgreich gelöscht!",
+                  });
+
+                  props.reload();
+                  props.onClose();
+                } else {
+                  await PopupManager.alertAsync({
+                    title: "Fehler",
+                    description:
+                      "Der Benutzer konnte nicht gelöscht werden: " +
+                      res.payload.error,
+                  });
+                }
+              }}
+            >
+              Löschen
+            </Button>
+          </ButtonGroup>
         </Stack>
       </SaveWorldModal>
     </>
