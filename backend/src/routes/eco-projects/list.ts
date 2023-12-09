@@ -29,7 +29,7 @@ export default async function (req: Request, res: Response) {
         { name: { $regex: search, $options: "i" } },
         { geoLocationDisplayName: { $regex: search, $options: "i" } },
       ],
-      startDate: { $gte: new Date() },
+      // startDate: { $gte: new Date() },
     });
 
     entries.sort((a, b) => {

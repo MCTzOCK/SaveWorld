@@ -20,6 +20,8 @@ export const DIRECTUS_ENDPOINT = import.meta.env.VITE_DIRECTUS_ENDPOINT;
 export const FLAGSMITH_ENDPOINT = import.meta.env.VITE_FLAGSMITH_ENDPOINT;
 export const FLAGSMITH_ENVIRONMENT_ID = import.meta.env
   .VITE_FLAGSMITH_ENVIRONMENT_ID;
+export const POSTHOG_ENDPOINT = import.meta.env.VITE_POSTHOG_ENDPOINT;
+export const POSTHOG_KEY = import.meta.env.VITE_POSTHOG_KEY;
 
 export const getGhostContentApi = () => {
   return new GhostContentAPI({

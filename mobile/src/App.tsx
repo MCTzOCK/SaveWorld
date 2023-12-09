@@ -42,7 +42,13 @@ import { Redirect, useParams } from "react-router";
 import EcoTracker from "./pages/tracker/EcoTracker";
 
 import OneSignal from "onesignal-cordova-plugin";
-import { ENDPOINT, FLAGSMITH_ENDPOINT, ONE_SIGNAL_APP_ID } from "./env";
+import {
+  ENDPOINT,
+  FLAGSMITH_ENDPOINT,
+  ONE_SIGNAL_APP_ID,
+  POSTHOG_ENDPOINT,
+  POSTHOG_KEY,
+} from "./env";
 import { useEffect } from "react";
 import AppUrlListener from "./AppUrlListener";
 import AdminLifestyleTemplates from "./pages/admin/AdminLifestyleTemplates";
@@ -89,6 +95,10 @@ import Channel from "./pages/learn/Channel";
 import Recipes from "./pages/recipes/Recipes";
 import CreateRecipe from "./pages/recipes/CreateRecipe";
 import RecipeViewer from "./pages/recipes/RecipeViewer";
+import { PostHogProvider } from "posthog-js/react";
+import posthog from "posthog-js";
+import AdminRecipeDashboard from "./pages/admin/AdminRecipeDashboard";
+import AdminEcoProjectsDashboard from "./pages/admin/AdminEcoProjectsDashboard";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -177,6 +187,8 @@ export default function App() {
       "/admin/lifestyle-templates": AdminLifestyleTemplates,
       "/admin/support-requests": AdminSupportRequestsDashboard,
       "/admin/support-requests/:id": AdminSupportRequestDashboard,
+      "/admin/recipes": AdminRecipeDashboard,
+      "/admin/eco-projects": AdminEcoProjectsDashboard,
       "/learn": flags.videos.enabled ? Videos : NotFound,
       "/learn/channels": flags.video_category_channels.enabled
         ? Channels
@@ -278,36 +290,57 @@ export default function App() {
     [key: string]: any;
   }>({});
 
+  useEffect(() => {
+    if (loaded && loggedIn) {
+      posthog?.identify(userInfo.email, {
+        name: userInfo.firstName + " " + userInfo.lastName,
+        email: userInfo.email,
+        username: userInfo.username,
+      });
+    }
+  }, [loaded, loggedIn]);
+
   return (
     <>
-      <ChakraProvider theme={theme}>
-        <div id={"__chakra-manual-mount-point-do-not-use"} />
-        <IonApp>
-          <IonReactRouter>
-            <AppUrlListener />
-            <Switch>
-              <Redirect to={"/onboarding"} from={"/"} exact />
-              {Object.keys(routes).map((route) => {
-                const Component = routes[route];
-                return (
-                  <Route
-                    exact
-                    path={route}
-                    render={(props) => {
-                      return (
-                        <Component key={props.location.key} socket={socket} />
-                      );
-                    }}
-                  />
-                );
-              })}
-              <Route>
-                <NotFound />
-              </Route>
-            </Switch>
-          </IonReactRouter>
-        </IonApp>
-      </ChakraProvider>
+      <PostHogProvider
+        apiKey={POSTHOG_KEY}
+        options={{
+          api_host: POSTHOG_ENDPOINT,
+          loaded: (posthog) => {
+            if (process.env.NODE_ENV === "development") posthog.debug();
+          },
+          autocapture: true,
+        }}
+      >
+        <ChakraProvider theme={theme}>
+          <div id={"__chakra-manual-mount-point-do-not-use"} />
+          <IonApp>
+            <IonReactRouter>
+              <AppUrlListener />
+              <Switch>
+                <Redirect to={"/onboarding"} from={"/"} exact />
+                {Object.keys(routes).map((route) => {
+                  const Component = routes[route];
+                  return (
+                    <Route
+                      exact
+                      path={route}
+                      render={(props) => {
+                        return (
+                          <Component key={props.location.key} socket={socket} />
+                        );
+                      }}
+                    />
+                  );
+                })}
+                <Route>
+                  <NotFound />
+                </Route>
+              </Switch>
+            </IonReactRouter>
+          </IonApp>
+        </ChakraProvider>
+      </PostHogProvider>
     </>
   );
 }

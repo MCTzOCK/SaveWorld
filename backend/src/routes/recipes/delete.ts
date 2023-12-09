@@ -34,7 +34,7 @@ export default async function (req: Request, res: Response) {
       return;
     }
 
-    if (recipe.created_by !== user.username) {
+    if (user.role !== "admin" && recipe.created_by !== user.username) {
       res.status(401).json({ error: "Unauthorized" });
       return;
     }

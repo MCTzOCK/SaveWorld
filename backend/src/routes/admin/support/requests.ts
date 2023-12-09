@@ -25,7 +25,7 @@ export default async function (req: Request, res: Response) {
       return;
     }
 
-    const PAGE_SIZE = 4;
+    const PAGE_SIZE = 10;
     const page = req.query.page ? parseInt(req.query.page.toString()) : 0;
 
     const entries = await SupportRequestModel.find({});

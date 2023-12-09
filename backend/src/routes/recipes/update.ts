@@ -30,11 +30,15 @@ export default async function (req: Request, res: Response) {
 
     const recipe = await RecipeModel.findOne({
       _id: id,
-      created_by: user.username,
     });
 
     if (!recipe) {
       res.status(404).json({ error: "Recipe not found" });
+      return;
+    }
+
+    if (user.role !== "admin" && recipe.created_by !== user.username) {
+      res.status(403).json({ error: "Unauthorized" });
       return;
     }
 

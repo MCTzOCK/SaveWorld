@@ -11,210 +11,38 @@
 import * as React from "react";
 import Page from "../../components/Page";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
-import { useEffect, useState } from "react";
-import {
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonItem,
-  IonList,
-  IonSpinner,
-  IonText,
-} from "@ionic/react";
-import { REST } from "@saveworld/api-js";
-import PopupManager from "../../util/PopupManager";
-import { Grid } from "@chakra-ui/react";
 import MobileBox from "../../components/MobileBox";
+import AdminStats from "../../components/AdminStats";
+import AdminInternTools from "../../components/AdminInternTools";
+import { Heading } from "@chakra-ui/react";
+import AdminTools from "../../components/AdminTools";
+import { IonSearchbar } from "@ionic/react";
 
 export default function AdminDashboard() {
   useRedirectForAnon({
     onlyAdmins: true,
   });
 
-  const [stats, setStats] = useState<{
-    users: {
-      count: number;
-      inLastWeek: number;
-      active: number;
-    };
-  }>({
-    users: {
-      count: 0,
-      inLastWeek: 0,
-      active: 0,
-    },
-  });
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    REST.Admin.stats(localStorage.getItem("token") as string).then((res) => {
-      if (res.status === 200) {
-        setStats(res.payload.stats);
-      } else {
-        PopupManager.alert({
-          title: "Fehler",
-          description:
-            "Fehler beim Laden der Statistiken: " + res.payload.error,
-        });
-      }
-      setLoading(false);
-    });
-  }, []);
+  const [query, setQuery] = React.useState<string>("");
 
   return (
     <>
       <Page title={"Admin"} redGradient>
-        {loading && (
-          <>
-            <div
-              style={{
-                display: "flex",
-                width: "100%",
-                height: "50vh",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <IonSpinner />
-            </div>
-          </>
-        )}
-        {!loading && (
-          <>
-            <Grid
-              templateColumns={[
-                "repeat(1, 1fr)",
-                "repeat(2, 1fr)",
-                "repeat(3, 1fr)",
-                "repeat(4, 1fr)",
-              ]}
-            >
-              <IonCard>
-                <IonCardHeader>
-                  <IonCardTitle>Willkommen</IonCardTitle>
-                  <IonCardSubtitle>Angepinnt - Admin Dashboard</IonCardSubtitle>
-                </IonCardHeader>
-                <IonCardContent>
-                  <IonText>
-                    Mit dem Admin Dashboard kannst du die Nutzer verwalten und
-                    Statistiken einsehen. Doch Vorsicht: Mit großer Macht kommt
-                    große Verantwortung!
-                  </IonText>
-                </IonCardContent>
-              </IonCard>
-              <IonCard color={"danger"} routerLink={"/admin/users"}>
-                <IonCardHeader>
-                  <IonCardTitle>Benutzer</IonCardTitle>
-                </IonCardHeader>
-                <IonCardContent>
-                  <IonText>
-                    Aktuell sind <b>{stats.users.count}</b> Benutzer
-                    registriert. Davon haben sich{" "}
-                    <b>{stats.users.inLastWeek}</b> in den letzten 7 Tagen
-                    registriert. <b>{stats.users.active}</b>&nbsp;
-                    Benutzerkonten sind aktiviert.
-                  </IonText>
-                </IonCardContent>
-              </IonCard>
-              <IonCard color={"danger"} routerLink={"/admin/content"}>
-                <IonCardHeader>
-                  <IonCardTitle>Inhalte</IonCardTitle>
-                </IonCardHeader>
-                <IonCardContent>
-                  <IonText>
-                    Verwalte die Inhalte der App. Du kannst hier neue Inhalte
-                    erstellen, bearbeiten und löschen.
-                  </IonText>
-                </IonCardContent>
-              </IonCard>
-              <IonCard
-                color={"danger"}
-                routerLink={"/admin/lifestyle-templates"}
-              >
-                <IonCardHeader>
-                  <IonCardTitle>Lifestyle Vorlagen</IonCardTitle>
-                </IonCardHeader>
-                <IonCardContent>
-                  <IonText>
-                    Verwalte die Vorlagen für die Eingabe des Lifestyles eines
-                    Benutzers.
-                  </IonText>
-                </IonCardContent>
-              </IonCard>
-              <IonCard color={"danger"} routerLink={"/admin/support-requests"}>
-                <IonCardHeader>
-                  <IonCardTitle>Support</IonCardTitle>
-                </IonCardHeader>
-                <IonCardContent>
-                  <IonText>Bearbeite Support Anfragen.</IonText>
-                </IonCardContent>
-              </IonCard>
-            </Grid>
-            <IonList
-              inset
-              style={{
-                background: "transparent",
-              }}
-            >
-              Interne Werkzeuge:
-            </IonList>
-            <IonList inset>
-              <IonItem
-                color={"light"}
-                href={"https://s3.ben-siebert.com"}
-                target={"_blank"}
-              >
-                S3-Admin
-              </IonItem>
-              <IonItem
-                color={"light"}
-                href={"https://portainer.cluster.ben-siebert.com"}
-                target={"_blank"}
-              >
-                Docker-Admin
-              </IonItem>
-              <IonItem
-                color={"light"}
-                href={"https://http.cluster.ben-siebert.com"}
-                target={"_blank"}
-              >
-                Reverse Proxy
-              </IonItem>
-              <IonItem
-                color={"light"}
-                href={"https://status.saveworld.one"}
-                target={"_blank"}
-              >
-                Server Status
-              </IonItem>
-              <IonItem
-                color={"light"}
-                href={
-                  "https://dashboard.onesignal.com/apps/7575751a-432d-44b0-baa2-84dcfc925f45"
-                }
-                target={"_blank"}
-              >
-                OneSignal (Push)
-              </IonItem>
-              <IonItem
-                color={"light"}
-                href={"https://features.saveworld.one"}
-                target={"_blank"}
-              >
-                Features
-              </IonItem>
-              <IonItem
-                color={"light"}
-                href={"https://content.saveworld.one"}
-                target={"_blank"}
-              >
-                Content
-              </IonItem>
-            </IonList>
-          </>
-        )}
+        <MobileBox bg={"#101010"}>
+          <IonSearchbar
+            placeholder={"Suchen"}
+            value={query}
+            onIonInput={(e) => {
+              setQuery(e.detail.value!!);
+            }}
+            style={{
+              padding: 0,
+            }}
+          />
+          <AdminStats query={query} />
+          <AdminTools query={query} />
+          <AdminInternTools query={query} />
+        </MobileBox>
       </Page>
     </>
   );
