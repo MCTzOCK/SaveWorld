@@ -99,6 +99,8 @@ import { PostHogProvider } from "posthog-js/react";
 import posthog from "posthog-js";
 import AdminRecipeDashboard from "./pages/admin/AdminRecipeDashboard";
 import AdminEcoProjectsDashboard from "./pages/admin/AdminEcoProjectsDashboard";
+import CO2LongDistanceTrain from "./pages/tools/CO2LongDistanceTrain";
+import Calculator from "./components/Calculator";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -241,6 +243,9 @@ export default function App() {
       "/tools/co2/car": flags.tools_co2_calc.enabled ? CO2Car : NotFound,
       "/tools/co2/e-car": flags.tools_co2_calc.enabled ? CO2ECar : NotFound,
       "/tools/co2/h-car": flags.tools_co2_calc.enabled ? CO2HCar : NotFound,
+      "/tools/co2/long-distance-train": flags.tools_co2_calc.enabled
+        ? CO2LongDistanceTrain
+        : NotFound,
       "/quizzes": flags.quizzes.enabled ? Quizzes : NotFound,
       "/sustainability": flags.sustainability_articles.enabled
         ? Sustainability
