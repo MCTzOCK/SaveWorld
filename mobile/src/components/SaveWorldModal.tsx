@@ -35,10 +35,10 @@ export default function SaveWorldModal(props: {
       >
         <ModalOverlay />
         <ModalContent bgColor={"#121212"}>
-          <ModalHeader fontWeight={900} color={"brand.500"} mt={10}>
+          <ModalHeader fontWeight={900} color={"brand.500"} mt={"1rem"}>
             {props.title}
           </ModalHeader>
-          <ModalCloseButton mt={10} />
+          <ModalCloseButton mt={"1rem"} />
           <ModalBody>{props.children}</ModalBody>
         </ModalContent>
       </Modal>
