@@ -1,6 +1,6 @@
 {
   "name": "@saveworld/api-js",
-  "version": "1.0.67",
+  "version": "1.0.68",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc --project tsconfig.json",
@@ -15,8 +15,7 @@
     "url": "https://ben-siebert.com"
   },
   "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.coolescoden.de/"
+    "access": "public"
   },
   "dependencies": {
     "byte-size": "^8.1.1",
