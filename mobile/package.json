@@ -9,9 +9,6 @@
     "preview": "vite preview",
     "lint": "eslint"
   },
-  "publishConfig": {
-    "registry": "https://npm.ben-siebert.com/"
-  },
   "dependencies": {
     "@capacitor/android": "5.2.3",
     "@capacitor/app": "^5.0.6",
