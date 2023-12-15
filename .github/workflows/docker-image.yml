@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build backend --file backend/Dockerfile --tag registry.ben-siebert.com/ben/saveworld-backend:latest && docker push registry.ben-siebert.com/ben/saveworld-backend:latest
+      run: docker build backend --file backend/Dockerfile --tag registry.coolescoden.de/ben/saveworld-backend:latest && docker push registry.coolescoden.de/ben/saveworld-backend:latest
