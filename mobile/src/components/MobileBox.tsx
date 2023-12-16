@@ -24,7 +24,7 @@ export default function MobileBox(props: {
         alignItems={["flex-start", "center"]}
       >
         <Box
-          backgroundColor={props.bg ? props.bg : "gray.900"}
+          //backgroundColor={props.bg ? props.bg : "gray.900"}
           borderRadius={"12px"}
           border={"0px solid rgba(40,40,40,1)"}
           w={["100%", "95%", "90%", "80%", "50%"]}

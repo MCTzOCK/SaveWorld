@@ -67,6 +67,7 @@ import {
   Flex,
   Heading,
   IconButton,
+  Link,
   useDisclosure,
 } from "@chakra-ui/react";
 import { theme } from "../theme/chakra";
@@ -118,6 +119,7 @@ export default function Page(props: {
             justifyContent={"space-between"}
             alignItems={"center"}
             backgroundColor={"#121212"}
+            borderBottom={"3px solid rgba(40,40,40,1)"}
             pl={4}
             pr={4}
             pt={["1rem", 0]}
