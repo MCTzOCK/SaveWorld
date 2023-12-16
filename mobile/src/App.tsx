@@ -160,7 +160,7 @@ export default function App() {
     }
     try {
       if (!isPlatform("desktop")) {
-        OneSignal.init(ONE_SIGNAL_APP_ID);
+        OneSignal.initialize(ONE_SIGNAL_APP_ID);
 
         OneSignal.Notifications.requestPermission();
         if (loaded && loggedIn) {
