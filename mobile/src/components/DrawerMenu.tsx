@@ -251,6 +251,13 @@ export default function DrawerMenu(props: {
               router.push("/sustainability", "none", "replace");
             },
           },
+          {
+            label: "Artikel",
+            icon: <BiFile />,
+            onClick: () => {
+              router.push("/sustainability/articles", "none", "replace");
+            },
+          },
         ],
       });
     }

@@ -73,6 +73,17 @@ const calculators: {
       "Rechne aus, wie viel CO2 du mit deinem Wasserstoff Auto auf einer bestimmten Strecke, durch den Wasserstoffverbrauch, ausstößt.",
     url: "/tools/co2/h-car",
   },
+  {
+    title: "Fernverkehr Zug (ICE, IC, etc)",
+    image: {
+      url: "/assets/calculator/co2/long-distance-train.jpg",
+      cpr: "Unsplash, Daniel Abadia",
+    },
+    cpr: "Quarks",
+    description:
+      "Rechne aus, wie viel CO2-Ausstoß du auf deiner Reise mit dem Fernverkehrszug verursachst.",
+    url: "/tools/co2/long-distance-train",
+  },
 ];
 
 export default function C02() {
