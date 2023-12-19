@@ -75,6 +75,7 @@ import DrawerMenu from "./DrawerMenu";
 import FloatingNavbar from "./FloatingNavbar";
 import { useFlags } from "flagsmith/react";
 import { FaBars } from "react-icons/fa6";
+import { FaHome } from "react-icons/fa";
 
 export default function Page(props: {
   title: string;
@@ -134,6 +135,16 @@ export default function Page(props: {
             </Heading>
             <ButtonGroup>
               {props.endButtons}
+              <IconButton
+                size={"lg"}
+                onClick={() => {
+                  router.push("/");
+                }}
+                icon={<FaHome />}
+                aria-label={"Home"}
+                variant={"ghost"}
+                color={props.redGradient ? "red.500" : "brand.500"}
+              />
               <IconButton
                 size={"lg"}
                 onClick={onOpen}
