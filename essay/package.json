@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "latex:compile": "cd src && pdflatex -output-directory ../pdf -job-name \"Schriftliche Arbeit - SaveWorld\" main.tex && cd ..",
-    "build": "npm run latex:compile && npm run latex:compile && npm run latex:compile"
+    "build": "npm run latex:compile && npm run latex:compile && npm run latex:compile",
+    "build:docx": "npm run build && node scripts/convert-docx.js"
   },
   "keywords": [],
   "author": {
@@ -12,5 +13,9 @@
     "name": "Ben Siebert",
     "url": "https://ben-siebert.com"
   },
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "puppeteer": "^21.6.1"
+  }
 }
