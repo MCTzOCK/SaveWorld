@@ -11,13 +11,54 @@
     \chapter{Vorgehensweisen, Materialien und Methoden}
     SaveWorld besteht aus mehreren Komponenten, die alle miteinander interagieren.
     Die beiden Hauptkomponenten sind die App (Frontend) und der Server (Backend).
-    F\"ur die Verwirklichung der App wird das Framework Ionic mit einer angepassten Design Bibliothek verwendet.
-    Ionic ist ein Framework für sogenante Hybrid-Apps, welche auf allen gängigen Plattformen laufen.
-    Das Backend wurde mit dem Express Framework für Node.js entwickelt.
-    Die Kommunikation zwischen Backend und Frontend verläuft zum Großteil über eine REST-API\footnote{
-        REST steht für \dq Representational State Transfer\dq\ und ist ein Paradigma der Softwarearchitektur,
-        welches das Verhalten des World Wide Webs abstrahiert, damit es den Anforderungen des modernen Webs besser genügt.
-    }.
-    Damit die Verwendung dieser REST-API in der App einfacher und einheitlicher ist,
-    wurde ein Software Development Kit (SDK) für die Programmiersprache JavaScript entwickelt.
+    Sämtliche Komponenten sind mit der Programmiersprache TypeScript entwickelt, welche ein Super-Set von JavaScript ist
+    und die statische Typisierung von Variablen ermöglicht.
+
+
+    \section{Frontend}
+    Das Frontend ist die App, welche die Nutzer verwenden.
+    Diese ist mit dem Framework Ionic entwickelt worden, welches die Erstellung von Hybrid-Apps ermöglicht.
+    Hybrid-Apps sind Apps, die auf allen gängigen Plattformen laufen, da sie mit Webtechnologien entwickelt werden.
+    Die App verwendet die Benutzeroberflächen Bibliothek React mit dem Design Framework Chakra-UI.
+    Dieser Aufbau ermöglicht ein reaktives Nutzererlebnis, da sich die App automatisch aktualisiert, wenn sich der Zustand ändert.
+    Um mit dem Backend zu kommunizieren, wird eine auf dem REST-Prinzip basierende Programmierschnittstelle f\"ur die Programmiersprache JavaScript verwendet.
+
+
+    \section{Backend}
+    Das Backend ist die Schnittstelle zwischen der App und der Datenbank.
+    Es wurde mit express.js entwickelt und bietet neben der REST-API auch eine WebSocket-Schnittstelle an,
+    welche für die Echtzeit Kommunikation im Forum verwendet wird.
+    F\"ur die Speicherung von Daten wird eine MongoDB Datenbank verwendet.
+    S\"amtliche hochgeladenen Dateien, wie Profilbilder, werden in einem S3-kompatiblen Object Storage gespeichert.
+    Um Push-Benachrichtigungen an die App zu senden, wird der Dritt-Anbieter OneSignal verwendet.
+
+
+    \section{Inhalte}
+
+
+    \section{Infrastruktur und Softwareverteilung}
+    Das Konzept von SaveWorld sieht vor, bestimmte Funktionen auf verschiedene Server zu verteilen, damit
+    die Last besser verteilt werden kann.
+    So wird beispielsweise die Datenbank auf einem eigenen Server bereitgestellt, um die Daten von der App zu trennen.
+    Ebenfalls werden verschiedene Funktionen zu Drittanbieter Projekten ausgelagert, um die Entwicklung zu beschleunigen.
+    Dies betrifft folgende Funktionen:
+    \begin{itemize}
+        \item \textbf{Geo-Daten}: Die Geo-Daten werden von einer selbst gehosteten Instanz von Nominatim bereitgestellt.
+        \item \textbf{Artikel-Verwaltung}: Die Artikel werden mit dem Open-Source Content-Management-System Directus verwaltet.
+        \item \textbf{Karten}: Die Darstellung von Karten wird mittels Apple Maps realisiert.
+        \item \textbf{Push-Benachrichtigungen}: Die Push-Benachrichtigungen werden von OneSignal bereitgestellt.
+        \item \textbf{Feature-Flags}: Die Feature-Flags werden von Flagsmith verwaltet.
+    \end{itemize}
+    Alle weiteren Funktionen der Anwendung wurden mit Ausnahme der Open-Source Bibliotheken selbst entwickelt.
+
+
+    \section{Probleme}
+    Zu Problemen kam es vor allem bei der Integration von OneSignal, da das Signieren
+    der App für den Apple App Store nicht mit dem zuvor verwendeten Signierungsverfahren
+    kompatibel war.
+    Des Weiteren gab es Schwierigkeiten bei der Auswahl des Inhalts-Verwaltungs-Systems,
+    da die meisten Systeme nicht mit den Ansprüchen von SaveWorld übereinstimmten.
+    Hierbei war vor allem die Anforderung, dass das System eine gut dokumentierte API
+    bereitstellen muss, um die Inhalte in der App anzeigen zu können, ein Problem.
+
 \end{document}
