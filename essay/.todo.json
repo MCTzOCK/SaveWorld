@@ -1,0 +1,68 @@
+{
+  "sections": [
+    {
+      "section": "Projektüberblick",
+      "finished": true,
+      "notes": [],
+      "pages": 1
+    },
+    {
+      "section": "Inhaltsverzeichnis",
+      "finished": true,
+      "notes": [
+        "Automatische Generierung"
+      ],
+      "pages": 1
+    },
+    {
+      "section": "1. Fachliche Kurzfassung",
+      "finished": true,
+      "notes": [],
+      "pages": 1
+    },
+    {
+      "section": "2. Motivation und Fragestellung",
+      "finished": false,
+      "notes": [
+        "Ist zum aktuellen Zeitpunkt (21.12.2023) nicht lang genug"
+      ],
+      "pages": 2
+    },
+    {
+      "section": "3. Hintergrund und theoretische Grundlagen",
+      "finished": false,
+      "notes": [],
+      "pages": 1
+    },
+    {
+      "section": "4. Vorgehensweise, Materialien und Methoden",
+      "finished": false,
+      "notes": [],
+      "pages": 2
+    },
+    {
+      "section": "5. Ergebnisse",
+      "finished": false,
+      "notes": [],
+      "pages": 4
+    },
+    {
+      "section": "6. Ergebnisdiskussion",
+      "finished": false,
+      "notes": [],
+      "pages": 3
+    },
+    {
+      "section": "7. Fazit und Ausblick",
+      "finished": false,
+      "notes": [],
+      "pages": 1
+    },
+    {
+      "section": "8. Quellen- und Literaturverzeichnis",
+      "finished": false,
+      "notes": [],
+      "pages": 1
+    }
+  ]
+}
