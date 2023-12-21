@@ -8,5 +8,16 @@
 
 % Document
 \begin{document}
-	\chapter{Vorgehensweisen, Materialien und Methoden}
+    \chapter{Vorgehensweisen, Materialien und Methoden}
+    SaveWorld besteht aus mehreren Komponenten, die alle miteinander interagieren.
+    Die beiden Hauptkomponenten sind die App (Frontend) und der Server (Backend).
+    F\"ur die Verwirklichung der App wird das Framework Ionic mit einer angepassten Design Bibliothek verwendet.
+    Ionic ist ein Framework für sogenante Hybrid-Apps, welche auf allen gängigen Plattformen laufen.
+    Das Backend wurde mit dem Express Framework für Node.js entwickelt.
+    Die Kommunikation zwischen Backend und Frontend verläuft zum Großteil über eine REST-API\footnote{
+        REST steht für \dq Representational State Transfer\dq\ und ist ein Paradigma der Softwarearchitektur,
+        welches das Verhalten des World Wide Webs abstrahiert, damit es den Anforderungen des modernen Webs besser genügt.
+    }.
+    Damit die Verwendung dieser REST-API in der App einfacher und einheitlicher ist,
+    wurde ein Software Development Kit (SDK) für die Programmiersprache JavaScript entwickelt.
 \end{document}
