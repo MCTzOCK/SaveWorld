@@ -6,7 +6,13 @@
 \ProvidesPackage{lib/custom}[custom package]
 
 \usepackage{titlesec}
+\usepackage{xstring}
+\usepackage{catchfile}
+\CatchFileDef{\HEAD}{../../.git/refs/heads/main}{}
 
 \newcommand{\bslinespacing}[1]{\renewcommand{\baselinestretch}{#1}\normalsize}
 \newcommand{\bsremovechaptertitle}{\titleformat{\chapter}{\normalfont\LARGE}{\thechapter.}{15pt}{\LARGE}\titlespacing*{\chapter}{0pt}{*0}{10pt}}
 \newcommand{\bscite}[1]{\citeauthor{#1}: \citetitle{#1} (Stand: \citedate{#1}) \citeurl{#1}}
+\newcommand{\gitrevision}{%
+    \StrLeft{\HEAD}{7}%
+}
