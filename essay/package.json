@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "latex:compile": "cd src && pdflatex -output-directory ../pdf -job-name \"Schriftliche Arbeit - SaveWorld\" main.tex && cd ..",
-    "build": "npm run latex:compile && npm run latex:compile && npm run latex:compile",
+    "latex:compile": "cd src && pdflatex -output-directory ../pdf -job-name \"SaveWorld\" main.tex && cd ..",
+    "biber:compile": "cd src && biber ../pdf/SaveWorld && cd ..",
+    "build": "rimraf pdf && npm run latex:compile && npm run biber:compile && npm run latex:compile && npm run latex:compile",
     "build:docx": "npm run build && node scripts/convert-docx.js"
   },
   "keywords": [],
@@ -16,6 +17,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "dotenv": "^16.3.1",
-    "puppeteer": "^21.6.1"
+    "puppeteer": "^21.6.1",
+    "rimraf": "^5.0.5"
   }
 }

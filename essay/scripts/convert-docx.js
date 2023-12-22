@@ -43,10 +43,7 @@ const puppeteer = require("puppeteer");
   await page.waitForSelector("input[type=file]");
 
   const inputUploadHandle = await page.$("input[type=file]");
-  let fileToUpload = path.join(
-    __dirname,
-    "../pdf/Schriftliche Arbeit - SaveWorld.pdf",
-  );
+  let fileToUpload = path.join(__dirname, "../pdf/SaveWorld.pdf");
 
   await inputUploadHandle.uploadFile(fileToUpload);
   const client = await page.target().createCDPSession();
