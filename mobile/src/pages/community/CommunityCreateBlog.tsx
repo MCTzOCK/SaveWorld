@@ -37,6 +37,8 @@ import PopupManager from "../../util/PopupManager";
 import MDEditor from "@uiw/react-md-editor";
 import MobileBox from "../../components/MobileBox";
 import { Button } from "@chakra-ui/react";
+import { uploadImage } from "../../util/files";
+import { ENDPOINT } from "../../env";
 
 export default function CommunityCreateBlog() {
   useRedirectForAnon();
@@ -47,6 +49,7 @@ export default function CommunityCreateBlog() {
   const router = useIonRouter();
 
   const [preview, setPreview] = React.useState<boolean>(false);
+  const [metadata, setMetadata] = React.useState<any>({});
 
   return (
     <>
@@ -121,6 +124,19 @@ export default function CommunityCreateBlog() {
             type={"text"}
             onIonInput={(e) => setTags(e.detail.value!)}
           />
+          <Button
+            color={"brand.500"}
+            onClick={async () => {
+              uploadImage((url) => {
+                setV(v + "\n![Bild](" + ENDPOINT + url + ")");
+              });
+            }}
+            w={"100%"}
+            marginBottom={4}
+            marginTop={2}
+          >
+            Bild hinzufügen
+          </Button>
           <IonSegment
             value={preview ? "preview" : "edit"}
             style={{
