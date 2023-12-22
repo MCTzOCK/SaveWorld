@@ -39,6 +39,7 @@ export default function ChatMessage(props: {
                 w={"100%"}
                 maxW={"300px"}
                 src={ENDPOINT + props.content.split("\0")[1]}
+                rounded={"lg"}
               />
             ) : (
               <Text fontSize={"md"}>{props.content}</Text>
