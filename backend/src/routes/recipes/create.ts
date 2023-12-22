@@ -25,13 +25,14 @@ export default async function (req: Request, res: Response) {
       return;
     }
 
-    const { title, steps, ingredients } = req.body;
+    const { title, steps, ingredients, image } = req.body;
 
     const recipe = await RecipeModel.create({
       created_by: user.username,
       title,
       steps,
       ingredients,
+      image,
     });
 
     res.status(200).json(recipe);

@@ -35,6 +35,7 @@ export default function MyRecipes() {
       created_by: string;
       steps: string[];
       ingredients: string[];
+      image: string;
     }[]
   >([]);
   const [pages, setPages] = React.useState(0);
@@ -79,12 +80,7 @@ export default function MyRecipes() {
         }}
       />
       <Grid
-        templateColumns={[
-          "repeat(1, 1fr)",
-          "repeat(2, 1fr)",
-          "repeat(3, 1fr)",
-          "repeat(4, 1fr)",
-        ]}
+        templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
         gap={4}
       >
         {recipes.map((r) => {
@@ -96,6 +92,11 @@ export default function MyRecipes() {
               p={4}
               as={Link}
               href={"/recipes/" + r._id}
+              backgroundImage={ENDPOINT + r.image}
+              backgroundPosition={"center"}
+              backgroundRepeat={"no-repeat"}
+              backgroundSize={"cover"}
+              minH={"200px"}
             >
               <Flex
                 w={"100%"}
@@ -103,8 +104,16 @@ export default function MyRecipes() {
                 alignItems={"center"}
                 justifyContent={"space-between"}
                 gap={4}
+                h={"100%"}
               >
-                <Heading fontSize={"xl"}>{r.title}</Heading>
+                <Heading
+                  fontSize={"xl"}
+                  backgroundColor={"rgba(0,0,0,0.5)"}
+                  p={2}
+                  rounded={"lg"}
+                >
+                  {r.title}
+                </Heading>
                 <Stack>
                   <VStack>
                     <Avatar
@@ -113,8 +122,15 @@ export default function MyRecipes() {
                         "/media/profile-picture-username/" +
                         r.created_by
                       }
+                      size={"lg"}
                     />
-                    <Text>@{r.created_by}</Text>
+                    <Text
+                      backgroundColor={"rgba(0,0,0,0.5)"}
+                      p={1}
+                      rounded={"lg"}
+                    >
+                      @{r.created_by}
+                    </Text>
                   </VStack>
                 </Stack>
               </Flex>

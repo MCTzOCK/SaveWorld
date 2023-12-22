@@ -12,12 +12,15 @@ import * as React from "react";
 import Page from "../../components/Page";
 import MobileBox from "../../components/MobileBox";
 import {
+  Box,
   Button,
+  Flex,
   FormControl,
   FormLabel,
   Grid,
   Heading,
   IconButton,
+  Image,
   Input,
   InputGroup,
   InputLeftAddon,
@@ -37,11 +40,14 @@ import PopupManager from "../../util/PopupManager";
 import { useParams } from "react-router";
 import { useEffect } from "react";
 import RecipeModal from "../../components/RecipeModal";
+import { uploadImage } from "../../util/files";
+import { ENDPOINT } from "../../env";
 
 export default function CreateRecipe() {
   const [title, setTitle] = React.useState<string>("");
   const [ingredients, setIngredients] = React.useState<string[]>([]);
   const [steps, setSteps] = React.useState<string[]>([]);
+  const [image, setImage] = React.useState<string>("");
   const [recipeIdToUpdate, setRecipeIdToUpdate] = React.useState<string | null>(
     null,
   );
@@ -56,6 +62,7 @@ export default function CreateRecipe() {
       setTitle(data.title);
       setIngredients(data.ingredients);
       setSteps(data.steps);
+      setImage(data.image);
 
       if (usp.get("saveworld.data.recipe.id")) {
         setRecipeIdToUpdate(usp.get("saveworld.data.recipe.id") as string);
@@ -68,6 +75,29 @@ export default function CreateRecipe() {
       <Page title={recipeIdToUpdate ? "Rezept bearbeiten" : "Neues Rezept"}>
         <MobileBox padding={"4"}>
           <Stack gap={8}>
+            <Flex w={"100%"} alignItems={"center"} justifyContent={"center"}>
+              <Box
+                backgroundImage={ENDPOINT + image}
+                w={"300px"}
+                h={"200px"}
+                backgroundPosition={"center"}
+                backgroundRepeat={"no-repeat"}
+                backgroundSize={"cover"}
+                rounded={"xl"}
+                shadow={"xl"}
+              />
+            </Flex>
+            <Button
+              color={"brand.500"}
+              w={"100%"}
+              onClick={async () => {
+                uploadImage((url) => {
+                  setImage(url);
+                });
+              }}
+            >
+              Bild bearbeiten
+            </Button>
             <FormControl>
               <FormLabel>Titel</FormLabel>
               <InputGroup>
@@ -171,6 +201,7 @@ export default function CreateRecipe() {
                     title,
                     steps,
                     ingredients,
+                    image,
                   );
 
                   if (res.status === 200) {
@@ -194,6 +225,7 @@ export default function CreateRecipe() {
                     title,
                     steps,
                     ingredients,
+                    image,
                   );
 
                   if (res.status === 200) {

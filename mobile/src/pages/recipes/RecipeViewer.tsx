@@ -26,10 +26,12 @@ import PopupManager from "../../util/PopupManager";
 import MobileBox from "../../components/MobileBox";
 import {
   Accordion,
+  Box,
   Button,
   ButtonGroup,
   Flex,
   IconButton,
+  Image,
   ListItem,
   OrderedList,
   Text,
@@ -42,6 +44,7 @@ import { FaShare, FaShareAlt, FaShareSquare } from "react-icons/fa";
 import { Share } from "@capacitor/share";
 import RecipeModal from "../../components/RecipeModal";
 import { useUserData } from "../../hooks/useUserData";
+import { ENDPOINT } from "../../env";
 
 export default function RecipeViewer() {
   const { userInfo, loggedIn } = useUserData();
@@ -53,6 +56,7 @@ export default function RecipeViewer() {
     created_by: string;
     steps: string[];
     ingredients: string[];
+    image: string;
   } | null>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -97,6 +101,19 @@ export default function RecipeViewer() {
     <>
       <Page title={recipe.title}>
         <MobileBox padding={"4"}>
+          <Flex w={"100%"} alignItems={"center"} justifyContent={"center"}>
+            <Box
+              backgroundImage={ENDPOINT + recipe.image}
+              mb={4}
+              w={"300px"}
+              h={"200px"}
+              backgroundPosition={"center"}
+              backgroundRepeat={"no-repeat"}
+              backgroundSize={"cover"}
+              rounded={"xl"}
+              shadow={"xl"}
+            />
+          </Flex>
           {loggedIn && userInfo.username === recipe.created_by ? (
             <ButtonGroup mb={4} w={"100%"}>
               <Button
@@ -107,10 +124,12 @@ export default function RecipeViewer() {
                     title: string;
                     ingredients: string[];
                     steps: string[];
+                    image: string;
                   } = {
                     title: recipe.title,
                     ingredients: recipe.ingredients,
                     steps: recipe.steps,
+                    image: recipe.image,
                   };
 
                   const b64 = btoa(JSON.stringify(data));
