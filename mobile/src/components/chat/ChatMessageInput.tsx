@@ -7,7 +7,7 @@
  * Created At: 07.10.23
  *
  */
-import { IconButton, Input, Textarea } from "@chakra-ui/react";
+import { Flex, IconButton, Input, Textarea } from "@chakra-ui/react";
 import { FaPaperPlane } from "react-icons/fa6";
 import { FaImage } from "react-icons/fa";
 import { uploadImage } from "../../util/files";
@@ -37,24 +37,26 @@ export default function ChatMessageInput(props: {
             placeholder={"Nachricht"}
             colorScheme={"brand"}
           />
-          <IconButton
-            aria-label={"senden"}
-            icon={<FaPaperPlane />}
-            color={"brand.500"}
-            variant={"ghost"}
-            type={"submit"}
-          />
-          <IconButton
-            aria-label={"Bild einfügen"}
-            icon={<FaImage />}
-            color={"brand.500"}
-            variant={"ghost"}
-            onClick={async () => {
-              uploadImage((url) => {
-                props.onImage(url);
-              });
-            }}
-          />
+          <Flex w={"fit-content"} direction={"column"}>
+            <IconButton
+              aria-label={"senden"}
+              icon={<FaPaperPlane />}
+              color={"brand.500"}
+              variant={"ghost"}
+              type={"submit"}
+            />
+            <IconButton
+              aria-label={"Bild einfügen"}
+              icon={<FaImage />}
+              color={"brand.500"}
+              variant={"ghost"}
+              onClick={async () => {
+                uploadImage((url) => {
+                  props.onImage(url);
+                });
+              }}
+            />
+          </Flex>
         </form>
       </div>
     </div>
