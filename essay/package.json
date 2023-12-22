@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "latex:compile": "cd src && pdflatex -output-directory ../pdf -job-name \"SaveWorld\" main.tex && cd ..",
-    "biber:compile": "cd src && biber ../pdf/SaveWorld && cd ..",
-    "build": "rimraf pdf && npm run latex:compile && npm run biber:compile && npm run latex:compile && npm run latex:compile",
-    "build:docx": "npm run build && node scripts/convert-docx.js"
+    "build:jufo": "node scripts/build.js -t jufo",
+    "build:jufo:docx": "node scripts/build.js -t jufo --docx"
   },
   "keywords": [],
   "author": {
@@ -16,6 +14,7 @@
   },
   "license": "UNLICENSED",
   "dependencies": {
+    "commander": "^11.1.0",
     "dotenv": "^16.3.1",
     "puppeteer": "^21.6.1",
     "rimraf": "^5.0.5"

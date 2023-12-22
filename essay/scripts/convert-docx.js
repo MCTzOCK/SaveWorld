@@ -14,6 +14,13 @@ const path = require("path");
 const fs = require("fs");
 const ppt = require("puppeteer");
 const puppeteer = require("puppeteer");
+const { program } = require("commander");
+
+program.requiredOption("-j, --job <job_name>", "Job Name");
+
+program.parse();
+
+const options = program.opts();
 
 (async () => {
   const browser = await puppeteer.launch({
@@ -43,7 +50,7 @@ const puppeteer = require("puppeteer");
   await page.waitForSelector("input[type=file]");
 
   const inputUploadHandle = await page.$("input[type=file]");
-  let fileToUpload = path.join(__dirname, "../pdf/SaveWorld.pdf");
+  let fileToUpload = path.join(__dirname, `../pdf/${options.job}.pdf`);
 
   await inputUploadHandle.uploadFile(fileToUpload);
   const client = await page.target().createCDPSession();
