@@ -62,6 +62,7 @@ export default function CreateRecipe() {
       setTitle(data.title);
       setIngredients(data.ingredients);
       setSteps(data.steps);
+      setImage(data.image);
 
       if (usp.get("saveworld.data.recipe.id")) {
         setRecipeIdToUpdate(usp.get("saveworld.data.recipe.id") as string);
