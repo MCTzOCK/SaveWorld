@@ -26,7 +26,7 @@ export default async function (req: Request, res: Response) {
     }
 
     const { id } = req.query;
-    const { title, steps, ingredients } = req.body;
+    const { title, steps, ingredients, image } = req.body;
 
     const recipe = await RecipeModel.findOne({
       _id: id,
@@ -45,6 +45,7 @@ export default async function (req: Request, res: Response) {
     recipe.title = title;
     recipe.steps = steps;
     recipe.ingredients = ingredients;
+    recipe.image = image;
 
     await recipe.save();
 
