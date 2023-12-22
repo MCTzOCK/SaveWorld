@@ -1395,12 +1395,14 @@ export class REST {
      * @param title of the recipe
      * @param steps of the recipe
      * @param ingredients of the recipe
+     * @param image of the recipe
      */
     create: async (
       token: string,
       title: string,
       steps: string[],
       ingredients: string[],
+      image: string,
     ) => {
       return await makeRequest({
         path: RESTEnv.API_URL + "/recipes/create",
@@ -1410,6 +1412,7 @@ export class REST {
           title: title,
           steps: steps,
           ingredients: ingredients,
+          image: image,
         },
       });
     },
@@ -1420,6 +1423,7 @@ export class REST {
      * @param title of the recipe
      * @param steps of the recipe
      * @param ingredients of the recipe
+     * @param image of the recipe
      */
     update: async (
       token: string,
@@ -1427,6 +1431,7 @@ export class REST {
       title: string,
       steps: string[],
       ingredients: string[],
+      image: string,
     ) => {
       return await makeRequest({
         path: RESTEnv.API_URL + "/recipes/update?id=" + id,
@@ -1436,6 +1441,7 @@ export class REST {
           title: title,
           steps: steps,
           ingredients: ingredients,
+          image: image,
         },
       });
     },
