@@ -56,7 +56,7 @@ const puppeteer = require("puppeteer");
     downloadPath: path.join(__dirname, "../pdf"),
   });
 
-  await page.waitForTimeout(2000);
+  await page.waitForTimeout(5000);
   //fc-cta-consent
   const [button] = await page.$x(
     "//button[./span[contains(., 'DOWNLOAD')]]",
