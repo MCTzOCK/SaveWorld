@@ -205,6 +205,12 @@ export default function CommunityMessagesChat(props: { socket: Socket }) {
                 content: v,
               });
             }}
+            onImage={(url: string) => {
+              props.socket.emit("sw:chats.messages.create", {
+                chatId: id,
+                content: "image:\0" + url,
+              });
+            }}
           />
         </ChatContainer>
       </Page>
