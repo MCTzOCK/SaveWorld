@@ -27,8 +27,10 @@ import { REST } from "@saveworld/api-js";
 import { useEffect } from "react";
 import MobileBox from "../../components/MobileBox";
 import { ENDPOINT } from "../../env";
+import { IonSearchbar } from "@ionic/react";
 
 export default function Cookbook() {
+  const [query, setQuery] = React.useState<string>("");
   const [recipes, setRecipes] = React.useState<
     {
       _id: string;
@@ -86,8 +88,15 @@ export default function Cookbook() {
         <MobileBox>
           In deinen Kochbuch befinden sich alle Rezepte, die du dir gemerkt
           hast. Aktuell sind es {prefs.cookbookItems.length} Rezepte.
+          <IonSearchbar
+            value={query}
+            onIonInput={(e) => setQuery(e.detail.value!)}
+            style={{
+              padding: 0,
+            }}
+          />
           <Grid
-            mt={4}
+            mt={2}
             templateColumns={[
               "repeat(1, 1fr)",
               "repeat(2, 1fr)",
@@ -95,60 +104,64 @@ export default function Cookbook() {
             ]}
             gap={4}
           >
-            {recipes.map((r) => {
-              return (
-                <Box
-                  bgColor={"gray.900"}
-                  rounded={"md"}
-                  shadow={"xl"}
-                  p={4}
-                  as={Link}
-                  href={"/recipes/" + r._id}
-                  backgroundImage={ENDPOINT + r.image}
-                  backgroundPosition={"center"}
-                  backgroundRepeat={"no-repeat"}
-                  backgroundSize={"cover"}
-                  minH={"200px"}
-                >
-                  <Flex
-                    w={"100%"}
-                    direction={"row"}
-                    alignItems={"center"}
-                    justifyContent={"space-between"}
-                    gap={4}
-                    h={"100%"}
+            {recipes
+              .filter((r) =>
+                r.title.toLowerCase().includes(query.toLowerCase()),
+              )
+              .map((r) => {
+                return (
+                  <Box
+                    bgColor={"gray.900"}
+                    rounded={"md"}
+                    shadow={"xl"}
+                    p={4}
+                    as={Link}
+                    href={"/recipes/" + r._id}
+                    backgroundImage={ENDPOINT + r.image}
+                    backgroundPosition={"center"}
+                    backgroundRepeat={"no-repeat"}
+                    backgroundSize={"cover"}
+                    minH={"200px"}
                   >
-                    <Heading
-                      fontSize={"xl"}
-                      backgroundColor={"rgba(0,0,0,0.5)"}
-                      p={2}
-                      rounded={"lg"}
+                    <Flex
+                      w={"100%"}
+                      direction={"row"}
+                      alignItems={"center"}
+                      justifyContent={"space-between"}
+                      gap={4}
+                      h={"100%"}
                     >
-                      {r.title}
-                    </Heading>
-                    <Stack>
-                      <VStack>
-                        <Avatar
-                          src={
-                            ENDPOINT +
-                            "/media/profile-picture-username/" +
-                            r.created_by
-                          }
-                          size={"lg"}
-                        />
-                        <Text
-                          backgroundColor={"rgba(0,0,0,0.5)"}
-                          p={1}
-                          rounded={"lg"}
-                        >
-                          @{r.created_by}
-                        </Text>
-                      </VStack>
-                    </Stack>
-                  </Flex>
-                </Box>
-              );
-            })}
+                      <Heading
+                        fontSize={"xl"}
+                        backgroundColor={"rgba(0,0,0,0.5)"}
+                        p={2}
+                        rounded={"lg"}
+                      >
+                        {r.title}
+                      </Heading>
+                      <Stack>
+                        <VStack>
+                          <Avatar
+                            src={
+                              ENDPOINT +
+                              "/media/profile-picture-username/" +
+                              r.created_by
+                            }
+                            size={"lg"}
+                          />
+                          <Text
+                            backgroundColor={"rgba(0,0,0,0.5)"}
+                            p={1}
+                            rounded={"lg"}
+                          >
+                            @{r.created_by}
+                          </Text>
+                        </VStack>
+                      </Stack>
+                    </Flex>
+                  </Box>
+                );
+              })}
           </Grid>
         </MobileBox>
       </Page>
