@@ -89,7 +89,7 @@ export default function AllRecipes() {
         {recipes.map((r) => {
           return (
             <Box
-              bgColor={"gray.800"}
+              bgColor={"gray.900"}
               rounded={"md"}
               shadow={"xl"}
               p={4}
