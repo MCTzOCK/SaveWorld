@@ -101,6 +101,7 @@ import AdminRecipeDashboard from "./pages/admin/AdminRecipeDashboard";
 import AdminEcoProjectsDashboard from "./pages/admin/AdminEcoProjectsDashboard";
 import CO2LongDistanceTrain from "./pages/tools/CO2LongDistanceTrain";
 import Calculator from "./components/Calculator";
+import Cookbook from "./pages/recipes/Cookbook";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -286,6 +287,7 @@ export default function App() {
         : NotFound,
       "/recipes": flags.recipes.enabled ? Recipes : NotFound,
       "/recipes/create": flags.recipes.enabled ? CreateRecipe : NotFound,
+      "/recipes/cookbook": flags.recipes.enabled ? Cookbook : NotFound,
       "/recipes/:id": flags.recipes.enabled ? RecipeViewer : NotFound,
       //KEEP_ROUTES
     });

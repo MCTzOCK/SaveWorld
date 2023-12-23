@@ -43,6 +43,7 @@ import {
   FaSearch,
 } from "react-icons/fa";
 import {
+  FaBook,
   FaEarthEurope,
   FaHammer,
   FaLeaf,
@@ -270,6 +271,13 @@ export default function DrawerMenu(props: {
             icon: <FaUtensils />,
             onClick: () => {
               router.push("/recipes", "none", "replace");
+            },
+          },
+          {
+            label: "Mein Kochbuch",
+            icon: <FaBook />,
+            onClick: () => {
+              router.push("/recipes/cookbook", "none", "replace");
             },
           },
           {
