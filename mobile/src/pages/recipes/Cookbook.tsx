@@ -28,6 +28,7 @@ import { useEffect } from "react";
 import MobileBox from "../../components/MobileBox";
 import { ENDPOINT } from "../../env";
 import { IonSearchbar } from "@ionic/react";
+import RecipeCard from "../../components/RecipeCard";
 
 export default function Cookbook() {
   const [query, setQuery] = React.useState<string>("");
@@ -109,58 +110,7 @@ export default function Cookbook() {
                 r.title.toLowerCase().includes(query.toLowerCase()),
               )
               .map((r) => {
-                return (
-                  <Box
-                    bgColor={"gray.900"}
-                    rounded={"md"}
-                    shadow={"xl"}
-                    p={4}
-                    as={Link}
-                    href={"/recipes/" + r._id}
-                    backgroundImage={ENDPOINT + r.image}
-                    backgroundPosition={"center"}
-                    backgroundRepeat={"no-repeat"}
-                    backgroundSize={"cover"}
-                    minH={"200px"}
-                  >
-                    <Flex
-                      w={"100%"}
-                      direction={"row"}
-                      alignItems={"center"}
-                      justifyContent={"space-between"}
-                      gap={4}
-                      h={"100%"}
-                    >
-                      <Heading
-                        fontSize={"xl"}
-                        backgroundColor={"rgba(0,0,0,0.5)"}
-                        p={2}
-                        rounded={"lg"}
-                      >
-                        {r.title}
-                      </Heading>
-                      <Stack>
-                        <VStack>
-                          <Avatar
-                            src={
-                              ENDPOINT +
-                              "/media/profile-picture-username/" +
-                              r.created_by
-                            }
-                            size={"lg"}
-                          />
-                          <Text
-                            backgroundColor={"rgba(0,0,0,0.5)"}
-                            p={1}
-                            rounded={"lg"}
-                          >
-                            @{r.created_by}
-                          </Text>
-                        </VStack>
-                      </Stack>
-                    </Flex>
-                  </Box>
-                );
+                return <RecipeCard recipe={r} />;
               })}
           </Grid>
         </MobileBox>
