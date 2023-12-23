@@ -16,7 +16,7 @@ export const theme = extendTheme({
     useSystemColorMode: false,
   },
   colors: {
-    black: "#000000",
+    black: "#121212",
     primary: {
       "50": "#E9FCF0",
       "100": "#C1F5D6",
@@ -45,7 +45,7 @@ export const theme = extendTheme({
   styles: {
     global: (props: any) => ({
       body: {
-        bg: mode("gray.50", "gray.900")(props),
+        bg: mode("gray.50", "black")(props),
       },
     }),
   },

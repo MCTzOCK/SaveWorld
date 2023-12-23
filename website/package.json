@@ -22,7 +22,8 @@
     "react-markdown": "^9.0.0",
     "reactflow": "^11.10.1",
     "remark-gfm": "^3.0.1",
-    "sass": "^1.69.5"
+    "sass": "^1.69.5",
+    "spectacle": "^10.1.7"
   },
   "devDependencies": {
     "@types/node": "^20",
