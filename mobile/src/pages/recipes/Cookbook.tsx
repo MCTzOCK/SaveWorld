@@ -47,10 +47,12 @@ export default function Cookbook() {
   });
 
   useEffect(() => {
-    reloadPrefs().then(() => {
-      reloadRecipes();
-    });
+    reloadPrefs();
   }, []);
+
+  useEffect(() => {
+    reloadRecipes();
+  }, [prefs]);
 
   const reloadPrefs = async () => {
     const res = await REST.Account.preferences(
