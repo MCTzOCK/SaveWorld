@@ -4,7 +4,9 @@
   "description": "",
   "scripts": {
     "build:jufo": "node scripts/build.js -t jufo",
-    "build:jufo:docx": "node scripts/build.js -t jufo --docx"
+    "build:jufo:docx": "node scripts/build.js -t jufo --docx",
+    "build:buw": "node scripts/build.js -t buw",
+    "build:buw:docx": "node scripts/build.js -t buw --docx"
   },
   "keywords": [],
   "author": {
