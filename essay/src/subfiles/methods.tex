@@ -36,7 +36,8 @@
     F\"ur die Speicherung von Daten wird eine MongoDB Datenbank verwendet.
     S\"amtliche hochgeladenen Dateien, wie Profilbilder, werden in einem S3-kompatiblen Object Storage gespeichert.
     Um Push-Benachrichtigungen an die App zu senden, wird der Dritt-Anbieter OneSignal verwendet.
-    Um einen Benutzer zu authentifizieren, wird einmalig das Passwort benötigt, welches gehasht in der Datenbank gespeichert wird.
+    Um einen Benutzer zu authentifizieren, wird einmalig das Passwort benötigt, welches gehasht, das heißt
+    kryptografisch so verändert wird, dass es nicht mehr umkehrbar ist, in der Datenbank gespeichert wird.
     Nach der Authentifizierung wird ein JSON Web Token an den Client gesendet, welcher für die weitere Kommunikation verwendet wird.
     Hierbei wird in dem Token lediglich die Benutzer-ID gespeichert, sodass der Server den Benutzer identifizieren kann und es nicht zu Problemen bei der Synchronisation der Daten kommen kann.
 
