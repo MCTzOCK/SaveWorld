@@ -29,6 +29,8 @@ if (!fs.existsSync(path.join(root, "src", `target_${options.target}.tex`))) {
   process.exit(1);
 }
 
+const job_name = `SaveWorld_${options.target}`;
+/*
 const job_name = `SaveWorld_${options.target}_${new Date().toLocaleDateString(
   "de-DE",
 )}-${new Date()
@@ -38,6 +40,7 @@ const job_name = `SaveWorld_${options.target}_${new Date().toLocaleDateString(
     second: "2-digit",
   })
   .replaceAll(":", ".")}`;
+*/
 
 if (fs.existsSync(path.join(root, "src", "target.tex"))) {
   fs.unlinkSync(path.join(root, "src", "target.tex"));
