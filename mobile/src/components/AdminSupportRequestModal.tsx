@@ -117,7 +117,8 @@ export default function AdminSupportRequestModal(props: {
                 onClick={async () => {
                   if (
                     props.request.category === "GENERAL" ||
-                    props.request.category === "REPORT-BUG"
+                    props.request.category === "REPORT-BUG" ||
+                    props.request.category === "VIDEO-QUESTION"
                   ) {
                     const message = await PopupManager.promptAsync({
                       title: "Antwort",
