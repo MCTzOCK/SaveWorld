@@ -48,6 +48,9 @@ root.render(
           recipes: {
             enabled: true,
           },
+          eatingplans: {
+            enabled: true,
+          },
         },
       }}
     >

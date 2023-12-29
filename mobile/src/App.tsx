@@ -124,6 +124,7 @@ export default function App() {
     "community",
     "video_category_channels",
     "recipes",
+    "eatingplans",
   ]);
 
   const { userInfo, loaded, loggedIn } = useUserData();
@@ -291,8 +292,10 @@ export default function App() {
       "/recipes/create": flags.recipes.enabled ? CreateRecipe : NotFound,
       "/recipes/cookbook": flags.recipes.enabled ? Cookbook : NotFound,
       "/recipes/:id": flags.recipes.enabled ? RecipeViewer : NotFound,
-      "/eatingplans": EatingPlanOverview,
-      "/eatingplans/:date": EatingPlanViewer,
+      "/eatingplans": flags.eatingplans.enabled ? EatingPlanOverview : NotFound,
+      "/eatingplans/:date": flags.eatingplans.enabled
+        ? EatingPlanViewer
+        : NotFound,
       //KEEP_ROUTES
     });
   }, [flags]);

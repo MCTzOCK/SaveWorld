@@ -10,8 +10,16 @@
 
 import * as React from "react";
 import Page from "../../components/Page";
+import { useState } from "react";
 
 export default function EatingPlanViewer() {
+  const [plan, setPlan] = useState<{
+    _id: string;
+    user: string;
+    recipes: any[];
+    date: string;
+  } | null>(null);
+
   return (
     <>
       <Page title={"Essensplan"}>123</Page>
