@@ -296,7 +296,7 @@ export default function DrawerMenu(props: {
           label: "Essenspläne",
           icon: <FaCalendar />,
           onClick: () => {
-            router.push("/recipes/eatingplans", "none", "replace");
+            router.push("/eatingplans", "none", "replace");
           },
         });
       }
