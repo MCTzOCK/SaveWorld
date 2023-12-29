@@ -19,6 +19,7 @@ import {
   IonList,
   IonModal,
   IonProgressBar,
+  IonSpinner,
   IonText,
   IonTextarea,
   IonTitle,
@@ -29,10 +30,31 @@ import { REST } from "@saveworld/api-js";
 import { ENDPOINT } from "../env";
 import { useEffect } from "react";
 import PopupManager from "../util/PopupManager";
+import SaveWorldModal from "./SaveWorldModal";
+import {
+  Button,
+  FormControl,
+  FormLabel,
+  Grid,
+  IconButton,
+  Input,
+  InputGroup,
+  InputLeftAddon,
+  InputRightAddon,
+  Stack,
+  Switch,
+  Tag,
+  TagCloseButton,
+  TagLabel,
+  Textarea,
+} from "@chakra-ui/react";
+import { FaPlus, FaYoutube } from "react-icons/fa6";
+import { FaPen } from "react-icons/fa";
 
 export default function AdminCreateVideoModal(props: {
-  modal: React.RefObject<HTMLIonModalElement>;
   callback: () => void;
+  isOpen: boolean;
+  onClose: () => void;
 }) {
   const [categories, setCategories] = React.useState<
     {
@@ -59,155 +81,165 @@ export default function AdminCreateVideoModal(props: {
 
   return (
     <>
-      <IonModal
-        ref={props.modal}
-        initialBreakpoint={0.8}
-        breakpoints={[0, 0.8, 1]}
+      <SaveWorldModal
+        title={"Neues Video"}
+        isOpen={props.isOpen}
+        onClose={props.onClose}
       >
-        <IonHeader>
-          <IonToolbar>
-            <IonButtons slot={"start"}>
-              <IonButton
-                color={"danger"}
-                onClick={() => {
-                  props.modal.current?.dismiss();
-                }}
-                disabled={uploading}
+        {uploading && (
+          <IonProgressBar type={"indeterminate"} color={"success"} />
+        )}
+        <form
+          onSubmit={async (e) => {
+            e.preventDefault();
+
+            if (selectedCategories.length < 1) {
+              PopupManager.alert({
+                title: "Fehler",
+                description: "Bitte wähle mindestens eine Kategorie aus.",
+              });
+              return;
+            }
+
+            let x = e.target as HTMLFormElement;
+
+            const name = (x.elements.namedItem("name") as HTMLInputElement)
+              .value;
+            const desc = (
+              x.elements.namedItem("description") as HTMLInputElement
+            ).value;
+            const id = (x.elements.namedItem("youtubeId") as HTMLInputElement)
+              .value;
+
+            if (!name || !desc || !id) {
+              PopupManager.alert({
+                title: "Fehler",
+                description: "Bitte fülle alle Felder aus!",
+              });
+              return;
+            }
+
+            const data = new FormData();
+            data.append("title", name);
+            data.append("description", desc);
+            data.append("categories", JSON.stringify(selectedCategories));
+            data.append("sources", JSON.stringify(sources));
+            data.append("youtubeVideoId", id);
+
+            setUploading(true);
+
+            const res = await fetch(ENDPOINT + "/admin/content/videos/create", {
+              method: "POST",
+              body: data,
+              headers: {
+                "X-AUTH": localStorage.getItem("token") as string,
+              },
+            });
+
+            setUploading(false);
+            setSelectedCategories([]);
+            if (res.ok) {
+              props.callback();
+              props.onClose();
+            } else {
+              let x = await res.json();
+              PopupManager.alert({
+                title: "Fehler",
+                description:
+                  "Fehler beim Hochladen des Videos: " + x.payload.error,
+              });
+              props.onClose();
+            }
+          }}
+        >
+          <Stack spacing={4}>
+            <FormControl>
+              <FormLabel>YouTube-ID</FormLabel>
+              <InputGroup>
+                <InputLeftAddon>
+                  <FaYoutube />
+                </InputLeftAddon>
+                <Input
+                  name={"youtubeId"}
+                  type={"text"}
+                  placeholder={"MakGA7Y77YI"}
+                />
+              </InputGroup>
+            </FormControl>
+            <FormControl>
+              <FormLabel>Name</FormLabel>
+              <InputGroup>
+                <InputLeftAddon>
+                  <FaPen />
+                </InputLeftAddon>
+                <Input
+                  name={"name"}
+                  type={"text"}
+                  placeholder={"Neues Video"}
+                />
+              </InputGroup>
+            </FormControl>
+            <FormControl>
+              <FormLabel>Beschreibung</FormLabel>
+              <Textarea
+                name={"description"}
+                placeholder={"Das ist meine Videobeschreibung"}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Quellen</FormLabel>
+              <Grid
+                templateColumns={["repeat(2, 1fr)", "repeat(3, 1fr)"]}
+                gap={4}
+                mb={4}
               >
-                Abbrechen
-              </IonButton>
-            </IonButtons>
-            <IonTitle>Neues Video</IonTitle>
-            <IonButtons slot={"end"}>
-              <IonButton
-                color={"success"}
-                disabled={uploading}
-                onClick={async () => {
-                  if (selectedCategories.length < 1) {
-                    PopupManager.alert({
-                      title: "Fehler",
-                      description: "Bitte wähle mindestens eine Kategorie aus.",
-                    });
-                    return;
-                  }
-
-                  const name = (
-                    document.getElementById(
-                      "create-vid-name",
-                    ) as HTMLIonInputElement
-                  ).value as string;
-                  const desc = (
-                    document.getElementById(
-                      "create-vid-desc",
-                    ) as HTMLIonTextareaElement
-                  ).value as string;
-                  const id = (
-                    document.getElementById(
-                      "create-vid-id",
-                    ) as HTMLIonInputElement
-                  ).value as string;
-
-                  if (!name || !desc || !id) {
-                    PopupManager.alert({
-                      title: "Fehler",
-                      description: "Bitte fülle alle Felder aus!",
-                    });
-                    return;
-                  }
-
-                  const data = new FormData();
-                  data.append("title", name);
-                  data.append("description", desc);
-                  data.append("categories", JSON.stringify(selectedCategories));
-                  data.append("sources", JSON.stringify(sources));
-                  data.append("youtubeVideoId", id);
-
-                  setUploading(true);
-
-                  const res = await fetch(
-                    ENDPOINT + "/admin/content/videos/create",
-                    {
-                      method: "POST",
-                      body: data,
-                      headers: {
-                        "X-AUTH": localStorage.getItem("token") as string,
-                      },
-                    },
+                {sources.map((source) => {
+                  return (
+                    <Tag>
+                      <TagLabel>{source}</TagLabel>
+                      <TagCloseButton
+                        onClick={() => {
+                          setSources(sources.filter((s) => s !== source));
+                        }}
+                      />
+                    </Tag>
                   );
+                })}
+              </Grid>
+              <InputGroup>
+                <Input
+                  type={"text"}
+                  placeholder={"https://www.youtube.com/watch?v=MakGA7Y77YI"}
+                  id={"cv-ns"}
+                />
+                <InputRightAddon>
+                  <IconButton
+                    aria-label={"Add Source"}
+                    icon={<FaPlus />}
+                    variant={"ghost"}
+                    onClick={() => {
+                      const source = document.getElementById(
+                        "cv-ns",
+                      ) as HTMLInputElement;
 
-                  setUploading(false);
-                  setSelectedCategories([]);
-                  if (res.ok) {
-                    props.callback();
-                    props.modal.current?.dismiss();
-                  } else {
-                    let x = await res.json();
-                    PopupManager.alert({
-                      title: "Fehler",
-                      description:
-                        "Fehler beim Hochladen des Videos: " + x.payload.error,
-                    });
-                    props.modal.current?.dismiss();
-                  }
-                }}
-              >
-                <b>Fertig</b>
-              </IonButton>
-            </IonButtons>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent>
-          {uploading && (
-            <>
-              <IonProgressBar type={"indeterminate"} />
-            </>
-          )}
-          {!uploading && (
-            <>
-              <IonList inset>
-                <IonItem color={"light"}>
-                  <IonInput
-                    placeholder={"MakGA7Y77YI"}
-                    label={"YouTube ID"}
-                    labelPlacement={"fixed"}
-                    id={"create-vid-id"}
-                  />
-                </IonItem>
-                <IonItem color={"light"}>
-                  <IonInput
-                    placeholder={"Name"}
-                    label={"Name"}
-                    labelPlacement={"fixed"}
-                    id={"create-vid-name"}
-                  />
-                </IonItem>
-                <IonItem color={"light"}>
-                  <IonTextarea
-                    placeholder={"Beschreibung"}
-                    label={"Beschreibung"}
-                    labelPlacement={"fixed"}
-                    autoGrow
-                    id={"create-vid-desc"}
-                  />
-                </IonItem>
-                <IonItem color={"light"}>
-                  <IonTextarea
-                    placeholder={"Quellen (eine pro Zeile)"}
-                    label={"Quellen"}
-                    labelPlacement={"fixed"}
-                    autoGrow
-                    id={"create-vid-sources"}
-                    onIonChange={(ev) => {
-                      setSources(ev.detail.value?.split("\n") || []);
+                      setSources([...sources, source.value]);
+                      source.value = "";
                     }}
                   />
-                </IonItem>
+                </InputRightAddon>
+              </InputGroup>
+            </FormControl>
+
+            <FormControl>
+              <FormLabel>Kategorien</FormLabel>
+              <Stack gap={4}>
                 {categories.map((c) => {
                   return (
                     <>
                       <IonItem color={"light"}>
                         <IonToggle
                           slot={"end"}
+                          checked={selectedCategories.includes(c._id)}
                           onIonChange={(ev) => {
                             if (ev.detail.checked) {
                               setSelectedCategories([
@@ -221,16 +253,19 @@ export default function AdminCreateVideoModal(props: {
                             }
                           }}
                         />
-                        <IonText>{c.name}</IonText>
+                        {c.name}
                       </IonItem>
                     </>
                   );
                 })}
-              </IonList>
-            </>
-          )}
-        </IonContent>
-      </IonModal>
+              </Stack>
+            </FormControl>
+            <Button color={"brand.500"} leftIcon={<FaPlus />} type={"submit"}>
+              Video erstellen
+            </Button>
+          </Stack>
+        </form>
+      </SaveWorldModal>
     </>
   );
 }
