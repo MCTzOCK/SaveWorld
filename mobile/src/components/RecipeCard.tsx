@@ -30,6 +30,7 @@ export default function RecipeCard(props: {
     ingredients: string[];
     image: string;
   } | null;
+  customOnClick?: () => void;
 }) {
   if (!props.recipe) {
     return <></>;
@@ -42,12 +43,13 @@ export default function RecipeCard(props: {
         shadow={"xl"}
         p={4}
         as={Link}
-        href={"/recipes/" + props.recipe._id}
+        href={props.customOnClick ? undefined : "/recipes/" + props.recipe._id}
         backgroundImage={ENDPOINT + props.recipe.image}
         backgroundPosition={"center"}
         backgroundRepeat={"no-repeat"}
         backgroundSize={"cover"}
         minH={"200px"}
+        onClick={props.customOnClick}
       >
         <Flex
           w={"100%"}

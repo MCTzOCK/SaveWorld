@@ -11,14 +11,19 @@
 import * as React from "react";
 import Page from "../../components/Page";
 import { useEffect, useState } from "react";
-import { IonSpinner } from "@ionic/react";
+import { IonSpinner, useIonRouter } from "@ionic/react";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
 import { REST } from "@saveworld/api-js";
 import { useParams } from "react-router";
 import PopupManager from "../../util/PopupManager";
+import { Button, ButtonGroup, Stack, Text } from "@chakra-ui/react";
+import MobileBox from "../../components/MobileBox";
+import { useUserData } from "../../hooks/useUserData";
+import RecipeCard from "../../components/RecipeCard";
 
 export default function EatingPlanViewer() {
   useRedirectForAnon();
+  const router = useIonRouter();
 
   const { date } = useParams<{ date: string }>();
 
@@ -45,6 +50,45 @@ export default function EatingPlanViewer() {
     }
 
     setPlan(res.payload.plan);
+    reloadPrefs();
+  };
+
+  const [recipes, setRecipes] = React.useState<MRecipe[]>([]);
+  const { userInfo, loggedIn } = useUserData();
+  const [prefs, setPrefs] = React.useState<{
+    cookbookItems: string[];
+  }>({
+    cookbookItems: [],
+  });
+
+  useEffect(() => {
+    reloadRecipes();
+  }, [prefs]);
+
+  const reloadPrefs = async () => {
+    const res = await REST.Account.preferences(
+      localStorage.getItem("token") as string,
+    );
+
+    if (res.status === 200) {
+      const px = res.payload.prefs;
+      if (!px.cookbookItems) px.cookbookItems = [];
+      setPrefs(px);
+    }
+  };
+
+  const reloadRecipes = async () => {
+    let rcp = [];
+    for (const item of prefs.cookbookItems) {
+      const res = await REST.Recipes.recipe(
+        localStorage.getItem("token") as string,
+        item,
+      );
+      if (res.status === 200) {
+        rcp.push(res.payload.recipe);
+      }
+    }
+    setRecipes(rcp);
   };
 
   return (
@@ -52,13 +96,142 @@ export default function EatingPlanViewer() {
       <Page
         title={plan ? new Date(plan.date).toLocaleDateString() : "Laden..."}
       >
-        {!plan ? (
-          <>
-            <IonSpinner />
-          </>
-        ) : (
-          <>{JSON.stringify(plan)}</>
-        )}
+        <MobileBox>
+          {!plan ? (
+            <>
+              <IonSpinner />
+            </>
+          ) : (
+            <>
+              <Text>
+                Du hast am {new Date(plan.date).toLocaleDateString()}{" "}
+                {plan.recipes.length} Rezepte auf deinem Plan.
+              </Text>
+              <Button
+                color={"brand.500"}
+                mt={4}
+                w={"100%"}
+                onClick={async () => {
+                  await PopupManager.alertAsync({
+                    title: "Rezept hinzufügen",
+                    description: (
+                      <>
+                        <Stack>
+                          {recipes
+                            .filter((r) => {
+                              return !plan.recipes
+                                .map((rx) => rx._id)
+                                .includes(r._id);
+                            })
+                            .map((recipe) => {
+                              return (
+                                <RecipeCard
+                                  recipe={recipe}
+                                  customOnClick={async () => {
+                                    PopupManager.removeCurrentPopup();
+                                    const res = await REST.EatingPlans.update(
+                                      localStorage.getItem("token") as string,
+                                      date,
+                                      [...plan.recipes, recipe._id],
+                                    );
+
+                                    if (res.status !== 200) {
+                                      await PopupManager.alertAsync({
+                                        title: "Fehler",
+                                        description:
+                                          "Der Essensplan konnte nicht aktualisiert werden: " +
+                                          res.payload.error,
+                                      });
+                                      return;
+                                    }
+
+                                    reload();
+                                    await PopupManager.alertAsync({
+                                      title: "Erfolg",
+                                      description:
+                                        "Der Essensplan wurde aktualisiert.",
+                                    });
+                                  }}
+                                />
+                              );
+                            })}
+                        </Stack>
+                      </>
+                    ),
+                  });
+                }}
+              >
+                Rezept hinzufügen
+              </Button>
+              <Stack mt={4} gap={4}>
+                {plan.recipes.map((recipe) => {
+                  return (
+                    <RecipeCard
+                      recipe={recipe}
+                      customOnClick={async () => {
+                        await PopupManager.alertAsync({
+                          title: "Aktion wählen",
+                          description: (
+                            <>
+                              <ButtonGroup w={"100%"}>
+                                <Button
+                                  color={"brand.500"}
+                                  w={"100%"}
+                                  onClick={() => {
+                                    PopupManager.removeCurrentPopup();
+                                    router.push("/recipes/" + recipe._id);
+                                  }}
+                                >
+                                  Zubereiten
+                                </Button>
+                                <Button
+                                  color={"brand.500"}
+                                  w={"100%"}
+                                  onClick={async () => {
+                                    if (
+                                      !(await PopupManager.confirmAsync({
+                                        title: "Rezept entfernen",
+                                        question:
+                                          "Möchtest du das Rezept wirklich entfernen?",
+                                      }))
+                                    )
+                                      return;
+
+                                    const res = await REST.EatingPlans.update(
+                                      localStorage.getItem("token") as string,
+                                      date,
+                                      plan.recipes.filter(
+                                        (r) => r._id !== recipe._id,
+                                      ),
+                                    );
+
+                                    if (res.status !== 200) {
+                                      await PopupManager.alertAsync({
+                                        title: "Fehler",
+                                        description:
+                                          "Der Essensplan konnte nicht aktualisiert werden: " +
+                                          res.payload.error,
+                                      });
+                                      return;
+                                    }
+
+                                    reload();
+                                  }}
+                                >
+                                  Entfernen
+                                </Button>
+                              </ButtonGroup>
+                            </>
+                          ),
+                        });
+                      }}
+                    />
+                  );
+                })}
+              </Stack>
+            </>
+          )}
+        </MobileBox>
       </Page>
     </>
   );

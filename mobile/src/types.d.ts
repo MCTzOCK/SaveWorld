@@ -39,7 +39,7 @@ interface MCommunityBlogEntry {
 
 interface MEatingPlan {
   user: string;
-  recipes: string[];
+  recipes: MRecipe[];
   date: string;
 }
 
@@ -124,6 +124,7 @@ interface MPushNotification {
 }
 
 interface MRecipe {
+  _id: string;
   created_by: string;
   image: string;
   title: string;
