@@ -1504,4 +1504,60 @@ export class REST {
       });
     },
   };
+
+  public static EatingPlans = {
+    /**
+     * @return the requested eating plan
+     * @param token used to authenticate
+     * @param date the date to get (YYYY-MM-DD)
+     */
+    eatingPlan: async (token: string, date: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eatingplan?date=" + date,
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * Creates a new eating plan
+     * @param token used to authenticate
+     * @param date the date to create the eating plan for (YYYY-MM-DD)
+     */
+    create: async (token: string, date: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eatingplan?date=" + date,
+        method: "POST",
+        token: token,
+      });
+    },
+    /**
+     * Deletes an eating plan
+     * @param token used to authenticate
+     * @param date the date to delete the eating plan for (YYYY-MM-DD)
+     */
+    delete: async (token: string, date: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eatingplan?date=" + date,
+        method: "DELETE",
+        token: token,
+      });
+    },
+    /**
+     * Updates an eating plan
+     * @param token used to authenticate
+     * @param date the date to update the eating plan for (YYYY-MM-DD)
+     * @param recipes the recipes to set
+     */
+    update: async (token: string, date: string, recipes: any[]) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eatingplan",
+        method: "PUT",
+        token: token,
+        body: {
+          date: date,
+          recipes: recipes,
+        },
+      });
+    },
+  };
 }
