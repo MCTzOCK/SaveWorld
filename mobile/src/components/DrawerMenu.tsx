@@ -97,6 +97,7 @@ export default function DrawerMenu(props: {
     "community",
     "video_category_channels",
     "recipes",
+    "eatingplans",
   ]);
 
   const { userInfo, loggedIn } = useUserData();
@@ -289,6 +290,16 @@ export default function DrawerMenu(props: {
           },
         ],
       });
+
+      if (flags.eatingplans.enabled) {
+        gr[gr.length - 1].items.push({
+          label: "Essenspläne",
+          icon: <FaCalendar />,
+          onClick: () => {
+            router.push("/recipes/eatingplans", "none", "replace");
+          },
+        });
+      }
     }
     if (flags.tools_co2_calc.enabled) {
       gr.push({
