@@ -10,19 +10,56 @@
 
 import * as React from "react";
 import Page from "../../components/Page";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { IonSpinner } from "@ionic/react";
+import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
+import { REST } from "@saveworld/api-js";
+import { useParams } from "react-router";
+import PopupManager from "../../util/PopupManager";
 
 export default function EatingPlanViewer() {
-  const [plan, setPlan] = useState<{
-    _id: string;
-    user: string;
-    recipes: any[];
-    date: string;
-  } | null>(null);
+  useRedirectForAnon();
+
+  const { date } = useParams<{ date: string }>();
+
+  const [plan, setPlan] = useState<MEatingPlan | null>(null);
+
+  useEffect(() => {
+    reload();
+  }, [date]);
+
+  const reload = async () => {
+    if (!date) return;
+    const res = await REST.EatingPlans.eatingPlan(
+      localStorage.getItem("token") as string,
+      date,
+    );
+
+    if (res.status !== 200) {
+      await PopupManager.alertAsync({
+        title: "Fehler",
+        description:
+          "Der Essensplan konnte nicht geladen werden: " + res.payload.error,
+      });
+      return;
+    }
+
+    setPlan(res.payload.plan);
+  };
 
   return (
     <>
-      <Page title={"Essensplan"}>123</Page>
+      <Page
+        title={plan ? new Date(plan.date).toLocaleDateString() : "Laden..."}
+      >
+        {!plan ? (
+          <>
+            <IonSpinner />
+          </>
+        ) : (
+          <>{JSON.stringify(plan)}</>
+        )}
+      </Page>
     </>
   );
 }
