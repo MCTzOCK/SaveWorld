@@ -43,6 +43,7 @@ import {
   FaSearch,
 } from "react-icons/fa";
 import {
+  FaBook,
   FaEarthEurope,
   FaHammer,
   FaLeaf,
@@ -96,6 +97,7 @@ export default function DrawerMenu(props: {
     "community",
     "video_category_channels",
     "recipes",
+    "eatingplans",
   ]);
 
   const { userInfo, loggedIn } = useUserData();
@@ -251,6 +253,13 @@ export default function DrawerMenu(props: {
               router.push("/sustainability", "none", "replace");
             },
           },
+          {
+            label: "Artikel",
+            icon: <BiFile />,
+            onClick: () => {
+              router.push("/sustainability/articles", "none", "replace");
+            },
+          },
         ],
       });
     }
@@ -266,6 +275,13 @@ export default function DrawerMenu(props: {
             },
           },
           {
+            label: "Mein Kochbuch",
+            icon: <FaBook />,
+            onClick: () => {
+              router.push("/recipes/cookbook", "none", "replace");
+            },
+          },
+          {
             label: "Neues Rezept",
             icon: <FaPlus />,
             onClick: () => {
@@ -274,6 +290,16 @@ export default function DrawerMenu(props: {
           },
         ],
       });
+
+      if (flags.eatingplans.enabled) {
+        gr[gr.length - 1].items.push({
+          label: "Essenspläne",
+          icon: <FaCalendar />,
+          onClick: () => {
+            router.push("/eatingplans", "none", "replace");
+          },
+        });
+      }
     }
     if (flags.tools_co2_calc.enabled) {
       gr.push({

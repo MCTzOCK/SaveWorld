@@ -5,8 +5,11 @@ import NavigationBar from "@/components/NavigationBar";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { theme } from "@/theme";
 import Footer from "@/components/Footer";
+import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
   return (
     <>
       <Head>

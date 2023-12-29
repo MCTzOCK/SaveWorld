@@ -5,3 +5,6 @@ mobile/.env
 
 generator/node_modules/
 /essay/src/main.pdf
+essay/.env
+essay/node_modules/
+essay/src/target.tex

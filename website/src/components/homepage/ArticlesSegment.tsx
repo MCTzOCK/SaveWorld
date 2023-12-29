@@ -78,12 +78,13 @@ export default function ArticlesSegment() {
             return (
               <>
                 <Card
-                  bg={"#111111"}
                   as={Link}
                   href={"/download"}
                   maxW={"400px"}
+                  rounded={"md"}
+                  bg={"transparent"}
                 >
-                  <CardHeader>
+                  <CardHeader bg={"gray.900"} rounded={"xl"}>
                     <Image
                       src={
                         "https://content.saveworld.one/assets/" +

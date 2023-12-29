@@ -20,7 +20,7 @@ export default function Notice() {
           w="100%"
           maxW="800px"
           p={8}
-          bgColor={["transparent", "#000"]}
+          bgColor={["transparent", "gray.900"]}
           rounded="lg"
           shadow={["none", "xl"]}
         >

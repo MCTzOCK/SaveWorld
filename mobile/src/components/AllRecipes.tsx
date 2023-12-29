@@ -28,6 +28,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { ENDPOINT } from "../env";
+import RecipeCard from "./RecipeCard";
 
 export default function AllRecipes() {
   const [query, setQuery] = React.useState<string>("");
@@ -38,6 +39,7 @@ export default function AllRecipes() {
       created_by: string;
       steps: string[];
       ingredients: string[];
+      image: string;
     }[]
   >([]);
   const [pages, setPages] = React.useState(0);
@@ -82,47 +84,11 @@ export default function AllRecipes() {
         }}
       />
       <Grid
-        templateColumns={[
-          "repeat(1, 1fr)",
-          "repeat(2, 1fr)",
-          "repeat(3, 1fr)",
-          "repeat(4, 1fr)",
-        ]}
+        templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
         gap={4}
       >
         {recipes.map((r) => {
-          return (
-            <Box
-              bgColor={"gray.800"}
-              rounded={"md"}
-              shadow={"xl"}
-              p={4}
-              as={Link}
-              href={"/recipes/" + r._id}
-            >
-              <Flex
-                w={"100%"}
-                direction={"row"}
-                alignItems={"center"}
-                justifyContent={"space-between"}
-                gap={4}
-              >
-                <Heading fontSize={"xl"}>{r.title}</Heading>
-                <Stack>
-                  <VStack>
-                    <Avatar
-                      src={
-                        ENDPOINT +
-                        "/media/profile-picture-username/" +
-                        r.created_by
-                      }
-                    />
-                    <Text>@{r.created_by}</Text>
-                  </VStack>
-                </Stack>
-              </Flex>
-            </Box>
-          );
+          return <RecipeCard recipe={r} />;
         })}
       </Grid>
       <div

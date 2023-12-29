@@ -14,7 +14,9 @@ const fs = require("fs");
 const path = require("path");
 const byteSize = require("./lib/byte-size");
 
-let paths = getAllPaths(".", []);
+const rootPath = process.argv[2] || ".";
+
+let paths = getAllPaths(rootPath, []);
 
 const disallowed = [
   ".turbo",

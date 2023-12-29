@@ -33,8 +33,15 @@ import { useSwipeable } from "react-swipeable";
 import VideoDetailsModal from "../../components/VideoDetailsModal";
 import { useLocation, useParams } from "react-router";
 import PopupManager from "../../util/PopupManager";
-import { Heading, IconButton, Link, useMediaQuery } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  IconButton,
+  Link,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
+import MobileBox from "../../components/MobileBox";
 
 export default function Videos() {
   useRedirectForAnon();
@@ -131,66 +138,46 @@ export default function Videos() {
           </>
         }
       >
-        {isDesktop ? (
-          <>
-            <Heading
-              fontSize={["6xl", "8xl"]}
-              textAlign={"center"}
-              fontWeight={1000}
-              style={{
-                fontFamily: "Inter, sans-serif",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "100%",
-                height: "100vh",
-                flexDirection: "column",
-              }}
-              maxWidth={"100%"}
-            >
-              Diese Funktion ist nur auf&nbsp;
-              <span
-                style={{
-                  color: "var(--ion-color-success)",
-                  textShadow: "0px 0px 40px rgba(0,255,0,1)",
-                }}
-              >
-                mobilen Geräten
-              </span>
-              &nbsp;verfügbar!
-            </Heading>
-          </>
-        ) : (
+        <MobileBox>
           <div {...swipeHandlers}>
-            <Plyr
-              ref={videoRef}
-              source={{
-                type: "video",
-                sources: [
-                  {
-                    provider: "youtube",
-                    src:
-                      (video?.streamUrl ||
-                        "https://www.youtube.com/embed/dQw4w9WgXcQ") +
-                      "?autoplay=1",
+            <Box
+              overflow={"hidden"}
+              aspectRatio={"9/16"}
+              maxW={["100%", "100%", "50%"]}
+            >
+              <Plyr
+                ref={videoRef}
+                source={{
+                  type: "video",
+                  sources: [
+                    {
+                      provider: "youtube",
+                      src:
+                        (video?.streamUrl ||
+                          "https://www.youtube.com/embed/dQw4w9WgXcQ") +
+                        "?autoplay=1",
+                    },
+                  ],
+                }}
+                options={{
+                  autoplay: true,
+                  fullscreen: {
+                    enabled: false,
                   },
-                ],
-              }}
-              options={{
-                autoplay: true,
-                fullscreen: {
-                  enabled: false,
-                },
-                hideControls: true,
-                controls: [],
-                loop: {
-                  active: true,
-                },
-                ratio: "9:16",
-                clickToPlay: true,
-              }}
-              playsInline={true}
-            />
+                  hideControls: true,
+                  controls: [],
+                  loop: {
+                    active: true,
+                  },
+                  ratio: "9:16",
+                  clickToPlay: true,
+                }}
+                style={{
+                  maxHeight: "50vh",
+                }}
+                playsInline={true}
+              />
+            </Box>
             <div
               style={{
                 position: "fixed",
@@ -220,8 +207,7 @@ export default function Videos() {
               </IonButton>
             </div>
           </div>
-        )}
-
+        </MobileBox>
         <VideoDetailsModal modal={modal} video={video} />
       </Page>
     </>

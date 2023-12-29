@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "latex:compile": "cd src && pdflatex -output-directory ../pdf -job-name \"Schriftliche Arbeit - SaveWorld\" main.tex && cd ..",
-    "build": "npm run latex:compile && npm run latex:compile && npm run latex:compile"
+    "build:jufo": "node scripts/build.js -t jufo",
+    "build:jufo:docx": "node scripts/build.js -t jufo --docx",
+    "build:buw": "node scripts/build.js -t buw",
+    "build:buw:docx": "node scripts/build.js -t buw --docx"
   },
   "keywords": [],
   "author": {
@@ -12,5 +14,11 @@
     "name": "Ben Siebert",
     "url": "https://ben-siebert.com"
   },
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1",
+    "puppeteer": "^21.6.1",
+    "rimraf": "^5.0.5"
+  }
 }

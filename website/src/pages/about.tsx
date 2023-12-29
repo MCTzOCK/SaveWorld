@@ -21,7 +21,7 @@ export default function About() {
           w="100%"
           maxW="1000px"
           p={8}
-          bgColor={["transparent", "#000"]}
+          bgColor={["transparent", "gray.900"]}
           rounded="lg"
           shadow={["none", "xl"]}
         >

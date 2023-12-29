@@ -9,16 +9,22 @@
 \usepackage{lib/custom}
 \usepackage{charter}
 \usepackage{tabularx}
-\usepackage{ngerman}
+\usepackage[german]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[left=2.5cm,right=2.5cm,top=2cm,bottom=2cm]{geometry}
-\usepackage{hyperref}
 \usepackage{color}
 \usepackage{caption}
-\usepackage{biblatex}
+\usepackage{hyperref}
+\usepackage[backend=biber,style=numeric]{biblatex}
 \addbibresource{subfiles/sources.bib}
+\usepackage{wrapfig}
 \usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{gitinfo2}
+% UNCOMMENT THIS FOR DOCX-EXPORT
+% Causes layout issues
+\usepackage[none]{hyphenat}
 \graphicspath{ {./assets/} }
 
 \hypersetup{
@@ -31,30 +37,10 @@
 }
 \urlstyle{same}
 
+
 % Document
 \begin{document}
 
-    \bslinespacing{1.5}
-    \bsremovechaptertitle
-	\setcounter{secnumdepth}{4}
-
-    \subfile{subfiles/title.tex}
-    \subfile{subfiles/overview.tex}
-    \clearpage
-    \tableofcontents
-    \thispagestyle{empty}
-
-    \setcounter{page}{0}
-    \subfile{subfiles/fachliche-kurzfassung.tex}
-    \subfile{subfiles/motivation.tex}
-    \subfile{subfiles/background.tex}
-    \subfile{subfiles/methods.tex}
-    \subfile{subfiles/results.tex}
-    \subfile{subfiles/result-discussion.tex}
-    \subfile{subfiles/future.tex}
-    \subfile{subfiles/sources.tex}
-    \subfile{subfiles/support.tex}
-    
-    \printbibliography
+    \subfile{target.tex}
 
 \end{document}

@@ -111,6 +111,8 @@ export default function AdminSupportRequestsDashboard() {
                         ? "Beitrag Meldung"
                         : req.category === "REPORT-BUG"
                         ? "Bug Meldung"
+                        : req.category === "VIDEO-QUESTION"
+                        ? "Video Frage"
                         : "Anderes"}
                     </IonCardTitle>
                     <IonCardSubtitle>

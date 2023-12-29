@@ -27,12 +27,13 @@ import {
   IonTextarea,
   IonTitle,
   IonToolbar,
+  useIonRouter,
 } from "@ionic/react";
 import { REST } from "@saveworld/api-js";
 import { share, shareSharp, star, starSharp } from "ionicons/icons";
 import { Share } from "@capacitor/share";
 import PopupManager from "../util/PopupManager";
-import { List, ListIcon, ListItem, Text } from "@chakra-ui/react";
+import { Button, List, ListIcon, ListItem, Text } from "@chakra-ui/react";
 import { FaGlobe } from "react-icons/fa";
 
 export default function VideoDetailsModal(props: {
@@ -46,6 +47,7 @@ export default function VideoDetailsModal(props: {
     sources: string[];
   } | null;
 }) {
+  const router = useIonRouter();
   const [categories, setCategories] = React.useState<
     {
       _id: string;
@@ -330,6 +332,20 @@ export default function VideoDetailsModal(props: {
                   })}
                 </List>
               </IonText>
+              <Button
+                color={"brand.500"}
+                mt={2}
+                w={"100%"}
+                onClick={() => {
+                  router.push(
+                    "/support?category=VIDEO_QUESTION&videoId=" +
+                      props.video?._id,
+                  );
+                  props.modal.current?.dismiss();
+                }}
+              >
+                Frage stellen
+              </Button>
               {props.video?.categories.map((category) => {
                 return (
                   <>

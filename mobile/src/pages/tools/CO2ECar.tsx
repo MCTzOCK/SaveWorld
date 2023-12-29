@@ -30,89 +30,46 @@ import {
 } from "@chakra-ui/react";
 import { FaGasPump, FaHashtag, FaPlug } from "react-icons/fa";
 import PopupManager from "../../util/PopupManager";
+import Calculator from "../../components/Calculator";
 
 export default function CO2ECar() {
-  const [distance, setDistance] = React.useState(0);
-  const [consumption, setConsumption] = React.useState(0);
-
   return (
     <>
-      <Page title={"CO2-Rechner: E-Auto"}>
-        <MobileBox>
-          <Text>
-            Berechne, wie viel CO2 du mit deinem Auto auf einer Strecke
-            ausstößt. Die Berechnung basiert auf Daten des Umweltbundesamtes
-            (UBA) aus dem Jahr 2022. <br />
-            Für die Berechnung benötigst du die Länge der Strecke (in km) und
-            den Stromverbrauch deines Autos (in kWh/100km). <br />
-          </Text>
-          <Stack mt={6} gap={4}>
-            <FormControl>
-              <FormLabel>Distanz</FormLabel>
-              <InputGroup>
-                <InputLeftAddon>
-                  <FaHashtag />
-                </InputLeftAddon>
-                <Input
-                  type={"number"}
-                  placeholder={"Kilometer"}
-                  value={distance}
-                  onChange={(e) => {
-                    setDistance(parseFloat(e.target.value));
-                  }}
-                />
-              </InputGroup>
-            </FormControl>
-            <FormControl>
-              <FormLabel>Stromverbrauch auf 100km</FormLabel>
-              <InputGroup>
-                <InputLeftAddon>
-                  <FaPlug />
-                </InputLeftAddon>
-                <Input
-                  type={"number"}
-                  placeholder={"kWh/100km"}
-                  value={consumption}
-                  onChange={(e) => {
-                    setConsumption(parseFloat(e.target.value));
-                  }}
-                />
-              </InputGroup>
-            </FormControl>
-            <Button
-              color={"brand.500"}
-              onClick={() => {
-                let co2 = 0.000485;
+      <Calculator
+        title={"Auto"}
+        description={
+          <>
+            <p>
+              Berechne, wie viel CO2 du mit deinem Auto auf einer Strecke
+              ausstößt. Die Berechnung basiert auf Daten des Umweltbundesamtes
+              (UBA) aus dem Jahr 2022. <br />
+              Für die Berechnung benötigst du die Länge der Strecke (in km) und
+              den Stromverbrauch deines Autos (in kWh/100km). <br />
+            </p>
+          </>
+        }
+        inputs={[
+          {
+            label: "Distanz",
+            id: "distance",
+            type: "number",
+          },
+          {
+            label: "Stromverbrauch auf 100km",
+            id: "consumption",
+            type: "number",
+          },
+        ]}
+        calculate={(v) => {
+          let co2 = 0.000485;
 
-                let driven = (distance / 100) * consumption;
+          let driven = (v["distance"] / 100) * v["consumption"];
 
-                let resultInTons = driven * co2;
-                let result = Math.floor(resultInTons * 1000);
-
-                PopupManager.alertAsync({
-                  title: "Ergebnis",
-                  description: (
-                    <>
-                      <Stat>
-                        <StatLabel>Dein CO2-Ausstoß beträgt</StatLabel>
-                        <StatNumber color={"brand.500"} fontWeight={900}>
-                          {result}kg CO2
-                        </StatNumber>
-                        <StatHelpText>
-                          auf einer Strecke von {distance}km mit einem
-                          Stromverbrauch von {consumption}kWh/100km
-                        </StatHelpText>
-                      </Stat>
-                    </>
-                  ),
-                });
-              }}
-            >
-              Berechnen
-            </Button>
-          </Stack>
-        </MobileBox>
-      </Page>
+          let resultInTons = driven * co2;
+          let result = Math.floor(resultInTons * 1000);
+          return result + "kg CO2";
+        }}
+      />
     </>
   );
 }

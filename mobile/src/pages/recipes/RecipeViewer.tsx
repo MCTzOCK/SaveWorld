@@ -26,10 +26,12 @@ import PopupManager from "../../util/PopupManager";
 import MobileBox from "../../components/MobileBox";
 import {
   Accordion,
+  Box,
   Button,
   ButtonGroup,
   Flex,
   IconButton,
+  Image,
   ListItem,
   OrderedList,
   Text,
@@ -42,9 +44,16 @@ import { FaShare, FaShareAlt, FaShareSquare } from "react-icons/fa";
 import { Share } from "@capacitor/share";
 import RecipeModal from "../../components/RecipeModal";
 import { useUserData } from "../../hooks/useUserData";
+import { ENDPOINT } from "../../env";
+import { BiBookmark, BiSolidBookmark } from "react-icons/bi";
 
 export default function RecipeViewer() {
   const { userInfo, loggedIn } = useUserData();
+  const [prefs, setPrefs] = React.useState<{
+    cookbookItems: string[];
+  }>({
+    cookbookItems: [],
+  });
 
   const { id } = useParams<{ id: string }>();
   const [recipe, setRecipe] = React.useState<{
@@ -53,10 +62,12 @@ export default function RecipeViewer() {
     created_by: string;
     steps: string[];
     ingredients: string[];
+    image: string;
   } | null>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
+    reloadPrefs();
     REST.Recipes.recipe(localStorage.getItem("token") as string, id).then(
       (res) => {
         if (res.status === 200) {
@@ -74,6 +85,18 @@ export default function RecipeViewer() {
       },
     );
   }, [id]);
+
+  const reloadPrefs = async () => {
+    const res = await REST.Account.preferences(
+      localStorage.getItem("token") as string,
+    );
+
+    if (res.status === 200) {
+      const px = res.payload.prefs;
+      if (!px.cookbookItems) px.cookbookItems = [];
+      setPrefs(px);
+    }
+  };
 
   if (!recipe) {
     return (
@@ -97,6 +120,19 @@ export default function RecipeViewer() {
     <>
       <Page title={recipe.title}>
         <MobileBox padding={"4"}>
+          <Flex w={"100%"} alignItems={"center"} justifyContent={"center"}>
+            <Box
+              backgroundImage={ENDPOINT + recipe.image}
+              mb={4}
+              w={"300px"}
+              h={"200px"}
+              backgroundPosition={"center"}
+              backgroundRepeat={"no-repeat"}
+              backgroundSize={"cover"}
+              rounded={"xl"}
+              shadow={"xl"}
+            />
+          </Flex>
           {loggedIn && userInfo.username === recipe.created_by ? (
             <ButtonGroup mb={4} w={"100%"}>
               <Button
@@ -107,10 +143,12 @@ export default function RecipeViewer() {
                     title: string;
                     ingredients: string[];
                     steps: string[];
+                    image: string;
                   } = {
                     title: recipe.title,
                     ingredients: recipe.ingredients,
                     steps: recipe.steps,
+                    image: recipe.image,
                   };
 
                   const b64 = btoa(JSON.stringify(data));
@@ -162,6 +200,46 @@ export default function RecipeViewer() {
               >
                 Löschen
               </Button>
+              <IconButton
+                aria-label={"Save"}
+                icon={
+                  prefs.cookbookItems.includes(id) ? (
+                    <BiSolidBookmark />
+                  ) : (
+                    <BiBookmark />
+                  )
+                }
+                color={"yellow.500"}
+                onClick={async () => {
+                  let newCookbookItems = [...prefs.cookbookItems];
+
+                  if (newCookbookItems.includes(recipe._id)) {
+                    newCookbookItems = newCookbookItems.filter(
+                      (i) => i !== recipe._id,
+                    );
+                  } else {
+                    newCookbookItems.push(recipe._id);
+                  }
+
+                  const res = await REST.Account.updatePreferences(
+                    localStorage.getItem("token") as string,
+                    {
+                      cookbookItems: newCookbookItems,
+                    },
+                  );
+
+                  if (res.status === 200) {
+                    await reloadPrefs();
+                  } else {
+                    PopupManager.alert({
+                      title: "Fehler",
+                      description:
+                        "Deine Einstellungen konnten nicht gespeichert werden: " +
+                        res.payload.error,
+                    });
+                  }
+                }}
+              />
             </ButtonGroup>
           ) : null}
           <Flex

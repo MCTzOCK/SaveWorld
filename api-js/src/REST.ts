@@ -1395,12 +1395,14 @@ export class REST {
      * @param title of the recipe
      * @param steps of the recipe
      * @param ingredients of the recipe
+     * @param image of the recipe
      */
     create: async (
       token: string,
       title: string,
       steps: string[],
       ingredients: string[],
+      image: string,
     ) => {
       return await makeRequest({
         path: RESTEnv.API_URL + "/recipes/create",
@@ -1410,6 +1412,7 @@ export class REST {
           title: title,
           steps: steps,
           ingredients: ingredients,
+          image: image,
         },
       });
     },
@@ -1420,6 +1423,7 @@ export class REST {
      * @param title of the recipe
      * @param steps of the recipe
      * @param ingredients of the recipe
+     * @param image of the recipe
      */
     update: async (
       token: string,
@@ -1427,6 +1431,7 @@ export class REST {
       title: string,
       steps: string[],
       ingredients: string[],
+      image: string,
     ) => {
       return await makeRequest({
         path: RESTEnv.API_URL + "/recipes/update?id=" + id,
@@ -1436,6 +1441,7 @@ export class REST {
           title: title,
           steps: steps,
           ingredients: ingredients,
+          image: image,
         },
       });
     },
@@ -1495,6 +1501,62 @@ export class REST {
         path: RESTEnv.API_URL + "/recipes/receive?id=" + id,
         method: "GET",
         token: token,
+      });
+    },
+  };
+
+  public static EatingPlans = {
+    /**
+     * @return the requested eating plan
+     * @param token used to authenticate
+     * @param date the date to get (YYYY-MM-DD)
+     */
+    eatingPlan: async (token: string, date: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eatingplan?date=" + date,
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * Creates a new eating plan
+     * @param token used to authenticate
+     * @param date the date to create the eating plan for (YYYY-MM-DD)
+     */
+    create: async (token: string, date: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eatingplan?date=" + date,
+        method: "POST",
+        token: token,
+      });
+    },
+    /**
+     * Deletes an eating plan
+     * @param token used to authenticate
+     * @param date the date to delete the eating plan for (YYYY-MM-DD)
+     */
+    delete: async (token: string, date: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eatingplan?date=" + date,
+        method: "DELETE",
+        token: token,
+      });
+    },
+    /**
+     * Updates an eating plan
+     * @param token used to authenticate
+     * @param date the date to update the eating plan for (YYYY-MM-DD)
+     * @param recipes the recipes to set
+     */
+    update: async (token: string, date: string, recipes: any[]) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/eatingplan",
+        method: "PUT",
+        token: token,
+        body: {
+          date: date,
+          recipes: recipes,
+        },
       });
     },
   };

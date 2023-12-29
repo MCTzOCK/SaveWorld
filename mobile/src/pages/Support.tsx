@@ -72,6 +72,12 @@ export default function Support() {
         setReportContent(true);
         setAdditional(usp.get("report_post") as string);
       }
+    } else if (usp.get("category") === "VIDEO_QUESTION") {
+      if (usp.get("videoId")) {
+        setCategory("VIDEO-QUESTION");
+        setReportContent(true);
+        setAdditional(usp.get("videoId") as string);
+      }
     }
   }, []);
 
@@ -116,6 +122,7 @@ export default function Support() {
                 <>
                   <option value={"REPORT-USER"}>Benutzer melden</option>
                   <option value={"REPORT-POST"}>Beitrag melden</option>
+                  <option value={"VIDEO-QUESTION"}>Video Frage</option>
                 </>
               )}
             </Select>
@@ -128,10 +135,16 @@ export default function Support() {
             />
             {additional && (
               <>
-                <IonText>
-                  Deiner Anfrage werden die Details des zu meldenden Inhalts
-                  automatisch hinzugefügt.
-                </IonText>
+                {category.startsWith("REPORT") ? (
+                  <IonText>
+                    Deiner Anfrage werden die Details des zu meldenden Inhalts
+                    automatisch hinzugefügt.
+                  </IonText>
+                ) : (
+                  <IonText>
+                    Deiner Anfrage wird das Video automatisch angehangen.
+                  </IonText>
+                )}
               </>
             )}
           </VStack>

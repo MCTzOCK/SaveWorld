@@ -37,6 +37,12 @@ const UserPreferencesModel = new mongoose.Schema({
     required: false,
     default: [],
   },
+  cookbookItems: {
+    type: [mongoose.Schema.ObjectId],
+    ref: "Recipe",
+    required: false,
+    default: [],
+  },
 });
 
 export default mongoose.models?.UserPreferences ||
