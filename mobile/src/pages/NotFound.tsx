@@ -46,9 +46,8 @@ export default function NotFound() {
             style={{
               fontFamily: "Inter, sans-serif",
             }}
-            fontSize={"3xl"}
             padding={"1rem"}
-            fontWeight={900}
+            fontSize={"xl"}
           >
             Diese Funktion ist leider aktuell nicht verfügbar. Wenn du der
             Meinung bist, dass das ein Fehler ist, melde dich bitte bei uns.
@@ -59,15 +58,10 @@ export default function NotFound() {
             gap={"2"}
             alignItems={"center"}
           >
-            <Button
-              w={"100%"}
-              colorScheme={"brand"}
-              as={Link}
-              href={"/support"}
-            >
+            <Button w={"100%"} color={"brand.500"} as={Link} href={"/support"}>
               Support
             </Button>
-            <Button w={"100%"} colorScheme={"brand"} as={Link} href={"/"}>
+            <Button w={"100%"} color={"brand.500"} as={Link} href={"/"}>
               nach Hause telefonieren
             </Button>
           </Flex>
