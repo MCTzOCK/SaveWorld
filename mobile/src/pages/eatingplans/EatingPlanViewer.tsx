@@ -16,10 +16,20 @@ import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
 import { REST } from "@saveworld/api-js";
 import { useParams } from "react-router";
 import PopupManager from "../../util/PopupManager";
-import { Button, ButtonGroup, Stack, Text } from "@chakra-ui/react";
+import {
+  Button,
+  ButtonGroup,
+  ListItem,
+  Stack,
+  Text,
+  UnorderedList,
+} from "@chakra-ui/react";
 import MobileBox from "../../components/MobileBox";
 import { useUserData } from "../../hooks/useUserData";
 import RecipeCard from "../../components/RecipeCard";
+import { FaHandPaper } from "react-icons/fa";
+import { FaFileLines, FaPlus } from "react-icons/fa6";
+import { Share } from "@capacitor/share";
 
 export default function EatingPlanViewer() {
   useRedirectForAnon();
@@ -108,6 +118,7 @@ export default function EatingPlanViewer() {
                 {plan.recipes.length} Rezepte auf deinem Plan.
               </Text>
               <Button
+                leftIcon={<FaPlus />}
                 color={"brand.500"}
                 mt={4}
                 w={"100%"}
@@ -162,6 +173,58 @@ export default function EatingPlanViewer() {
                 }}
               >
                 Rezept hinzufügen
+              </Button>
+              <Button
+                w={"100%"}
+                mt={4}
+                color={"brand.500"}
+                leftIcon={<FaFileLines />}
+                isDisabled={plan.recipes.length === 0}
+                onClick={async () => {
+                  const ingredients: string[] = [];
+
+                  for (const r of plan?.recipes) {
+                    for (const i of r.ingredients) {
+                      ingredients.push(i);
+                    }
+                  }
+
+                  await PopupManager.alertAsync({
+                    title: "Einkaufzettel",
+                    description: (
+                      <>
+                        <UnorderedList>
+                          {ingredients.map((i) => {
+                            return <ListItem>{i}</ListItem>;
+                          })}
+                        </UnorderedList>
+                        <Button
+                          w={"100%"}
+                          mt={4}
+                          color={"brand.500"}
+                          onClick={async () => {
+                            let text = `Einkaufszettel für den ${new Date(
+                              plan.date,
+                            ).toLocaleDateString()}:\n\n`;
+
+                            for (const i of ingredients) {
+                              text += "• " + i + "\n";
+                            }
+
+                            Share.share({
+                              title: "Einkaufszettel",
+                              text: text,
+                            });
+                          }}
+                        >
+                          Exportieren
+                        </Button>
+                      </>
+                    ),
+                  });
+                }}
+              >
+                Einkaufzettel erstellen
               </Button>
               <Stack mt={4} gap={4}>
                 {plan.recipes.map((recipe) => {
