@@ -123,7 +123,7 @@ export default function Page(props: {
             borderBottom={"3px solid rgba(40,40,40,1)"}
             pl={4}
             pr={4}
-            pt={["1rem", 0]}
+            pt={["2.5rem", 0]}
           >
             <DrawerMenu isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
             <Heading
