@@ -103,6 +103,7 @@ import CO2LongDistanceTrain from "./pages/tools/CO2LongDistanceTrain";
 import Calculator from "./components/Calculator";
 import Cookbook from "./pages/recipes/Cookbook";
 import EatingPlanOverview from "./pages/eatingplans/EatingPlanOverview";
+import EatingPlanViewer from "./pages/eatingplans/EatingPlanViewer";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -291,6 +292,7 @@ export default function App() {
       "/recipes/cookbook": flags.recipes.enabled ? Cookbook : NotFound,
       "/recipes/:id": flags.recipes.enabled ? RecipeViewer : NotFound,
       "/eatingplans": EatingPlanOverview,
+      "/eatingplans/:date": EatingPlanViewer,
       //KEEP_ROUTES
     });
   }, [flags]);
