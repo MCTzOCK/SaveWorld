@@ -45,7 +45,7 @@ export default async function (req: Request, res: Response) {
 
       res.status(200).json({ plan: eatingPlan });
     } else if (req.method === "POST") {
-      const { date } = req.body;
+      const { date } = req.query;
 
       const existing = await EatingPlanModel.findOne({
         user: user._id,
