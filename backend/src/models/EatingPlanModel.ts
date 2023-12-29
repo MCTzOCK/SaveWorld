@@ -23,12 +23,8 @@ const EatingPlanModel = new mongoose.Schema({
       required: true,
     },
   ],
-  weekStart: {
-    type: Date,
-    required: true,
-  },
-  weekEnd: {
-    type: Date,
+  date: {
+    type: String,
     required: true,
   },
 });
