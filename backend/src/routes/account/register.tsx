@@ -15,6 +15,9 @@ import UserModel from "../../models/UserModel";
 import { createHash, randomBytes } from "crypto";
 import { getTransport } from "../../util/transport";
 import UserPreferencesModel from "../../models/UserPreferencesModel";
+import { render } from "@react-email/render";
+import * as React from "react";
+import Register from "../../email-components/Register";
 
 export default async function (req: Request, res: Response) {
   if (req.method !== "POST") {
@@ -89,6 +92,12 @@ export default async function (req: Request, res: Response) {
       to: email,
       from: process.env.SMTP_FROM,
       text:
+        "Hallo " +
+        firstName +
+        " " +
+        lastName +
+        ",\n\n" +
+        "vielen Dank für deine Registrierung bei SaveWorld!\n\n" +
         "Bitte aktiviere deinen Account unter folgendem Link: " +
         req.protocol +
         "://" +
@@ -96,8 +105,19 @@ export default async function (req: Request, res: Response) {
         "/account/activate?token=" +
         activationToken,
       subject: "Account aktivieren",
+      html: render(
+        <Register
+          firstName={firstName}
+          link={
+            req.protocol +
+            "://" +
+            req.hostname +
+            "/account/activate?token=" +
+            activationToken
+          }
+        />,
+      ),
     });
-
     res.status(200).json({
       status: 200,
       message: "Please check your email to verify your account.",
