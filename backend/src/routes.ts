@@ -32,6 +32,7 @@ export async function getRoutes() {
         let d = directory
           .replace(path.join(__dirname, "routes"), "")
           .replaceAll("\\", "/")
+          .replace(".tsx", "")
           .replace(".ts", "")
           .replace("index", "");
 
