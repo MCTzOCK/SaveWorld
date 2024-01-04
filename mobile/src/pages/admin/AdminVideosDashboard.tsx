@@ -99,9 +99,12 @@ export default function AdminVideosDashboard() {
     reload();
   }, []);
 
-  const modal = React.useRef<HTMLIonModalElement>(null);
-
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isCreateOpen,
+    onOpen: onCreateOpen,
+    onClose: onCreateClose,
+  } = useDisclosure();
 
   return (
     <>
@@ -239,19 +242,10 @@ export default function AdminVideosDashboard() {
           >
             <IonInfiniteScrollContent />
           </IonInfiniteScroll>
-          <IonFab vertical="bottom" horizontal="end" slot="fixed">
-            <IonFabButton
-              color={"danger"}
-              onClick={() => {
-                modal.current?.present();
-              }}
-            >
-              <IonIcon ios={add} md={addSharp} />
-            </IonFabButton>
-          </IonFab>
         </MobileBox>
         <AdminCreateVideoModal
-          modal={modal}
+          onClose={onCreateClose}
+          isOpen={isCreateOpen}
           callback={() => {
             window.location.reload();
           }}
@@ -262,6 +256,16 @@ export default function AdminVideosDashboard() {
           reload={reload}
           video={currentVideo}
         />
+        <IonFab vertical="bottom" horizontal="end" slot="fixed">
+          <IonFabButton
+            color={"danger"}
+            onClick={() => {
+              onCreateOpen();
+            }}
+          >
+            <IonIcon ios={add} md={addSharp} />
+          </IonFabButton>
+        </IonFab>
       </Page>
     </>
   );
