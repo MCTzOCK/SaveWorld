@@ -62,7 +62,7 @@ export default async function (req: Request, res: Response) {
       res
         .status(400)
         .json({
-          error: "Please provide a valid password",
+          error: "Your password must be at least 8 characters long",
           status: 400,
         })
         .end();

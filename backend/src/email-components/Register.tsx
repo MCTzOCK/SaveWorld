@@ -29,7 +29,11 @@ import * as React from "react";
 
 export default function Register(props: { firstName: string; link: string }) {
   return (
-    <Html>
+    <Html
+      style={{
+        fontFamily: "sans-serif",
+      }}
+    >
       <Head />
       <Preview>Willkommen bei SaveWorld!</Preview>
       <Tailwind>
