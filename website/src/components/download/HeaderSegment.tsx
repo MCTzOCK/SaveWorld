@@ -60,7 +60,7 @@ export default function HeaderSegment() {
               <chakra.span color={"primary.500"}>Plattform</chakra.span>{" "}
               auswählen!
             </Text>
-            <ButtonGroup w={"100%"} gap={4}>
+            <Flex w={"100%"} gap={4} direction={["column", "column", "row"]}>
               <Button
                 w={"100%"}
                 backgroundColor={"black"}
@@ -101,7 +101,7 @@ export default function HeaderSegment() {
               >
                 Web
               </Button>
-            </ButtonGroup>
+            </Flex>
           </Flex>
         </Flex>
       </Box>
