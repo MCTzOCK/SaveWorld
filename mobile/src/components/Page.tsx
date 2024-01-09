@@ -68,6 +68,7 @@ import {
   Heading,
   IconButton,
   Link,
+  Spinner,
   useDisclosure,
 } from "@chakra-ui/react";
 import { theme } from "../theme/chakra";
@@ -164,41 +165,56 @@ export default function Page(props: {
           }}
           className={props.noPadding ? "" : "ion-padding"}
         >
-          {props.children}
-          {router &&
-          router.routeInfo &&
-          router.routeInfo.pathname &&
-          router.routeInfo.pathname.startsWith("/community") ? (
-            <IonFab vertical="bottom" horizontal="end" slot="fixed">
-              <IonFabButton color={"success"}>
-                <IonIcon ios={people} md={peopleSharp} />
-              </IonFabButton>
-              <IonFabList side={"top"}>
-                <IonFabButton
-                  routerLink={"/community/u/" + userInfo.username}
-                  color={"success"}
-                >
-                  <IonIcon ios={person} md={personSharp} />
-                </IonFabButton>
-                <IonFabButton
-                  routerLink={"/community/messages"}
-                  color={"success"}
-                >
-                  <IonIcon ios={chatbox} md={chatboxSharp} />
-                </IonFabButton>
-                <IonFabButton
-                  routerLink={"/community/create/blog"}
-                  color={"success"}
-                >
-                  <IonIcon ios={add} md={addSharp} />
-                </IonFabButton>
-                <IonFabButton routerLink={"/community"} color={"success"}>
-                  <IonIcon ios={home} md={homeSharp} />
-                </IonFabButton>
-              </IonFabList>
-            </IonFab>
-          ) : null}
-          {flags.floating_navbar.enabled && <FloatingNavbar />}
+          {loaded ? (
+            <>
+              {props.children}
+              {router &&
+              router.routeInfo &&
+              router.routeInfo.pathname &&
+              router.routeInfo.pathname.startsWith("/community") ? (
+                <IonFab vertical="bottom" horizontal="end" slot="fixed">
+                  <IonFabButton color={"success"}>
+                    <IonIcon ios={people} md={peopleSharp} />
+                  </IonFabButton>
+                  <IonFabList side={"top"}>
+                    <IonFabButton
+                      routerLink={"/community/u/" + userInfo.username}
+                      color={"success"}
+                    >
+                      <IonIcon ios={person} md={personSharp} />
+                    </IonFabButton>
+                    <IonFabButton
+                      routerLink={"/community/messages"}
+                      color={"success"}
+                    >
+                      <IonIcon ios={chatbox} md={chatboxSharp} />
+                    </IonFabButton>
+                    <IonFabButton
+                      routerLink={"/community/create/blog"}
+                      color={"success"}
+                    >
+                      <IonIcon ios={add} md={addSharp} />
+                    </IonFabButton>
+                    <IonFabButton routerLink={"/community"} color={"success"}>
+                      <IonIcon ios={home} md={homeSharp} />
+                    </IonFabButton>
+                  </IonFabList>
+                </IonFab>
+              ) : null}
+              {flags.floating_navbar.enabled && <FloatingNavbar />}
+            </>
+          ) : (
+            <>
+              <Flex
+                w={"100%"}
+                h={"100vh"}
+                justifyContent={"center"}
+                alignItems={"center"}
+              >
+                <Spinner size={"xl"} color={"brand.500"} />
+              </Flex>
+            </>
+          )}
         </IonContent>
       </IonPage>
     </>
