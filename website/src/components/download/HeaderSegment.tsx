@@ -21,6 +21,7 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { FaApple, FaGlobe } from "react-icons/fa";
+import { FaAndroid } from "react-icons/fa6";
 
 export default function HeaderSegment() {
   return (
@@ -60,6 +61,21 @@ export default function HeaderSegment() {
               auswählen!
             </Text>
             <ButtonGroup w={"100%"} gap={4}>
+              <Button
+                w={"100%"}
+                backgroundColor={"black"}
+                size={"lg"}
+                _hover={{ backgroundColor: "black" }}
+                _active={{ backgroundColor: "black" }}
+                as={Link}
+                href={
+                  "https://download.ben-siebert.com/saveworld/app/2024.01.08-release/SaveWorld.apk"
+                }
+                fontSize={"xl"}
+                leftIcon={<FaAndroid />}
+              >
+                Android (APK)
+              </Button>
               <Button
                 w={"100%"}
                 backgroundColor={"black"}
