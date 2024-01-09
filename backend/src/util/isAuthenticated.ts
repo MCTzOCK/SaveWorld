@@ -23,16 +23,15 @@ export async function isAuthenticated(req: Request, res: Response) {
   }
 
   token = token as string;
-
-  if (!jwt.verify(token, process.env.JWT_SECRET)) {
-    return {
-      auth: false,
-    };
-  }
-
-  const decoded = jwt.decode(token) as { id: string };
-
   try {
+    if (!jwt.verify(token, process.env.JWT_SECRET)) {
+      return {
+        auth: false,
+      };
+    }
+
+    const decoded = jwt.decode(token) as { id: string };
+
     const user = await UserModel.findById(decoded.id);
 
     if (!user || !user.active) {
