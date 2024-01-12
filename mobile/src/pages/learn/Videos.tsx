@@ -46,6 +46,8 @@ import MobileBox from "../../components/MobileBox";
 export default function Videos() {
   useRedirectForAnon();
 
+  const router = useIonRouter();
+
   const location = useLocation();
 
   const modal = React.useRef<HTMLIonModalElement>(null);
@@ -134,6 +136,10 @@ export default function Videos() {
               color={"brand.500"}
               variant={"ghost"}
               size={"lg"}
+              onClick={(e) => {
+                e.preventDefault();
+                router.push("/learn/fts-search");
+              }}
             />
           </>
         }

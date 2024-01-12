@@ -18,6 +18,7 @@ import {
   Heading,
   Link,
 } from "@chakra-ui/react";
+import { useIonRouter } from "@ionic/react";
 
 export default function HomeCardV2(props: {
   icon: ReactNode;
@@ -26,6 +27,7 @@ export default function HomeCardV2(props: {
   color: BackgroundProps["bgColor"];
   newTab?: boolean;
 }) {
+  const router = useIonRouter();
   return (
     <>
       <Box
@@ -37,6 +39,10 @@ export default function HomeCardV2(props: {
         as={Link}
         href={props.url}
         target={props.newTab ? "_blank" : undefined}
+        onClick={(e) => {
+          e.preventDefault();
+          router.push(props.url);
+        }}
         shadow={"2xl"}
       >
         <Flex direction={"column"} w={"100%"} alignItems={"center"} zIndex={12}>

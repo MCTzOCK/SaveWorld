@@ -151,6 +151,10 @@ export default function Login() {
               <Button
                 as={Link}
                 href={"/register"}
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push("/register");
+                }}
                 style={{ marginTop: "1.2rem", marginBottom: "1.2rem" }}
                 w={"100%"}
                 color={"brand.500"}

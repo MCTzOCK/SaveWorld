@@ -83,6 +83,8 @@ export default function AdminVideoDashboard() {
     });
   }, []);
 
+  const router = useIonRouter();
+
   return (
     <>
       <Page title={video?.title || "Laden..."} redGradient>
@@ -181,7 +183,7 @@ export default function AdminVideoDashboard() {
                           description:
                             "Das Video wurde erfolgreich aktualisiert!",
                           callback: () => {
-                            window.location.href = "/admin/content/videos";
+                            router.push(router.routeInfo.pathname);
                           },
                         });
                       } else {
@@ -218,7 +220,7 @@ export default function AdminVideoDashboard() {
                           title: "Erfolgreich",
                           description: "Das Video wurde gelöscht!",
                           callback: () => {
-                            window.location.href = "/admin/content/videos";
+                            router.push(router.routeInfo.pathname);
                           },
                         });
                       } else {

@@ -20,6 +20,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { ENDPOINT } from "../env";
+import { useIonRouter } from "@ionic/react";
 
 export default function RecipeCard(props: {
   recipe: {
@@ -32,6 +33,7 @@ export default function RecipeCard(props: {
   } | null;
   customOnClick?: () => void;
 }) {
+  const router = useIonRouter();
   if (!props.recipe) {
     return <></>;
   }
@@ -49,7 +51,14 @@ export default function RecipeCard(props: {
         backgroundRepeat={"no-repeat"}
         backgroundSize={"cover"}
         minH={"200px"}
-        onClick={props.customOnClick}
+        onClick={
+          props.customOnClick
+            ? props.customOnClick
+            : (e) => {
+                e.preventDefault();
+                router.push("/recipes/" + props.recipe!._id);
+              }
+        }
       >
         <Flex
           w={"100%"}
