@@ -15,16 +15,6 @@ import { isAuthenticated } from "../../../../util/isAuthenticated";
 
 export default async function (req: Request, res: Response) {
   try {
-    const { auth, user } = await isAuthenticated(req, res);
-
-    if (!auth) {
-      res.status(401).json({
-        status: 401,
-        error: "Unauthorized",
-      });
-      return;
-    }
-
     const { id } = req.query;
 
     const project = await EcoProjectModel.findById(id);
