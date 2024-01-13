@@ -684,6 +684,21 @@ export default function ManageAccount() {
                       />
                       <IonText>Server Status</IonText>
                     </IonItem>
+                    <IonItem
+                      color={"light"}
+                      detail
+                      button
+                      onClick={async () => {
+                        router.push("/account/licenses");
+                      }}
+                    >
+                      <IonIcon
+                        slot={"start"}
+                        ios={ionDocument}
+                        md={ionDocumentSharp}
+                      />
+                      <IonText>Open-Source Lizensen</IonText>
+                    </IonItem>
                   </IonList>
                 </Box>
               </Grid>

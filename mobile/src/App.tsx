@@ -109,6 +109,7 @@ import Calculator from "./components/Calculator";
 import Cookbook from "./pages/recipes/Cookbook";
 import EatingPlanOverview from "./pages/eatingplans/EatingPlanOverview";
 import EatingPlanViewer from "./pages/eatingplans/EatingPlanViewer";
+import Licenses from "./pages/account/Licenses";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -193,6 +194,7 @@ export default function App() {
       "/welcome/lifestyle": WelcomeLifestyle,
       "/welcome/finish": FinishWelcome,
       "/account": ManageAccount,
+      "/account/licenses": Licenses,
       "/admin": AdminDashboard,
       "/admin/content": AdminContentDashboard,
       "/admin/content/categories": AdminContentCategoryDashboard,
