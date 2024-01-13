@@ -28,6 +28,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { FaPen } from "react-icons/fa";
+import { __ } from "../../translations/i18n";
 
 export default function PromptPopupComponent(props: {
   title: string;
@@ -64,16 +65,22 @@ export default function PromptPopupComponent(props: {
 
             <AlertDialogBody>
               <FormControl isRequired>
-                <FormLabel>Eingabe</FormLabel>
+                <FormLabel>{__("popup.input.label")}</FormLabel>
                 {props.inputType === "INPUT" ? (
                   <InputGroup>
                     <InputLeftElement>
                       <FaPen />
                     </InputLeftElement>
-                    <Input id={"input-" + id} placeholder={"Eingabe"} />
+                    <Input
+                      id={"input-" + id}
+                      placeholder={__("popup.input.label")}
+                    />
                   </InputGroup>
                 ) : (
-                  <Textarea id={"input-" + id} placeholder={"Eingabe"} />
+                  <Textarea
+                    id={"input-" + id}
+                    placeholder={__("popup.input.label")}
+                  />
                 )}
                 <FormHelperText>{props.helperText}</FormHelperText>
               </FormControl>
@@ -88,7 +95,7 @@ export default function PromptPopupComponent(props: {
                 // @ts-ignore
                 ref={whatEverRef}
               >
-                Abbrechen
+                {__("control.cancel")}
               </Button>
               <Button
                 colorScheme="brand"
@@ -104,7 +111,7 @@ export default function PromptPopupComponent(props: {
                 }}
                 ml={3}
               >
-                Bestätigen
+                {__("control.confirm")}
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>

@@ -19,6 +19,7 @@ import {
   Button,
   useDisclosure,
 } from "@chakra-ui/react";
+import { __ } from "../../translations/i18n";
 
 export default function AlertPopupComponent(props: {
   title: string | undefined;
@@ -48,7 +49,7 @@ export default function AlertPopupComponent(props: {
         <AlertDialogOverlay bg="blackAlpha.300" backdropFilter="blur(10px)">
           <AlertDialogContent bg={"#121212"}>
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
-              {props.title ? props.title : "Meldung"}
+              {props.title ? props.title : __("popup.alert.title.default")}
             </AlertDialogHeader>
 
             <AlertDialogBody>{props.description}</AlertDialogBody>
@@ -63,7 +64,7 @@ export default function AlertPopupComponent(props: {
                 }}
                 ml={3}
               >
-                Schließen
+                {__("popup.close")}
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>

@@ -19,6 +19,7 @@ import {
   Button,
   useDisclosure,
 } from "@chakra-ui/react";
+import { __ } from "../../translations/i18n";
 
 export default function ConfirmPopupComponent(props: {
   title: string;
@@ -63,7 +64,7 @@ export default function ConfirmPopupComponent(props: {
                 // @ts-ignore
                 ref={whatEverRef}
               >
-                Nein
+                {__("control.no")}
               </Button>
               <Button
                 colorScheme="brand"
@@ -75,7 +76,7 @@ export default function ConfirmPopupComponent(props: {
                 }}
                 ml={3}
               >
-                Ja
+                {__("control.yes")}
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
