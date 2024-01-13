@@ -12,7 +12,8 @@ import { ChakraProvider, Heading, Text } from "@chakra-ui/react";
 import Page from "./components/Page";
 import MobileBox from "./components/MobileBox";
 
-Network.getStatus().then((status) => {
+const render = async () => {
+  const status = await Network.getStatus();
   const container = document.getElementById("root");
   const root = createRoot(container!);
 
@@ -37,4 +38,8 @@ Network.getStatus().then((status) => {
       </ChakraProvider>,
     );
   }
-});
+};
+
+render();
+
+Network.addListener("networkStatusChange", render);
