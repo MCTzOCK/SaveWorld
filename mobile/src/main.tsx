@@ -8,7 +8,7 @@ import { FlagsmithProvider } from "flagsmith/react";
 import { Network } from "@capacitor/network";
 import Root from "./Root";
 import { theme } from "./theme/chakra";
-import { ChakraProvider, Heading, Text } from "@chakra-ui/react";
+import { ChakraProvider, Flex, Heading, Text } from "@chakra-ui/react";
 import Page from "./components/Page";
 import MobileBox from "./components/MobileBox";
 
@@ -27,14 +27,19 @@ const render = async () => {
   } else {
     root.render(
       <ChakraProvider theme={theme}>
-        <MobileBox>
+        <Flex
+          w={"100%"}
+          h={"100vh"}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
           <Heading>Kein Internet</Heading>
           <Text>
             Um SaveWorld zu verwenden, benötigst du eine Internetverbindung.
             Bitte stelle sicher, dass du mit dem Internet verbunden bist und
             starte die App gegebenenfalls neu.
           </Text>
-        </MobileBox>
+        </Flex>
       </ChakraProvider>,
     );
   }
