@@ -18,9 +18,9 @@ export default function AppUrlListener() {
       let slug = "";      
 
       if(event.url.startsWith("saveworld://")) {
-        slug = event.url.split("://").pop();
+        slug = event.url.split("://").pop() as string;
       } else {
-        slug = event.url.split(".one").pop();
+        slug = event.url.split(".one").pop() as string;
       }
       if (slug) {
         router.push(slug, "forward", "push");
