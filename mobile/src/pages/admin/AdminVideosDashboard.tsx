@@ -106,6 +106,8 @@ export default function AdminVideosDashboard() {
     onClose: onCreateClose,
   } = useDisclosure();
 
+  const router = useIonRouter();
+
   return (
     <>
       <Page title={"Videos"} redGradient>
@@ -247,7 +249,7 @@ export default function AdminVideosDashboard() {
           onClose={onCreateClose}
           isOpen={isCreateOpen}
           callback={() => {
-            window.location.reload();
+            router.push(router.routeInfo.pathname);
           }}
         />
         <AdminVideoEditModal

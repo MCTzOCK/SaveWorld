@@ -79,6 +79,10 @@ export default function HomeForAnon() {
               _active={{ backgroundColor: "brand.700" }}
               as={Link}
               href={"/register"}
+              onClick={(e) => {
+                e.preventDefault();
+                router.push("/register");
+              }}
               fontSize={"xl"}
             >
               Los geht's

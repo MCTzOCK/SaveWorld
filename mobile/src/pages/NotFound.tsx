@@ -10,7 +10,7 @@
 
 import * as React from "react";
 import Page from "../components/Page";
-import { IonButton } from "@ionic/react";
+import { IonButton, useIonRouter } from "@ionic/react";
 import {
   Box,
   Button,
@@ -22,6 +22,8 @@ import {
 } from "@chakra-ui/react";
 
 export default function NotFound() {
+  const router = useIonRouter();
+
   return (
     <Page title={""}>
       <Flex
@@ -58,10 +60,28 @@ export default function NotFound() {
             gap={"2"}
             alignItems={"center"}
           >
-            <Button w={"100%"} color={"brand.500"} as={Link} href={"/support"}>
+            <Button
+              w={"100%"}
+              color={"brand.500"}
+              as={Link}
+              href={"/support"}
+              onClick={(e) => {
+                e.preventDefault();
+                router.push("/support");
+              }}
+            >
               Support
             </Button>
-            <Button w={"100%"} color={"brand.500"} as={Link} href={"/"}>
+            <Button
+              w={"100%"}
+              color={"brand.500"}
+              as={Link}
+              href={"/"}
+              onClick={(e) => {
+                e.preventDefault();
+                router.push("/");
+              }}
+            >
               nach Hause telefonieren
             </Button>
           </Flex>

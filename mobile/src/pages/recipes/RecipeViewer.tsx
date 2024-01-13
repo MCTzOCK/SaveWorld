@@ -19,6 +19,7 @@ import {
   IonLabel,
   IonSpinner,
   IonText,
+  useIonRouter,
 } from "@ionic/react";
 import { useEffect } from "react";
 import { REST } from "@saveworld/api-js";
@@ -48,6 +49,7 @@ import { ENDPOINT } from "../../env";
 import { BiBookmark, BiSolidBookmark } from "react-icons/bi";
 
 export default function RecipeViewer() {
+  const router = useIonRouter();
   const { userInfo, loggedIn } = useUserData();
   const [prefs, setPrefs] = React.useState<{
     cookbookItems: string[];
@@ -78,7 +80,7 @@ export default function RecipeViewer() {
             description:
               "Rezept konnte nicht geladen werden: " + res.payload.error,
             callback: () => {
-              window.location.href = "/recipes";
+              router.push("/recipes");
             },
           });
         }
@@ -153,11 +155,12 @@ export default function RecipeViewer() {
 
                   const b64 = btoa(JSON.stringify(data));
 
-                  window.location.href =
+                  router.push(
                     "/recipes/create?saveworld.data.recipe.edit=" +
-                    b64 +
-                    "&saveworld.data.recipe.id=" +
-                    recipe._id;
+                      b64 +
+                      "&saveworld.data.recipe.id=" +
+                      recipe._id,
+                  );
                 }}
               >
                 Bearb.
@@ -192,7 +195,7 @@ export default function RecipeViewer() {
                       title: "Erfolg",
                       description: "Rezept wurde erfolgreich gelöscht.",
                       callback: () => {
-                        window.location.href = "/recipes";
+                        router.push("/recipes");
                       },
                     });
                   }
@@ -331,8 +334,7 @@ export default function RecipeViewer() {
 
               const b64 = btoa(JSON.stringify(data));
 
-              window.location.href =
-                "/recipes/create?saveworld.data.recipe.edit=" + b64;
+              router.push("/recipes/create?saveworld.data.recipe.edit=" + b64);
             }}
           >
             Rezept bearbeiten

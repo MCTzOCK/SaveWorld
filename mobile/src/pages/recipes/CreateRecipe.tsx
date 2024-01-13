@@ -42,6 +42,7 @@ import { useEffect } from "react";
 import RecipeModal from "../../components/RecipeModal";
 import { uploadImage } from "../../util/files";
 import { ENDPOINT } from "../../env";
+import { useIonRouter } from "@ionic/react";
 
 export default function CreateRecipe() {
   const [title, setTitle] = React.useState<string>("");
@@ -69,6 +70,8 @@ export default function CreateRecipe() {
       }
     }
   }, []);
+
+  const router = useIonRouter();
 
   return (
     <>
@@ -209,7 +212,7 @@ export default function CreateRecipe() {
                       title: "Rezept erstellt",
                       description: "Das Rezept wurde erfolgreich erstellt.",
                     });
-                    window.location.href = "/recipes";
+                    router.push("/recipes");
                   } else {
                     await PopupManager.alertAsync({
                       title: "Fehler",
@@ -233,7 +236,7 @@ export default function CreateRecipe() {
                       title: "Rezept bearbeitet",
                       description: "Das Rezept wurde erfolgreich bearbeitet.",
                     });
-                    window.location.href = "/recipes";
+                    router.push("/recipes");
                   } else {
                     await PopupManager.alertAsync({
                       title: "Fehler",

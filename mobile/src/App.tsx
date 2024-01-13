@@ -1,5 +1,10 @@
 import { Route, Switch } from "react-router-dom";
-import { IonApp, isPlatform, setupIonicReact } from "@ionic/react";
+import {
+  IonApp,
+  isPlatform,
+  setupIonicReact,
+  useIonRouter,
+} from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 
 /* Core CSS required for Ionic components to work properly */
@@ -132,6 +137,11 @@ export default function App() {
 
   useEffect(() => {
     if (loaded && loggedIn) {
+      posthog?.identify(userInfo.email, {
+        name: userInfo.firstName + " " + userInfo.lastName,
+        email: userInfo.email,
+        username: userInfo.username,
+      });
       socket.onAny((event, ...args) => {
         console.log("SCKT " + event, args);
       });
@@ -303,16 +313,6 @@ export default function App() {
   const [routes, setRoutes] = React.useState<{
     [key: string]: any;
   }>({});
-
-  useEffect(() => {
-    if (loaded && loggedIn) {
-      posthog?.identify(userInfo.email, {
-        name: userInfo.firstName + " " + userInfo.lastName,
-        email: userInfo.email,
-        username: userInfo.username,
-      });
-    }
-  }, [loaded, loggedIn]);
 
   return (
     <>
