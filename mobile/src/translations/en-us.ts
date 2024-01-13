@@ -10,6 +10,4 @@
 
 export const english: {
   [key: string]: string;
-} = {
-  "product.name": "SaveWorld",
-};
+} = {};

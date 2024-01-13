@@ -27,20 +27,23 @@ import { english } from "./en-us";
 const currentLanguageSet: { [key: string]: string } = {};
 
 export class I18n {
-  public static currentLanguage: string = "de-de";
+  public static currentLanguage: string = "en-us";
 
   public static setLanguage(language: string) {
     I18n.currentLanguage = language;
   }
 }
 
-export function __(key: string): string {
+export function __(key: string, ...args: string[]): string {
   const langset = getLanguageSet(I18n.currentLanguage);
 
-  console.log(langset);
-
   if (langset[key]) {
-    return langset[key];
+    let v = langset[key];
+    args.forEach((arg, i) => {
+      v = v.replace("%" + i, arg);
+    });
+
+    return v;
   }
   return key;
 }
