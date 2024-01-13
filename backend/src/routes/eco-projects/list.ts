@@ -13,13 +13,6 @@ import { isAuthenticated } from "../../util/isAuthenticated";
 
 export default async function (req: Request, res: Response) {
   try {
-    const { auth, user } = await isAuthenticated(req, res);
-
-    if (!auth) {
-      res.status(401).json({ error: "Unauthorized" });
-      return;
-    }
-
     const PAGE_SIZE = 4;
     const page = req.query.page ? parseInt(req.query.page.toString()) : 0;
     const search = req.query.q ? req.query.q.toString() : "";

@@ -14,16 +14,6 @@ import EcoProjectModel from "../../../models/EcoProjectModel";
 
 export default async function (req: Request, res: Response) {
   try {
-    const { auth, user } = await isAuthenticated(req, res);
-
-    if (!auth) {
-      res.status(401).json({
-        error: "Unauthorized",
-        status: 401,
-      });
-      return;
-    }
-
     const { id } = req.query;
 
     if (!id) {

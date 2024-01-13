@@ -14,13 +14,6 @@ import { isCodeInRange } from "@onesignal/node-onesignal/dist/util";
 
 export default async function (req: Request, res: Response) {
   try {
-    const { auth, user } = await isAuthenticated(req, res);
-
-    if (!auth) {
-      res.status(401).json({ error: "Unauthorized" });
-      return;
-    }
-
     const { startDate, endDate } = req.query;
 
     if (!startDate || !endDate) {
