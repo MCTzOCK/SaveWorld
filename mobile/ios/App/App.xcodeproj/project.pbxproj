@@ -16,12 +16,25 @@
 		504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC3101FED79650016851F /* LaunchScreen.storyboard */; };
 		50B271D11FEDC1A000F3C39B /* public in Resources */ = {isa = PBXBuildFile; fileRef = 50B271D01FEDC1A000F3C39B /* public */; };
 		A084ECDBA7D38E1E42DFC39D /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF277DCFFFF123FFC6DF26C7 /* Pods_App.framework */; };
+		B53961242B52D11000CA61A3 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53960F42B52CE6800CA61A3 /* WidgetKit.framework */; };
+		B53961252B52D11000CA61A3 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53960F62B52CE6800CA61A3 /* SwiftUI.framework */; };
+		B53961282B52D11100CA61A3 /* SaveWorld_WidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53961272B52D11100CA61A3 /* SaveWorld_WidgetsBundle.swift */; };
+		B539612A2B52D11100CA61A3 /* SaveWorld_Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53961292B52D11100CA61A3 /* SaveWorld_Widgets.swift */; };
+		B539612C2B52D11700CA61A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B539612B2B52D11700CA61A3 /* Assets.xcassets */; };
+		B53961302B52D11700CA61A3 /* SaveWorld WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B53961232B52D11000CA61A3 /* SaveWorld WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B5D63A152ABA1AC000116441 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D63A142ABA1AC000116441 /* NotificationService.swift */; };
 		B5D63A192ABA1AC000116441 /* OneSignalNotificationServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B5D63A122ABA1AC000116441 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B5D63A1E2ABA1B2300116441 /* OneSignalExtension.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D63A1D2ABA1B2300116441 /* OneSignalExtension.xcframework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B539612E2B52D11700CA61A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 504EC2FC1FED79650016851F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B53961222B52D11000CA61A3;
+			remoteInfo = "SaveWorld WidgetsExtension";
+		};
 		B5D63A172ABA1AC000116441 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 504EC2FC1FED79650016851F /* Project object */;
@@ -38,6 +51,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				B53961302B52D11700CA61A3 /* SaveWorld WidgetsExtension.appex in Embed Foundation Extensions */,
 				B5D63A192ABA1AC000116441 /* OneSignalNotificationServiceExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
@@ -59,6 +73,13 @@
 		50B271D01FEDC1A000F3C39B /* public */ = {isa = PBXFileReference; lastKnownFileType = folder; path = public; sourceTree = "<group>"; };
 		AF277DCFFFF123FFC6DF26C7 /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF51FD2D460BCFE21FA515B2 /* Pods-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.release.xcconfig"; sourceTree = "<group>"; };
+		B53960F42B52CE6800CA61A3 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		B53960F62B52CE6800CA61A3 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		B53961232B52D11000CA61A3 /* SaveWorld WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "SaveWorld WidgetsExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B53961272B52D11100CA61A3 /* SaveWorld_WidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveWorld_WidgetsBundle.swift; sourceTree = "<group>"; };
+		B53961292B52D11100CA61A3 /* SaveWorld_Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveWorld_Widgets.swift; sourceTree = "<group>"; };
+		B539612B2B52D11700CA61A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B539612D2B52D11700CA61A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5AE8D4C2AB05F60004F26AD /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		B5D63A042ABA1A9C00116441 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		B5D63A062ABA1A9C00116441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -76,6 +97,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A084ECDBA7D38E1E42DFC39D /* Pods_App.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B53961202B52D11000CA61A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B53961252B52D11000CA61A3 /* SwiftUI.framework in Frameworks */,
+				B53961242B52D11000CA61A3 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +127,8 @@
 				B5D63A1D2ABA1B2300116441 /* OneSignalExtension.xcframework */,
 				AF277DCFFFF123FFC6DF26C7 /* Pods_App.framework */,
 				039C9D4FFCD74201AED1D9F2 /* Pods_OneSignalNotificationServiceExtension.framework */,
+				B53960F42B52CE6800CA61A3 /* WidgetKit.framework */,
+				B53960F62B52CE6800CA61A3 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -107,6 +139,7 @@
 				504EC3061FED79650016851F /* App */,
 				B5D63A032ABA1A9C00116441 /* OneSignalNotificationServiceExtension */,
 				B5D63A132ABA1AC000116441 /* OneSignalNotificationServiceExtension */,
+				B53961262B52D11100CA61A3 /* SaveWorld Widgets */,
 				504EC3051FED79650016851F /* Products */,
 				7F8756D8B27F46E3366F6CEA /* Pods */,
 				27E2DDA53C4D2A4D1A88CE4A /* Frameworks */,
@@ -118,6 +151,7 @@
 			children = (
 				504EC3041FED79650016851F /* App.app */,
 				B5D63A122ABA1AC000116441 /* OneSignalNotificationServiceExtension.appex */,
+				B53961232B52D11000CA61A3 /* SaveWorld WidgetsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -147,6 +181,17 @@
 				C6E84210DFF21C6013840C1B /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		B53961262B52D11100CA61A3 /* SaveWorld Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				B53961272B52D11100CA61A3 /* SaveWorld_WidgetsBundle.swift */,
+				B53961292B52D11100CA61A3 /* SaveWorld_Widgets.swift */,
+				B539612B2B52D11700CA61A3 /* Assets.xcassets */,
+				B539612D2B52D11700CA61A3 /* Info.plist */,
+			);
+			path = "SaveWorld Widgets";
 			sourceTree = "<group>";
 		};
 		B5D63A032ABA1A9C00116441 /* OneSignalNotificationServiceExtension */ = {
@@ -185,11 +230,29 @@
 			);
 			dependencies = (
 				B5D63A182ABA1AC000116441 /* PBXTargetDependency */,
+				B539612F2B52D11700CA61A3 /* PBXTargetDependency */,
 			);
 			name = App;
 			productName = App;
 			productReference = 504EC3041FED79650016851F /* App.app */;
 			productType = "com.apple.product-type.application";
+		};
+		B53961222B52D11000CA61A3 /* SaveWorld WidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B53961312B52D11700CA61A3 /* Build configuration list for PBXNativeTarget "SaveWorld WidgetsExtension" */;
+			buildPhases = (
+				B539611F2B52D11000CA61A3 /* Sources */,
+				B53961202B52D11000CA61A3 /* Frameworks */,
+				B53961212B52D11000CA61A3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SaveWorld WidgetsExtension";
+			productName = "SaveWorld WidgetsExtension";
+			productReference = B53961232B52D11000CA61A3 /* SaveWorld WidgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 		B5D63A112ABA1AC000116441 /* OneSignalNotificationServiceExtension */ = {
 			isa = PBXNativeTarget;
@@ -223,6 +286,9 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1100;
 					};
+					B53961222B52D11000CA61A3 = {
+						CreatedOnToolsVersion = 15.0;
+					};
 					B5D63A112ABA1AC000116441 = {
 						CreatedOnToolsVersion = 15.0;
 					};
@@ -243,6 +309,7 @@
 			targets = (
 				504EC3031FED79650016851F /* App */,
 				B5D63A112ABA1AC000116441 /* OneSignalNotificationServiceExtension */,
+				B53961222B52D11000CA61A3 /* SaveWorld WidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -258,6 +325,14 @@
 				50379B232058CBB4000EE86E /* capacitor.config.json in Resources */,
 				504EC30D1FED79650016851F /* Main.storyboard in Resources */,
 				2FAD9763203C412B000D30F8 /* config.xml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B53961212B52D11000CA61A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B539612C2B52D11700CA61A3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +412,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B539611F2B52D11000CA61A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B53961282B52D11100CA61A3 /* SaveWorld_WidgetsBundle.swift in Sources */,
+				B539612A2B52D11100CA61A3 /* SaveWorld_Widgets.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B5D63A0E2ABA1AC000116441 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -348,6 +432,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B539612F2B52D11700CA61A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B53961222B52D11000CA61A3 /* SaveWorld WidgetsExtension */;
+			targetProxy = B539612E2B52D11700CA61A3 /* PBXContainerItemProxy */;
+		};
 		B5D63A182ABA1AC000116441 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B5D63A112ABA1AC000116441 /* OneSignalNotificationServiceExtension */;
@@ -498,7 +587,7 @@
 				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = U5XU7Z3LFF;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SaveWorld;
@@ -508,7 +597,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2023.12.29;
+				MARKETING_VERSION = 2024.01.13;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DDEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bensiebert.saveworld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -529,7 +618,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = U5XU7Z3LFF;
 				INFOPLIST_FILE = App/Info.plist;
@@ -540,12 +629,90 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2023.12.29;
+				MARKETING_VERSION = 2024.01.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bensiebert.saveworld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = SaveWorld;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B53961322B52D11700CA61A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U5XU7Z3LFF;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SaveWorld Widgets/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "SaveWorld Widgets";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bensiebert.saveworld.SaveWorld-Widgets";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B53961332B52D11700CA61A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = U5XU7Z3LFF;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SaveWorld Widgets/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "SaveWorld Widgets";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bensiebert.saveworld.SaveWorld-Widgets";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "SaveWorld Widgets";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -651,6 +818,15 @@
 			buildConfigurations = (
 				504EC3171FED79650016851F /* Debug */,
 				504EC3181FED79650016851F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B53961312B52D11700CA61A3 /* Build configuration list for PBXNativeTarget "SaveWorld WidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B53961322B52D11700CA61A3 /* Debug */,
+				B53961332B52D11700CA61A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

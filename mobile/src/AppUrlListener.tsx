@@ -15,7 +15,13 @@ export default function AppUrlListener() {
   let router = useIonRouter();
   useEffect(() => {
     App.addListener("appUrlOpen", (event: URLOpenListenerEvent) => {
-      const slug = event.url.split(".one").pop();
+      let slug = "";      
+
+      if(event.url.startsWith("saveworld://")) {
+        slug = event.url.split("://").pop();
+      } else {
+        slug = event.url.split(".one").pop();
+      }
       if (slug) {
         router.push(slug, "forward", "push");
       }
