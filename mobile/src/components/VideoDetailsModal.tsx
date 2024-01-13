@@ -62,6 +62,7 @@ export default function VideoDetailsModal(props: {
       if (res.status === 200) {
         setCategories(res.payload as any);
       }
+      console.log(res);
     });
   }, []);
 
@@ -347,6 +348,10 @@ export default function VideoDetailsModal(props: {
                 Frage stellen
               </Button>
               {props.video?.categories.map((category) => {
+                if (!categories.find((c) => c._id === category)) {
+                  return null;
+                }
+
                 return (
                   <>
                     <IonCard>

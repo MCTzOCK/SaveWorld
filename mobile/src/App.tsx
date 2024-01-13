@@ -1,5 +1,10 @@
 import { Route, Switch } from "react-router-dom";
-import { IonApp, isPlatform, setupIonicReact } from "@ionic/react";
+import {
+  IonApp,
+  isPlatform,
+  setupIonicReact,
+  useIonRouter,
+} from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 
 /* Core CSS required for Ionic components to work properly */
@@ -104,6 +109,7 @@ import Calculator from "./components/Calculator";
 import Cookbook from "./pages/recipes/Cookbook";
 import EatingPlanOverview from "./pages/eatingplans/EatingPlanOverview";
 import EatingPlanViewer from "./pages/eatingplans/EatingPlanViewer";
+import Licenses from "./pages/account/Licenses";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -132,6 +138,11 @@ export default function App() {
 
   useEffect(() => {
     if (loaded && loggedIn) {
+      posthog?.identify(userInfo.email, {
+        name: userInfo.firstName + " " + userInfo.lastName,
+        email: userInfo.email,
+        username: userInfo.username,
+      });
       socket.onAny((event, ...args) => {
         console.log("SCKT " + event, args);
       });
@@ -183,6 +194,7 @@ export default function App() {
       "/welcome/lifestyle": WelcomeLifestyle,
       "/welcome/finish": FinishWelcome,
       "/account": ManageAccount,
+      "/account/licenses": Licenses,
       "/admin": AdminDashboard,
       "/admin/content": AdminContentDashboard,
       "/admin/content/categories": AdminContentCategoryDashboard,
@@ -303,16 +315,6 @@ export default function App() {
   const [routes, setRoutes] = React.useState<{
     [key: string]: any;
   }>({});
-
-  useEffect(() => {
-    if (loaded && loggedIn) {
-      posthog?.identify(userInfo.email, {
-        name: userInfo.firstName + " " + userInfo.lastName,
-        email: userInfo.email,
-        username: userInfo.username,
-      });
-    }
-  }, [loaded, loggedIn]);
 
   return (
     <>

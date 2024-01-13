@@ -10,7 +10,7 @@
 
 import * as React from "react";
 import Page from "../../components/Page";
-import { IonSearchbar } from "@ionic/react";
+import { IonSearchbar, useIonRouter } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { REST } from "@saveworld/api-js";
 import {
@@ -24,6 +24,8 @@ import {
 } from "@chakra-ui/react";
 
 export default function Channels() {
+  const router = useIonRouter();
+
   const [query, setQuery] = React.useState("");
   const [channels, setChannels] = useState<
     {
@@ -83,6 +85,10 @@ export default function Channels() {
                   bg={"gray.900"}
                   as={Link}
                   href={"/learn/channels/" + c._id}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push("/learn/channels/" + c._id);
+                  }}
                 >
                   <Image src={c.image} roundedTop={"md"} />
                   <CardHeader>

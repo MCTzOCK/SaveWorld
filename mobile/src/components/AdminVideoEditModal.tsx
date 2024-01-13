@@ -21,6 +21,7 @@ import {
   IonText,
   IonTextarea,
   IonToggle,
+  useIonRouter,
 } from "@ionic/react";
 import {
   Button,
@@ -49,6 +50,8 @@ export default function AdminVideoEditModal(props: {
     sources: string[];
   };
 }) {
+  const router = useIonRouter();
+
   const [categories, setCategories] = React.useState<
     {
       _id: string;
@@ -172,7 +175,7 @@ export default function AdminVideoEditModal(props: {
                   title: "Erfolgreich",
                   description: "Das Video wurde erfolgreich aktualisiert!",
                   callback: () => {
-                    window.location.reload();
+                    router.push(router.routeInfo.pathname);
                   },
                 });
               } else {
@@ -210,7 +213,7 @@ export default function AdminVideoEditModal(props: {
                   title: "Erfolgreich",
                   description: "Das Video wurde gelöscht!",
                   callback: () => {
-                    window.location.reload();
+                    router.push(router.routeInfo.pathname);
                   },
                 });
               } else {

@@ -180,6 +180,10 @@ export default function Register() {
                 w={"100%"}
                 color={"brand.500"}
                 size={"lg"}
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push("/login");
+                }}
               >
                 Anmelden
               </Button>

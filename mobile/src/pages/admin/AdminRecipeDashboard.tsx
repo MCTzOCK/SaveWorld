@@ -12,7 +12,7 @@ import * as React from "react";
 import { REST } from "@saveworld/api-js";
 import PopupManager from "../../util/PopupManager";
 import { useEffect } from "react";
-import { IonButton, IonSearchbar } from "@ionic/react";
+import { IonButton, IonSearchbar, useIonRouter } from "@ionic/react";
 import {
   Avatar,
   Box,
@@ -34,6 +34,8 @@ import { FaTrash } from "react-icons/fa6";
 import { FaPen } from "react-icons/fa";
 
 export default function AdminRecipeDashboard() {
+  const router = useIonRouter();
+
   const [query, setQuery] = React.useState<string>("");
   const [recipes, setRecipes] = React.useState<
     {
@@ -178,11 +180,12 @@ export default function AdminRecipeDashboard() {
 
                         const b64 = btoa(JSON.stringify(data));
 
-                        window.location.href =
+                        router.push(
                           "/recipes/create?saveworld.data.recipe.edit=" +
-                          b64 +
-                          "&saveworld.data.recipe.id=" +
-                          r._id;
+                            b64 +
+                            "&saveworld.data.recipe.id=" +
+                            r._id,
+                        );
                       }}
                     />
                   </ButtonGroup>

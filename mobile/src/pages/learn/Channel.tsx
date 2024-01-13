@@ -21,6 +21,7 @@ import {
   IonSearchbar,
   IonSpinner,
   IonText,
+  useIonRouter,
 } from "@ionic/react";
 import { useParams } from "react-router";
 import {
@@ -51,6 +52,8 @@ import PopupManager from "../../util/PopupManager";
 import CommunityProfileBlogList from "../../components/CommunityProfileBlogList";
 
 export default function Channel() {
+  const router = useIonRouter();
+
   const { id } = useParams<{ id: string }>();
   const [videoQuery, setVideoQuery] = useState<string>("");
 
@@ -185,6 +188,10 @@ export default function Channel() {
                         bg={"gray.800"}
                         as={Link}
                         href={"/learn?vid=" + v._id}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          router.push("/learn?vid=" + v._id);
+                        }}
                       >
                         <CardHeader>
                           <Text fontSize={"xl"}>{v.title}</Text>

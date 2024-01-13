@@ -164,7 +164,7 @@ export default function AdminUserDashboard() {
                             description:
                               "Die Daten wurden erfolgreich gespeichert!",
                             callback: () => {
-                              window.location.reload();
+                              router.push(router.routeInfo.pathname);
                             },
                           });
                         } else {

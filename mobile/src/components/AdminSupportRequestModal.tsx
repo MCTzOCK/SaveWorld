@@ -26,6 +26,7 @@ import {
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
+  useIonRouter,
 } from "@ionic/react";
 import PopupManager from "../util/PopupManager";
 import { REST } from "@saveworld/api-js";
@@ -45,6 +46,7 @@ export default function AdminSupportRequestModal(props: {
   isOpen: boolean;
   reload: () => void;
 }) {
+  const router = useIonRouter();
   return (
     <>
       <SaveWorldModal
@@ -89,11 +91,9 @@ export default function AdminSupportRequestModal(props: {
                 color={"brand.500"}
                 onClick={() => {
                   if (props.request.category === "REPORT-USER") {
-                    window.location.href =
-                      "/community/u/" + props.request.additionalData;
+                    router.push("/community/u/" + props.request.additionalData);
                   } else if (props.request.category === "REPORT-POST") {
-                    window.location.href =
-                      "/community/r/" + props.request.additionalData;
+                    router.push("/community/r/" + props.request.additionalData);
                   }
                 }}
                 display={

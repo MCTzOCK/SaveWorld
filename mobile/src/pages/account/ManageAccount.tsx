@@ -62,6 +62,7 @@ import SaveWorldModal from "../../components/SaveWorldModal";
 
 export default function ManageAccount() {
   const { loggedIn, loaded, userInfo } = useUserData();
+  const router = useIonRouter();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -194,7 +195,7 @@ export default function ManageAccount() {
                                 title: "Erfolg",
                                 description: "Der Upload war erfolgreich!",
                                 callback: () => {
-                                  window.location.reload();
+                                  router.push(router.routeInfo.pathname);
                                 },
                               });
                             } else {
@@ -257,7 +258,7 @@ export default function ManageAccount() {
                             description:
                               "Dein Profilbild wurde erfolgreich entfernt!",
                             callback: () => {
-                              window.location.reload();
+                              router.push(router.routeInfo.pathname);
                             },
                           });
                         } else {
@@ -347,7 +348,7 @@ export default function ManageAccount() {
                             description:
                               "Die Daten wurden erfolgreich gespeichert!",
                             callback: () => {
-                              window.location.reload();
+                              router.push(router.routeInfo.pathname);
                             },
                           });
                         } else {
@@ -435,7 +436,7 @@ export default function ManageAccount() {
                             description:
                               "Die Daten wurden erfolgreich gespeichert!",
                             callback: () => {
-                              window.location.reload();
+                              router.push(router.routeInfo.pathname);
                             },
                           });
                         } else {
@@ -444,7 +445,7 @@ export default function ManageAccount() {
                             description:
                               "Fehler beim Speichern: " + res.payload.error,
                             callback: () => {
-                              window.location.reload();
+                              router.push(router.routeInfo.pathname);
                             },
                           });
                         }
@@ -483,7 +484,7 @@ export default function ManageAccount() {
                                 "Erfolgreich aktiviert! Trage folgenden Code in deiner App ein: " +
                                 res.payload.totpSecret,
                               callback: () => {
-                                window.location.reload();
+                                router.push(router.routeInfo.pathname);
                               },
                             });
                           } else {
@@ -516,7 +517,7 @@ export default function ManageAccount() {
                               description:
                                 "Zwei Faktor Authentifizierung deaktiviert",
                               callback: () => {
-                                window.location.reload();
+                                router.push(router.routeInfo.pathname);
                               },
                             });
                           } else {
@@ -570,7 +571,7 @@ export default function ManageAccount() {
                           }
                         } catch (e) {}
                         localStorage.removeItem("token");
-                        window.location.assign("/register");
+                        router.push("/register");
                       }}
                     >
                       <IonText color={"danger"}>Abmelden</IonText>
@@ -595,7 +596,7 @@ export default function ManageAccount() {
 
                         if (res.status === 200) {
                           localStorage.removeItem("token");
-                          window.location.assign("/register");
+                          router.push("/register");
                         } else {
                           PopupManager.alert({
                             title: "Fehler",
@@ -682,6 +683,21 @@ export default function ManageAccount() {
                         md={analyticsSharp}
                       />
                       <IonText>Server Status</IonText>
+                    </IonItem>
+                    <IonItem
+                      color={"light"}
+                      detail
+                      button
+                      onClick={async () => {
+                        router.push("/account/licenses");
+                      }}
+                    >
+                      <IonIcon
+                        slot={"start"}
+                        ios={ionDocument}
+                        md={ionDocumentSharp}
+                      />
+                      <IonText>Open-Source Lizensen</IonText>
                     </IonItem>
                   </IonList>
                 </Box>

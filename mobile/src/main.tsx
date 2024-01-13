@@ -5,56 +5,48 @@ import { setApiUrl } from "@saveworld/api-js";
 import { ENDPOINT, FLAGSMITH_ENDPOINT, FLAGSMITH_ENVIRONMENT_ID } from "./env";
 import flagsmith from "flagsmith";
 import { FlagsmithProvider } from "flagsmith/react";
+import { Network } from "@capacitor/network";
+import Root from "./Root";
+import { theme } from "./theme/chakra";
+import { ChakraProvider, Flex, Heading, Text } from "@chakra-ui/react";
+import Page from "./components/Page";
+import MobileBox from "./components/MobileBox";
 
-setApiUrl(ENDPOINT);
+const render = async () => {
+  const status = await Network.getStatus();
+  const container = document.getElementById("root");
+  const root = createRoot(container!);
 
-const container = document.getElementById("root");
-const root = createRoot(container!);
-root.render(
-  <React.StrictMode>
-    <FlagsmithProvider
-      flagsmith={flagsmith}
-      options={{
-        environmentID: FLAGSMITH_ENVIRONMENT_ID,
-        api: FLAGSMITH_ENDPOINT,
-        defaultFlags: {
-          news: {
-            enabled: true,
-          },
-          community: {
-            enabled: true,
-          },
-          eco_projects: {
-            enabled: true,
-          },
-          quizzes: {
-            enabled: true,
-          },
-          tools_co2_calc: {
-            enabled: true,
-          },
-          tracker: {
-            enabled: true,
-          },
-          videos: {
-            enabled: true,
-          },
-          sustainability_articles: {
-            enabled: true,
-          },
-          video_category_channels: {
-            enabled: true,
-          },
-          recipes: {
-            enabled: true,
-          },
-          eatingplans: {
-            enabled: true,
-          },
-        },
-      }}
-    >
-      <App />
-    </FlagsmithProvider>
-  </React.StrictMode>,
-);
+  if (status.connected) {
+    setApiUrl(ENDPOINT);
+    root.render(
+      <Root>
+        <App />
+      </Root>,
+    );
+  } else {
+    root.render(
+      <ChakraProvider theme={theme}>
+        <Flex
+          w={"100%"}
+          h={"100vh"}
+          alignItems={"center"}
+          justifyContent={"center"}
+          padding={6}
+          direction={"column"}
+        >
+          <Heading>Kein Internet</Heading>
+          <Text>
+            Um SaveWorld zu verwenden, benötigst du eine Internetverbindung.
+            Bitte stelle sicher, dass du mit dem Internet verbunden bist und
+            starte die App gegebenenfalls neu.
+          </Text>
+        </Flex>
+      </ChakraProvider>,
+    );
+  }
+};
+
+render();
+
+Network.addListener("networkStatusChange", render);

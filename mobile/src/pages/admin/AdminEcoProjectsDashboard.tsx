@@ -20,6 +20,7 @@ import {
   IonCardSubtitle,
   IonCardTitle,
   IonSearchbar,
+  useIonRouter,
 } from "@ionic/react";
 import {
   Button,
@@ -37,6 +38,7 @@ import { FaTrash } from "react-icons/fa6";
 import MobileBox from "../../components/MobileBox";
 
 export default function AdminEcoProjectsDashboard() {
+  const router = useIonRouter();
   const [projects, setProjects] = useState<E2Projects>([]);
   const [query, setQuery] = React.useState<string>("");
 
@@ -178,6 +180,10 @@ export default function AdminEcoProjectsDashboard() {
                           variant={"ghost"}
                           as={Link}
                           href={"/e2-projects/" + p._id + "/edit"}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            router.push("/e2-projects/" + p._id + "/edit");
+                          }}
                         />
                       </ButtonGroup>
                     </IonCardContent>

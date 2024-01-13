@@ -49,6 +49,7 @@ const disallowed = [
   "android",
   "pdf",
   "webp",
+  "licenses.txt",
 ];
 
 // filter disallowed files
