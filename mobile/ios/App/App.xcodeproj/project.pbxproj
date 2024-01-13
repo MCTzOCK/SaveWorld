@@ -22,6 +22,16 @@
 		B539612A2B52D11100CA61A3 /* SaveWorld_Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53961292B52D11100CA61A3 /* SaveWorld_Widgets.swift */; };
 		B539612C2B52D11700CA61A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B539612B2B52D11700CA61A3 /* Assets.xcassets */; };
 		B53961302B52D11700CA61A3 /* SaveWorld WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B53961232B52D11000CA61A3 /* SaveWorld WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B5ADF94E2B5307D400E4892D /* SaveWorld_App_ClipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADF94D2B5307D400E4892D /* SaveWorld_App_ClipApp.swift */; };
+		B5ADF9522B5307D700E4892D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5ADF9512B5307D700E4892D /* Assets.xcassets */; };
+		B5ADF9552B5307D700E4892D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5ADF9542B5307D700E4892D /* Preview Assets.xcassets */; };
+		B5ADF95A2B5307D700E4892D /* SaveWorld App Clip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = B5ADF94B2B5307D400E4892D /* SaveWorld App Clip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B5ADF9622B530BB300E4892D /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADF9612B530BB300E4892D /* ListView.swift */; };
+		B5ADF96E2B531E5A00E4892D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADF96D2B531E5A00E4892D /* Model.swift */; };
+		B5ADF9702B531EBC00E4892D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADF96F2B531EBC00E4892D /* ContentView.swift */; };
+		B5ADF9722B531ECB00E4892D /* ProjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADF9712B531ECB00E4892D /* ProjectListView.swift */; };
+		B5ADF9742B531EE100E4892D /* ProjectDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADF9732B531EE100E4892D /* ProjectDetailsView.swift */; };
+		B5ADF9762B531EF700E4892D /* ProjectDetailsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADF9752B531EF700E4892D /* ProjectDetailsListView.swift */; };
 		B5D63A152ABA1AC000116441 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D63A142ABA1AC000116441 /* NotificationService.swift */; };
 		B5D63A192ABA1AC000116441 /* OneSignalNotificationServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B5D63A122ABA1AC000116441 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B5D63A1E2ABA1B2300116441 /* OneSignalExtension.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D63A1D2ABA1B2300116441 /* OneSignalExtension.xcframework */; };
@@ -34,6 +44,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = B53961222B52D11000CA61A3;
 			remoteInfo = "SaveWorld WidgetsExtension";
+		};
+		B5ADF9582B5307D700E4892D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 504EC2FC1FED79650016851F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B5ADF94A2B5307D400E4892D;
+			remoteInfo = "SaveWorld App Clip";
 		};
 		B5D63A172ABA1AC000116441 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -51,6 +68,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
 			dstSubfolderSpec = 16;
 			files = (
+				B5ADF95A2B5307D700E4892D /* SaveWorld App Clip.app in Embed App Clips */,
 			);
 			name = "Embed App Clips";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -90,6 +108,18 @@
 		B53961292B52D11100CA61A3 /* SaveWorld_Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveWorld_Widgets.swift; sourceTree = "<group>"; };
 		B539612B2B52D11700CA61A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B539612D2B52D11700CA61A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5ADF94B2B5307D400E4892D /* SaveWorld App Clip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SaveWorld App Clip.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5ADF94D2B5307D400E4892D /* SaveWorld_App_ClipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveWorld_App_ClipApp.swift; sourceTree = "<group>"; };
+		B5ADF9512B5307D700E4892D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B5ADF9542B5307D700E4892D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B5ADF9562B5307D700E4892D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5ADF9572B5307D700E4892D /* SaveWorld_App_Clip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SaveWorld_App_Clip.entitlements; sourceTree = "<group>"; };
+		B5ADF9612B530BB300E4892D /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		B5ADF96D2B531E5A00E4892D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		B5ADF96F2B531EBC00E4892D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B5ADF9712B531ECB00E4892D /* ProjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListView.swift; sourceTree = "<group>"; };
+		B5ADF9732B531EE100E4892D /* ProjectDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailsView.swift; sourceTree = "<group>"; };
+		B5ADF9752B531EF700E4892D /* ProjectDetailsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailsListView.swift; sourceTree = "<group>"; };
 		B5AE8D4C2AB05F60004F26AD /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		B5D63A042ABA1A9C00116441 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		B5D63A062ABA1A9C00116441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -116,6 +146,13 @@
 			files = (
 				B53961252B52D11000CA61A3 /* SwiftUI.framework in Frameworks */,
 				B53961242B52D11000CA61A3 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5ADF9482B5307D400E4892D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +187,7 @@
 				B5D63A032ABA1A9C00116441 /* OneSignalNotificationServiceExtension */,
 				B5D63A132ABA1AC000116441 /* OneSignalNotificationServiceExtension */,
 				B53961262B52D11100CA61A3 /* SaveWorld Widgets */,
+				B5ADF94C2B5307D400E4892D /* SaveWorld App Clip */,
 				504EC3051FED79650016851F /* Products */,
 				7F8756D8B27F46E3366F6CEA /* Pods */,
 				27E2DDA53C4D2A4D1A88CE4A /* Frameworks */,
@@ -162,6 +200,7 @@
 				504EC3041FED79650016851F /* App.app */,
 				B5D63A122ABA1AC000116441 /* OneSignalNotificationServiceExtension.appex */,
 				B53961232B52D11000CA61A3 /* SaveWorld WidgetsExtension.appex */,
+				B5ADF94B2B5307D400E4892D /* SaveWorld App Clip.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -204,6 +243,32 @@
 			path = "SaveWorld Widgets";
 			sourceTree = "<group>";
 		};
+		B5ADF94C2B5307D400E4892D /* SaveWorld App Clip */ = {
+			isa = PBXGroup;
+			children = (
+				B5ADF94D2B5307D400E4892D /* SaveWorld_App_ClipApp.swift */,
+				B5ADF9512B5307D700E4892D /* Assets.xcassets */,
+				B5ADF9562B5307D700E4892D /* Info.plist */,
+				B5ADF9572B5307D700E4892D /* SaveWorld_App_Clip.entitlements */,
+				B5ADF9532B5307D700E4892D /* Preview Content */,
+				B5ADF9612B530BB300E4892D /* ListView.swift */,
+				B5ADF96D2B531E5A00E4892D /* Model.swift */,
+				B5ADF96F2B531EBC00E4892D /* ContentView.swift */,
+				B5ADF9712B531ECB00E4892D /* ProjectListView.swift */,
+				B5ADF9732B531EE100E4892D /* ProjectDetailsView.swift */,
+				B5ADF9752B531EF700E4892D /* ProjectDetailsListView.swift */,
+			);
+			path = "SaveWorld App Clip";
+			sourceTree = "<group>";
+		};
+		B5ADF9532B5307D700E4892D /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B5ADF9542B5307D700E4892D /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		B5D63A032ABA1A9C00116441 /* OneSignalNotificationServiceExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +307,7 @@
 			dependencies = (
 				B5D63A182ABA1AC000116441 /* PBXTargetDependency */,
 				B539612F2B52D11700CA61A3 /* PBXTargetDependency */,
+				B5ADF9592B5307D700E4892D /* PBXTargetDependency */,
 			);
 			name = App;
 			productName = App;
@@ -264,6 +330,25 @@
 			productName = "SaveWorld WidgetsExtension";
 			productReference = B53961232B52D11000CA61A3 /* SaveWorld WidgetsExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
+		};
+		B5ADF94A2B5307D400E4892D /* SaveWorld App Clip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5ADF95D2B5307D700E4892D /* Build configuration list for PBXNativeTarget "SaveWorld App Clip" */;
+			buildPhases = (
+				B5ADF9472B5307D400E4892D /* Sources */,
+				B5ADF9482B5307D400E4892D /* Frameworks */,
+				B5ADF9492B5307D400E4892D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SaveWorld App Clip";
+			packageProductDependencies = (
+			);
+			productName = "SaveWorld App Clip";
+			productReference = B5ADF94B2B5307D400E4892D /* SaveWorld App Clip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
 		};
 		B5D63A112ABA1AC000116441 /* OneSignalNotificationServiceExtension */ = {
 			isa = PBXNativeTarget;
@@ -300,6 +385,9 @@
 					B53961222B52D11000CA61A3 = {
 						CreatedOnToolsVersion = 15.0;
 					};
+					B5ADF94A2B5307D400E4892D = {
+						CreatedOnToolsVersion = 15.0;
+					};
 					B5D63A112ABA1AC000116441 = {
 						CreatedOnToolsVersion = 15.0;
 					};
@@ -314,6 +402,10 @@
 				Base,
 			);
 			mainGroup = 504EC2FB1FED79650016851F;
+			packageReferences = (
+				B5ADF9652B53112200E4892D /* XCRemoteSwiftPackageReference "http-client-module" */,
+				B5ADF9682B53122A00E4892D /* XCRemoteSwiftPackageReference "swift-request" */,
+			);
 			productRefGroup = 504EC3051FED79650016851F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -321,6 +413,7 @@
 				504EC3031FED79650016851F /* App */,
 				B5D63A112ABA1AC000116441 /* OneSignalNotificationServiceExtension */,
 				B53961222B52D11000CA61A3 /* SaveWorld WidgetsExtension */,
+				B5ADF94A2B5307D400E4892D /* SaveWorld App Clip */,
 			);
 		};
 /* End PBXProject section */
@@ -344,6 +437,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B539612C2B52D11700CA61A3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5ADF9492B5307D400E4892D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5ADF9552B5307D700E4892D /* Preview Assets.xcassets in Resources */,
+				B5ADF9522B5307D700E4892D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +534,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B5ADF9472B5307D400E4892D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5ADF96E2B531E5A00E4892D /* Model.swift in Sources */,
+				B5ADF9722B531ECB00E4892D /* ProjectListView.swift in Sources */,
+				B5ADF9622B530BB300E4892D /* ListView.swift in Sources */,
+				B5ADF9702B531EBC00E4892D /* ContentView.swift in Sources */,
+				B5ADF94E2B5307D400E4892D /* SaveWorld_App_ClipApp.swift in Sources */,
+				B5ADF9762B531EF700E4892D /* ProjectDetailsListView.swift in Sources */,
+				B5ADF9742B531EE100E4892D /* ProjectDetailsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B5D63A0E2ABA1AC000116441 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -447,6 +563,11 @@
 			isa = PBXTargetDependency;
 			target = B53961222B52D11000CA61A3 /* SaveWorld WidgetsExtension */;
 			targetProxy = B539612E2B52D11700CA61A3 /* PBXContainerItemProxy */;
+		};
+		B5ADF9592B5307D700E4892D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B5ADF94A2B5307D400E4892D /* SaveWorld App Clip */;
+			targetProxy = B5ADF9582B5307D700E4892D /* PBXContainerItemProxy */;
 		};
 		B5D63A182ABA1AC000116441 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -729,6 +850,96 @@
 			};
 			name = Release;
 		};
+		B5ADF95B2B5307D700E4892D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = "SaveWorld App Clip/SaveWorld_App_Clip.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SaveWorld App Clip/Preview Content\"";
+				DEVELOPMENT_TEAM = U5XU7Z3LFF;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SaveWorld App Clip/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = SaveWorld;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bensiebert.saveworld.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B5ADF95C2B5307D700E4892D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = "SaveWorld App Clip/SaveWorld_App_Clip.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SaveWorld App Clip/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = U5XU7Z3LFF;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SaveWorld App Clip/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = SaveWorld;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bensiebert.saveworld.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "SaveWorld App Clip";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		B5D63A1B2ABA1AC000116441 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3CAF7C467ADE30FE5629C192 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */;
@@ -842,6 +1053,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		B5ADF95D2B5307D700E4892D /* Build configuration list for PBXNativeTarget "SaveWorld App Clip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5ADF95B2B5307D700E4892D /* Debug */,
+				B5ADF95C2B5307D700E4892D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B5D63A1A2ABA1AC000116441 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -852,6 +1072,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B5ADF9652B53112200E4892D /* XCRemoteSwiftPackageReference "http-client-module" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftui-packages/http-client-module.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		B5ADF9682B53122A00E4892D /* XCRemoteSwiftPackageReference "swift-request" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/carson-katri/swift-request";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 504EC2FC1FED79650016851F /* Project object */;
 }
