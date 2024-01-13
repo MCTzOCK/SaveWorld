@@ -32,6 +32,8 @@ const render = async () => {
           h={"100vh"}
           alignItems={"center"}
           justifyContent={"center"}
+          padding={6}
+          direction={"column"}
         >
           <Heading>Kein Internet</Heading>
           <Text>
