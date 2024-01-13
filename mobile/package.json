@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host=0.0.0.0 --port=8100",
+    "build": "tsc && vite build",
     "build:licenses": "yarn licenses generate-disclaimer > public/licenses.txt",
     "build:prod:ios": "npm run build:licenses && ionic cap sync ios"
   },
