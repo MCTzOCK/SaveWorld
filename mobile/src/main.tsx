@@ -7,10 +7,24 @@ import { Network } from "@capacitor/network";
 import Root from "./Root";
 import PopupManager from "./util/PopupManager";
 import NoConnection from "./components/NoConnection";
+import { Preferences } from "@capacitor/preferences";
+import { I18n } from "./translations/i18n";
 
 window.PopupManager = PopupManager;
 
 const render = async () => {
+  Preferences.get({ key: "language" }).then((res) => {
+    let lang = "";
+    if (res.value === null) {
+      Preferences.set({ key: "language", value: "de" });
+      lang = "de";
+    } else {
+      lang = res.value;
+    }
+
+    I18n.setLanguage(lang);
+  });
+
   const status = await Network.getStatus();
   const container = document.getElementById("root");
   const root = createRoot(container!);

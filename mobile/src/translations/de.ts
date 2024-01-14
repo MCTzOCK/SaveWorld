@@ -1,5 +1,5 @@
 /**
- * mobile/src/translations/de-de.ts
+ * mobile/src/translations/de.ts
  *
  * Author: Ben Siebert <hello@ben-siebert.de>
  * Copyright: Copyright (c) 2018-2024 Ben Siebert. All rights reserved.

@@ -10,26 +10,36 @@
 
 const languages = {
   languages: {
-    "de-de": {
+    de: {
       displayName: "Deutsch",
       type: "manual",
     },
-    "en-us": {
+    en: {
       displayName: "English",
+      type: "auto",
+    },
+    es: {
+      displayName: "Español",
+      type: "auto",
+    },
+    fr: {
+      displayName: "Français",
       type: "auto",
     },
   },
 };
 
-import { german } from "./de-de";
-import { english } from "./en-us";
+import { german } from "./de";
+import { en } from "./en";
+import { es } from "./es";
+import { fr } from "./fr";
 
 type Keys = keyof typeof german;
 
 const currentLanguageSet: { [key: string]: string } = {};
 
 export class I18n {
-  public static currentLanguage: string = "en-us";
+  public static currentLanguage: string = "es";
 
   public static setLanguage(language: string) {
     I18n.currentLanguage = language;
@@ -56,10 +66,14 @@ export function getLanguages(): typeof languages {
 
 function getLanguageSet(language: string): Record<Keys, string> {
   switch (language) {
-    case "de-de":
+    case "de":
       return german;
-    case "en-us":
-      return english;
+    case "en":
+      return en;
+    case "es":
+      return es;
+    case "fr":
+      return fr;
     default:
       return getEmptyLanguageSet();
   }
