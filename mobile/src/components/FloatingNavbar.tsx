@@ -15,6 +15,7 @@ import { FaHome, FaProjectDiagram } from "react-icons/fa";
 import { FaLeaf, FaVideo } from "react-icons/fa6";
 import { useFlags } from "flagsmith/react";
 import { useEffect } from "react";
+import { $$ } from "../translations/i18n";
 
 export default function FloatingNavbar() {
   const flags = useFlags(["videos", "tracker", "eco_projects"]);
@@ -51,7 +52,7 @@ export default function FloatingNavbar() {
       >
         <Grid templateColumns={"repeat(" + enabledFlags + ", 1fr)"} gap={3}>
           <IconButton
-            aria-label={"Home"}
+            aria-label={$$("menu.home")}
             icon={<FaHome />}
             variant={"ghost"}
             as={Link}
@@ -59,7 +60,7 @@ export default function FloatingNavbar() {
           />
           {flags.tracker.enabled && (
             <IconButton
-              aria-label={"Tracker"}
+              aria-label={$$("menu.tracker")}
               icon={<FaLeaf />}
               variant={"ghost"}
               as={Link}
@@ -68,7 +69,7 @@ export default function FloatingNavbar() {
           )}
           {flags.videos.enabled && (
             <IconButton
-              aria-label={"Videos"}
+              aria-label={$$("menu.videos")}
               icon={<FaVideo />}
               variant={"ghost"}
               as={Link}
@@ -77,7 +78,7 @@ export default function FloatingNavbar() {
           )}
           {flags.eco_projects.enabled && (
             <IconButton
-              aria-label={"Projekte"}
+              aria-label={$$("menu.projects")}
               icon={<FaProjectDiagram />}
               variant={"ghost"}
               as={Link}

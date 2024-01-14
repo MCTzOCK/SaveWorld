@@ -81,6 +81,9 @@ export const german = {
   "components.e2.goals.not.reached": "Ziel nicht erreicht.",
   "components.e2.goals.reached": "Erreichte Ziele",
   "components.e2.goals.reached.how.many": "%0 von %1 erreicht.",
+  "components.e2.how.actions":
+    "Wie war dein Tag? Trage ein, wie oft du die folgenden Aktionen durchgeführt hast.",
+  "components.e2.how.was.your.day": "Wie war dein Tag?",
   "components.e2.lifestyle.loading.error":
     "Fehler beim Laden des Lebensstils: %0",
   "components.e2.lifestyle.templates.loading.error":
@@ -89,7 +92,52 @@ export const german = {
   "components.e2.no.data.description":
     "Für diesen Tag hast du keine Daten eingetragen!",
   "components.e2.summary.of.day": "Zusammenfassung vom",
+  "components.e2.unnamed.action": "Unbekannte Aktion",
   "components.e2.weekly.overview": "Wochenübersicht",
+  "components.e2projects.edit.members.intro":
+    "Dein Projekt hat insgesamt %0 Mitglieder. JEdes Mitglied kann eine von drei Rollen haben:",
+  "components.e2projects.homepage.segment.delete.confirm":
+    "Möchtest du das Segment wirklich löschen?",
+  "components.e2projects.homepage.segment.delete.error":
+    "Das Segment konnte nicht gelöscht werden: %0",
+  "components.e2projects.homepage.segment.list.helper.text":
+    "Trenne die Einträge mit zwei Zeilenumbrüchen.",
+  "components.e2projects.homepage.segment.list.placeholder": "Liste eingeben",
+  "components.e2projects.homepage.segment.pin": "Anheften",
+  "components.e2projects.homepage.segment.pin.error":
+    "Segment konnte nicht angeheftet werden: %0",
+  "components.e2projects.homepage.segment.pinned": "ANGEHEFTET",
+  "components.e2projects.homepage.segment.text.placeholder": "Text eingeben",
+  "components.e2projects.homepage.segment.update.error":
+    "Das Segment konnte nicht gespeichert werden: %0",
+  "components.e2projects.homepage.segments.new": "Neues Segment",
+  "components.e2projects.homepage.segments.new.choose": "Wähle ein Segment aus",
+  "components.e2projects.homepage.segments.new.default":
+    "Bildbeschreibung\0/community_blank_banner.jpg",
+  "components.e2projects.homepage.segments.new.default.list":
+    "Erster Eintrag\0Zweiter Eintrag",
+  "components.e2projects.homepage.segments.new.enter.title":
+    "Gib einen Titel ein",
+  "components.e2projects.homepage.segments.new.error":
+    "Segment konnte nicht erstellt werden: %0",
+  "components.e2projects.homepage.segments.new.list": "Liste",
+  "components.e2projects.homepage.segments.new.text": "Text",
+  "components.e2projects.homepahe.segment.unpin": "Ablösen",
+  "components.e2projects.members.change.role": "Rolle ändern",
+  "components.e2projects.members.change.role.choose":
+    "Wähle eine neue Rolle für das Mitglied",
+  "components.e2projects.members.remove": "Mitglied entfernen",
+  "components.e2projects.members.remove.confirm":
+    "Möchtest du das Mitglied wirklich entfernen?",
+  "components.e2projects.members.roles.admin": "Administrator",
+  "components.e2projects.members.roles.admin.description":
+    "Kann Projekt-Informationen, Homepage Segmente bearbeiten, Mitglieder verwalten und das Projekt löschen.",
+  "components.e2projects.members.roles.editor": "Editor",
+  "components.e2projects.members.roles.editor.description":
+    "Kann alles, was ein Administrator kann, außer das Projekt löschen und die Rollen von Mitglieder ändern.",
+  "components.e2projects.members.roles.member": "Mitglied",
+  "components.e2projects.members.roles.member.description":
+    "Kann alles einsehen, aber nichts bearbeiten. (Standard-Rolle)",
   "components.e2projects.project.add.to.calendar": "Zum Kalender hinzufügen",
   "components.e2projects.project.at.day": "Projekt am ",
   "components.e2projects.project.at.location": "Projekte an diesem Ort",
@@ -100,6 +148,19 @@ export const german = {
     "Fehler beim Speichern des Projektes: %0",
   "components.e2projects.project.saved":
     "Dein Projekt wurde erfolgreich gespeichert!",
+  "components.e2projects.todo.delete": "Liste löschen?",
+  "components.e2projects.todo.delete.confirm":
+    "Möchtest du die Liste wirklich löschen?",
+  "components.e2projects.todo.delete.error":
+    "Fehler beim Löschen der Liste: %0",
+  "components.e2projects.todo.loading.error":
+    "Die ToDo-Listen konnten nicht geladen werden!",
+  "components.e2projects.todo.new": "Neue Liste",
+  "components.e2projects.todo.new.description":
+    "Bitte gib den Namen der neuen Liste ein!",
+  "components.e2projects.todo.new.error": "Fehler beim Erstellen der Liste: %0",
+  "components.e2projects.todo.no.lists":
+    "Es wurden noch keine ToDo-Listen hinzugefügt.",
   "components.forum.edit.profile.error":
     "Fehler beim Bearbeiten des Profils: %0",
   "components.video.create": "Neues Video",
@@ -153,6 +214,7 @@ export const german = {
   "general.loading": "Laden...",
   "general.more.details": "Mehr Details",
   "general.no.results": "Keine Ergebnisse",
+  "general.open": "Öffnen",
   "general.open.source.licenses": "Open-Source Lizenzen",
   "general.overview": "Übersicht",
   "general.preview": "Vorschau",
@@ -525,6 +587,13 @@ export const german = {
   "pages.eatingplans.update.error":
     "Der Essensplan konnte nicht gespeichert werden: %0",
   "pages.eatingplans.update.success": "Der Essensplan wurde gespeichert!",
+  "pages.home.anon.call.to.action": "Los geht's!",
+  "pages.home.anon.title.1": "Unser Planet braucht deine",
+  "pages.home.anon.title.2": "Hilfe",
+  "pages.home.anon.title.3": "!",
+  "pages.home.anon.title.4": "Leiste deinen",
+  "pages.home.anon.title.5": "Beitrag",
+  "pages.home.anon.title.6": "!",
   "pages.introduction.call.to.action": "Die Welt verbessern!",
   "pages.introduction.finished.description":
     "Du hast die Einrichtung erfolgreich abgeschlossen! Du kannst jetzt anfagen die Welt zu einem besseren Ort zu machen!",

@@ -24,6 +24,7 @@ import {
 import HomeCard from "./HomeCard";
 import { FaEarthEurope } from "react-icons/fa6";
 import { IonCard, IonCardContent, useIonRouter } from "@ionic/react";
+import { $$ } from "../translations/i18n";
 
 export default function HomeForAnon() {
   const router = useIonRouter();
@@ -55,21 +56,21 @@ export default function HomeForAnon() {
             fontSize={["6xl", "8xl"]}
             fontWeight={900}
           >
-            SaveWorld
+            {$$("product.name")}
           </Heading>
           <Text fontSize={["2xl", "4xl"]} fontWeight={700}>
-            Unser Planet braucht deine{" "}
+            {$$("pages.home.anon.title.1")}{" "}
             <chakra.span color={"brand.500"} fontWeight={900}>
-              Hilfe
+              {$$("pages.home.anon.title.2")}
             </chakra.span>
-            !
+            {$$("pages.home.anon.title.3")}
           </Text>
           <Text fontSize={["2xl", "4xl"]} fontWeight={700}>
-            Leiste deinen{" "}
+            {$$("pages.home.anon.title.4")}{" "}
             <chakra.span color={"brand.500"} fontWeight={900}>
-              Beitrag
+              {$$("pages.home.anon.title.5")}
             </chakra.span>
-            !
+            {$$("pages.home.anon.title.6")}
           </Text>
           <ButtonGroup w={"100%"} justifyContent={["center", "right"]}>
             <Button
@@ -85,7 +86,7 @@ export default function HomeForAnon() {
               }}
               fontSize={"xl"}
             >
-              Los geht's
+              {$$("pages.home.anon.call.to.action")}
             </Button>
           </ButtonGroup>
         </Flex>

@@ -17,6 +17,7 @@ import PopupManager from "../util/PopupManager";
 import { Button } from "@chakra-ui/react";
 import { FaPlus } from "react-icons/fa6";
 import E2ProjectHomepageSegment from "./E2ProjectHomepageSegment";
+import { $$ } from "../translations/i18n";
 
 export default function E2ProjectEditHomepage(props: { project: E2Project }) {
   const [segments, setSegments] = useState<E2HomepageSegments>([]);
@@ -33,9 +34,11 @@ export default function E2ProjectEditHomepage(props: { project: E2Project }) {
 
     if (res.status !== 200) {
       await PopupManager.alert({
-        title: "Fehler",
-        description:
-          "Homepage konnte nicht geladen werden: " + res.payload.error,
+        title: $$("control.error"),
+        description: $$(
+          "pages.e2projects.homepage.loading.error",
+          res.payload.error,
+        ),
       });
     } else {
       setSegments(res.payload.segments);
@@ -50,9 +53,14 @@ export default function E2ProjectEditHomepage(props: { project: E2Project }) {
         leftIcon={<FaPlus />}
         onClick={async () => {
           const typePrompt = await PopupManager.selectAsync({
-            title: "Neues Segment",
-            helperText: "Wähle ein Segment aus",
-            choices: ["Text", "Liste"],
+            title: $$("components.e2projects.homepage.segments.new"),
+            helperText: $$(
+              "components.e2projects.homepage.segments.new.choose",
+            ),
+            choices: [
+              $$("components.e2projects.homepage.segments.new.text"),
+              $$("components.e2projects.homepage.segments.new.list"),
+            ],
           });
 
           if (!typePrompt) return;
@@ -65,8 +73,10 @@ export default function E2ProjectEditHomepage(props: { project: E2Project }) {
               : "image";
 
           const title = await PopupManager.promptAsync({
-            title: "Neues Segment",
-            helperText: "Gib einen Titel ein",
+            title: $$("components.e2projects.homepage.segments.new"),
+            helperText: $$(
+              "components.e2projects.homepage.segments.new.enter.title",
+            ),
             inputType: "INPUT",
           });
 
@@ -74,10 +84,10 @@ export default function E2ProjectEditHomepage(props: { project: E2Project }) {
 
           let content =
             type === "text"
-              ? "Neues Segment"
+              ? $$("components.e2projects.homepage.segments.new")
               : type === "list"
-              ? "Erster Eintrag\0Zweiter Eintrag"
-              : "Bildbeschreibung\0/community_blank_banner.jpg";
+              ? $$("components.e2projects.homepage.segments.new.default.list")
+              : $$("components.e2projects.homepage.segments.new.default");
 
           const res = await REST.EcoProjects.createHomepageSegment(
             localStorage.getItem("token") as string,
@@ -90,16 +100,18 @@ export default function E2ProjectEditHomepage(props: { project: E2Project }) {
 
           if (res.status !== 200) {
             await PopupManager.alert({
-              title: "Fehler",
-              description:
-                "Segment konnte nicht erstellt werden: " + res.payload.error,
+              title: $$("control.error"),
+              description: $$(
+                "components.e2projects.homepage.segments.new.error",
+                res.payload.error,
+              ),
             });
           }
 
           await reloadSegments();
         }}
       >
-        Neues Segment
+        {$$("components.e2projects.homepage.segments.new")}
       </Button>
       {segments
         .sort((a, b) => {

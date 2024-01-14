@@ -36,6 +36,7 @@ import { FaLeaf, FaThumbtack, FaTrash } from "react-icons/fa6";
 import { useEffect } from "react";
 import { REST } from "@saveworld/api-js";
 import PopupManager from "../util/PopupManager";
+import { $$ } from "../translations/i18n";
 
 export default function E2ProjectHomepageSegment(props: {
   segment: E2HomepageSegment;
@@ -74,7 +75,9 @@ export default function E2ProjectHomepageSegment(props: {
           </IonCardTitle>
           {props.segment.pinned && (
             <>
-              <IonCardSubtitle>ANGEHEFTET</IonCardSubtitle>
+              <IonCardSubtitle>
+                {$$("components.e2projects.homepage.segment.pinned")}
+              </IonCardSubtitle>
             </>
           )}
         </IonCardHeader>
@@ -88,7 +91,9 @@ export default function E2ProjectHomepageSegment(props: {
                     onInput={(e) => {
                       setNewContent(e.currentTarget.value);
                     }}
-                    placeholder={"Text eingeben"}
+                    placeholder={$$(
+                      "components.e2projects.homepage.segment.text.placeholder",
+                    )}
                   />
                 </>
               )}
@@ -102,10 +107,14 @@ export default function E2ProjectHomepageSegment(props: {
                           e.currentTarget.value.replaceAll("\n\n", "\0"),
                         );
                       }}
-                      placeholder={"Liste eingeben"}
+                      placeholder={$$(
+                        "components.e2projects.homepage.segment.list.placeholder",
+                      )}
                     />
                     <FormHelperText>
-                      Trenne die Einträge mit zwei Zeilenumbruch
+                      {$$(
+                        "components.e2projects.homepage.segment.list.helper.text",
+                      )}
                     </FormHelperText>
                   </FormControl>
                 </>
@@ -130,15 +139,16 @@ export default function E2ProjectHomepageSegment(props: {
                       props.reloadSegments!();
                     } else {
                       await PopupManager.alert({
-                        title: "Fehler",
-                        description:
-                          "Segment konnte nicht gespeichert werden: " +
+                        title: $$("control.error"),
+                        description: $$(
+                          "components.e2projects.homepage.segment.update.error",
                           res.payload.error,
+                        ),
                       });
                     }
                   }}
                 >
-                  Speichern
+                  {$$("control.save")}
                 </Button>
                 <Button
                   color={"var(--ion-color-danger)"}
@@ -147,8 +157,10 @@ export default function E2ProjectHomepageSegment(props: {
                   onClick={async () => {
                     if (
                       !(await PopupManager.confirmAsync({
-                        title: "Löschen",
-                        question: "Willst du dieses Segment wirklich löschen?",
+                        title: $$("control.delete"),
+                        question: $$(
+                          "components.e2projects.homepage.segment.delete.confirm",
+                        ),
                       }))
                     )
                       return;
@@ -163,15 +175,16 @@ export default function E2ProjectHomepageSegment(props: {
                       props.reloadSegments!();
                     } else {
                       await PopupManager.alert({
-                        title: "Fehler",
-                        description:
-                          "Segment konnte nicht gelöscht werden: " +
+                        title: $$("control.error"),
+                        description: $$(
+                          "components.e2projects.homepage.segment.delete.error",
                           res.payload.error,
+                        ),
                       });
                     }
                   }}
                 >
-                  Löschen
+                  {$$("control.delete")}
                 </Button>
               </ButtonGroup>
               <Button
@@ -196,15 +209,18 @@ export default function E2ProjectHomepageSegment(props: {
                     props.reloadSegments!();
                   } else {
                     await PopupManager.alert({
-                      title: "Fehler",
-                      description:
-                        "Segment konnte nicht angeheftet werden: " +
+                      title: $$("control.error"),
+                      description: $$(
+                        "components.e2projects.homepage.segment.pin.error",
                         res.payload.error,
+                      ),
                     });
                   }
                 }}
               >
-                {props.segment.pinned ? "Ablösen" : "Anheften"}
+                {props.segment.pinned
+                  ? $$("components.e2projects.homepahe.segment.unpin")
+                  : $$("components.e2projects.homepage.segment.pin")}
               </Button>
             </>
           ) : (

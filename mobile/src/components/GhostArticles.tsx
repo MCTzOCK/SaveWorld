@@ -26,6 +26,7 @@ import {
   Heading,
   Image,
 } from "@chakra-ui/react";
+import { $$ } from "../translations/i18n";
 
 export default function GhostArticles(props: {
   pageTitle?: string;
@@ -56,7 +57,9 @@ export default function GhostArticles(props: {
 
   return (
     <>
-      <Page title={props.pageTitle ? props.pageTitle : "Artikel"}>
+      <Page
+        title={props.pageTitle ? props.pageTitle : $$("components.articles")}
+      >
         <Grid
           templateColumns={[
             "repeat(1, 1fr)",
@@ -113,7 +116,7 @@ export default function GhostArticles(props: {
                           );
                         }}
                       >
-                        Weiterlesen
+                        {$$("components.articles.read.more")}
                       </Button>
                     </ButtonGroup>
                   </CardBody>
@@ -141,7 +144,7 @@ export default function GhostArticles(props: {
                 onClick={() => setPage(page - 1)}
                 w={"100%"}
               >
-                Zurück
+                {$$("control.back")}
               </Button>
             ) : null}
             {page < pages ? (
@@ -150,7 +153,7 @@ export default function GhostArticles(props: {
                 onClick={() => setPage(page + 1)}
                 w={"100%"}
               >
-                Weiter
+                {$$("control.next")}
               </Button>
             ) : null}
           </ButtonGroup>
