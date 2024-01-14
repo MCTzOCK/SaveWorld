@@ -32,6 +32,7 @@ import Page from "../../components/Page";
 import MobileBox from "../../components/MobileBox";
 import { FaTrash } from "react-icons/fa6";
 import { FaPen } from "react-icons/fa";
+import { __ } from "../../translations/i18n";
 
 export default function AdminRecipeDashboard() {
   const router = useIonRouter();
@@ -61,9 +62,8 @@ export default function AdminRecipeDashboard() {
       setPages(res.payload.pages);
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description:
-          "Rezepte konnten nicht geladen werden: " + res.payload.error,
+        title: __("control.error"),
+        description: __("pages.admin.recipes.loading.error", res.payload.error),
       });
     }
   };
@@ -79,10 +79,10 @@ export default function AdminRecipeDashboard() {
 
   return (
     <>
-      <Page title={"Rezepte"} redGradient>
+      <Page title={__("menu.recipes")} redGradient>
         <MobileBox bg={"#101010"}>
           <IonSearchbar
-            placeholder={"Suchen"}
+            placeholder={__("control.search")}
             value={query}
             onIonInput={(e) => setQuery(e.detail.value as string)}
             style={{
@@ -132,8 +132,8 @@ export default function AdminRecipeDashboard() {
                       onClick={async () => {
                         if (
                           !(await PopupManager.confirmAsync({
-                            title: "Löschen?",
-                            question: "Willst du das Rezept wirklich löschen?",
+                            title: __("control.delete"),
+                            question: __("pages.admin.recipes.delete"),
                           }))
                         )
                           return;
@@ -145,15 +145,18 @@ export default function AdminRecipeDashboard() {
 
                         if (res.status !== 200) {
                           await PopupManager.alertAsync({
-                            title: "Fehler",
-                            description:
-                              "Das Rezept konnte nicht gelöscht werden: " +
+                            title: __("control.error"),
+                            description: __(
+                              "pages.admin.recipes.delete.error",
                               res.payload.error,
+                            ),
                           });
                         } else {
                           await PopupManager.alertAsync({
-                            title: "Erfolgreich",
-                            description: "Das Rezept wurde gelöscht!",
+                            title: __("control.success"),
+                            description: __(
+                              "pages.admin.recipes.delete.success",
+                            ),
                           });
                           setQuery("");
                           setPage(0);
@@ -211,7 +214,7 @@ export default function AdminRecipeDashboard() {
             onClick={() => setPage(page - 1)}
             expand={"block"}
           >
-            Zurück
+            {__("control.back")}
           </IonButton>
         ) : null}
         {page < pages - 1 ? (
@@ -220,7 +223,7 @@ export default function AdminRecipeDashboard() {
             onClick={() => setPage(page + 1)}
             expand={"block"}
           >
-            Weiter
+            {__("control.next")}
           </IonButton>
         ) : null}
       </div>

@@ -31,6 +31,7 @@ import AdminCreateCategoryModal from "../../components/AdminCreateCategoryModal"
 import PopupManager from "../../util/PopupManager";
 import { Grid } from "@chakra-ui/react";
 import MobileBox from "../../components/MobileBox";
+import { __ } from "../../translations/i18n";
 
 export default function AdminContentCategoryDashboard() {
   useRedirectForAnon({
@@ -61,8 +62,11 @@ export default function AdminContentCategoryDashboard() {
         setCategories(res.payload as any);
       } else {
         PopupManager.alert({
-          title: "Fehler",
-          description: "Fehler beim Laden der Kategorien: " + res.payload.error,
+          title: __("control.error"),
+          description: __(
+            "pages.admin.category.loading.error",
+            res.payload.error,
+          ),
         });
       }
       setLoading(false);
@@ -71,7 +75,7 @@ export default function AdminContentCategoryDashboard() {
 
   return (
     <>
-      <Page title={"Kategorien"} redGradient>
+      <Page title={__("pages.admin.category.title")} redGradient>
         {loading && (
           <>
             <div
@@ -105,7 +109,7 @@ export default function AdminContentCategoryDashboard() {
               }).length === 0 ? (
                 <>
                   <IonText className={"ion-padding"}>
-                    Keine Kategorien gefunden.
+                    {__("pages.admin.category.no.categories")}
                   </IonText>
                 </>
               ) : (
@@ -144,9 +148,10 @@ export default function AdminContentCategoryDashboard() {
                                   onClick={async () => {
                                     if (
                                       !(await PopupManager.confirmAsync({
-                                        title: "Löschen",
-                                        question:
-                                          "Möchtest du die Kategorie wirklich löschen?",
+                                        title: __("control.delete"),
+                                        question: __(
+                                          "pages.admin.category.delete",
+                                        ),
                                       }))
                                     )
                                       return;
@@ -160,15 +165,16 @@ export default function AdminContentCategoryDashboard() {
                                       reload();
                                     } else {
                                       PopupManager.alert({
-                                        title: "Fehler",
-                                        description:
-                                          "Fehler beim Löschen der Kategorie: " +
+                                        title: __("control.error"),
+                                        description: __(
+                                          "pages.admin.category.delete.error",
                                           res.payload.error,
+                                        ),
                                       });
                                     }
                                   }}
                                 >
-                                  Löschen
+                                  {__("control.delete")}
                                 </IonButton>
                               </IonCardContent>
                             </IonCard>

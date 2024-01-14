@@ -36,6 +36,7 @@ import { FaCheckCircle, FaPen, FaTimesCircle } from "react-icons/fa";
 import Page from "../../components/Page";
 import { FaTrash } from "react-icons/fa6";
 import MobileBox from "../../components/MobileBox";
+import { __ } from "../../translations/i18n";
 
 export default function AdminEcoProjectsDashboard() {
   const router = useIonRouter();
@@ -57,9 +58,11 @@ export default function AdminEcoProjectsDashboard() {
       setPages(res.payload.pages);
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description:
-          "Projekte konnten nicht geladen werden: " + res.payload.error,
+        title: __("control.error"),
+        description: __(
+          "pages.admin.e2projects.loading.error",
+          res.payload.error,
+        ),
       });
     }
   };
@@ -75,10 +78,10 @@ export default function AdminEcoProjectsDashboard() {
 
   return (
     <>
-      <Page title={"Projekte"} redGradient>
+      <Page title={__("menu.projects")} redGradient>
         <MobileBox bg={"#101010"}>
           <IonSearchbar
-            placeholder={"Suche"}
+            placeholder={__("control.search")}
             onIonInput={(e) => {
               setQuery(e.detail.value || "");
             }}
@@ -132,8 +135,8 @@ export default function AdminEcoProjectsDashboard() {
                             }
                           />
                           {p.geoLocationType === "nominatim"
-                            ? `Auf der Karte auffindbar`
-                            : "Nicht auf der Karte angezeigt"}
+                            ? __("pages.e2projects.map.findable")
+                            : __("pages.e2projects.map.unfindable")}
                         </ListItem>
                       </List>
                       <ButtonGroup w={"100%"} mt={6}>
@@ -146,9 +149,10 @@ export default function AdminEcoProjectsDashboard() {
                           onClick={async () => {
                             if (
                               !(await PopupManager.confirmAsync({
-                                title: "Projekt löschen?",
-                                question:
-                                  "Willst du das Projekt wirklich löschen?",
+                                title: __("pages.admin.e2projects.delete"),
+                                question: __(
+                                  "pages.admin.e2projects.delete.description",
+                                ),
                               }))
                             )
                               return;
@@ -161,9 +165,10 @@ export default function AdminEcoProjectsDashboard() {
                             if (res.status !== 200) {
                             } else {
                               await PopupManager.alertAsync({
-                                title: "Erfolgreich",
-                                description:
-                                  "Das Projekt wurde erfolgreich gelöscht!",
+                                title: __("control.success"),
+                                description: __(
+                                  "pages.admin.e2projects.delete.success",
+                                ),
                               });
 
                               setPage(0);
@@ -210,7 +215,7 @@ export default function AdminEcoProjectsDashboard() {
                 onClick={() => setPage(page - 1)}
                 w={"100%"}
               >
-                Zurück
+                {__("control.back")}
               </Button>
             ) : null}
             {page < pages - 1 ? (
@@ -219,7 +224,7 @@ export default function AdminEcoProjectsDashboard() {
                 onClick={() => setPage(page + 1)}
                 w={"100%"}
               >
-                Weiter
+                {__("control.next")}
               </Button>
             ) : null}
           </ButtonGroup>

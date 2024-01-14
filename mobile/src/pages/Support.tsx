@@ -38,6 +38,7 @@ import PopupManager from "../util/PopupManager";
 import { REST } from "@saveworld/api-js";
 import { useRedirectForAnon } from "../hooks/useRedirectForAnon";
 import MobileBox from "../components/MobileBox";
+import { __ } from "../translations/i18n";
 
 export default function Support() {
   useRedirectForAnon();
@@ -83,23 +84,21 @@ export default function Support() {
 
   return (
     <>
-      <Page title={"Support"}>
+      <Page title={__("menu.support")}>
         <MobileBox>
           <VStack spacing={"1rem"}>
             <Text>
-              Du hast eine Frage oder ein Problem? Dann schreib uns eine
-              Nachricht! Alternativ kannst du uns auch eine E-Mail an&nbsp;
+              {__("page.support.description")}&nbsp;
               <Link color={"brand.500"} href={"mailto:ben@saveworld.one"}>
                 ben@saveworld.one
               </Link>
-              &nbsp;senden.
             </Text>
             <InputGroup>
               <InputLeftAddon>
                 <FaEnvelope />
               </InputLeftAddon>
               <Input
-                placeholder={"E-Mail"}
+                placeholder={__("user.email")}
                 disabled={loggedIn}
                 defaultValue={loggedIn ? userInfo.email : ""}
                 onChange={(e) => {
@@ -109,20 +108,30 @@ export default function Support() {
               />
             </InputGroup>
             <Select
-              placeholder={"Kategorie auswählen"}
+              placeholder={__("page.support.choose.category")}
               value={category}
               onChange={(e) => {
                 setCategory(e.target.value);
               }}
               disabled={reportContent}
             >
-              <option value={"GENERAL"}>Genereller Support</option>
-              <option value={"REPORT-BUG"}>Fehler melden</option>
+              <option value={"GENERAL"}>
+                {__("page.support.category.general")}
+              </option>
+              <option value={"REPORT-BUG"}>
+                {__("page.support.category.error")}
+              </option>
               {reportContent && (
                 <>
-                  <option value={"REPORT-USER"}>Benutzer melden</option>
-                  <option value={"REPORT-POST"}>Beitrag melden</option>
-                  <option value={"VIDEO-QUESTION"}>Video Frage</option>
+                  <option value={"REPORT-USER"}>
+                    {__("page.support.category.report.user")}
+                  </option>
+                  <option value={"REPORT-POST"}>
+                    {__("page.support.category.report.post")}
+                  </option>
+                  <option value={"VIDEO-QUESTION"}>
+                    {__("page.support.category.question.video")}
+                  </option>
                 </>
               )}
             </Select>
@@ -131,19 +140,14 @@ export default function Support() {
               onChange={(e) => {
                 setMessage(e.target.value);
               }}
-              placeholder={"Weitere Details"}
+              placeholder={__("general.more.details")}
             />
             {additional && (
               <>
                 {category.startsWith("REPORT") ? (
-                  <IonText>
-                    Deiner Anfrage werden die Details des zu meldenden Inhalts
-                    automatisch hinzugefügt.
-                  </IonText>
+                  <IonText>{__("page.support.attachment")}</IonText>
                 ) : (
-                  <IonText>
-                    Deiner Anfrage wird das Video automatisch angehangen.
-                  </IonText>
+                  <IonText>{__("page.support.attachment.video")}</IonText>
                 )}
               </>
             )}
@@ -155,24 +159,24 @@ export default function Support() {
             onClick={async () => {
               if (!category) {
                 await PopupManager.alertAsync({
-                  title: "Fehler",
-                  description: "Bitte wähle eine Kategorie aus.",
+                  title: __("control.error"),
+                  description: __("page.support.form.missing.category"),
                 });
                 return;
               }
 
               if (!message) {
                 await PopupManager.alertAsync({
-                  title: "Fehler",
-                  description: "Bitte gib eine Nachricht ein.",
+                  title: __("control.error"),
+                  description: __("page.support.form.missing.message"),
                 });
                 return;
               }
 
               if (
                 !(await PopupManager.confirmAsync({
-                  title: "Bestätigen",
-                  question: "Möchtest du diese Anfrage wirklich absenden?",
+                  title: __("control.confirm"),
+                  question: __("page.support.form.confirm"),
                 }))
               )
                 return;
@@ -186,20 +190,18 @@ export default function Support() {
 
               if (res.status === 200) {
                 await PopupManager.alertAsync({
-                  title: "Abgeschlossen",
-                  description: "Deine Anfrage wurde erfolgreich abgeschickt.",
+                  title: __("control.success"),
+                  description: __("page.support.success"),
                 });
               } else {
                 await PopupManager.alertAsync({
-                  title: "Fehler",
-                  description:
-                    "Deine Anfrage konnte nicht abgeschickt werden: " +
-                    res.payload.error,
+                  title: __("control.error"),
+                  description: __("page.support.error", res.payload.error),
                 });
               }
             }}
           >
-            Absenden
+            {__("general.submit")}
           </Button>
         </MobileBox>
       </Page>

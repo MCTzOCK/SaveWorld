@@ -25,6 +25,7 @@ import {
 } from "@ionic/react";
 import PopupManager from "../../util/PopupManager";
 import { Box, Flex } from "@chakra-ui/react";
+import { __ } from "../../translations/i18n";
 
 export default function AdminVideoDashboard() {
   useRedirectForAnon({
@@ -66,8 +67,8 @@ export default function AdminVideoDashboard() {
         setSources(res.payload.video.sources);
       } else {
         PopupManager.alert({
-          title: "Fehler",
-          description: "Fehler beim Laden des Videos: " + res.payload.error,
+          title: __("control.error"),
+          description: __("pages.admin.video.loading.error", res.payload.error),
         });
       }
     });
@@ -76,8 +77,11 @@ export default function AdminVideoDashboard() {
         setCategories(res.payload as any);
       } else {
         PopupManager.alert({
-          title: "Fehler",
-          description: "Fehler beim Laden der Kategorien: " + res.payload.error,
+          title: __("control.error"),
+          description: __(
+            "pages.admin.category.loading.error",
+            res.payload.error,
+          ),
         });
       }
     });
@@ -87,7 +91,7 @@ export default function AdminVideoDashboard() {
 
   return (
     <>
-      <Page title={video?.title || "Laden..."} redGradient>
+      <Page title={video?.title || __("general.loading")} redGradient>
         {video && (
           <>
             <Flex
@@ -100,7 +104,7 @@ export default function AdminVideoDashboard() {
                 <IonList inset>
                   <IonItem color={"light"}>
                     <IonInput
-                      label={"Titel"}
+                      label={__("pages.admin.video.form.title")}
                       value={video.title}
                       labelPlacement={"fixed"}
                       id={"update-video-title"}
@@ -108,7 +112,7 @@ export default function AdminVideoDashboard() {
                   </IonItem>
                   <IonItem color={"light"}>
                     <IonTextarea
-                      label={"Beschreibung"}
+                      label={__("pages.admin.video.form.description")}
                       value={video.description}
                       labelPlacement={"fixed"}
                       id={"update-video-desc"}
@@ -116,8 +120,10 @@ export default function AdminVideoDashboard() {
                   </IonItem>
                   <IonItem color={"light"}>
                     <IonTextarea
-                      placeholder={"Quellen (eine pro Zeile)"}
-                      label={"Quellen"}
+                      placeholder={__(
+                        "pages.admin.video.form.sources.placeholder",
+                      )}
+                      label={__("pages.admin.video.form.sources")}
                       labelPlacement={"fixed"}
                       autoGrow
                       id={"create-vid-sources"}
@@ -179,24 +185,24 @@ export default function AdminVideoDashboard() {
                       );
                       if (res.status === 200) {
                         PopupManager.alert({
-                          title: "Erfolgreich",
-                          description:
-                            "Das Video wurde erfolgreich aktualisiert!",
+                          title: __("control.success"),
+                          description: __("pages.admin.video.updated.success"),
                           callback: () => {
                             router.push(router.routeInfo.pathname);
                           },
                         });
                       } else {
                         PopupManager.alert({
-                          title: "Fehler",
-                          description:
-                            "Fehler beim Aktualisieren des Videos: " +
+                          title: __("control.error"),
+                          description: __(
+                            "pages.admin.video.updated.error",
                             res.payload.error,
+                          ),
                         });
                       }
                     }}
                   >
-                    <IonText color={"primary"}>Speichern</IonText>
+                    <IonText color={"primary"}>{__("control.save")}</IonText>
                   </IonItem>
                   <IonItem
                     color={"light"}
@@ -204,8 +210,8 @@ export default function AdminVideoDashboard() {
                     onClick={async () => {
                       if (
                         !(await PopupManager.confirmAsync({
-                          title: "Löschen",
-                          question: "Möchtest du das Video wirklich löschen?",
+                          title: __("control.delete"),
+                          question: __("pages.admin.video.delete.confirm"),
                         }))
                       )
                         return;
@@ -217,23 +223,24 @@ export default function AdminVideoDashboard() {
 
                       if (res.status === 200) {
                         PopupManager.alert({
-                          title: "Erfolgreich",
-                          description: "Das Video wurde gelöscht!",
+                          title: __("control.success"),
+                          description: __("pages.admin.video.deleted"),
                           callback: () => {
                             router.push(router.routeInfo.pathname);
                           },
                         });
                       } else {
                         PopupManager.alert({
-                          title: "Fehler",
-                          description:
-                            "Fehler beim Löschen des Videos: " +
+                          title: __("control.error"),
+                          description: __(
+                            "pages.admin.video.deleted.error",
                             res.payload.error,
+                          ),
                         });
                       }
                     }}
                   >
-                    <IonText color={"danger"}>Löschen</IonText>
+                    <IonText color={"danger"}>{__("control.delete")}</IonText>
                   </IonItem>
                 </IonList>
               </Box>

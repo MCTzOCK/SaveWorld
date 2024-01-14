@@ -47,6 +47,7 @@ import {
 } from "@chakra-ui/react";
 import { FaTrash } from "react-icons/fa6";
 import { FaPen } from "react-icons/fa";
+import { __ } from "../../translations/i18n";
 
 export default function AdminLifestyleTemplates() {
   useRedirectForAnon({
@@ -67,8 +68,11 @@ export default function AdminLifestyleTemplates() {
       setTemplates(tplR.payload.lst);
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description: "Fehler beim Laden der Vorlagen: " + tplR.payload.error,
+        title: __("control.error"),
+        description: __(
+          "pages.admin.lifestyle.loading.error",
+          tplR.payload.error,
+        ),
       });
     }
   };
@@ -81,10 +85,10 @@ export default function AdminLifestyleTemplates() {
 
   return (
     <>
-      <Page title={"Lifestyle"} redGradient>
+      <Page title={__("menu.lifestyle")} redGradient>
         <MobileBox bg={"#101010"}>
           <IonSearchbar
-            placeholder={"Suche"}
+            placeholder={__("control.search")}
             value={query}
             onIonInput={(ev) => {
               setQuery((ev.detail.value || "").trim());
@@ -131,9 +135,10 @@ export default function AdminLifestyleTemplates() {
                                 onClick={async () => {
                                   if (
                                     !(await PopupManager.confirmAsync({
-                                      title: "Löschen",
-                                      question:
-                                        "Möchtest du die Vorlage wirklich löschen?",
+                                      title: __("control.delete"),
+                                      question: __(
+                                        "pages.admin.lifestyle.delete.description",
+                                      ),
                                     }))
                                   )
                                     return;
@@ -146,10 +151,11 @@ export default function AdminLifestyleTemplates() {
                                     await reload();
                                   } else {
                                     PopupManager.alert({
-                                      title: "Fehler",
-                                      description:
-                                        "Fehler beim Löschen der Vorlage: " +
+                                      title: __("control.error"),
+                                      description: __(
+                                        "pages.admin.lifestyle.delete.error",
                                         delR.payload.error,
+                                      ),
                                     });
                                   }
                                 }}
@@ -162,14 +168,20 @@ export default function AdminLifestyleTemplates() {
                                 variant={"ghost"}
                                 onClick={async () => {
                                   const name = await PopupManager.promptAsync({
-                                    title: "Name der Vorlage",
-                                    helperText: "Name der Vorlage",
+                                    title: __(
+                                      "pages.admin.lifestyle.new.title",
+                                    ),
+                                    helperText: __(
+                                      "pages.admin.lifestyle.new.title",
+                                    ),
                                     inputType: "INPUT",
                                   });
 
                                   const goal = await PopupManager.promptAsync({
-                                    title: "Ziel der Vorlage",
-                                    helperText: "Ziel der Vorlage",
+                                    title: __("pages.admin.lifestyle.new.goal"),
+                                    helperText: __(
+                                      "pages.admin.lifestyle.new.goal",
+                                    ),
                                     inputType: "INPUT",
                                   });
                                   if (name && goal) {
@@ -184,10 +196,11 @@ export default function AdminLifestyleTemplates() {
                                       await reload();
                                     } else {
                                       PopupManager.alert({
-                                        title: "Fehler",
-                                        description:
-                                          "Fehler beim Bearbeiten der Vorlage: " +
+                                        title: __("control.error"),
+                                        description: __(
+                                          "pages.admin.lifestyle.delete.error",
                                           tplR.payload.error,
+                                        ),
                                       });
                                     }
                                   }
@@ -207,14 +220,14 @@ export default function AdminLifestyleTemplates() {
               color={"danger"}
               onClick={async () => {
                 const name = await PopupManager.promptAsync({
-                  title: "Name der Vorlage",
-                  helperText: "Name der Vorlage",
+                  title: __("pages.admin.lifestyle.new.title"),
+                  helperText: __("pages.admin.lifestyle.new.title"),
                   inputType: "INPUT",
                 });
 
                 const goal = await PopupManager.promptAsync({
-                  title: "Ziel der Vorlage",
-                  helperText: "Ziel der Vorlage",
+                  title: __("pages.admin.lifestyle.new.goal"),
+                  helperText: __("pages.admin.lifestyle.new.goal"),
                   inputType: "INPUT",
                 });
 
@@ -228,10 +241,11 @@ export default function AdminLifestyleTemplates() {
                     await reload();
                   } else {
                     PopupManager.alert({
-                      title: "Fehler",
-                      description:
-                        "Fehler beim Erstellen der Vorlage: " +
+                      title: __("control.error"),
+                      description: __(
+                        "pages.admin.lifestyle.create.error",
                         tplR.payload.error,
+                      ),
                     });
                   }
                 }

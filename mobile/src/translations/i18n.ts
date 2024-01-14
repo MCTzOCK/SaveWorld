@@ -24,6 +24,8 @@ const languages = {
 import { german } from "./de-de";
 import { english } from "./en-us";
 
+type Keys = keyof typeof german;
+
 const currentLanguageSet: { [key: string]: string } = {};
 
 export class I18n {
@@ -34,13 +36,13 @@ export class I18n {
   }
 }
 
-export function __(key: string, ...args: string[]): string {
+export function __(key: Keys, ...args: string[]): string {
   const langset = getLanguageSet(I18n.currentLanguage);
 
   if (langset[key]) {
-    let v = langset[key];
+    let v: string = langset[key];
     args.forEach((arg, i) => {
-      v = v.replace("%" + i, arg);
+      v = v.replace("%" + i, arg) as any;
     });
 
     return v;
@@ -52,13 +54,23 @@ export function getLanguages(): typeof languages {
   return languages;
 }
 
-function getLanguageSet(language: string): { [key: string]: string } {
+function getLanguageSet(language: string): Record<Keys, string> {
   switch (language) {
     case "de-de":
       return german;
     case "en-us":
-      return english;
+      // todo return english;
+      return getEmptyLanguageSet();
     default:
-      return {};
+      return getEmptyLanguageSet();
   }
+}
+
+function getEmptyLanguageSet(): Record<Keys, string> {
+  const langset = german;
+  const emptyLangset: Record<Keys, string> = {} as any;
+  Object.keys(langset).forEach((key) => {
+    emptyLangset[key as Keys] = "" as any;
+  });
+  return emptyLangset;
 }
