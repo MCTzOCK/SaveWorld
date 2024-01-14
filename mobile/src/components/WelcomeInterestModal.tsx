@@ -29,6 +29,7 @@ import {
 import { REST } from "@saveworld/api-js";
 import PopupManager from "../util/PopupManager";
 import { Grid } from "@chakra-ui/react";
+import { $$ } from "../translations/i18n";
 
 export default function WelcomeInterestModal(props: {
   modal: React.MutableRefObject<HTMLIonModalElement>;
@@ -66,7 +67,7 @@ export default function WelcomeInterestModal(props: {
       <IonModal ref={props.modal} presentingElement={props.presentingElement}>
         <IonHeader collapse={"fade"}>
           <IonToolbar>
-            <IonTitle>Interessen</IonTitle>
+            <IonTitle>{$$("menu.interests")}</IonTitle>
             <IonButtons slot={"end"}>
               <IonButton
                 onClick={async () => {
@@ -79,10 +80,11 @@ export default function WelcomeInterestModal(props: {
 
                   if (res.status !== 200) {
                     PopupManager.alert({
-                      title: "Fehler",
-                      description:
-                        "Fehler beim Speichern der Interessen: " +
+                      title: $$("control.error"),
+                      description: $$(
+                        "components.interests.save.error",
                         res.payload.error,
+                      ),
                     });
                   }
 
@@ -91,13 +93,13 @@ export default function WelcomeInterestModal(props: {
                   router.push("/welcome/lifestyle", "forward", "replace");
                 }}
               >
-                <b>Fertig</b>
+                <b>{$$("general.finished")}</b>
               </IonButton>
             </IonButtons>
           </IonToolbar>
           <IonToolbar>
             <IonSearchbar
-              placeholder={"Suchen"}
+              placeholder={$$("control.search")}
               value={query}
               onIonInput={(e) => {
                 setQuery(e.detail.value as string);
@@ -122,7 +124,7 @@ export default function WelcomeInterestModal(props: {
                 alignItems: "center",
               }}
             >
-              Keine Kategorien gefunden!
+              {$$("components.interests.no.categories")}
             </IonText>
           )}
 
@@ -168,8 +170,8 @@ export default function WelcomeInterestModal(props: {
                       }}
                     >
                       {selected.includes(category._id)
-                        ? "Abwählen"
-                        : "Auswählen"}
+                        ? $$("general.select")
+                        : $$("general.deselect")}
                     </IonButton>
                   </IonCardContent>
                 </IonCard>

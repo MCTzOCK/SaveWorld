@@ -35,6 +35,7 @@ import { Share } from "@capacitor/share";
 import PopupManager from "../util/PopupManager";
 import { Button, List, ListIcon, ListItem, Text } from "@chakra-ui/react";
 import { FaGlobe } from "react-icons/fa";
+import { $$ } from "../translations/i18n";
 
 export default function VideoDetailsModal(props: {
   modal: React.RefObject<HTMLIonModalElement>;
@@ -96,9 +97,11 @@ export default function VideoDetailsModal(props: {
       setPages(res.payload.pages);
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description:
-          "Kommentare konnten nicht geladen werden: " + res.payload.error,
+        title: $$("control.error"),
+        description: $$(
+          "components.video.modal.comments.loading.error",
+          res.payload.error,
+        ),
       });
     }
   };
@@ -153,7 +156,7 @@ export default function VideoDetailsModal(props: {
                   props.modal.current?.dismiss();
                 }}
               >
-                <b>Fertig</b>
+                <b>{$$("general.finished")}</b>
               </IonButton>
             </IonButtons>
           </IonToolbar>
@@ -165,41 +168,41 @@ export default function VideoDetailsModal(props: {
         >
           <IonActionSheet
             ref={asRef}
-            header={"Bewerten"}
-            subHeader={"Wie viele Sterne hat das Video verdient?"}
+            header={$$("general.rate")}
+            subHeader={$$("components.video.modal.rate.how.stars")}
             buttons={[
               {
-                text: "1 Stern",
+                text: "1 " + $$("general.star"),
                 data: {
                   rating: 1,
                 },
               },
               {
-                text: "2 Sterne",
+                text: "2 " + $$("general.stars"),
                 data: {
                   rating: 2,
                 },
               },
               {
-                text: "3 Sterne",
+                text: "3 " + $$("general.stars"),
                 data: {
                   rating: 3,
                 },
               },
               {
-                text: "4 Sterne",
+                text: "4 " + $$("general.stars"),
                 data: {
                   rating: 4,
                 },
               },
               {
-                text: "5 Sterne",
+                text: "5 " + $$("general.stars"),
                 data: {
                   rating: 5,
                 },
               },
               {
-                text: "Abbrechen",
+                text: $$("control.cancel"),
                 role: "cancel",
               },
             ]}
@@ -214,14 +217,16 @@ export default function VideoDetailsModal(props: {
 
               if (res.status === 200) {
                 PopupManager.alert({
-                  title: "Danke!",
-                  description: "Vielen Dank für deine Bewertung!",
+                  title: $$("general.thanks"),
+                  description: $$("components.video.modal.rate.success"),
                 });
               } else {
                 PopupManager.alert({
-                  title: "Fehler!",
-                  description:
-                    "Fehler beim Bewerten des Videos: " + res.payload.error,
+                  title: $$("control.error"),
+                  description: $$(
+                    "components.video.modal.rate.error",
+                    res.payload.error,
+                  ),
                 });
               }
             }}
@@ -321,7 +326,7 @@ export default function VideoDetailsModal(props: {
               <IonText>{props.video?.description}</IonText>
               <br />
               <IonText>
-                <b>Quellen</b>
+                <b>{$$("components.video.create.sources")}</b>
                 <List>
                   {props.video?.sources.map((source) => {
                     return (
@@ -345,7 +350,7 @@ export default function VideoDetailsModal(props: {
                   props.modal.current?.dismiss();
                 }}
               >
-                Frage stellen
+                {$$("components.video.modal.ask.question")}
               </Button>
               {props.video?.categories.map((category) => {
                 if (!categories.find((c) => c._id === category)) {
@@ -381,16 +386,16 @@ export default function VideoDetailsModal(props: {
                 textAlign: "center",
               }}
             >
-              Kommentare &nbsp;
+              {$$("pages.community.blog.comments")} &nbsp;
               <IonButton
                 color={"success"}
                 size={"small"}
                 onClick={async () => {
                   props.modal.current?.dismiss();
                   const content = await PopupManager.promptAsync({
-                    title: "Video Kommentieren",
+                    title: $$("components.video.modal.comment"),
                     inputType: "INPUT",
-                    helperText: "Gib dein Kommentar ein",
+                    helperText: $$("components.video.modal.comment.enter"),
                   });
                   props.modal.current?.present();
 
@@ -407,15 +412,16 @@ export default function VideoDetailsModal(props: {
                     loadPage(0);
                   } else {
                     await PopupManager.alertAsync({
-                      title: "Fehler",
-                      description:
-                        "Das Kommentar konnte nicht veröffentlicht werden: " +
+                      title: $$("control.error"),
+                      description: $$(
+                        "components.video.modal.comment.error",
                         res.payload.error,
+                      ),
                     });
                   }
                 }}
               >
-                Kommentieren
+                {$$("components.video.modal.comment.submit")}
               </IonButton>
             </h1>
           </IonText>
@@ -454,7 +460,7 @@ export default function VideoDetailsModal(props: {
                     onClick={() => setPage(page - 1)}
                     expand={"block"}
                   >
-                    Zurück
+                    {$$("control.back")}
                   </IonButton>
                 ) : null}
                 {page < pages - 1 ? (
@@ -463,7 +469,7 @@ export default function VideoDetailsModal(props: {
                     onClick={() => setPage(page + 1)}
                     expand={"block"}
                   >
-                    Weiter
+                    {$$("control.next")}
                   </IonButton>
                 ) : null}
               </div>
@@ -471,7 +477,7 @@ export default function VideoDetailsModal(props: {
           ) : (
             <>
               <Text textAlign={"center"}>
-                Es gib noch keine Kommentare zu diesem Video.
+                {$$("components.video.modal.comments.no")}
               </Text>
             </>
           )}

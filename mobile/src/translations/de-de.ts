@@ -200,7 +200,8 @@ export const german = {
   "general.edit": "Bearbeiten",
   "general.edit.short": "Bearb.",
   "general.export": "Exportieren",
-  "general.finished": "Fertig!",
+  "general.finished": "Fertig",
+  "general.rate": "Bewerten",
   "general.here": "hier",
   "general.hint": "Tipp",
   "general.image": "Bild",
@@ -742,4 +743,32 @@ export const german = {
   "user.role.admin": "Administrator",
   "user.user": "Benutzer",
   "user.username": "Benutzername",
+  "components.manage.interests.intro":
+    "Aktuell hast du folgende Interessen angegeben:",
+  "components.manage.interests.all.selected":
+    "Du hast alle verfügbaren Interessen ausgewählt!",
+  "components.manage.interests.more.selectable":
+    "Du kannst zusätzlich noch folgenden Interessen auswählen:",
+  "components.recipes.loading.error": "Fehler beim Laden der Rezepte: %0",
+  "menu.menu": "Menü",
+  "components.video.modal.comments.loading.error":
+    "Kommentare konnten nicht geladen werden: %0",
+  "components.video.modal.rate.how.stars":
+    "Wie viele Sterne hat das Video verdient?",
+  "general.star": "Stern",
+  "general.stars": "Sterne",
+  "general.thanks": "Danke!",
+  "components.video.modal.rate.success": "Vielen Dank für deine Bewertung!",
+  "components.video.modal.rate.error": "Fehler beim Bewerten des Videos: %0",
+  "components.video.modal.ask.question": "Frage stellen",
+  "components.video.modal.comment": "Video Kommentieren",
+  "components.video.modal.comment.enter": "Gib dein Kommentar ein",
+  "components.video.modal.comment.submit": "Kommentieren",
+  "components.video.modal.comment.error":
+    "Das Kommentar konnte nicht gespeichert werden: %0",
+  "components.video.modal.comments.no": "Dieses Video hat keine Kommentare.",
+  "components.interests.save.error": "Fehler beim Speichern der Interessen: %0",
+  "components.interests.no.categories": "Keine Kategorien gefunden!",
+  "general.select": "Auswählen",
+  "general.deselect": "Abwählen",
 } as const;
