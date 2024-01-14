@@ -54,7 +54,19 @@ export default function HomeCardV2(props: {
           <chakra.span color={props.color} fontSize={"6xl"}>
             {props.icon}
           </chakra.span>
-          <Heading color={"white"} fontSize={"2xl"} fontWeight={1000}>
+          <Heading
+            color={"white"}
+            fontSize={"2xl"}
+            fontWeight={1000}
+            style={{
+              wordBreak: "break-word",
+              wordWrap: "break-word",
+              hyphens: "auto",
+              textAlign: "center",
+              textOverflow: "ellipsis",
+              overflow: "hidden",
+            }}
+          >
             {props.text}
           </Heading>
         </Flex>
