@@ -484,4 +484,42 @@ export const german = {
     "Für das Rezept werden folgende Zutaten benötigt:",
   "pages.recipes.steps.description": "Das Rezept wird wie folgt zubereitet:",
   "pages.recipes.cook": "Rezept zubereiten",
+  "pages.markdown.description":
+    "Markdown ist eine einfache Auszeichnungssprache, die es dir ermöglicht, Texte schnell und einfach zu formatieren. Markdown wird vor allem im Forum verwendet, um Blog-Einträge zu verfassen. Du kannst allerdings auch ohne Markdown einen Eintrag erstellen. Im Folgenden findest du eine Übersicht über die wichtigsten Formatierungen.",
+  "pages.markdown.headlines": "Überschriften",
+  "pages.markdown.headlines.description":
+    "Überschriften werden mit einem Hashtag eingeleitet. Je mehr Hashtags, desto kleiner die Überschrift. Maximal können 6 Hashtags verwendet werden. Beispiel:",
+  "pages.markdown.headlines.1": "# Überschrift 1",
+  "pages.markdown.headlines.2": "## Überschrift 2",
+  "pages.markdown.headlines.3": "### Überschrift 3",
+  "pages.markdown.text.formatting": "Textformatierung",
+  "pages.markdown.text.formatting.bold.description":
+    "Der Text kann mit einem Sternchen oder Unterstrich umschlossen werden, um ihn fett zu formatieren.",
+  "pages.markdown.text.formatting.bold.1": "*fetter Text*",
+  "pages.markdown.text.formatting.bold.2": "_fetter Text_",
+  "pages.markdown.text.formatting.italic.description":
+    "Der Text kannn mit zwei Sternchen oder Unterstrichen umschlossen werden, um ihn kursiv zu machen.",
+  "pages.markdown.text.formatting.italic.1": "**kursiver Text**",
+  "pages.markdown.text.formatting.italic.2": "__kursiver Text__",
+  "pages.markdown.text.formatting.bold.italic.description":
+    "Der Text kann mit drei Sternchen oder Unterstrichen umschlossen werden, um ihn fett und kursiv zu machen.",
+  "pages.markdown.text.formatting.bold.italic.1":
+    "***fetter und kursiver Text***",
+  "pages.markdown.text.formatting.bold.italic.2":
+    "___fetter und kursiver Text___",
+  "pages.markdown.text.formatting.strikethrough.description":
+    "Der Text kann mit zwei Tilden umschlossen werden, um ihn durchgestrichen zu machen.",
+  "pages.markdown.text.formatting.strikethrough.1":
+    "~~durchgestrichener Text~~",
+  "pages.markdown.lists": "Listen",
+  "pages.markdown.lists.description":
+    "Listen können mit einem Sternchen oder einer Zahl (für nummerierte Listen) eingeleitet werden.",
+  "pages.markdown.lists.1": "* Eintrag 1",
+  "pages.markdown.lists.2": "* Eintrag 2",
+  "pages.markdown.lists.3": "1. Eintrag 1",
+  "pages.markdown.lists.4": "2. Eintrag 2",
+  "pages.markdown.links": "Links",
+  "pages.markdown.links.description":
+    "Links können mit eckigen Klammern und runden Klammern eingeleitet werden.",
+  "pages.markdown.links.1": "[Linktext](https://saveworld.one)",
 } as const;
