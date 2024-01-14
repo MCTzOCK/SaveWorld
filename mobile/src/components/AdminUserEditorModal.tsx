@@ -26,6 +26,7 @@ import { FaSave } from "react-icons/fa";
 import { REST } from "@saveworld/api-js";
 import PopupManager from "../util/PopupManager";
 import { FaTrash } from "react-icons/fa6";
+import { $$ } from "../translations/i18n";
 
 export default function AdminUserEditorModal(props: {
   user: {
@@ -55,61 +56,63 @@ export default function AdminUserEditorModal(props: {
       >
         <Stack gap={6} mb={6}>
           <FormControl>
-            <FormLabel>Benutzername</FormLabel>
+            <FormLabel>{$$("user.username")}</FormLabel>
             <Input
               isDisabled
-              placeholder={"Benutzername"}
+              placeholder={$$("user.username")}
               value={props.user.username}
             />
           </FormControl>
           <FormControl>
-            <FormLabel>E-Mail</FormLabel>
+            <FormLabel>{$$("user.email")}</FormLabel>
             <Input
               type={"email"}
-              placeholder={"E-Mail"}
+              placeholder={$$("user.email")}
               defaultValue={props.user.email}
               id={"user-email"}
             />
           </FormControl>
           <FormControl>
-            <FormLabel>Vorname</FormLabel>
+            <FormLabel>{$$("user.firstname")}</FormLabel>
             <Input
-              placeholder={"Vorname"}
+              placeholder={$$("user.firstname")}
               defaultValue={props.user.firstName}
               id={"user-firstname"}
             />
           </FormControl>
           <FormControl>
-            <FormLabel>Nachname</FormLabel>
+            <FormLabel>{$$("user.lastname")}</FormLabel>
             <Input
-              placeholder={"Nachname"}
+              placeholder={$$("user.lastname")}
               defaultValue={props.user.lastName}
               id={"user-lastname"}
             />
           </FormControl>
           <FormControl>
-            <FormLabel>Passwort</FormLabel>
+            <FormLabel>{$$("user.password")}</FormLabel>
             <Input
-              placeholder={"Passwort"}
+              placeholder={$$("user.password")}
               type={"password"}
               id={"user-passwd"}
             />
           </FormControl>
           <HStack>
             <FormControl>
-              <FormLabel>Aktiv</FormLabel>
+              <FormLabel>{$$("general.active")}</FormLabel>
               <Switch defaultChecked={props.user.active} id={"user-active"} />
-              <FormHelperText>Darf sich der Benutzer anmelden?</FormHelperText>
+              <FormHelperText>
+                {$$("components.admin.user.can.login")}
+              </FormHelperText>
             </FormControl>
             <FormControl>
-              <FormLabel>Admin</FormLabel>
+              <FormLabel>{$$("menu.admin")}</FormLabel>
               <Switch
                 defaultChecked={props.user.role === "admin"}
                 colorScheme={"red"}
                 id={"user-admin"}
               />
               <FormHelperText>
-                Ist der Benutzer ein Administrator?
+                {$$("components.admin.user.is.admin")}
               </FormHelperText>
             </FormControl>
           </HStack>
@@ -154,8 +157,8 @@ export default function AdminUserEditorModal(props: {
 
                 if (res.status === 200) {
                   PopupManager.alert({
-                    title: "Erfolgreich",
-                    description: "Die Daten wurden erfolgreich gespeichert!",
+                    title: $$("control.success"),
+                    description: $$("components.admin.user.saved"),
                     callback: () => {
                       props.onClose();
                       props.reload();
@@ -163,13 +166,16 @@ export default function AdminUserEditorModal(props: {
                   });
                 } else {
                   PopupManager.alert({
-                    title: "Fehler",
-                    description: "Fehler beim Speichern: " + res.payload.error,
+                    title: $$("control.error"),
+                    description: $$(
+                      "components.admin.user.save.error",
+                      res.payload.error,
+                    ),
                   });
                 }
               }}
             >
-              Speichern
+              {$$("control.save")}
             </Button>
             <Button
               color={"red.500"}
@@ -179,8 +185,8 @@ export default function AdminUserEditorModal(props: {
               onClick={async () => {
                 if (
                   !(await PopupManager.confirmAsync({
-                    title: "Löschen?",
-                    question: "Willst du den Benutzer wirklich löschen?",
+                    title: $$("control.delete"),
+                    question: $$("components.admin.user.delete.confirm"),
                   }))
                 )
                   return;
@@ -192,23 +198,24 @@ export default function AdminUserEditorModal(props: {
 
                 if (res.status === 200) {
                   await PopupManager.alertAsync({
-                    title: "Gelöscht",
-                    description: "Der Benutzer wurde erfolgreich gelöscht!",
+                    title: $$("control.success"),
+                    description: $$("components.admin.user.delete.success"),
                   });
 
                   props.reload();
                   props.onClose();
                 } else {
                   await PopupManager.alertAsync({
-                    title: "Fehler",
-                    description:
-                      "Der Benutzer konnte nicht gelöscht werden: " +
+                    title: $$("control.error"),
+                    description: $$(
+                      "components.admin.user.delete.error",
                       res.payload.error,
+                    ),
                   });
                 }
               }}
             >
-              Löschen
+              {$$("control.error")}
             </Button>
           </ButtonGroup>
         </Stack>

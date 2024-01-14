@@ -22,6 +22,7 @@ import {
 import { chatbox, heart, pricetag } from "ionicons/icons";
 import CommunityBlogList from "./CommunityBlogList";
 import PopupManager from "../util/PopupManager";
+import { $$ } from "../translations/i18n";
 
 export default function CommunityProfileBlogList(props: { username: string }) {
   const [page, setPage] = React.useState(0);
@@ -54,8 +55,11 @@ export default function CommunityProfileBlogList(props: { username: string }) {
       setPages(res.payload.pages);
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description: "Blogs konnten nicht geladen werden: " + res.payload.error,
+        title: $$("control.error"),
+        description: $$(
+          "components.community.blogs.loading.error",
+          res.payload.error,
+        ),
       });
     }
   };

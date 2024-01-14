@@ -35,6 +35,7 @@ import {
 } from "@chakra-ui/react";
 import { FaSave } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa6";
+import { $$ } from "../translations/i18n";
 
 export default function AdminVideoEditModal(props: {
   isOpen: boolean;
@@ -75,8 +76,11 @@ export default function AdminVideoEditModal(props: {
         setCategories(res.payload as any);
       } else {
         PopupManager.alert({
-          title: "Fehler",
-          description: "Fehler beim Laden der Kategorien: " + res.payload.error,
+          title: $$("control.error"),
+          description: $$(
+            "pages.admin.category.loading.error",
+            res.payload.error,
+          ),
         });
       }
     });
@@ -95,33 +99,33 @@ export default function AdminVideoEditModal(props: {
       >
         <Stack gap={6}>
           <FormControl>
-            <FormLabel>Titel</FormLabel>
+            <FormLabel>{$$("pages.admin.video.form.title")}</FormLabel>
             <Input
               id={"update-video-title"}
               defaultValue={props.video.title}
-              placeholder={"Titel"}
+              placeholder={$$("pages.admin.video.form.title")}
             />
           </FormControl>
           <FormControl>
-            <FormLabel>Beschreibung</FormLabel>
+            <FormLabel>{$$("pages.admin.video.form.description")}</FormLabel>
             <Textarea
               id={"update-video-desc"}
               defaultValue={props.video.description}
-              placeholder={"Titel"}
+              placeholder={$$("pages.admin.video.form.description")}
             />
           </FormControl>
           <FormControl>
-            <FormLabel>Quellen</FormLabel>
+            <FormLabel>{$$("pages.admin.video.form.sources")}</FormLabel>
             <Textarea
               onChange={(e) => {
                 setSources(e.target.value.split("\n") || []);
               }}
               value={sources.join("\n")}
               id={"create-vid-sources"}
-              placeholder={"Quellen (eine Quelle pro Zeile)"}
+              placeholder={$$("pages.admin.video.form.sources.placeholder")}
             />
           </FormControl>
-          <Text>Kategorien</Text>
+          <Text>{$$("components.video.create.categories")}</Text>
           {categories.map((c) => {
             return (
               <>
@@ -172,23 +176,24 @@ export default function AdminVideoEditModal(props: {
               );
               if (res.status === 200) {
                 PopupManager.alert({
-                  title: "Erfolgreich",
-                  description: "Das Video wurde erfolgreich aktualisiert!",
+                  title: $$("control.success"),
+                  description: $$("pages.admin.video.updated.success"),
                   callback: () => {
                     router.push(router.routeInfo.pathname);
                   },
                 });
               } else {
                 PopupManager.alert({
-                  title: "Fehler",
-                  description:
-                    "Fehler beim Aktualisieren des Videos: " +
+                  title: $$("control.error"),
+                  description: $$(
+                    "pages.admin.video.updated.error",
                     res.payload.error,
+                  ),
                 });
               }
             }}
           >
-            Speichern
+            {$$("control.save")}
           </Button>
           <Button
             leftIcon={<FaTrash />}
@@ -197,8 +202,8 @@ export default function AdminVideoEditModal(props: {
             onClick={async () => {
               if (
                 !(await PopupManager.confirmAsync({
-                  title: "Löschen",
-                  question: "Möchtest du das Video wirklich löschen?",
+                  title: $$("control.delete"),
+                  question: $$("pages.admin.video.delete.confirm"),
                 }))
               )
                 return;
@@ -210,22 +215,24 @@ export default function AdminVideoEditModal(props: {
 
               if (res.status === 200) {
                 PopupManager.alert({
-                  title: "Erfolgreich",
-                  description: "Das Video wurde gelöscht!",
+                  title: $$("control.success"),
+                  description: $$("pages.admin.video.deleted"),
                   callback: () => {
                     router.push(router.routeInfo.pathname);
                   },
                 });
               } else {
                 PopupManager.alert({
-                  title: "Fehler",
-                  description:
-                    "Fehler beim Löschen des Videos: " + res.payload.error,
+                  title: $$("control.error"),
+                  description: $$(
+                    "pages.admin.video.deleted.error",
+                    res.payload.error,
+                  ),
                 });
               }
             }}
           >
-            Löschen
+            {$$("control.delete")}
           </Button>
         </ButtonGroup>
       </SaveWorldModal>

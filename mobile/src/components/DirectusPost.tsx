@@ -18,6 +18,7 @@ import Markdown from "@uiw/react-md-editor/lib/components/TextArea/Markdown";
 import { Flex, Heading, Image } from "@chakra-ui/react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { $$ } from "../translations/i18n";
 
 export default function DirectusPost(props: { postId: string }) {
   const directus = getDirectusApi();
@@ -39,7 +40,8 @@ export default function DirectusPost(props: { postId: string }) {
     });
   }, [props.postId]);
 
-  if (post == null) return <Page title={"Laden..."}>Laden...</Page>;
+  if (post == null)
+    return <Page title={$$("general.loading")}>{$$("general.loading")}</Page>;
 
   return (
     <>
@@ -56,7 +58,9 @@ export default function DirectusPost(props: { postId: string }) {
               maxW={"75%"}
               rounded={"xl"}
             />
-            <Heading size={"md"}>Foto: {post.feature_image_author}</Heading>
+            <Heading size={"md"}>
+              {$$("general.image")}: {post.feature_image_author}
+            </Heading>
           </Flex>
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {post.markdown.replace(
