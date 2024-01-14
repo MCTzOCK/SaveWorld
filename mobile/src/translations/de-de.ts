@@ -32,11 +32,14 @@ export const german = {
   "general.create": "Erstellen",
   "general.deactivated": "Deaktiviert",
   "general.edit": "Bearbeiten",
+  "general.export": "Exportieren",
   "general.here": "hier",
   "general.hint": "Tipp",
   "general.image": "Bild",
   "general.inactive": "Inaktiv",
   "general.information": "Informationen",
+  "general.join": "Beitreten",
+  "general.leave": "Verlassen",
   "general.legal.notice": "Impressum",
   "general.legal.privacy": "Datenschutz",
   "general.level": "Level",
@@ -45,6 +48,7 @@ export const german = {
   "general.open.source.licenses": "Open-Source Lizenzen",
   "general.overview": "Übersicht",
   "general.preview": "Vorschau",
+  "general.remove": "Entfernen",
   "general.serverstatus": "Server-Status",
   "general.submit": "Absenden",
   "general.welcome": "Willkommen",
@@ -53,6 +57,7 @@ export const german = {
   "menu.calculator": "Rechner",
   "menu.community": "Community",
   "menu.contents": "Inhalte",
+  "menu.eatingplans": "Essenspläne",
   "menu.interests": "Interessen",
   "menu.lifestyle": "Lifestyle",
   "menu.logout": "Abmelden",
@@ -308,9 +313,12 @@ export const german = {
   "pages.e2projects.calendar": "Kalender",
   "pages.e2projects.create": "Projekt erstellen",
   "pages.e2projects.edit.title": "Projekt bearbeiten",
+  "pages.e2projects.editable": "Du kannst dieses Projekt bearbeiten!",
   "pages.e2projects.filter.all": "Alle",
   "pages.e2projects.filter.upcoming": "Nur anstehende",
   "pages.e2projects.homepage": "Homepage",
+  "pages.e2projects.homepage.loading.error":
+    "Homepage konnte nicht geladen werden: %0",
   "pages.e2projects.list": "Liste",
   "pages.e2projects.loading.error": "Fehler beim Laden des Projektes: %0",
   "pages.e2projects.map": "Karte",
@@ -318,7 +326,16 @@ export const german = {
   "pages.e2projects.map.unfindable": "Nicht auf der Karte angezeigt",
   "pages.e2projects.map.unfindable.description":
     "Dein Projekt kann nicht auf der Karte angezeigt werden, da die genaue Adresse nicht bekannt ist. Die Adresse kann in den Projekteinstellungen geändertwerden. WICHTIG: Klicke auf eine vorgeschlagene Adresse, um diese zu übernehmen.",
+  "pages.e2projects.member.status.join":
+    "Möchtest du Teil dieses Projektes werden und mitwirken?",
+  "pages.e2projects.member.status.leave":
+    "Möchtest du kein Teil des Projektes mehr sein?",
+  "pages.e2projects.member.status.popup.1": "Du bist ab jetzt ",
+  "pages.e2projects.member.status.popup.member": "Teil des Projektes!",
+  "pages.e2projects.member.status.popup.no.member":
+    "kein Teil des Projektes mehr.",
   "pages.e2projects.members": "Mitglieder",
+  "pages.e2projects.menu.todos": "ToDos",
   "pages.e2projects.my": "Meine Projekte",
   "pages.e2projects.my.loading.error": "Fehler beim Laden der Projekte: %0",
   "pages.e2projects.no.projects": "Keine Projekte gefunden.",
@@ -373,6 +390,21 @@ export const german = {
   "pages.e2projects.todo.loading.error":
     "Die ToDo-Liste konnte nicht geladen werden: %0",
   "pages.e2projects.todo.name": "Name",
+  "pages.eatingplans.action.choose": "Aktion auswählen",
+  "pages.eatingplans.action.cook": "Zubereiten",
+  "pages.eatingplans.action.remove": "Rezept entfernen",
+  "pages.eatingplans.action.remove.confirm":
+    "Möchtest du das Rezept wirklich entfernen?",
+  "pages.eatingplans.add.recipe": "Rezept hinzufügen",
+  "pages.eatingplans.loading.error":
+    "Der Essensplan konnte nicht geladen werden: %0",
+  "pages.eatingplans.shopping.list": "Einkaufszettel",
+  "pages.eatingplans.shopping.list.create": "Einkaufszettel erstellen",
+  "pages.eatingplans.shopping.list.for": "Einkaufszettel für den ",
+  "pages.eatingplans.status": "Du hast am %0 %1 Rezepte auf deinem Plan.",
+  "pages.eatingplans.update.error":
+    "Der Essensplan konnte nicht gespeichert werden: %0",
+  "pages.eatingplans.update.success": "Der Essensplan wurde gespeichert!",
   "popup.alert.title.default": "Meldung",
   "popup.close": "Schließen",
   "popup.input.label": "Eingabe",
@@ -386,18 +418,4 @@ export const german = {
   "user.role.admin": "Administrator",
   "user.user": "Benutzer",
   "user.username": "Benutzername",
-  "pages.e2projects.homepage.loading.error":
-    "Homepage konnte nicht geladen werden: %0",
-  "pages.e2projects.editable": "Du kannst dieses Projekt bearbeiten!",
-  "pages.e2projects.member.status.leave":
-    "Möchtest du kein Teil des Projektes mehr sein?",
-  "pages.e2projects.member.status.join":
-    "Möchtest du Teil dieses Projektes werden und mitwirken?",
-  "pages.e2projects.member.status.popup.1": "Du bist ab jetzt ",
-  "pages.e2projects.member.status.popup.no.member":
-    "kein Teil des Projektes mehr.",
-  "pages.e2projects.member.status.popup.member": "Teil des Projektes!",
-  "general.leave": "Verlassen",
-  "general.join": "Beitreten",
-  "pages.e2projects.menu.todos": "ToDos",
 } as const;

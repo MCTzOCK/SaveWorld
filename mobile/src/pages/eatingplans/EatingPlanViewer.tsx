@@ -30,6 +30,8 @@ import RecipeCard from "../../components/RecipeCard";
 import { FaHandPaper } from "react-icons/fa";
 import { FaFileLines, FaPlus } from "react-icons/fa6";
 import { Share } from "@capacitor/share";
+import { $$ } from "../../translations/i18n";
+import { MEatingPlan, MRecipe } from "../../types";
 
 export default function EatingPlanViewer() {
   useRedirectForAnon();
@@ -52,9 +54,8 @@ export default function EatingPlanViewer() {
 
     if (res.status !== 200) {
       await PopupManager.alertAsync({
-        title: "Fehler",
-        description:
-          "Der Essensplan konnte nicht geladen werden: " + res.payload.error,
+        title: $$("control.error"),
+        description: $$("pages.eatingplans.loading.error", res.payload.error),
       });
       return;
     }
@@ -104,7 +105,11 @@ export default function EatingPlanViewer() {
   return (
     <>
       <Page
-        title={plan ? new Date(plan.date).toLocaleDateString() : "Laden..."}
+        title={
+          plan
+            ? new Date(plan.date).toLocaleDateString()
+            : $$("general.loading")
+        }
       >
         <MobileBox>
           {!plan ? (
@@ -114,8 +119,11 @@ export default function EatingPlanViewer() {
           ) : (
             <>
               <Text>
-                Du hast am {new Date(plan.date).toLocaleDateString()}{" "}
-                {plan.recipes.length} Rezepte auf deinem Plan.
+                {$$(
+                  "pages.eatingplans.status",
+                  new Date(plan.date).toLocaleDateString(),
+                  plan.recipes.length.toString(),
+                )}
               </Text>
               <Button
                 leftIcon={<FaPlus />}
@@ -124,7 +132,7 @@ export default function EatingPlanViewer() {
                 w={"100%"}
                 onClick={async () => {
                   await PopupManager.alertAsync({
-                    title: "Rezept hinzufügen",
+                    title: $$("pages.eatingplans.add.recipe"),
                     description: (
                       <>
                         <Stack>
@@ -148,19 +156,21 @@ export default function EatingPlanViewer() {
 
                                     if (res.status !== 200) {
                                       await PopupManager.alertAsync({
-                                        title: "Fehler",
-                                        description:
-                                          "Der Essensplan konnte nicht aktualisiert werden: " +
+                                        title: $$("control.error"),
+                                        description: $$(
+                                          "pages.eatingplans.update.error",
                                           res.payload.error,
+                                        ),
                                       });
                                       return;
                                     }
 
                                     reload();
                                     await PopupManager.alertAsync({
-                                      title: "Erfolg",
-                                      description:
-                                        "Der Essensplan wurde aktualisiert.",
+                                      title: $$("control.success"),
+                                      description: $$(
+                                        "pages.eatingplans.update.success",
+                                      ),
                                     });
                                   }}
                                 />
@@ -172,7 +182,7 @@ export default function EatingPlanViewer() {
                   });
                 }}
               >
-                Rezept hinzufügen
+                {$$("pages.eatingplans.add.recipe")}
               </Button>
               <Button
                 w={"100%"}
@@ -190,7 +200,7 @@ export default function EatingPlanViewer() {
                   }
 
                   await PopupManager.alertAsync({
-                    title: "Einkaufzettel",
+                    title: $$("pages.eatingplans.shopping.list"),
                     description: (
                       <>
                         <UnorderedList>
@@ -203,7 +213,9 @@ export default function EatingPlanViewer() {
                           mt={4}
                           color={"brand.500"}
                           onClick={async () => {
-                            let text = `Einkaufszettel für den ${new Date(
+                            let text = `${$$(
+                              "pages.eatingplans.shopping.list.for",
+                            )} ${new Date(
                               plan.date,
                             ).toLocaleDateString()}:\n\n`;
 
@@ -212,19 +224,19 @@ export default function EatingPlanViewer() {
                             }
 
                             Share.share({
-                              title: "Einkaufszettel",
+                              title: $$("pages.eatingplans.shopping.list"),
                               text: text,
                             });
                           }}
                         >
-                          Exportieren
+                          {$$("general.export")}
                         </Button>
                       </>
                     ),
                   });
                 }}
               >
-                Einkaufzettel erstellen
+                {$$("pages.eatingplans.shopping.list.create")}
               </Button>
               <Stack mt={4} gap={4}>
                 {plan.recipes.map((recipe) => {
@@ -233,7 +245,7 @@ export default function EatingPlanViewer() {
                       recipe={recipe}
                       customOnClick={async () => {
                         await PopupManager.alertAsync({
-                          title: "Aktion wählen",
+                          title: $$("pages.eatingplans.action.choose"),
                           description: (
                             <>
                               <ButtonGroup w={"100%"}>
@@ -245,7 +257,7 @@ export default function EatingPlanViewer() {
                                     router.push("/recipes/" + recipe._id);
                                   }}
                                 >
-                                  Zubereiten
+                                  {$$("pages.eatingplans.action.cook")}
                                 </Button>
                                 <Button
                                   color={"brand.500"}
@@ -253,9 +265,12 @@ export default function EatingPlanViewer() {
                                   onClick={async () => {
                                     if (
                                       !(await PopupManager.confirmAsync({
-                                        title: "Rezept entfernen",
-                                        question:
-                                          "Möchtest du das Rezept wirklich entfernen?",
+                                        title: $$(
+                                          "pages.eatingplans.action.remove",
+                                        ),
+                                        question: $$(
+                                          "pages.eatingplans.action.remove.confirm",
+                                        ),
                                       }))
                                     )
                                       return;
@@ -270,10 +285,11 @@ export default function EatingPlanViewer() {
 
                                     if (res.status !== 200) {
                                       await PopupManager.alertAsync({
-                                        title: "Fehler",
-                                        description:
-                                          "Der Essensplan konnte nicht aktualisiert werden: " +
+                                        title: $$("control.error"),
+                                        description: $$(
+                                          "pages.eatingplans.update.error",
                                           res.payload.error,
+                                        ),
                                       });
                                       return;
                                     }
@@ -281,7 +297,7 @@ export default function EatingPlanViewer() {
                                     reload();
                                   }}
                                 >
-                                  Entfernen
+                                  {$$("general.remove")}
                                 </Button>
                               </ButtonGroup>
                             </>

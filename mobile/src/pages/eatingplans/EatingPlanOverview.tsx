@@ -17,6 +17,7 @@ import MobileBox from "../../components/MobileBox";
 import { ButtonGroup, IconButton, Text } from "@chakra-ui/react";
 import { FaBackward, FaForward } from "react-icons/fa";
 import { REST } from "@saveworld/api-js";
+import { $$ } from "../../translations/i18n";
 
 export default function EatingPlanOverview() {
   useRedirectForAnon();
@@ -26,7 +27,7 @@ export default function EatingPlanOverview() {
 
   return (
     <>
-      <Page title={"Essenspläne"}>
+      <Page title={$$("menu.eatingplans")}>
         <MobileBox>
           <Text textAlign={"center"} mb={2}>
             {new Date(year, month).toLocaleString("default", {
@@ -56,7 +57,7 @@ export default function EatingPlanOverview() {
           />
           <ButtonGroup mt={4} display={"flex"} justifyContent={"center"}>
             <IconButton
-              aria-label={"Zurück"}
+              aria-label={$$("control.back")}
               icon={<FaBackward />}
               onClick={() => {
                 let newMonth = month - 1;
@@ -74,7 +75,7 @@ export default function EatingPlanOverview() {
               }
             />
             <IconButton
-              aria-label={"Vorwärts"}
+              aria-label={$$("control.next")}
               icon={<FaForward />}
               onClick={() => {
                 let newMonth = month + 1;
