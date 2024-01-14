@@ -56,6 +56,10 @@ export const german = {
   "components.calendar.day.thursday": "Do",
   "components.calendar.day.tuesday": "Di",
   "components.calendar.day.wednesday": "Mi",
+  "components.calendar.time.today": "heute",
+  "components.calendar.time.unit.month.one": "1 Monat",
+  "components.calendar.time.unit.month.six": "6 Monate",
+  "components.calendar.time.unit.month.three": "3 Monate",
   "components.chat.message.add.image": "Bild hinzufügen",
   "components.chat.message.box.placeholder": "Nachricht eingeben...",
   "components.chat.message.send": "Senden",
@@ -68,6 +72,34 @@ export const german = {
   "components.community.edit.eco.level": "Öko-Level",
   "components.community.search.blogs": "Beiträge",
   "components.community.search.profiles": "Profile",
+  "components.e2.add.data": "Daten eintragen",
+  "components.e2.cant.add.data":
+    "Da das Datum in der Vergangenheit liegt, kannst du keien Daten mehr eintragen.",
+  "components.e2.goals": "Ziele",
+  "components.e2.goals.loading.error": "Fehler beim Laden der Ziele: %0",
+  "components.e2.goals.missed": "Gescheiterte Ziele",
+  "components.e2.goals.not.reached": "Ziel nicht erreicht.",
+  "components.e2.goals.reached": "Erreichte Ziele",
+  "components.e2.goals.reached.how.many": "%0 von %1 erreicht.",
+  "components.e2.lifestyle.loading.error":
+    "Fehler beim Laden des Lebensstils: %0",
+  "components.e2.lifestyle.templates.loading.error":
+    "Vorlagen konnten nicht geladen werden: %0",
+  "components.e2.no.data": "Keine Daten",
+  "components.e2.no.data.description":
+    "Für diesen Tag hast du keine Daten eingetragen!",
+  "components.e2.summary.of.day": "Zusammenfassung vom",
+  "components.e2.weekly.overview": "Wochenübersicht",
+  "components.e2projects.project.add.to.calendar": "Zum Kalender hinzufügen",
+  "components.e2projects.project.at.day": "Projekt am ",
+  "components.e2projects.project.at.location": "Projekte an diesem Ort",
+  "components.e2projects.project.delete.error":
+    "Das Projekt konnte nicht gelöscht werden: %0",
+  "components.e2projects.project.goto": "Zum Projekt",
+  "components.e2projects.project.save.error":
+    "Fehler beim Speichern des Projektes: %0",
+  "components.e2projects.project.saved":
+    "Dein Projekt wurde erfolgreich gespeichert!",
   "components.forum.edit.profile.error":
     "Fehler beim Bearbeiten des Profils: %0",
   "components.video.create": "Neues Video",

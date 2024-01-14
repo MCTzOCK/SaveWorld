@@ -32,6 +32,7 @@ import {
 } from "@chakra-ui/react";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import HighlightedText from "./HighlightedText";
+import { $$ } from "../translations/i18n";
 
 export default function E2FindProjectsList() {
   const [projects, setProjects] = useState<E2Projects>([]);
@@ -52,9 +53,11 @@ export default function E2FindProjectsList() {
       setPages(res.payload.pages);
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description:
-          "Projekte konnten nicht geladen werden: " + res.payload.error,
+        title: $$("control.error"),
+        description: $$(
+          "pages.admin.e2projects.loading.error",
+          res.payload.error,
+        ),
       });
     }
   };
@@ -71,7 +74,7 @@ export default function E2FindProjectsList() {
   return (
     <>
       <IonSearchbar
-        placeholder={"Suche"}
+        placeholder={$$("control.search")}
         onIonInput={(e) => {
           setQuery(e.detail.value || "");
         }}
@@ -126,8 +129,8 @@ export default function E2FindProjectsList() {
                         }
                       />
                       {p.geoLocationType === "nominatim"
-                        ? `Auf der Karte auffindbar`
-                        : "Nicht auf der Karte angezeigt"}
+                        ? $$("pages.e2projects.map.findable")
+                        : $$("pages.e2projects.map.unfindable")}
                     </ListItem>
                   </List>
                 </IonCardContent>
@@ -153,7 +156,7 @@ export default function E2FindProjectsList() {
               onClick={() => setPage(page - 1)}
               w={"100%"}
             >
-              Zurück
+              {$$("control.back")}
             </Button>
           ) : null}
           {page < pages - 1 ? (
@@ -162,7 +165,7 @@ export default function E2FindProjectsList() {
               onClick={() => setPage(page + 1)}
               w={"100%"}
             >
-              Weiter
+              {$$("control.next")}
             </Button>
           ) : null}
         </ButtonGroup>
