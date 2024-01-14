@@ -43,6 +43,7 @@ import RecipeModal from "../../components/RecipeModal";
 import { uploadImage } from "../../util/files";
 import { ENDPOINT } from "../../env";
 import { useIonRouter } from "@ionic/react";
+import { $$ } from "../../translations/i18n";
 
 export default function CreateRecipe() {
   const [title, setTitle] = React.useState<string>("");
@@ -75,7 +76,13 @@ export default function CreateRecipe() {
 
   return (
     <>
-      <Page title={recipeIdToUpdate ? "Rezept bearbeiten" : "Neues Rezept"}>
+      <Page
+        title={
+          recipeIdToUpdate
+            ? $$("pages.recipes.edit")
+            : $$("pages.recipes.create")
+        }
+      >
         <MobileBox padding={"4"}>
           <Stack gap={8}>
             <Flex w={"100%"} alignItems={"center"} justifyContent={"center"}>
@@ -99,16 +106,16 @@ export default function CreateRecipe() {
                 });
               }}
             >
-              Bild bearbeiten
+              {$$("pages.recipes.image.edit")}
             </Button>
             <FormControl>
-              <FormLabel>Titel</FormLabel>
+              <FormLabel>{$$("pages.recipes.form.title")}</FormLabel>
               <InputGroup>
                 <InputLeftAddon>
                   <FaPen />
                 </InputLeftAddon>
                 <Input
-                  placeholder={"Titel"}
+                  placeholder={$$("pages.recipes.form.title")}
                   onChange={(ev) => {
                     setTitle(ev.target.value);
                   }}
@@ -117,7 +124,7 @@ export default function CreateRecipe() {
               </InputGroup>
             </FormControl>
             <FormControl>
-              <FormLabel>Zutaten</FormLabel>
+              <FormLabel>{$$("pages.recipes.ingredients")}</FormLabel>
               <Grid templateColumns={"repeat(2, 1fr)"} gap={4} mt={2} mb={2}>
                 {ingredients.map((i) => {
                   return (
@@ -135,7 +142,10 @@ export default function CreateRecipe() {
                 })}
               </Grid>
               <InputGroup>
-                <Input placeholder={"Zutate hinzufügen"} id={"ing"} />
+                <Input
+                  placeholder={$$("pages.recipes.ingredients.add")}
+                  id={"ing"}
+                />
                 <InputRightElement>
                   <IconButton
                     aria-label={"Add Ingredient"}
@@ -154,7 +164,7 @@ export default function CreateRecipe() {
               </InputGroup>
             </FormControl>
             <FormControl>
-              <FormLabel>Schritte</FormLabel>
+              <FormLabel>{$$("pages.recipes.steps")}</FormLabel>
               <Button
                 color={"brand.500"}
                 onClick={() => {
@@ -162,7 +172,7 @@ export default function CreateRecipe() {
                 }}
                 w={"100%"}
               >
-                Schritt hinzufügen
+                {$$("pages.recipes.steps.add")}
               </Button>
             </FormControl>
             {steps.map((st, i) => {
@@ -171,7 +181,7 @@ export default function CreateRecipe() {
                   <InputGroup>
                     <InputLeftAddon>{i + 1}</InputLeftAddon>
                     <Input
-                      placeholder={"Schritt"}
+                      placeholder={$$("pages.recipes.step")}
                       onChange={(ev) => {
                         const newSteps = steps;
                         newSteps[i] = ev.target.value;
@@ -181,7 +191,7 @@ export default function CreateRecipe() {
                     />
                     <InputRightElement>
                       <IconButton
-                        aria-label={"Delete Step"}
+                        aria-label={$$("pages.recipes.steps.delete")}
                         icon={<FaTrash />}
                         onClick={() => {
                           setSteps(steps.filter((s, j) => j !== i));
@@ -209,16 +219,17 @@ export default function CreateRecipe() {
 
                   if (res.status === 200) {
                     await PopupManager.alertAsync({
-                      title: "Rezept erstellt",
-                      description: "Das Rezept wurde erfolgreich erstellt.",
+                      title: $$("pages.recipes.created"),
+                      description: $$("pages.recipes.created.description"),
                     });
                     router.push("/recipes");
                   } else {
                     await PopupManager.alertAsync({
-                      title: "Fehler",
-                      description:
-                        "Das Rezept konnte nicht erstellt werden: " +
+                      title: $$("control.error"),
+                      description: $$(
+                        "pages.recipes.create.error",
                         res.payload.error,
+                      ),
                     });
                   }
                 } else {
@@ -233,22 +244,26 @@ export default function CreateRecipe() {
 
                   if (res.status === 200) {
                     await PopupManager.alertAsync({
-                      title: "Rezept bearbeitet",
-                      description: "Das Rezept wurde erfolgreich bearbeitet.",
+                      title: $$("pages.recipes.edited"),
+                      description: $$("pages.recipes.edited.description"),
                     });
                     router.push("/recipes");
                   } else {
                     await PopupManager.alertAsync({
-                      title: "Fehler",
-                      description:
-                        "Das Rezept konnte nicht gespeichert werden: " +
+                      title: $$("control.error"),
+                      description: $$(
+                        "pages.recipes.edit.error",
                         res.payload.error,
+                      ),
                     });
                   }
                 }
               }}
             >
-              Rezept {recipeIdToUpdate ? "bearbeiten" : "erstellen"}
+              {$$("menu.recipe")}{" "}
+              {recipeIdToUpdate
+                ? $$("general.edit").toLowerCase()
+                : $$("general.create").toLowerCase()}
             </Button>
           </Stack>
         </MobileBox>

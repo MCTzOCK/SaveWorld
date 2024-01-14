@@ -47,6 +47,7 @@ import RecipeModal from "../../components/RecipeModal";
 import { useUserData } from "../../hooks/useUserData";
 import { ENDPOINT } from "../../env";
 import { BiBookmark, BiSolidBookmark } from "react-icons/bi";
+import { $$ } from "../../translations/i18n";
 
 export default function RecipeViewer() {
   const router = useIonRouter();
@@ -76,9 +77,8 @@ export default function RecipeViewer() {
           setRecipe(res.payload.recipe);
         } else {
           PopupManager.alert({
-            title: "Fehler",
-            description:
-              "Rezept konnte nicht geladen werden: " + res.payload.error,
+            title: $$("control.error"),
+            description: $$("pages.recipes.loading.error", res.payload.error),
             callback: () => {
               router.push("/recipes");
             },
@@ -102,7 +102,7 @@ export default function RecipeViewer() {
 
   if (!recipe) {
     return (
-      <Page title={"Rezept laden"}>
+      <Page title={$$("general.loading")}>
         <div
           style={{
             display: "flex",
@@ -163,7 +163,7 @@ export default function RecipeViewer() {
                   );
                 }}
               >
-                Bearb.
+                {$$("general.edit.short")}
               </Button>
               <Button
                 w={"100%"}
@@ -171,8 +171,8 @@ export default function RecipeViewer() {
                 onClick={async () => {
                   if (
                     !(await PopupManager.confirmAsync({
-                      title: "Löschen?",
-                      question: "Möchtest du dieses Rezept wirklich löschen?",
+                      title: $$("control.delete"),
+                      question: $$("pages.recipes.delete.confirm"),
                     }))
                   )
                     return;
@@ -184,16 +184,17 @@ export default function RecipeViewer() {
 
                   if (res.status !== 200) {
                     PopupManager.alert({
-                      title: "Fehler",
-                      description:
-                        "Rezept konnte nicht gelöscht werden: " +
+                      title: $$("control.error"),
+                      description: $$(
+                        "pages.recipes.delete.error",
                         res.payload.error,
+                      ),
                     });
                     return;
                   } else {
                     PopupManager.alert({
-                      title: "Erfolg",
-                      description: "Rezept wurde erfolgreich gelöscht.",
+                      title: $$("control.success"),
+                      description: $$("pages.recipes.delete.success"),
                       callback: () => {
                         router.push("/recipes");
                       },
@@ -201,10 +202,10 @@ export default function RecipeViewer() {
                   }
                 }}
               >
-                Löschen
+                {$$("control.delete")}
               </Button>
               <IconButton
-                aria-label={"Save"}
+                aria-label={$$("control.save")}
                 icon={
                   prefs.cookbookItems.includes(id) ? (
                     <BiSolidBookmark />
@@ -235,10 +236,11 @@ export default function RecipeViewer() {
                     await reloadPrefs();
                   } else {
                     PopupManager.alert({
-                      title: "Fehler",
-                      description:
-                        "Deine Einstellungen konnten nicht gespeichert werden: " +
+                      title: $$("control.error"),
+                      description: $$(
+                        "pages.recipes.settings.update.error",
                         res.payload.error,
+                      ),
                     });
                   }
                 }}
@@ -253,7 +255,8 @@ export default function RecipeViewer() {
             gap={4}
           >
             <Text>
-              Dieses Rezept wurde von <b>@{recipe.created_by}</b> erstellt.
+              {$$("pages.recipes.created.by.1")} <b>@{recipe.created_by}</b>{" "}
+              {$$("pages.recipes.created.by.2")}
             </Text>
             <IconButton
               aria-label={"Speichern"}
@@ -262,8 +265,8 @@ export default function RecipeViewer() {
               colorScheme={"brand"}
               onClick={async () => {
                 await Share.share({
-                  title: "Rezept für " + recipe.title,
-                  text: "Schau dir dieses Rezept an!",
+                  title: $$("pages.recipes.for") + recipe.title,
+                  text: $$("pages.recipes.share.text"),
                   url: "https://app.saveworld.one/recipes/" + recipe._id,
                 });
               }}
@@ -283,10 +286,10 @@ export default function RecipeViewer() {
               }}
             >
               <IonItem slot="header" color="light">
-                <IonLabel>Zutaten</IonLabel>
+                <IonLabel>{$$("pages.recipes.ingredients")}</IonLabel>
               </IonItem>
               <div className="ion-padding" slot="content">
-                Für das Rezept werden folgende Zutaten benötigt:
+                {$$("pages.recipes.ingredients.used")}
                 <UnorderedList>
                   {recipe.ingredients.map((i) => {
                     return <ListItem>{i}</ListItem>;
@@ -302,10 +305,10 @@ export default function RecipeViewer() {
               }}
             >
               <IonItem slot="header" color="light">
-                <IonLabel>Schritte</IonLabel>
+                <IonLabel>{$$("pages.recipes.steps")}</IonLabel>
               </IonItem>
               <div className="ion-padding" slot="content">
-                Das Rezept wird wie folgt zubereitet:
+                {$$("pages.recipes.steps.description")}
                 <OrderedList>
                   {recipe.steps.map((i) => {
                     return <ListItem>{i}</ListItem>;
@@ -315,7 +318,7 @@ export default function RecipeViewer() {
             </IonAccordion>
           </IonAccordionGroup>
           <Button color={"brand.500"} mt={5} w={"100%"} onClick={onOpen}>
-            Rezept zubereiten
+            {$$("pages.recipes.cook")}
           </Button>
           <Button
             color={"brand.500"}
@@ -337,7 +340,7 @@ export default function RecipeViewer() {
               router.push("/recipes/create?saveworld.data.recipe.edit=" + b64);
             }}
           >
-            Rezept bearbeiten
+            {$$("pages.recipes.edit")}
           </Button>
         </MobileBox>
         <RecipeModal open={isOpen} onClose={onClose} recipe={recipe} />

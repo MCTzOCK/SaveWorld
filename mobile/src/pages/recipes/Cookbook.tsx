@@ -29,6 +29,7 @@ import MobileBox from "../../components/MobileBox";
 import { ENDPOINT } from "../../env";
 import { IonSearchbar } from "@ionic/react";
 import RecipeCard from "../../components/RecipeCard";
+import { $$ } from "../../translations/i18n";
 
 export default function Cookbook() {
   const [query, setQuery] = React.useState<string>("");
@@ -85,10 +86,9 @@ export default function Cookbook() {
 
   return (
     <>
-      <Page title={"Kochbuch"}>
+      <Page title={$$("pages.recipes.cookbook")}>
         <MobileBox>
-          In deinen Kochbuch befinden sich alle Rezepte, die du dir gemerkt
-          hast. Aktuell sind es {prefs.cookbookItems.length} Rezepte.
+          {$$("pages.recipes.cookbook.description", recipes.length.toString())}
           <IonSearchbar
             value={query}
             onIonInput={(e) => setQuery(e.detail.value!)}
