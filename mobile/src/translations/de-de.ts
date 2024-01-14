@@ -438,4 +438,11 @@ export const german = {
   "pages.learn.videos.loading.error.next":
     "Fehler beim Laden des nächsten Videos: %0",
   "menu.learn": "Lernen",
+  "pages.quizzes.answer": "Beantworten",
+  "pages.quizzes.quiz.time": "Quiz Time!",
+  "pages.quizzes.result": "Ergebnis",
+  "pages.quizzes.result.description": "Du hast %0 geantwortet! %1",
+  "pages.quizzes.result.2": "Die richtige Antwort ist: %0",
+  "general.correct": "richtig",
+  "general.wrong": "falsch",
 } as const;
