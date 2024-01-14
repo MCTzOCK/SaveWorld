@@ -110,6 +110,7 @@ import EatingPlanOverview from "./pages/eatingplans/EatingPlanOverview";
 import EatingPlanViewer from "./pages/eatingplans/EatingPlanViewer";
 import Licenses from "./pages/account/Licenses";
 import { $$ } from "./translations/i18n";
+import LanguageSwitcher from "./components/LanguageSwitcher";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -187,6 +188,7 @@ export default function App() {
 
   useEffect(() => {
     setRoutes({
+      "/language": LanguageSwitcher,
       "/register": Register,
       "/login": Login,
       "/old-onboarding": Onboarding,

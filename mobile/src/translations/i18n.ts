@@ -13,18 +13,22 @@ const languages = {
     de: {
       displayName: "Deutsch",
       type: "manual",
+      cc: "de",
     },
     en: {
       displayName: "English",
       type: "auto",
+      cc: "gb",
     },
     es: {
       displayName: "Español",
       type: "auto",
+      cc: "es",
     },
     fr: {
       displayName: "Français",
       type: "auto",
+      cc: "fr",
     },
   },
 };

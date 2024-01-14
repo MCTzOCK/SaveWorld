@@ -63,6 +63,7 @@ import {
   BiCog,
   BiEnvelope,
   BiFile,
+  BiFlag,
   BiGroup,
   BiHome,
   BiInfoCircle,
@@ -129,6 +130,13 @@ export default function DrawerMenu(props: {
             icon: <BiHome />,
             onClick: () => {
               router.push("/onboarding", "none", "replace");
+            },
+          },
+          {
+            label: "Language",
+            icon: <BiFlag />,
+            onClick: () => {
+              router.push("/language", "none", "replace");
             },
           },
         ],
