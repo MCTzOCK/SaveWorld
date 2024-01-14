@@ -95,7 +95,7 @@ export const german = {
   "components.e2.unnamed.action": "Unbekannte Aktion",
   "components.e2.weekly.overview": "Wochenübersicht",
   "components.e2projects.edit.members.intro":
-    "Dein Projekt hat insgesamt %0 Mitglieder. JEdes Mitglied kann eine von drei Rollen haben:",
+    "Dein Projekt hat insgesamt %0 Mitglieder. Jedes Mitglied kann eine von drei Rollen haben:",
   "components.e2projects.homepage.segment.delete.confirm":
     "Möchtest du das Segment wirklich löschen?",
   "components.e2projects.homepage.segment.delete.error":
