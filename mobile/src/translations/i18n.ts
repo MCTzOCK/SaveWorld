@@ -17,7 +17,7 @@ const languages = {
     },
     en: {
       displayName: "English",
-      type: "auto",
+      type: "manual",
       cc: "gb",
     },
     es: {

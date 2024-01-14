@@ -234,7 +234,7 @@ export const en = {
   "general.wrong": "incorrect",
   "menu.admin": "Admin",
   "menu.blog": "Blog",
-  "menu.calculator": "calculator",
+  "menu.calculator": "Calculator",
   "menu.community": "Community",
   "menu.community.my.profile": "My profile",
   "menu.contents": "Content",
