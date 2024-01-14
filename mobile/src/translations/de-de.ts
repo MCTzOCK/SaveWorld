@@ -29,18 +29,27 @@ export const german = {
   "general.account": "Konto",
   "general.activated": "Aktiviert",
   "general.active": "Aktiv",
+  "general.create": "Erstellen",
   "general.deactivated": "Deaktiviert",
+  "general.edit": "Bearbeiten",
+  "general.here": "hier",
+  "general.hint": "Tipp",
+  "general.image": "Bild",
   "general.inactive": "Inaktiv",
   "general.information": "Informationen",
   "general.legal.notice": "Impressum",
   "general.legal.privacy": "Datenschutz",
+  "general.level": "Level",
   "general.loading": "Laden...",
   "general.more.details": "Mehr Details",
   "general.open.source.licenses": "Open-Source Lizenzen",
+  "general.overview": "Übersicht",
+  "general.preview": "Vorschau",
   "general.serverstatus": "Server-Status",
   "general.submit": "Absenden",
   "general.welcome": "Willkommen",
   "menu.admin": "Admin",
+  "menu.blog": "Blog",
   "menu.calculator": "Rechner",
   "menu.community": "Community",
   "menu.contents": "Inhalte",
@@ -214,8 +223,156 @@ export const german = {
   "pages.admin.video.updated.error": "Fehler beim Aktualisieren des Videos: %0",
   "pages.admin.video.updated.success": "Video erfolgreich aktualisiert!",
   "pages.admin.videos.loading.error": "Fehler beim Laden der Videos: %0",
+  "pages.community.blog.action.error": "Die Aktion ist fehlgeschlagen: %0",
+  "pages.community.blog.comment": "Kommentar",
+  "pages.community.blog.comment.submit": "Veröffentlichen",
+  "pages.community.blog.comments": "Kommentare",
+  "pages.community.blog.delete.confirm":
+    "Möchtest du den Blog-Eintrag wirklich löschen?",
+  "pages.community.blog.loading.error": "Fehler beim Laden des Beitrags: %0",
+  "pages.community.blog.mentioned.users":
+    "In diesem Beitrag sind folgende Konten verlinkt:",
+  "pages.community.create.blog.error": "Es ist ein Fehler aufgetreten: %0",
+  "pages.community.create.blog.error.title": "Bitte gib einen Titel ein.",
+  "pages.community.create.blog.error.too.short":
+    "Bitte gib mehr als 10 Zeichen ein.",
+  "pages.community.create.blog.form.tags": "Tags",
+  "pages.community.create.blog.form.tags.placeholder":
+    "Tags (durch Komma trennen)",
+  "pages.community.create.blog.form.title": "Titel",
+  "pages.community.create.blog.form.title.placeholder": "Titel des Blogs",
+  "pages.community.create.blog.hint":
+    "verwende @Benutzername um andere Benutzer zu markieren. Hierdurch erhalten diese eine Benachrichtigung und andere Benutzer können auf deren Profil gelangen!",
+  "pages.community.create.blog.image": "Bild hinzufügen",
+  "pages.community.create.blog.information": "Informationen (klicken)",
+  "pages.community.create.blog.information.description":
+    "Hier kannst du einen neuen Blog eintrag erstellen. Du kannst von deinen Bemühungen im Bezug auf ein umweltbewussteres Leben berichten, oder auch einfach nur deine Gedanken mit der Community teilen.",
+  "pages.community.create.blog.information.description.2":
+    "Blogs werden mit Markdown geschrieben. Markdown ist eine einfache Auszeichnungssprache, die es dir ermöglicht, deinen Text zu formatieren. Falls du noch nie mit Markdown gearbeitet hast, kannst du dir",
+  "pages.community.create.blog.information.description.3":
+    "eine Übersicht über die wichtigsten Befehle verschaffen.",
+  "pages.community.create.blog.publish": "Veröffentlichen",
+  "pages.community.create.blog.title": "Neuer Blog",
+  "pages.community.dashboard.explore": "Entdecken",
+  "pages.community.dashboard.following": "Folge Ich",
+  "pages.community.messages": "Nachrichten",
+  "pages.community.messages.chat": "Chat",
+  "pages.community.messages.chats": "Chats",
+  "pages.community.messages.chats.create": "Neuer Chat",
+  "pages.community.messages.chats.create.description":
+    "Erstelle einen neuen Chat",
+  "pages.community.messages.chats.create.error.self":
+    "Du kannst dich nicht selbst anschreiben.",
+  "pages.community.messages.chats.create.placeholder":
+    "Gib den Benutzernamen des anderen Nutzers ein",
+  "pages.community.messages.chats.delete": "Chat löschen",
+  "pages.community.messages.chats.delete.confirm":
+    "Möchtest du den Chat wirklich löschen?",
+  "pages.community.messages.group": "Gruppe",
+  "pages.community.messages.group.member.add": "Hinzufügen",
+  "pages.community.messages.group.member.add.success":
+    "Der Benutzer wurde erfolgreich hinzugefügt.",
+  "pages.community.messages.group.member.form.title": "Benutzer hinzufügen",
+  "pages.community.messages.group.member.form.title.placeholder":
+    "Gib den Benutzernamen ein",
+  "pages.community.messages.groups": "Gruppen",
+  "pages.community.messages.groups.create": "Neue Gruppe",
+  "pages.community.messages.groups.create.description":
+    "Gib den Benutzernamen des ersten Mitglieds ein",
+  "pages.community.messages.groups.create.error.self":
+    "Du kannst keine Gruppe mit dir selbst erstellen",
+  "pages.community.messages.groups.create.subline": "Erstelle eine neue Gruppe",
+  "pages.community.profile.actions.block.error": "Fehler beim Blockieren: %0",
+  "pages.community.profile.actions.edit": "Profil bearbeiten",
+  "pages.community.profile.actions.follow.error": "Fehler beim Folgen: %0",
+  "pages.community.profile.actions.for": "Aktionen für",
+  "pages.community.profile.actions.message": "Nachricht senden",
+  "pages.community.profile.actions.not.implemented":
+    "Diese Aktion wurde noch nicht implementiert.",
+  "pages.community.profile.banner": "Banner",
+  "pages.community.profile.block": "Blockieren",
+  "pages.community.profile.blogs": "Beiträge",
+  "pages.community.profile.chat.loading.erorr":
+    "Es ist ein Fehler aufgetreten: %0",
+  "pages.community.profile.follow": "Folgen",
+  "pages.community.profile.followers": "Follower",
+  "pages.community.profile.loading.error": "Fehler beim Laden des Profils: %0",
+  "pages.community.profile.no.level": "Mein Level ist geheim",
+  "pages.community.profile.no.location": "Kein Standort angegeben",
+  "pages.community.profile.report": "Melden",
+  "pages.community.profile.unblock": "Entblocken",
+  "pages.community.profile.unfollow": "Entfolgen",
+  "pages.e2.analytics.title": "Analyse",
+  "pages.e2.level.current": "Aktueller Level",
+  "pages.e2.level.loading.error": "Fehler beim Laden des Levels: %0",
+  "pages.e2projects.calendar": "Kalender",
+  "pages.e2projects.create": "Projekt erstellen",
+  "pages.e2projects.edit.title": "Projekt bearbeiten",
+  "pages.e2projects.filter.all": "Alle",
+  "pages.e2projects.filter.upcoming": "Nur anstehende",
+  "pages.e2projects.homepage": "Homepage",
+  "pages.e2projects.list": "Liste",
+  "pages.e2projects.loading.error": "Fehler beim Laden des Projektes: %0",
+  "pages.e2projects.map": "Karte",
   "pages.e2projects.map.findable": "Auf der Karte auffindbar",
   "pages.e2projects.map.unfindable": "Nicht auf der Karte angezeigt",
+  "pages.e2projects.map.unfindable.description":
+    "Dein Projekt kann nicht auf der Karte angezeigt werden, da die genaue Adresse nicht bekannt ist. Die Adresse kann in den Projekteinstellungen geändertwerden. WICHTIG: Klicke auf eine vorgeschlagene Adresse, um diese zu übernehmen.",
+  "pages.e2projects.members": "Mitglieder",
+  "pages.e2projects.my": "Meine Projekte",
+  "pages.e2projects.my.loading.error": "Fehler beim Laden der Projekte: %0",
+  "pages.e2projects.no.projects": "Keine Projekte gefunden.",
+  "pages.e2projects.start.create.error":
+    "Das Projekt konnte nicht erstellt werden: %0",
+  "pages.e2projects.start.created": "Projekt erstellt!",
+  "pages.e2projects.start.created.description":
+    "Dein Projekt wurde erfolgreich erstellt!",
+  "pages.e2projects.start.form.date": "Startdatum",
+  "pages.e2projects.start.form.date.placeholder": "Wann startet das Projekt?",
+  "pages.e2projects.start.form.length": "Dauer",
+  "pages.e2projects.start.form.length.placeholder":
+    "Wie lange soll dein Projekt dauern (in Tagen)?",
+  "pages.e2projects.start.form.location": "Standort",
+  "pages.e2projects.start.form.location.placeholder":
+    "Wo findet dein Projekt statt? TIPP: Ab 5 Zeichen werden Vorschläge angezeigt. Klicke auf einen Vorschlag, um ihn zu übernehmen.",
+  "pages.e2projects.start.form.name": "Name",
+  "pages.e2projects.start.form.name.placeholder":
+    "Gib deinem Projekt einen Namen, der es bestmöglich beschreibt.",
+  "pages.e2projects.start.form.suggestions.title": "Suchergebnisse",
+  "pages.e2projects.start.info.description":
+    "Nun ja, jeder der ein Projekt starten möchte. Das ist ja auch der Sinn der Sache. Aber es gibt ein paar Dinge, die du beachten solltest:",
+  "pages.e2projects.start.info.ls.1":
+    "Dein Projekt sollte einen positiven Einfluss auf die Umwelt haben.",
+  "pages.e2projects.start.info.ls.2":
+    "Dein Projekt darf nicht gegen geltendes Recht verstoßen. (bspw. auf die Straße kleben)",
+  "pages.e2projects.start.info.ls.3":
+    "Dein Projekt sollte auf Zusammenarbeit mit anderen Benutzern ausgelegt sein.",
+  "pages.e2projects.start.info.ls.4":
+    "Dein Projekt sollte einen konkreten Nutzen haben (bswp. Müll sammeln, Bäume pflanzen, ...),",
+  "pages.e2projects.start.info.ls.5":
+    "Dein Projekt sollte einem ausgeklügelten Plan folgen.",
+  "pages.e2projects.start.info.who": "Wer sollte ein neues Projekt starten?",
+  "pages.e2projects.start.page2.error.date":
+    "Das Startdatum muss in der Zukunft liegen.",
+  "pages.e2projects.start.page2.title": "Neues Projekt",
+  "pages.e2projects.start.ready": "Du bist bereit ein Projekt zu starten?",
+  "pages.e2projects.start.ready.2":
+    "Dann klicke auf den Button unten und fülle das Formular aus.",
+  "pages.e2projects.start.ready.button": "Projekt starten",
+  "pages.e2projects.todo": "ToDo Liste",
+  "pages.e2projects.todo.action": "Aktion",
+  "pages.e2projects.todo.description": "Beschreibung",
+  "pages.e2projects.todo.done": "Erledigt",
+  "pages.e2projects.todo.entries.no": "Diese ToDo-Liste hat keine Einträge.",
+  "pages.e2projects.todo.entry.create.error":
+    "Eintrag konnte nicht erstellt werden: %0",
+  "pages.e2projects.todo.entry.delete.confirm":
+    "Soll der Eintrag wirklich gelöscht werden?",
+  "pages.e2projects.todo.entry.delete.error": "Fehler beim Löschen: %0",
+  "pages.e2projects.todo.entry.update.error": "Fehler beim Aktualisieren: %0",
+  "pages.e2projects.todo.loading.error":
+    "Die ToDo-Liste konnte nicht geladen werden: %0",
+  "pages.e2projects.todo.name": "Name",
   "popup.alert.title.default": "Meldung",
   "popup.close": "Schließen",
   "popup.input.label": "Eingabe",
@@ -229,4 +386,18 @@ export const german = {
   "user.role.admin": "Administrator",
   "user.user": "Benutzer",
   "user.username": "Benutzername",
+  "pages.e2projects.homepage.loading.error":
+    "Homepage konnte nicht geladen werden: %0",
+  "pages.e2projects.editable": "Du kannst dieses Projekt bearbeiten!",
+  "pages.e2projects.member.status.leave":
+    "Möchtest du kein Teil des Projektes mehr sein?",
+  "pages.e2projects.member.status.join":
+    "Möchtest du Teil dieses Projektes werden und mitwirken?",
+  "pages.e2projects.member.status.popup.1": "Du bist ab jetzt ",
+  "pages.e2projects.member.status.popup.no.member":
+    "kein Teil des Projektes mehr.",
+  "pages.e2projects.member.status.popup.member": "Teil des Projektes!",
+  "general.leave": "Verlassen",
+  "general.join": "Beitreten",
+  "pages.e2projects.menu.todos": "ToDos",
 } as const;

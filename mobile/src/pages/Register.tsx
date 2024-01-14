@@ -21,13 +21,13 @@ import Page from "../components/Page";
 import PopupManager from "../util/PopupManager";
 import { Box, Button, Flex, Link } from "@chakra-ui/react";
 import MobileBox from "../components/MobileBox";
-import { __ } from "../translations/i18n";
+import { $$ } from "../translations/i18n";
 
 export default function Register() {
   const router = useIonRouter();
   return (
     <>
-      <Page title={__("general.welcome")}>
+      <Page title={$$("general.welcome")}>
         <MobileBox>
           <form
             onSubmit={async (e) => {
@@ -49,16 +49,16 @@ export default function Register() {
                 !passConf
               ) {
                 PopupManager.alert({
-                  title: __("control.error"),
-                  description: __("form.incomplete"),
+                  title: $$("control.error"),
+                  description: $$("form.incomplete"),
                 });
                 return;
               }
 
               if (pass !== passConf) {
                 PopupManager.alert({
-                  title: __("control.error"),
-                  description: __("form.passwords.error.not.match"),
+                  title: $$("control.error"),
+                  description: $$("form.passwords.error.not.match"),
                 });
                 return;
               }
@@ -73,14 +73,14 @@ export default function Register() {
 
               if (res.status === 200) {
                 PopupManager.alert({
-                  title: __("control.success"),
-                  description: __("page.register.success"),
+                  title: $$("control.success"),
+                  description: $$("page.register.success"),
                 });
                 router.push("/login", "none", "replace");
               } else {
                 PopupManager.alert({
-                  title: __("control.error"),
-                  description: __("page.register.error", res.payload.error),
+                  title: $$("control.error"),
+                  description: $$("page.register.error", res.payload.error),
                 });
               }
             }}
@@ -96,7 +96,7 @@ export default function Register() {
             >
               <IonInput
                 name={"user"}
-                placeholder={__("user.username")}
+                placeholder={$$("user.username")}
                 style={{
                   borderBottom: "1px solid var(--ion-color-success-shade)",
                 }}
@@ -104,7 +104,7 @@ export default function Register() {
               <IonInput
                 name={"mail"}
                 type={"email"}
-                placeholder={__("user.email")}
+                placeholder={$$("user.email")}
                 style={{
                   borderBottom: "1px solid var(--ion-color-success-shade)",
                 }}
@@ -122,14 +122,14 @@ export default function Register() {
             >
               <IonInput
                 name={"firstName"}
-                placeholder={__("user.firstname")}
+                placeholder={$$("user.firstname")}
                 style={{
                   borderBottom: "1px solid var(--ion-color-success-shade)",
                 }}
               />
               <IonInput
                 name={"lastName"}
-                placeholder={__("user.lastname")}
+                placeholder={$$("user.lastname")}
                 style={{
                   borderBottom: "1px solid var(--ion-color-success-shade)",
                 }}
@@ -148,7 +148,7 @@ export default function Register() {
               <IonInput
                 name={"pass"}
                 type={"password"}
-                placeholder={__("user.password")}
+                placeholder={$$("user.password")}
                 style={{
                   borderBottom: "1px solid var(--ion-color-success-shade)",
                 }}
@@ -156,7 +156,7 @@ export default function Register() {
               <IonInput
                 name={"passConf"}
                 type={"password"}
-                placeholder={__("user.password.confirm")}
+                placeholder={$$("user.password.confirm")}
                 style={{
                   borderBottom: "1px solid var(--ion-color-success-shade)",
                 }}
@@ -170,7 +170,7 @@ export default function Register() {
                 colorScheme={"brand"}
                 size={"lg"}
               >
-                {__("page.register.title")}
+                {$$("page.register.title")}
               </Button>
               <Button
                 as={Link}
@@ -184,7 +184,7 @@ export default function Register() {
                   router.push("/login");
                 }}
               >
-                {__("page.login.title")}
+                {$$("page.login.title")}
               </Button>
             </Flex>
           </form>

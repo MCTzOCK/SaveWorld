@@ -28,7 +28,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { FaPen } from "react-icons/fa";
-import { __ } from "../../translations/i18n";
+import { $$ } from "../../translations/i18n";
 
 export default function PromptPopupComponent(props: {
   title: string;
@@ -65,7 +65,7 @@ export default function PromptPopupComponent(props: {
 
             <AlertDialogBody>
               <FormControl isRequired>
-                <FormLabel>{__("popup.input.label")}</FormLabel>
+                <FormLabel>{$$("popup.input.label")}</FormLabel>
                 {props.inputType === "INPUT" ? (
                   <InputGroup>
                     <InputLeftElement>
@@ -73,13 +73,13 @@ export default function PromptPopupComponent(props: {
                     </InputLeftElement>
                     <Input
                       id={"input-" + id}
-                      placeholder={__("popup.input.label")}
+                      placeholder={$$("popup.input.label")}
                     />
                   </InputGroup>
                 ) : (
                   <Textarea
                     id={"input-" + id}
-                    placeholder={__("popup.input.label")}
+                    placeholder={$$("popup.input.label")}
                   />
                 )}
                 <FormHelperText>{props.helperText}</FormHelperText>
@@ -95,7 +95,7 @@ export default function PromptPopupComponent(props: {
                 // @ts-ignore
                 ref={whatEverRef}
               >
-                {__("control.cancel")}
+                {$$("control.cancel")}
               </Button>
               <Button
                 colorScheme="brand"
@@ -111,7 +111,7 @@ export default function PromptPopupComponent(props: {
                 }}
                 ml={3}
               >
-                {__("control.confirm")}
+                {$$("control.confirm")}
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>

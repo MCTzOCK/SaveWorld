@@ -47,7 +47,7 @@ import {
 } from "@chakra-ui/react";
 import { FaTrash } from "react-icons/fa6";
 import { FaPen } from "react-icons/fa";
-import { __ } from "../../translations/i18n";
+import { $$ } from "../../translations/i18n";
 
 export default function AdminLifestyleTemplates() {
   useRedirectForAnon({
@@ -68,8 +68,8 @@ export default function AdminLifestyleTemplates() {
       setTemplates(tplR.payload.lst);
     } else {
       PopupManager.alert({
-        title: __("control.error"),
-        description: __(
+        title: $$("control.error"),
+        description: $$(
           "pages.admin.lifestyle.loading.error",
           tplR.payload.error,
         ),
@@ -85,10 +85,10 @@ export default function AdminLifestyleTemplates() {
 
   return (
     <>
-      <Page title={__("menu.lifestyle")} redGradient>
+      <Page title={$$("menu.lifestyle")} redGradient>
         <MobileBox bg={"#101010"}>
           <IonSearchbar
-            placeholder={__("control.search")}
+            placeholder={$$("control.search")}
             value={query}
             onIonInput={(ev) => {
               setQuery((ev.detail.value || "").trim());
@@ -135,8 +135,8 @@ export default function AdminLifestyleTemplates() {
                                 onClick={async () => {
                                   if (
                                     !(await PopupManager.confirmAsync({
-                                      title: __("control.delete"),
-                                      question: __(
+                                      title: $$("control.delete"),
+                                      question: $$(
                                         "pages.admin.lifestyle.delete.description",
                                       ),
                                     }))
@@ -151,8 +151,8 @@ export default function AdminLifestyleTemplates() {
                                     await reload();
                                   } else {
                                     PopupManager.alert({
-                                      title: __("control.error"),
-                                      description: __(
+                                      title: $$("control.error"),
+                                      description: $$(
                                         "pages.admin.lifestyle.delete.error",
                                         delR.payload.error,
                                       ),
@@ -168,18 +168,18 @@ export default function AdminLifestyleTemplates() {
                                 variant={"ghost"}
                                 onClick={async () => {
                                   const name = await PopupManager.promptAsync({
-                                    title: __(
+                                    title: $$(
                                       "pages.admin.lifestyle.new.title",
                                     ),
-                                    helperText: __(
+                                    helperText: $$(
                                       "pages.admin.lifestyle.new.title",
                                     ),
                                     inputType: "INPUT",
                                   });
 
                                   const goal = await PopupManager.promptAsync({
-                                    title: __("pages.admin.lifestyle.new.goal"),
-                                    helperText: __(
+                                    title: $$("pages.admin.lifestyle.new.goal"),
+                                    helperText: $$(
                                       "pages.admin.lifestyle.new.goal",
                                     ),
                                     inputType: "INPUT",
@@ -196,8 +196,8 @@ export default function AdminLifestyleTemplates() {
                                       await reload();
                                     } else {
                                       PopupManager.alert({
-                                        title: __("control.error"),
-                                        description: __(
+                                        title: $$("control.error"),
+                                        description: $$(
                                           "pages.admin.lifestyle.delete.error",
                                           tplR.payload.error,
                                         ),
@@ -220,14 +220,14 @@ export default function AdminLifestyleTemplates() {
               color={"danger"}
               onClick={async () => {
                 const name = await PopupManager.promptAsync({
-                  title: __("pages.admin.lifestyle.new.title"),
-                  helperText: __("pages.admin.lifestyle.new.title"),
+                  title: $$("pages.admin.lifestyle.new.title"),
+                  helperText: $$("pages.admin.lifestyle.new.title"),
                   inputType: "INPUT",
                 });
 
                 const goal = await PopupManager.promptAsync({
-                  title: __("pages.admin.lifestyle.new.goal"),
-                  helperText: __("pages.admin.lifestyle.new.goal"),
+                  title: $$("pages.admin.lifestyle.new.goal"),
+                  helperText: $$("pages.admin.lifestyle.new.goal"),
                   inputType: "INPUT",
                 });
 
@@ -241,8 +241,8 @@ export default function AdminLifestyleTemplates() {
                     await reload();
                   } else {
                     PopupManager.alert({
-                      title: __("control.error"),
-                      description: __(
+                      title: $$("control.error"),
+                      description: $$(
                         "pages.admin.lifestyle.create.error",
                         tplR.payload.error,
                       ),

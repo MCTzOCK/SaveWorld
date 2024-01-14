@@ -28,7 +28,7 @@ import {
 } from "@chakra-ui/react";
 import { FaPen } from "react-icons/fa";
 import { useId, useRef } from "react";
-import { __ } from "../../translations/i18n";
+import { $$ } from "../../translations/i18n";
 
 export default function SelectPopupComponent(props: {
   title: string;
@@ -65,10 +65,10 @@ export default function SelectPopupComponent(props: {
 
             <AlertDialogBody>
               <FormControl isRequired>
-                <FormLabel>{__("popup.input.label")}</FormLabel>
+                <FormLabel>{$$("popup.input.label")}</FormLabel>
                 <Select
                   id={"input-" + id}
-                  placeholder={__("popup.select.choose.option")}
+                  placeholder={$$("popup.select.choose.option")}
                   size={"lg"}
                 >
                   {props.choices.map((c, i) => {
@@ -88,7 +88,7 @@ export default function SelectPopupComponent(props: {
                 // @ts-ignore
                 ref={whatEverRef}
               >
-                {__("control.cancel")}
+                {$$("control.cancel")}
               </Button>
               <Button
                 colorScheme="brand"
@@ -104,7 +104,7 @@ export default function SelectPopupComponent(props: {
                 }}
                 ml={3}
               >
-                {__("control.confirm")}
+                {$$("control.confirm")}
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>

@@ -17,19 +17,20 @@ import E2FindProjectsList from "../../components/E2FindProjectsList";
 import Calendar from "../../components/calendar/Calendar";
 import E2FindProjectsCalendar from "../../components/E2FindProjectsCalendar";
 import E2FindProjectsMap from "../../components/E2FindProjectsMap";
+import { $$ } from "../../translations/i18n";
 
 export default function E2Projects() {
   useRedirectForAnon();
 
   return (
     <>
-      <Page title={"Projekte"}>
+      <Page title={$$("menu.projects")}>
         <MobileBox>
           <Tabs colorScheme={"brand"} size={"md"} isFitted>
             <TabList>
-              <Tab>Liste</Tab>
-              <Tab>Karte</Tab>
-              <Tab>Kalender</Tab>
+              <Tab>{$$("pages.e2projects.list")}</Tab>
+              <Tab>{$$("pages.e2projects.map")}</Tab>
+              <Tab>{$$("pages.e2projects.calendar")}</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>

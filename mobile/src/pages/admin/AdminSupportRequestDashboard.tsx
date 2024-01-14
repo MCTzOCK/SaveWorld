@@ -31,7 +31,7 @@ import {
   IonCardTitle,
 } from "@ionic/react";
 import PopupManager from "../../util/PopupManager";
-import { __ } from "../../translations/i18n";
+import { $$ } from "../../translations/i18n";
 
 export default function AdminSupportRequestDashboard() {
   useRedirectForAnon({
@@ -67,7 +67,7 @@ export default function AdminSupportRequestDashboard() {
 
   return (
     <>
-      <Page title={__("pages.admin.support.request")} redGradient noPadding>
+      <Page title={$$("pages.admin.support.request")} redGradient noPadding>
         <Flex
           w={"100%"}
           justifyContent={["flex-start", "center"]}
@@ -92,7 +92,7 @@ export default function AdminSupportRequestDashboard() {
                     >
                       <AlertIcon />
                       <AlertDescription>
-                        {__("pages.admin.support.request.processed")}
+                        {$$("pages.admin.support.request.processed")}
                       </AlertDescription>
                     </Alert>
                   </>
@@ -101,12 +101,12 @@ export default function AdminSupportRequestDashboard() {
                   <IonCardHeader>
                     <IonCardTitle>
                       {request.category === "REPORT-USER"
-                        ? __("page.support.category.report.user")
+                        ? $$("page.support.category.report.user")
                         : request.category === "REPORT-POST"
-                        ? __("page.support.category.report.post")
+                        ? $$("page.support.category.report.post")
                         : request.category === "REPORT-BUG"
-                        ? __("page.support.category.error")
-                        : __("page.support.category.general")}
+                        ? $$("page.support.category.error")
+                        : $$("page.support.category.general")}
                     </IonCardTitle>
                     <IonCardSubtitle>
                       {new Date(request.createdAt).toLocaleString()}
@@ -115,11 +115,11 @@ export default function AdminSupportRequestDashboard() {
                   <IonCardContent>
                     <VStack spacing={"1rem"} alignItems={"left"} mb={"1rem"}>
                       <div>
-                        <b>{__("pages.admin.support.request.created.by")}</b>:{" "}
+                        <b>{$$("pages.admin.support.request.created.by")}</b>:{" "}
                         {request.email}
                       </div>
                       <div>
-                        <b>{__("pages.admin.support.request.message")}</b>:{" "}
+                        <b>{$$("pages.admin.support.request.message")}</b>:{" "}
                         {request.message}
                       </div>
                     </VStack>
@@ -131,8 +131,8 @@ export default function AdminSupportRequestDashboard() {
                           disabled={request.processed}
                           onClick={async () => {
                             const message = await PopupManager.promptAsync({
-                              title: __("pages.admin.support.request.answer"),
-                              helperText: __(
+                              title: $$("pages.admin.support.request.answer"),
+                              helperText: $$(
                                 "pages.admin.support.request.answer.description",
                               ),
                               inputType: "TEXTAREA",
@@ -150,8 +150,8 @@ export default function AdminSupportRequestDashboard() {
                               reload();
                             } else {
                               PopupManager.alert({
-                                title: __("control.error"),
-                                description: __(
+                                title: $$("control.error"),
+                                description: $$(
                                   "pages.admin.support.request.answer.error",
                                   res.payload.error,
                                 ),
@@ -159,7 +159,7 @@ export default function AdminSupportRequestDashboard() {
                             }
                           }}
                         >
-                          {__("pages.admin.support.request.answer.complete")}
+                          {$$("pages.admin.support.request.answer.complete")}
                         </IonButton>
                       </>
                     )}
@@ -183,7 +183,7 @@ export default function AdminSupportRequestDashboard() {
                               "/community/r/" + request.additionalData
                             }
                           >
-                            {__("pages.admin.support.request.open.post")}
+                            {$$("pages.admin.support.request.open.post")}
                           </IonButton>
                           <IonButton
                             disabled={request.processed}
@@ -193,24 +193,24 @@ export default function AdminSupportRequestDashboard() {
                             color={"success"}
                             onClick={async () => {
                               const action = await PopupManager.selectAsync({
-                                title: __(
+                                title: $$(
                                   "pages.admin.support.request.action.choose",
                                 ),
-                                helperText: __(
+                                helperText: $$(
                                   "pages.admin.support.request.action.description",
                                 ),
                                 choices: [
-                                  __(
+                                  $$(
                                     "pages.admin.support.request.action.delete.post",
                                   ),
-                                  __("pages.admin.support.request.action.no"),
+                                  $$("pages.admin.support.request.action.no"),
                                 ],
                               });
                               if (!action) return;
 
                               const message = await PopupManager.promptAsync({
-                                title: __("pages.admin.support.request.answer"),
-                                helperText: __(
+                                title: $$("pages.admin.support.request.answer"),
+                                helperText: $$(
                                   "pages.admin.support.request.answer.description",
                                 ),
                                 inputType: "TEXTAREA",
@@ -219,7 +219,7 @@ export default function AdminSupportRequestDashboard() {
 
                               if (
                                 action ===
-                                __(
+                                $$(
                                   "pages.admin.support.request.action.delete.post",
                                 )
                               ) {
@@ -231,8 +231,8 @@ export default function AdminSupportRequestDashboard() {
 
                                 if (res.status !== 200) {
                                   PopupManager.alert({
-                                    title: __("control.error"),
-                                    description: __(
+                                    title: $$("control.error"),
+                                    description: $$(
                                       "pages.admin.support.request.error.post",
                                       res.payload.error,
                                     ),
@@ -252,8 +252,8 @@ export default function AdminSupportRequestDashboard() {
                                 reload();
                               } else {
                                 PopupManager.alert({
-                                  title: __("control.error"),
-                                  description: __(
+                                  title: $$("control.error"),
+                                  description: $$(
                                     "pages.admin.support.request.error",
                                     res.payload.error,
                                   ),
@@ -261,7 +261,7 @@ export default function AdminSupportRequestDashboard() {
                               }
                             }}
                           >
-                            {__("pages.admin.support.request.answer.complete")}
+                            {$$("pages.admin.support.request.answer.complete")}
                           </IonButton>
                         </div>
                       </>
@@ -286,7 +286,7 @@ export default function AdminSupportRequestDashboard() {
                               "/community/u/" + request.additionalData
                             }
                           >
-                            {__("pages.admin.support.request.open.profile")}
+                            {$$("pages.admin.support.request.open.profile")}
                           </IonButton>
                           <IonButton
                             disabled={request.processed}
@@ -296,24 +296,24 @@ export default function AdminSupportRequestDashboard() {
                             color={"success"}
                             onClick={async () => {
                               const action = await PopupManager.selectAsync({
-                                title: __(
+                                title: $$(
                                   "pages.admin.support.request.action.choose",
                                 ),
-                                helperText: __(
+                                helperText: $$(
                                   "pages.admin.support.request.action.description",
                                 ),
                                 choices: [
-                                  __(
+                                  $$(
                                     "pages.admin.support.request.action.delete.user",
                                   ),
-                                  __("pages.admin.support.request.action.no"),
+                                  $$("pages.admin.support.request.action.no"),
                                 ],
                               });
                               if (!action) return;
 
                               const message = await PopupManager.promptAsync({
-                                title: __("pages.admin.support.request.answer"),
-                                helperText: __(
+                                title: $$("pages.admin.support.request.answer"),
+                                helperText: $$(
                                   "pages.admin.support.request.answer.description",
                                 ),
                                 inputType: "TEXTAREA",
@@ -322,7 +322,7 @@ export default function AdminSupportRequestDashboard() {
 
                               if (
                                 action ===
-                                __(
+                                $$(
                                   "pages.admin.support.request.action.delete.user",
                                 )
                               ) {
@@ -333,8 +333,8 @@ export default function AdminSupportRequestDashboard() {
 
                                 if (res.status !== 200) {
                                   PopupManager.alert({
-                                    title: __("control.error"),
-                                    description: __(
+                                    title: $$("control.error"),
+                                    description: $$(
                                       "pages.admin.support.request.error.user",
                                       res.payload.error,
                                     ),
@@ -354,8 +354,8 @@ export default function AdminSupportRequestDashboard() {
                                 reload();
                               } else {
                                 PopupManager.alert({
-                                  title: __("control.error"),
-                                  description: __(
+                                  title: $$("control.error"),
+                                  description: $$(
                                     "pages.admin.support.request.error",
                                     res.payload.error,
                                   ),
@@ -363,7 +363,7 @@ export default function AdminSupportRequestDashboard() {
                               }
                             }}
                           >
-                            {__("pages.admin.support.request.answer.complete")}
+                            {$$("pages.admin.support.request.answer.complete")}
                           </IonButton>
                         </div>
                       </>

@@ -27,7 +27,7 @@ import {
 } from "react-icons/bi";
 import { useFlags } from "flagsmith/react";
 import { FaUtensils } from "react-icons/fa6";
-import { __ } from "../translations/i18n";
+import { $$ } from "../translations/i18n";
 
 export default function Home() {
   const flags = useFlags([
@@ -45,7 +45,7 @@ export default function Home() {
 
   return (
     <>
-      <Page title={__("product.name")} noHeader>
+      <Page title={$$("product.name")} noHeader>
         {loggedIn ? (
           <>
             <div
@@ -63,7 +63,7 @@ export default function Home() {
                 fontWeight={1000}
                 maxWidth={["100%", "100%", "25%"]}
               >
-                {__("page.home.title")}
+                {$$("page.home.title")}
               </Heading>
             </div>
 
@@ -86,7 +86,7 @@ export default function Home() {
                   <HomeCardV2
                     color={"green.500"}
                     icon={<BiLeaf />}
-                    text={__("menu.tracker")}
+                    text={$$("menu.tracker")}
                     url={"/e2"}
                   />
                 ) : null}
@@ -94,7 +94,7 @@ export default function Home() {
                   <HomeCardV2
                     color={"orange.500"}
                     icon={<BiVideo />}
-                    text={__("menu.videos")}
+                    text={$$("menu.videos")}
                     url={"/learn"}
                   />
                 ) : null}
@@ -102,21 +102,21 @@ export default function Home() {
                   <HomeCardV2
                     color={"teal.500"}
                     icon={<BiQuestionMark />}
-                    text={__("menu.quizzes")}
+                    text={$$("menu.quizzes")}
                     url={"/quizzes"}
                   />
                 ) : null}
                 <HomeCardV2
                   color={"red.500"}
                   icon={<BiInfoCircle />}
-                  text={__("menu.support")}
+                  text={$$("menu.support")}
                   url={"/support"}
                 />
                 {flags.tools_co2_calc.enabled ? (
                   <HomeCardV2
                     color={"yellow.500"}
                     icon={<BiCalculator />}
-                    text={__("menu.calculator")}
+                    text={$$("menu.calculator")}
                     url={"/tools/co2"}
                   />
                 ) : null}
@@ -124,7 +124,7 @@ export default function Home() {
                   <HomeCardV2
                     color={"purple.500"}
                     icon={<BiGroup />}
-                    text={__("menu.community")}
+                    text={$$("menu.community")}
                     url={"/community"}
                   />
                 ) : null}
@@ -132,7 +132,7 @@ export default function Home() {
                   <HomeCardV2
                     color={"orange.500"}
                     icon={<FaUtensils />}
-                    text={__("menu.recipes")}
+                    text={$$("menu.recipes")}
                     url={"/recipes"}
                   />
                 ) : null}
@@ -140,20 +140,20 @@ export default function Home() {
                   <HomeCardV2
                     color={"blue.500"}
                     icon={<BiFile />}
-                    text={__("menu.recipes")}
+                    text={$$("menu.recipes")}
                     url={"/sustainability/articles"}
                   />
                 ) : null}
                 <HomeCardV2
                   color={"pink.500"}
                   icon={<BiCog />}
-                  text={__("menu.settings.short")}
+                  text={$$("menu.settings.short")}
                   url={"/account"}
                 />
                 <HomeCardV2
                   color={"teal.500"}
                   icon={<BiMessage />}
-                  text={__("menu.notifications.short")}
+                  text={$$("menu.notifications.short")}
                   url={"/notifications"}
                 />
               </Grid>

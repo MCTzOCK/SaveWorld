@@ -22,7 +22,7 @@ import {
 import { useEffect, useState } from "react";
 import { REST } from "@saveworld/api-js";
 import { Grid } from "@chakra-ui/react";
-import { __ } from "../../translations/i18n";
+import { $$ } from "../../translations/i18n";
 
 export default function AdminContentDashboard() {
   useRedirectForAnon({
@@ -31,7 +31,7 @@ export default function AdminContentDashboard() {
 
   return (
     <>
-      <Page title={__("menu.contents")} redGradient>
+      <Page title={$$("menu.contents")} redGradient>
         <Grid
           templateColumns={[
             "repeat(1, 1fr)",
@@ -42,21 +42,21 @@ export default function AdminContentDashboard() {
           <IonCard color={"danger"} routerLink={"/admin/content/categories"}>
             <IonCardHeader>
               <IonCardTitle>
-                {__("pages.admin.content.categories.and.interests")}
+                {$$("pages.admin.content.categories.and.interests")}
               </IonCardTitle>
             </IonCardHeader>
             <IonCardContent>
               <IonText>
-                {__("pages.admin.content.categories.and.interests.description")}
+                {$$("pages.admin.content.categories.and.interests.description")}
               </IonText>
             </IonCardContent>
           </IonCard>
           <IonCard color={"danger"} routerLink={"/admin/content/videos"}>
             <IonCardHeader>
-              <IonCardTitle>{__("menu.videos")}</IonCardTitle>
+              <IonCardTitle>{$$("menu.videos")}</IonCardTitle>
             </IonCardHeader>
             <IonCardContent>
-              <IonText>{__("pages.admin.content.videos.description")}</IonText>
+              <IonText>{$$("pages.admin.content.videos.description")}</IonText>
             </IonCardContent>
           </IonCard>
         </Grid>

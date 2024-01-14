@@ -38,7 +38,7 @@ import PopupManager from "../util/PopupManager";
 import { REST } from "@saveworld/api-js";
 import { useRedirectForAnon } from "../hooks/useRedirectForAnon";
 import MobileBox from "../components/MobileBox";
-import { __ } from "../translations/i18n";
+import { $$ } from "../translations/i18n";
 
 export default function Support() {
   useRedirectForAnon();
@@ -84,11 +84,11 @@ export default function Support() {
 
   return (
     <>
-      <Page title={__("menu.support")}>
+      <Page title={$$("menu.support")}>
         <MobileBox>
           <VStack spacing={"1rem"}>
             <Text>
-              {__("page.support.description")}&nbsp;
+              {$$("page.support.description")}&nbsp;
               <Link color={"brand.500"} href={"mailto:ben@saveworld.one"}>
                 ben@saveworld.one
               </Link>
@@ -98,7 +98,7 @@ export default function Support() {
                 <FaEnvelope />
               </InputLeftAddon>
               <Input
-                placeholder={__("user.email")}
+                placeholder={$$("user.email")}
                 disabled={loggedIn}
                 defaultValue={loggedIn ? userInfo.email : ""}
                 onChange={(e) => {
@@ -108,7 +108,7 @@ export default function Support() {
               />
             </InputGroup>
             <Select
-              placeholder={__("page.support.choose.category")}
+              placeholder={$$("page.support.choose.category")}
               value={category}
               onChange={(e) => {
                 setCategory(e.target.value);
@@ -116,21 +116,21 @@ export default function Support() {
               disabled={reportContent}
             >
               <option value={"GENERAL"}>
-                {__("page.support.category.general")}
+                {$$("page.support.category.general")}
               </option>
               <option value={"REPORT-BUG"}>
-                {__("page.support.category.error")}
+                {$$("page.support.category.error")}
               </option>
               {reportContent && (
                 <>
                   <option value={"REPORT-USER"}>
-                    {__("page.support.category.report.user")}
+                    {$$("page.support.category.report.user")}
                   </option>
                   <option value={"REPORT-POST"}>
-                    {__("page.support.category.report.post")}
+                    {$$("page.support.category.report.post")}
                   </option>
                   <option value={"VIDEO-QUESTION"}>
-                    {__("page.support.category.question.video")}
+                    {$$("page.support.category.question.video")}
                   </option>
                 </>
               )}
@@ -140,14 +140,14 @@ export default function Support() {
               onChange={(e) => {
                 setMessage(e.target.value);
               }}
-              placeholder={__("general.more.details")}
+              placeholder={$$("general.more.details")}
             />
             {additional && (
               <>
                 {category.startsWith("REPORT") ? (
-                  <IonText>{__("page.support.attachment")}</IonText>
+                  <IonText>{$$("page.support.attachment")}</IonText>
                 ) : (
-                  <IonText>{__("page.support.attachment.video")}</IonText>
+                  <IonText>{$$("page.support.attachment.video")}</IonText>
                 )}
               </>
             )}
@@ -159,24 +159,24 @@ export default function Support() {
             onClick={async () => {
               if (!category) {
                 await PopupManager.alertAsync({
-                  title: __("control.error"),
-                  description: __("page.support.form.missing.category"),
+                  title: $$("control.error"),
+                  description: $$("page.support.form.missing.category"),
                 });
                 return;
               }
 
               if (!message) {
                 await PopupManager.alertAsync({
-                  title: __("control.error"),
-                  description: __("page.support.form.missing.message"),
+                  title: $$("control.error"),
+                  description: $$("page.support.form.missing.message"),
                 });
                 return;
               }
 
               if (
                 !(await PopupManager.confirmAsync({
-                  title: __("control.confirm"),
-                  question: __("page.support.form.confirm"),
+                  title: $$("control.confirm"),
+                  question: $$("page.support.form.confirm"),
                 }))
               )
                 return;
@@ -190,18 +190,18 @@ export default function Support() {
 
               if (res.status === 200) {
                 await PopupManager.alertAsync({
-                  title: __("control.success"),
-                  description: __("page.support.success"),
+                  title: $$("control.success"),
+                  description: $$("page.support.success"),
                 });
               } else {
                 await PopupManager.alertAsync({
-                  title: __("control.error"),
-                  description: __("page.support.error", res.payload.error),
+                  title: $$("control.error"),
+                  description: $$("page.support.error", res.payload.error),
                 });
               }
             }}
           >
-            {__("general.submit")}
+            {$$("general.submit")}
           </Button>
         </MobileBox>
       </Page>

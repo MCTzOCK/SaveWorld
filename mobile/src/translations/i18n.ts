@@ -36,7 +36,7 @@ export class I18n {
   }
 }
 
-export function __(key: Keys, ...args: string[]): string {
+export function $$(key: Keys, ...args: string[]): string {
   const langset = getLanguageSet(I18n.currentLanguage);
 
   if (langset[key]) {

@@ -13,7 +13,7 @@ import Page from "../../components/Page";
 import MobileBox from "../../components/MobileBox";
 import { Text } from "@chakra-ui/react";
 import { useEffect } from "react";
-import { __ } from "../../translations/i18n";
+import { $$ } from "../../translations/i18n";
 
 export default function Licenses() {
   const [licenses, setLicenses] = React.useState<string>("");
@@ -28,7 +28,7 @@ export default function Licenses() {
 
   return (
     <>
-      <Page title={__("page.licenses.title")}>
+      <Page title={$$("page.licenses.title")}>
         <MobileBox>
           <pre
             style={{

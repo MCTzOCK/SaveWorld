@@ -59,7 +59,7 @@ import OneSignal from "onesignal-cordova-plugin";
 import MobileBox from "../../components/MobileBox";
 import ManageAccountInterests from "../../components/ManageAccountInterests";
 import SaveWorldModal from "../../components/SaveWorldModal";
-import { __ } from "../../translations/i18n";
+import { $$ } from "../../translations/i18n";
 
 export default function ManageAccount() {
   const { loggedIn, loaded, userInfo } = useUserData();
@@ -85,7 +85,7 @@ export default function ManageAccount() {
 
   return (
     <>
-      <Page title={__("general.account")}>
+      <Page title={$$("general.account")}>
         {!loaded && (
           <>
             <div
@@ -153,7 +153,7 @@ export default function ManageAccount() {
                       backgroundColor: "transparent",
                     }}
                   >
-                    <IonText>{__("page.account.general")}</IonText>
+                    <IonText>{$$("page.account.general")}</IonText>
                   </IonList>
                   <IonList
                     inset
@@ -193,16 +193,16 @@ export default function ManageAccount() {
 
                             if (res.status === 200) {
                               PopupManager.alert({
-                                title: __("control.success"),
-                                description: __("control.upload.success"),
+                                title: $$("control.success"),
+                                description: $$("control.upload.success"),
                                 callback: () => {
                                   router.push(router.routeInfo.pathname);
                                 },
                               });
                             } else {
                               PopupManager.alert({
-                                title: __("control.error"),
-                                description: __(
+                                title: $$("control.error"),
+                                description: $$(
                                   "control.upload.error",
                                   res.payload.error,
                                 ),
@@ -210,8 +210,8 @@ export default function ManageAccount() {
                             }
                           } else {
                             PopupManager.alert({
-                              title: __("control.error"),
-                              description: __(
+                              title: $$("control.error"),
+                              description: $$(
                                 "control.upload.error",
                                 mediaRes.status.toString(),
                               ),
@@ -234,7 +234,7 @@ export default function ManageAccount() {
                         fileInput.click();
                       }}
                     >
-                      {__("page.account.update.pfp")}
+                      {$$("page.account.update.pfp")}
                     </IonItem>
                     <IonItem
                       detail
@@ -243,8 +243,8 @@ export default function ManageAccount() {
                       onClick={async () => {
                         if (
                           !(await PopupManager.confirmAsync({
-                            title: __("page.account.delete.pfp.title"),
-                            question: __("page.account.delete.pfp.description"),
+                            title: $$("page.account.delete.pfp.title"),
+                            question: $$("page.account.delete.pfp.description"),
                           }))
                         )
                           return;
@@ -258,16 +258,16 @@ export default function ManageAccount() {
 
                         if (res.status === 200) {
                           PopupManager.alert({
-                            title: __("control.success"),
-                            description: __("page.account.delete.pfp.success"),
+                            title: $$("control.success"),
+                            description: $$("page.account.delete.pfp.success"),
                             callback: () => {
                               router.push(router.routeInfo.pathname);
                             },
                           });
                         } else {
                           PopupManager.alert({
-                            title: __("control.error"),
-                            description: __(
+                            title: $$("control.error"),
+                            description: $$(
                               "page.account.delete.pfp.error",
                               res.payload.error,
                             ),
@@ -276,7 +276,7 @@ export default function ManageAccount() {
                       }}
                     >
                       <IonText color={"danger"}>
-                        {__("page.account.delete.pfp.title")}
+                        {$$("page.account.delete.pfp.title")}
                       </IonText>
                     </IonItem>
                     <IonItem
@@ -286,7 +286,7 @@ export default function ManageAccount() {
                       routerLink={"/welcome"}
                       routerDirection={"none"}
                     >
-                      <IonText>{__("page.account.intro.open.again")}</IonText>
+                      <IonText>{$$("page.account.intro.open.again")}</IonText>
                     </IonItem>
                   </IonList>
                 </Box>
@@ -297,13 +297,13 @@ export default function ManageAccount() {
                       backgroundColor: "transparent",
                     }}
                   >
-                    <IonText>{__("page.account.info")}</IonText>
+                    <IonText>{$$("page.account.info")}</IonText>
                   </IonList>
                   <IonList inset>
                     <IonItem color={"light"}>
                       <IonInput
                         labelPlacement={"fixed"}
-                        label={__("user.username")}
+                        label={$$("user.username")}
                         value={userInfo.username}
                         disabled={true}
                       />
@@ -311,7 +311,7 @@ export default function ManageAccount() {
                     <IonItem color={"light"}>
                       <IonInput
                         labelPlacement={"fixed"}
-                        label={__("user.firstname")}
+                        label={$$("user.firstname")}
                         value={userInfo.firstName}
                         name={"firstName"}
                         id={"firstName_upd"}
@@ -320,7 +320,7 @@ export default function ManageAccount() {
                     <IonItem color={"light"}>
                       <IonInput
                         labelPlacement={"fixed"}
-                        label={__("user.lastname")}
+                        label={$$("user.lastname")}
                         value={userInfo.lastName}
                         name={"lastName"}
                         id={"lastName_upd"}
@@ -351,16 +351,16 @@ export default function ManageAccount() {
 
                         if (res.status === 200) {
                           PopupManager.alert({
-                            title: __("control.success"),
-                            description: __("page.account.info.update.success"),
+                            title: $$("control.success"),
+                            description: $$("page.account.info.update.success"),
                             callback: () => {
                               router.push(router.routeInfo.pathname);
                             },
                           });
                         } else {
                           PopupManager.alert({
-                            title: __("control.error"),
-                            description: __(
+                            title: $$("control.error"),
+                            description: $$(
                               "page.account.info.update.error",
                               res.payload.error,
                             ),
@@ -368,7 +368,7 @@ export default function ManageAccount() {
                         }
                       }}
                     >
-                      <IonText color={"primary"}>{__("control.save")}</IonText>
+                      <IonText color={"primary"}>{$$("control.save")}</IonText>
                     </IonItem>
                     <IonItem
                       color={"light"}
@@ -378,7 +378,7 @@ export default function ManageAccount() {
                         onOpen();
                       }}
                     >
-                      <IonText>{__("menu.interests")}</IonText>
+                      <IonText>{$$("menu.interests")}</IonText>
                     </IonItem>
                   </IonList>
                 </Box>
@@ -389,13 +389,13 @@ export default function ManageAccount() {
                       backgroundColor: "transparent",
                     }}
                   >
-                    <IonText>{__("page.account.update.password")}</IonText>
+                    <IonText>{$$("page.account.update.password")}</IonText>
                   </IonList>
                   <IonList inset>
                     <IonItem color={"light"}>
                       <IonInput
                         labelPlacement={"fixed"}
-                        label={__("page.account.update.password.new")}
+                        label={$$("page.account.update.password.new")}
                         type={"password"}
                         id={"acc_change_pass"}
                       />
@@ -403,7 +403,7 @@ export default function ManageAccount() {
                     <IonItem color={"light"}>
                       <IonInput
                         labelPlacement={"fixed"}
-                        label={__("page.account.update.password.new.confirm")}
+                        label={$$("page.account.update.password.new.confirm")}
                         type={"password"}
                         id={"acc_change_pass_conf"}
                       />
@@ -425,8 +425,8 @@ export default function ManageAccount() {
                           passConf === ""
                         ) {
                           PopupManager.alert({
-                            title: __("control.error"),
-                            description: __("form.passwords.error.not.match"),
+                            title: $$("control.error"),
+                            description: $$("form.passwords.error.not.match"),
                           });
                           return;
                         }
@@ -440,8 +440,8 @@ export default function ManageAccount() {
 
                         if (res.status === 200) {
                           PopupManager.alert({
-                            title: __("control.success"),
-                            description: __(
+                            title: $$("control.success"),
+                            description: $$(
                               "page.account.update.password.success",
                             ),
                             callback: () => {
@@ -450,8 +450,8 @@ export default function ManageAccount() {
                           });
                         } else {
                           PopupManager.alert({
-                            title: __("control.error"),
-                            description: __(
+                            title: $$("control.error"),
+                            description: $$(
                               "page.account.update.password.error",
                               res.payload.error,
                             ),
@@ -462,7 +462,7 @@ export default function ManageAccount() {
                         }
                       }}
                     >
-                      <IonText color={"primary"}>{__("control.save")}</IonText>
+                      <IonText color={"primary"}>{$$("control.save")}</IonText>
                     </IonItem>
                   </IonList>
                 </Box>
@@ -473,7 +473,7 @@ export default function ManageAccount() {
                       backgroundColor: "transparent",
                     }}
                   >
-                    <IonText>{__("page.account.2fa")}</IonText>
+                    <IonText>{$$("page.account.2fa")}</IonText>
                   </IonList>
                   <IonList inset>
                     <IonItem
@@ -490,8 +490,8 @@ export default function ManageAccount() {
 
                           if (res.status === 200) {
                             PopupManager.alert({
-                              title: __("control.success"),
-                              description: __(
+                              title: $$("control.success"),
+                              description: $$(
                                 "page.account.2fa.activated",
                                 res.payload.totpSecret,
                               ),
@@ -501,8 +501,8 @@ export default function ManageAccount() {
                             });
                           } else {
                             PopupManager.alert({
-                              title: __("control.error"),
-                              description: __(
+                              title: $$("control.error"),
+                              description: $$(
                                 "page.account.2fa.error",
                                 res.payload.error,
                               ),
@@ -510,8 +510,8 @@ export default function ManageAccount() {
                           }
                         } else {
                           const code = await PopupManager.promptAsync({
-                            title: __("page.login.2fa.popup.title"),
-                            helperText: __("page.login.2fa.popup.description"),
+                            title: $$("page.login.2fa.popup.title"),
+                            helperText: $$("page.login.2fa.popup.description"),
                             inputType: "INPUT",
                           });
 
@@ -527,8 +527,8 @@ export default function ManageAccount() {
 
                           if (res.status === 200) {
                             PopupManager.alert({
-                              title: __("page.account.2fa.deactivated"),
-                              description: __(
+                              title: $$("page.account.2fa.deactivated"),
+                              description: $$(
                                 "page.account.2fa.deactivated.description",
                               ),
                               callback: () => {
@@ -537,8 +537,8 @@ export default function ManageAccount() {
                             });
                           } else {
                             PopupManager.alert({
-                              title: __("control.error"),
-                              description: __(
+                              title: $$("control.error"),
+                              description: $$(
                                 "page.account.2fa.deactivated.error",
                                 res.payload.error,
                               ),
@@ -552,8 +552,8 @@ export default function ManageAccount() {
                         color={userInfo.totpActive ? "danger" : "success"}
                       >
                         {userInfo.totpActive
-                          ? __("control.deactivate")
-                          : __("control.activate")}
+                          ? $$("control.deactivate")
+                          : $$("control.activate")}
                       </IonLabel>
                     </IonItem>
                   </IonList>
@@ -565,7 +565,7 @@ export default function ManageAccount() {
                       backgroundColor: "transparent",
                     }}
                   >
-                    <IonText>{__("page.account.dangerzone")}</IonText>
+                    <IonText>{$$("page.account.dangerzone")}</IonText>
                   </IonList>
                   <IonList inset>
                     <IonItem
@@ -575,8 +575,8 @@ export default function ManageAccount() {
                       onClick={async () => {
                         if (
                           !(await PopupManager.confirmAsync({
-                            title: __("menu.logout"),
-                            question: __("menu.logout.description"),
+                            title: $$("menu.logout"),
+                            question: $$("menu.logout.description"),
                           }))
                         ) {
                           return;
@@ -591,7 +591,7 @@ export default function ManageAccount() {
                         router.push("/register");
                       }}
                     >
-                      <IonText color={"danger"}>{__("menu.logout")}</IonText>
+                      <IonText color={"danger"}>{$$("menu.logout")}</IonText>
                     </IonItem>
                     <IonItem
                       color={"light"}
@@ -600,8 +600,8 @@ export default function ManageAccount() {
                       onClick={async () => {
                         if (
                           !(await PopupManager.confirmAsync({
-                            title: __("page.account.delete.account"),
-                            question: __(
+                            title: $$("page.account.delete.account"),
+                            question: $$(
                               "page.account.delete.account.description",
                             ),
                           }))
@@ -617,8 +617,8 @@ export default function ManageAccount() {
                           router.push("/register");
                         } else {
                           PopupManager.alert({
-                            title: __("control.error"),
-                            description: __(
+                            title: $$("control.error"),
+                            description: $$(
                               "page.account.delete.account.error",
                               res.payload.error,
                             ),
@@ -627,7 +627,7 @@ export default function ManageAccount() {
                       }}
                     >
                       <IonText color={"danger"}>
-                        {__("page.account.delete.account")}
+                        {$$("page.account.delete.account")}
                       </IonText>
                     </IonItem>
 
@@ -640,7 +640,7 @@ export default function ManageAccount() {
                           md={warningSharp}
                         />
                         <IonText color={"danger"}>
-                          {__("page.admin.title.outside")}
+                          {$$("page.admin.title.outside")}
                         </IonText>
                       </IonItem>
                     )}
@@ -653,7 +653,7 @@ export default function ManageAccount() {
                       backgroundColor: "transparent",
                     }}
                   >
-                    <IonText>{__("general.information")}</IonText>
+                    <IonText>{$$("general.information")}</IonText>
                   </IonList>
                   <IonList inset>
                     <IonItem
@@ -671,7 +671,7 @@ export default function ManageAccount() {
                         ios={ionDocument}
                         md={ionDocumentSharp}
                       />
-                      <IonText>{__("general.legal.privacy")}</IonText>
+                      <IonText>{$$("general.legal.privacy")}</IonText>
                     </IonItem>
                     <IonItem
                       color={"light"}
@@ -688,7 +688,7 @@ export default function ManageAccount() {
                         ios={ionDocument}
                         md={ionDocumentSharp}
                       />
-                      <IonText>{__("general.legal.notice")}</IonText>
+                      <IonText>{$$("general.legal.notice")}</IonText>
                     </IonItem>
                     <IonItem
                       color={"light"}
@@ -705,7 +705,7 @@ export default function ManageAccount() {
                         ios={analytics}
                         md={analyticsSharp}
                       />
-                      <IonText>{__("general.serverstatus")}</IonText>
+                      <IonText>{$$("general.serverstatus")}</IonText>
                     </IonItem>
                     <IonItem
                       color={"light"}
@@ -720,7 +720,7 @@ export default function ManageAccount() {
                         ios={ionDocument}
                         md={ionDocumentSharp}
                       />
-                      <IonText>{__("general.open.source.licenses")}</IonText>
+                      <IonText>{$$("general.open.source.licenses")}</IonText>
                     </IonItem>
                   </IonList>
                 </Box>
@@ -729,7 +729,7 @@ export default function ManageAccount() {
           </>
         )}
         <SaveWorldModal
-          title={__("menu.interests")}
+          title={$$("menu.interests")}
           isOpen={isOpen}
           onClose={onClose}
         >

@@ -31,7 +31,7 @@ import AdminCreateCategoryModal from "../../components/AdminCreateCategoryModal"
 import PopupManager from "../../util/PopupManager";
 import { Grid } from "@chakra-ui/react";
 import MobileBox from "../../components/MobileBox";
-import { __ } from "../../translations/i18n";
+import { $$ } from "../../translations/i18n";
 
 export default function AdminContentCategoryDashboard() {
   useRedirectForAnon({
@@ -62,8 +62,8 @@ export default function AdminContentCategoryDashboard() {
         setCategories(res.payload as any);
       } else {
         PopupManager.alert({
-          title: __("control.error"),
-          description: __(
+          title: $$("control.error"),
+          description: $$(
             "pages.admin.category.loading.error",
             res.payload.error,
           ),
@@ -75,7 +75,7 @@ export default function AdminContentCategoryDashboard() {
 
   return (
     <>
-      <Page title={__("pages.admin.category.title")} redGradient>
+      <Page title={$$("pages.admin.category.title")} redGradient>
         {loading && (
           <>
             <div
@@ -109,7 +109,7 @@ export default function AdminContentCategoryDashboard() {
               }).length === 0 ? (
                 <>
                   <IonText className={"ion-padding"}>
-                    {__("pages.admin.category.no.categories")}
+                    {$$("pages.admin.category.no.categories")}
                   </IonText>
                 </>
               ) : (
@@ -148,8 +148,8 @@ export default function AdminContentCategoryDashboard() {
                                   onClick={async () => {
                                     if (
                                       !(await PopupManager.confirmAsync({
-                                        title: __("control.delete"),
-                                        question: __(
+                                        title: $$("control.delete"),
+                                        question: $$(
                                           "pages.admin.category.delete",
                                         ),
                                       }))
@@ -165,8 +165,8 @@ export default function AdminContentCategoryDashboard() {
                                       reload();
                                     } else {
                                       PopupManager.alert({
-                                        title: __("control.error"),
-                                        description: __(
+                                        title: $$("control.error"),
+                                        description: $$(
                                           "pages.admin.category.delete.error",
                                           res.payload.error,
                                         ),
@@ -174,7 +174,7 @@ export default function AdminContentCategoryDashboard() {
                                     }
                                   }}
                                 >
-                                  {__("control.delete")}
+                                  {$$("control.delete")}
                                 </IonButton>
                               </IonCardContent>
                             </IonCard>

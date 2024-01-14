@@ -25,6 +25,7 @@ import { IonButton, IonIcon } from "@ionic/react";
 import { add } from "ionicons/icons";
 import { IconButton } from "@chakra-ui/react";
 import { FaPlus } from "react-icons/fa6";
+import { $$ } from "../../translations/i18n";
 
 export default function CommunityMessagesChat(props: { socket: Socket }) {
   const { id } = useParams<{ id: string }>();
@@ -74,7 +75,7 @@ export default function CommunityMessagesChat(props: { socket: Socket }) {
             // TODO: Fix multiple unnecessary requests
           } else {
             PopupManager.alert({
-              title: "Fehler",
+              title: $$("control.error"),
               description: data.error,
             });
           }
@@ -108,13 +109,15 @@ export default function CommunityMessagesChat(props: { socket: Socket }) {
       props.socket.on("sw:chats.groups.add.member", (data) => {
         if (data.error) {
           PopupManager.alert({
-            title: "Fehler",
+            title: $$("control.error"),
             description: data.error,
           });
         } else {
           PopupManager.alert({
-            title: "Erfolg",
-            description: "Der Benutzer wurde erfolgreich hinzugefügt.",
+            title: $$("control.success"),
+            description: $$(
+              "pages.community.messages.group.member.add.success",
+            ),
           });
         }
       });
@@ -127,7 +130,7 @@ export default function CommunityMessagesChat(props: { socket: Socket }) {
   if (!chat) {
     return (
       <>
-        <Page title={"Laden"}>Laden...</Page>
+        <Page title={$$("general.loading")}>{$$("general.loading")}</Page>
       </>
     );
   }
@@ -145,11 +148,15 @@ export default function CommunityMessagesChat(props: { socket: Socket }) {
           <>
             {chat.isGroup ? (
               <IconButton
-                aria-label={"Hinzufügen"}
+                aria-label={$$("pages.community.messages.group.member.add")}
                 onClick={async () => {
                   const username = await PopupManager.promptAsync({
-                    title: "Benutzer hinzufügen",
-                    helperText: "Gib den Benutzernamen des Benutzers ein",
+                    title: $$(
+                      "pages.community.messages.group.member.form.title",
+                    ),
+                    helperText: $$(
+                      "pages.community.messages.group.member.form.title.placeholder",
+                    ),
                     inputType: "INPUT",
                   });
 

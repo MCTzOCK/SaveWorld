@@ -110,7 +110,7 @@ import Cookbook from "./pages/recipes/Cookbook";
 import EatingPlanOverview from "./pages/eatingplans/EatingPlanOverview";
 import EatingPlanViewer from "./pages/eatingplans/EatingPlanViewer";
 import Licenses from "./pages/account/Licenses";
-import { __ } from "./translations/i18n";
+import { $$ } from "./translations/i18n";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -272,7 +272,7 @@ export default function App() {
             return (
               <DirectusPosts
                 postBaseUrl={"/sustainability/articles"}
-                pageTitle={__("page.sustainability.title")}
+                pageTitle={$$("page.sustainability.title")}
                 tagFilter={"sustainability"}
               />
             );
@@ -289,7 +289,7 @@ export default function App() {
             return (
               <DirectusPosts
                 postBaseUrl={"/news"}
-                pageTitle={__("page.news.title")}
+                pageTitle={$$("page.news.title")}
                 tagFilter={"news"}
               />
             );

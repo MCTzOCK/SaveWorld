@@ -32,7 +32,7 @@ import Page from "../../components/Page";
 import MobileBox from "../../components/MobileBox";
 import { FaTrash } from "react-icons/fa6";
 import { FaPen } from "react-icons/fa";
-import { __ } from "../../translations/i18n";
+import { $$ } from "../../translations/i18n";
 
 export default function AdminRecipeDashboard() {
   const router = useIonRouter();
@@ -62,8 +62,8 @@ export default function AdminRecipeDashboard() {
       setPages(res.payload.pages);
     } else {
       PopupManager.alert({
-        title: __("control.error"),
-        description: __("pages.admin.recipes.loading.error", res.payload.error),
+        title: $$("control.error"),
+        description: $$("pages.admin.recipes.loading.error", res.payload.error),
       });
     }
   };
@@ -79,10 +79,10 @@ export default function AdminRecipeDashboard() {
 
   return (
     <>
-      <Page title={__("menu.recipes")} redGradient>
+      <Page title={$$("menu.recipes")} redGradient>
         <MobileBox bg={"#101010"}>
           <IonSearchbar
-            placeholder={__("control.search")}
+            placeholder={$$("control.search")}
             value={query}
             onIonInput={(e) => setQuery(e.detail.value as string)}
             style={{
@@ -132,8 +132,8 @@ export default function AdminRecipeDashboard() {
                       onClick={async () => {
                         if (
                           !(await PopupManager.confirmAsync({
-                            title: __("control.delete"),
-                            question: __("pages.admin.recipes.delete"),
+                            title: $$("control.delete"),
+                            question: $$("pages.admin.recipes.delete"),
                           }))
                         )
                           return;
@@ -145,16 +145,16 @@ export default function AdminRecipeDashboard() {
 
                         if (res.status !== 200) {
                           await PopupManager.alertAsync({
-                            title: __("control.error"),
-                            description: __(
+                            title: $$("control.error"),
+                            description: $$(
                               "pages.admin.recipes.delete.error",
                               res.payload.error,
                             ),
                           });
                         } else {
                           await PopupManager.alertAsync({
-                            title: __("control.success"),
-                            description: __(
+                            title: $$("control.success"),
+                            description: $$(
                               "pages.admin.recipes.delete.success",
                             ),
                           });
@@ -214,7 +214,7 @@ export default function AdminRecipeDashboard() {
             onClick={() => setPage(page - 1)}
             expand={"block"}
           >
-            {__("control.back")}
+            {$$("control.back")}
           </IonButton>
         ) : null}
         {page < pages - 1 ? (
@@ -223,7 +223,7 @@ export default function AdminRecipeDashboard() {
             onClick={() => setPage(page + 1)}
             expand={"block"}
           >
-            {__("control.next")}
+            {$$("control.next")}
           </IonButton>
         ) : null}
       </div>

@@ -33,6 +33,7 @@ import PopupManager from "../../util/PopupManager";
 import { useIonRouter } from "@ionic/react";
 import HighlightedText from "../../components/HighlightedText";
 import MobileBox from "../../components/MobileBox";
+import { $$ } from "../../translations/i18n";
 
 export default function StartE2Project() {
   useRedirectForAnon();
@@ -58,7 +59,7 @@ export default function StartE2Project() {
 
   return (
     <>
-      <Page title={"Projekt starten"}>
+      <Page title={$$("pages.e2projects.create")}>
         <MobileBox>
           <AnimatePresence>
             {step === 0 && (
@@ -71,47 +72,24 @@ export default function StartE2Project() {
                 >
                   <Text>
                     <HighlightedText>
-                      Wer sollte ein neues Projekt starten?
+                      {$$("pages.e2projects.start.info.who")}
                     </HighlightedText>
                     <br />
-                    Nun ja, jeder der ein Projekt starten möchte. Das ist ja
-                    auch der Sinn der Sache. Aber es gibt ein paar Dinge,&nbsp;
-                    <HighlightedText>die du beachten solltest</HighlightedText>:
+                    {$$("pages.e2projects.start.info.description")}
                     <UnorderedList>
-                      <li>
-                        Dein Projekt sollte einen{" "}
-                        <HighlightedText>positiven Einfluss</HighlightedText>{" "}
-                        auf die Umwelt haben.
-                      </li>
-                      <li>
-                        Dein Projekt darf nicht gegen{" "}
-                        <HighlightedText>geltendes Recht</HighlightedText>{" "}
-                        verstoßen. (bspw. auf die Straße kleben)
-                      </li>
-                      <li>
-                        Dein Projekt sollte auf{" "}
-                        <HighlightedText>Zusammenarbeit</HighlightedText> mit
-                        anderen Benutzern ausgelegt sein.
-                      </li>
-                      <li>
-                        Dein Projekt sollte einen{" "}
-                        <HighlightedText>konkreten Nutzen</HighlightedText>{" "}
-                        haben (bspw. Müll sammeln, Bäume pflanzen, ...)
-                      </li>
-                      <li>
-                        Dein Projekt sollte einem{" "}
-                        <HighlightedText>ausgeklügelten Plan</HighlightedText>{" "}
-                        folgen.
-                      </li>
+                      <li>{$$("pages.e2projects.start.info.ls.1")}</li>
+                      <li>{$$("pages.e2projects.start.info.ls.2")}</li>
+                      <li>{$$("pages.e2projects.start.info.ls.3")}</li>
+                      <li>{$$("pages.e2projects.start.info.ls.4")}</li>
+                      <li>{$$("pages.e2projects.start.info.ls.5")}</li>
                     </UnorderedList>
                     <Divider mt={4} mb={4} />
                     <Text>
                       <HighlightedText>
-                        Du bist bereit ein Projekt zu starten?
+                        {$$("pages.e2projects.start.ready")}
                       </HighlightedText>
                       <br />
-                      Dann klicke auf den Button unten und fülle das Formular
-                      aus.
+                      {$$("pages.e2projects.start.ready.2")}
                       <br />
                       <Button
                         mt={4}
@@ -121,7 +99,7 @@ export default function StartE2Project() {
                           setStep(1);
                         }}
                       >
-                        Projekt starten
+                        {$$("pages.e2projects.start.ready.button")}
                       </Button>
                     </Text>
                   </Text>
@@ -139,7 +117,9 @@ export default function StartE2Project() {
                   transition={{ duration: 0.5, delay: 0.7 }}
                 >
                   <Text>
-                    <HighlightedText>Neues Projekt</HighlightedText>
+                    <HighlightedText>
+                      {$$("pages.e2projects.start.page2.title")}
+                    </HighlightedText>
                   </Text>
                   <form
                     onSubmit={async (e) => {
@@ -156,17 +136,18 @@ export default function StartE2Project() {
 
                       if (date.getTime() < Date.now()) {
                         await PopupManager.alertAsync({
-                          title: "Fehler",
-                          description:
-                            "Das Startdatum muss in der Zukunft liegen.",
+                          title: $$("control.error"),
+                          description: $$(
+                            "pages.e2projects.start.page2.error.date",
+                          ),
                         });
                         return;
                       }
 
                       if (!name || !startDate || !lastsDays || !geoLocation) {
                         await PopupManager.alertAsync({
-                          title: "Fehler",
-                          description: "Bitte fülle alle Felder aus.",
+                          title: $$("control.error"),
+                          description: $$("form.incomplete"),
                         });
                         return;
                       }
@@ -181,17 +162,19 @@ export default function StartE2Project() {
 
                       if (res.status === 200) {
                         await PopupManager.alertAsync({
-                          title: "Projekt erstellt",
-                          description:
-                            "Dein Projekt wurde erfolgreich erstellt.",
+                          title: $$("pages.e2projects.start.created"),
+                          description: $$(
+                            "pages.e2projects.start.created.description",
+                          ),
                         });
                         router.push("/e2-projects/my", "none", "replace");
                       } else {
                         await PopupManager.alertAsync({
-                          title: "Fehler",
-                          description:
-                            "Das Projekt konnte nicht erstellt werden: " +
+                          title: $$("control.error"),
+                          description: $$(
+                            "pages.e2projects.start.create.error",
                             res.payload.error,
+                          ),
                         });
                         return;
                       }
@@ -199,33 +182,40 @@ export default function StartE2Project() {
                   >
                     <VStack spacing={4} mt={4}>
                       <FormControl>
-                        <FormLabel>Name</FormLabel>
+                        <FormLabel>
+                          {$$("pages.e2projects.start.form.name")}
+                        </FormLabel>
                         <Input placeholder={"Mein Projekt"} name={"name"} />
                         <FormHelperText>
-                          Gib deinem Projekt einen Namen, der es bestmöglich
-                          beschreibt.
+                          {$$("pages.e2projects.start.form.name.placeholder")}
                         </FormHelperText>
                       </FormControl>
                       <FormControl>
-                        <FormLabel>Startdatum</FormLabel>
+                        <FormLabel>
+                          {$$("pages.e2projects.start.form.date")}
+                        </FormLabel>
                         <Input name={"startDate"} type={"date"} />
                         <FormHelperText>
-                          Wann soll dein Projekt starten?
+                          {$$("pages.e2projects.start.form.date.placeholder")}
                         </FormHelperText>
                       </FormControl>
                       <FormControl>
-                        <FormLabel>Länge</FormLabel>
+                        <FormLabel>
+                          {$$("pages.e2projects.start.form.length")}
+                        </FormLabel>
                         <Input
                           name={"lastsDays"}
                           type={"number"}
                           placeholder={"1"}
                         />
                         <FormHelperText>
-                          Wie lange soll dein Projekt dauern? (in Tagen)
+                          {$$("pages.e2projects.start.form.length.placeholder")}
                         </FormHelperText>
                       </FormControl>
                       <FormControl>
-                        <FormLabel>Ort</FormLabel>
+                        <FormLabel>
+                          {$$("pages.e2projects.start.form.location")}
+                        </FormLabel>
                         <Input
                           name={"geoLocation"}
                           type={"text"}
@@ -236,16 +226,20 @@ export default function StartE2Project() {
                           placeholder={"Unter den Linden, Berlin 10117"}
                         />
                         <FormHelperText>
-                          Wo findet dein Projekt statt? TIPP: Ab 5 Zeichen
-                          werden Vorschläge angezeigt. Klicke auf einen
-                          Vorschlag um ihn zu übernehmen.
+                          {$$(
+                            "pages.e2projects.start.form.location.placeholder",
+                          )}
                         </FormHelperText>
                       </FormControl>
                       {searchResults.length > 0 && (
                         <>
                           <VStack>
                             <Text>
-                              <b>Suchergebnisse</b>
+                              <b>
+                                {$$(
+                                  "pages.e2projects.start.form.suggestions.title",
+                                )}
+                              </b>
                             </Text>
                             {searchResults.map((s) => {
                               return (
@@ -271,7 +265,7 @@ export default function StartE2Project() {
                         type={"submit"}
                         w={"100%"}
                       >
-                        Projekt starten
+                        {$$("pages.e2projects.start.ready.button")}
                       </Button>
                     </VStack>
                   </form>

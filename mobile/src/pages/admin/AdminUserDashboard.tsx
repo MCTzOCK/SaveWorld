@@ -33,7 +33,7 @@ import { warning, warningSharp } from "ionicons/icons";
 import { REST } from "@saveworld/api-js";
 import PopupManager from "../../util/PopupManager";
 import { Box, Flex } from "@chakra-ui/react";
-import { __ } from "../../translations/i18n";
+import { $$ } from "../../translations/i18n";
 
 export default function AdminUserDashboard() {
   useRedirectForAnon({
@@ -79,8 +79,8 @@ export default function AdminUserDashboard() {
             setUser(res.payload.users[0]);
           } else {
             PopupManager.alert({
-              title: __("control.error"),
-              description: __(
+              title: $$("control.error"),
+              description: $$(
                 "pages.admin.user.loading.error",
                 res.payload.error,
               ),
@@ -123,7 +123,7 @@ export default function AdminUserDashboard() {
               <Box w={["100%", "75%", "50%", "25%"]} minW={"200px"}>
                 <IonCard>
                   <IonCardHeader>
-                    <IonCardTitle>{__("menu.settings")}</IonCardTitle>
+                    <IonCardTitle>{$$("menu.settings")}</IonCardTitle>
                     <IonCardSubtitle>
                       {user.firstName} {user.lastName}
                     </IonCardSubtitle>
@@ -163,16 +163,16 @@ export default function AdminUserDashboard() {
 
                         if (res.status === 200) {
                           PopupManager.alert({
-                            title: __("control.success"),
-                            description: __("pages.admin.user.saved"),
+                            title: $$("control.success"),
+                            description: $$("pages.admin.user.saved"),
                             callback: () => {
                               router.push(router.routeInfo.pathname);
                             },
                           });
                         } else {
                           PopupManager.alert({
-                            title: __("control.error"),
-                            description: __(
+                            title: $$("control.error"),
+                            description: $$(
                               "pages.admin.user.save.error",
                               res.payload.error,
                             ),
@@ -189,7 +189,7 @@ export default function AdminUserDashboard() {
                         <IonItem color={"light"}>
                           <IonInput
                             labelPlacement={"fixed"}
-                            label={__("user.username")}
+                            label={$$("user.username")}
                             disabled
                             value={user.username}
                           />
@@ -197,7 +197,7 @@ export default function AdminUserDashboard() {
                         <IonItem color={"light"}>
                           <IonInput
                             labelPlacement={"fixed"}
-                            label={__("user.email")}
+                            label={$$("user.email")}
                             value={user.email}
                             name={"mail"}
                           />
@@ -205,7 +205,7 @@ export default function AdminUserDashboard() {
                         <IonItem color={"light"}>
                           <IonInput
                             labelPlacement={"fixed"}
-                            label={__("user.firstname")}
+                            label={$$("user.firstname")}
                             value={user.firstName}
                             name={"firstName"}
                           />
@@ -213,7 +213,7 @@ export default function AdminUserDashboard() {
                         <IonItem color={"light"}>
                           <IonInput
                             labelPlacement={"fixed"}
-                            label={__("user.lastname")}
+                            label={$$("user.lastname")}
                             value={user.lastName}
                             name={"lastName"}
                           />
@@ -221,7 +221,7 @@ export default function AdminUserDashboard() {
                         <IonItem color={"light"}>
                           <IonInput
                             labelPlacement={"fixed"}
-                            label={__("user.password")}
+                            label={$$("user.password")}
                             value={""}
                             type={"password"}
                             name={"password"}
@@ -234,7 +234,7 @@ export default function AdminUserDashboard() {
                             checked={user.active}
                             color={"danger"}
                           >
-                            <IonLabel>{__("general.active")}</IonLabel>
+                            <IonLabel>{$$("general.active")}</IonLabel>
                           </IonToggle>
                         </IonItem>
                         <IonItem color={"light"}>
@@ -251,7 +251,7 @@ export default function AdminUserDashboard() {
                             color={"danger"}
                           >
                             <IonLabel color={"danger"}>
-                              {__("menu.admin")}
+                              {$$("menu.admin")}
                             </IonLabel>
                           </IonToggle>
                         </IonItem>
@@ -263,7 +263,7 @@ export default function AdminUserDashboard() {
                           marginTop: "1.2rem",
                         }}
                       >
-                        {__("control.save")}
+                        {$$("control.save")}
                       </IonButton>
                       <IonButton
                         expand={"block"}
@@ -278,16 +278,16 @@ export default function AdminUserDashboard() {
                           );
                           if (res.status === 200) {
                             PopupManager.alert({
-                              title: __("control.success"),
-                              description: __("pages.admin.user.deleted"),
+                              title: $$("control.success"),
+                              description: $$("pages.admin.user.deleted"),
                               callback: () => {
                                 router.goBack();
                               },
                             });
                           } else {
                             PopupManager.alert({
-                              title: __("control.error"),
-                              description: __(
+                              title: $$("control.error"),
+                              description: $$(
                                 "pages.admin.user.delete.error",
                                 res.payload.error,
                               ),
@@ -295,7 +295,7 @@ export default function AdminUserDashboard() {
                           }
                         }}
                       >
-                        {__("control.delete")}
+                        {$$("control.delete")}
                       </IonButton>
                     </form>
                   </IonCardContent>

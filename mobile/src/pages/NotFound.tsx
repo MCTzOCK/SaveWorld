@@ -20,7 +20,7 @@ import {
   Link,
   Text,
 } from "@chakra-ui/react";
-import { __ } from "../translations/i18n";
+import { $$ } from "../translations/i18n";
 
 export default function NotFound() {
   const router = useIonRouter();
@@ -52,7 +52,7 @@ export default function NotFound() {
             padding={"1rem"}
             fontSize={"xl"}
           >
-            {__("page.404.description")}
+            {$$("page.404.description")}
           </Text>
           <Flex
             flexDirection={["column", "row"]}
@@ -70,7 +70,7 @@ export default function NotFound() {
                 router.push("/support");
               }}
             >
-              {__("menu.support")}
+              {$$("menu.support")}
             </Button>
             <Button
               w={"100%"}
@@ -82,7 +82,7 @@ export default function NotFound() {
                 router.push("/");
               }}
             >
-              {__("page.404.home")}
+              {$$("page.404.home")}
             </Button>
           </Flex>
         </Box>

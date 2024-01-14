@@ -26,7 +26,7 @@ import {
 import { Grid, useDisclosure, VStack } from "@chakra-ui/react";
 import MobileBox from "../../components/MobileBox";
 import AdminSupportRequestModal from "../../components/AdminSupportRequestModal";
-import { __ } from "../../translations/i18n";
+import { $$ } from "../../translations/i18n";
 
 export default function AdminSupportRequestsDashboard() {
   useRedirectForAnon({
@@ -74,8 +74,8 @@ export default function AdminSupportRequestsDashboard() {
       setPages(res.payload.pages);
     } else {
       PopupManager.alert({
-        title: __("control.error"),
-        description: __("pages.admin.support.loading.error", res.payload.error),
+        title: $$("control.error"),
+        description: $$("pages.admin.support.loading.error", res.payload.error),
       });
     }
   };
@@ -86,7 +86,7 @@ export default function AdminSupportRequestsDashboard() {
 
   return (
     <>
-      <Page title={__("menu.support")} redGradient>
+      <Page title={$$("menu.support")} redGradient>
         <MobileBox bg={"#101010"}>
           <Grid
             templateColumns={[
@@ -106,23 +106,23 @@ export default function AdminSupportRequestsDashboard() {
                   <IonCardHeader>
                     <IonCardTitle>
                       {req.category === "REPORT-USER"
-                        ? __("pages.admin.support.category.user")
+                        ? $$("pages.admin.support.category.user")
                         : req.category === "REPORT-POST"
-                        ? __("pages.admin.support.category.post")
+                        ? $$("pages.admin.support.category.post")
                         : req.category === "REPORT-BUG"
-                        ? __("pages.admin.support.category.bug")
+                        ? $$("pages.admin.support.category.bug")
                         : req.category === "VIDEO-QUESTION"
-                        ? __("pages.admin.support.category.video")
-                        : __("pages.admin.support.category.other")}
+                        ? $$("pages.admin.support.category.video")
+                        : $$("pages.admin.support.category.other")}
                     </IonCardTitle>
                     <IonCardSubtitle>
                       {req.processed ? (
                         <IonText color={"success"}>
-                          {__("pages.admin.support.request.completed")}
+                          {$$("pages.admin.support.request.completed")}
                         </IonText>
                       ) : (
                         <IonText color={"danger"}>
-                          {__("pages.admin.support.request.open")}
+                          {$$("pages.admin.support.request.open")}
                         </IonText>
                       )}
                       &nbsp;
@@ -131,7 +131,7 @@ export default function AdminSupportRequestsDashboard() {
                   </IonCardHeader>
                   <IonCardContent>
                     <div>
-                      {__("pages.admin.support.request.by")} {req.email}
+                      {$$("pages.admin.support.request.by")} {req.email}
                     </div>
                   </IonCardContent>
                 </IonCard>
@@ -154,7 +154,7 @@ export default function AdminSupportRequestsDashboard() {
                 onClick={() => setPage(page - 1)}
                 expand={"block"}
               >
-                {__("control.back")}
+                {$$("control.back")}
               </IonButton>
             ) : null}
             {page < pages - 1 ? (
@@ -163,7 +163,7 @@ export default function AdminSupportRequestsDashboard() {
                 onClick={() => setPage(page + 1)}
                 expand={"block"}
               >
-                {__("control.next")}
+                {$$("control.next")}
               </IonButton>
             ) : null}
           </div>

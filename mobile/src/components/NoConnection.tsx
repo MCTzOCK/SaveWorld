@@ -11,7 +11,7 @@
 import * as React from "react";
 import { theme } from "../theme/chakra";
 import { ChakraProvider, Flex, Heading, Text } from "@chakra-ui/react";
-import { __ } from "../translations/i18n";
+import { $$ } from "../translations/i18n";
 
 export default function NoConnection() {
   return (
@@ -25,8 +25,8 @@ export default function NoConnection() {
           padding={6}
           direction={"column"}
         >
-          <Heading>{__("page.offline.title")}</Heading>
-          <Text>{__("page.offline.description")}</Text>
+          <Heading>{$$("page.offline.title")}</Heading>
+          <Text>{$$("page.offline.description")}</Text>
         </Flex>
       </ChakraProvider>
     </>

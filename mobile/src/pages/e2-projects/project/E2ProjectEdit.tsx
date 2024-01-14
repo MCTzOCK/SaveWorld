@@ -22,6 +22,7 @@ import E2ProjectEditDetails from "../../../components/E2ProjectEditDetails";
 import MobileBox from "../../../components/MobileBox";
 import E2ProjectEditHomepage from "../../../components/E2ProjectEditHomepage";
 import E2ProjectEditMembers from "../../../components/E2ProjectEditMembers";
+import { $$ } from "../../../translations/i18n";
 
 export default function E2ProjectEdit() {
   useRedirectForAnon();
@@ -67,20 +68,20 @@ export default function E2ProjectEdit() {
   if (!project) {
     return (
       <>
-        <Page title={"Laden..."}>Laden...</Page>
+        <Page title={$$("general.loading")}>{$$("general.loading")}</Page>
       </>
     );
   }
 
   return (
     <>
-      <Page title={"Projekt bearbeiten"}>
+      <Page title={$$("pages.e2projects.edit.title")}>
         <MobileBox>
           <Tabs colorScheme={"brand"} size={"md"} isFitted>
             <TabList maxW={"100%"} overflow={"auto"} overflowY={"hidden"}>
-              <Tab>Informationen</Tab>
-              <Tab>Homepage</Tab>
-              <Tab>Mitglieder</Tab>
+              <Tab>{$$("general.information")}</Tab>
+              <Tab>{$$("pages.e2projects.homepage")}</Tab>
+              <Tab>{$$("pages.e2projects.members")}</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>

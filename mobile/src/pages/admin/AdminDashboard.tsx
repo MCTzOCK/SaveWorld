@@ -17,7 +17,7 @@ import AdminInternTools from "../../components/AdminInternTools";
 import { Heading } from "@chakra-ui/react";
 import AdminTools from "../../components/AdminTools";
 import { IonSearchbar } from "@ionic/react";
-import { __ } from "../../translations/i18n";
+import { $$ } from "../../translations/i18n";
 
 export default function AdminDashboard() {
   useRedirectForAnon({
@@ -31,7 +31,7 @@ export default function AdminDashboard() {
       <Page title={"Admin"} redGradient>
         <MobileBox bg={"#101010"}>
           <IonSearchbar
-            placeholder={__("control.search")}
+            placeholder={$$("control.search")}
             value={query}
             onIonInput={(e) => {
               setQuery(e.detail.value!!);
