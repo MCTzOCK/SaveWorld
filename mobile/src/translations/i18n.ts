@@ -59,8 +59,7 @@ function getLanguageSet(language: string): Record<Keys, string> {
     case "de-de":
       return german;
     case "en-us":
-      // todo return english;
-      return getEmptyLanguageSet();
+      return english;
     default:
       return getEmptyLanguageSet();
   }

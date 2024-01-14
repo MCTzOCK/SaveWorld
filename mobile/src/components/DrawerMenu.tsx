@@ -136,34 +136,34 @@ export default function DrawerMenu(props: {
       {
         items: [
           {
-            label: "Einstellungen",
+            label: $$("menu.settings"),
             icon: <BiCog />,
             onClick: () => {
               router.push("/account", "none", "replace");
             },
           },
           {
-            label: "Benachrichtigungen",
+            label: $$("menu.notifications"),
             icon: <BiEnvelope />,
             onClick: () => {
               router.push("/notifications", "none", "replace");
             },
           },
           {
-            label: "Hilfe",
+            label: $$("menu.help"),
             icon: <BiInfoCircle />,
             onClick: () => {
               router.push("/support", "none", "replace");
             },
           },
           {
-            label: "Abmelden",
+            label: $$("menu.logout"),
             icon: <BiLogOut />,
             onClick: async () => {
               if (
                 !(await PopupManager.confirmAsync({
-                  title: "Abmelden",
-                  question: "Möchtest du dich wirklich abmelden?",
+                  title: $$("menu.logout"),
+                  question: $$("menu.logout.description"),
                 }))
               )
                 return;

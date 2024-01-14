@@ -267,6 +267,7 @@ export const german = {
   "menu.logout": "Abmelden",
   "menu.logout.description": "Möchtest du dich wirklich abmelden?",
   "menu.markdown.help": "Markdown Hilfe",
+  "menu.help": "Hilfe",
   "menu.menu": "Menü",
   "menu.my.cookbook": "Mein Kochbuch",
   "menu.notifications": "Nachrichten",

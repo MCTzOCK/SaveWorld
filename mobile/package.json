@@ -2,7 +2,6 @@
   "name": "@saveworld/mobile",
   "private": true,
   "version": "0.0.1",
-  "type": "module",
   "scripts": {
     "dev": "vite --host=0.0.0.0 --port=8100",
     "build": "tsc && vite build",
@@ -26,6 +25,7 @@
     "@directus/sdk": "^13.0.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@iamtraction/google-translate": "^2.0.1",
     "@ionic/react": "^7.0.0",
     "@ionic/react-router": "^7.0.0",
     "@ramonak/react-progress-bar": "^5.0.3",
