@@ -163,6 +163,15 @@ export const german = {
     "Es wurden noch keine ToDo-Listen hinzugefügt.",
   "components.forum.edit.profile.error":
     "Fehler beim Bearbeiten des Profils: %0",
+  "components.interests.no.categories": "Keine Kategorien gefunden!",
+  "components.interests.save.error": "Fehler beim Speichern der Interessen: %0",
+  "components.manage.interests.all.selected":
+    "Du hast alle verfügbaren Interessen ausgewählt!",
+  "components.manage.interests.intro":
+    "Aktuell hast du folgende Interessen angegeben:",
+  "components.manage.interests.more.selectable":
+    "Du kannst zusätzlich noch folgenden Interessen auswählen:",
+  "components.recipes.loading.error": "Fehler beim Laden der Rezepte: %0",
   "components.video.create": "Neues Video",
   "components.video.create.button": "Video erstellen",
   "components.video.create.categories": "Kategorien",
@@ -174,6 +183,19 @@ export const german = {
   "components.video.create.youtube.id": "YouTube-ID",
   "components.video.form.no.category":
     "Bitte wähle mindestens eine Kategorie aus.",
+  "components.video.modal.ask.question": "Frage stellen",
+  "components.video.modal.comment": "Video Kommentieren",
+  "components.video.modal.comment.enter": "Gib dein Kommentar ein",
+  "components.video.modal.comment.error":
+    "Das Kommentar konnte nicht gespeichert werden: %0",
+  "components.video.modal.comment.submit": "Kommentieren",
+  "components.video.modal.comments.loading.error":
+    "Kommentare konnten nicht geladen werden: %0",
+  "components.video.modal.comments.no": "Dieses Video hat keine Kommentare.",
+  "components.video.modal.rate.error": "Fehler beim Bewerten des Videos: %0",
+  "components.video.modal.rate.how.stars":
+    "Wie viele Sterne hat das Video verdient?",
+  "components.video.modal.rate.success": "Vielen Dank für deine Bewertung!",
   "control.activate": "Aktivieren",
   "control.back": "Zurück",
   "control.cancel": "Abbrechen",
@@ -197,11 +219,11 @@ export const german = {
   "general.correct": "richtig",
   "general.create": "Erstellen",
   "general.deactivated": "Deaktiviert",
+  "general.deselect": "Abwählen",
   "general.edit": "Bearbeiten",
   "general.edit.short": "Bearb.",
   "general.export": "Exportieren",
   "general.finished": "Fertig",
-  "general.rate": "Bewerten",
   "general.here": "hier",
   "general.hint": "Tipp",
   "general.image": "Bild",
@@ -219,9 +241,14 @@ export const german = {
   "general.open.source.licenses": "Open-Source Lizenzen",
   "general.overview": "Übersicht",
   "general.preview": "Vorschau",
+  "general.rate": "Bewerten",
   "general.remove": "Entfernen",
+  "general.select": "Auswählen",
   "general.serverstatus": "Server-Status",
+  "general.star": "Stern",
+  "general.stars": "Sterne",
   "general.submit": "Absenden",
+  "general.thanks": "Danke!",
   "general.welcome": "Willkommen",
   "general.wrong": "falsch",
   "menu.admin": "Admin",
@@ -240,6 +267,7 @@ export const german = {
   "menu.logout": "Abmelden",
   "menu.logout.description": "Möchtest du dich wirklich abmelden?",
   "menu.markdown.help": "Markdown Hilfe",
+  "menu.menu": "Menü",
   "menu.my.cookbook": "Mein Kochbuch",
   "menu.notifications": "Nachrichten",
   "menu.notifications.short": "Nachr.",
@@ -743,32 +771,4 @@ export const german = {
   "user.role.admin": "Administrator",
   "user.user": "Benutzer",
   "user.username": "Benutzername",
-  "components.manage.interests.intro":
-    "Aktuell hast du folgende Interessen angegeben:",
-  "components.manage.interests.all.selected":
-    "Du hast alle verfügbaren Interessen ausgewählt!",
-  "components.manage.interests.more.selectable":
-    "Du kannst zusätzlich noch folgenden Interessen auswählen:",
-  "components.recipes.loading.error": "Fehler beim Laden der Rezepte: %0",
-  "menu.menu": "Menü",
-  "components.video.modal.comments.loading.error":
-    "Kommentare konnten nicht geladen werden: %0",
-  "components.video.modal.rate.how.stars":
-    "Wie viele Sterne hat das Video verdient?",
-  "general.star": "Stern",
-  "general.stars": "Sterne",
-  "general.thanks": "Danke!",
-  "components.video.modal.rate.success": "Vielen Dank für deine Bewertung!",
-  "components.video.modal.rate.error": "Fehler beim Bewerten des Videos: %0",
-  "components.video.modal.ask.question": "Frage stellen",
-  "components.video.modal.comment": "Video Kommentieren",
-  "components.video.modal.comment.enter": "Gib dein Kommentar ein",
-  "components.video.modal.comment.submit": "Kommentieren",
-  "components.video.modal.comment.error":
-    "Das Kommentar konnte nicht gespeichert werden: %0",
-  "components.video.modal.comments.no": "Dieses Video hat keine Kommentare.",
-  "components.interests.save.error": "Fehler beim Speichern der Interessen: %0",
-  "components.interests.no.categories": "Keine Kategorien gefunden!",
-  "general.select": "Auswählen",
-  "general.deselect": "Abwählen",
 } as const;
