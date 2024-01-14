@@ -23,6 +23,7 @@ import { REST } from "@saveworld/api-js";
 import { useEffect, useState } from "react";
 import PopupManager from "../../util/PopupManager";
 import { Grid } from "@chakra-ui/react";
+import { $$ } from "../../translations/i18n";
 
 export default function VideoSearchFTS() {
   const [query, setQuery] = React.useState<string>("");
@@ -56,8 +57,8 @@ export default function VideoSearchFTS() {
       }
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description: "Fehler beim Laden der Videos: " + res.payload.error,
+        title: $$("control.error"),
+        description: $$("pages.learn.videos.loading.error", res.payload.error),
       });
     }
   };
@@ -69,11 +70,11 @@ export default function VideoSearchFTS() {
 
   return (
     <>
-      <Page title={"Suchen"}>
+      <Page title={$$("control.search")}>
         <IonSearchbar
           value={query}
           onIonInput={(e) => setQuery(e.detail.value!)}
-          placeholder={"Suchen..."}
+          placeholder={$$("control.search")}
         />
 
         <Grid

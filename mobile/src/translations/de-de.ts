@@ -432,4 +432,10 @@ export const german = {
   "pages.introduction.lifestyle.avoid": "vermeiden",
   "pages.introduction.lifestyle.save.error":
     "Fehler beim Speichern des Lifestyles: %0",
+  "pages.learn.videos.loading.error": "Fehler beim Laden der Videos: %0",
+  "pages.learn.channels": "Kanäle",
+  "general.no.results": "Keine Ergebnisse",
+  "pages.learn.videos.loading.error.next":
+    "Fehler beim Laden des nächsten Videos: %0",
+  "menu.learn": "Lernen",
 } as const;

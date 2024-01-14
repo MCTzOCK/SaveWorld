@@ -42,6 +42,7 @@ import {
 } from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
 import MobileBox from "../../components/MobileBox";
+import { $$ } from "../../translations/i18n";
 
 export default function Videos() {
   useRedirectForAnon();
@@ -78,8 +79,11 @@ export default function Videos() {
       setVideo(res.payload.video);
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description: "Fehler beim Laden des nächsten Videos",
+        title: $$("control.error"),
+        description: $$(
+          "pages.learn.videos.loading.error.next",
+          res.payload.error,
+        ),
       });
     }
   };
@@ -98,8 +102,8 @@ export default function Videos() {
             setVideo(res.payload.video);
           } else {
             PopupManager.alert({
-              title: "Fehler",
-              description: "Fehler beim Laden des Videos",
+              title: $$("control.error"),
+              description: $$("pages.learn.videos.loading.error.next"),
             });
           }
         });
@@ -124,12 +128,12 @@ export default function Videos() {
   return (
     <>
       <Page
-        title={"Lernen"}
+        title={$$("menu.learn")}
         noPadding
         endButtons={
           <>
             <IconButton
-              aria-label={"Suchen"}
+              aria-label={$$("control.search")}
               as={Link}
               href={"/learn/fts-search"}
               icon={<FaSearch />}

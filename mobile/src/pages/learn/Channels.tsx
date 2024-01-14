@@ -22,6 +22,7 @@ import {
   Link,
   Text,
 } from "@chakra-ui/react";
+import { $$ } from "../../translations/i18n";
 
 export default function Channels() {
   const router = useIonRouter();
@@ -50,9 +51,9 @@ export default function Channels() {
 
   return (
     <>
-      <Page title={"Kanäle"}>
+      <Page title={$$("pages.learn.channels")}>
         <IonSearchbar
-          placeholder={"Kanal suchen"}
+          placeholder={$$("control.search")}
           onIonInput={(e) => setQuery(e.detail.value!)}
           value={query}
           style={{
@@ -109,7 +110,7 @@ export default function Channels() {
             c.description.toLowerCase().includes(query.toLowerCase()),
         ).length === 0 && (
           <Text fontSize={"xl"} textAlign={"center"} mt={6}>
-            Keine Ergebnisse
+            {$$("general.no.results")}
           </Text>
         )}
       </Page>
