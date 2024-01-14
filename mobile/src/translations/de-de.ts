@@ -33,6 +33,7 @@ export const german = {
   "general.create": "Erstellen",
   "general.deactivated": "Deaktiviert",
   "general.edit": "Bearbeiten",
+  "general.edit.short": "Bearb.",
   "general.export": "Exportieren",
   "general.finished": "Fertig!",
   "general.here": "hier",
@@ -71,6 +72,7 @@ export const german = {
   "menu.notifications.short": "Nachr.",
   "menu.projects": "Projekte",
   "menu.quizzes": "Quizze",
+  "menu.recipe": "Rezept",
   "menu.recipes": "Rezepte",
   "menu.settings": "Einstellungen",
   "menu.settings.short": "Einst.",
@@ -427,11 +429,86 @@ export const german = {
   "pages.learn.videos.loading.error": "Fehler beim Laden der Videos: %0",
   "pages.learn.videos.loading.error.next":
     "Fehler beim Laden des nächsten Videos: %0",
+  "pages.markdown.description":
+    "Markdown ist eine einfache Auszeichnungssprache, die es dir ermöglicht, Texte schnell und einfach zu formatieren. Markdown wird vor allem im Forum verwendet, um Blog-Einträge zu verfassen. Du kannst allerdings auch ohne Markdown einen Eintrag erstellen. Im Folgenden findest du eine Übersicht über die wichtigsten Formatierungen.",
+  "pages.markdown.headlines": "Überschriften",
+  "pages.markdown.headlines.1": "# Überschrift 1",
+  "pages.markdown.headlines.2": "## Überschrift 2",
+  "pages.markdown.headlines.3": "### Überschrift 3",
+  "pages.markdown.headlines.description":
+    "Überschriften werden mit einem Hashtag eingeleitet. Je mehr Hashtags, desto kleiner die Überschrift. Maximal können 6 Hashtags verwendet werden. Beispiel:",
+  "pages.markdown.links": "Links",
+  "pages.markdown.links.1": "[Linktext](https://saveworld.one)",
+  "pages.markdown.links.description":
+    "Links können mit eckigen Klammern und runden Klammern eingeleitet werden.",
+  "pages.markdown.lists": "Listen",
+  "pages.markdown.lists.1": "* Eintrag 1",
+  "pages.markdown.lists.2": "* Eintrag 2",
+  "pages.markdown.lists.3": "1. Eintrag 1",
+  "pages.markdown.lists.4": "2. Eintrag 2",
+  "pages.markdown.lists.description":
+    "Listen können mit einem Sternchen oder einer Zahl (für nummerierte Listen) eingeleitet werden.",
+  "pages.markdown.text.formatting": "Textformatierung",
+  "pages.markdown.text.formatting.bold.1": "*fetter Text*",
+  "pages.markdown.text.formatting.bold.2": "_fetter Text_",
+  "pages.markdown.text.formatting.bold.description":
+    "Der Text kann mit einem Sternchen oder Unterstrich umschlossen werden, um ihn fett zu formatieren.",
+  "pages.markdown.text.formatting.bold.italic.1":
+    "***fetter und kursiver Text***",
+  "pages.markdown.text.formatting.bold.italic.2":
+    "___fetter und kursiver Text___",
+  "pages.markdown.text.formatting.bold.italic.description":
+    "Der Text kann mit drei Sternchen oder Unterstrichen umschlossen werden, um ihn fett und kursiv zu machen.",
+  "pages.markdown.text.formatting.italic.1": "**kursiver Text**",
+  "pages.markdown.text.formatting.italic.2": "__kursiver Text__",
+  "pages.markdown.text.formatting.italic.description":
+    "Der Text kannn mit zwei Sternchen oder Unterstrichen umschlossen werden, um ihn kursiv zu machen.",
+  "pages.markdown.text.formatting.strikethrough.1":
+    "~~durchgestrichener Text~~",
+  "pages.markdown.text.formatting.strikethrough.description":
+    "Der Text kann mit zwei Tilden umschlossen werden, um ihn durchgestrichen zu machen.",
   "pages.quizzes.answer": "Beantworten",
   "pages.quizzes.quiz.time": "Quiz Time!",
   "pages.quizzes.result": "Ergebnis",
   "pages.quizzes.result.2": "Die richtige Antwort ist: %0",
   "pages.quizzes.result.description": "Du hast %0 geantwortet! %1",
+  "pages.recipes.cook": "Rezept zubereiten",
+  "pages.recipes.cookbook": "Kochbuch",
+  "pages.recipes.cookbook.description":
+    "In deinem Kochbuch befinden sich alle Rezepte, die du dir gemerkt hast. Aktuell sind es %0 Rezepte.",
+  "pages.recipes.create": "Neues Rezept",
+  "pages.recipes.create.error": "Fehler beim Erstellen des Rezeptes: %0",
+  "pages.recipes.created": "Rezept erstellt!",
+  "pages.recipes.created.by.1": "Dieses Rezept wurde von ",
+  "pages.recipes.created.by.2": " erstellt.",
+  "pages.recipes.created.description":
+    "Dein Rezept wurde erfolgreich erstellt!",
+  "pages.recipes.delete.confirm": "Möchtest du das Rezept wirklich löschen?",
+  "pages.recipes.delete.error": "Fehler beim Löschen des Rezeptes: %0",
+  "pages.recipes.delete.success": "Rezept erfolgreich gelöscht!",
+  "pages.recipes.edit": "Rezept bearbeiten",
+  "pages.recipes.edit.error": "Fehler beim Bearbeiten des Rezeptes: %0",
+  "pages.recipes.edited": "Rezept bearbeitet!",
+  "pages.recipes.edited.description":
+    "Das Rezept wurde erfolgreich bearbeitet!",
+  "pages.recipes.explore": "Entdecken",
+  "pages.recipes.for": "Rezept für ",
+  "pages.recipes.form.title": "Titel",
+  "pages.recipes.image.edit": "Bild bearbeiten",
+  "pages.recipes.ingredients": "Zutaten",
+  "pages.recipes.ingredients.add": "Zutat hinzufügen",
+  "pages.recipes.ingredients.used":
+    "Für das Rezept werden folgende Zutaten benötigt:",
+  "pages.recipes.loading.error": "Fehler beim Laden des Rezeptes: %0",
+  "pages.recipes.my": "Meine Rezepte",
+  "pages.recipes.settings.update.error":
+    "Deine Einstellungen konnten nicht gespeichert werden: %0",
+  "pages.recipes.share.text": "Schau dir dieses Rezept an!",
+  "pages.recipes.step": "Schritt",
+  "pages.recipes.steps": "Schritte",
+  "pages.recipes.steps.add": "Schritt hinzufügen",
+  "pages.recipes.steps.delete": "Schritt löschen",
+  "pages.recipes.steps.description": "Das Rezept wird wie folgt zubereitet:",
   "popup.alert.title.default": "Meldung",
   "popup.close": "Schließen",
   "popup.input.label": "Eingabe",
@@ -445,81 +522,11 @@ export const german = {
   "user.role.admin": "Administrator",
   "user.user": "Benutzer",
   "user.username": "Benutzername",
-  "pages.recipes.cookbook": "Kochbuch",
-  "pages.recipes.cookbook.description":
-    "In deinem Kochbuch befinden sich alle Rezepte, die du dir gemerkt hast. Aktuell sind es %0 Rezepte.",
-  "pages.recipes.edit": "Rezept bearbeiten",
-  "pages.recipes.create": "Neues Rezept",
-  "pages.recipes.image.edit": "Bild bearbeiten",
-  "pages.recipes.form.title": "Titel",
-  "pages.recipes.ingredients": "Zutaten",
-  "pages.recipes.ingredients.add": "Zutat hinzufügen",
-  "pages.recipes.step": "Schritt",
-  "pages.recipes.steps": "Schritte",
-  "pages.recipes.steps.add": "Schritt hinzufügen",
-  "pages.recipes.steps.delete": "Schritt löschen",
-  "pages.recipes.created": "Rezept erstellt!",
-  "pages.recipes.created.description":
-    "Dein Rezept wurde erfolgreich erstellt!",
-  "pages.recipes.create.error": "Fehler beim Erstellen des Rezeptes: %0",
-  "pages.recipes.edited": "Rezept bearbeitet!",
-  "pages.recipes.edited.description":
-    "Das Rezept wurde erfolgreich bearbeitet!",
-  "pages.recipes.edit.error": "Fehler beim Bearbeiten des Rezeptes: %0",
-  "menu.recipe": "Rezept",
-  "pages.recipes.my": "Meine Rezepte",
-  "pages.recipes.explore": "Entdecken",
-  "pages.recipes.loading.error": "Fehler beim Laden des Rezeptes: %0",
-  "general.edit.short": "Bearb.",
-  "pages.recipes.delete.confirm": "Möchtest du das Rezept wirklich löschen?",
-  "pages.recipes.delete.error": "Fehler beim Löschen des Rezeptes: %0",
-  "pages.recipes.delete.success": "Rezept erfolgreich gelöscht!",
-  "pages.recipes.settings.update.error":
-    "Deine Einstellungen konnten nicht gespeichert werden: %0",
-  "pages.recipes.created.by.1": "Dieses Rezept wurde von ",
-  "pages.recipes.created.by.2": " erstellt.",
-  "pages.recipes.for": "Rezept für ",
-  "pages.recipes.share.text": "Schau dir dieses Rezept an!",
-  "pages.recipes.ingredients.used":
-    "Für das Rezept werden folgende Zutaten benötigt:",
-  "pages.recipes.steps.description": "Das Rezept wird wie folgt zubereitet:",
-  "pages.recipes.cook": "Rezept zubereiten",
-  "pages.markdown.description":
-    "Markdown ist eine einfache Auszeichnungssprache, die es dir ermöglicht, Texte schnell und einfach zu formatieren. Markdown wird vor allem im Forum verwendet, um Blog-Einträge zu verfassen. Du kannst allerdings auch ohne Markdown einen Eintrag erstellen. Im Folgenden findest du eine Übersicht über die wichtigsten Formatierungen.",
-  "pages.markdown.headlines": "Überschriften",
-  "pages.markdown.headlines.description":
-    "Überschriften werden mit einem Hashtag eingeleitet. Je mehr Hashtags, desto kleiner die Überschrift. Maximal können 6 Hashtags verwendet werden. Beispiel:",
-  "pages.markdown.headlines.1": "# Überschrift 1",
-  "pages.markdown.headlines.2": "## Überschrift 2",
-  "pages.markdown.headlines.3": "### Überschrift 3",
-  "pages.markdown.text.formatting": "Textformatierung",
-  "pages.markdown.text.formatting.bold.description":
-    "Der Text kann mit einem Sternchen oder Unterstrich umschlossen werden, um ihn fett zu formatieren.",
-  "pages.markdown.text.formatting.bold.1": "*fetter Text*",
-  "pages.markdown.text.formatting.bold.2": "_fetter Text_",
-  "pages.markdown.text.formatting.italic.description":
-    "Der Text kannn mit zwei Sternchen oder Unterstrichen umschlossen werden, um ihn kursiv zu machen.",
-  "pages.markdown.text.formatting.italic.1": "**kursiver Text**",
-  "pages.markdown.text.formatting.italic.2": "__kursiver Text__",
-  "pages.markdown.text.formatting.bold.italic.description":
-    "Der Text kann mit drei Sternchen oder Unterstrichen umschlossen werden, um ihn fett und kursiv zu machen.",
-  "pages.markdown.text.formatting.bold.italic.1":
-    "***fetter und kursiver Text***",
-  "pages.markdown.text.formatting.bold.italic.2":
-    "___fetter und kursiver Text___",
-  "pages.markdown.text.formatting.strikethrough.description":
-    "Der Text kann mit zwei Tilden umschlossen werden, um ihn durchgestrichen zu machen.",
-  "pages.markdown.text.formatting.strikethrough.1":
-    "~~durchgestrichener Text~~",
-  "pages.markdown.lists": "Listen",
-  "pages.markdown.lists.description":
-    "Listen können mit einem Sternchen oder einer Zahl (für nummerierte Listen) eingeleitet werden.",
-  "pages.markdown.lists.1": "* Eintrag 1",
-  "pages.markdown.lists.2": "* Eintrag 2",
-  "pages.markdown.lists.3": "1. Eintrag 1",
-  "pages.markdown.lists.4": "2. Eintrag 2",
-  "pages.markdown.links": "Links",
-  "pages.markdown.links.description":
-    "Links können mit eckigen Klammern und runden Klammern eingeleitet werden.",
-  "pages.markdown.links.1": "[Linktext](https://saveworld.one)",
+  "pages.sustainability.section.1":
+    "Nachhaltigkeit ist ein sehr wichtiges Thema. Es umfasst allerdings nicht nur die Umwelt, sondern besteht aus drei Säulen: Ökologie (Unwelt), Ökonomie (Wirtschaft) und Soziales (Gesellschaft).\n",
+  "pages.sustainability.section.2":
+    "Diese drei Säulen müssen im Gleichgewicht sein, damit wir eine nachhaltige Zukunft haben. Oft werden diese drei Säulen auch als ein Dreieck dargestellt, welches auf einer Seite liegt. Das bedeutet, dass alle drei Säulen gleich wichtig sind. Wenn eine Säule zu kurz kommt, wird das Dreieck instabil und kann umkippen. Das bedeutet, dass wir eine nachhaltige Zukunft nur dann haben, wenn alle drei Säulen gleich wichtig sind.",
+  "pages.sustainability.section.3":
+    "Auch, wenn sich SaveWorld vor allem auf die Umwelt konzentriert, wollen wir auch die anderen beiden Säulen nicht vernachlässigen. Deswegen findest du in diesem Bereich auch Informationen zu den Themen Wirtschaft und Gesellschaft.",
+  "pages.sustainability.call.to.action": "Artikel Erkunden",
 } as const;
