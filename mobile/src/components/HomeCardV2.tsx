@@ -19,6 +19,7 @@ import {
   Link,
 } from "@chakra-ui/react";
 import { useIonRouter } from "@ionic/react";
+import { Browser } from "@capacitor/browser";
 
 export default function HomeCardV2(props: {
   icon: ReactNode;
@@ -41,6 +42,10 @@ export default function HomeCardV2(props: {
         target={props.newTab ? "_blank" : undefined}
         onClick={(e) => {
           e.preventDefault();
+          if (props.url.startsWith("http")) {
+            Browser.open({ url: props.url });
+            return;
+          }
           router.push(props.url);
         }}
         shadow={"2xl"}

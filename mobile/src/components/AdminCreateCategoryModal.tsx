@@ -27,6 +27,7 @@ import { ENDPOINT } from "../env";
 import { REST } from "@saveworld/api-js";
 import { useEffect } from "react";
 import PopupManager from "../util/PopupManager";
+import { $$ } from "../translations/i18n";
 
 export default function AdminCreateCategoryModal(props: {
   modal: React.RefObject<HTMLIonModalElement>;
@@ -51,10 +52,10 @@ export default function AdminCreateCategoryModal(props: {
                   props.modal.current?.dismiss();
                 }}
               >
-                Abbrechen
+                {$$("control.cancel")}
               </IonButton>
             </IonButtons>
-            <IonTitle>Neue Kategorie</IonTitle>
+            <IonTitle>{$$("components.admin.create.category")}</IonTitle>
             <IonButtons slot={"end"}>
               <IonButton
                 color={"success"}
@@ -72,8 +73,8 @@ export default function AdminCreateCategoryModal(props: {
 
                   if (!name || !desc || image.length < 1) {
                     PopupManager.alert({
-                      title: "Fehler",
-                      description: "Bitte fülle alle Felder aus!",
+                      title: $$("control.error"),
+                      description: $$("form.incomplete"),
                     });
                     return;
                   }
@@ -89,16 +90,17 @@ export default function AdminCreateCategoryModal(props: {
                       props.modal.current?.dismiss();
                     } else {
                       PopupManager.alert({
-                        title: "Fehler",
-                        description:
-                          "Fehler beim Erstellen der Kategorie: " +
+                        title: $$("control.error"),
+                        description: $$(
+                          "components.admin.create.category.error",
                           res.payload.error,
+                        ),
                       });
                     }
                   });
                 }}
               >
-                <b>Fertig</b>
+                <b>{$$("general.finished")}</b>
               </IonButton>
             </IonButtons>
           </IonToolbar>
@@ -129,8 +131,11 @@ export default function AdminCreateCategoryModal(props: {
                           });
                         } else {
                           PopupManager.alert({
-                            title: "Fehler",
-                            description: "Fehler beim Upload: " + res.status,
+                            title: $$("control.error"),
+                            description: $$(
+                              "control.upload.error",
+                              res.status.toString(),
+                            ),
                           });
                         }
                       });
@@ -143,22 +148,22 @@ export default function AdminCreateCategoryModal(props: {
               }}
               color={"success"}
             >
-              Bild ändern
+              {$$("components.admin.create.category.change.image")}
             </IonButton>
           </div>
           <IonList inset>
             <IonItem color={"light"}>
               <IonInput
-                placeholder={"Name"}
-                label={"Name"}
+                placeholder={$$("components.admin.create.category.name")}
+                label={$$("components.admin.create.category.name")}
                 labelPlacement={"fixed"}
                 id={"create-category-name"}
               />
             </IonItem>
             <IonItem color={"light"}>
               <IonTextarea
-                placeholder={"Beschreibung"}
-                label={"Beschreibung"}
+                placeholder={$$("components.admin.create.category.description")}
+                label={$$("components.admin.create.category.description")}
                 labelPlacement={"fixed"}
                 autoGrow
                 id={"create-category-desc"}

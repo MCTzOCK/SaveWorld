@@ -30,6 +30,7 @@ import {
 } from "@ionic/react";
 import PopupManager from "../util/PopupManager";
 import { REST } from "@saveworld/api-js";
+import { $$ } from "../translations/i18n";
 
 export default function AdminSupportRequestModal(props: {
   request: {
@@ -52,12 +53,12 @@ export default function AdminSupportRequestModal(props: {
       <SaveWorldModal
         title={
           props.request.category === "REPORT-USER"
-            ? "Benutzer Meldung"
+            ? $$("pages.admin.support.category.user")
             : props.request.category === "REPORT-POST"
-            ? "Beitrag Meldung"
+            ? $$("pages.admin.support.category.post")
             : props.request.category === "REPORT-BUG"
-            ? "Bug Meldung"
-            : "Anderes"
+            ? $$("pages.admin.support.category.bug")
+            : $$("pages.admin.support.category.other")
         }
         isOpen={props.isOpen}
         onClose={props.onClose}
@@ -69,19 +70,21 @@ export default function AdminSupportRequestModal(props: {
                 <Alert status={"success"} borderRadius={"md"}>
                   <AlertIcon />
                   <AlertDescription>
-                    Diese Anfrage ist bereits abgeschlossen
+                    {$$("pages.admin.support.request.processed")}
                   </AlertDescription>
                 </Alert>
               </>
             )}
             <Text fontSize={"lg"} mt={4}>
-              Diese Support-Anfrage wurde am{" "}
-              {new Date(props.request.createdAt).toLocaleDateString()} um&nbsp;
-              {new Date(props.request.createdAt).toLocaleTimeString()} Uhr von{" "}
-              {props.request.email} erstellt.
+              {$$(
+                "components.admin.support.request",
+                new Date(props.request.createdAt).toLocaleDateString(),
+                new Date(props.request.createdAt).toLocaleTimeString(),
+                props.request.email,
+              )}
               <br />
               <br />
-              Der Benutzer hat folgende Nachricht hinterlassen:
+              {$$("components.admin.support.request.message")}
               <br />
               <pre>{props.request.message}</pre>
             </Text>
@@ -107,8 +110,8 @@ export default function AdminSupportRequestModal(props: {
                 isDisabled={props.request.processed}
               >
                 {props.request.category === "REPORT-USER"
-                  ? "Profil"
-                  : "Beitrag"}
+                  ? $$("components.admin.support.request.button.profile")
+                  : $$("components.admin.support.request.button.post")}
               </Button>
               <Button
                 w={"100%"}
@@ -121,8 +124,10 @@ export default function AdminSupportRequestModal(props: {
                     props.request.category === "VIDEO-QUESTION"
                   ) {
                     const message = await PopupManager.promptAsync({
-                      title: "Antwort",
-                      helperText: "Beantworte die Anfrage des Benutzers",
+                      title: $$("pages.admin.support.request.answer"),
+                      helperText: $$(
+                        "pages.admin.support.request.answer.description",
+                      ),
                       inputType: "TEXTAREA",
                     });
 
@@ -139,29 +144,39 @@ export default function AdminSupportRequestModal(props: {
                       props.onClose();
                     } else {
                       PopupManager.alert({
-                        title: "Fehler",
-                        description:
-                          "Fehler beim Abschließen der Anfrage: " +
+                        title: $$("control.error"),
+                        description: $$(
+                          "pages.admin.support.request.answer.error",
                           res.payload.error,
+                        ),
                       });
                     }
                   } else if (props.request.category === "REPORT-POST") {
                     const action = await PopupManager.selectAsync({
-                      title: "Aktion auswählen",
-                      helperText:
-                        "Wähle die Aktion aus, die du durchführen möchtest",
-                      choices: ["Beitrag löschen", "Keine Aktion"],
+                      title: $$("pages.admin.support.request.action.choose"),
+                      helperText: $$(
+                        "pages.admin.support.request.action.description",
+                      ),
+                      choices: [
+                        $$("pages.admin.support.request.action.delete.post"),
+                        $$("pages.admin.support.request.action.no"),
+                      ],
                     });
                     if (!action) return;
 
                     const message = await PopupManager.promptAsync({
-                      title: "Antwort",
-                      helperText: "Beantworte die Anfrage des Benutzers",
+                      title: $$("pages.admin.support.request.answer"),
+                      helperText: $$(
+                        "pages.admin.support.request.answer.description",
+                      ),
                       inputType: "TEXTAREA",
                     });
                     if (!message) return;
 
-                    if (action === "Beitrag löschen") {
+                    if (
+                      action ===
+                      $$("pages.admin.support.request.action.delete.post")
+                    ) {
                       const res = await REST.Community.deleteBlogEntry(
                         localStorage.getItem("token") as string,
                         props.request.additionalData,
@@ -169,10 +184,11 @@ export default function AdminSupportRequestModal(props: {
 
                       if (res.status !== 200) {
                         PopupManager.alert({
-                          title: "Fehler",
-                          description:
-                            "Fehler beim Löschen des Beitrags: " +
+                          title: $$("control.error"),
+                          description: $$(
+                            "pages.admin.support.request.error.post",
                             res.payload.error,
+                          ),
                         });
                         return;
                       }
@@ -189,29 +205,39 @@ export default function AdminSupportRequestModal(props: {
                       props.onClose();
                     } else {
                       PopupManager.alert({
-                        title: "Fehler",
-                        description:
-                          "Fehler beim Abschließen der Anfrage: " +
+                        title: $$("control.error"),
+                        description: $$(
+                          "pages.admin.support.request.error",
                           res.payload.error,
+                        ),
                       });
                     }
                   } else if (props.request.category === "REPORT-USER") {
                     const action = await PopupManager.selectAsync({
-                      title: "Aktion auswählen",
-                      helperText:
-                        "Wähle die Aktion aus, die du durchführen möchtest",
-                      choices: ["Benutzer löschen", "Keine Aktion"],
+                      title: $$("pages.admin.support.request.action.choose"),
+                      helperText: $$(
+                        "pages.admin.support.request.action.description",
+                      ),
+                      choices: [
+                        $$("pages.admin.support.request.action.delete.user"),
+                        $$("pages.admin.support.request.action.no"),
+                      ],
                     });
                     if (!action) return;
 
                     const message = await PopupManager.promptAsync({
-                      title: "Antwort",
-                      helperText: "Beantworte die Anfrage des Benutzers",
+                      title: $$("pages.admin.support.request.answer"),
+                      helperText: $$(
+                        "pages.admin.support.request.answer.description",
+                      ),
                       inputType: "TEXTAREA",
                     });
                     if (!message) return;
 
-                    if (action === "Benutzer löschen") {
+                    if (
+                      action ===
+                      $$("pages.admin.support.request.action.delete.user")
+                    ) {
                       const res = await REST.Admin.deleteUser(
                         localStorage.getItem("token") as string,
                         props.request.additionalData,
@@ -219,10 +245,11 @@ export default function AdminSupportRequestModal(props: {
 
                       if (res.status !== 200) {
                         PopupManager.alert({
-                          title: "Fehler",
-                          description:
-                            "Fehler beim Löschen des Benutzers: " +
+                          title: $$("control.error"),
+                          description: $$(
+                            "pages.admin.support.request.error.user",
                             res.payload.error,
+                          ),
                         });
                         return;
                       }
@@ -239,16 +266,17 @@ export default function AdminSupportRequestModal(props: {
                       props.onClose();
                     } else {
                       PopupManager.alert({
-                        title: "Fehler",
-                        description:
-                          "Fehler beim Abschließen der Anfrage: " +
+                        title: $$("control.error"),
+                        description: $$(
+                          "pages.admin.support.request.error",
                           res.payload.error,
+                        ),
                       });
                     }
                   }
                 }}
               >
-                Abschließen
+                {$$("pages.admin.support.request.answer.complete")}
               </Button>
             </ButtonGroup>
           </>

@@ -9,6 +9,49 @@
  */
 
 export const german = {
+  "components.admin.create.category": "Neue Kategorie",
+  "components.admin.create.category.change.image": "Bild ändern",
+  "components.admin.create.category.description": "Beschreibung",
+  "components.admin.create.category.error":
+    "Fehler beim Erstellen der Kategorie: %0",
+  "components.admin.create.category.name": "Name",
+  "components.admin.intern.tools": "Interne Werkzeuge",
+  "components.admin.stats": "Statistiken",
+  "components.admin.stats.blogs": "Forum Blogs",
+  "components.admin.stats.categories": "Kategorien",
+  "components.admin.stats.chats": "Forum Chats",
+  "components.admin.stats.chats.subtitle": "Nachrichten: %0",
+  "components.admin.stats.error.loading":
+    "Fehler beim Laden der Statistiken: %0",
+  "components.admin.stats.projects": "Öko-Projekte",
+  "components.admin.stats.push.notifications": "Push-Nachr.",
+  "components.admin.stats.recipes": "Rezepte",
+  "components.admin.stats.support": "Support-Anfragen",
+  "components.admin.stats.users": "Benutzer",
+  "components.admin.stats.users.subtitle": "davon aktiv: %0",
+  "components.admin.stats.videos": "Videos",
+  "components.admin.stats.videos.subtitle": "Aufrufe: %0",
+  "components.calendar.day.friday": "Fr",
+  "components.calendar.day.monday": "Mo",
+  "components.calendar.day.saturday": "Sa",
+  "components.calendar.day.sunday": "So",
+  "components.calendar.day.thursday": "Do",
+  "components.calendar.day.tuesday": "Di",
+  "components.calendar.day.wednesday": "Mi",
+  "components.chat.message.add.image": "Bild hinzufügen",
+  "components.chat.message.box.placeholder": "Nachricht eingeben...",
+  "components.chat.message.send": "Senden",
+  "components.video.create": "Neues Video",
+  "components.video.create.button": "Video erstellen",
+  "components.video.create.categories": "Kategorien",
+  "components.video.create.description": "Beschreibung",
+  "components.video.create.error": "Fehler beim Erstellen des Videos: %0",
+  "components.video.create.name": "Name",
+  "components.video.create.sources": "Quellen",
+  "components.video.create.sources.add": "Quelle hinzufügen",
+  "components.video.create.youtube.id": "YouTube-ID",
+  "components.video.form.no.category":
+    "Bitte wähle mindestens eine Kategorie aus.",
   "control.activate": "Aktivieren",
   "control.back": "Zurück",
   "control.cancel": "Abbrechen",
@@ -516,6 +559,37 @@ export const german = {
     "Diese drei Säulen müssen im Gleichgewicht sein, damit wir eine nachhaltige Zukunft haben. Oft werden diese drei Säulen auch als ein Dreieck dargestellt, welches auf einer Seite liegt. Das bedeutet, dass alle drei Säulen gleich wichtig sind. Wenn eine Säule zu kurz kommt, wird das Dreieck instabil und kann umkippen. Das bedeutet, dass wir eine nachhaltige Zukunft nur dann haben, wenn alle drei Säulen gleich wichtig sind.",
   "pages.sustainability.section.3":
     "Auch, wenn sich SaveWorld vor allem auf die Umwelt konzentriert, wollen wir auch die anderen beiden Säulen nicht vernachlässigen. Deswegen findest du in diesem Bereich auch Informationen zu den Themen Wirtschaft und Gesellschaft.",
+  "pages.tools.calc": "CO2-Rechner",
+  "pages.tools.calc.calculate": "Berechnen",
+  "pages.tools.calc.car": "Auto",
+  "pages.tools.calc.car.description":
+    "Rechne aus, wie viel CO2 du mit deinem Auto auf einer bestimmten Strecke ausstößt.",
+  "pages.tools.calc.car.description.long":
+    "Berechne, wie viel CO2 du mit deinem Auto auf einer Strecke ausstößt. Die Berechnung basiert auf Daten des Umweltbundesamtes (UBA) aus dem Jahr 2022. Für die Berechnung benötigst du die Länge der Strecke (in km) und den Kraftstoffverbrauch deines Autos (in l/100km).",
+  "pages.tools.calc.distance": "Distanz",
+  "pages.tools.calc.ecar": "Elektro-Auto",
+  "pages.tools.calc.ecar.description":
+    "Rechne aus, wie viel CO2 du mit deinem Elektro Auto auf einer bestimmten Strecke, durch den Stromverbrauch, ausstößt.",
+  "pages.tools.calc.ecar.description.long":
+    "Berechne, wie viel CO2 du mit deinem Auto auf einer Strecke ausstößt. Die Berechnung basiert auf Daten des Umweltbundesamtes (UBA) aus dem Jahr 2022. Für die Berechnung benötigst du die Länge der Strecke (in km) und den Stromverbrauch deines Autos (in kWh/100km).",
+  "pages.tools.calc.fuel.type": "Kraftstoffart",
+  "pages.tools.calc.fuel.type.diesel": "Diesel",
+  "pages.tools.calc.fuel.type.petrol": "Benzin",
+  "pages.tools.calc.fuel.usage": "Kraftstoffverbrauch auf 100km",
+  "pages.tools.calc.hcar": "Wasserstoff-Auto",
+  "pages.tools.calc.hcar.description":
+    "Rechne aus, wie viel CO2 du mit deinem Wasserstoff Auto auf einer bestimmten Strecke, durch den Wasserstoffverbrauch, ausstößt.",
+  "pages.tools.calc.hcar.description.long":
+    "Berechne, wie viel CO2 du mit deinem Auto auf einer Strecke ausstößt. Die Berechnung basiert auf Daten des Umweltbundesamtes (UBA) aus dem Jahr 2022. Für die Berechnung benötigst du die Länge der Strecke (in km) und den Wasserstoffverbrauch deines Autos (in kg/100km).",
+  "pages.tools.calc.hydrogen.usage": "Wasserstoffverbrauch auf 100km",
+  "pages.tools.calc.power.usage": "Stromverbrauch auf 100km",
+  "pages.tools.calc.search.no.results": "Es wurden keine CO2-Rechner gefunden.",
+  "pages.tools.calc.source": "Quelle",
+  "pages.tools.calc.train": "Fernverkehr Zug (ICE, IC, etc)",
+  "pages.tools.calc.train.description":
+    "Rechne aus, wie viel CO2-Ausstoß du auf deiner Reise mit dem Fernverkehrszug verursachst.",
+  "pages.tools.calc.train.description.long":
+    "Berechne, wie viel CO2 du mit auf einer Strecke mit dem Fernzug ausstößt. Die Berechnung basiert auf Daten von Quarks. Für die Berechnung benötigst du die Länge der Strecke (in km). Pro km werden 0,036kg CO2 ausgestoßen, weswegen durch Rundung Abweichungen entstehen können.",
   "popup.alert.title.default": "Meldung",
   "popup.close": "Schließen",
   "popup.input.label": "Eingabe",
@@ -529,35 +603,10 @@ export const german = {
   "user.role.admin": "Administrator",
   "user.user": "Benutzer",
   "user.username": "Benutzername",
-  "pages.tools.calc.car": "Auto",
-  "pages.tools.calc.car.description":
-    "Rechne aus, wie viel CO2 du mit deinem Auto auf einer bestimmten Strecke ausstößt.",
-  "pages.tools.calc.car.description.long":
-    "Berechne, wie viel CO2 du mit deinem Auto auf einer Strecke ausstößt. Die Berechnung basiert auf Daten des Umweltbundesamtes (UBA) aus dem Jahr 2022. Für die Berechnung benötigst du die Länge der Strecke (in km) und den Kraftstoffverbrauch deines Autos (in l/100km).",
-  "pages.tools.calc.ecar": "Elektro-Auto",
-  "pages.tools.calc.ecar.description":
-    "Rechne aus, wie viel CO2 du mit deinem Elektro Auto auf einer bestimmten Strecke, durch den Stromverbrauch, ausstößt.",
-  "pages.tools.calc.ecar.description.long":
-    "Berechne, wie viel CO2 du mit deinem Auto auf einer Strecke ausstößt. Die Berechnung basiert auf Daten des Umweltbundesamtes (UBA) aus dem Jahr 2022. Für die Berechnung benötigst du die Länge der Strecke (in km) und den Stromverbrauch deines Autos (in kWh/100km).",
-  "pages.tools.calc.hcar": "Wasserstoff-Auto",
-  "pages.tools.calc.hcar.description":
-    "Rechne aus, wie viel CO2 du mit deinem Wasserstoff Auto auf einer bestimmten Strecke, durch den Wasserstoffverbrauch, ausstößt.",
-  "pages.tools.calc.hcar.description.long":
-    "Berechne, wie viel CO2 du mit deinem Auto auf einer Strecke ausstößt. Die Berechnung basiert auf Daten des Umweltbundesamtes (UBA) aus dem Jahr 2022. Für die Berechnung benötigst du die Länge der Strecke (in km) und den Wasserstoffverbrauch deines Autos (in kg/100km).",
-  "pages.tools.calc.train": "Fernverkehr Zug (ICE, IC, etc)",
-  "pages.tools.calc.train.description":
-    "Rechne aus, wie viel CO2-Ausstoß du auf deiner Reise mit dem Fernverkehrszug verursachst.",
-  "pages.tools.calc.train.description.long":
-    "Berechne, wie viel CO2 du mit auf einer Strecke mit dem Fernzug ausstößt. Die Berechnung basiert auf Daten von Quarks. Für die Berechnung benötigst du die Länge der Strecke (in km). Pro km werden 0,036kg CO2 ausgestoßen, weswegen durch Rundung Abweichungen entstehen können.",
-  "pages.tools.calc": "CO2-Rechner",
-  "pages.tools.calc.search.no.results": "Es wurden keine CO2-Rechner gefunden.",
-  "pages.tools.calc.source": "Quelle",
-  "pages.tools.calc.calculate": "Berechnen",
-  "pages.tools.calc.distance": "Distanz",
-  "pages.tools.calc.fuel.type": "Kraftstoffart",
-  "pages.tools.calc.fuel.type.diesel": "Diesel",
-  "pages.tools.calc.fuel.type.petrol": "Benzin",
-  "pages.tools.calc.fuel.usage": "Kraftstoffverbrauch auf 100km",
-  "pages.tools.calc.power.usage": "Stromverbrauch auf 100km",
-  "pages.tools.calc.hydrogen.usage": "Wasserstoffverbrauch auf 100km",
+  "components.admin.support.request":
+    "Diese Support-Anfrage wurde am %0 um %1 Uhr von %2 erstellt.",
+  "components.admin.support.request.message":
+    "Der Benutzer hat folgende Nachricht hinterlassen:",
+  "components.admin.support.request.button.profile": "Profil",
+  "components.admin.support.request.button.post": "Beitrag",
 } as const;
