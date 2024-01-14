@@ -602,7 +602,7 @@ export const en = {
   "pages.introduction.welcome.choose.later": "Select later",
   "pages.introduction.welcome.description":
     "Hey, welcome to SaveWorld! We're glad you want to make the world a better place! For the best experience, choose your interests here! You can change these later at any time.",
-  "pages.learn.channels": "channels",
+  "pages.learn.channels": "Channels",
   "pages.learn.videos.loading.error": "Error loading videos: %0",
   "pages.learn.videos.loading.error.next": "Error loading next video: %0",
   "pages.markdown.description":

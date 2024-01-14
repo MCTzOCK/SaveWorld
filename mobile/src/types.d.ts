@@ -12,6 +12,7 @@ import PopupManager from "./util/PopupManager";
 declare global {
   interface Window {
     PopupManager: typeof PopupManager;
+    language: string;
   }
 }
 

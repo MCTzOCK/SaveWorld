@@ -22,7 +22,7 @@ const render = async () => {
       lang = res.value;
     }
 
-    I18n.setLanguage(lang);
+    window.language = lang;
   });
 
   const status = await Network.getStatus();

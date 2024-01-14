@@ -31,59 +31,58 @@ import {
 import { useState } from "react";
 import { $$ } from "../../translations/i18n";
 
-const calculators: {
-  title: string;
-  image: {
-    url: string;
-    cpr: string;
-  };
-  description: string;
-  cpr: string;
-  url: string;
-}[] = [
-  {
-    title: $$("pages.tools.calc.car"),
-    image: {
-      url: "/assets/calculator/co2/car_emissions.jpg",
-      cpr: "Unsplash, Matt Boitor",
-    },
-    cpr: "UBA 2022: Emissionsbilanz erneuerbarer Energieträger",
-    description: $$("pages.tools.calc.car.description"),
-    url: "/tools/co2/car",
-  },
-  {
-    title: $$("pages.tools.calc.ecar"),
-    image: {
-      url: "/assets/calculator/co2/e-car.jpg",
-      cpr: "Unsplash, Remy Lovesy",
-    },
-    cpr: "UBA 2022: Emissionsbilanz erneuerbarer Energieträger",
-    description: $$("pages.tools.calc.ecar.description"),
-    url: "/tools/co2/e-car",
-  },
-  {
-    title: $$("pages.tools.calc.hcar"),
-    image: {
-      url: "/assets/calculator/co2/h-car.jpg",
-      cpr: "Unsplash, Darren Halstead",
-    },
-    cpr: "UBA 2022: Emissionsbilanz erneuerbarer Energieträger",
-    description: $$("pages.tools.calc.hcar.description"),
-    url: "/tools/co2/h-car",
-  },
-  {
-    title: $$("pages.tools.calc.train"),
-    image: {
-      url: "/assets/calculator/co2/long-distance-train.jpg",
-      cpr: "Unsplash, Daniel Abadia",
-    },
-    cpr: "Quarks",
-    description: $$("pages.tools.calc.train.description"),
-    url: "/tools/co2/long-distance-train",
-  },
-];
-
 export default function C02() {
+  const calculators: {
+    title: string;
+    image: {
+      url: string;
+      cpr: string;
+    };
+    description: string;
+    cpr: string;
+    url: string;
+  }[] = [
+    {
+      title: $$("pages.tools.calc.car"),
+      image: {
+        url: "/assets/calculator/co2/car_emissions.jpg",
+        cpr: "Unsplash, Matt Boitor",
+      },
+      cpr: "UBA 2022: Emissionsbilanz erneuerbarer Energieträger",
+      description: $$("pages.tools.calc.car.description"),
+      url: "/tools/co2/car",
+    },
+    {
+      title: $$("pages.tools.calc.ecar"),
+      image: {
+        url: "/assets/calculator/co2/e-car.jpg",
+        cpr: "Unsplash, Remy Lovesy",
+      },
+      cpr: "UBA 2022: Emissionsbilanz erneuerbarer Energieträger",
+      description: $$("pages.tools.calc.ecar.description"),
+      url: "/tools/co2/e-car",
+    },
+    {
+      title: $$("pages.tools.calc.hcar"),
+      image: {
+        url: "/assets/calculator/co2/h-car.jpg",
+        cpr: "Unsplash, Darren Halstead",
+      },
+      cpr: "UBA 2022: Emissionsbilanz erneuerbarer Energieträger",
+      description: $$("pages.tools.calc.hcar.description"),
+      url: "/tools/co2/h-car",
+    },
+    {
+      title: $$("pages.tools.calc.train"),
+      image: {
+        url: "/assets/calculator/co2/long-distance-train.jpg",
+        cpr: "Unsplash, Daniel Abadia",
+      },
+      cpr: "Quarks",
+      description: $$("pages.tools.calc.train.description"),
+      url: "/tools/co2/long-distance-train",
+    },
+  ];
   const router = useIonRouter();
 
   const [query, setQuery] = useState<string>("");

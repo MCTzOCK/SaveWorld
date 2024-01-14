@@ -29,6 +29,7 @@ import { getLanguages } from "../translations/i18n";
 import { Browser } from "@capacitor/browser";
 import { FaHome } from "react-icons/fa";
 import ReactCountryFlag from "react-country-flag";
+import PopupManager from "../util/PopupManager";
 
 const languages = getLanguages().languages as any;
 export default function LanguageSwitcher() {
@@ -85,7 +86,18 @@ export default function LanguageSwitcher() {
                   rounded={"xl"}
                   shadow={"2xl"}
                   cursor={"pointer"}
-                  onClick={() => {
+                  onClick={async () => {
+                    if (languages[lang].type === "auto") {
+                      if (
+                        !(await PopupManager.confirmAsync({
+                          title: "Warning",
+                          question:
+                            "This language is automatically translated and may not be accurate. Do you want to continue?",
+                        }))
+                      )
+                        return;
+                    }
+
                     Preferences.set({ key: "language", value: lang });
                     window.location.reload();
                   }}

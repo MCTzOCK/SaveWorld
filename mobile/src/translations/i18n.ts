@@ -30,6 +30,26 @@ const languages = {
       type: "auto",
       cc: "fr",
     },
+    nl: {
+      displayName: "Nederlands",
+      type: "auto",
+      cc: "nl",
+    },
+    pt: {
+      displayName: "Português",
+      type: "auto",
+      cc: "pt",
+    },
+    it: {
+      displayName: "Italiano",
+      type: "auto",
+      cc: "it",
+    },
+    cn: {
+      displayName: "中文",
+      type: "auto",
+      cc: "cn",
+    },
   },
 };
 
@@ -37,13 +57,17 @@ import { german } from "./de";
 import { en } from "./en";
 import { es } from "./es";
 import { fr } from "./fr";
+import { cn } from "./cn";
+import { pt } from "./pt";
+import { it } from "./it";
+import { nl } from "./nl";
 
 type Keys = keyof typeof german;
 
 const currentLanguageSet: { [key: string]: string } = {};
 
 export class I18n {
-  public static currentLanguage: string = "es";
+  public static currentLanguage: string = "";
 
   public static setLanguage(language: string) {
     I18n.currentLanguage = language;
@@ -51,7 +75,7 @@ export class I18n {
 }
 
 export function $$(key: Keys, ...args: string[]): string {
-  const langset = getLanguageSet(I18n.currentLanguage);
+  const langset = getLanguageSet(window.language);
 
   if (langset[key]) {
     let v: string = langset[key];
@@ -78,6 +102,14 @@ function getLanguageSet(language: string): Record<Keys, string> {
       return es;
     case "fr":
       return fr;
+    case "cn":
+      return cn;
+    case "pt":
+      return pt;
+    case "it":
+      return it;
+    case "nl":
+      return nl;
     default:
       return getEmptyLanguageSet();
   }
