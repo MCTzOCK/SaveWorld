@@ -37,6 +37,7 @@ import {
 import { useUserData } from "../../../../hooks/useUserData";
 import { FaDeleteLeft, FaTrash } from "react-icons/fa6";
 import { ENDPOINT } from "../../../../env";
+import { $$ } from "../../../../translations/i18n";
 
 export default function E2ProjectTodoListViewer() {
   const { id, listId } = useParams<{
@@ -63,10 +64,11 @@ export default function E2ProjectTodoListViewer() {
 
     if (projectRes.status !== 200) {
       await PopupManager.alertAsync({
-        title: "Fehler",
-        description:
-          "Das Projekt konnte nicht geladen werden: " +
+        title: $$("control.error"),
+        description: $$(
+          "pages.e2projects.loading.error",
           projectRes.payload.error,
+        ),
       });
     }
 
@@ -79,10 +81,11 @@ export default function E2ProjectTodoListViewer() {
 
     if (listRes.status !== 200) {
       await PopupManager.alertAsync({
-        title: "Fehler",
-        description:
-          "Die ToDo-Liste konnte nicht geladen werden: " +
+        title: $$("control.error"),
+        description: $$(
+          "pages.e2projects.todo.loading.error",
           listRes.payload.error,
+        ),
       });
     }
 
@@ -93,22 +96,22 @@ export default function E2ProjectTodoListViewer() {
   const [newItemDesc, setNewItemDesc] = useState<string>("");
 
   if (!project) {
-    return <Page title={"Laden..."}>Laden...</Page>;
+    return <Page title={$$("general.loading")}>{$$("general.loading")}</Page>;
   }
 
   return (
     <>
-      <Page title={project.name + ": ToDo Liste"}>
+      <Page title={project.name + ": " + $$("pages.e2projects.todo")}>
         <MobileBox padding={"4"}>
-          <Heading mb={4}>ToDo-Liste</Heading>
+          <Heading mb={4}>{$$("pages.e2projects.todo")}</Heading>
           <TableContainer maxW={"100%"}>
             <Table w={"100%"}>
               <Thead>
                 <Tr>
-                  <Th>Name</Th>
-                  <Th>Beschreibung</Th>
-                  <Th>Erledigt</Th>
-                  <Th>Aktion</Th>
+                  <Th>{$$("pages.e2projects.todo.name")}</Th>
+                  <Th>{$$("pages.e2projects.todo.description")}</Th>
+                  <Th>{$$("pages.e2projects.todo.done")}</Th>
+                  <Th>{$$("pages.e2projects.todo.action")}</Th>
                 </Tr>
               </Thead>
               <Tbody>
@@ -118,7 +121,7 @@ export default function E2ProjectTodoListViewer() {
                   <Tr>
                     <Td>
                       <Input
-                        placeholder={"Name"}
+                        placeholder={$$("pages.e2projects.todo.name")}
                         value={newItemName}
                         onChange={(e) => {
                           setNewItemName(e.target.value);
@@ -127,7 +130,7 @@ export default function E2ProjectTodoListViewer() {
                     </Td>
                     <Td>
                       <Textarea
-                        placeholder={"Beschreibung"}
+                        placeholder={$$("pages.e2projects.todo.description")}
                         value={newItemDesc}
                         onChange={(e) => {
                           setNewItemDesc(e.target.value);
@@ -149,10 +152,11 @@ export default function E2ProjectTodoListViewer() {
 
                           if (res.status !== 200) {
                             await PopupManager.alertAsync({
-                              title: "Fehler",
-                              description:
-                                "Eintrag konnte nicht erstellt werden: " +
+                              title: $$("control.error"),
+                              description: $$(
+                                "pages.e2projects.todo.entry.create.error",
                                 res.payload.error,
+                              ),
                             });
                             return;
                           }
@@ -162,7 +166,7 @@ export default function E2ProjectTodoListViewer() {
                           setNewItemName("");
                         }}
                       >
-                        Erstellen
+                        {$$("general.create")}
                       </Button>
                     </Td>
                   </Tr>
@@ -170,7 +174,7 @@ export default function E2ProjectTodoListViewer() {
                 {items.length === 0 ? (
                   <>
                     <Tr>
-                      <Td>Diese ToDo-Liste hat keine Einträge.</Td>
+                      <Td>{$$("pages.e2projects.todo.entries.no")}</Td>
                       <Td />
                       <Td />
                     </Tr>
@@ -217,10 +221,11 @@ export default function E2ProjectTodoListViewer() {
 
                                       if (res.status !== 200) {
                                         await PopupManager.alertAsync({
-                                          title: "Fehler",
-                                          description:
-                                            "Der Eintrag konnte nicht geändert werden: " +
+                                          title: $$("control.error"),
+                                          description: $$(
+                                            "pages.e2projects.todo.entry.update.error",
                                             res.payload.error,
+                                          ),
                                         });
                                         return;
                                       }
@@ -244,9 +249,10 @@ export default function E2ProjectTodoListViewer() {
                                     onClick={async () => {
                                       if (
                                         !(await PopupManager.confirmAsync({
-                                          title: "Löschen",
-                                          question:
-                                            "Soll der Eintrag wirklich gelöscht werden?",
+                                          title: $$("control.error"),
+                                          question: $$(
+                                            "pages.e2projects.todo.entry.delete.confirm",
+                                          ),
                                         }))
                                       )
                                         return;
@@ -262,17 +268,18 @@ export default function E2ProjectTodoListViewer() {
                                         );
                                       if (res.status !== 200) {
                                         await PopupManager.alertAsync({
-                                          title: "Fehler",
-                                          description:
-                                            "Der Eintrag konnte nicht gelöscht werden: " +
+                                          title: $$("control.error"),
+                                          description: $$(
+                                            "pages.e2projects.todo.entry.delete.error",
                                             res.payload.error,
+                                          ),
                                         });
                                         return;
                                       }
 
                                       await reload();
                                     }}
-                                    aria-label={"Löschen"}
+                                    aria-label={$$("control.delete")}
                                     icon={<FaTrash />}
                                     color={"var(--ion-color-danger)"}
                                   />

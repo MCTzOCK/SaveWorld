@@ -35,6 +35,7 @@ import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import HighlightedText from "../../components/HighlightedText";
 import { useUserData } from "../../hooks/useUserData";
 import { checkmark, chevronDown } from "ionicons/icons";
+import { $$ } from "../../translations/i18n";
 
 export default function MyE2Projects() {
   useRedirectForAnon();
@@ -61,8 +62,8 @@ export default function MyE2Projects() {
       setProjects(res.payload.projects);
     } else {
       await PopupManager.alertAsync({
-        title: "Fehler",
-        description: "Es ist ein Fehler aufgetreten: " + res.payload.error,
+        title: $$("control.error"),
+        description: $$("pages.e2projects.my.loading.error", res.payload.error),
       });
     }
   };
@@ -71,7 +72,7 @@ export default function MyE2Projects() {
 
   return (
     <>
-      <Page title={"Meine Projekte"}>
+      <Page title={$$("pages.e2projects.my")}>
         <div
           style={{
             display: "flex",
@@ -81,7 +82,7 @@ export default function MyE2Projects() {
           }}
         >
           <IonSearchbar
-            placeholder={"Suche"}
+            placeholder={$$("control.search")}
             onIonInput={(e) => {
               setQuery(e.detail.value || "");
             }}
@@ -96,10 +97,10 @@ export default function MyE2Projects() {
             color={"success"}
           >
             {filter === "all"
-              ? "Alle"
+              ? $$("pages.e2projects.filter.all")
               : filter === "owner"
-              ? "Meine Projekte"
-              : "Nur anstehende"}
+              ? $$("pages.e2projects.my")
+              : $$("pages.e2projects.filter.upcoming")}
             <IonIcon icon={chevronDown} slot={"end"} />
           </IonButton>
           <IonPopover trigger={"open-type-popover"} dismissOnSelect>
@@ -116,7 +117,7 @@ export default function MyE2Projects() {
                   {filter === "all" && (
                     <IonIcon icon={checkmark} color={"success"} slot={"end"} />
                   )}
-                  Alle
+                  {$$("pages.e2projects.filter.all")}
                 </IonItem>
                 <IonItem
                   button={true}
@@ -129,7 +130,7 @@ export default function MyE2Projects() {
                   {filter === "owner" && (
                     <IonIcon icon={checkmark} color={"success"} slot={"end"} />
                   )}
-                  Meine
+                  {$$("pages.e2projects.my")}
                 </IonItem>
                 <IonItem
                   button={true}
@@ -142,7 +143,7 @@ export default function MyE2Projects() {
                   {filter === "only-upcoming" && (
                     <IonIcon icon={checkmark} color={"success"} slot={"end"} />
                   )}
-                  Nur anstehende
+                  {$$("pages.e2projects.filter.upcoming")}
                 </IonItem>
               </IonList>
             </IonContent>
@@ -219,17 +220,12 @@ export default function MyE2Projects() {
                             }
                           />
                           {p.geoLocationType === "nominatim"
-                            ? `Auf der Karte auffindbar`
-                            : "Nicht auf der Karte angezeigt"}
+                            ? $$("pages.e2projects.map.findable")
+                            : $$("pages.e2projects.map.unfindable")}
                         </ListItem>
                         {p.geoLocationType !== "nominatim" && (
                           <ListItem>
-                            Dein Projekt kann nicht auf der Karte angezeigt
-                            werden, da die genaue Adresse nicht bekannt ist. Die
-                            Adresse kann in den Projekteinstellungen geändert
-                            werden. <HighlightedText>WICHTIG</HighlightedText>:
-                            Klicke auf eine vorgeschlagene Adresse, um diese zu
-                            übernehmen.
+                            {$$("pages.e2projects.map.unfindable.description")}
                           </ListItem>
                         )}
                       </List>
@@ -265,7 +261,7 @@ export default function MyE2Projects() {
             <>
               <IonCard>
                 <IonCardContent>
-                  Keine Projekte gefunden.
+                  {$$("pages.e2projects.no.projects")}
                   <Button
                     color={"brand.500"}
                     w={"100%"}
@@ -274,7 +270,7 @@ export default function MyE2Projects() {
                       router.push("/e2-projects/new", "none", "replace");
                     }}
                   >
-                    Projekt erstellen
+                    {$$("pages.e2projects.create")}
                   </Button>
                 </IonCardContent>
               </IonCard>

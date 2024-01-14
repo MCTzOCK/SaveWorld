@@ -32,6 +32,7 @@ import { useEffect, useState } from "react";
 import { REST } from "@saveworld/api-js";
 import ProgressBar from "@ramonak/react-progress-bar";
 import PopupManager from "../util/PopupManager";
+import { $$ } from "../translations/i18n";
 
 export default function E2Data() {
   const [templates, setTemplates] = useState<
@@ -81,9 +82,11 @@ export default function E2Data() {
       setTemplates(tplRes.payload.lst);
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description:
-          "Vorlange konnten nicht geladen werden: " + tplRes.payload.error,
+        title: $$("control.error"),
+        description: $$(
+          "components.e2.lifestyle.templates.loading.error",
+          tplRes.payload.error,
+        ),
       });
       return;
     }
@@ -96,9 +99,11 @@ export default function E2Data() {
       setLifestyle(lfRes.payload.lifestyle);
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description:
-          "Lebensstil konnte nicht geladen werden: " + lfRes.payload.error,
+        title: $$("control.error"),
+        description: $$(
+          "components.e2.lifestyle.loading.error",
+          lfRes.payload.error,
+        ),
       });
       return;
     }
@@ -115,10 +120,11 @@ export default function E2Data() {
       setWeeklyDates([wRes.payload.startDate, wRes.payload.endDate]);
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description:
-          "Wöchentliche Ziele konnten nicht geladen werden: " +
+        title: $$("control.error"),
+        description: $$(
+          "components.e2.goals.loading.error",
           wRes.payload.error,
+        ),
       });
       return;
     }
@@ -154,7 +160,7 @@ export default function E2Data() {
         }}
       >
         <IonCardHeader>
-          <IonCardTitle>Wochenübersicht</IonCardTitle>
+          <IonCardTitle>{$$("components.e2.weekly.overview")}</IonCardTitle>
           <IonCardSubtitle>
             {new Date(weeklyDates[0]).toLocaleDateString()}
             &nbsp;-&nbsp;
@@ -186,11 +192,15 @@ export default function E2Data() {
                     />
                     <IonText>
                       <small>
-                        {weekly[k].actual} von {weekly[k].goal} erreicht.&nbsp;
+                        {$$(
+                          "components.e2.goals.reached.how.many",
+                          weekly[k].actual.toString(),
+                          weekly[k].goal.toString(),
+                        )}
                         {weekly[k].actual > weekly[k].goal ? (
                           <>
                             <IonText color={"danger"}>
-                              Ziel nicht erreicht!
+                              {$$("components.e2.goals.not.reached")}
                             </IonText>
                           </>
                         ) : null}
@@ -216,8 +226,8 @@ export default function E2Data() {
           locale={"de-DE"}
           presentation={"date"}
           value={date}
-          doneText={"Fertig"}
-          cancelText={"Abbrechen"}
+          doneText={$$("general.finished")}
+          cancelText={$$("control.cancel")}
           max={new Date().toISOString()}
           showDefaultButtons
           onIonChange={(e) => {
@@ -233,7 +243,8 @@ export default function E2Data() {
             <IonAccordion value="first">
               <IonItem slot="header" color="light">
                 <IonLabel>
-                  Zusammenfassung vom {new Date(date).toLocaleDateString()}
+                  {$$("components.e2.summary.of.day")}{" "}
+                  {new Date(date).toLocaleDateString()}
                 </IonLabel>
               </IonItem>
               <div slot="content">
@@ -252,7 +263,10 @@ export default function E2Data() {
                                 }
                               </b>
                               <br />
-                              <small>{g.perDay}x heute</small>
+                              <small>
+                                {g.perDay}x{" "}
+                                {$$("components.calendar.time.today")}
+                              </small>
                             </IonLabel>
                           </IonItem>
                         </>
@@ -271,10 +285,10 @@ export default function E2Data() {
             }}
           >
             <IonCardHeader>
-              <IonCardTitle>Keine Daten</IonCardTitle>
+              <IonCardTitle>{$$("components.e2.no.data")}</IonCardTitle>
             </IonCardHeader>
             <IonCardContent>
-              Für diesen Tag hast du keine Daten eingetragen!
+              {$$("components.e2.no.data.description")}
               {
                 // check if date is today
                 new Date(date).toDateString() === new Date().toDateString() ? (
@@ -289,14 +303,13 @@ export default function E2Data() {
                         modal.current?.present();
                       }}
                     >
-                      Daten eintragen
+                      {$$("components.e2.add.data")}
                     </IonButton>
                   </>
                 ) : (
                   <>
                     <br />
-                    Da das Datum in der Vergangenheit liegt, kannst du keine
-                    Daten mehr eintragen.
+                    {$$("components.e2.cant.add.data")}
                   </>
                 )
               }

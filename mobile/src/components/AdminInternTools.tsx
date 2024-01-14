@@ -16,6 +16,7 @@ import { MdHttps } from "react-icons/md";
 import { HiStatusOnline } from "react-icons/hi";
 import { BiNotification } from "react-icons/bi";
 import { SiPosthog } from "react-icons/si";
+import { $$ } from "../translations/i18n";
 
 export default function AdminInternTools(props: { query: string }) {
   const tools: {
@@ -78,7 +79,7 @@ export default function AdminInternTools(props: { query: string }) {
   return (
     <>
       <Heading size={"lg"} mb={4} color={"red.500"}>
-        Interne Werkzeuge
+        {$$("components.admin.intern.tools")}
       </Heading>
       <Grid
         templateColumns={[

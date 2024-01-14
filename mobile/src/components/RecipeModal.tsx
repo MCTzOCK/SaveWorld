@@ -37,6 +37,7 @@ import {
   useSteps,
 } from "@chakra-ui/react";
 import { FaBackward, FaForward } from "react-icons/fa";
+import { $$ } from "../translations/i18n";
 
 export default function RecipeModal(props: {
   open: boolean;
@@ -74,10 +75,10 @@ export default function RecipeModal(props: {
             }}
           >
             <IonItem slot="header" color="light">
-              <IonLabel>Zutaten</IonLabel>
+              <IonLabel>{$$("pages.recipes.ingredients")}</IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content">
-              Für das Rezept werden folgende Zutaten benötigt:
+              {$$("pages.recipes.ingredients.used")}
               <UnorderedList>
                 {props.recipe.ingredients.map((i) => {
                   return <ListItem>{i}</ListItem>;
@@ -127,7 +128,7 @@ export default function RecipeModal(props: {
               justifyContent={"center"}
             >
               <IconButton
-                aria-label={"Back"}
+                aria-label={$$("control.back")}
                 color={"red.500"}
                 icon={<FaBackward />}
                 variant={"ghost"}
@@ -137,7 +138,7 @@ export default function RecipeModal(props: {
                 }}
               />
               <IconButton
-                aria-label={"Back"}
+                aria-label={$$("control.next")}
                 color={"brand.500"}
                 icon={<FaForward />}
                 variant={"ghost"}

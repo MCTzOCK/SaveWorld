@@ -59,6 +59,7 @@ import OneSignal from "onesignal-cordova-plugin";
 import MobileBox from "../../components/MobileBox";
 import ManageAccountInterests from "../../components/ManageAccountInterests";
 import SaveWorldModal from "../../components/SaveWorldModal";
+import { $$ } from "../../translations/i18n";
 
 export default function ManageAccount() {
   const { loggedIn, loaded, userInfo } = useUserData();
@@ -84,7 +85,7 @@ export default function ManageAccount() {
 
   return (
     <>
-      <Page title={"Konto"}>
+      <Page title={$$("general.account")}>
         {!loaded && (
           <>
             <div
@@ -152,7 +153,7 @@ export default function ManageAccount() {
                       backgroundColor: "transparent",
                     }}
                   >
-                    <IonText>Generelles</IonText>
+                    <IonText>{$$("page.account.general")}</IonText>
                   </IonList>
                   <IonList
                     inset
@@ -192,24 +193,28 @@ export default function ManageAccount() {
 
                             if (res.status === 200) {
                               PopupManager.alert({
-                                title: "Erfolg",
-                                description: "Der Upload war erfolgreich!",
+                                title: $$("control.success"),
+                                description: $$("control.upload.success"),
                                 callback: () => {
                                   router.push(router.routeInfo.pathname);
                                 },
                               });
                             } else {
                               PopupManager.alert({
-                                title: "Fehler",
-                                description:
-                                  "Fehler beim Speichern: " + res.payload.error,
+                                title: $$("control.error"),
+                                description: $$(
+                                  "control.upload.error",
+                                  res.payload.error,
+                                ),
                               });
                             }
                           } else {
                             PopupManager.alert({
-                              title: "Fehler",
-                              description:
-                                "Fehler beim Upload: " + mediaRes.statusText,
+                              title: $$("control.error"),
+                              description: $$(
+                                "control.upload.error",
+                                mediaRes.status.toString(),
+                              ),
                             });
                           }
 
@@ -229,7 +234,7 @@ export default function ManageAccount() {
                         fileInput.click();
                       }}
                     >
-                      Profilbild Bearbeiten
+                      {$$("page.account.update.pfp")}
                     </IonItem>
                     <IonItem
                       detail
@@ -238,9 +243,8 @@ export default function ManageAccount() {
                       onClick={async () => {
                         if (
                           !(await PopupManager.confirmAsync({
-                            title: "Profilbild entfernen",
-                            question:
-                              "Bist du sicher, dass du dein Profilbild entfernen möchtest?",
+                            title: $$("page.account.delete.pfp.title"),
+                            question: $$("page.account.delete.pfp.description"),
                           }))
                         )
                           return;
@@ -254,23 +258,26 @@ export default function ManageAccount() {
 
                         if (res.status === 200) {
                           PopupManager.alert({
-                            title: "Erfolg",
-                            description:
-                              "Dein Profilbild wurde erfolgreich entfernt!",
+                            title: $$("control.success"),
+                            description: $$("page.account.delete.pfp.success"),
                             callback: () => {
                               router.push(router.routeInfo.pathname);
                             },
                           });
                         } else {
                           PopupManager.alert({
-                            title: "Fehler",
-                            description:
-                              "Dein Profilbild konnte nicht entfernt werden!",
+                            title: $$("control.error"),
+                            description: $$(
+                              "page.account.delete.pfp.error",
+                              res.payload.error,
+                            ),
                           });
                         }
                       }}
                     >
-                      <IonText color={"danger"}>Profilbild entfernen</IonText>
+                      <IonText color={"danger"}>
+                        {$$("page.account.delete.pfp.title")}
+                      </IonText>
                     </IonItem>
                     <IonItem
                       color={"light"}
@@ -279,7 +286,7 @@ export default function ManageAccount() {
                       routerLink={"/welcome"}
                       routerDirection={"none"}
                     >
-                      <IonText>Einleitung erneut öffnen</IonText>
+                      <IonText>{$$("page.account.intro.open.again")}</IonText>
                     </IonItem>
                   </IonList>
                 </Box>
@@ -290,13 +297,13 @@ export default function ManageAccount() {
                       backgroundColor: "transparent",
                     }}
                   >
-                    <IonText>Konto-Informationen</IonText>
+                    <IonText>{$$("page.account.info")}</IonText>
                   </IonList>
                   <IonList inset>
                     <IonItem color={"light"}>
                       <IonInput
                         labelPlacement={"fixed"}
-                        label={"Benutzername"}
+                        label={$$("user.username")}
                         value={userInfo.username}
                         disabled={true}
                       />
@@ -304,7 +311,7 @@ export default function ManageAccount() {
                     <IonItem color={"light"}>
                       <IonInput
                         labelPlacement={"fixed"}
-                        label={"Vorname"}
+                        label={$$("user.firstname")}
                         value={userInfo.firstName}
                         name={"firstName"}
                         id={"firstName_upd"}
@@ -313,7 +320,7 @@ export default function ManageAccount() {
                     <IonItem color={"light"}>
                       <IonInput
                         labelPlacement={"fixed"}
-                        label={"Nachname"}
+                        label={$$("user.lastname")}
                         value={userInfo.lastName}
                         name={"lastName"}
                         id={"lastName_upd"}
@@ -344,23 +351,24 @@ export default function ManageAccount() {
 
                         if (res.status === 200) {
                           PopupManager.alert({
-                            title: "Erfolg",
-                            description:
-                              "Die Daten wurden erfolgreich gespeichert!",
+                            title: $$("control.success"),
+                            description: $$("page.account.info.update.success"),
                             callback: () => {
                               router.push(router.routeInfo.pathname);
                             },
                           });
                         } else {
                           PopupManager.alert({
-                            title: "Fehler",
-                            description:
-                              "Fehler beim Speichern: " + res.payload.error,
+                            title: $$("control.error"),
+                            description: $$(
+                              "page.account.info.update.error",
+                              res.payload.error,
+                            ),
                           });
                         }
                       }}
                     >
-                      <IonText color={"primary"}>Speichern</IonText>
+                      <IonText color={"primary"}>{$$("control.save")}</IonText>
                     </IonItem>
                     <IonItem
                       color={"light"}
@@ -370,7 +378,7 @@ export default function ManageAccount() {
                         onOpen();
                       }}
                     >
-                      <IonText>Interessen</IonText>
+                      <IonText>{$$("menu.interests")}</IonText>
                     </IonItem>
                   </IonList>
                 </Box>
@@ -381,13 +389,13 @@ export default function ManageAccount() {
                       backgroundColor: "transparent",
                     }}
                   >
-                    <IonText>Passwort ändern</IonText>
+                    <IonText>{$$("page.account.update.password")}</IonText>
                   </IonList>
                   <IonList inset>
                     <IonItem color={"light"}>
                       <IonInput
                         labelPlacement={"fixed"}
-                        label={"Neues Passwort"}
+                        label={$$("page.account.update.password.new")}
                         type={"password"}
                         id={"acc_change_pass"}
                       />
@@ -395,7 +403,7 @@ export default function ManageAccount() {
                     <IonItem color={"light"}>
                       <IonInput
                         labelPlacement={"fixed"}
-                        label={"Bestätigen"}
+                        label={$$("page.account.update.password.new.confirm")}
                         type={"password"}
                         id={"acc_change_pass_conf"}
                       />
@@ -417,8 +425,8 @@ export default function ManageAccount() {
                           passConf === ""
                         ) {
                           PopupManager.alert({
-                            title: "Fehler",
-                            description: "Passwörter stimmen nicht überein!",
+                            title: $$("control.error"),
+                            description: $$("form.passwords.error.not.match"),
                           });
                           return;
                         }
@@ -432,18 +440,21 @@ export default function ManageAccount() {
 
                         if (res.status === 200) {
                           PopupManager.alert({
-                            title: "Erfolg",
-                            description:
-                              "Die Daten wurden erfolgreich gespeichert!",
+                            title: $$("control.success"),
+                            description: $$(
+                              "page.account.update.password.success",
+                            ),
                             callback: () => {
                               router.push(router.routeInfo.pathname);
                             },
                           });
                         } else {
                           PopupManager.alert({
-                            title: "Fehler",
-                            description:
-                              "Fehler beim Speichern: " + res.payload.error,
+                            title: $$("control.error"),
+                            description: $$(
+                              "page.account.update.password.error",
+                              res.payload.error,
+                            ),
                             callback: () => {
                               router.push(router.routeInfo.pathname);
                             },
@@ -451,7 +462,7 @@ export default function ManageAccount() {
                         }
                       }}
                     >
-                      <IonText color={"primary"}>Speichern</IonText>
+                      <IonText color={"primary"}>{$$("control.save")}</IonText>
                     </IonItem>
                   </IonList>
                 </Box>
@@ -462,7 +473,7 @@ export default function ManageAccount() {
                       backgroundColor: "transparent",
                     }}
                   >
-                    <IonText>Zwei Faktor Authentifizierung</IonText>
+                    <IonText>{$$("page.account.2fa")}</IonText>
                   </IonList>
                   <IonList inset>
                     <IonItem
@@ -479,25 +490,28 @@ export default function ManageAccount() {
 
                           if (res.status === 200) {
                             PopupManager.alert({
-                              title: "Erfolg",
-                              description:
-                                "Erfolgreich aktiviert! Trage folgenden Code in deiner App ein: " +
+                              title: $$("control.success"),
+                              description: $$(
+                                "page.account.2fa.activated",
                                 res.payload.totpSecret,
+                              ),
                               callback: () => {
                                 router.push(router.routeInfo.pathname);
                               },
                             });
                           } else {
                             PopupManager.alert({
-                              title: "Fehler",
-                              description:
-                                "Fehler beim Aktivieren: " + res.payload.error,
+                              title: $$("control.error"),
+                              description: $$(
+                                "page.account.2fa.error",
+                                res.payload.error,
+                              ),
                             });
                           }
                         } else {
                           const code = await PopupManager.promptAsync({
-                            title: "2FA Code",
-                            helperText: "Bitte gebe den 2FA Code ein",
+                            title: $$("page.login.2fa.popup.title"),
+                            helperText: $$("page.login.2fa.popup.description"),
                             inputType: "INPUT",
                           });
 
@@ -513,19 +527,21 @@ export default function ManageAccount() {
 
                           if (res.status === 200) {
                             PopupManager.alert({
-                              title: "Erfolgreich deaktiviert",
-                              description:
-                                "Zwei Faktor Authentifizierung deaktiviert",
+                              title: $$("page.account.2fa.deactivated"),
+                              description: $$(
+                                "page.account.2fa.deactivated.description",
+                              ),
                               callback: () => {
                                 router.push(router.routeInfo.pathname);
                               },
                             });
                           } else {
                             PopupManager.alert({
-                              title: "Fehler",
-                              description:
-                                "Fehler beim Deaktivieren: " +
+                              title: $$("control.error"),
+                              description: $$(
+                                "page.account.2fa.deactivated.error",
                                 res.payload.error,
+                              ),
                             });
                           }
                         }
@@ -535,7 +551,9 @@ export default function ManageAccount() {
                       <IonLabel
                         color={userInfo.totpActive ? "danger" : "success"}
                       >
-                        {userInfo.totpActive ? "Deaktivieren" : "Aktivieren"}
+                        {userInfo.totpActive
+                          ? $$("control.deactivate")
+                          : $$("control.activate")}
                       </IonLabel>
                     </IonItem>
                   </IonList>
@@ -547,7 +565,7 @@ export default function ManageAccount() {
                       backgroundColor: "transparent",
                     }}
                   >
-                    <IonText>Destruktive Aktionen</IonText>
+                    <IonText>{$$("page.account.dangerzone")}</IonText>
                   </IonList>
                   <IonList inset>
                     <IonItem
@@ -557,9 +575,8 @@ export default function ManageAccount() {
                       onClick={async () => {
                         if (
                           !(await PopupManager.confirmAsync({
-                            title: "Abmelden",
-                            question:
-                              "Bist du sicher, dass du dich abmelden möchtest?",
+                            title: $$("menu.logout"),
+                            question: $$("menu.logout.description"),
                           }))
                         ) {
                           return;
@@ -574,7 +591,7 @@ export default function ManageAccount() {
                         router.push("/register");
                       }}
                     >
-                      <IonText color={"danger"}>Abmelden</IonText>
+                      <IonText color={"danger"}>{$$("menu.logout")}</IonText>
                     </IonItem>
                     <IonItem
                       color={"light"}
@@ -583,9 +600,10 @@ export default function ManageAccount() {
                       onClick={async () => {
                         if (
                           !(await PopupManager.confirmAsync({
-                            title: "Konto löschen",
-                            question:
-                              "Bist du sicher, dass du dein Konto löschen möchtest?",
+                            title: $$("page.account.delete.account"),
+                            question: $$(
+                              "page.account.delete.account.description",
+                            ),
                           }))
                         )
                           return;
@@ -599,15 +617,18 @@ export default function ManageAccount() {
                           router.push("/register");
                         } else {
                           PopupManager.alert({
-                            title: "Fehler",
-                            description:
-                              "Fehler beim Löschen, bitte kontaktiere den Support: " +
+                            title: $$("control.error"),
+                            description: $$(
+                              "page.account.delete.account.error",
                               res.payload.error,
+                            ),
                           });
                         }
                       }}
                     >
-                      <IonText color={"danger"}>Konto löschen</IonText>
+                      <IonText color={"danger"}>
+                        {$$("page.account.delete.account")}
+                      </IonText>
                     </IonItem>
 
                     {userInfo.role === "admin" && (
@@ -618,7 +639,9 @@ export default function ManageAccount() {
                           ios={warning}
                           md={warningSharp}
                         />
-                        <IonText color={"danger"}>Admin-Panel</IonText>
+                        <IonText color={"danger"}>
+                          {$$("page.admin.title.outside")}
+                        </IonText>
                       </IonItem>
                     )}
                   </IonList>
@@ -630,7 +653,7 @@ export default function ManageAccount() {
                       backgroundColor: "transparent",
                     }}
                   >
-                    <IonText>Informationen</IonText>
+                    <IonText>{$$("general.information")}</IonText>
                   </IonList>
                   <IonList inset>
                     <IonItem
@@ -648,7 +671,7 @@ export default function ManageAccount() {
                         ios={ionDocument}
                         md={ionDocumentSharp}
                       />
-                      <IonText>Datenschutz</IonText>
+                      <IonText>{$$("general.legal.privacy")}</IonText>
                     </IonItem>
                     <IonItem
                       color={"light"}
@@ -665,7 +688,7 @@ export default function ManageAccount() {
                         ios={ionDocument}
                         md={ionDocumentSharp}
                       />
-                      <IonText>Impressum</IonText>
+                      <IonText>{$$("general.legal.notice")}</IonText>
                     </IonItem>
                     <IonItem
                       color={"light"}
@@ -682,7 +705,7 @@ export default function ManageAccount() {
                         ios={analytics}
                         md={analyticsSharp}
                       />
-                      <IonText>Server Status</IonText>
+                      <IonText>{$$("general.serverstatus")}</IonText>
                     </IonItem>
                     <IonItem
                       color={"light"}
@@ -697,7 +720,7 @@ export default function ManageAccount() {
                         ios={ionDocument}
                         md={ionDocumentSharp}
                       />
-                      <IonText>Open-Source Lizensen</IonText>
+                      <IonText>{$$("general.open.source.licenses")}</IonText>
                     </IonItem>
                   </IonList>
                 </Box>
@@ -705,7 +728,11 @@ export default function ManageAccount() {
             </MobileBox>
           </>
         )}
-        <SaveWorldModal title={"Interessen"} isOpen={isOpen} onClose={onClose}>
+        <SaveWorldModal
+          title={$$("menu.interests")}
+          isOpen={isOpen}
+          onClose={onClose}
+        >
           <ManageAccountInterests />
         </SaveWorldModal>
       </Page>

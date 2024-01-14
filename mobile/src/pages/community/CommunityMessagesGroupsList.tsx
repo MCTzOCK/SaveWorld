@@ -27,6 +27,7 @@ import {
 import { FaPlusCircle } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa6";
 import Page from "../../components/Page";
+import { $$ } from "../../translations/i18n";
 
 export default function CommunityMessagesGroupsList(props: { socket: Socket }) {
   const { userInfo } = useUserData();
@@ -66,7 +67,7 @@ export default function CommunityMessagesGroupsList(props: { socket: Socket }) {
             // TODO: Fix multiple unnecessary requests
           } else {
             PopupManager.alert({
-              title: "Fehler",
+              title: $$("control.error"),
               description: data.error,
             });
           }
@@ -78,7 +79,7 @@ export default function CommunityMessagesGroupsList(props: { socket: Socket }) {
       props.socket.on("sw:chats.create", (data: any) => {
         if (data.error) {
           PopupManager.alert({
-            title: "Fehler",
+            title: $$("control.error"),
             description: data.error,
           });
         } else {
@@ -89,7 +90,7 @@ export default function CommunityMessagesGroupsList(props: { socket: Socket }) {
       props.socket.on("sw:chats.delete", (data: any) => {
         if (data.error) {
           PopupManager.alert({
-            title: "Fehler",
+            title: $$("control.error"),
             description: data.error,
           });
         } else {
@@ -112,15 +113,19 @@ export default function CommunityMessagesGroupsList(props: { socket: Socket }) {
 
   return (
     <>
-      <Page title={"Nachrichten"}>
+      <Page title={$$("pages.community.messages")}>
         <IonSegment
           value={"groups"}
           onIonChange={(e) => {
             router.push("/community/messages", "none", "replace");
           }}
         >
-          <IonSegmentButton value="chats">Chats</IonSegmentButton>
-          <IonSegmentButton value="groups">Gruppen</IonSegmentButton>
+          <IonSegmentButton value="chats">
+            {$$("pages.community.messages.chats")}
+          </IonSegmentButton>
+          <IonSegmentButton value="groups">
+            {$$("pages.community.messages.groups")}
+          </IonSegmentButton>
         </IonSegment>
         <Grid
           templateColumns={[
@@ -142,8 +147,10 @@ export default function CommunityMessagesGroupsList(props: { socket: Socket }) {
             boxShadow={"xl"}
             onClick={async () => {
               const username = await PopupManager.promptAsync({
-                title: "Neue Gruppe",
-                helperText: "Gib den Benutzernamen des ersten Mitglieds ein",
+                title: $$("pages.community.messages.groups.create"),
+                helperText: $$(
+                  "pages.community.messages.groups.create.description",
+                ),
                 inputType: "INPUT",
               });
 
@@ -151,9 +158,10 @@ export default function CommunityMessagesGroupsList(props: { socket: Socket }) {
 
               if (username === userInfo.username) {
                 PopupManager.alert({
-                  title: "Fehler",
-                  description:
-                    "Du kannst keine Gruppe mit dir selbst erstellen",
+                  title: $$("control.error"),
+                  description: $$(
+                    "pages.community.messages.groups.create.error.self",
+                  ),
                 });
                 return;
               }
@@ -162,17 +170,17 @@ export default function CommunityMessagesGroupsList(props: { socket: Socket }) {
             }}
           >
             <IconButton
-              aria-label={"Neue Gruppe"}
+              aria-label={$$("pages.community.messages.groups.create")}
               icon={<FaPlusCircle fontSize={35} />}
               variant={"ghost"}
               size={"lg"}
             />
             <VStack alignItems={"center"} justifyContent={"center"}>
               <Heading>
-                Neue Gruppe
+                {$$("pages.community.messages.groups.create")}
                 <br />
                 <Text fontWeight={200} fontSize={20}>
-                  Erstelle eine neue Gruppe
+                  {$$("pages.community.messages.groups.create.subline")}
                 </Text>
               </Heading>
             </VStack>
@@ -199,12 +207,12 @@ export default function CommunityMessagesGroupsList(props: { socket: Socket }) {
                   >
                     <VStack alignItems={"center"} justifyContent={"center"}>
                       <Heading>
-                        Gruppe
+                        {$$("pages.community.messages.group")}
                         <br />
                         <Text fontWeight={200} fontSize={20}>
                           {chat.lastMessagePreview
                             ? chat.lastMessagePreview.content
-                            : "Neue Gruppe"}
+                            : $$("pages.community.messages.groups.create")}
                         </Text>
                       </Heading>
                     </VStack>
@@ -222,8 +230,10 @@ export default function CommunityMessagesGroupsList(props: { socket: Socket }) {
                     onClick={async () => {
                       if (
                         !(await PopupManager.confirmAsync({
-                          title: "Chat löschen",
-                          question: "Möchtest du diesen Chat wirklich löschen?",
+                          title: $$("pages.community.messages.chats.delete"),
+                          question: $$(
+                            "pages.community.messages.chats.delete.confirm",
+                          ),
                         }))
                       )
                         return;

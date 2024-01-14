@@ -39,6 +39,7 @@ import { informationCircle, informationCircleSharp } from "ionicons/icons";
 import { useEffect, useState } from "react";
 import { ENDPOINT } from "../env";
 import PopupManager from "../util/PopupManager";
+import { $$ } from "../translations/i18n";
 
 export default function CommunityEditProfileModal(props: {
   modal: React.RefObject<HTMLIonModalElement>;
@@ -86,10 +87,10 @@ export default function CommunityEditProfileModal(props: {
                   props.modal.current?.dismiss();
                 }}
               >
-                Abbrechen
+                {$$("control.cancel")}
               </IonButton>
             </IonButtons>
-            <IonTitle>{"Profil Bearbeiten"}</IonTitle>
+            <IonTitle>{$$("pages.community.profile.actions.edit")}</IonTitle>
             <IonButtons slot={"end"}>
               <IonButton
                 color={"success"}
@@ -111,14 +112,16 @@ export default function CommunityEditProfileModal(props: {
                     props.modal.current?.dismiss();
                   } else {
                     PopupManager.alert({
-                      title: "Fehler",
-                      description:
-                        "Fehler beim Bearbeiten: " + res.payload.error,
+                      title: $$("control.error"),
+                      description: $$(
+                        "components.forum.edit.profile.error",
+                        "res.payload.error",
+                      ),
                     });
                   }
                 }}
               >
-                <b>Speichern</b>
+                <b>{$$("control.save")}</b>
               </IonButton>
             </IonButtons>
           </IonToolbar>
@@ -152,9 +155,11 @@ export default function CommunityEditProfileModal(props: {
                         setBanner((await mediaRes.json()).data.url);
                       } else {
                         PopupManager.alert({
-                          title: "Fehler",
-                          description:
-                            "Fehler beim Upload: " + mediaRes.statusText,
+                          title: $$("control.error"),
+                          description: $$(
+                            "control.upload.error",
+                            mediaRes.statusText,
+                          ),
                         });
                       }
 
@@ -174,13 +179,13 @@ export default function CommunityEditProfileModal(props: {
                     fileInput.click();
                   }}
                 >
-                  Banner ändern
+                  {$$("components.community.edit.banner")}
                 </IonButton>
                 <IonList inset>
                   <IonItem color={"light"}>
                     <IonInput
                       labelPlacement={"fixed"}
-                      label={"Anzeigename"}
+                      label={$$("components.community.edit.display.name")}
                       onIonInput={(ev) => {
                         setDP(ev.detail.value || "");
                       }}
@@ -190,7 +195,7 @@ export default function CommunityEditProfileModal(props: {
                   <IonItem color={"light"}>
                     <IonInput
                       labelPlacement={"fixed"}
-                      label={"Ort"}
+                      label={$$("pages.community.profile.no.location")}
                       onIonInput={(ev) => {
                         setLoc(ev.detail.value || "");
                       }}
@@ -200,7 +205,7 @@ export default function CommunityEditProfileModal(props: {
                   <IonItem color={"light"}>
                     <IonTextarea
                       labelPlacement={"fixed"}
-                      label={"Biographie"}
+                      label={$$("components.community.edit.bio")}
                       autoGrow={true}
                       onIonInput={(ev) => {
                         setBio(ev.detail.value || "");
@@ -216,7 +221,9 @@ export default function CommunityEditProfileModal(props: {
                         setShowLevel(ev.detail.checked);
                       }}
                     >
-                      <IonLabel>Öko-Level</IonLabel>
+                      <IonLabel>
+                        {$$("components.community.edit.eco.level")}
+                      </IonLabel>
                     </IonToggle>
                   </IonItem>
                 </IonList>

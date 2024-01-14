@@ -31,6 +31,7 @@ import {
 } from "@chakra-ui/react";
 import MobileBox from "./MobileBox";
 import { IonSearchbar, useIonRouter } from "@ionic/react";
+import { $$ } from "../translations/i18n";
 
 export default function DirectusPosts(props: {
   pageTitle?: string;
@@ -75,9 +76,11 @@ export default function DirectusPosts(props: {
 
   return (
     <>
-      <Page title={props.pageTitle ? props.pageTitle : "Artikel"}>
+      <Page
+        title={props.pageTitle ? props.pageTitle : $$("components.articles")}
+      >
         <IonSearchbar
-          placeholder={"Suchen..."}
+          placeholder={$$("control.search")}
           onIonInput={(e) => {
             setQuery(e.detail.value || "");
           }}
@@ -109,7 +112,8 @@ export default function DirectusPosts(props: {
                       mb={2}
                     />
                     <p>
-                      <b>Quelle</b>: <i>{post.feature_image_author}</i>
+                      <b>{$$("components.articles.source")}</b>:{" "}
+                      <i>{post.feature_image_author}</i>
                     </p>
                     <Heading size={"lg"}>{post.title}</Heading>
                   </CardHeader>
@@ -126,7 +130,7 @@ export default function DirectusPosts(props: {
                           );
                         }}
                       >
-                        Weiterlesen
+                        {$$("components.articles.read.more")}
                       </Button>
                     </ButtonGroup>
                   </CardBody>

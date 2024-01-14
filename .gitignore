@@ -8,3 +8,5 @@ generator/node_modules/
 essay/.env
 essay/node_modules/
 essay/src/target.tex
+
+mobile/src/translations/temp/

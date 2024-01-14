@@ -43,6 +43,9 @@ import Page from "../components/Page";
 import { useRedirectForAnon } from "../hooks/useRedirectForAnon";
 import PopupManager from "../util/PopupManager";
 
+/**
+ * @deprecated
+ */
 export default function Onboarding() {
   const { userInfo } = useUserData();
   useRedirectForAnon();

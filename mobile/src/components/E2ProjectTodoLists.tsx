@@ -30,6 +30,7 @@ import {
 import { FaPlus, FaTrash } from "react-icons/fa6";
 import { FaEye } from "react-icons/fa";
 import { useIonRouter } from "@ionic/react";
+import { $$ } from "../translations/i18n";
 
 export default function E2ProjectTodoLists(props: {
   projectId: string;
@@ -51,8 +52,8 @@ export default function E2ProjectTodoLists(props: {
       setLists(res.payload.lists);
     } else {
       await PopupManager.alertAsync({
-        title: "Fehler",
-        description: "Die ToDo-Listen konnten nicht geladen werden!",
+        title: $$("control.error"),
+        description: $$("components.e2projects.todo.loading.error"),
       });
     }
   };
@@ -69,8 +70,8 @@ export default function E2ProjectTodoLists(props: {
           isDisabled={!props.canAdd}
           onClick={async () => {
             const title = await PopupManager.promptAsync({
-              title: "Neue Liste",
-              helperText: "Bitte gib einen Namen für die neue Liste ein!",
+              title: $$("components.e2projects.todo.new"),
+              helperText: $$("components.e2projects.todo.new.description"),
               inputType: "INPUT",
             });
 
@@ -84,10 +85,11 @@ export default function E2ProjectTodoLists(props: {
 
             if (res.status !== 200) {
               await PopupManager.alertAsync({
-                title: "Fehler",
-                description:
-                  "Die Liste konnte nicht erstellt werden: " +
+                title: $$("components.e2projects.todo.loading.error"),
+                description: $$(
+                  "components.e2projects.todo.new.error",
                   res.payload.error,
+                ),
               });
               return;
             }
@@ -95,12 +97,12 @@ export default function E2ProjectTodoLists(props: {
             await reloadLists();
           }}
         >
-          Neue Liste
+          {$$("components.e2projects.todo.new")}
         </Button>
       </ButtonGroup>
       {lists.length === 0 && (
         <Text fontSize={"lg"} textAlign={"center"}>
-          Es wurden noch keine ToDo-Listen hinzugefügt!
+          {$$("components.e2projects.todo.no.lists")}
         </Text>
       )}
 
@@ -114,7 +116,7 @@ export default function E2ProjectTodoLists(props: {
                   <Td>
                     <ButtonGroup isAttached>
                       <IconButton
-                        aria-label={"Öffnen"}
+                        aria-label={$$("general.open")}
                         icon={<FaEye />}
                         color={"brand.500"}
                         onClick={() => {
@@ -130,15 +132,16 @@ export default function E2ProjectTodoLists(props: {
                       />
                       {props.canAdd && (
                         <IconButton
-                          aria-label={"Löschen"}
+                          aria-label={$$("general.remove")}
                           icon={<FaTrash />}
                           color={"var(--ion-color-danger)"}
                           onClick={async () => {
                             if (
                               !(await PopupManager.confirmAsync({
-                                title: "Liste löschen?",
-                                question:
-                                  "Willst du die Liste wirklich löschen?",
+                                title: $$("components.e2projects.todo.delete"),
+                                question: $$(
+                                  "components.e2projects.todo.delete.confirm",
+                                ),
                               }))
                             )
                               return;
@@ -151,10 +154,11 @@ export default function E2ProjectTodoLists(props: {
 
                             if (res.status !== 200) {
                               await PopupManager.alertAsync({
-                                title: "Fehler",
-                                description:
-                                  "Die Liste konnte nicht gelöscht werden: " +
+                                title: $$("control.error"),
+                                description: $$(
+                                  "components.e2projects.todo.delete.error",
                                   res.payload.error,
+                                ),
                               });
                               return;
                             }

@@ -23,6 +23,7 @@ import {
 import { chatbox, heart, pricetag } from "ionicons/icons";
 import { ENDPOINT } from "../env";
 import { Avatar, Grid } from "@chakra-ui/react";
+import { $$ } from "../translations/i18n";
 
 export default function CommunityProfileList(props: {
   profiles: {
@@ -113,7 +114,7 @@ export default function CommunityProfileList(props: {
             onClick={() => props.setPage(props.page - 1)}
             expand={"block"}
           >
-            Zurück
+            {$$("control.back")}
           </IonButton>
         ) : null}
         {props.page < props.pages - 1 ? (
@@ -122,7 +123,7 @@ export default function CommunityProfileList(props: {
             onClick={() => props.setPage(props.page + 1)}
             expand={"block"}
           >
-            Weiter
+            {$$("control.next")}
           </IonButton>
         ) : null}
       </div>

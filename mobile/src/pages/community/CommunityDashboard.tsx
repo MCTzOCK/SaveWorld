@@ -32,6 +32,7 @@ import {
 import CommunityFollowingDashboard from "../../components/CommunityFollowingDashboard";
 import CommunitySuggestedDashboard from "../../components/CommunitySuggestedDashboard";
 import CommunitySearchDashboard from "../../components/CommunitySearchDashboard";
+import { $$ } from "../../translations/i18n";
 
 export default function CommunityDashboard() {
   useRedirectForAnon();
@@ -42,16 +43,22 @@ export default function CommunityDashboard() {
 
   return (
     <>
-      <Page title={"Community"}>
+      <Page title={$$("menu.community")}>
         <IonSegment
           value={segment}
           onIonChange={(ev) => {
             setSegment(ev.detail.value as typeof segment);
           }}
         >
-          <IonSegmentButton value={"explore"}>Entdecken</IonSegmentButton>
-          <IonSegmentButton value={"following"}>Folge Ich</IonSegmentButton>
-          <IonSegmentButton value={"search"}>Suchen</IonSegmentButton>
+          <IonSegmentButton value={"explore"}>
+            {$$("pages.community.dashboard.explore")}
+          </IonSegmentButton>
+          <IonSegmentButton value={"following"}>
+            {$$("pages.community.dashboard.following")}
+          </IonSegmentButton>
+          <IonSegmentButton value={"search"}>
+            {$$("control.search")}
+          </IonSegmentButton>
         </IonSegment>
         {segment === "explore" && (
           <>

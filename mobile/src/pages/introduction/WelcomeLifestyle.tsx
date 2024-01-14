@@ -26,6 +26,7 @@ import { add, addSharp, remove, removeSharp } from "ionicons/icons";
 import PopupManager from "../../util/PopupManager";
 import { Box, Flex } from "@chakra-ui/react";
 import MobileBox from "../../components/MobileBox";
+import { $$ } from "../../translations/i18n";
 
 export default function WelcomeLifestyle() {
   useRedirectForAnon();
@@ -60,7 +61,7 @@ export default function WelcomeLifestyle() {
 
   return (
     <>
-      <Page title={"Lifestyle"}>
+      <Page title={$$("menu.lifestyle")}>
         <MobileBox>
           <IonList
             inset
@@ -68,13 +69,7 @@ export default function WelcomeLifestyle() {
               backgroundColor: "transparent",
             }}
           >
-            <IonText>
-              Bitte trag hier Daten zu deinem Lebensstil ein, damit du dir Ziele
-              setzen kannst, um diesen zu verbessern! In der linken Spalte
-              siehst du die Aktion und in der rechten Spalte kannst du
-              eintragen, wie oft du diese Aktion in der Woche normalerweise
-              durchführst.
-            </IonText>
+            <IonText>{$$("pages.introduction.lifestyle.description")}</IonText>
           </IonList>
 
           <IonList inset>
@@ -128,8 +123,10 @@ export default function WelcomeLifestyle() {
                   {state[t._id] > 1 && (
                     <IonItem color={"light"}>
                       <IonText>
-                        <b>Wöchentliches Ziel:</b> Diese Aktion&nbsp;
-                        {Math.round(state[t._id] / 2)} vermeiden.
+                        <b>{$$("pages.introduction.lifestyle.weekly.goal")}:</b>{" "}
+                        {$$("pages.introduction.lifestyle.this.action")}&nbsp;
+                        {Math.round(state[t._id] / 2)}{" "}
+                        {$$("pages.introduction.lifestyle.avoid")}.
                       </IonText>
                     </IonItem>
                   )}
@@ -169,17 +166,18 @@ export default function WelcomeLifestyle() {
 
               if (res.status !== 200) {
                 PopupManager.alert({
-                  title: "Fehler",
-                  description:
-                    "Fehler beim Speichern des Lifestyles: " +
+                  title: $$("control.error"),
+                  description: $$(
+                    "pages.introduction.lifestyle.save.error",
                     res.payload.error,
+                  ),
                 });
               } else {
                 router.push("/welcome/finish", "forward", "replace");
               }
             }}
           >
-            Speichern
+            {$$("control.save")}
           </IonButton>
         </MobileBox>
       </Page>

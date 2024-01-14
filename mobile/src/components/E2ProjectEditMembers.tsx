@@ -37,6 +37,7 @@ import { FaPen, FaUser } from "react-icons/fa";
 import PopupManager from "../util/PopupManager";
 import { REST } from "@saveworld/api-js";
 import { useUserData } from "../hooks/useUserData";
+import { $$ } from "../translations/i18n";
 
 export default function E2ProjectEditMembers(props: {
   project: E2Project;
@@ -50,40 +51,38 @@ export default function E2ProjectEditMembers(props: {
     <>
       <Box>
         <Text>
-          Dein Projekt hat insgesamt {props.project.users.length} Mitglied
-          {props.project.users.length > 1 ? "er" : ""}. Jedes Mitglied kann eine
-          von drei Rollen haben:
+          {$$(
+            "components.e2projects.edit.members.intro",
+            props.project.users.length.toString(),
+          )}
           <List>
             <ListItem>
               <ListIcon as={FaHammer} color={"red.500"} />
               <chakra.span color={"red.500"} fontWeight={700}>
-                Administrator
+                {$$("components.e2projects.members.roles.admin")}
               </chakra.span>
-              : Kann Projekt-Informationen, Homepage Segmente bearbeiten,
-              Mitglieder verwalten und das Projekt löschen.
+              : {$$("components.e2projects.members.roles.admin.description")}
             </ListItem>
             <ListItem>
               <ListIcon as={FaPen} color={"blue.500"} />
               <chakra.span color={"blue.500"} fontWeight={700}>
-                Editor
+                {$$("components.e2projects.members.roles.editor")}
               </chakra.span>
-              : Kann alles, was ein Administrator kann, außer das Projekt
-              löschen und die Rollen von Mitglieder ändern.
+              : {$$("components.e2projects.members.roles.editor.description")}
             </ListItem>
             <ListItem>
               <ListIcon as={FaUser} color={"gray.500"} />
               <chakra.span color={"gray.500"} fontWeight={700}>
-                Mitglied
+                {$$("components.e2projects.members.roles.member")}
               </chakra.span>
-              : Kann alles einsehen, aber nichts bearbeiten.&nbsp;
-              <chakra.span fontWeight={700}>(Standard-Rolle)</chakra.span>
+              : {$$("components.e2projects.members.roles.member.description")}
             </ListItem>
           </List>
         </Text>
       </Box>
 
       <IonSearchbar
-        placeholder={"Suchen"}
+        placeholder={$$("control.search")}
         value={query}
         onIonInput={(e) => setQuery(e.detail.value!)}
         style={{
@@ -143,23 +142,24 @@ export default function E2ProjectEditMembers(props: {
                         }
                       >
                         {user.permissions === "ADMINISTRATOR"
-                          ? "Administrator"
+                          ? $$("components.e2projects.members.roles.admin")
                           : user.permissions === "EDITOR"
-                          ? "Editor"
-                          : "Mitglied"}
+                          ? $$("components.e2projects.members.roles.editor")
+                          : $$("components.e2projects.members.roles.member")}
                       </Text>
                     </Flex>
                     <ButtonGroup>
                       <IconButton
-                        aria-label={"Entfernen"}
+                        aria-label={$$("general.remove")}
                         icon={<FaTrash />}
                         colorScheme={"red"}
                         onClick={async () => {
                           if (
                             !(await PopupManager.confirmAsync({
-                              title: "Mitglied entfernen",
-                              question:
-                                "Möchtest du das Mitglied wirklich entfernen?",
+                              title: $$("components.e2projects.members.remove"),
+                              question: $$(
+                                "components.e2projects.members.remove.confirm",
+                              ),
                             }))
                           )
                             return;
@@ -172,7 +172,7 @@ export default function E2ProjectEditMembers(props: {
 
                           if (res.status !== 200) {
                             await PopupManager.alertAsync({
-                              title: "Fehler",
+                              title: $$("control.error"),
                               description: res.payload.error,
                             });
                           } else {
@@ -181,7 +181,9 @@ export default function E2ProjectEditMembers(props: {
                         }}
                       />
                       <IconButton
-                        aria-label={"Rolle Ändern"}
+                        aria-label={$$(
+                          "components.e2projects.members.change.role",
+                        )}
                         icon={<FaHammer />}
                         display={
                           props.project.owner === userInfo._id ||
@@ -196,10 +198,17 @@ export default function E2ProjectEditMembers(props: {
                         colorScheme={"brand"}
                         onClick={async () => {
                           let newRoleS = await PopupManager.selectAsync({
-                            title: "Rolle Ändern",
-                            helperText:
-                              "Wähle eine neue Rolle für das Mitglied",
-                            choices: ["Administrator", "Editor", "Mitglied"],
+                            title: $$(
+                              "components.e2projects.members.change.role",
+                            ),
+                            helperText: $$(
+                              "components.e2projects.members.change.role.choose",
+                            ),
+                            choices: [
+                              $$("components.e2projects.members.roles.admin"),
+                              $$("components.e2projects.members.roles.editor"),
+                              $$("components.e2projects.members.roles.member"),
+                            ],
                           });
 
                           if (!newRoleS) return;
@@ -220,7 +229,7 @@ export default function E2ProjectEditMembers(props: {
 
                           if (res.status !== 200) {
                             await PopupManager.alertAsync({
-                              title: "Fehler",
+                              title: $$("control.error"),
                               description: res.payload.error,
                             });
                             return;

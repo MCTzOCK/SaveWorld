@@ -7,6 +7,13 @@
  * Created At: 29.12.2023
  *
  */
+import PopupManager from "./util/PopupManager";
+
+declare global {
+  interface Window {
+    PopupManager: typeof PopupManager;
+  }
+}
 
 interface MCategory {
   name: string;

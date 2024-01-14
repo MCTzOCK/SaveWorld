@@ -45,6 +45,7 @@ import PopupManager from "../../util/PopupManager";
 import { Socket } from "socket.io-client";
 import socketAuth from "../../util/socketAuth";
 import MobileBox from "../../components/MobileBox";
+import { $$ } from "../../translations/i18n";
 export default function CommunityProfile(props: { socket: Socket }) {
   useRedirectForAnon();
 
@@ -81,8 +82,11 @@ export default function CommunityProfile(props: { socket: Socket }) {
       props.socket.on("sw:chats.create", (data: any) => {
         if (data.error) {
           PopupManager.alert({
-            title: "Fehler",
-            description: "Es ist ein Fehler aufgetreten: " + data.error,
+            title: $$("control.error"),
+            description: $$(
+              "pages.community.profile.chat.loading.erorr",
+              data.error,
+            ),
           });
           return;
         }
@@ -106,8 +110,11 @@ export default function CommunityProfile(props: { socket: Socket }) {
         });
       } else {
         PopupManager.alert({
-          title: "Fehler",
-          description: "Es ist ein Fehler aufgetreten: " + res.payload.error,
+          title: $$("control.error"),
+          description: $$(
+            "pages.community.profile.chat.loading.erorr",
+            res.payload.error,
+          ),
           callback: () => {
             router.push("/community", "none", "replace");
           },
@@ -140,7 +147,7 @@ export default function CommunityProfile(props: { socket: Socket }) {
         <MobileBox>
           <div>
             <Image
-              alt={"Banner"}
+              alt={$$("pages.community.profile.banner")}
               src={
                 profile && profile.banner.length > 0
                   ? ENDPOINT + profile.banner
@@ -188,7 +195,8 @@ export default function CommunityProfile(props: { socket: Socket }) {
                         <IonActionSheet
                           trigger={"open-profile-menu"}
                           header={
-                            "Aktionen für " +
+                            $$("pages.community.profile.actions.for") +
+                            " " +
                             (profile?.displayName || "@" + username)
                           }
                           subHeader={"@" + username}
@@ -198,13 +206,13 @@ export default function CommunityProfile(props: { socket: Socket }) {
                           }}
                           buttons={[
                             {
-                              text: "Profil bearbeiten",
+                              text: $$("pages.community.profile.actions.edit"),
                               data: {
                                 action: "edit",
                               },
                             },
                             {
-                              text: "Abbrechen",
+                              text: $$("control.cancel"),
                               role: "cancel",
                               data: {
                                 action: "cancel",
@@ -218,7 +226,8 @@ export default function CommunityProfile(props: { socket: Socket }) {
                         <IonActionSheet
                           trigger={"open-profile-menu"}
                           header={
-                            "Aktionen für " +
+                            $$("pages.community.profile.actions.for") +
+                            " " +
                             (profile?.displayName || "@" + username)
                           }
                           subHeader={"@" + username}
@@ -234,10 +243,11 @@ export default function CommunityProfile(props: { socket: Socket }) {
                                   reloadProfile();
                                 } else {
                                   PopupManager.alert({
-                                    title: "Fehler",
-                                    description:
-                                      "Es ist ein Fehler aufgetreten: " +
+                                    title: $$("control.error"),
+                                    description: $$(
+                                      "pages.community.profile.actions.follow.error",
                                       res.payload.error,
+                                    ),
                                   });
                                 }
                                 break;
@@ -278,26 +288,30 @@ export default function CommunityProfile(props: { socket: Socket }) {
                                   });
                                 } else {
                                   PopupManager.alert({
-                                    title: "Fehler",
-                                    description:
-                                      "Es ist ein Fehler aufgetreten: " +
+                                    title: $$("control.error"),
+                                    description: $$(
+                                      "pages.community.profile.actions.block.error",
                                       resX.payload.error,
+                                    ),
                                   });
                                 }
 
                                 break;
                               default:
                                 PopupManager.alert({
-                                  title: "Fehler",
-                                  description:
-                                    "Diese Aktion wurde noch nicht implementiert",
+                                  title: $$("control.error"),
+                                  description: $$(
+                                    "pages.community.profile.actions.not.implemented",
+                                  ),
                                 });
                                 break;
                             }
                           }}
                           buttons={[
                             {
-                              text: "Nachricht senden",
+                              text: $$(
+                                "pages.community.profile.actions.message",
+                              ),
                               data: {
                                 action: "message",
                               },
@@ -306,8 +320,8 @@ export default function CommunityProfile(props: { socket: Socket }) {
                               text: profile?.followers.includes(
                                 userInfo.username,
                               )
-                                ? "Entfolgen"
-                                : "Folgen",
+                                ? $$("pages.community.profile.unfollow")
+                                : $$("pages.community.profile.follow"),
                               role: profile?.followers.includes(
                                 userInfo.username,
                               )
@@ -321,22 +335,22 @@ export default function CommunityProfile(props: { socket: Socket }) {
                               text: preferences?.blocked_users.includes(
                                 username,
                               )
-                                ? "Entblocken"
-                                : "Blockieren",
+                                ? $$("pages.community.profile.unblock")
+                                : $$("pages.community.profile.block"),
                               role: "destructive",
                               data: {
                                 action: "block",
                               },
                             },
                             {
-                              text: "Melden",
+                              text: $$("pages.community.profile.report"),
                               role: "destructive",
                               data: {
                                 action: "report",
                               },
                             },
                             {
-                              text: "Abbrechen",
+                              text: $$("control.cancel"),
                               role: "cancel",
                               data: {
                                 action: "cancel",
@@ -369,7 +383,8 @@ export default function CommunityProfile(props: { socket: Socket }) {
                   >
                     <IonIcon ios={map} md={mapSharp} />
                     <IonText>
-                      {profile?.location || "Kein Standort angegeben"}
+                      {profile?.location ||
+                        $$("pages.community.profile.no.location")}
                     </IonText>
                   </div>
                   <div
@@ -385,8 +400,8 @@ export default function CommunityProfile(props: { socket: Socket }) {
                     <IonText>
                       {/* TODO */}
                       {!profile?.showLevel
-                        ? "Mein Level ist geheim"
-                        : "Level " + profile?.level}
+                        ? $$("pages.community.profile.no.level")
+                        : $$("general.level") + " " + profile?.level}
                     </IonText>
                   </div>
                   <div
@@ -399,7 +414,10 @@ export default function CommunityProfile(props: { socket: Socket }) {
                     }}
                   >
                     <IonIcon ios={people} md={peopleSharp} />
-                    <IonText>{profile?.followers.length} Follower</IonText>
+                    <IonText>
+                      {profile?.followers.length}{" "}
+                      {$$("pages.community.profile.followers")}
+                    </IonText>
                   </div>
                 </div>
                 <div
@@ -420,7 +438,7 @@ export default function CommunityProfile(props: { socket: Socket }) {
                     textAlign: "center",
                   }}
                 >
-                  Beiträge
+                  {$$("pages.community.profile.blogs")}
                 </h1>
               </IonText>
               <hr

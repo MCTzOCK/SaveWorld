@@ -35,6 +35,7 @@ import { E2HomepageSegments } from "../../../util/types/E2HomepageSegment";
 import E2ProjectHomepageSegment from "../../../components/E2ProjectHomepageSegment";
 import MobileBox from "../../../components/MobileBox";
 import E2ProjectTodoLists from "../../../components/E2ProjectTodoLists";
+import { $$ } from "../../../translations/i18n";
 
 export default function E2ProjectHomepage() {
   useRedirectForAnon();
@@ -66,9 +67,11 @@ export default function E2ProjectHomepage() {
 
     if (res.status !== 200) {
       await PopupManager.alert({
-        title: "Fehler",
-        description:
-          "Homepage konnte nicht geladen werden: " + res.payload.error,
+        title: $$("control.error"),
+        description: $$(
+          "pages.e2projects.homepage.loading.error",
+          res.payload.error,
+        ),
       });
     } else {
       setSegments(res.payload.segments);
@@ -91,7 +94,7 @@ export default function E2ProjectHomepage() {
   if (!project) {
     return (
       <>
-        <Page title={"Laden..."}>Laden...</Page>
+        <Page title={$$("general.loading")}>{$$("general.loading")}</Page>
       </>
     );
   }
@@ -108,7 +111,7 @@ export default function E2ProjectHomepage() {
               <Alert status={"info"} rounded={"xl"}>
                 <AlertIcon />
                 <AlertDescription>
-                  Du kannst dieses Projekt bearbeiten!
+                  {$$("pages.e2projects.editable")}
                   <Box w={"100%"}>
                     <Button
                       w={"100%"}
@@ -121,7 +124,7 @@ export default function E2ProjectHomepage() {
                         );
                       }}
                     >
-                      Bearbeiten
+                      {$$("general.edit")}
                     </Button>
                   </Box>
                 </AlertDescription>
@@ -134,8 +137,8 @@ export default function E2ProjectHomepage() {
                 <AlertIcon />
                 <AlertDescription w={"100%"}>
                   {project.users.find((u) => u.userId === userInfo._id)
-                    ? "Möchtest du kein Teil des Projektes mehr sein?"
-                    : "Möchtest du Teil dieses Projektes werden und mitwirken?"}
+                    ? $$("pages.e2projects.member.status.leave")
+                    : $$("pages.e2projects.member.status.join")}
                   <Box w={"100%"}>
                     <Button
                       w={"100%"}
@@ -154,20 +157,24 @@ export default function E2ProjectHomepage() {
 
                         if (res.status === 200) {
                           await PopupManager.alertAsync({
-                            title: "Erfolgreich",
+                            title: $$("control.success"),
                             description:
-                              "Du bist ab jetzt " +
+                              $$("pages.e2projects.member.status.popup.1") +
                               (res.payload.memberStatus === 0
-                                ? "kein Teil des Projektes mehr."
-                                : "Teil des Projektes!"),
+                                ? $$(
+                                    "pages.e2projects.member.status.popup.no.member",
+                                  )
+                                : $$(
+                                    "pages.e2projects.member.status.popup.member",
+                                  )),
                           });
                           await reloadProject();
                         }
                       }}
                     >
                       {project.users.find((u) => u.userId === userInfo._id)
-                        ? "Verlassen"
-                        : "Beitreten"}
+                        ? $$("general.leave")
+                        : $$("general.join")}
                     </Button>
                   </Box>
                 </AlertDescription>
@@ -176,8 +183,8 @@ export default function E2ProjectHomepage() {
           )}
           <Tabs colorScheme={"brand"} size={"md"} isFitted mt={4}>
             <TabList>
-              <Tab>Homepage</Tab>
-              <Tab>ToDos</Tab>
+              <Tab>{$$("pages.e2projects.homepage")}</Tab>
+              <Tab>{$$("pages.e2projects.menu.todos")}</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>

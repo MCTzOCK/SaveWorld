@@ -13,13 +13,14 @@ import Page from "../../components/Page";
 import MobileBox from "../../components/MobileBox";
 import { Box, Button, Flex, Image } from "@chakra-ui/react";
 import { useIonRouter } from "@ionic/react";
+import { $$ } from "../../translations/i18n";
 
 export default function Sustainability() {
   const router = useIonRouter();
 
   return (
     <>
-      <Page title={"Nachhaltigkeit"}>
+      <Page title={$$("page.sustainability.title")}>
         <MobileBox>
           <Flex
             justifyContent={"center"}
@@ -33,22 +34,11 @@ export default function Sustainability() {
               rounded={"xl"}
             />
           </Flex>
-          Nachhaltigkeit ist ein sehr wichtiges Thema. Es umfasst allerdings
-          nicht nur die Umwelt, sondern besteht aus drei Säulen: Ökologie
-          (Unwelt), Ökonomie (Wirtschaft) und Soziales (Gesellschaft).
+          {$$("pages.sustainability.section.1")}
           <br />
-          Diese drei Säulen müssen im Gleichgewicht sein, damit wir eine
-          nachhaltige Zukunft haben. Oft werden diese drei Säulen auch als ein
-          Dreieck dargestellt, welches auf einer Seite liegt. Das bedeutet, dass
-          alle drei Säulen gleich wichtig sind. Wenn eine Säule zu kurz kommt,
-          wird das Dreieck instabil und kann umkippen. Das bedeutet, dass wir
-          eine nachhaltige Zukunft nur dann haben, wenn alle drei Säulen gleich
-          wichtig sind.
+          {$$("pages.sustainability.section.2")}
           <br />
-          Auch, wenn sich SaveWorld vor allem auf die Umwelt konzentriert,
-          wollen wir auch die anderen beiden Säulen nicht vernachlässigen.
-          Deswegen findest du in diesem Bereich auch Informationen zu den Themen
-          Wirtschaft und Gesellschaft.
+          {$$("pages.sustainability.section.3")}
           <Button
             color={"brand.500"}
             w={"100%"}
@@ -57,7 +47,7 @@ export default function Sustainability() {
               router.push("/sustainability/articles", "none", "push");
             }}
           >
-            Artikel Erkunden
+            {$$("pages.sustainability.call.to.action")}
           </Button>
         </MobileBox>
       </Page>

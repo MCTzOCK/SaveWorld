@@ -50,6 +50,7 @@ import {
 } from "@chakra-ui/react";
 import { FaPlus, FaYoutube } from "react-icons/fa6";
 import { FaPen } from "react-icons/fa";
+import { $$ } from "../translations/i18n";
 
 export default function AdminCreateVideoModal(props: {
   callback: () => void;
@@ -82,7 +83,7 @@ export default function AdminCreateVideoModal(props: {
   return (
     <>
       <SaveWorldModal
-        title={"Neues Video"}
+        title={$$("components.video.create")}
         isOpen={props.isOpen}
         onClose={props.onClose}
       >
@@ -95,8 +96,8 @@ export default function AdminCreateVideoModal(props: {
 
             if (selectedCategories.length < 1) {
               PopupManager.alert({
-                title: "Fehler",
-                description: "Bitte wähle mindestens eine Kategorie aus.",
+                title: $$("control.error"),
+                description: $$("components.video.form.no.category"),
               });
               return;
             }
@@ -113,8 +114,8 @@ export default function AdminCreateVideoModal(props: {
 
             if (!name || !desc || !id) {
               PopupManager.alert({
-                title: "Fehler",
-                description: "Bitte fülle alle Felder aus!",
+                title: $$("control.error"),
+                description: $$("form.incomplete"),
               });
               return;
             }
@@ -144,9 +145,8 @@ export default function AdminCreateVideoModal(props: {
             } else {
               let x = await res.json();
               PopupManager.alert({
-                title: "Fehler",
-                description:
-                  "Fehler beim Hochladen des Videos: " + x.payload.error,
+                title: $$("control.error"),
+                description: $$("components.video.create.error", x.error),
               });
               props.onClose();
             }
@@ -154,7 +154,7 @@ export default function AdminCreateVideoModal(props: {
         >
           <Stack spacing={4}>
             <FormControl>
-              <FormLabel>YouTube-ID</FormLabel>
+              <FormLabel>{$$("components.video.create.youtube.id")}</FormLabel>
               <InputGroup>
                 <InputLeftAddon>
                   <FaYoutube />
@@ -167,7 +167,7 @@ export default function AdminCreateVideoModal(props: {
               </InputGroup>
             </FormControl>
             <FormControl>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>{$$("components.video.create.name")}</FormLabel>
               <InputGroup>
                 <InputLeftAddon>
                   <FaPen />
@@ -175,19 +175,19 @@ export default function AdminCreateVideoModal(props: {
                 <Input
                   name={"name"}
                   type={"text"}
-                  placeholder={"Neues Video"}
+                  placeholder={$$("components.video.create.name")}
                 />
               </InputGroup>
             </FormControl>
             <FormControl>
-              <FormLabel>Beschreibung</FormLabel>
+              <FormLabel>{$$("components.video.create.description")}</FormLabel>
               <Textarea
                 name={"description"}
-                placeholder={"Das ist meine Videobeschreibung"}
+                placeholder={$$("components.video.create.description")}
               />
             </FormControl>
             <FormControl>
-              <FormLabel>Quellen</FormLabel>
+              <FormLabel>{$$("components.video.create.sources")}</FormLabel>
               <Grid
                 templateColumns={["repeat(2, 1fr)", "repeat(3, 1fr)"]}
                 gap={4}
@@ -214,7 +214,7 @@ export default function AdminCreateVideoModal(props: {
                 />
                 <InputRightAddon>
                   <IconButton
-                    aria-label={"Add Source"}
+                    aria-label={$$("components.video.create.sources.add")}
                     icon={<FaPlus />}
                     variant={"ghost"}
                     onClick={() => {
@@ -231,7 +231,7 @@ export default function AdminCreateVideoModal(props: {
             </FormControl>
 
             <FormControl>
-              <FormLabel>Kategorien</FormLabel>
+              <FormLabel>{$$("components.video.create.categories")}</FormLabel>
               <Stack gap={4}>
                 {categories.map((c) => {
                   return (
@@ -261,7 +261,7 @@ export default function AdminCreateVideoModal(props: {
               </Stack>
             </FormControl>
             <Button color={"brand.500"} leftIcon={<FaPlus />} type={"submit"}>
-              Video erstellen
+              {$$("components.video.create.button")}
             </Button>
           </Stack>
         </form>

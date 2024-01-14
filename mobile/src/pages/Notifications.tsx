@@ -24,6 +24,7 @@ import {
   useIonRouter,
 } from "@ionic/react";
 import { Grid } from "@chakra-ui/react";
+import { $$ } from "../translations/i18n";
 
 export default function Notifications() {
   const [page, setPage] = React.useState(0);
@@ -54,9 +55,8 @@ export default function Notifications() {
       setPages(res.payload.pages);
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description:
-          "Nachrichten konnten nicht geladen werden: " + res.payload.error,
+        title: $$("control.error"),
+        description: $$("page.notifications.error.loading", res.payload.error),
       });
     }
   };
@@ -68,7 +68,7 @@ export default function Notifications() {
   }, [page]);
   return (
     <>
-      <Page title={"Nachrichten"}>
+      <Page title={$$("menu.notifications")}>
         <Grid
           templateColumns={[
             "repeat(1, 1fr)",
@@ -101,11 +101,15 @@ export default function Notifications() {
                     <IonCardSubtitle>
                       {n.read ? (
                         <>
-                          <IonText color={"success"}>Gelesen</IonText>
+                          <IonText color={"success"}>
+                            {$$("page.notifications.read")}
+                          </IonText>
                         </>
                       ) : (
                         <>
-                          <IonText color={"danger"}>Ungelesen</IonText>
+                          <IonText color={"danger"}>
+                            {$$("page.notifications.unread")}
+                          </IonText>
                         </>
                       )}
                       &nbsp;-&nbsp;
@@ -136,7 +140,7 @@ export default function Notifications() {
               onClick={() => setPage(page - 1)}
               expand={"block"}
             >
-              Zurück
+              {$$("control.back")}
             </IonButton>
           ) : null}
           {page < pages - 1 ? (
@@ -145,7 +149,7 @@ export default function Notifications() {
               onClick={() => setPage(page + 1)}
               expand={"block"}
             >
-              Weiter
+              {$$("control.next")}
             </IonButton>
           ) : null}
         </div>

@@ -20,6 +20,7 @@ import {
   FaUser,
 } from "react-icons/fa";
 import { FaLifeRing, FaUsers, FaUtensils, FaVideo } from "react-icons/fa6";
+import { $$ } from "../translations/i18n";
 
 export default function AdminTools(props: { query: string }) {
   const tools: {
@@ -31,43 +32,43 @@ export default function AdminTools(props: { query: string }) {
   }[] = [
     {
       icon: <FaUser />,
-      text: "Benutzer",
+      text: $$("components.admin.stats.users"),
       url: "/admin/users",
       color: "red.500",
     },
     {
       icon: <FaHandsHelping />,
-      text: "Support",
+      text: $$("components.admin.stats.support"),
       url: "/admin/support-requests",
       color: "red.500",
     },
     {
       icon: <FaFile />,
-      text: "Kategorien",
+      text: $$("components.admin.stats.categories"),
       url: "/admin/content/categories",
       color: "red.500",
     },
     {
       icon: <FaVideo />,
-      text: "Videos",
+      text: $$("components.admin.stats.videos"),
       url: "/admin/content/videos",
       color: "red.500",
     },
     {
       icon: <FaStarOfLife />,
-      text: "Lifestyle",
+      text: $$("menu.lifestyle"),
       url: "/admin/lifestyle-templates",
       color: "red.500",
     },
     {
       icon: <FaUtensils />,
-      text: "Rezepte",
+      text: $$("components.admin.stats.recipes"),
       url: "/admin/recipes",
       color: "red.500",
     },
     {
       icon: <FaProjectDiagram />,
-      text: "Projekte",
+      text: $$("components.admin.stats.projects"),
       url: "/admin/eco-projects",
       color: "red.500",
     },
@@ -76,7 +77,7 @@ export default function AdminTools(props: { query: string }) {
   return (
     <>
       <Heading size={"lg"} mb={4} color={"red.500"}>
-        Administration
+        {$$("menu.admin")}
       </Heading>
       <Grid
         templateColumns={[

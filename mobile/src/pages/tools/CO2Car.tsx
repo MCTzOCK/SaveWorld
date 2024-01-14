@@ -10,46 +10,41 @@
 
 import * as React from "react";
 import Calculator from "../../components/Calculator";
+import { $$ } from "../../translations/i18n";
 
 export default function CO2Car() {
   return (
     <>
       <Calculator
-        title={"Auto"}
+        title={$$("pages.tools.calc.car")}
         description={
           <>
-            <p>
-              Berechne, wie viel CO2 du mit deinem Auto auf einer Strecke
-              ausstößt. Die Berechnung basiert auf Daten des Umweltbundesamtes
-              (UBA) aus dem Jahr 2022. <br />
-              Für die Berechnung benötigst du die Länge der Strecke (in km) und
-              den Kraftstoffverbrauch deines Autos (in l/100km). <br />
-            </p>
+            <p>{$$("pages.tools.calc.car.description.long")}</p>
           </>
         }
         inputs={[
           {
-            label: "Distanz",
+            label: $$("pages.tools.calc.distance"),
             id: "distance",
             type: "number",
           },
           {
-            label: "Kraftstoffart",
+            label: $$("pages.tools.calc.fuel.type"),
             id: "fuel",
             type: "select",
             options: [
               {
-                label: "Diesel",
+                label: $$("pages.tools.calc.fuel.type.diesel"),
                 value: "diesel",
               },
               {
-                label: "Benzin",
+                label: $$("pages.tools.calc.fuel.type.petrol"),
                 value: "petrol",
               },
             ],
           },
           {
-            label: "Kraftstoff Verbrauch auf 100km",
+            label: $$("pages.tools.calc.fuel.usage"),
             id: "consumption",
             type: "number",
           },

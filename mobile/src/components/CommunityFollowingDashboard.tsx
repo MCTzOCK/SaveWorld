@@ -13,6 +13,7 @@ import { REST } from "@saveworld/api-js";
 import { useEffect } from "react";
 import CommunityBlogList from "./CommunityBlogList";
 import PopupManager from "../util/PopupManager";
+import { $$ } from "../translations/i18n";
 
 export default function CommunityFollowingDashboard() {
   const [page, setPage] = React.useState(0);
@@ -44,8 +45,11 @@ export default function CommunityFollowingDashboard() {
       setPages(res.payload.pages);
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description: "Blogs konnten nicht geladen werden: " + res.payload.error,
+        title: $$("control.error"),
+        description: $$(
+          "components.community.blogs.loading.error",
+          res.payload.error,
+        ),
       });
     }
   };

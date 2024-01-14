@@ -36,6 +36,7 @@ import {
 import ManageAccountInterests from "../../components/ManageAccountInterests";
 import PopupManager from "../../util/PopupManager";
 import SaveWorldModal from "../../components/SaveWorldModal";
+import { $$ } from "../../translations/i18n";
 
 export default function Quizzes() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -81,9 +82,9 @@ export default function Quizzes() {
 
   return (
     <>
-      <Page title={"Quizze"}>
+      <Page title={$$("menu.quizzes")}>
         <IonSearchbar
-          placeholder={"Suchen..."}
+          placeholder={$$("control.search")}
           onIonInput={(e) => {
             setQuery(e.detail.value || "");
           }}
@@ -118,7 +119,7 @@ export default function Quizzes() {
                         onOpen();
                       }}
                     >
-                      Beantworten
+                      {$$("pages.quizzes.answer")}
                     </Button>
                   </CardBody>
                 </Card>
@@ -126,7 +127,11 @@ export default function Quizzes() {
             );
           })}
         </Grid>
-        <SaveWorldModal title={"Quiz Time!"} isOpen={isOpen} onClose={onClose}>
+        <SaveWorldModal
+          title={$$("pages.quizzes.quiz.time")}
+          isOpen={isOpen}
+          onClose={onClose}
+        >
           {currentQuiz ? (
             <>
               <Heading size={"md"}>
@@ -159,15 +164,20 @@ export default function Quizzes() {
                           )["answer_" + correct] as string;
 
                           PopupManager.alertAsync({
-                            title: "Ergebnis",
-                            description:
-                              "Du hast " +
-                              (correct === answer ? "richtig" : "falsch") +
-                              " geantwortet!" +
-                              (correct !== answer
-                                ? "\n\nDie richtige Antwort ist: " +
-                                  correctAnswer
-                                : ""),
+                            title: $$("pages.quizzes.result"),
+                            description: $$(
+                              "pages.quizzes.result.description",
+                              correct === answer
+                                ? $$("general.correct")
+                                : $$("general.wrong"),
+                              correct !== answer
+                                ? "\n\n" +
+                                    $$(
+                                      "pages.quizzes.result.2",
+                                      correctAnswer.toString(),
+                                    )
+                                : "",
+                            ),
                           });
                           onClose();
                         }}

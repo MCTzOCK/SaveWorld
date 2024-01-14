@@ -23,6 +23,7 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { REST } from "@saveworld/api-js";
+import { $$ } from "../translations/i18n";
 
 ChartJS.register(
   CategoryScale,
@@ -51,12 +52,12 @@ export default function E2Analytics() {
       labels: [],
       datasets: [
         {
-          label: "Erreichte Ziele",
+          label: $$("components.e2.goals.reached"),
           data: [],
           backgroundColor: "#2dd36f",
         },
         {
-          label: "Gescheiterte Ziele",
+          label: $$("components.e2.goals.missed"),
           data: [],
           backgroundColor: "#ff0000",
         },
@@ -129,13 +130,13 @@ export default function E2Analytics() {
         }}
       >
         <IonSegmentButton value={"4w"}>
-          <IonLabel>1 Monat</IonLabel>
+          <IonLabel>{$$("components.calendar.time.unit.month.one")}</IonLabel>
         </IonSegmentButton>
         <IonSegmentButton value={"12w"}>
-          <IonLabel>3 Monate</IonLabel>
+          <IonLabel>{$$("components.calendar.time.unit.month.three")}</IonLabel>
         </IonSegmentButton>
         <IonSegmentButton value={"24w"}>
-          <IonLabel>6 Monate</IonLabel>
+          <IonLabel>{$$("components.calendar.time.unit.month.six")}</IonLabel>
         </IonSegmentButton>
       </IonSegment>
       <div>
@@ -149,7 +150,7 @@ export default function E2Analytics() {
               },
               title: {
                 display: true,
-                text: "Ziele",
+                text: $$("components.e2.goals"),
               },
             },
           }}

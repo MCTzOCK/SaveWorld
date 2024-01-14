@@ -39,6 +39,7 @@ import MobileBox from "../../components/MobileBox";
 import { Button } from "@chakra-ui/react";
 import { uploadImage } from "../../util/files";
 import { ENDPOINT } from "../../env";
+import { $$ } from "../../translations/i18n";
 
 export default function CommunityCreateBlog() {
   useRedirectForAnon();
@@ -53,7 +54,7 @@ export default function CommunityCreateBlog() {
 
   return (
     <>
-      <Page title={"Neuer Blog"}>
+      <Page title={$$("pages.community.create.blog.title")}>
         <MobileBox>
           <IonAccordionGroup
             style={{
@@ -67,24 +68,22 @@ export default function CommunityCreateBlog() {
               }}
             >
               <IonItem slot="header" color="light">
-                <IonLabel>Informationen (klicken)</IonLabel>
+                <IonLabel>
+                  {$$("pages.community.create.blog.information")}
+                </IonLabel>
                 <IonIcon slot="end" icon={informationCircle} />
               </IonItem>
               <div className="ion-padding" slot="content">
                 <IonText>
                   <p>
-                    Hier kannst du einen neuen Blog eintrag erstellen. Du kannst
-                    von deinen Bemühungen im Bezug auf ein umweltbewussteres
-                    Leben berichten, oder auch einfach nur deine Gedanken mit
-                    der Community teilen.
+                    {$$("pages.community.create.blog.information.description")}
                   </p>
                 </IonText>
                 <IonText>
                   <p>
-                    Blogs werden mit Markdown geschrieben. Markdown ist eine
-                    einfache Auszeichnungssprache, die es dir ermöglicht, deinen
-                    Text zu formatieren. Falls du noch nie mit Markdown
-                    gearbeitet hast, kannst du dir{" "}
+                    {$$(
+                      "pages.community.create.blog.information.description.2",
+                    )}{" "}
                     <a
                       onClick={() => {
                         router.push("/resources/md-help", "none", "replace");
@@ -94,17 +93,19 @@ export default function CommunityCreateBlog() {
                         fontWeight: 900,
                       }}
                     >
-                      hier
+                      {$$("general.here")}
                     </a>{" "}
-                    eine Übersicht über die wichtigsten Befehle verschaffen.
+                    {$$(
+                      "pages.community.create.blog.information.description.3",
+                    )}
                   </p>
                 </IonText>
                 <IonText>
                   <p>
-                    <b style={{ color: "var(--ion-color-success)" }}>TIPP</b>:
-                    verwende @Benutzername um andere Benutzer zu markieren.
-                    Hierdurch erhalten diese eine Benachrichtigung und andere
-                    Benutzer können auf deren Profil gelangen!
+                    <b style={{ color: "var(--ion-color-success)" }}>
+                      {$$("general.hint")}
+                    </b>
+                    : {$$("pages.community.create.blog.hint")}
                   </p>
                 </IonText>
               </div>
@@ -112,15 +113,19 @@ export default function CommunityCreateBlog() {
           </IonAccordionGroup>
           <IonInput
             labelPlacement={"fixed"}
-            label={"Titel"}
-            placeholder={"Gib deinem Blog einen Titel"}
+            label={$$("pages.community.create.blog.form.title")}
+            placeholder={$$(
+              "pages.community.create.blog.form.title.placeholder",
+            )}
             type={"text"}
             onIonInput={(e) => setTitle(e.detail.value!)}
           />
           <IonInput
             labelPlacement={"fixed"}
-            label={"Tags"}
-            placeholder={"Tags (durch Komma getrennt)"}
+            label={$$("pages.community.create.blog.form.tags")}
+            placeholder={$$(
+              "pages.community.create.blog.form.tags.placeholder",
+            )}
             type={"text"}
             onIonInput={(e) => setTags(e.detail.value!)}
           />
@@ -128,14 +133,22 @@ export default function CommunityCreateBlog() {
             color={"brand.500"}
             onClick={async () => {
               uploadImage((url) => {
-                setV(v + "\n![Bild](" + ENDPOINT + url + ")");
+                setV(
+                  v +
+                    "\n![" +
+                    $$("general.image") +
+                    "](" +
+                    ENDPOINT +
+                    url +
+                    ")",
+                );
               });
             }}
             w={"100%"}
             marginBottom={4}
             marginTop={2}
           >
-            Bild hinzufügen
+            {$$("pages.community.create.blog.image")}
           </Button>
           <IonSegment
             value={preview ? "preview" : "edit"}
@@ -150,7 +163,7 @@ export default function CommunityCreateBlog() {
               }}
               value={"edit"}
             >
-              Bearbeiten
+              {$$("general.edit")}
             </IonSegmentButton>
             <IonSegmentButton
               onClick={() => {
@@ -158,7 +171,7 @@ export default function CommunityCreateBlog() {
               }}
               value={"preview"}
             >
-              Vorschau
+              {$$("general.preview")}
             </IonSegmentButton>
           </IonSegment>
           <MDEditor
@@ -181,16 +194,18 @@ export default function CommunityCreateBlog() {
 
               if (v.length < 10) {
                 PopupManager.alert({
-                  title: "Fehler",
-                  description: "Bitte gib mehr als 10 Zeichen ein.",
+                  title: $$("control.error"),
+                  description: $$(
+                    "pages.community.create.blog.error.too.short",
+                  ),
                 });
                 return;
               }
 
               if (!title) {
                 PopupManager.alert({
-                  title: "Fehler",
-                  description: "Bitte gib einen Titel ein.",
+                  title: $$("control.error"),
+                  description: $$("pages.community.create.blog.error.title"),
                 });
                 return;
               }
@@ -210,14 +225,16 @@ export default function CommunityCreateBlog() {
                 );
               } else {
                 PopupManager.alert({
-                  title: "Fehler",
-                  description:
-                    "Es ist ein Fehler aufgetreten: " + res.payload.error,
+                  title: $$("control.error"),
+                  description: $$(
+                    "pages.community.create.blog.error",
+                    res.payload.error,
+                  ),
                 });
               }
             }}
           >
-            Veröffentlichen
+            {$$("pages.community.create.blog.publish")}
           </Button>
         </MobileBox>
       </Page>

@@ -12,6 +12,7 @@ import * as React from "react";
 import "../../theme/calendar.scss";
 import moment from "moment";
 import { useEffect } from "react";
+import { $$ } from "../../translations/i18n";
 
 export default function Calendar(props: {
   month: number;
@@ -90,13 +91,27 @@ export default function Calendar(props: {
       <div className={"cal-container"}>
         <div className={"cal-grid"}>
           <div className={"cal-grid-row cal-grid-header"}>
-            <div className={"cal-grid-item cal-grid-header-item"}>Mo</div>
-            <div className={"cal-grid-item cal-grid-header-item"}>Di</div>
-            <div className={"cal-grid-item cal-grid-header-item"}>Mi</div>
-            <div className={"cal-grid-item cal-grid-header-item"}>Do</div>
-            <div className={"cal-grid-item cal-grid-header-item"}>Fr</div>
-            <div className={"cal-grid-item cal-grid-header-item"}>Sa</div>
-            <div className={"cal-grid-item cal-grid-header-item"}>So</div>
+            <div className={"cal-grid-item cal-grid-header-item"}>
+              {$$("components.calendar.day.monday")}
+            </div>
+            <div className={"cal-grid-item cal-grid-header-item"}>
+              {$$("components.calendar.day.tuesday")}
+            </div>
+            <div className={"cal-grid-item cal-grid-header-item"}>
+              {$$("components.calendar.day.wednesday")}
+            </div>
+            <div className={"cal-grid-item cal-grid-header-item"}>
+              {$$("components.calendar.day.thursday")}
+            </div>
+            <div className={"cal-grid-item cal-grid-header-item"}>
+              {$$("components.calendar.day.friday")}
+            </div>
+            <div className={"cal-grid-item cal-grid-header-item"}>
+              {$$("components.calendar.day.saturday")}
+            </div>
+            <div className={"cal-grid-item cal-grid-header-item"}>
+              {$$("components.calendar.day.sunday")}
+            </div>
           </div>
           {calModel.weeks.map((week, i) => {
             return (

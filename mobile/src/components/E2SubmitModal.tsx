@@ -36,6 +36,7 @@ import {
 import { useState } from "react";
 import { REST } from "@saveworld/api-js";
 import PopupManager from "../util/PopupManager";
+import { $$ } from "../translations/i18n";
 
 export default function E2SubmitModal(props: {
   modal: React.RefObject<HTMLIonModalElement>;
@@ -80,10 +81,10 @@ export default function E2SubmitModal(props: {
                   props.modal.current?.dismiss();
                 }}
               >
-                Abbrechen
+                {$$("control.cancel")}
               </IonButton>
             </IonButtons>
-            <IonTitle>Wie war dein Tag?</IonTitle>
+            <IonTitle>{$$("components.e2.how.was.your.day")}</IonTitle>
             <IonButtons slot={"end"}>
               <IonButton
                 color={"success"}
@@ -103,13 +104,13 @@ export default function E2SubmitModal(props: {
                     props.modal.current?.dismiss();
                   } else {
                     PopupManager.alert({
-                      title: "Fehler",
+                      title: $$("control.error"),
                       description: res.payload.error,
                     });
                   }
                 }}
               >
-                <b>Speichern</b>
+                <b>{$$("control.save")}</b>
               </IonButton>
             </IonButtons>
           </IonToolbar>
@@ -121,8 +122,7 @@ export default function E2SubmitModal(props: {
               textAlign: "center",
             }}
           >
-            Wie war dein Tag? Trage ein, wie oft du die folgenden Aktionen
-            durchgeführt hast.
+            {$$("components.e2.how.actions")}
           </div>
           <IonList inset>
             {props.lifestyle &&
@@ -139,7 +139,7 @@ export default function E2SubmitModal(props: {
                         {props.templates.find((x) => x._id === t.template)
                           ? props.templates.find((x) => x._id === t.template)!
                               .name
-                          : "Unbekannte Aktion"}
+                          : $$("components.e2.unnamed.action")}
                       </IonText>
                       <div
                         style={{

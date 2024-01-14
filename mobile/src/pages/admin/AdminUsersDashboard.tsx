@@ -34,6 +34,7 @@ import PopupManager from "../../util/PopupManager";
 import { Grid, useDisclosure } from "@chakra-ui/react";
 import MobileBox from "../../components/MobileBox";
 import AdminUserEditorModal from "../../components/AdminUserEditorModal";
+import { $$ } from "../../translations/i18n";
 
 export default function AdminUsersDashboard() {
   useRedirectForAnon({
@@ -70,8 +71,8 @@ export default function AdminUsersDashboard() {
       setUsers(res.payload.users);
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description: "Fehler beim Laden der Benutzer: " + res.payload.error,
+        title: $$("control.error"),
+        description: $$("pages.admin.users.loading.error", res.payload.error),
       });
     }
     setLoading(false);
@@ -109,7 +110,7 @@ export default function AdminUsersDashboard() {
 
   return (
     <>
-      <Page title={"Benutzer"} redGradient>
+      <Page title={$$("user.user")} redGradient>
         {loading && (
           <>
             <div
@@ -138,7 +139,7 @@ export default function AdminUsersDashboard() {
                 <IonRefresherContent></IonRefresherContent>
               </IonRefresher>
               <IonSearchbar
-                placeholder={"Durchsuchen"}
+                placeholder={$$("control.search")}
                 value={query}
                 onIonInput={(e) => {
                   setQuery((e.target as any).value);
@@ -185,14 +186,16 @@ export default function AdminUsersDashboard() {
                                 color={user.role === "admin" ? "danger" : ""}
                               >
                                 {user.role === "admin"
-                                  ? "Administrator"
-                                  : "Benutzer"}
+                                  ? $$("user.role.admin")
+                                  : $$("user.user")}
                               </IonText>
                               &nbsp;-&nbsp;
                               <IonText
                                 color={user.active ? "success" : "danger"}
                               >
-                                {user.active ? "Aktiv" : "Inaktiv"}
+                                {user.active
+                                  ? $$("general.active")
+                                  : $$("general.inactive")}
                               </IonText>
                             </IonCardSubtitle>
                           </IonCardHeader>
@@ -206,12 +209,14 @@ export default function AdminUsersDashboard() {
                               <IonText
                                 color={!user.totpSecret ? "danger" : "success"}
                               >
-                                {!user.totpSecret ? "Deaktiviert" : "Aktiviert"}
+                                {!user.totpSecret
+                                  ? $$("general.deactivated")
+                                  : $$("general.activated")}
                               </IonText>
                             </IonText>
                             <br />
                             <IonText>
-                              Erstellt am:&nbsp;
+                              {$$("pages.admin.users.created.at")}:&nbsp;
                               {new Date(user.createdAt).toLocaleString()}
                             </IonText>
                           </IonCardContent>

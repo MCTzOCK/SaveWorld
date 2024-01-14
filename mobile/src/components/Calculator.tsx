@@ -29,6 +29,7 @@ import { FaAtom, FaHashtag } from "react-icons/fa";
 import PopupManager from "../util/PopupManager";
 import Page from "./Page";
 import { ReactNode } from "react";
+import { $$ } from "../translations/i18n";
 
 export default function Calculator(props: {
   title: string;
@@ -91,11 +92,13 @@ export default function Calculator(props: {
                 const result = props.calculate(values);
 
                 PopupManager.alertAsync({
-                  title: "Ergebnis",
+                  title: $$("components.calc.result"),
                   description: (
                     <>
                       <Stat>
-                        <StatLabel>Dein CO2-Ausstoß beträgt</StatLabel>
+                        <StatLabel>
+                          {$$("components.calc.result.co2")}
+                        </StatLabel>
                         <StatNumber color={"brand.500"} fontWeight={900}>
                           {result}
                         </StatNumber>
@@ -105,7 +108,7 @@ export default function Calculator(props: {
                 });
               }}
             >
-              Berechnen
+              {$$("pages.tools.calc.calculate")}
             </Button>
           </Stack>
         </MobileBox>

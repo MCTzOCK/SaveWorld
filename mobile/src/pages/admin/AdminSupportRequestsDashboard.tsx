@@ -26,6 +26,7 @@ import {
 import { Grid, useDisclosure, VStack } from "@chakra-ui/react";
 import MobileBox from "../../components/MobileBox";
 import AdminSupportRequestModal from "../../components/AdminSupportRequestModal";
+import { $$ } from "../../translations/i18n";
 
 export default function AdminSupportRequestsDashboard() {
   useRedirectForAnon({
@@ -73,9 +74,8 @@ export default function AdminSupportRequestsDashboard() {
       setPages(res.payload.pages);
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description:
-          "Fehler beim Laden der Supportanfragen: " + res.payload.error,
+        title: $$("control.error"),
+        description: $$("pages.admin.support.loading.error", res.payload.error),
       });
     }
   };
@@ -86,7 +86,7 @@ export default function AdminSupportRequestsDashboard() {
 
   return (
     <>
-      <Page title={"Support"} redGradient>
+      <Page title={$$("menu.support")} redGradient>
         <MobileBox bg={"#101010"}>
           <Grid
             templateColumns={[
@@ -106,27 +106,33 @@ export default function AdminSupportRequestsDashboard() {
                   <IonCardHeader>
                     <IonCardTitle>
                       {req.category === "REPORT-USER"
-                        ? "Benutzer Meldung"
+                        ? $$("pages.admin.support.category.user")
                         : req.category === "REPORT-POST"
-                        ? "Beitrag Meldung"
+                        ? $$("pages.admin.support.category.post")
                         : req.category === "REPORT-BUG"
-                        ? "Bug Meldung"
+                        ? $$("pages.admin.support.category.bug")
                         : req.category === "VIDEO-QUESTION"
-                        ? "Video Frage"
-                        : "Anderes"}
+                        ? $$("pages.admin.support.category.video")
+                        : $$("pages.admin.support.category.other")}
                     </IonCardTitle>
                     <IonCardSubtitle>
                       {req.processed ? (
-                        <IonText color={"success"}>Bearbeitet</IonText>
+                        <IonText color={"success"}>
+                          {$$("pages.admin.support.request.completed")}
+                        </IonText>
                       ) : (
-                        <IonText color={"danger"}>Offen</IonText>
+                        <IonText color={"danger"}>
+                          {$$("pages.admin.support.request.open")}
+                        </IonText>
                       )}
                       &nbsp;
                       {new Date(req.createdAt).toLocaleString()}
                     </IonCardSubtitle>
                   </IonCardHeader>
                   <IonCardContent>
-                    <div>Anfrage von: {req.email}</div>
+                    <div>
+                      {$$("pages.admin.support.request.by")} {req.email}
+                    </div>
                   </IonCardContent>
                 </IonCard>
               </>
@@ -148,7 +154,7 @@ export default function AdminSupportRequestsDashboard() {
                 onClick={() => setPage(page - 1)}
                 expand={"block"}
               >
-                Zurück
+                {$$("control.back")}
               </IonButton>
             ) : null}
             {page < pages - 1 ? (
@@ -157,7 +163,7 @@ export default function AdminSupportRequestsDashboard() {
                 onClick={() => setPage(page + 1)}
                 expand={"block"}
               >
-                Weiter
+                {$$("control.next")}
               </IonButton>
             ) : null}
           </div>

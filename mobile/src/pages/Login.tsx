@@ -24,12 +24,13 @@ import Page from "../components/Page";
 import PopupManager from "../util/PopupManager";
 import { Box, Button, Flex, Link } from "@chakra-ui/react";
 import MobileBox from "../components/MobileBox";
+import { $$ } from "../translations/i18n";
 
 export default function Login() {
   const router = useIonRouter();
   return (
     <>
-      <Page title={"Anmelden"}>
+      <Page title={$$("page.login.title")}>
         <MobileBox>
           <form
             onSubmit={async (e) => {
@@ -60,8 +61,8 @@ export default function Login() {
               } else {
                 if (res.payload.error === "TOTP Code incorrect") {
                   const code = await PopupManager.promptAsync({
-                    title: "2FA Code",
-                    helperText: "Bitte gebe den 2FA Code ein",
+                    title: $$("page.login.2fa.popup.title"),
+                    helperText: $$("page.login.2fa.popup.description"),
                     inputType: "INPUT",
                   });
 
@@ -88,14 +89,14 @@ export default function Login() {
                     }
                   } else {
                     PopupManager.alert({
-                      title: "Fehler",
-                      description: "Fehler beim Anmelden: " + res.payload.error,
+                      title: $$("control.error"),
+                      description: $$("page.login.error", res.payload.error),
                     });
                   }
                 } else {
                   PopupManager.alert({
-                    title: "Fehler",
-                    description: "Fehler beim Anmelden: " + res.payload.error,
+                    title: $$("control.error"),
+                    description: $$("page.login.error", res.payload.error),
                   });
                 }
               }
@@ -113,7 +114,7 @@ export default function Login() {
               <IonInput
                 name={"mail"}
                 type={"email"}
-                placeholder={"E-Mail"}
+                placeholder={$$("user.email")}
                 style={{
                   borderBottom: "1px solid var(--ion-color-success-shade)",
                 }}
@@ -131,7 +132,7 @@ export default function Login() {
                 <IonInput
                   name={"pass"}
                   type={"password"}
-                  placeholder={"Passwort"}
+                  placeholder={$$("user.password")}
                   style={{
                     borderBottom: "1px solid var(--ion-color-success-shade)",
                   }}
@@ -146,7 +147,7 @@ export default function Login() {
                 colorScheme={"brand"}
                 size={"lg"}
               >
-                Anmelden
+                {$$("page.login.title")}
               </Button>
               <Button
                 as={Link}
@@ -160,7 +161,7 @@ export default function Login() {
                 color={"brand.500"}
                 size={"lg"}
               >
-                Registrieren
+                {$$("page.register.title")}
               </Button>
             </Flex>
           </form>

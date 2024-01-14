@@ -29,6 +29,7 @@ import { ENDPOINT } from "../../env";
 import { FaTrash } from "react-icons/fa6";
 import { Socket } from "socket.io-client";
 import Page from "../../components/Page";
+import { $$ } from "../../translations/i18n";
 
 export default function CommunityMessagesChatsList(props: { socket: Socket }) {
   const { userInfo } = useUserData();
@@ -69,7 +70,7 @@ export default function CommunityMessagesChatsList(props: { socket: Socket }) {
             // TODO: Fix multiple unnecessary requests
           } else {
             PopupManager.alert({
-              title: "Fehler",
+              title: $$("control.error"),
               description: data.error,
             });
           }
@@ -81,7 +82,7 @@ export default function CommunityMessagesChatsList(props: { socket: Socket }) {
       props.socket.on("sw:chats.create", (data: any) => {
         if (data.error) {
           PopupManager.alert({
-            title: "Fehler",
+            title: $$("control.error"),
             description: data.error,
           });
         } else {
@@ -92,7 +93,7 @@ export default function CommunityMessagesChatsList(props: { socket: Socket }) {
       props.socket.on("sw:chats.delete", (data: any) => {
         if (data.error) {
           PopupManager.alert({
-            title: "Fehler",
+            title: $$("control.error"),
             description: data.error,
           });
         } else {
@@ -115,15 +116,19 @@ export default function CommunityMessagesChatsList(props: { socket: Socket }) {
 
   return (
     <>
-      <Page title={"Nachrichten"}>
+      <Page title={$$("pages.community.messages")}>
         <IonSegment
           value={"chats"}
           onIonChange={(e) => {
             router.push("/community/messages-groups", "none", "replace");
           }}
         >
-          <IonSegmentButton value="chats">Chats</IonSegmentButton>
-          <IonSegmentButton value="groups">Gruppen</IonSegmentButton>
+          <IonSegmentButton value="chats">
+            {$$("pages.community.messages.chats")}
+          </IonSegmentButton>
+          <IonSegmentButton value="groups">
+            {$$("pages.community.messages.groups")}
+          </IonSegmentButton>
         </IonSegment>
         <Grid
           templateColumns={[
@@ -145,8 +150,10 @@ export default function CommunityMessagesChatsList(props: { socket: Socket }) {
             boxShadow={"xl"}
             onClick={async () => {
               const username = await PopupManager.promptAsync({
-                title: "Neuer Chat",
-                helperText: "Gib den Benutzernamen des anderen Nutzers ein",
+                title: $$("pages.community.messages.chats.create"),
+                helperText: $$(
+                  "pages.community.messages.chats.create.placeholder",
+                ),
                 inputType: "INPUT",
               });
 
@@ -154,8 +161,10 @@ export default function CommunityMessagesChatsList(props: { socket: Socket }) {
 
               if (username === userInfo.username) {
                 PopupManager.alert({
-                  title: "Fehler",
-                  description: "Du kannst nicht mit dir selbst chatten",
+                  title: $$("control.error"),
+                  description: $$(
+                    "pages.community.messages.chats.create.error.self",
+                  ),
                 });
                 return;
               }
@@ -164,17 +173,17 @@ export default function CommunityMessagesChatsList(props: { socket: Socket }) {
             }}
           >
             <IconButton
-              aria-label={"Neuer Chat"}
+              aria-label={$$("pages.community.messages.chats.create")}
               icon={<FaPlusCircle fontSize={35} />}
               variant={"ghost"}
               size={"lg"}
             />
             <VStack alignItems={"center"} justifyContent={"center"}>
               <Heading>
-                Neuer Chat
+                {$$("pages.community.messages.chats.create")}
                 <br />
                 <Text fontWeight={200} fontSize={20}>
-                  Erstelle einen neuen Chat
+                  {$$("pages.community.messages.chats.create.description")}
                 </Text>
               </Heading>
             </VStack>
@@ -216,7 +225,7 @@ export default function CommunityMessagesChatsList(props: { socket: Socket }) {
                         <Text fontWeight={200} fontSize={20}>
                           {chat.lastMessagePreview
                             ? chat.lastMessagePreview.content
-                            : "Neuer Chat"}
+                            : $$("pages.community.messages.chats.create")}
                         </Text>
                       </Heading>
                     </VStack>
@@ -234,8 +243,10 @@ export default function CommunityMessagesChatsList(props: { socket: Socket }) {
                     onClick={async () => {
                       if (
                         !(await PopupManager.confirmAsync({
-                          title: "Chat löschen",
-                          question: "Möchtest du diesen Chat wirklich löschen?",
+                          title: $$("pages.community.messages.chats.delete"),
+                          question: $$(
+                            "pages.community.messages.chats.delete.confirm",
+                          ),
                         }))
                       )
                         return;

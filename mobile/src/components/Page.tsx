@@ -77,6 +77,7 @@ import FloatingNavbar from "./FloatingNavbar";
 import { useFlags } from "flagsmith/react";
 import { FaBars } from "react-icons/fa6";
 import { FaHome } from "react-icons/fa";
+import { $$ } from "../translations/i18n";
 
 export default function Page(props: {
   title: string;
@@ -142,7 +143,7 @@ export default function Page(props: {
                   router.push("/");
                 }}
                 icon={<FaHome />}
-                aria-label={"Home"}
+                aria-label={$$("menu.home")}
                 variant={"ghost"}
                 color={props.redGradient ? "red.500" : "brand.500"}
               />
@@ -150,7 +151,7 @@ export default function Page(props: {
                 size={"lg"}
                 onClick={onOpen}
                 icon={<FaBars />}
-                aria-label={"Menu"}
+                aria-label={$$("menu.menu")}
                 variant={"ghost"}
                 color={props.redGradient ? "red.500" : "brand.500"}
               />
