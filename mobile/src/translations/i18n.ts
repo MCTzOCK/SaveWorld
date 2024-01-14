@@ -7,6 +7,7 @@
  * Created At: 13.01.2024
  *
  */
+import { da } from "./da";
 
 const languages = {
   languages: {
@@ -45,6 +46,21 @@ const languages = {
       type: "auto",
       cc: "it",
     },
+    pl: {
+      displayName: "Polski",
+      type: "auto",
+      cc: "pl",
+    },
+    da: {
+      displayName: "Dansk",
+      type: "auto",
+      cc: "dk",
+    },
+    el: {
+      displayName: "Ελληνικά",
+      type: "auto",
+      cc: "gr",
+    },
     cn: {
       displayName: "中文",
       type: "auto",
@@ -61,6 +77,8 @@ import { cn } from "./cn";
 import { pt } from "./pt";
 import { it } from "./it";
 import { nl } from "./nl";
+import { pl } from "./pl";
+import { el } from "./el";
 
 type Keys = keyof typeof german;
 
@@ -110,6 +128,12 @@ function getLanguageSet(language: string): Record<Keys, string> {
       return it;
     case "nl":
       return nl;
+    case "pl":
+      return pl;
+    case "el":
+      return el;
+    case "da":
+      return da;
     default:
       return getEmptyLanguageSet();
   }

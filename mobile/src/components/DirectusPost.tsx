@@ -35,7 +35,7 @@ export default function DirectusPost(props: { postId: string }) {
   } | null>(null);
 
   useEffect(() => {
-    directus.request(readItem("Posts", props.postId)).then((post) => {
+    directus.request(readItem("Posts", props.postId)).then(async (post) => {
       setPost(post as any);
     });
   }, [props.postId]);
