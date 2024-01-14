@@ -1,0 +1,10 @@
+{
+  "name": "@saveworld/translate-server",
+  "version": "1.0.0",
+  "author": "Ben Siebert",
+  "main": "index.js",
+  "dependencies": {
+    "@iamtraction/google-translate": "^2.0.1",
+    "express": "^4.18.2"
+  }
+}

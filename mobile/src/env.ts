@@ -22,7 +22,7 @@ export const FLAGSMITH_ENVIRONMENT_ID = import.meta.env
   .VITE_FLAGSMITH_ENVIRONMENT_ID;
 export const POSTHOG_ENDPOINT = import.meta.env.VITE_POSTHOG_ENDPOINT;
 export const POSTHOG_KEY = import.meta.env.VITE_POSTHOG_KEY;
-
+export const TRANSLATE_SERVER = import.meta.env.VITE_TRANSLATE_SERVER;
 export const getGhostContentApi = () => {
   return new GhostContentAPI({
     url: GHOST_ENDPOINT,

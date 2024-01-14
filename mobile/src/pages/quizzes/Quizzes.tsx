@@ -37,6 +37,7 @@ import ManageAccountInterests from "../../components/ManageAccountInterests";
 import PopupManager from "../../util/PopupManager";
 import SaveWorldModal from "../../components/SaveWorldModal";
 import { $$ } from "../../translations/i18n";
+import { translateOnline } from "../../util/online-translate";
 
 export default function Quizzes() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -75,8 +76,35 @@ export default function Quizzes() {
             : undefined,
         ),
       )
-      .then((data) => {
-        setQuizzes(data);
+      .then(async (data) => {
+        let newQuizzes = [];
+
+        for (let quiz of data) {
+          let question = quiz.question;
+          let answer_1 = quiz.answer_1;
+          let answer_2 = quiz.answer_2;
+          let answer_3 = quiz.answer_3;
+          let answer_4 = quiz.answer_4;
+
+          if (window.language !== "de") {
+            question = await translateOnline(question, window.language);
+            answer_1 = await translateOnline(answer_1, window.language);
+            answer_2 = await translateOnline(answer_2, window.language);
+            answer_3 = await translateOnline(answer_3, window.language);
+            answer_4 = await translateOnline(answer_4, window.language);
+          }
+
+          newQuizzes.push({
+            ...quiz,
+            question: question,
+            answer_1: answer_1,
+            answer_2: answer_2,
+            answer_3: answer_3,
+            answer_4: answer_4,
+          });
+        }
+
+        setQuizzes(newQuizzes);
       });
   }, [query]);
 

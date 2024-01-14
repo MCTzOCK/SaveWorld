@@ -140,7 +140,7 @@ export default function Home() {
                   <HomeCardV2
                     color={"blue.500"}
                     icon={<BiFile />}
-                    text={$$("menu.recipes")}
+                    text={$$("components.articles")}
                     url={"/sustainability/articles"}
                   />
                 ) : null}
