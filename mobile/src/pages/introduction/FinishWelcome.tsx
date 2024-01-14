@@ -20,11 +20,12 @@ import {
   IonText,
 } from "@ionic/react";
 import { Box, Flex } from "@chakra-ui/react";
+import { $$ } from "../../translations/i18n";
 
 export default function FinishWelcome() {
   return (
     <>
-      <Page title={"Fertig!"}>
+      <Page title={$$("general.finished")}>
         <Flex
           w={"100%"}
           justifyContent={["flex-start", "center"]}
@@ -39,10 +40,7 @@ export default function FinishWelcome() {
             minW={"200px"}
             padding={"1rem"}
           >
-            <IonText>
-              Du hast die Einrichtung erfolgreich abgeschlossen! Du kannst jetzt
-              anfagen die Welt zu einem besseren Ort zu machen!
-            </IonText>
+            <IonText>{$$("pages.introduction.finished.description")}</IonText>
             <IonButton
               expand={"block"}
               color={"success"}
@@ -52,7 +50,7 @@ export default function FinishWelcome() {
               routerLink={"/"}
               routerDirection={"none"}
             >
-              Die Welt verbessern!
+              {$$("pages.introduction.call.to.action")}
             </IonButton>
           </Box>
         </Flex>

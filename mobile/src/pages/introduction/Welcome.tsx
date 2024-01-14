@@ -24,6 +24,7 @@ import WelcomeInterestModal from "../../components/WelcomeInterestModal";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
 import { Box, Flex } from "@chakra-ui/react";
 import MobileBox from "../../components/MobileBox";
+import { $$ } from "../../translations/i18n";
 
 export default function Welcome() {
   useRedirectForAnon();
@@ -42,13 +43,12 @@ export default function Welcome() {
 
   return (
     <>
-      <Page title={"Willkommen!"} setPresentingElement={setPresentingElement}>
+      <Page
+        title={$$("general.welcome")}
+        setPresentingElement={setPresentingElement}
+      >
         <MobileBox>
-          <IonText>
-            Hey, willkommen bei <b>SaveWorld</b>! Wir freuen uns, dass du die
-            Welt verbessern willst! Für eine optimale Erfahrung solltest du hier
-            deine Interessen auswählen! Du kannst diese später jederzeit ändern.
-          </IonText>
+          <IonText>{$$("pages.introduction.welcome.description")}</IonText>
           <IonButton
             expand={"block"}
             color={"success"}
@@ -59,7 +59,7 @@ export default function Welcome() {
               modal.current?.present();
             }}
           >
-            Weiter
+            {$$("control.next")}
           </IonButton>
           <IonButton
             expand={"block"}
@@ -71,7 +71,7 @@ export default function Welcome() {
             routerLink={"/onboarding"}
             routerDirection={"none"}
           >
-            Später auswählen
+            {$$("pages.introduction.welcome.choose.later")}
           </IonButton>
         </MobileBox>
         <WelcomeInterestModal

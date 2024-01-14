@@ -418,4 +418,18 @@ export const german = {
   "user.role.admin": "Administrator",
   "user.user": "Benutzer",
   "user.username": "Benutzername",
+  "general.finished": "Fertig!",
+  "pages.introduction.finished.description":
+    "Du hast die Einrichtung erfolgreich abgeschlossen! Du kannst jetzt anfagen die Welt zu einem besseren Ort zu machen!",
+  "pages.introduction.call.to.action": "Die Welt verbessern!",
+  "pages.introduction.welcome.description":
+    "Hey, willkommen bei SaveWorld! Wir freuen uns, dass du die Welt verbessern willst! Für eine optimale Erfahrung solltest du hier deine Interessen auswählen! Du kannst die später jederzeit ändern.",
+  "pages.introduction.welcome.choose.later": "Später auswählen",
+  "pages.introduction.lifestyle.description":
+    "Bitte trag hier Daten zu deinem Lebensstil ein, damit du dir Ziele setzen kannst, um diesen zu verbessern! In der linken Spalte siehst du die Aktion und in der rechten Spalte kannst du eintragen, wie oft du diese Aktion in der Woche normalerweise durchführst.",
+  "pages.introduction.lifestyle.weekly.goal": "Wöchentliches Ziel",
+  "pages.introduction.lifestyle.this.action": "Diese Aktion",
+  "pages.introduction.lifestyle.avoid": "vermeiden",
+  "pages.introduction.lifestyle.save.error":
+    "Fehler beim Speichern des Lifestyles: %0",
 } as const;
