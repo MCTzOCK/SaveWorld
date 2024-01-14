@@ -11,27 +11,21 @@
 import * as React from "react";
 import Page from "../../components/Page";
 import Calculator from "../../components/Calculator";
+import { $$ } from "../../translations/i18n";
 
 export default function CO2LongDistanceTrain() {
   return (
     <>
       <Calculator
-        title={"Fernzug"}
+        title={$$("pages.tools.calc.train")}
         description={
           <>
-            <p>
-              Berechne, wie viel CO2 du mit auf einer Strecke mit dem Fernzug
-              ausstößt. Die Berechnung basiert auf Daten von Quarks. <br />
-              Für die Berechnung benötigst du die Länge der Strecke (in km).{" "}
-              <br />
-              Pro km werden 0,036kg CO2 ausgestoßen, weswegen durch Rundung
-              Abweichungen entstehen können.
-            </p>
+            <p>{$$("pages.tools.calc.train.description.long")}</p>
           </>
         }
         inputs={[
           {
-            label: "Distanz",
+            label: $$("pages.tools.calc.distance"),
             id: "distance",
             type: "number",
           },

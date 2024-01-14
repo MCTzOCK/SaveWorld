@@ -31,31 +31,26 @@ import {
 import { FaGasPump, FaHashtag, FaPlug } from "react-icons/fa";
 import PopupManager from "../../util/PopupManager";
 import Calculator from "../../components/Calculator";
+import { $$ } from "../../translations/i18n";
 
 export default function CO2ECar() {
   return (
     <>
       <Calculator
-        title={"Auto"}
+        title={$$("pages.tools.calc.ecar")}
         description={
           <>
-            <p>
-              Berechne, wie viel CO2 du mit deinem Auto auf einer Strecke
-              ausstößt. Die Berechnung basiert auf Daten des Umweltbundesamtes
-              (UBA) aus dem Jahr 2022. <br />
-              Für die Berechnung benötigst du die Länge der Strecke (in km) und
-              den Stromverbrauch deines Autos (in kWh/100km). <br />
-            </p>
+            <p>{$$("pages.tools.calc.ecar.description.long")}</p>
           </>
         }
         inputs={[
           {
-            label: "Distanz",
+            label: $$("pages.tools.calc.distance"),
             id: "distance",
             type: "number",
           },
           {
-            label: "Stromverbrauch auf 100km",
+            label: $$("pages.tools.calc.power.usage"),
             id: "consumption",
             type: "number",
           },

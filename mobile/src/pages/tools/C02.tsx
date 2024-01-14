@@ -29,6 +29,7 @@ import {
   useIonRouter,
 } from "@ionic/react";
 import { useState } from "react";
+import { $$ } from "../../translations/i18n";
 
 const calculators: {
   title: string;
@@ -41,47 +42,43 @@ const calculators: {
   url: string;
 }[] = [
   {
-    title: "Auto",
+    title: $$("pages.tools.calc.car"),
     image: {
       url: "/assets/calculator/co2/car_emissions.jpg",
       cpr: "Unsplash, Matt Boitor",
     },
     cpr: "UBA 2022: Emissionsbilanz erneuerbarer Energieträger",
-    description:
-      "Rechne aus, wie viel CO2 du mit deinem Auto auf einer bestimmten Strecke ausstößt.",
+    description: $$("pages.tools.calc.car.description"),
     url: "/tools/co2/car",
   },
   {
-    title: "Elektro Auto",
+    title: $$("pages.tools.calc.ecar"),
     image: {
       url: "/assets/calculator/co2/e-car.jpg",
       cpr: "Unsplash, Remy Lovesy",
     },
     cpr: "UBA 2022: Emissionsbilanz erneuerbarer Energieträger",
-    description:
-      "Rechne aus, wie viel CO2 du mit deinem Elektro Auto auf einer bestimmten Strecke, durch den Stromverbrauch, ausstößt.",
+    description: $$("pages.tools.calc.ecar.description"),
     url: "/tools/co2/e-car",
   },
   {
-    title: "Wasserstoff Auto",
+    title: $$("pages.tools.calc.hcar"),
     image: {
       url: "/assets/calculator/co2/h-car.jpg",
       cpr: "Unsplash, Darren Halstead",
     },
     cpr: "UBA 2022: Emissionsbilanz erneuerbarer Energieträger",
-    description:
-      "Rechne aus, wie viel CO2 du mit deinem Wasserstoff Auto auf einer bestimmten Strecke, durch den Wasserstoffverbrauch, ausstößt.",
+    description: $$("pages.tools.calc.hcar.description"),
     url: "/tools/co2/h-car",
   },
   {
-    title: "Fernverkehr Zug (ICE, IC, etc)",
+    title: $$("pages.tools.calc.train"),
     image: {
       url: "/assets/calculator/co2/long-distance-train.jpg",
       cpr: "Unsplash, Daniel Abadia",
     },
     cpr: "Quarks",
-    description:
-      "Rechne aus, wie viel CO2-Ausstoß du auf deiner Reise mit dem Fernverkehrszug verursachst.",
+    description: $$("pages.tools.calc.train.description"),
     url: "/tools/co2/long-distance-train",
   },
 ];
@@ -93,9 +90,9 @@ export default function C02() {
 
   return (
     <>
-      <Page title={"CO2-Rechner"}>
+      <Page title={$$("pages.tools.calc")}>
         <IonSearchbar
-          placeholder={"Suchen..."}
+          placeholder={$$("control.search")}
           onIonInput={(e) => {
             setQuery(e.detail.value!);
           }}
@@ -120,7 +117,7 @@ export default function C02() {
           }).length === 0 && (
             <>
               <Heading size={"md"}>
-                Es wurden keine CO2-Rechner für "{query}" gefunden.
+                {$$("pages.tools.calc.search.no.results")}
               </Heading>
             </>
           )}
@@ -143,7 +140,8 @@ export default function C02() {
                     <CardHeader>
                       <Image src={calc.image.url} rounded={"md"} />
                       <p>
-                        <b>Quelle</b>: <i>{calc.image.cpr}</i>
+                        <b>{$$("pages.tools.calc.source")}</b>:{" "}
+                        <i>{calc.image.cpr}</i>
                       </p>
                       <Heading size={"lg"}>{calc.title}</Heading>
                     </CardHeader>
@@ -151,7 +149,7 @@ export default function C02() {
                       <Text>
                         {calc.description}
                         <br />
-                        <b>Quelle</b>:&nbsp;
+                        <b>{$$("pages.tools.calc.source")}</b>:&nbsp;
                         <i>{calc.cpr}</i>
                       </Text>
                       <ButtonGroup w={"100%"} mt={4}>
@@ -162,7 +160,7 @@ export default function C02() {
                             router.push(calc.url, "none", "push");
                           }}
                         >
-                          Berechnen
+                          {$$("pages.tools.calc.calculate")}
                         </Button>
                       </ButtonGroup>
                     </CardBody>
