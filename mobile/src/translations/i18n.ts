@@ -56,10 +56,25 @@ const languages = {
       type: "auto",
       cc: "dk",
     },
+    uk: {
+      displayName: "Українська",
+      type: "auto",
+      cc: "ua",
+    },
     el: {
       displayName: "Ελληνικά",
       type: "auto",
       cc: "gr",
+    },
+    ja: {
+      displayName: "日本語",
+      type: "auto",
+      cc: "jp",
+    },
+    ko: {
+      displayName: "한국어",
+      type: "auto",
+      cc: "kr",
     },
     cn: {
       displayName: "中文",
@@ -79,6 +94,9 @@ import { it } from "./it";
 import { nl } from "./nl";
 import { pl } from "./pl";
 import { el } from "./el";
+import { uk } from "./uk";
+import { ja } from "./ja";
+import { ko } from "./ko";
 
 type Keys = keyof typeof german;
 
@@ -134,6 +152,12 @@ function getLanguageSet(language: string): Record<Keys, string> {
       return el;
     case "da":
       return da;
+    case "uk":
+      return uk;
+    case "ja":
+      return ja;
+    case "ko":
+      return ko;
     default:
       return getEmptyLanguageSet();
   }

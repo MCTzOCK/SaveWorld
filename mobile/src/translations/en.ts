@@ -34,7 +34,7 @@ export const en = {
   "components.admin.user.is.admin": "Is the user an administrator?",
   "components.admin.user.save.error": "Error saving user: %0",
   "components.admin.user.saved": "User saved successfully!",
-  "components.articles": "Article",
+  "components.articles": "Articles",
   "components.articles.read.more": "Continue reading",
   "components.articles.source": "Source",
   "components.calc.result": "Result",
@@ -680,7 +680,7 @@ export const en = {
   "pages.recipes.steps.add": "Add step",
   "pages.recipes.steps.delete": "Delete step",
   "pages.recipes.steps.description": "The recipe is prepared as follows:",
-  "pages.sustainability.call.to.action": "Explore Article",
+  "pages.sustainability.call.to.action": "Explore Articles",
   "pages.sustainability.section.1":
     "Sustainability is a very important topic. However, it does not only include the environment, but also consists of three pillars: ecology (environment), economy (economy) and social (society).",
   "pages.sustainability.section.2":
