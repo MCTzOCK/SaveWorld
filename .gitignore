@@ -12,3 +12,5 @@ essay/src/target.tex
 mobile/src/translations/temp/
 
 translate-server/node_modules/
+
+browser-translate/node_modules/
