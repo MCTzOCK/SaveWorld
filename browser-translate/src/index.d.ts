@@ -11,8 +11,9 @@ export = translate;
 /**
  * Translates the given text
  * @param {string} text The text to translate
- * @param {string} from The language to translate from
+ * @param {string} to The language to translate to
  * @returns {Promise<string>} The translated text
+ * @async
  */
-declare function translate(text: string, from: string): Promise<string>;
+declare function translate(text: string, to: string): Promise<string>;
 //# sourceMappingURL=index.d.ts.map

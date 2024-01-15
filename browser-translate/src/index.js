@@ -11,10 +11,11 @@
 /**
  * Translates the given text
  * @param {string} text The text to translate
- * @param {string} from The language to translate from
+ * @param {string} to The language to translate to
  * @returns {Promise<string>} The translated text
+ * @async
  */
-async function translate(text, from) {
+async function translate(text, to) {
   const res = await fetch("https://translate.saveworld.one", {
     method: "POST",
     headers: {
@@ -22,7 +23,7 @@ async function translate(text, from) {
     },
     body: JSON.stringify({
       text: text,
-      from: from,
+      to: to,
     }),
   });
 
