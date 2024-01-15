@@ -23,7 +23,7 @@ const targetLang = process.argv[2] || "en";
 (async () => {
   let mod: any = {};
   if (fs.existsSync(path.join(__dirname, `${targetLang}.ts`))) {
-    mod = await import(`./${targetLang}`);
+    mod = (await import(`./${targetLang}`))[targetLang];
   }
 
   const origKeys = Object.keys(g);
@@ -31,7 +31,9 @@ const targetLang = process.argv[2] || "en";
 
   const newKeys = origKeys.filter((k) => !keys.includes(k));
 
-  const result: any = {};
+  const result: any = {
+    ...mod,
+  };
 
   for (const key of newKeys) {
     if (ignoredKeys.includes(key)) {

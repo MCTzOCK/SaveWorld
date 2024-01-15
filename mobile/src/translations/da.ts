@@ -4,7 +4,8 @@ export const da = {
   "components.admin.create.category": "Ny kategori",
   "components.admin.create.category.change.image": "skifte billede",
   "components.admin.create.category.description": "Beskrivelse",
-  "components.admin.create.category.error": "Fejl ved oprettelse af kategori: %0",
+  "components.admin.create.category.error":
+    "Fejl ved oprettelse af kategori: %0",
   "components.admin.create.category.name": "Efternavn",
   "components.admin.intern.tools": "Interne værktøjer",
   "components.admin.stats": "Statistikker",
@@ -12,7 +13,8 @@ export const da = {
   "components.admin.stats.categories": "Kategorier",
   "components.admin.stats.chats": "Forum chats",
   "components.admin.stats.chats.subtitle": "Beskeder: %0",
-  "components.admin.stats.error.loading": "Fejl ved indlæsning af statistik: %0",
+  "components.admin.stats.error.loading":
+    "Fejl ved indlæsning af statistik: %0",
   "components.admin.stats.projects": "Øko projekter",
   "components.admin.stats.push.notifications": "Push beskeder.",
   "components.admin.stats.recipes": "Opskrifter",
@@ -21,10 +23,12 @@ export const da = {
   "components.admin.stats.users.subtitle": "heraf aktive: %0",
   "components.admin.stats.videos": "videoer",
   "components.admin.stats.videos.subtitle": "Visninger: %0",
-  "components.admin.support.request": "Denne supportanmodning blev oprettet %0 kl. %1 af %2.",
+  "components.admin.support.request":
+    "Denne supportanmodning blev oprettet %0 kl. %1 af %2.",
   "components.admin.support.request.button.post": "Bidrag",
   "components.admin.support.request.button.profile": "profil",
-  "components.admin.support.request.message": "Brugeren efterlod følgende besked:",
+  "components.admin.support.request.message":
+    "Brugeren efterlod følgende besked:",
   "components.admin.user.can.login": "Kan brugeren logge ind?",
   "components.admin.user.delete.confirm": "Vil du slette brugeren?",
   "components.admin.user.delete.error": "Fejl ved sletning af bruger: %0",
@@ -60,72 +64,100 @@ export const da = {
   "components.community.search.blogs": "Indlæg",
   "components.community.search.profiles": "Profiler",
   "components.e2.add.data": "Indtast data",
-  "components.e2.cant.add.data": "Da datoen ligger i fortiden, kan du ikke længere indtaste nogen data.",
+  "components.e2.cant.add.data":
+    "Da datoen ligger i fortiden, kan du ikke længere indtaste nogen data.",
   "components.e2.goals": "Mål",
-  "components.e2.goals.loading.error": "Fejl ved indlæsning af destinationer: %0",
+  "components.e2.goals.loading.error":
+    "Fejl ved indlæsning af destinationer: %0",
   "components.e2.goals.missed": "Mislykkede mål",
   "components.e2.goals.not.reached": "Mål ikke nået.",
   "components.e2.goals.reached": "Opnåede mål",
   "components.e2.goals.reached.how.many": "%0 af %1 nået.",
-  "components.e2.how.actions": "Hvordan var din dag? Indtast, hvor ofte du udførte følgende handlinger.",
+  "components.e2.how.actions":
+    "Hvordan var din dag? Indtast, hvor ofte du udførte følgende handlinger.",
   "components.e2.how.was.your.day": "Hvordan var din dag?",
-  "components.e2.lifestyle.loading.error": "Fejl ved indlæsning af livsstil: %0",
-  "components.e2.lifestyle.templates.loading.error": "Skabeloner kunne ikke indlæses: %0",
+  "components.e2.lifestyle.loading.error":
+    "Fejl ved indlæsning af livsstil: %0",
+  "components.e2.lifestyle.templates.loading.error":
+    "Skabeloner kunne ikke indlæses: %0",
   "components.e2.no.data": "Ingen data",
-  "components.e2.no.data.description": "Du har ikke indtastet nogen data for denne dag!",
+  "components.e2.no.data.description":
+    "Du har ikke indtastet nogen data for denne dag!",
   "components.e2.summary.of.day": "Resumé fra",
   "components.e2.unnamed.action": "Ukendt handling",
   "components.e2.weekly.overview": "Ugeoversigt",
-  "components.e2projects.edit.members.intro": "Dit projekt har i alt %0 medlemmer. Hvert medlem kan have en af ​​tre roller:",
-  "components.e2projects.homepage.segment.delete.confirm": "Er du sikker på, at du vil slette segmentet?",
-  "components.e2projects.homepage.segment.delete.error": "Segmentet kunne ikke slettes: %0",
-  "components.e2projects.homepage.segment.list.helper.text": "Adskil posterne med to linjeskift.",
+  "components.e2projects.edit.members.intro":
+    "Dit projekt har i alt %0 medlemmer. Hvert medlem kan have en af ​​tre roller:",
+  "components.e2projects.homepage.segment.delete.confirm":
+    "Er du sikker på, at du vil slette segmentet?",
+  "components.e2projects.homepage.segment.delete.error":
+    "Segmentet kunne ikke slettes: %0",
+  "components.e2projects.homepage.segment.list.helper.text":
+    "Adskil posterne med to linjeskift.",
   "components.e2projects.homepage.segment.list.placeholder": "Indtast listen",
   "components.e2projects.homepage.segment.pin": "At sætte fast",
-  "components.e2projects.homepage.segment.pin.error": "Segmentet kunne ikke fastgøres: %0",
+  "components.e2projects.homepage.segment.pin.error":
+    "Segmentet kunne ikke fastgøres: %0",
   "components.e2projects.homepage.segment.pinned": "FASTGJORT TIL",
   "components.e2projects.homepage.segment.text.placeholder": "indsætte tekst",
-  "components.e2projects.homepage.segment.update.error": "Segmentet kunne ikke gemmes: %0",
+  "components.e2projects.homepage.segment.update.error":
+    "Segmentet kunne ikke gemmes: %0",
   "components.e2projects.homepage.segments.new": "Nyt segment",
   "components.e2projects.homepage.segments.new.choose": "Vælg et segment",
-  "components.e2projects.homepage.segments.new.default": "Billedbeskrivelse /community_blank_banner.jpg",
-  "components.e2projects.homepage.segments.new.default.list": "Første indgang Anden indgang",
+  "components.e2projects.homepage.segments.new.default":
+    "Billedbeskrivelse /community_blank_banner.jpg",
+  "components.e2projects.homepage.segments.new.default.list":
+    "Første indgang Anden indgang",
   "components.e2projects.homepage.segments.new.enter.title": "Indtast en titel",
-  "components.e2projects.homepage.segments.new.error": "Kunne ikke oprette segment: %0",
+  "components.e2projects.homepage.segments.new.error":
+    "Kunne ikke oprette segment: %0",
   "components.e2projects.homepage.segments.new.list": "liste",
   "components.e2projects.homepage.segments.new.text": "tekst",
   "components.e2projects.homepahe.segment.unpin": "Løsrive",
   "components.e2projects.members.change.role": "Skift rolle",
-  "components.e2projects.members.change.role.choose": "Vælg en ny rolle til medlemmet",
+  "components.e2projects.members.change.role.choose":
+    "Vælg en ny rolle til medlemmet",
   "components.e2projects.members.remove": "Fjern medlem",
-  "components.e2projects.members.remove.confirm": "Er du sikker på, at du vil fjerne medlemmet?",
+  "components.e2projects.members.remove.confirm":
+    "Er du sikker på, at du vil fjerne medlemmet?",
   "components.e2projects.members.roles.admin": "Administrator",
-  "components.e2projects.members.roles.admin.description": "Kan redigere projektoplysninger, startsidesegmenter, administrere medlemmer og slette projektet.",
+  "components.e2projects.members.roles.admin.description":
+    "Kan redigere projektoplysninger, startsidesegmenter, administrere medlemmer og slette projektet.",
   "components.e2projects.members.roles.editor": "redaktør",
-  "components.e2projects.members.roles.editor.description": "Kan gøre alt, hvad en administrator kan undtagen at slette projektet og ændre medlemmernes roller.",
+  "components.e2projects.members.roles.editor.description":
+    "Kan gøre alt, hvad en administrator kan undtagen at slette projektet og ændre medlemmernes roller.",
   "components.e2projects.members.roles.member": "Medlem",
-  "components.e2projects.members.roles.member.description": "Kan se alt, men kan ikke redigere noget. (standard rolle)",
+  "components.e2projects.members.roles.member.description":
+    "Kan se alt, men kan ikke redigere noget. (standard rolle)",
   "components.e2projects.project.add.to.calendar": "Tilføj til kalender",
   "components.e2projects.project.at.day": "Projekt på",
   "components.e2projects.project.at.location": "projekter på dette sted",
-  "components.e2projects.project.delete.error": "Projektet kunne ikke slettes: %0",
+  "components.e2projects.project.delete.error":
+    "Projektet kunne ikke slettes: %0",
   "components.e2projects.project.goto": "Til projektet",
   "components.e2projects.project.save.error": "Fejl ved lagring af projekt: %0",
   "components.e2projects.project.saved": "Dit projekt er blevet gemt!",
   "components.e2projects.todo.delete": "Vil du slette listen?",
-  "components.e2projects.todo.delete.confirm": "Er du sikker på, at du vil slette listen?",
+  "components.e2projects.todo.delete.confirm":
+    "Er du sikker på, at du vil slette listen?",
   "components.e2projects.todo.delete.error": "Fejl ved sletning af liste: %0",
-  "components.e2projects.todo.loading.error": "To-do listerne kunne ikke indlæses!",
+  "components.e2projects.todo.loading.error":
+    "To-do listerne kunne ikke indlæses!",
   "components.e2projects.todo.new": "Ny liste",
-  "components.e2projects.todo.new.description": "Indtast venligst navnet på den nye liste!",
+  "components.e2projects.todo.new.description":
+    "Indtast venligst navnet på den nye liste!",
   "components.e2projects.todo.new.error": "Fejl ved oprettelse af liste: %0",
-  "components.e2projects.todo.no.lists": "Ingen ToDo-lister er blevet tilføjet endnu.",
+  "components.e2projects.todo.no.lists":
+    "Ingen ToDo-lister er blevet tilføjet endnu.",
   "components.forum.edit.profile.error": "Fejl ved redigering af profil: %0",
   "components.interests.no.categories": "Ingen kategorier fundet!",
   "components.interests.save.error": "Fejl ved lagring af interesser: %0",
-  "components.manage.interests.all.selected": "Du har valgt alle tilgængelige interesser!",
-  "components.manage.interests.intro": "Du har i øjeblikket angivet følgende interesser:",
-  "components.manage.interests.more.selectable": "Du kan også vælge følgende interesser:",
+  "components.manage.interests.all.selected":
+    "Du har valgt alle tilgængelige interesser!",
+  "components.manage.interests.intro":
+    "Du har i øjeblikket angivet følgende interesser:",
+  "components.manage.interests.more.selectable":
+    "Du kan også vælge følgende interesser:",
   "components.recipes.loading.error": "Fejl ved indlæsning af opskrifter: %0",
   "components.video.create": "Ny video",
   "components.video.create.button": "Opret video",
@@ -142,10 +174,12 @@ export const da = {
   "components.video.modal.comment.enter": "Indtast din kommentar",
   "components.video.modal.comment.error": "Kommentaren kunne ikke gemmes: %0",
   "components.video.modal.comment.submit": "Efterlad en kommentar",
-  "components.video.modal.comments.loading.error": "Kommentarer kunne ikke indlæses: %0",
+  "components.video.modal.comments.loading.error":
+    "Kommentarer kunne ikke indlæses: %0",
   "components.video.modal.comments.no": "Denne video har ingen kommentarer.",
   "components.video.modal.rate.error": "Fejlvurdering af video: %0",
-  "components.video.modal.rate.how.stars": "Hvor mange stjerner fortjener videoen?",
+  "components.video.modal.rate.how.stars":
+    "Hvor mange stjerner fortjener videoen?",
   "components.video.modal.rate.success": "Tak for din anmeldelse!",
   "control.activate": "Aktiver",
   "control.back": "Tilbage",
@@ -235,19 +269,25 @@ export const da = {
   "menu.tools": "Værktøjer",
   "menu.tracker": "tracker",
   "menu.videos": "videoer",
-  "page.404.description": "Desværre er denne funktion ikke tilgængelig i øjeblikket. Hvis du mener, at dette er en fejl, bedes du kontakte os.",
+  "page.404.description":
+    "Desværre er denne funktion ikke tilgængelig i øjeblikket. Hvis du mener, at dette er en fejl, bedes du kontakte os.",
   "page.404.home": "at ringe hjem",
   "page.account.2fa": "Tofaktorautentificering",
-  "page.account.2fa.activated": "Aktiveret med succes! Indtast følgende kode i din app: %0",
+  "page.account.2fa.activated":
+    "Aktiveret med succes! Indtast følgende kode i din app: %0",
   "page.account.2fa.deactivated": "Deaktiveret med succes!",
-  "page.account.2fa.deactivated.description": "Tofaktorgodkendelse blev deaktiveret.",
+  "page.account.2fa.deactivated.description":
+    "Tofaktorgodkendelse blev deaktiveret.",
   "page.account.2fa.deactivated.error": "Fejl ved deaktivering: %0",
   "page.account.2fa.error": "Fejl ved aktivering: %0",
   "page.account.dangerzone": "Farezone",
   "page.account.delete.account": "Sletning af en konto",
-  "page.account.delete.account.description": "Er du sikker på, at du vil slette din konto? Dette kan ikke fortrydes!",
-  "page.account.delete.account.error": "Fejl ved sletning, kontakt venligst support: %0",
-  "page.account.delete.pfp.description": "Er du sikker på, at du vil fjerne dit profilbillede?",
+  "page.account.delete.account.description":
+    "Er du sikker på, at du vil slette din konto? Dette kan ikke fortrydes!",
+  "page.account.delete.account.error":
+    "Fejl ved sletning, kontakt venligst support: %0",
+  "page.account.delete.pfp.description":
+    "Er du sikker på, at du vil fjerne dit profilbillede?",
   "page.account.delete.pfp.error": "Profilbilledet kunne ikke fjernes: %0",
   "page.account.delete.pfp.success": "Profilbilledet blev fjernet.",
   "page.account.delete.pfp.title": "Fjern profilbillede",
@@ -273,43 +313,54 @@ export const da = {
   "page.notifications.error.loading": "Meddelelser kunne ikke indlæses: %0",
   "page.notifications.read": "Læs",
   "page.notifications.unread": "Ulæst",
-  "page.offline.description": "En internetforbindelse er påkrævet for at bruge SaveWorld. Tjek din internetforbindelse, og prøv igen.",
+  "page.offline.description":
+    "En internetforbindelse er påkrævet for at bruge SaveWorld. Tjek din internetforbindelse, og prøv igen.",
   "page.offline.title": "Intet internet",
   "page.register.error": "Fejl ved registrering: %0",
-  "page.register.success": "Registreringen lykkedes! Bekræft venligst din email adresse.",
+  "page.register.success":
+    "Registreringen lykkedes! Bekræft venligst din email adresse.",
   "page.register.title": "at registrere",
-  "page.support.attachment": "Oplysningerne om indholdet, der skal rapporteres, vil automatisk blive tilføjet til din anmodning.",
-  "page.support.attachment.video": "Videoen føjes automatisk til din anmodning.",
+  "page.support.attachment":
+    "Oplysningerne om indholdet, der skal rapporteres, vil automatisk blive tilføjet til din anmodning.",
+  "page.support.attachment.video":
+    "Videoen føjes automatisk til din anmodning.",
   "page.support.category.error": "Rapporter en fejl",
   "page.support.category.general": "Generel støtte",
   "page.support.category.question.video": "Video spørgsmål",
   "page.support.category.report.post": "melde Post",
   "page.support.category.report.user": "Rapporter bruger",
   "page.support.choose.category": "vælg kategori",
-  "page.support.description": "Har du et spørgsmål eller et problem? Så skriv en besked til os! Alternativt kan du også kontakte os på mail:",
+  "page.support.description":
+    "Har du et spørgsmål eller et problem? Så skriv en besked til os! Alternativt kan du også kontakte os på mail:",
   "page.support.error": "Din anmodning kunne ikke sendes: %0",
-  "page.support.form.confirm": "Er du sikker på, at du vil sende denne anmodning?",
+  "page.support.form.confirm":
+    "Er du sikker på, at du vil sende denne anmodning?",
   "page.support.form.missing.category": "Vælg venligst en kategori.",
   "page.support.form.missing.message": "Indtast venligst en besked.",
   "page.support.success": "Din anmodning er blevet sendt.",
   "page.sustainability.title": "bæredygtighed",
-  "pages.admin.category.delete": "Er du sikker på, at du vil slette kategorien?",
+  "pages.admin.category.delete":
+    "Er du sikker på, at du vil slette kategorien?",
   "pages.admin.category.delete.error": "Fejl ved sletning af kategori: %0",
   "pages.admin.category.loading.error": "Fejl ved indlæsning af kategorier: %0",
   "pages.admin.category.no.categories": "Ingen kategorier fundet.",
   "pages.admin.category.title": "Kategorier",
   "pages.admin.content.categories.and.interests": "Kategorier og interesser",
-  "pages.admin.content.categories.and.interests.description": "Her kan du administrere kategorier og interesser.",
+  "pages.admin.content.categories.and.interests.description":
+    "Her kan du administrere kategorier og interesser.",
   "pages.admin.content.videos.description": "Du kan administrere videoer her.",
   "pages.admin.e2projects.delete": "Vil du slette projektet?",
-  "pages.admin.e2projects.delete.description": "Vil du virkelig slette projektet?",
+  "pages.admin.e2projects.delete.description":
+    "Vil du virkelig slette projektet?",
   "pages.admin.e2projects.delete.success": "Projektet er blevet slettet!",
   "pages.admin.e2projects.loading.error": "Projekter kunne ikke indlæses: %0",
   "pages.admin.lifestyle.create.error": "Fejl ved oprettelse af skabelon: %0",
-  "pages.admin.lifestyle.delete.description": "Er du sikker på, at du vil slette skabelonen?",
+  "pages.admin.lifestyle.delete.description":
+    "Er du sikker på, at du vil slette skabelonen?",
   "pages.admin.lifestyle.delete.error": "Fejl ved sletning af skabelon: %0",
   "pages.admin.lifestyle.edit.error": "Fejl ved redigering af skabelon: %0",
-  "pages.admin.lifestyle.loading.error": "Fejl ved indlæsning af skabeloner: %0",
+  "pages.admin.lifestyle.loading.error":
+    "Fejl ved indlæsning af skabeloner: %0",
   "pages.admin.lifestyle.new.goal": "Skabelonens mål",
   "pages.admin.lifestyle.new.title": "ny skabelon",
   "pages.admin.recipes.delete": "Vil du virkelig slette opskriften?",
@@ -321,17 +372,21 @@ export const da = {
   "pages.admin.support.category.post": "Send besked",
   "pages.admin.support.category.user": "Bruger besked",
   "pages.admin.support.category.video": "Video spørgsmål",
-  "pages.admin.support.loading.error": "Fejl ved indlæsning af supportanmodninger: %0",
+  "pages.admin.support.loading.error":
+    "Fejl ved indlæsning af supportanmodninger: %0",
   "pages.admin.support.request": "Forespørgsel",
   "pages.admin.support.request.action.choose": "Vælg handling",
   "pages.admin.support.request.action.delete.post": "Slet indlæg",
   "pages.admin.support.request.action.delete.user": "slette bruger",
-  "pages.admin.support.request.action.description": "Vælg den handling, du vil udføre.",
+  "pages.admin.support.request.action.description":
+    "Vælg den handling, du vil udføre.",
   "pages.admin.support.request.action.no": "Ingen handling",
   "pages.admin.support.request.answer": "Svar",
   "pages.admin.support.request.answer.complete": "Komplet",
-  "pages.admin.support.request.answer.description": "Besvar brugerens anmodning.",
-  "pages.admin.support.request.answer.error": "Fejl ved besvarelse af anmodning: %0",
+  "pages.admin.support.request.answer.description":
+    "Besvar brugerens anmodning.",
+  "pages.admin.support.request.answer.error":
+    "Fejl ved besvarelse af anmodning: %0",
   "pages.admin.support.request.by": "Anmodning af:",
   "pages.admin.support.request.completed": "Afsluttet",
   "pages.admin.support.request.created.by": "Lavet af",
@@ -342,7 +397,8 @@ export const da = {
   "pages.admin.support.request.open": "Åben",
   "pages.admin.support.request.open.post": "Åbn indlæg",
   "pages.admin.support.request.open.profile": "Åbn profil",
-  "pages.admin.support.request.processed": "Denne anmodning er allerede blevet behandlet.",
+  "pages.admin.support.request.processed":
+    "Denne anmodning er allerede blevet behandlet.",
   "pages.admin.user.delete.error": "Fejl ved sletning af bruger: %0",
   "pages.admin.user.deleted": "Brugeren er blevet slettet!",
   "pages.admin.user.loading.error": "Fejl ved indlæsning af bruger: %0",
@@ -350,7 +406,8 @@ export const da = {
   "pages.admin.user.saved": "Brugeren blev gemt!",
   "pages.admin.users.created.at": "Oprettet den",
   "pages.admin.users.loading.error": "Fejl ved indlæsning af brugere: %0",
-  "pages.admin.video.delete.confirm": "Er du sikker på, at du vil slette videoen?",
+  "pages.admin.video.delete.confirm":
+    "Er du sikker på, at du vil slette videoen?",
   "pages.admin.video.deleted": "Videoen blev slettet!",
   "pages.admin.video.deleted.error": "Fejl ved sletning af video: %0",
   "pages.admin.video.form.description": "Beskrivelse",
@@ -365,22 +422,30 @@ export const da = {
   "pages.community.blog.comment": "kommentar",
   "pages.community.blog.comment.submit": "Offentliggøre",
   "pages.community.blog.comments": "Kommentarer",
-  "pages.community.blog.delete.confirm": "Vil du virkelig slette blogindlægget?",
+  "pages.community.blog.delete.confirm":
+    "Vil du virkelig slette blogindlægget?",
   "pages.community.blog.loading.error": "Fejl ved indlæsning af indlæg: %0",
-  "pages.community.blog.mentioned.users": "Følgende konti er linket i dette indlæg:",
+  "pages.community.blog.mentioned.users":
+    "Følgende konti er linket i dette indlæg:",
   "pages.community.create.blog.error": "Der opstod en fejl: %0",
   "pages.community.create.blog.error.title": "Indtast venligst en titel.",
-  "pages.community.create.blog.error.too.short": "Indtast venligst mere end 10 tegn.",
+  "pages.community.create.blog.error.too.short":
+    "Indtast venligst mere end 10 tegn.",
   "pages.community.create.blog.form.tags": "tags",
-  "pages.community.create.blog.form.tags.placeholder": "Tags (adskil med komma)",
+  "pages.community.create.blog.form.tags.placeholder":
+    "Tags (adskil med komma)",
   "pages.community.create.blog.form.title": "titel",
   "pages.community.create.blog.form.title.placeholder": "Blog titel",
-  "pages.community.create.blog.hint": "brug @brugernavn til at tagge andre brugere. Dette vil sende dem en notifikation, og andre brugere kan få adgang til deres profil!",
+  "pages.community.create.blog.hint":
+    "brug @brugernavn til at tagge andre brugere. Dette vil sende dem en notifikation, og andre brugere kan få adgang til deres profil!",
   "pages.community.create.blog.image": "tilføje et billede",
   "pages.community.create.blog.information": "Information (klik)",
-  "pages.community.create.blog.information.description": "Du kan oprette et nyt blogindlæg her. Du kan berette om din indsats for at leve et mere miljøbevidst liv, eller bare dele dine tanker med samfundet.",
-  "pages.community.create.blog.information.description.2": "Blogs skrives ved hjælp af Markdown. Markdown er et simpelt opmærkningssprog, der giver dig mulighed for at formatere din tekst. Hvis du aldrig har arbejdet med Markdown før, kan du det",
-  "pages.community.create.blog.information.description.3": "give et overblik over de vigtigste kommandoer.",
+  "pages.community.create.blog.information.description":
+    "Du kan oprette et nyt blogindlæg her. Du kan berette om din indsats for at leve et mere miljøbevidst liv, eller bare dele dine tanker med samfundet.",
+  "pages.community.create.blog.information.description.2":
+    "Blogs skrives ved hjælp af Markdown. Markdown er et simpelt opmærkningssprog, der giver dig mulighed for at formatere din tekst. Hvis du aldrig har arbejdet med Markdown før, kan du det",
+  "pages.community.create.blog.information.description.3":
+    "give et overblik over de vigtigste kommandoer.",
   "pages.community.create.blog.publish": "Offentliggøre",
   "pages.community.create.blog.title": "Ny blog",
   "pages.community.dashboard.explore": "Opdage",
@@ -390,26 +455,34 @@ export const da = {
   "pages.community.messages.chats": "Chats",
   "pages.community.messages.chats.create": "Ny chat",
   "pages.community.messages.chats.create.description": "Opret en ny chat",
-  "pages.community.messages.chats.create.error.self": "Du kan ikke selv skrive.",
-  "pages.community.messages.chats.create.placeholder": "Indtast den anden brugers brugernavn",
+  "pages.community.messages.chats.create.error.self":
+    "Du kan ikke selv skrive.",
+  "pages.community.messages.chats.create.placeholder":
+    "Indtast den anden brugers brugernavn",
   "pages.community.messages.chats.delete": "Slet chat",
-  "pages.community.messages.chats.delete.confirm": "Er du sikker på, at du vil slette chatten?",
+  "pages.community.messages.chats.delete.confirm":
+    "Er du sikker på, at du vil slette chatten?",
   "pages.community.messages.group": "gruppe",
   "pages.community.messages.group.member.add": "Tilføje",
-  "pages.community.messages.group.member.add.success": "Brugeren blev tilføjet.",
+  "pages.community.messages.group.member.add.success":
+    "Brugeren blev tilføjet.",
   "pages.community.messages.group.member.form.title": "tilføje bruger",
-  "pages.community.messages.group.member.form.title.placeholder": "Indtast brugernavnet",
+  "pages.community.messages.group.member.form.title.placeholder":
+    "Indtast brugernavnet",
   "pages.community.messages.groups": "grupper",
   "pages.community.messages.groups.create": "Ny gruppe",
-  "pages.community.messages.groups.create.description": "Indtast det første medlems brugernavn",
-  "pages.community.messages.groups.create.error.self": "Du kan ikke oprette en gruppe med dig selv",
+  "pages.community.messages.groups.create.description":
+    "Indtast det første medlems brugernavn",
+  "pages.community.messages.groups.create.error.self":
+    "Du kan ikke oprette en gruppe med dig selv",
   "pages.community.messages.groups.create.subline": "Opret en ny gruppe",
   "pages.community.profile.actions.block.error": "Blokeringsfejl: %0",
   "pages.community.profile.actions.edit": "Rediger profil",
   "pages.community.profile.actions.follow.error": "Følg fejl: %0",
   "pages.community.profile.actions.for": "Handlinger for",
   "pages.community.profile.actions.message": "Send besked",
-  "pages.community.profile.actions.not.implemented": "Denne handling er endnu ikke implementeret.",
+  "pages.community.profile.actions.not.implemented":
+    "Denne handling er endnu ikke implementeret.",
   "pages.community.profile.banner": "banner",
   "pages.community.profile.block": "At blokere",
   "pages.community.profile.blogs": "Indlæg",
@@ -432,18 +505,23 @@ export const da = {
   "pages.e2projects.filter.all": "Alle",
   "pages.e2projects.filter.upcoming": "Kun afventende",
   "pages.e2projects.homepage": "Hjemmeside",
-  "pages.e2projects.homepage.loading.error": "Hjemmesiden kunne ikke indlæses: %0",
+  "pages.e2projects.homepage.loading.error":
+    "Hjemmesiden kunne ikke indlæses: %0",
   "pages.e2projects.list": "liste",
   "pages.e2projects.loading.error": "Fejl ved indlæsning af projekt: %0",
   "pages.e2projects.map": "Kort",
   "pages.e2projects.map.findable": "Kan findes på kortet",
   "pages.e2projects.map.unfindable": "Ikke vist på kortet",
-  "pages.e2projects.map.unfindable.description": "Dit projekt kan ikke vises på kortet, fordi den nøjagtige adresse ikke kendes. Adressen kan ændres i projektindstillingerne. VIGTIGT: Klik på en foreslået adresse for at anvende den.",
-  "pages.e2projects.member.status.join": "Kunne du tænke dig at blive en del af dette projekt og deltage?",
-  "pages.e2projects.member.status.leave": "Vil du ikke længere være en del af projektet?",
+  "pages.e2projects.map.unfindable.description":
+    "Dit projekt kan ikke vises på kortet, fordi den nøjagtige adresse ikke kendes. Adressen kan ændres i projektindstillingerne. VIGTIGT: Klik på en foreslået adresse for at anvende den.",
+  "pages.e2projects.member.status.join":
+    "Kunne du tænke dig at blive en del af dette projekt og deltage?",
+  "pages.e2projects.member.status.leave":
+    "Vil du ikke længere være en del af projektet?",
   "pages.e2projects.member.status.popup.1": "Det er du fra nu af",
   "pages.e2projects.member.status.popup.member": "En del af projektet!",
-  "pages.e2projects.member.status.popup.no.member": "ikke længere en del af projektet.",
+  "pages.e2projects.member.status.popup.no.member":
+    "ikke længere en del af projektet.",
   "pages.e2projects.members": "medlemmer",
   "pages.e2projects.menu.todos": "ToDos",
   "pages.e2projects.my": "Mine projekter",
@@ -451,27 +529,39 @@ export const da = {
   "pages.e2projects.no.projects": "Ingen projekter fundet.",
   "pages.e2projects.start.create.error": "Projektet kunne ikke oprettes: %0",
   "pages.e2projects.start.created": "Projekt oprettet!",
-  "pages.e2projects.start.created.description": "Dit projekt er blevet oprettet!",
+  "pages.e2projects.start.created.description":
+    "Dit projekt er blevet oprettet!",
   "pages.e2projects.start.form.date": "Start dato",
   "pages.e2projects.start.form.date.placeholder": "Hvornår starter projektet?",
   "pages.e2projects.start.form.length": "Varighed",
-  "pages.e2projects.start.form.length.placeholder": "Hvor lang tid skal dit projekt tage (i dage)?",
+  "pages.e2projects.start.form.length.placeholder":
+    "Hvor lang tid skal dit projekt tage (i dage)?",
   "pages.e2projects.start.form.location": "Beliggenhed",
-  "pages.e2projects.start.form.location.placeholder": "Hvor foregår dit projekt? TIP: Forslag vises fra 5 tegn og opefter. Klik på et forslag for at vedtage det.",
+  "pages.e2projects.start.form.location.placeholder":
+    "Hvor foregår dit projekt? TIP: Forslag vises fra 5 tegn og opefter. Klik på et forslag for at vedtage det.",
   "pages.e2projects.start.form.name": "Efternavn",
-  "pages.e2projects.start.form.name.placeholder": "Giv dit projekt et navn, der bedst beskriver det.",
+  "pages.e2projects.start.form.name.placeholder":
+    "Giv dit projekt et navn, der bedst beskriver det.",
   "pages.e2projects.start.form.suggestions.title": "Søgeresultater",
-  "pages.e2projects.start.info.description": "Nå, enhver, der vil starte et projekt. Det er også meningen med sagen. Men der er et par ting, du bør huske på:",
-  "pages.e2projects.start.info.ls.1": "Dit projekt skal have en positiv indvirkning på miljøet.",
-  "pages.e2projects.start.info.ls.2": "Dit projekt må ikke overtræde gældende lovgivning. (fx sæt den på gaden)",
-  "pages.e2projects.start.info.ls.3": "Dit projekt skal være designet til at samarbejde med andre brugere.",
-  "pages.e2projects.start.info.ls.4": "Dit projekt skal have en konkret fordel (f.eks. indsamling af affald, plantning af træer, ...),",
-  "pages.e2projects.start.info.ls.5": "Dit projekt skal følge en sofistikeret plan.",
+  "pages.e2projects.start.info.description":
+    "Nå, enhver, der vil starte et projekt. Det er også meningen med sagen. Men der er et par ting, du bør huske på:",
+  "pages.e2projects.start.info.ls.1":
+    "Dit projekt skal have en positiv indvirkning på miljøet.",
+  "pages.e2projects.start.info.ls.2":
+    "Dit projekt må ikke overtræde gældende lovgivning. (fx sæt den på gaden)",
+  "pages.e2projects.start.info.ls.3":
+    "Dit projekt skal være designet til at samarbejde med andre brugere.",
+  "pages.e2projects.start.info.ls.4":
+    "Dit projekt skal have en konkret fordel (f.eks. indsamling af affald, plantning af træer, ...),",
+  "pages.e2projects.start.info.ls.5":
+    "Dit projekt skal følge en sofistikeret plan.",
   "pages.e2projects.start.info.who": "Hvem skal starte et nyt projekt?",
-  "pages.e2projects.start.page2.error.date": "Startdatoen skal ligge i fremtiden.",
+  "pages.e2projects.start.page2.error.date":
+    "Startdatoen skal ligge i fremtiden.",
   "pages.e2projects.start.page2.title": "Nyt projekt",
   "pages.e2projects.start.ready": "Er du klar til at starte et projekt?",
-  "pages.e2projects.start.ready.2": "Så klik på knappen herunder og udfyld formularen.",
+  "pages.e2projects.start.ready.2":
+    "Så klik på knappen herunder og udfyld formularen.",
   "pages.e2projects.start.ready.button": "Start projekt",
   "pages.e2projects.todo": "To do liste",
   "pages.e2projects.todo.action": "handling",
@@ -487,7 +577,8 @@ export const da = {
   "pages.eatingplans.action.choose": "Vælg handling",
   "pages.eatingplans.action.cook": "Forberede",
   "pages.eatingplans.action.remove": "Fjern opskriften",
-  "pages.eatingplans.action.remove.confirm": "Er du sikker på, at du vil fjerne opskriften?",
+  "pages.eatingplans.action.remove.confirm":
+    "Er du sikker på, at du vil fjerne opskriften?",
   "pages.eatingplans.add.recipe": "Tilføj opskrift",
   "pages.eatingplans.loading.error": "Madplanen kunne ikke indlæses: %0",
   "pages.eatingplans.shopping.list": "Indkøbsliste",
@@ -504,44 +595,57 @@ export const da = {
   "pages.home.anon.title.5": "Bidrag",
   "pages.home.anon.title.6": "!",
   "pages.introduction.call.to.action": "Forbedre verden!",
-  "pages.introduction.finished.description": "Du har fuldført opsætningen! Du kan begynde at gøre verden til et bedre sted nu!",
+  "pages.introduction.finished.description":
+    "Du har fuldført opsætningen! Du kan begynde at gøre verden til et bedre sted nu!",
   "pages.introduction.lifestyle.avoid": "undgå",
-  "pages.introduction.lifestyle.description": "Indtast venligst oplysninger om din livsstil her, så du kan sætte mål for at forbedre den! I venstre kolonne kan du se handlingen og i højre kolonne kan du indtaste, hvor ofte du normalt udfører denne handling om ugen.",
-  "pages.introduction.lifestyle.save.error": "Fejl under lagring af livsstil: %0",
+  "pages.introduction.lifestyle.description":
+    "Indtast venligst oplysninger om din livsstil her, så du kan sætte mål for at forbedre den! I venstre kolonne kan du se handlingen og i højre kolonne kan du indtaste, hvor ofte du normalt udfører denne handling om ugen.",
+  "pages.introduction.lifestyle.save.error":
+    "Fejl under lagring af livsstil: %0",
   "pages.introduction.lifestyle.this.action": "Denne handling",
   "pages.introduction.lifestyle.weekly.goal": "Ugentligt mål",
   "pages.introduction.welcome.choose.later": "Vælg senere",
-  "pages.introduction.welcome.description": "Hej, velkommen til SaveWorld! Vi er glade for, at du ønsker at gøre verden til et bedre sted! For den bedste oplevelse, vælg dine interesser her! Du kan til enhver tid ændre disse senere.",
+  "pages.introduction.welcome.description":
+    "Hej, velkommen til SaveWorld! Vi er glade for, at du ønsker at gøre verden til et bedre sted! For den bedste oplevelse, vælg dine interesser her! Du kan til enhver tid ændre disse senere.",
   "pages.learn.channels": "kanaler",
   "pages.learn.videos.loading.error": "Fejl ved indlæsning af videoer: %0",
-  "pages.learn.videos.loading.error.next": "Fejl ved indlæsning af næste video: %0",
-  "pages.markdown.description": "Markdown er et simpelt opmærkningssprog, der giver dig mulighed for at formatere tekst hurtigt og nemt. Markdown bruges primært i forummet til at skrive blogindlæg. Du kan dog også oprette en post uden Markdown. Nedenfor finder du en oversigt over den vigtigste formatering.",
+  "pages.learn.videos.loading.error.next":
+    "Fejl ved indlæsning af næste video: %0",
+  "pages.markdown.description":
+    "Markdown er et simpelt opmærkningssprog, der giver dig mulighed for at formatere tekst hurtigt og nemt. Markdown bruges primært i forummet til at skrive blogindlæg. Du kan dog også oprette en post uden Markdown. Nedenfor finder du en oversigt over den vigtigste formatering.",
   "pages.markdown.headlines": "overskrifter",
   "pages.markdown.headlines.1": "# Overskrift 1",
   "pages.markdown.headlines.2": "## Overskrift 2",
   "pages.markdown.headlines.3": "### Overskrift 3",
-  "pages.markdown.headlines.description": "Overskrifter introduceres med et hashtag. Jo flere hashtags, jo mindre er overskriften. Der kan maksimalt bruges 6 hashtags. Eksempel:",
+  "pages.markdown.headlines.description":
+    "Overskrifter introduceres med et hashtag. Jo flere hashtags, jo mindre er overskriften. Der kan maksimalt bruges 6 hashtags. Eksempel:",
   "pages.markdown.links": "Venstre",
   "pages.markdown.links.1": "[Linktekst](https://saveworld.one)",
-  "pages.markdown.links.description": "Links kan indføres med firkantede beslag og runde beslag.",
+  "pages.markdown.links.description":
+    "Links kan indføres med firkantede beslag og runde beslag.",
   "pages.markdown.lists": "Lister",
   "pages.markdown.lists.1": "* Indgang 1",
   "pages.markdown.lists.2": "*indgang 2",
   "pages.markdown.lists.3": "1. Indgang 1",
   "pages.markdown.lists.4": "2. Indgang 2",
-  "pages.markdown.lists.description": "Lister kan introduceres med en stjerne eller et tal (for nummererede lister).",
+  "pages.markdown.lists.description":
+    "Lister kan introduceres med en stjerne eller et tal (for nummererede lister).",
   "pages.markdown.text.formatting": "Tekstformatering",
   "pages.markdown.text.formatting.bold.1": "*fed tekst*",
   "pages.markdown.text.formatting.bold.2": "_fed tekst_",
-  "pages.markdown.text.formatting.bold.description": "Teksten kan omsluttes med en stjerne eller understregning for at gøre den fed.",
+  "pages.markdown.text.formatting.bold.description":
+    "Teksten kan omsluttes med en stjerne eller understregning for at gøre den fed.",
   "pages.markdown.text.formatting.bold.italic.1": "***fed og kursiv tekst***",
   "pages.markdown.text.formatting.bold.italic.2": "___fed og kursiv tekst___",
-  "pages.markdown.text.formatting.bold.italic.description": "Teksten kan omsluttes med tre stjerner eller understregninger for at gøre den fed og kursiv.",
+  "pages.markdown.text.formatting.bold.italic.description":
+    "Teksten kan omsluttes med tre stjerner eller understregninger for at gøre den fed og kursiv.",
   "pages.markdown.text.formatting.italic.1": "**kursiv tekst**",
   "pages.markdown.text.formatting.italic.2": "__kursiv tekst__",
-  "pages.markdown.text.formatting.italic.description": "Teksten kan være omgivet af to stjerner eller understregninger for at gøre den kursiv.",
+  "pages.markdown.text.formatting.italic.description":
+    "Teksten kan være omgivet af to stjerner eller understregninger for at gøre den kursiv.",
   "pages.markdown.text.formatting.strikethrough.1": "~~gennemstreget tekst~~",
-  "pages.markdown.text.formatting.strikethrough.description": "Teksten kan omsluttes med to tilder for at få den gennemtrængt.",
+  "pages.markdown.text.formatting.strikethrough.description":
+    "Teksten kan omsluttes med to tilder for at få den gennemtrængt.",
   "pages.quizzes.answer": "Svar",
   "pages.quizzes.quiz.time": "Quiz tid!",
   "pages.quizzes.result": "Resultat",
@@ -549,14 +653,17 @@ export const da = {
   "pages.quizzes.result.description": "Du svarede %0! %1",
   "pages.recipes.cook": "Forbered opskrift",
   "pages.recipes.cookbook": "Kogebog",
-  "pages.recipes.cookbook.description": "Din kogebog indeholder alle de opskrifter, du har lært udenad. I øjeblikket er der %0 opskrifter.",
+  "pages.recipes.cookbook.description":
+    "Din kogebog indeholder alle de opskrifter, du har lært udenad. I øjeblikket er der %0 opskrifter.",
   "pages.recipes.create": "Ny opskrift",
   "pages.recipes.create.error": "Fejl ved oprettelse af opskrift: %0",
   "pages.recipes.created": "Opskrift oprettet!",
   "pages.recipes.created.by.1": "Denne opskrift er lavet af",
   "pages.recipes.created.by.2": "oprettet.",
-  "pages.recipes.created.description": "Din opskrift er blevet oprettet med succes!",
-  "pages.recipes.delete.confirm": "Er du sikker på, at du vil slette opskriften?",
+  "pages.recipes.created.description":
+    "Din opskrift er blevet oprettet med succes!",
+  "pages.recipes.delete.confirm":
+    "Er du sikker på, at du vil slette opskriften?",
   "pages.recipes.delete.error": "Fejl ved sletning af opskrift: %0",
   "pages.recipes.delete.success": "Opskriften blev slettet!",
   "pages.recipes.edit": "Rediger opskrift",
@@ -569,10 +676,12 @@ export const da = {
   "pages.recipes.image.edit": "Rediger billede",
   "pages.recipes.ingredients": "ingredienser",
   "pages.recipes.ingredients.add": "Tilføj ingrediens",
-  "pages.recipes.ingredients.used": "Følgende ingredienser kræves til opskriften:",
+  "pages.recipes.ingredients.used":
+    "Følgende ingredienser kræves til opskriften:",
   "pages.recipes.loading.error": "Fejl ved indlæsning af opskrift: %0",
   "pages.recipes.my": "Mine opskrifter",
-  "pages.recipes.settings.update.error": "Dine indstillinger kunne ikke gemmes: %0",
+  "pages.recipes.settings.update.error":
+    "Dine indstillinger kunne ikke gemmes: %0",
   "pages.recipes.share.text": "Tjek denne opskrift ud!",
   "pages.recipes.step": "Trin",
   "pages.recipes.steps": "trin",
@@ -580,32 +689,44 @@ export const da = {
   "pages.recipes.steps.delete": "Slet trin",
   "pages.recipes.steps.description": "Opskriften er tilberedt som følger:",
   "pages.sustainability.call.to.action": "Udforsk artikel",
-  "pages.sustainability.section.1": "Bæredygtighed er et meget vigtigt emne. Det omfatter dog ikke kun miljøet, men består også af tre søjler: økologi (miljø), økonomi (økonomi) og socialt (samfund).",
-  "pages.sustainability.section.2": "Disse tre søjler skal være i balance, for at vi kan få en bæredygtig fremtid. Disse tre søjler er ofte repræsenteret som en trekant, der ligger på den ene side. Det betyder, at alle tre søjler er lige vigtige. Hvis en søjle kommer til kort, bliver trekanten ustabil og kan vælte. Det betyder, at vi kun har en bæredygtig fremtid, hvis alle tre søjler er lige vigtige.",
-  "pages.sustainability.section.3": "Selvom SaveWorld primært fokuserer på miljøet, ønsker vi heller ikke at negligere de to andre søjler. Derfor finder du også information om emnerne økonomi og samfund på dette område.",
+  "pages.sustainability.section.1":
+    "Bæredygtighed er et meget vigtigt emne. Det omfatter dog ikke kun miljøet, men består også af tre søjler: økologi (miljø), økonomi (økonomi) og socialt (samfund).",
+  "pages.sustainability.section.2":
+    "Disse tre søjler skal være i balance, for at vi kan få en bæredygtig fremtid. Disse tre søjler er ofte repræsenteret som en trekant, der ligger på den ene side. Det betyder, at alle tre søjler er lige vigtige. Hvis en søjle kommer til kort, bliver trekanten ustabil og kan vælte. Det betyder, at vi kun har en bæredygtig fremtid, hvis alle tre søjler er lige vigtige.",
+  "pages.sustainability.section.3":
+    "Selvom SaveWorld primært fokuserer på miljøet, ønsker vi heller ikke at negligere de to andre søjler. Derfor finder du også information om emnerne økonomi og samfund på dette område.",
   "pages.tools.calc": "CO2 beregner",
   "pages.tools.calc.calculate": "Beregn",
   "pages.tools.calc.car": "automobil",
-  "pages.tools.calc.car.description": "Beregn, hvor meget CO2 din bil udleder på en bestemt rute.",
-  "pages.tools.calc.car.description.long": "Beregn, hvor meget CO2 din bil udleder på en rejse. Beregningen er baseret på data fra Federal Environment Agency (UBA) fra 2022. Til beregningen skal du bruge rutens længde (i km) og brændstofforbruget på din bil (i l/100 km).",
+  "pages.tools.calc.car.description":
+    "Beregn, hvor meget CO2 din bil udleder på en bestemt rute.",
+  "pages.tools.calc.car.description.long":
+    "Beregn, hvor meget CO2 din bil udleder på en rejse. Beregningen er baseret på data fra Federal Environment Agency (UBA) fra 2022. Til beregningen skal du bruge rutens længde (i km) og brændstofforbruget på din bil (i l/100 km).",
   "pages.tools.calc.distance": "afstand",
   "pages.tools.calc.ecar": "Elbil",
-  "pages.tools.calc.ecar.description": "Beregn hvor meget CO2 du udleder med din elbil på en bestemt rute på grund af elforbruget.",
-  "pages.tools.calc.ecar.description.long": "Beregn, hvor meget CO2 din bil udleder på en rejse. Beregningen er baseret på data fra Federal Environment Agency (UBA) fra 2022. Til beregningen skal du bruge rutens længde (i km) og elforbruget på din bil (i kWh/100 km).",
+  "pages.tools.calc.ecar.description":
+    "Beregn hvor meget CO2 du udleder med din elbil på en bestemt rute på grund af elforbruget.",
+  "pages.tools.calc.ecar.description.long":
+    "Beregn, hvor meget CO2 din bil udleder på en rejse. Beregningen er baseret på data fra Federal Environment Agency (UBA) fra 2022. Til beregningen skal du bruge rutens længde (i km) og elforbruget på din bil (i kWh/100 km).",
   "pages.tools.calc.fuel.type": "Brændstoftype",
   "pages.tools.calc.fuel.type.diesel": "Diesel",
   "pages.tools.calc.fuel.type.petrol": "benzin",
   "pages.tools.calc.fuel.usage": "Brændstofforbrug pr 100 km",
   "pages.tools.calc.hcar": "Brint bil",
-  "pages.tools.calc.hcar.description": "Beregn hvor meget CO2 du udleder med din brintbil på en bestemt rute på grund af brintforbrug.",
-  "pages.tools.calc.hcar.description.long": "Beregn, hvor meget CO2 din bil udleder på en rejse. Beregningen er baseret på data fra Federal Environment Agency (UBA) fra 2022. Til beregningen skal du bruge rutens længde (i km) og brintforbruget for din bil (i kg/100 km).",
+  "pages.tools.calc.hcar.description":
+    "Beregn hvor meget CO2 du udleder med din brintbil på en bestemt rute på grund af brintforbrug.",
+  "pages.tools.calc.hcar.description.long":
+    "Beregn, hvor meget CO2 din bil udleder på en rejse. Beregningen er baseret på data fra Federal Environment Agency (UBA) fra 2022. Til beregningen skal du bruge rutens længde (i km) og brintforbruget for din bil (i kg/100 km).",
   "pages.tools.calc.hydrogen.usage": "Brintforbrug pr. 100 km",
   "pages.tools.calc.power.usage": "Strømforbrug pr 100 km",
-  "pages.tools.calc.search.no.results": "Der blev ikke fundet nogen CO2-beregnere.",
+  "pages.tools.calc.search.no.results":
+    "Der blev ikke fundet nogen CO2-beregnere.",
   "pages.tools.calc.source": "kilde",
   "pages.tools.calc.train": "Fjerntog (ICE, IC osv.)",
-  "pages.tools.calc.train.description": "Beregn hvor meget CO2-udledning du forårsager på din langdistancetogrejse.",
-  "pages.tools.calc.train.description.long": "Beregn, hvor meget CO2 du udleder på en langdistancetogsrejse. Beregningen er baseret på data fra kvarker. Til beregningen skal du bruge rutens længde (i km). Der udledes 0,036 kg CO2 pr. km, hvorfor der kan forekomme afvigelser på grund af afrunding.",
+  "pages.tools.calc.train.description":
+    "Beregn hvor meget CO2-udledning du forårsager på din langdistancetogrejse.",
+  "pages.tools.calc.train.description.long":
+    "Beregn, hvor meget CO2 du udleder på en langdistancetogsrejse. Beregningen er baseret på data fra kvarker. Til beregningen skal du bruge rutens længde (i km). Der udledes 0,036 kg CO2 pr. km, hvorfor der kan forekomme afvigelser på grund af afrunding.",
   "popup.alert.title.default": "Rapport",
   "popup.close": "Tæt",
   "popup.input.label": "input",
@@ -618,5 +739,5 @@ export const da = {
   "user.password.confirm": "Bekræft kodeord",
   "user.role.admin": "Administrator",
   "user.user": "bruger",
-  "user.username": "Brugernavn"
+  "user.username": "Brugernavn",
 };
