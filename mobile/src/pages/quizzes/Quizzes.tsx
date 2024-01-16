@@ -37,7 +37,10 @@ import ManageAccountInterests from "../../components/ManageAccountInterests";
 import PopupManager from "../../util/PopupManager";
 import SaveWorldModal from "../../components/SaveWorldModal";
 import { $$ } from "../../translations/i18n";
-import { translateOnline } from "../../util/online-translate";
+import {
+  translateOnline,
+  translateOnlineV3,
+} from "../../util/online-translate";
 
 export default function Quizzes() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -87,11 +90,26 @@ export default function Quizzes() {
           let answer_4 = quiz.answer_4;
 
           if (window.language !== "de") {
-            question = await translateOnline(question, window.language);
-            answer_1 = await translateOnline(answer_1, window.language);
-            answer_2 = await translateOnline(answer_2, window.language);
-            answer_3 = await translateOnline(answer_3, window.language);
-            answer_4 = await translateOnline(answer_4, window.language);
+            question = await translateOnlineV3({
+              text: question,
+              to: window.language,
+            });
+            answer_1 = await translateOnlineV3({
+              text: answer_1,
+              to: window.language,
+            });
+            answer_2 = await translateOnlineV3({
+              text: answer_2,
+              to: window.language,
+            });
+            answer_3 = await translateOnlineV3({
+              text: answer_3,
+              to: window.language,
+            });
+            answer_4 = await translateOnlineV3({
+              text: answer_4,
+              to: window.language,
+            });
           }
 
           newQuizzes.push({

@@ -19,7 +19,11 @@ import { Flex, Heading, Image } from "@chakra-ui/react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { $$ } from "../translations/i18n";
-import { translateOnline, translateOnlineV2 } from "../util/online-translate";
+import {
+  translateOnline,
+  translateOnlineV2,
+  translateOnlineV3,
+} from "../util/online-translate";
 
 export default function DirectusPost(props: { postId: string }) {
   const directus = getDirectusApi();
@@ -41,15 +45,11 @@ export default function DirectusPost(props: { postId: string }) {
       let title = post.title;
 
       if (window.language !== "de") {
-        content = await translateOnlineV2({
-          format: "text",
-          from: "de",
+        content = await translateOnlineV3({
           text: content,
           to: window.language,
         });
-        title = await translateOnlineV2({
-          format: "text",
-          from: "de",
+        title = await translateOnlineV3({
           text: title,
           to: window.language,
         });

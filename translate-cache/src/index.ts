@@ -66,6 +66,7 @@ import { translateOnlineV2 } from "./translate";
         const translated = await translateOnlineV2({
           text: text,
           to: to,
+          from: "de",
         });
 
         await redis.set(textHash, translated);

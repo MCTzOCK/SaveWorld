@@ -32,7 +32,11 @@ import {
 import MobileBox from "./MobileBox";
 import { IonSearchbar, useIonRouter } from "@ionic/react";
 import { $$ } from "../translations/i18n";
-import { translateOnline, translateOnlineV2 } from "../util/online-translate";
+import {
+  translateOnline,
+  translateOnlineV2,
+  translateOnlineV3,
+} from "../util/online-translate";
 
 export default function DirectusPosts(props: {
   pageTitle?: string;
@@ -82,11 +86,9 @@ export default function DirectusPosts(props: {
                 content = await translateOnline(content, window.language);
                 title = await translateOnline(title, window.language);
              */
-            title = await translateOnlineV2({
+            title = await translateOnlineV3({
               text: title,
               to: window.language,
-              from: "de",
-              format: "text",
             });
           }
 

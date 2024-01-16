@@ -46,3 +46,23 @@ export async function translateOnlineV2(options: {
   const j = await res.json();
   return j.translatedText;
 }
+
+export async function translateOnlineV3(options: { text: string; to: string }) {
+  const body = {
+    text: options.text,
+    to: options.to,
+  };
+
+  const res = await fetch("https://translate-cache.ben-siebert.com/translate", {
+    method: "POST",
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
+
+  const j = await res.json();
+
+  return j.text;
+}
