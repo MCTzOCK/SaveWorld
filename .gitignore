@@ -14,3 +14,5 @@ mobile/src/translations/temp/
 translate-server/node_modules/
 
 browser-translate/node_modules/
+
+translate-cache/node_modules/
