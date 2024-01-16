@@ -12,6 +12,7 @@ import * as fs from "fs";
 import * as path from "path";
 import translate from "@iamtraction/google-translate";
 import { german } from "./de";
+import { translateOnlineV3 } from "../util/online-translate";
 
 let g = german as any;
 
@@ -40,9 +41,13 @@ const targetLang = process.argv[2] || "en";
       result[key] = g[key];
       console.log(key, "=> ", g[key]);
     } else {
-      const r = await translate(g[key], { from: fromLang, to: targetLang });
-      result[key] = r.text;
-      console.log(key, "=> ", r.text);
+      //const r = await translate(g[key], { from: fromLang, to: targetLang });
+      //result[key] = r.text;
+      result[key] = await translateOnlineV3({
+        text: g[key],
+        to: targetLang,
+      });
+      console.log(key, "=> ", result[key]);
     }
   }
 
