@@ -10,7 +10,6 @@
 
 import * as fs from "fs";
 import * as path from "path";
-import translate from "@iamtraction/google-translate";
 import { german } from "./de";
 import { translateOnlineV3 } from "../util/online-translate";
 
