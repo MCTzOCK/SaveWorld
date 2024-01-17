@@ -96,6 +96,10 @@ import * as fastifyMultipart from "@fastify/multipart";
           description: "Content related APIs",
         },
         {
+          name: "eatingplan",
+          description: "Eatingplan related APIs",
+        },
+        {
           name: "media",
           description: "Media File related APIs",
         },

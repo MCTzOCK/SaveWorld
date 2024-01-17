@@ -987,4 +987,151 @@ export const FastifySchemas = {
       },
     },
   },
+  eatingplan_get: {
+    querystring: {
+      properties: {
+        date: {
+          type: "string",
+        },
+      },
+      required: ["date"],
+    },
+    response: {
+      200: {
+        properties: {
+          plan: {
+            type: "object",
+          },
+        },
+      },
+      401: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  eatingplan_post: {
+    querystring: {
+      properties: {
+        date: {
+          type: "string",
+        },
+      },
+      required: ["date"],
+    },
+    response: {
+      200: {
+        properties: {
+          plan: {
+            type: "object",
+          },
+        },
+      },
+      400: {
+        properties: {
+          error: {
+            type: "string",
+          },
+        },
+      },
+      401: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  eatingplan_put: {
+    body: {
+      properties: {
+        date: {
+          type: "string",
+        },
+        recipes: {
+          type: "array",
+        },
+      },
+      required: ["date", "recipes"],
+    },
+    response: {
+      200: {
+        properties: {
+          plan: {
+            type: "object",
+          },
+        },
+      },
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+        },
+      },
+      401: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  eatingplan_delete: {
+    body: {
+      properties: {
+        date: {
+          type: "string",
+        },
+      },
+      required: ["date"],
+    },
+    response: {
+      200: {
+        properties: {
+          success: {
+            type: "boolean",
+          },
+        },
+      },
+      401: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+      400: {
+        properties: {
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
 };
