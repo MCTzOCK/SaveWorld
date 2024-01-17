@@ -16,3 +16,7 @@ translate-server/node_modules/
 browser-translate/node_modules/
 
 translate-cache/node_modules/
+
+backend2/node_modules/
+backend2/dist/
+backend2/.env
