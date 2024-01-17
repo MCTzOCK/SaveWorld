@@ -81,6 +81,10 @@ import mongoose from "mongoose";
           description: "(Push-)Notifications related APIs",
         },
         {
+          name: "support",
+          description: "Support System related APIs",
+        },
+        {
           name: "system",
           description: "System relevant endpoints",
         },

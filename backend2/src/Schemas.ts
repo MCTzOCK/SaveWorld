@@ -333,4 +333,124 @@ export const FastifySchemas = {
       },
     },
   },
+  notifications_my: {
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          entries: {
+            type: "array",
+          },
+          pages: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  notifications_read: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+      required: ["id"],
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          notification: {
+            type: "object",
+          },
+        },
+      },
+      404: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+    401: {
+      properties: {
+        status: {
+          type: "number",
+        },
+        error: {
+          type: "string",
+        },
+      },
+    },
+    400: {
+      properties: {
+        status: {
+          type: "number",
+        },
+        error: {
+          type: "string",
+        },
+      },
+    },
+  },
+  submit_support_request: {
+    body: {
+      properties: {
+        email: {
+          type: "string",
+        },
+        category: {
+          type: "string",
+        },
+        message: {
+          type: "string",
+        },
+        additionalData: {
+          type: "object",
+        },
+      },
+      required: ["email", "category", "message"],
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          message: {
+            type: "string",
+          },
+        },
+      },
+      400: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
 };

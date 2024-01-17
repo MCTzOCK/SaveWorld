@@ -10,6 +10,7 @@
 import { FastifyInstance, FastifyRequest } from "fastify";
 import { isAuth } from "../util/isAuth";
 import PushNotificationModel from "../models/PushNotificationModel";
+import { FastifySchemas } from "../Schemas";
 
 export default async function accountPlugin(app: FastifyInstance, opts: any) {
   app.get(
@@ -23,7 +24,7 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
           security: [],
         },
       },
-      schema: {},
+      schema: FastifySchemas.notifications_my,
     },
     async (
       req: FastifyRequest<{
@@ -75,7 +76,7 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
           security: [],
         },
       },
-      schema: {},
+      schema: FastifySchemas.notifications_read,
     },
     async (
       req: FastifyRequest<{
