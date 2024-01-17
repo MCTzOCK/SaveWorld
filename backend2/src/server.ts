@@ -18,7 +18,7 @@ import fastifyCors from "@fastify/cors";
 import fstatic from "@fastify/static";
 import AutoLoad from "@fastify/autoload";
 import mongoose from "mongoose";
-//import fastifyOpenapiDocs from "fastify-openapi-docs";
+import * as fastifyMultipart from "@fastify/multipart";
 
 (async () => {
   const openapiDocs = await import("fastify-openapi-docs");
@@ -27,6 +27,7 @@ import mongoose from "mongoose";
     logger: {
       level: "info",
     },
+    maxParamLength: 1000,
   });
 
   if (mongoose.connection.readyState === 0) {
@@ -44,6 +45,12 @@ import mongoose from "mongoose";
     origin: "*",
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Accept"],
+  });
+
+  fastify.register(fastifyMultipart.default, {
+    limits: {
+      fileSize: 1024 * 1024 * 10, // 10MB
+    },
   });
 
   fastify.register(fstatic, {
@@ -79,6 +86,10 @@ import mongoose from "mongoose";
         {
           name: "notifications",
           description: "(Push-)Notifications related APIs",
+        },
+        {
+          name: "media",
+          description: "Media File related APIs",
         },
         {
           name: "support",
