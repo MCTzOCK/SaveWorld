@@ -13,7 +13,7 @@ import UserModel from "../models/UserModel";
 import { sendPN } from "../util/sendPN";
 import { FastifySchemas } from "../Schemas";
 
-export default async function accountPlugin(app: FastifyInstance, opts: any) {
+export default async function supportPlugin(app: FastifyInstance, opts: any) {
   app.post(
     "/submit-support-request",
     {

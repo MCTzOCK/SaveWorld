@@ -15,7 +15,7 @@ import LifestyleModel from "../models/LifestyleModel";
 import { getUserEcoLevel } from "../util/getUserEcoLevel";
 import LifestyleSummaryModel from "../models/LifestyleSummaryModel";
 
-export default async function accountPlugin(app: FastifyInstance, opts: any) {
+export default async function lifestylePlugin(app: FastifyInstance, opts: any) {
   app.get(
     "/lifestyle/templates",
     {

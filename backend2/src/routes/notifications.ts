@@ -12,7 +12,10 @@ import { isAuth } from "../util/isAuth";
 import PushNotificationModel from "../models/PushNotificationModel";
 import { FastifySchemas } from "../Schemas";
 
-export default async function accountPlugin(app: FastifyInstance, opts: any) {
+export default async function notificationPlugin(
+  app: FastifyInstance,
+  opts: any,
+) {
   app.get(
     "/notifications/my",
     {

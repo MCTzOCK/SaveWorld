@@ -68,8 +68,8 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
   app.delete(
     "/account/delete",
     {
+      schema: FastifySchemas.account_delete,
       config: {
-        schema: FastifySchemas.account_delete,
         openapi: {
           description: "Deletes an account",
           summary: "Delete account",
@@ -121,7 +121,7 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
       schema: FastifySchemas.account_login,
       config: {
         openapi: {
-          description: "Logs inti an account",
+          description: "Logs into an account",
           summary: "Login",
           tags: ["account"],
           security: [],

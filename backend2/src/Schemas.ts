@@ -660,4 +660,331 @@ export const FastifySchemas = {
       },
     },
   },
+  content_categories: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          categories: {
+            type: "array",
+          },
+        },
+      },
+    },
+  },
+  videos_suggested: {
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          video: {
+            type: "object",
+          },
+        },
+      },
+    },
+  },
+  videos_search_category: {
+    querystring: {
+      properties: {
+        q: {
+          type: "string",
+        },
+        category: {
+          type: "string",
+        },
+      },
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          videos: {
+            type: "array",
+          },
+        },
+      },
+    },
+  },
+  videos_history: {
+    body: {
+      properties: {
+        videoId: {
+          type: "string",
+        },
+      },
+      required: ["videoId"],
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          message: {
+            type: "string",
+          },
+        },
+      },
+      400: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+      403: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+      404: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  videos_fts: {
+    querystring: {
+      properties: {
+        q: {
+          type: "string",
+        },
+        page: {
+          type: "string",
+        },
+      },
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          videos: {
+            type: "array",
+          },
+          count: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  videos_comment: {
+    body: {
+      properties: {
+        content: {
+          type: "string",
+        },
+      },
+      required: ["content"],
+    },
+    params: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+      required: ["id"],
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          message: {
+            type: "string",
+          },
+        },
+      },
+      400: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+      401: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+      404: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  videos_comments: {
+    params: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+      required: ["id"],
+    },
+    querystring: {
+      properties: {
+        page: {
+          type: "string",
+        },
+      },
+    },
+    response: {
+      401: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+        404: {
+          properties: {
+            status: {
+              type: "number",
+            },
+            error: {
+              type: "string",
+            },
+          },
+        },
+        200: {
+          status: {
+            type: "number",
+          },
+          entries: {
+            type: "array",
+          },
+          pages: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  videos_metadata: {
+    params: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+      required: ["id"],
+    },
+    response: {
+      200: {
+        properties: {
+          video: {
+            type: "object",
+          },
+        },
+      },
+      404: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  videos_rate: {
+    body: {
+      properties: {
+        rating: {
+          type: "number",
+        },
+      },
+      required: ["rating"],
+    },
+    params: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+      required: ["id"],
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          message: {
+            type: "string",
+          },
+        },
+      },
+      404: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+        400: {
+          properties: {
+            status: {
+              type: "number",
+            },
+            error: {
+              type: "string",
+            },
+          },
+        },
+      },
+    },
+  },
 };

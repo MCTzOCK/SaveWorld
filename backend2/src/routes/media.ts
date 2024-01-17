@@ -18,7 +18,7 @@ import { readFileSync } from "fs";
 import UserPreferencesModel from "../models/UserPreferencesModel";
 import UserModel from "../models/UserModel";
 
-export default async function accountPlugin(app: FastifyInstance, opts: any) {
+export default async function mediaPlugin(app: FastifyInstance, opts: any) {
   app.post(
     "/media/upload",
     {
