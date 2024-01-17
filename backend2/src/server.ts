@@ -88,6 +88,10 @@ import * as fastifyMultipart from "@fastify/multipart";
           description: "(Push-)Notifications related APIs",
         },
         {
+          name: "lifestyle",
+          description: "Lifestyle related APIs",
+        },
+        {
           name: "media",
           description: "Media File related APIs",
         },

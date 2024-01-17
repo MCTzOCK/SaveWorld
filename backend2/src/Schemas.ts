@@ -453,4 +453,211 @@ export const FastifySchemas = {
       },
     },
   },
+  lifestyle_templates: {
+    response: {
+      200: {
+        properties: {
+          lst: {
+            type: "array",
+          },
+        },
+      },
+    },
+  },
+  lifestyle_my: {
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          lifestyle: {
+            type: "object",
+          },
+        },
+      },
+      401: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  lifestyle_level: {
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          level: {
+            type: "number",
+          },
+          totalGoals: {
+            type: "number",
+          },
+          achievedGoals: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  lifestyle_submit: {
+    body: {
+      properties: {
+        goals: {
+          type: "array",
+        },
+      },
+      required: ["goals"],
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          data: {
+            type: "object",
+          },
+        },
+      },
+      400: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  lifestyle_update: {
+    body: {
+      properties: {
+        goals: {
+          type: "array",
+        },
+        actions: {
+          type: "array",
+        },
+      },
+      required: ["goals", "actions"],
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  lifestyle_my_weekly: {
+    querystring: {
+      properties: {
+        dayInWeek: {
+          type: "string",
+        },
+      },
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          goals: {
+            type: "object",
+          },
+          startDate: {
+            type: "string",
+          },
+          endDate: {
+            type: "string",
+          },
+        },
+      },
+      401: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  lifestyle_my_day: {
+    params: {
+      properties: {
+        date: {
+          type: "string",
+        },
+      },
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          data: {
+            type: "object",
+          },
+        },
+      },
+      404: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+      401: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
 };
