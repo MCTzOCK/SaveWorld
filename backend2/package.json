@@ -32,6 +32,7 @@
     "dotenv": "^16.3.1",
     "fastify": "^4.0.0",
     "fastify-cli": "^5.9.0",
+    "fastify-openapi-docs": "^3.0.0",
     "fastify-plugin": "^4.0.0",
     "jsonwebtoken": "^9.0.2",
     "minio": "^7.1.3",

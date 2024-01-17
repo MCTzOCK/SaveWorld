@@ -9,6 +9,7 @@
  */
 
 import { config } from "dotenv";
+
 config();
 
 import Fastify from "fastify";
@@ -16,13 +17,28 @@ import * as path from "path";
 import fastifyCors from "@fastify/cors";
 import fstatic from "@fastify/static";
 import AutoLoad from "@fastify/autoload";
+import mongoose from "mongoose";
+//import fastifyOpenapiDocs from "fastify-openapi-docs";
 
 (async () => {
+  const openapiDocs = await import("fastify-openapi-docs");
+
   const fastify = Fastify({
     logger: {
       level: "info",
     },
   });
+
+  if (mongoose.connection.readyState === 0) {
+    try {
+      await mongoose.connect(process.env.MONGO_URI as string);
+      fastify.log.info("Connected to MongoDB");
+    } catch (e) {
+      fastify.log.error("Error while connecting to MongoDB");
+      fastify.log.error(e);
+      process.exit(1);
+    }
+  }
 
   fastify.register(fastifyCors, {
     origin: "*",
@@ -33,6 +49,48 @@ import AutoLoad from "@fastify/autoload";
   fastify.register(fstatic, {
     root: path.join(__dirname, "..", "public"),
     prefix: "/public/",
+  });
+
+  fastify.register(openapiDocs.default, {
+    openapi: {
+      openapi: "3.0.3",
+      info: {
+        title: "SaveWorld API",
+        description: "SaveWorld API",
+        contact: {
+          name: "Ben Siebert",
+          email: "hello@ben-siebert.de",
+          url: "https://ben-siebert.com",
+        },
+        version: "2.0.0",
+      },
+      servers: [
+        {
+          url: "https://api.saveworld.one",
+          description: "Production",
+        },
+        {
+          url: "https://dev.saveworld.one",
+          description: "Development",
+        },
+      ],
+      tags: [
+        { name: "account", description: "Account related APIs" },
+        {
+          name: "system",
+          description: "System relevant endpoints",
+        },
+      ],
+      components: {
+        securitySchemes: {
+          jwt: {
+            type: "apiKey",
+            in: "header",
+            name: "X-TOKEN",
+          },
+        },
+      },
+    },
   });
 
   fastify.register(AutoLoad, {
