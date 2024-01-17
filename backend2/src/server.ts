@@ -77,6 +77,10 @@ import mongoose from "mongoose";
       tags: [
         { name: "account", description: "Account related APIs" },
         {
+          name: "notifications",
+          description: "(Push-)Notifications related APIs",
+        },
+        {
           name: "system",
           description: "System relevant endpoints",
         },
@@ -86,7 +90,7 @@ import mongoose from "mongoose";
           jwt: {
             type: "apiKey",
             in: "header",
-            name: "X-TOKEN",
+            name: "X-AUTH",
           },
         },
       },
