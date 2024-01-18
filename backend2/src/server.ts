@@ -100,6 +100,14 @@ import * as fastifyMultipart from "@fastify/multipart";
           description: "Eatingplan related APIs",
         },
         {
+          name: "eco-projects",
+          description: "Eco-Projects related APIs",
+        },
+        {
+          name: "tracker",
+          description: "Eco-Tracker related APIs",
+        },
+        {
           name: "media",
           description: "Media File related APIs",
         },

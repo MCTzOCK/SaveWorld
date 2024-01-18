@@ -1134,4 +1134,1143 @@ export const FastifySchemas = {
       },
     },
   },
+  eco_projects_my: {
+    response: {
+      200: {
+        properties: {
+          projects: {
+            type: "array",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  eco_projects_list: {
+    response: {
+      200: {
+        properties: {
+          entries: {
+            type: "array",
+          },
+          status: {
+            type: "number",
+          },
+          pages: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  eco_projects_create: {
+    body: {
+      properties: {
+        name: {
+          type: "string",
+        },
+        startDate: {
+          type: "string",
+        },
+        lastsDays: {
+          type: "number",
+        },
+        geoLocation: {
+          type: "string",
+        },
+      },
+      required: ["name", "startDate", "lastsDays", "geoLocation"],
+    },
+    response: {
+      200: {
+        properties: {
+          project: {
+            type: "object",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      400: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  eco_projects_calendar: {
+    querystring: {
+      properties: {
+        startDate: {
+          type: "string",
+        },
+        endDate: {
+          type: "string",
+        },
+      },
+      required: ["startDate", "endDate"],
+    },
+    response: {
+      200: {
+        properties: {
+          result: {
+            type: "array",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  eco_projects_by_lat_lon: {
+    querystring: {
+      properties: {
+        lat: {
+          type: "string",
+        },
+        lon: {
+          type: "string",
+        },
+      },
+      required: ["lat", "lon"],
+    },
+    response: {
+      200: {
+        properties: {
+          entries: {
+            type: "array",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  eco_projects_all_geo_locations: {
+    response: {
+      200: {
+        properties: {
+          entries: {
+            type: "array",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  eco_projects_toggle_member_status: {
+    querystring: {
+      properties: {
+        projectId: {
+          type: "string",
+        },
+      },
+    },
+    response: {
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      403: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+        },
+      },
+      200: {
+        properties: {
+          memberStatus: {
+            type: "number",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  eco_projects_receive: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+      required: ["id"],
+    },
+    response: {
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      200: {
+        properties: {
+          project: {
+            type: "object",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  eco_projects_edit: {
+    body: {
+      properties: {
+        name: {
+          type: "string",
+        },
+        startDate: {
+          type: "string",
+        },
+        lastsDays: {
+          type: "number",
+        },
+        geoLocation: {
+          type: "string",
+        },
+      },
+      required: ["name", "startDate", "lastsDays", "geoLocation"],
+    },
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+      required: ["id"],
+    },
+    response: {
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      403: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      200: {
+        properties: {
+          project: {
+            type: "object",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  eco_projects_delete: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+      required: ["id"],
+    },
+    response: {
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      403: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      200: {
+        properties: {
+          project: {
+            type: "object",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  eco_projects_to_calendar: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+      required: ["id"],
+    },
+  },
+  eco_projects_todo_lists_receive: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+      required: ["id"],
+    },
+    response: {
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      400: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      200: {
+        properties: {
+          lists: {
+            type: "array",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  eco_projects_todo_items: {
+    querystring: {
+      properties: {
+        listId: {
+          type: "string",
+        },
+      },
+      required: ["listId"],
+    },
+    response: {
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      400: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      200: {
+        properties: {
+          entries: {
+            type: "array",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  eco_projects_todo_delete_list: {
+    querystring: {
+      properties: {
+        listId: {
+          type: "string",
+        },
+        id: {
+          type: "string",
+        },
+      },
+      required: ["listId", "id"],
+    },
+    response: {
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      400: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          message: {
+            type: "string",
+          },
+        },
+      },
+      403: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  eco_projects_todo_delete_item: {
+    querystring: {
+      properties: {
+        listId: {
+          type: "string",
+        },
+        id: {
+          type: "string",
+        },
+        itemId: {
+          type: "string",
+        },
+      },
+      required: ["listId", "id", "itemId"],
+    },
+    response: {
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      400: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          message: {
+            type: "string",
+          },
+        },
+      },
+      403: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  eco_projects_todo_create_list: {
+    body: {
+      properties: {
+        title: {
+          type: "string",
+        },
+      },
+      required: ["title"],
+    },
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+      required: ["id"],
+    },
+    response: {
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      403: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          message: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  eco_projects_todo_create_item: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+        listId: {
+          type: "string",
+        },
+      },
+      required: ["id", "listId"],
+    },
+    body: {
+      properties: {
+        title: {
+          type: "string",
+        },
+        description: {
+          type: "string",
+        },
+      },
+      required: ["title", "description"],
+    },
+    response: {
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      403: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          message: {
+            type: "string",
+          },
+          item: {
+            type: "object",
+          },
+        },
+      },
+    },
+  },
+  eco_projects_todo_check_item: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+        listId: {
+          type: "string",
+        },
+        itemId: {
+          type: "string",
+        },
+      },
+      required: ["id", "listId", "itemId"],
+    },
+    response: {
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      403: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          message: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  eco_projects_members_delete: {
+    querystring: {
+      properties: {
+        projectId: {
+          type: "string",
+        },
+        userId: {
+          type: "string",
+        },
+      },
+      required: ["projectId", "userId"],
+    },
+    response: {
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      403: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          message: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  eco_projects_members_change_role: {
+    querystring: {
+      properties: {
+        projectId: {
+          type: "string",
+        },
+        userId: {
+          type: "string",
+        },
+        newRole: {
+          type: "string",
+        },
+      },
+      required: ["projectId", "userId", "newRole"],
+    },
+    response: {
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      403: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          message: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  eco_projects_homepage_segments: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+      required: ["id"],
+    },
+    response: {
+      200: {
+        properties: {
+          segments: {
+            type: "array",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  eco_projects_homepage_update_segments: {
+    body: {
+      properties: {
+        title: {
+          type: "string",
+        },
+        content: {
+          type: "string",
+        },
+        type: {
+          type: "string",
+        },
+        pinned: {
+          type: "boolean",
+        },
+      },
+      required: ["title", "content", "type"],
+    },
+    querystring: {
+      properties: {
+        projectId: {
+          type: "string",
+        },
+        id: {
+          type: "string",
+        },
+      },
+      required: ["projectId", "id"],
+    },
+  },
+  response: {
+    401: {
+      properties: {
+        error: {
+          type: "string",
+        },
+        status: {
+          type: "number",
+        },
+      },
+    },
+    400: {
+      properties: {
+        error: {
+          type: "string",
+        },
+        status: {
+          type: "number",
+        },
+      },
+    },
+    404: {
+      properties: {
+        error: {
+          type: "string",
+        },
+        status: {
+          type: "number",
+        },
+      },
+    },
+    403: {
+      properties: {
+        error: {
+          type: "string",
+        },
+        status: {
+          type: "number",
+        },
+      },
+    },
+    200: {
+      properties: {
+        status: {
+          type: "number",
+        },
+        segment: {
+          type: "object",
+        },
+      },
+    },
+  },
+  eco_projects_homepage_delete_segment: {
+    querystring: {
+      properties: {
+        projectId: {
+          type: "string",
+        },
+        id: {
+          type: "string",
+        },
+      },
+      required: ["projectId", "id"],
+    },
+    response: {
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+        404: {
+          properties: {
+            error: {
+              type: "string",
+            },
+            status: {
+              type: "number",
+            },
+          },
+        },
+        403: {
+          properties: {
+            error: {
+              type: "string",
+            },
+            status: {
+              type: "number",
+            },
+          },
+        },
+        200: {
+          properties: {
+            status: {
+              type: "number",
+            },
+            message: {
+              type: "string",
+            },
+          },
+        },
+      },
+    },
+  },
+  eco_projects_homepage_create_segment: {
+    querystring: {
+      properties: {
+        projectId: {
+          type: "string",
+        },
+      },
+      required: ["projectId"],
+    },
+    body: {
+      properties: {
+        title: {
+          type: "string",
+        },
+        content: {
+          type: "string",
+        },
+        type: {
+          type: "string",
+        },
+        pinned: {
+          type: "boolean",
+        },
+      },
+      required: ["title", "content", "type"],
+    },
+    response: {
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+        404: {
+          properties: {
+            error: {
+              type: "string",
+            },
+            status: {
+              type: "number",
+            },
+          },
+        },
+        403: {
+          properties: {
+            error: {
+              type: "string",
+            },
+            status: {
+              type: "number",
+            },
+          },
+        },
+        200: {
+          properties: {
+            status: {
+              type: "number",
+            },
+            segment: {
+              type: "object",
+            },
+          },
+        },
+      },
+    },
+  },
 };
