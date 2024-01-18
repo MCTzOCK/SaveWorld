@@ -2486,4 +2486,552 @@ export const FastifySchemas = {
       },
     },
   },
+  communtiy_suggested: {
+    querystring: {
+      properties: {
+        page: {
+          type: "string",
+        },
+      },
+      required: ["page"],
+    },
+    response: {
+      200: {
+        properties: {
+          entries: {
+            type: "array",
+          },
+          pages: {
+            type: "number",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  communtiy_search: {
+    querystring: {
+      properties: {
+        page: {
+          type: "string",
+        },
+        q: {
+          type: "string",
+        },
+        type: {
+          type: "string",
+        },
+      },
+      required: ["page", "q", "type"],
+    },
+    response: {
+      200: {
+        properties: {
+          entries: {
+            type: "array",
+          },
+          pages: {
+            type: "number",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      400: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  community_following: {
+    querystring: {
+      properties: {
+        page: {
+          type: "string",
+        },
+      },
+      required: ["page"],
+    },
+    response: {
+      200: {
+        properties: {
+          entries: {
+            type: "array",
+          },
+          pages: {
+            type: "number",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  community_blog_comment: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+      required: ["id"],
+    },
+    body: {
+      properties: {
+        comment: {
+          type: "string",
+        },
+      },
+      required: ["comment"],
+    },
+    response: {
+      200: {
+        properties: {
+          entry: {
+            type: "object",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      400: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  community_blog_create: {
+    body: {
+      properties: {
+        title: {
+          type: "string",
+        },
+        content: {
+          type: "string",
+        },
+        tags: {
+          type: "array",
+        },
+      },
+      required: ["comment", "content", "tags"],
+    },
+    response: {
+      200: {
+        properties: {
+          entry: {
+            type: "object",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      400: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  community_blog_delete: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+      required: ["id"],
+    },
+    response: {
+      200: {
+        properties: {
+          entry: {
+            type: "object",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      403: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  community_blog_like: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+      required: ["id"],
+    },
+    response: {
+      200: {
+        properties: {
+          entry: {
+            type: "object",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  community_blog_receive: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+      required: ["id"],
+    },
+    response: {
+      200: {
+        properties: {
+          entry: {
+            type: "object",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      400: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  community_profile_receive: {
+    params: {
+      properties: {
+        username: {
+          type: "string",
+        },
+      },
+      required: ["username"],
+    },
+    response: {
+      200: {
+        properties: {
+          profile: {
+            type: "object",
+          },
+          level: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      403: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      400: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  community_profile_follow: {
+    params: {
+      properties: {
+        username: {
+          type: "string",
+        },
+      },
+      required: ["username"],
+    },
+    response: {
+      200: {
+        properties: {
+          profile: {
+            type: "object",
+          },
+          level: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      403: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  community_profile_blogs: {
+    params: {
+      properties: {
+        username: {
+          type: "string",
+        },
+      },
+      required: ["username"],
+    },
+    querystring: {
+      properties: {
+        page: {
+          type: "string",
+        },
+      },
+      required: ["page"],
+    },
+    response: {
+      200: {
+        properties: {
+          entries: {
+            type: "array",
+          },
+          pages: {
+            type: "number",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      400: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
 };

@@ -108,6 +108,14 @@ import * as fastifyMultipart from "@fastify/multipart";
           description: "Eco-Projects related APIs",
         },
         {
+          name: "community",
+          description: "Community related APIs",
+        },
+        {
+          name: "admin",
+          description: "Admin related APIs",
+        },
+        {
           name: "tracker",
           description: "Eco-Tracker related APIs",
         },
