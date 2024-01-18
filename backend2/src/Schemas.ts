@@ -3385,4 +3385,75 @@ export const FastifySchemas = {
       },
     },
   },
+  admin_create_category: {
+    body: {
+      properties: {
+        name: {
+          type: "string",
+        },
+        description: {
+          type: "string",
+        },
+        image: {
+          type: "string",
+        },
+      },
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          category: {
+            type: "object",
+          },
+          message: {
+            type: "string",
+          },
+        },
+      },
+      400: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  admin_delete_category: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          message: {
+            type: "string",
+          },
+        },
+      },
+      404: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
 };

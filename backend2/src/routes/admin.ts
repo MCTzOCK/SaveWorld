@@ -539,6 +539,97 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
       res.status(200).send({ lst, status: 200 });
     },
   );
+
+  app.post(
+    "/admin/content/categories",
+    {
+      config: {
+        openapi: {
+          description: "Adds a category",
+          summary: "Add category",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+      schema: FastifySchemas.admin_create_category,
+    },
+    async (
+      req: FastifyRequest<{
+        Body: {
+          name: string;
+          description: string;
+          image: string;
+        };
+      }>,
+      res,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { name, description, image } = req.body;
+
+      if (!name || !description || !image) {
+        res.status(400).send({
+          error: "Missing parameters",
+          status: 400,
+        });
+        return;
+      }
+
+      const category = await CategoryModel.create({
+        name,
+        description,
+        image,
+      });
+
+      res.status(200).send({
+        category,
+        message: "Created",
+        status: 200,
+      });
+    },
+  );
+
+  app.delete(
+    "/admin/content/categories",
+    {
+      config: {
+        openapi: {
+          description: "Deletes a category",
+          summary: "Delete category",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+      schema: FastifySchemas.admin_delete_category,
+    },
+    async (
+      req: FastifyRequest<{
+        Querystring: {
+          id: string;
+        };
+      }>,
+      res,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const category = await CategoryModel.findById(req.query.id as any);
+
+      if (!category) {
+        res.status(404).send({
+          error: "Not Found",
+          status: 404,
+        });
+        return;
+      }
+
+      await category.deleteOne();
+
+      res.status(200).send({
+        message: "Deleted",
+        status: 200,
+      });
+    },
+  );
 }
 
 async function defaultAdminAuth(
