@@ -2273,4 +2273,217 @@ export const FastifySchemas = {
       },
     },
   },
+  recipes_all: {
+    querystring: {
+      properties: {
+        page: {
+          type: "string",
+        },
+        q: {
+          type: "string",
+        },
+      },
+      required: ["page", "q"],
+    },
+    response: {
+      200: {
+        properties: {
+          entries: {
+            type: "array",
+          },
+          pages: {
+            type: "number",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  recipes_create: {
+    body: {
+      properties: {
+        title: {
+          type: "string",
+        },
+        ingredients: {
+          type: "array",
+        },
+        steps: {
+          type: "array",
+        },
+        image: {
+          type: "string",
+        },
+      },
+      required: ["title", "ingredients", "steps", "image"],
+    },
+    response: {
+      200: {
+        type: "object",
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  recipes_delete: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+      required: ["id"],
+    },
+    response: {
+      200: {
+        type: "object",
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  recipes_my: {
+    querystring: {
+      properties: {
+        page: {
+          type: "string",
+        },
+        q: {
+          type: "string",
+        },
+      },
+      required: ["page"],
+    },
+    response: {
+      200: {
+        properties: {
+          entries: {
+            type: "array",
+          },
+          pages: {
+            type: "number",
+          },
+          status: {
+            type: "number",
+          },
+        },
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  recipes_receive: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+      required: ["id"],
+    },
+    response: {
+      200: {
+        type: "object",
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+          status: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  recipes_update: {
+    body: {
+      properties: {
+        title: {
+          type: "string",
+        },
+        ingredients: {
+          type: "array",
+        },
+        steps: {
+          type: "array",
+        },
+        image: {
+          type: "string",
+        },
+      },
+      required: ["title", "ingredients", "steps", "image"],
+    },
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+      required: ["id"],
+    },
+    response: {
+      200: {
+        type: "object",
+      },
+      401: {
+        properties: {
+          error: {
+            type: "string",
+          },
+        },
+      },
+      403: {
+        properties: {
+          error: {
+            type: "string",
+          },
+        },
+      },
+      404: {
+        properties: {
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
 };
