@@ -3034,4 +3034,355 @@ export const FastifySchemas = {
       },
     },
   },
+  admin_stats: {
+    response: {
+      200: {
+        properties: {
+          stats: {
+            type: "object",
+          },
+          status: {
+            type: "number",
+          },
+          message: {
+            type: "string",
+          },
+        },
+      },
+      401: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  admin_users: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+    },
+    response: {
+      200: {
+        properties: {
+          users: {
+            type: "array",
+          },
+          status: {
+            type: "number",
+          },
+          message: {
+            type: "string",
+          },
+        },
+      },
+      401: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  admin_users_delete: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          success: {
+            type: "boolean",
+          },
+        },
+      },
+      403: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "number",
+          },
+        },
+      },
+      404: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  admin_users_update: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+    },
+    body: {
+      properties: {
+        update: {
+          type: "object",
+        },
+      },
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          message: {
+            type: "string",
+          },
+          user: {
+            type: "object",
+          },
+        },
+      },
+      404: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  admin_support_request_get: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          entry: {
+            type: "object",
+          },
+        },
+      },
+      404: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  admin_support_request_post: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+    },
+    body: {
+      properties: {
+        message: {
+          type: "object",
+        },
+      },
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          entry: {
+            type: "object",
+          },
+        },
+      },
+      404: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  admin_support_requests: {
+    querystring: {
+      properties: {
+        page: {
+          type: "string",
+        },
+      },
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          entries: {
+            type: "array",
+          },
+          pages: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  admin_lifestyle_template_add: {
+    body: {
+      properties: {
+        name: {
+          type: "string",
+        },
+        goal: {
+          type: "string",
+        },
+      },
+      required: ["name", "goal"],
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          lst: {
+            type: "object",
+          },
+        },
+      },
+    },
+  },
+  admin_lifestyle_template_delete: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+      required: ["id"],
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          message: {
+            type: "string",
+          },
+        },
+      },
+      404: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+      400: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
+  admin_lifestyle_template_update: {
+    body: {
+      properties: {
+        id: {
+          type: "string",
+        },
+        name: {
+          type: "string",
+        },
+        goal: {
+          type: "string",
+        },
+      },
+      required: ["id", "goal", "name"],
+    },
+    response: {
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          lst: {
+            type: "object",
+          },
+        },
+      },
+      404: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+      400: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
 };
