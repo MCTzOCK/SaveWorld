@@ -13,11 +13,15 @@ const old_console_log = console.log;
 
 const components = {
   "./backend": 0,
+  "./backend2": 0,
   "./mobile": 0,
   "./generator": 0,
   "./website": 0,
   "./essay": 0,
   "./api-js": 0,
+  "./translate-server": 0,
+  "./translate-cache": 0,
+  "./browser-translate": 0,
   total: 0,
 };
 

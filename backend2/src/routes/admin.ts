@@ -682,6 +682,163 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
       });
     },
   );
+
+  app.delete(
+    "/admin/content/videos/delete",
+    {
+      config: {
+        openapi: {
+          description: "Deletes a video",
+          summary: "Delete video",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+      schema: FastifySchemas.admin_delete_video,
+    },
+    async (
+      req: FastifyRequest<{
+        Querystring: {
+          id: string;
+        };
+      }>,
+      res,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { id } = req.query as {
+        id: string;
+      };
+      if (!id) {
+        res.status(400).send({
+          error: "Bad Request",
+          status: 400,
+        });
+        return;
+      }
+
+      const video = await VideoModel.findById(id);
+
+      if (!video) {
+        res.status(404).send({
+          error: "Not Found",
+          status: 404,
+        });
+        return;
+      }
+
+      await video.deleteOne();
+
+      res.status(200).send({
+        message: "Deleted",
+        status: 200,
+      });
+    },
+  );
+
+  app.get(
+    "/admin/content/videos/list",
+    {
+      config: {
+        openapi: {
+          description: "Lists videos",
+          summary: "List videos",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+      schema: FastifySchemas.admin_list_videos,
+    },
+    async (
+      req: FastifyRequest<{
+        Querystring: {
+          page?: string;
+        };
+      }>,
+      res,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const PAGE_SIZE = 10;
+
+      const page = req.query.page ? Number(req.query.page) : 1;
+
+      const videos = await VideoModel.find()
+        .skip((page - 1) * PAGE_SIZE)
+        .limit(PAGE_SIZE);
+
+      const count = await VideoModel.countDocuments();
+
+      res.status(200).send({
+        videos,
+        count,
+      });
+    },
+  );
+
+  app.post(
+    "/admin/content/videos/update",
+    {
+      config: {
+        openapi: {
+          description: "Updates a video",
+          summary: "Update video",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+      schema: FastifySchemas.admin_update_video,
+    },
+    async (
+      req: FastifyRequest<{
+        Querystring: {
+          id: string;
+        };
+        Body: {
+          title: string;
+          description: string;
+          categories: string[];
+          sources: string[];
+        };
+      }>,
+      res,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { id } = req.query as {
+        id: string;
+      };
+
+      const { title, description, categories, sources } = req.body as {
+        title: string;
+        description: string;
+        categories: string[];
+        sources: string[];
+      };
+
+      const video = await VideoModel.findById(id);
+
+      if (!video) {
+        res.status(404).send({
+          error: "Not Found",
+          status: 404,
+        });
+        return;
+      }
+
+      video.title = title;
+      video.description = description;
+      video.categories = categories;
+      video.sources = sources;
+
+      await video.save();
+
+      res.status(200).send({
+        status: 200,
+        message: "Updated video",
+      });
+    },
+  );
 }
 
 async function defaultAdminAuth(

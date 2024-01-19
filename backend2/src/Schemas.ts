@@ -3502,4 +3502,146 @@ export const FastifySchemas = {
       },
     },
   },
+  admin_delete_video: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+    },
+    response: {
+      401: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+      400: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+      404: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          message: {
+            type: "string",
+          },
+          data: {
+            type: "object",
+          },
+        },
+      },
+    },
+  },
+  admin_list_videos: {
+    querystring: {
+      properties: {
+        page: {
+          type: "string",
+        },
+      },
+    },
+    response: {
+      401: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+      200: {
+        properties: {
+          videos: {
+            type: "array",
+          },
+          count: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  admin_update_video: {
+    querystring: {
+      properties: {
+        id: {
+          type: "string",
+        },
+      },
+    },
+    body: {
+      properties: {
+        title: {
+          type: "string",
+        },
+        description: {
+          type: "string",
+        },
+        categories: {
+          type: "array",
+        },
+        sources: {
+          type: "array",
+        },
+      },
+    },
+    response: {
+      401: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+      404: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          message: {
+            type: "string",
+          },
+        },
+      },
+    },
+  },
 };
