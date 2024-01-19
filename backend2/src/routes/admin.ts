@@ -630,6 +630,58 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
       });
     },
   );
+
+  app.post(
+    "/content/videos/create",
+    {
+      config: {
+        openapi: {
+          description: "Creates a video",
+          summary: "Create video",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+      schema: FastifySchemas.admin_create_video,
+    },
+    async (
+      req: FastifyRequest<{
+        Body: {
+          title: string;
+          description: string;
+          categories: string[];
+          youtubeVideoId: string;
+          sources: string[];
+        };
+      }>,
+      res,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { title, description, categories, youtubeVideoId, sources } =
+        req.body;
+
+      const video = await VideoModel.create({
+        title: title[0],
+        description: description[0],
+        categories: JSON.parse(categories[0]),
+        streamUrl: "https://youtube.com/embed/" + youtubeVideoId[0],
+        thumbnailUrl: "/media/file/" + "" + "_thumbnail.png",
+        sources: JSON.parse(sources[0]),
+      });
+
+      video.streamUrl = "/content/videos/" + video._id + "/stream";
+      video.thumbnailUrl = "/media/file/" + video._id + "_thumbnail.png";
+
+      res.status(200).send({
+        status: "success",
+        message: "Video created successfully.",
+        data: {
+          video: video,
+        },
+      });
+    },
+  );
 }
 
 async function defaultAdminAuth(

@@ -3456,4 +3456,50 @@ export const FastifySchemas = {
       },
     },
   },
+  admin_create_video: {
+    body: {
+      properties: {
+        title: {
+          type: "string",
+        },
+        description: {
+          type: "string",
+        },
+        sources: {
+          type: "array",
+        },
+        youtubeVideoId: {
+          type: "string",
+        },
+        categories: {
+          type: "string",
+        },
+      },
+    },
+    response: {
+      401: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+      200: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          message: {
+            type: "string",
+          },
+          data: {
+            type: "object",
+          },
+        },
+      },
+    },
+  },
 };

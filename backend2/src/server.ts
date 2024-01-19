@@ -51,7 +51,6 @@ import * as fastifyMultipart from "@fastify/multipart";
     limits: {
       fileSize: 1024 * 1024 * 10, // 10MB
     },
-    attachFieldsToBody: true,
   });
 
   fastify.register(fstatic, {
