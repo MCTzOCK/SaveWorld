@@ -120,33 +120,37 @@ export default function AdminCreateVideoModal(props: {
               return;
             }
 
-            const data = new FormData();
-            data.append("title", name);
-            data.append("description", desc);
-            data.append("categories", JSON.stringify(selectedCategories));
-            data.append("sources", JSON.stringify(sources));
-            data.append("youtubeVideoId", id);
+            const body = {
+              title: name,
+              description: desc,
+              categories: selectedCategories,
+              sources: sources,
+              youtubeVideoId: id,
+            };
 
             setUploading(true);
 
-            const res = await fetch(ENDPOINT + "/admin/content/videos/create", {
-              method: "POST",
-              body: data,
-              headers: {
-                "X-AUTH": localStorage.getItem("token") as string,
-              },
-            });
+            const res = await REST.Admin.createVideo(
+              localStorage.getItem("token") as string,
+              name,
+              desc,
+              id,
+              selectedCategories,
+              sources,
+            );
 
             setUploading(false);
             setSelectedCategories([]);
-            if (res.ok) {
+            if (res.status === 200) {
               props.callback();
               props.onClose();
             } else {
-              let x = await res.json();
               PopupManager.alert({
                 title: $$("control.error"),
-                description: $$("components.video.create.error", x.error),
+                description: $$(
+                  "components.video.create.error",
+                  res.payload.error,
+                ),
               });
               props.onClose();
             }
