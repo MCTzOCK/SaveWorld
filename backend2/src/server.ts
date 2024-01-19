@@ -19,6 +19,17 @@ import fstatic from "@fastify/static";
 import AutoLoad from "@fastify/autoload";
 import mongoose from "mongoose";
 import * as fastifyMultipart from "@fastify/multipart";
+import * as fastifySocketIO from "fastify-socket.io";
+import AuthenticateChannel from "./socket/channels/AuthenticateChannel";
+import ConnectionInfoChannel from "./socket/channels/ConnectionInfoChannel";
+import ListChatsChannel from "./socket/channels/ListChatsChannel";
+import CreateChatChannel from "./socket/channels/CreateChatChannel";
+import DeleteChatChannel from "./socket/channels/DeleteChatChannel";
+import GetChatChannel from "./socket/channels/GetChatChannel";
+import CreateChatMessageChannel from "./socket/channels/CreateChatMessageChannel";
+import ChatMessagesChannel from "./socket/channels/ChatMessagesChannel";
+import AddChatGroupMemberChannel from "./socket/channels/AddChatGroupMemberChannel";
+import SocketRegistry from "./socket/SocketRegistry";
 
 (async () => {
   const openapiDocs = await import("fastify-openapi-docs");
@@ -41,16 +52,63 @@ import * as fastifyMultipart from "@fastify/multipart";
     }
   }
 
-  fastify.register(fastifyCors, {
+  /*  fastify.register(fastifyCors, {
     origin: "*",
     methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Accept"],
+    allowedHeaders: ["Content-Type", "Accept", "X-AUTH"],
+  });
+*/
+  fastify.addHook("onSend", async function (req, res) {
+    res.headers({
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods":
+        "GET, POST, OPTIONS, HEAD, PUT, PATCH, DELETE, CONNECT, TRACE",
+      "Access-Control-Allow-Headers":
+        "Content-Type, Accept, X-AUTH" +
+        req.headers["access-control-request-headers"]
+          ? ", " + req.headers["access-control-request-headers"]
+          : "",
+    });
+  });
+
+  // catch cors preflight
+  fastify.options("*", async function (req, res) {
+    res.headers({
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods":
+        "GET, POST, OPTIONS, HEAD, PUT, PATCH, DELETE, CONNECT, TRACE",
+      "Access-Control-Allow-Headers":
+        "Content-Type, Accept, X-AUTH" +
+        req.headers["access-control-request-headers"]
+          ? ", " + req.headers["access-control-request-headers"]
+          : "",
+    });
+    res.status(204);
+    res.send();
   });
 
   fastify.register(fastifyMultipart.default, {
     limits: {
       fileSize: 1024 * 1024 * 10, // 10MB
     },
+  });
+
+  fastify.register(fastifySocketIO.default, {
+    cors: {
+      origin: "*",
+      methods: [
+        "GET",
+        "POST",
+        "OPTIONS",
+        "HEAD",
+        "PUT",
+        "PATCH",
+        "DELETE",
+        "CONNECT",
+        "TRACE",
+      ],
+    },
+    maxHttpBufferSize: 1e8,
   });
 
   fastify.register(fstatic, {
@@ -147,6 +205,47 @@ import * as fastifyMultipart from "@fastify/multipart";
   fastify.register(AutoLoad, {
     dir: path.join(__dirname, "routes"),
     options: Object.assign({}, { prefix: "/" }),
+  });
+
+  fastify.ready().then(() => {
+    // @ts-ignore
+    fastify.io.on("connection", (socket) => {
+      console.log(
+        `[SIO] Socket ${socket.id} connected from ${socket.handshake.address}`,
+      );
+
+      new AuthenticateChannel(socket, "sw:auth.authenticate").register();
+      new ConnectionInfoChannel(socket, "sw:connection.info").register();
+      new ListChatsChannel(socket, "sw:chats.list").register();
+      new CreateChatChannel(socket, "sw:chats.create").register();
+      new DeleteChatChannel(socket, "sw:chats.delete").register();
+      new GetChatChannel(socket, "sw:chats.get").register();
+      new CreateChatMessageChannel(
+        socket,
+        "sw:chats.messages.create",
+      ).register();
+      new ChatMessagesChannel(socket, "sw:chats.messages.get").register();
+      new AddChatGroupMemberChannel(
+        socket,
+        "sw:chats.groups.add.member",
+      ).register();
+      //KEEP_CHANNEL_ADD_POINT
+
+      socket.onAny((event, ...args) => {
+        console.log(
+          `[SIO] Socket ${socket.id} called event ${event} with ${args}`,
+        );
+      });
+
+      socket.on("disconnect", () => {
+        delete SocketRegistry.loggedIn[socket.id];
+        console.log(
+          `[SIO] Socket ${socket.id} disconnected from ${socket.handshake.address}`,
+        );
+      });
+    });
+    // @ts-ignore
+    global.io = fastify.io;
   });
 
   await fastify.listen(process.env.PORT || 3000, "0.0.0.0");

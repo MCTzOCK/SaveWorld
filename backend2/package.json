@@ -35,6 +35,7 @@
     "fastify-cli": "^5.9.0",
     "fastify-openapi-docs": "^3.0.0",
     "fastify-plugin": "^4.0.0",
+    "fastify-socket.io": "^5.0.0",
     "formidable": "^3.5.1",
     "ical-generator": "^6.0.1",
     "jsonwebtoken": "^9.0.2",
