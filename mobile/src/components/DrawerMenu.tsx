@@ -63,6 +63,7 @@ import {
   BiCog,
   BiEnvelope,
   BiFile,
+  BiFlag,
   BiGroup,
   BiHome,
   BiInfoCircle,
@@ -80,6 +81,7 @@ import {
 } from "react-icons/bi";
 import SaveWorldModal from "./SaveWorldModal";
 import { useFlags } from "flagsmith/react";
+import { $$ } from "../translations/i18n";
 
 export default function DrawerMenu(props: {
   isOpen: boolean;
@@ -121,49 +123,55 @@ export default function DrawerMenu(props: {
   useEffect(() => {
     let gr: typeof groups = [
       {
-        label: "SaveWorld",
+        label: $$("product.name"),
         items: [
           {
-            label: "Home",
+            label: $$("menu.home"),
             icon: <BiHome />,
             onClick: () => {
               router.push("/onboarding", "none", "replace");
             },
           },
+          {
+            label: "Language",
+            icon: <BiFlag />,
+            onClick: () => {
+              router.push("/language", "none", "replace");
+            },
+          },
         ],
       },
       {
-        label: "Konto",
         items: [
           {
-            label: "Einstellungen",
+            label: $$("menu.settings"),
             icon: <BiCog />,
             onClick: () => {
               router.push("/account", "none", "replace");
             },
           },
           {
-            label: "Benachrichtigungen",
+            label: $$("menu.notifications"),
             icon: <BiEnvelope />,
             onClick: () => {
               router.push("/notifications", "none", "replace");
             },
           },
           {
-            label: "Hilfe",
+            label: $$("menu.help"),
             icon: <BiInfoCircle />,
             onClick: () => {
               router.push("/support", "none", "replace");
             },
           },
           {
-            label: "Abmelden",
+            label: $$("menu.logout"),
             icon: <BiLogOut />,
             onClick: async () => {
               if (
                 !(await PopupManager.confirmAsync({
-                  title: "Abmelden",
-                  question: "Möchtest du dich wirklich abmelden?",
+                  title: $$("menu.logout"),
+                  question: $$("menu.logout.description"),
                 }))
               )
                 return;
@@ -176,16 +184,17 @@ export default function DrawerMenu(props: {
             },
           },
         ],
+        label: $$("general.account"),
       },
       {
-        label: "Lernen",
+        label: $$("menu.learn"),
         items: [],
       },
     ];
 
     if (flags.news.enabled) {
       gr[0].items.push({
-        label: "Neuigkeiten",
+        label: $$("page.news.title"),
         icon: <BiNews />,
         onClick: () => {
           router.push("/news", "none", "replace");
@@ -195,14 +204,14 @@ export default function DrawerMenu(props: {
 
     if (flags.videos.enabled) {
       gr[2].items.push({
-        label: "Videos",
+        label: $$("menu.videos"),
         icon: <BiVideo />,
         onClick: () => {
           router.push("/learn", "none", "replace");
         },
       });
       gr[2].items.push({
-        label: "Suchen",
+        label: $$("control.search"),
         icon: <BiSearch />,
         onClick: () => {
           router.push("/learn/fts-search", "none", "replace");
@@ -211,7 +220,7 @@ export default function DrawerMenu(props: {
 
       if (flags.video_category_channels.enabled) {
         gr[2].items.push({
-          label: "Kanäle",
+          label: $$("pages.learn.channels"),
           icon: <BiGroup />,
           onClick: () => {
             router.push("/learn/channels", "none", "replace");
@@ -221,7 +230,7 @@ export default function DrawerMenu(props: {
     }
     if (flags.quizzes.enabled) {
       gr[2].items.push({
-        label: "Quizze",
+        label: $$("menu.quizzes"),
         icon: <BiQuestionMark />,
         onClick: () => {
           router.push("/quizzes", "none", "replace");
@@ -230,10 +239,10 @@ export default function DrawerMenu(props: {
     }
     if (flags.tracker.enabled) {
       gr.push({
-        label: "Tracker",
+        label: $$("menu.tracker"),
         items: [
           {
-            label: "Übersicht",
+            label: $$("general.overview"),
             icon: <BiLeaf />,
             onClick: () => {
               router.push("/e2", "none", "replace");
@@ -244,17 +253,17 @@ export default function DrawerMenu(props: {
     }
     if (flags.sustainability_articles.enabled) {
       gr.push({
-        label: "Nachhaltigkeit",
+        label: $$("page.sustainability.title"),
         items: [
           {
-            label: "Was ist Nachhaltigkeit?",
+            label: $$("menu.sustainability.what"),
             icon: <BiPlanet />,
             onClick: () => {
               router.push("/sustainability", "none", "replace");
             },
           },
           {
-            label: "Artikel",
+            label: $$("components.articles"),
             icon: <BiFile />,
             onClick: () => {
               router.push("/sustainability/articles", "none", "replace");
@@ -265,24 +274,24 @@ export default function DrawerMenu(props: {
     }
     if (flags.recipes.enabled) {
       gr.push({
-        label: "Rezepte",
+        label: $$("menu.recipes"),
         items: [
           {
-            label: "Rezepte",
+            label: $$("menu.recipes"),
             icon: <FaUtensils />,
             onClick: () => {
               router.push("/recipes", "none", "replace");
             },
           },
           {
-            label: "Mein Kochbuch",
+            label: $$("menu.my.cookbook"),
             icon: <FaBook />,
             onClick: () => {
               router.push("/recipes/cookbook", "none", "replace");
             },
           },
           {
-            label: "Neues Rezept",
+            label: $$("pages.recipes.create"),
             icon: <FaPlus />,
             onClick: () => {
               router.push("/recipes/create", "none", "replace");
@@ -293,7 +302,7 @@ export default function DrawerMenu(props: {
 
       if (flags.eatingplans.enabled) {
         gr[gr.length - 1].items.push({
-          label: "Essenspläne",
+          label: $$("menu.eatingplans"),
           icon: <FaCalendar />,
           onClick: () => {
             router.push("/eatingplans", "none", "replace");
@@ -303,10 +312,10 @@ export default function DrawerMenu(props: {
     }
     if (flags.tools_co2_calc.enabled) {
       gr.push({
-        label: "Werkzeuge",
+        label: $$("menu.tools"),
         items: [
           {
-            label: "CO2-Rechner",
+            label: $$("menu.calculator"),
             icon: <BiCalculator />,
             onClick: () => {
               router.push("/tools/co2", "none", "replace");
@@ -317,24 +326,24 @@ export default function DrawerMenu(props: {
     }
     if (flags.eco_projects.enabled) {
       gr.push({
-        label: "Öko-Projekte",
+        label: $$("menu.projects"),
         items: [
           {
-            label: "Meine Projekte",
+            label: $$("pages.e2projects.my"),
             icon: <FaProjectDiagram />,
             onClick: () => {
               router.push("/e2-projects/my", "none", "replace");
             },
           },
           {
-            label: "Projekt starten",
+            label: $$("pages.e2projects.create"),
             icon: <BiPlus />,
             onClick: () => {
               router.push("/e2-projects/new", "none", "replace");
             },
           },
           {
-            label: "Projekte finden",
+            label: $$("menu.e2projects.find"),
             icon: <BiSearch />,
             onClick: () => {
               router.push("/e2-projects/search", "none", "replace");
@@ -346,31 +355,31 @@ export default function DrawerMenu(props: {
 
     if (flags.community.enabled) {
       gr.push({
-        label: "Community",
+        label: $$("menu.community"),
         items: [
           {
-            label: "Home",
+            label: $$("menu.home"),
             icon: <BiGroup />,
             onClick: () => {
               router.push("/community", "none", "replace");
             },
           },
           {
-            label: "Neuer Blog",
+            label: $$("pages.community.create.blog.title"),
             icon: <BiPen />,
             onClick: () => {
               router.push("/community/create/blog", "none", "replace");
             },
           },
           {
-            label: "Nachrichten",
+            label: $$("menu.notifications"),
             icon: <BiEnvelope />,
             onClick: () => {
               router.push("/community/messages", "none", "replace");
             },
           },
           {
-            label: "Mein Profil",
+            label: $$("menu.community.my.profile"),
             icon: <BiUser />,
             onClick: () => {
               router.push(
@@ -385,10 +394,10 @@ export default function DrawerMenu(props: {
     }
 
     gr.push({
-      label: "Ressourcen",
+      label: $$("menu.resources"),
       items: [
         {
-          label: "Markdown-Hilfe",
+          label: $$("menu.markdown.help"),
           icon: <BiLogoMarkdown />,
           onClick: () => {
             router.push("/resources/md-help", "none", "replace");
@@ -401,46 +410,46 @@ export default function DrawerMenu(props: {
 
     if (userInfo.role === "admin") {
       gr.push({
-        label: "Admin",
+        label: $$("menu.admin"),
         color: "var(--ion-color-danger)",
         items: [
           {
-            label: "Übersicht",
+            label: $$("general.overview"),
             icon: <FaHammer />,
             onClick: () => {
               router.push("/admin", "none", "replace");
             },
           },
           {
-            label: "Benutzer",
+            label: $$("user.user"),
             icon: <BiGroup />,
             onClick: () => {
               router.push("/admin/users", "none", "replace");
             },
           },
           {
-            label: "Support-Anfragen",
+            label: $$("components.admin.stats.support"),
             icon: <BiInfoCircle />,
             onClick: () => {
               router.push("/admin/support-requests", "none", "replace");
             },
           },
           {
-            label: "Videos",
+            label: $$("menu.videos"),
             icon: <BiVideo />,
             onClick: () => {
               router.push("/admin/content/videos", "none", "replace");
             },
           },
           {
-            label: "Lifestyle-Vorlagen",
+            label: $$("menu.lifestyle.templates"),
             icon: <BiFile />,
             onClick: () => {
               router.push("/admin/lifestyle-templates", "none", "replace");
             },
           },
           {
-            label: "Interessen",
+            label: $$("menu.interests"),
             icon: <BiLeaf />,
             onClick: () => {
               router.push("/admin/content/categories", "none", "replace");
@@ -480,7 +489,7 @@ export default function DrawerMenu(props: {
   return (
     <>
       <SaveWorldModal
-        title={"SaveWorld"}
+        title={$$("product.name")}
         isOpen={props.isOpen}
         onClose={props.onClose}
       >
@@ -492,7 +501,7 @@ export default function DrawerMenu(props: {
           onIonInput={(e) => {
             setQuery(e.detail.value as string);
           }}
-          placeholder={"Suchen"}
+          placeholder={$$("control.search")}
         />
         <div
           style={{

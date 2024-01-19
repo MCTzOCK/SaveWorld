@@ -25,6 +25,7 @@ import {
   IonCardTitle,
   useIonRouter,
 } from "@ionic/react";
+import { $$ } from "../translations/i18n";
 
 export default function E2FindProjectsMap() {
   const [geoLocs, setGeoLocs] = useState<string[][]>([]);
@@ -68,7 +69,7 @@ export default function E2FindProjectsMap() {
 
                   if (res.payload.entries.length > 0) {
                     PopupManager.alert({
-                      title: "Projekte an diesem Ort",
+                      title: $$("components.e2projects.project.at.location"),
                       description: (
                         <>
                           <Grid templateColumns={["repeat(1, 1fr)"]}>
@@ -105,7 +106,9 @@ export default function E2FindProjectsMap() {
                                           );
                                         }}
                                       >
-                                        Zum Kalender hinzufügen
+                                        {$$(
+                                          "components.e2projects.project.add.to.calendar",
+                                        )}
                                       </Button>
                                       <Button
                                         w={"100%"}
@@ -118,7 +121,9 @@ export default function E2FindProjectsMap() {
                                           );
                                         }}
                                       >
-                                        Zum Projekt
+                                        {$$(
+                                          "components.e2projects.project.goto",
+                                        )}
                                       </Button>
                                     </VStack>
                                   </IonCardContent>

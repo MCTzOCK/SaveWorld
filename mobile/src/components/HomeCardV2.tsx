@@ -19,6 +19,7 @@ import {
   Link,
 } from "@chakra-ui/react";
 import { useIonRouter } from "@ionic/react";
+import { Browser } from "@capacitor/browser";
 
 export default function HomeCardV2(props: {
   icon: ReactNode;
@@ -41,6 +42,10 @@ export default function HomeCardV2(props: {
         target={props.newTab ? "_blank" : undefined}
         onClick={(e) => {
           e.preventDefault();
+          if (props.url.startsWith("http")) {
+            Browser.open({ url: props.url });
+            return;
+          }
           router.push(props.url);
         }}
         shadow={"2xl"}
@@ -49,7 +54,19 @@ export default function HomeCardV2(props: {
           <chakra.span color={props.color} fontSize={"6xl"}>
             {props.icon}
           </chakra.span>
-          <Heading color={"white"} fontSize={"2xl"} fontWeight={1000}>
+          <Heading
+            color={"white"}
+            fontSize={"2xl"}
+            fontWeight={1000}
+            style={{
+              wordBreak: "break-word",
+              wordWrap: "break-word",
+              hyphens: "auto",
+              textAlign: "center",
+              textOverflow: "ellipsis",
+              overflow: "hidden",
+            }}
+          >
             {props.text}
           </Heading>
         </Flex>

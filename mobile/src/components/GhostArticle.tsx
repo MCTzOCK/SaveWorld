@@ -17,6 +17,7 @@ import Page from "./Page";
 import { Image } from "@chakra-ui/react";
 import "../theme/ghost.scss";
 import MobileBox from "./MobileBox";
+import { $$ } from "../translations/i18n";
 
 export default function GhostArticle(props: { postId: string }) {
   const [post, setPost] = React.useState<PostOrPage>();
@@ -35,7 +36,7 @@ export default function GhostArticle(props: { postId: string }) {
 
   return (
     <>
-      <Page title={post ? (post.title as string) : "Laden..."}>
+      <Page title={post ? (post.title as string) : $$("general.loading")}>
         <MobileBox padding={"4"}>
           <div className={"ghost-post"}>
             {post && (

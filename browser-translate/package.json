@@ -1,0 +1,19 @@
+{
+  "name": "@saveworld/browser-translate",
+  "version": "1.2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Ben Siebert",
+    "email": "hello@ben-siebert.de",
+    "url": "https://ben-siebert.com"
+  },
+  "main": "src/index.js",
+  "scripts": {
+    "declare": "tsc"
+  },
+  "dependencies": {
+    "typescript": "^5.3.3"
+  }
+}

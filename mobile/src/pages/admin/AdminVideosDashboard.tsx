@@ -32,6 +32,7 @@ import PopupManager from "../../util/PopupManager";
 import { Grid, UnorderedList, useDisclosure } from "@chakra-ui/react";
 import MobileBox from "../../components/MobileBox";
 import AdminVideoEditModal from "../../components/AdminVideoEditModal";
+import { $$ } from "../../translations/i18n";
 
 export default function AdminVideosDashboard() {
   useRedirectForAnon({
@@ -90,8 +91,8 @@ export default function AdminVideosDashboard() {
       }
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description: "Fehler beim Laden der Videos: " + res.payload.error,
+        title: $$("control.error"),
+        description: $$("pages.admin.videos.loading.error", res.payload.error),
       });
     }
   };
@@ -110,7 +111,7 @@ export default function AdminVideosDashboard() {
 
   return (
     <>
-      <Page title={"Videos"} redGradient>
+      <Page title={$$("menu.videos")} redGradient>
         <MobileBox bg={"#101010"}>
           <Grid
             templateColumns={[

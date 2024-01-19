@@ -31,6 +31,7 @@ import {
   IonCardTitle,
 } from "@ionic/react";
 import PopupManager from "../../util/PopupManager";
+import { $$ } from "../../translations/i18n";
 
 export default function AdminSupportRequestDashboard() {
   useRedirectForAnon({
@@ -66,7 +67,7 @@ export default function AdminSupportRequestDashboard() {
 
   return (
     <>
-      <Page title={"Anfrage"} redGradient noPadding>
+      <Page title={$$("pages.admin.support.request")} redGradient noPadding>
         <Flex
           w={"100%"}
           justifyContent={["flex-start", "center"]}
@@ -91,7 +92,7 @@ export default function AdminSupportRequestDashboard() {
                     >
                       <AlertIcon />
                       <AlertDescription>
-                        Diese Anfrage ist bereits abgeschlossen
+                        {$$("pages.admin.support.request.processed")}
                       </AlertDescription>
                     </Alert>
                   </>
@@ -100,12 +101,12 @@ export default function AdminSupportRequestDashboard() {
                   <IonCardHeader>
                     <IonCardTitle>
                       {request.category === "REPORT-USER"
-                        ? "Benutzer Meldung"
+                        ? $$("page.support.category.report.user")
                         : request.category === "REPORT-POST"
-                        ? "Beitrag Meldung"
+                        ? $$("page.support.category.report.post")
                         : request.category === "REPORT-BUG"
-                        ? "Bug Meldung"
-                        : "Anderes"}
+                        ? $$("page.support.category.error")
+                        : $$("page.support.category.general")}
                     </IonCardTitle>
                     <IonCardSubtitle>
                       {new Date(request.createdAt).toLocaleString()}
@@ -114,10 +115,12 @@ export default function AdminSupportRequestDashboard() {
                   <IonCardContent>
                     <VStack spacing={"1rem"} alignItems={"left"} mb={"1rem"}>
                       <div>
-                        <b>Erstellt von</b>: {request.email}
+                        <b>{$$("pages.admin.support.request.created.by")}</b>:{" "}
+                        {request.email}
                       </div>
                       <div>
-                        <b>Nachricht</b>: {request.message}
+                        <b>{$$("pages.admin.support.request.message")}</b>:{" "}
+                        {request.message}
                       </div>
                     </VStack>
                     {["GENERAL", "REPORT-BUG"].includes(request.category) && (
@@ -128,9 +131,10 @@ export default function AdminSupportRequestDashboard() {
                           disabled={request.processed}
                           onClick={async () => {
                             const message = await PopupManager.promptAsync({
-                              title: "Antwort",
-                              helperText:
-                                "Beantworte die Anfrage des Benutzers",
+                              title: $$("pages.admin.support.request.answer"),
+                              helperText: $$(
+                                "pages.admin.support.request.answer.description",
+                              ),
                               inputType: "TEXTAREA",
                             });
 
@@ -146,15 +150,16 @@ export default function AdminSupportRequestDashboard() {
                               reload();
                             } else {
                               PopupManager.alert({
-                                title: "Fehler",
-                                description:
-                                  "Fehler beim Abschließen der Anfrage: " +
+                                title: $$("control.error"),
+                                description: $$(
+                                  "pages.admin.support.request.answer.error",
                                   res.payload.error,
+                                ),
                               });
                             }
                           }}
                         >
-                          Abschließen
+                          {$$("pages.admin.support.request.answer.complete")}
                         </IonButton>
                       </>
                     )}
@@ -178,7 +183,7 @@ export default function AdminSupportRequestDashboard() {
                               "/community/r/" + request.additionalData
                             }
                           >
-                            Beitrag öffnen
+                            {$$("pages.admin.support.request.open.post")}
                           </IonButton>
                           <IonButton
                             disabled={request.processed}
@@ -188,22 +193,36 @@ export default function AdminSupportRequestDashboard() {
                             color={"success"}
                             onClick={async () => {
                               const action = await PopupManager.selectAsync({
-                                title: "Aktion auswählen",
-                                helperText:
-                                  "Wähle die Aktion aus, die du durchführen möchtest",
-                                choices: ["Beitrag löschen", "Keine Aktion"],
+                                title: $$(
+                                  "pages.admin.support.request.action.choose",
+                                ),
+                                helperText: $$(
+                                  "pages.admin.support.request.action.description",
+                                ),
+                                choices: [
+                                  $$(
+                                    "pages.admin.support.request.action.delete.post",
+                                  ),
+                                  $$("pages.admin.support.request.action.no"),
+                                ],
                               });
                               if (!action) return;
 
                               const message = await PopupManager.promptAsync({
-                                title: "Antwort",
-                                helperText:
-                                  "Beantworte die Anfrage des Benutzers",
+                                title: $$("pages.admin.support.request.answer"),
+                                helperText: $$(
+                                  "pages.admin.support.request.answer.description",
+                                ),
                                 inputType: "TEXTAREA",
                               });
                               if (!message) return;
 
-                              if (action === "Beitrag löschen") {
+                              if (
+                                action ===
+                                $$(
+                                  "pages.admin.support.request.action.delete.post",
+                                )
+                              ) {
                                 const res =
                                   await REST.Community.deleteBlogEntry(
                                     localStorage.getItem("token") as string,
@@ -212,10 +231,11 @@ export default function AdminSupportRequestDashboard() {
 
                                 if (res.status !== 200) {
                                   PopupManager.alert({
-                                    title: "Fehler",
-                                    description:
-                                      "Fehler beim Löschen des Beitrags: " +
+                                    title: $$("control.error"),
+                                    description: $$(
+                                      "pages.admin.support.request.error.post",
                                       res.payload.error,
+                                    ),
                                   });
                                   return;
                                 }
@@ -232,15 +252,16 @@ export default function AdminSupportRequestDashboard() {
                                 reload();
                               } else {
                                 PopupManager.alert({
-                                  title: "Fehler",
-                                  description:
-                                    "Fehler beim Abschließen der Anfrage: " +
+                                  title: $$("control.error"),
+                                  description: $$(
+                                    "pages.admin.support.request.error",
                                     res.payload.error,
+                                  ),
                                 });
                               }
                             }}
                           >
-                            Abschließen
+                            {$$("pages.admin.support.request.answer.complete")}
                           </IonButton>
                         </div>
                       </>
@@ -265,7 +286,7 @@ export default function AdminSupportRequestDashboard() {
                               "/community/u/" + request.additionalData
                             }
                           >
-                            Profil öffnen
+                            {$$("pages.admin.support.request.open.profile")}
                           </IonButton>
                           <IonButton
                             disabled={request.processed}
@@ -275,22 +296,36 @@ export default function AdminSupportRequestDashboard() {
                             color={"success"}
                             onClick={async () => {
                               const action = await PopupManager.selectAsync({
-                                title: "Aktion auswählen",
-                                helperText:
-                                  "Wähle die Aktion aus, die du durchführen möchtest",
-                                choices: ["Benutzer löschen", "Keine Aktion"],
+                                title: $$(
+                                  "pages.admin.support.request.action.choose",
+                                ),
+                                helperText: $$(
+                                  "pages.admin.support.request.action.description",
+                                ),
+                                choices: [
+                                  $$(
+                                    "pages.admin.support.request.action.delete.user",
+                                  ),
+                                  $$("pages.admin.support.request.action.no"),
+                                ],
                               });
                               if (!action) return;
 
                               const message = await PopupManager.promptAsync({
-                                title: "Antwort",
-                                helperText:
-                                  "Beantworte die Anfrage des Benutzers",
+                                title: $$("pages.admin.support.request.answer"),
+                                helperText: $$(
+                                  "pages.admin.support.request.answer.description",
+                                ),
                                 inputType: "TEXTAREA",
                               });
                               if (!message) return;
 
-                              if (action === "Benutzer löschen") {
+                              if (
+                                action ===
+                                $$(
+                                  "pages.admin.support.request.action.delete.user",
+                                )
+                              ) {
                                 const res = await REST.Admin.deleteUser(
                                   localStorage.getItem("token") as string,
                                   request.additionalData,
@@ -298,10 +333,11 @@ export default function AdminSupportRequestDashboard() {
 
                                 if (res.status !== 200) {
                                   PopupManager.alert({
-                                    title: "Fehler",
-                                    description:
-                                      "Fehler beim Löschen des Benutzers: " +
+                                    title: $$("control.error"),
+                                    description: $$(
+                                      "pages.admin.support.request.error.user",
                                       res.payload.error,
+                                    ),
                                   });
                                   return;
                                 }
@@ -318,15 +354,16 @@ export default function AdminSupportRequestDashboard() {
                                 reload();
                               } else {
                                 PopupManager.alert({
-                                  title: "Fehler",
-                                  description:
-                                    "Fehler beim Abschließen der Anfrage: " +
+                                  title: $$("control.error"),
+                                  description: $$(
+                                    "pages.admin.support.request.error",
                                     res.payload.error,
+                                  ),
                                 });
                               }
                             }}
                           >
-                            Abschließen
+                            {$$("pages.admin.support.request.answer.complete")}
                           </IonButton>
                         </div>
                       </>

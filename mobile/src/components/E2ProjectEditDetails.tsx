@@ -25,6 +25,7 @@ import { NOMINATIM_ENDPOINT } from "../env";
 import PopupManager from "../util/PopupManager";
 import { useIonRouter } from "@ionic/react";
 import { useUserData } from "../hooks/useUserData";
+import { $$ } from "../translations/i18n";
 
 export default function E2ProjectEditDetails(props: {
   project: E2Project;
@@ -69,8 +70,8 @@ export default function E2ProjectEditDetails(props: {
 
           if (new Date(startDate).getTime() < new Date().getTime()) {
             await PopupManager.alertAsync({
-              title: "Fehler",
-              description: "Das Startdatum muss in der Zukunft liegen.",
+              title: $$("control.error"),
+              description: $$("pages.e2projects.start.page2.error.date"),
             });
             return;
           }
@@ -87,33 +88,34 @@ export default function E2ProjectEditDetails(props: {
           if (res.status === 200) {
             props.setProject(res.payload.project);
             await PopupManager.alertAsync({
-              title: "Erfolgreich",
-              description: "Dein Projekt wurde erfolgreich gespeichert.",
+              title: $$("control.success"),
+              description: $$("components.e2projects.project.saved"),
             });
           } else {
             await PopupManager.alertAsync({
-              title: "Fehler",
-              description:
-                "Dein Projekt konnte nicht gespeichert werden: " +
+              title: $$("control.error"),
+              description: $$(
+                "components.e2projects.project.save.error",
                 res.payload.error,
+              ),
             });
           }
         }}
       >
         <VStack spacing={4}>
           <FormControl>
-            <FormLabel>Name</FormLabel>
+            <FormLabel>{$$("pages.e2projects.start.form.name")}</FormLabel>
             <Input
               defaultValue={props.project.name}
-              placeholder={"Mein Projekt"}
+              placeholder={$$("pages.e2projects.start.form.name")}
               name={"name"}
             />
             <FormHelperText>
-              Gib deinem Projekt einen Namen, der es bestmöglich beschreibt.
+              {$$("pages.e2projects.start.form.name.placeholder")}
             </FormHelperText>
           </FormControl>
           <FormControl>
-            <FormLabel>Startdatum</FormLabel>
+            <FormLabel>{$$("pages.e2projects.start.form.date")}</FormLabel>
             <Input
               defaultValue={
                 new Date(props.project.startDate).toISOString().split("T")[0]
@@ -121,10 +123,12 @@ export default function E2ProjectEditDetails(props: {
               name={"startDate"}
               type={"date"}
             />
-            <FormHelperText>Wann soll dein Projekt starten?</FormHelperText>
+            <FormHelperText>
+              {$$("pages.e2projects.start.form.date.placeholder")}
+            </FormHelperText>
           </FormControl>
           <FormControl>
-            <FormLabel>Länge</FormLabel>
+            <FormLabel>{$$("pages.e2projects.start.form.length")}</FormLabel>
             <Input
               defaultValue={props.project.lastsDays.toString()}
               name={"lastsDays"}
@@ -132,11 +136,11 @@ export default function E2ProjectEditDetails(props: {
               placeholder={"1"}
             />
             <FormHelperText>
-              Wie lange soll dein Projekt dauern? (in Tagen)
+              {$$("pages.e2projects.start.form.length.placeholder")}
             </FormHelperText>
           </FormControl>
           <FormControl>
-            <FormLabel>Ort</FormLabel>
+            <FormLabel>{$$("pages.e2projects.start.form.location")}</FormLabel>
             <Input
               name={"geoLocation"}
               type={"text"}
@@ -147,15 +151,14 @@ export default function E2ProjectEditDetails(props: {
               placeholder={"Unter den Linden, Berlin 10117"}
             />
             <FormHelperText>
-              Wo findet dein Projekt statt? TIPP: Ab 5 Zeichen werden Vorschläge
-              angezeigt. Klicke auf einen Vorschlag um ihn zu übernehmen.
+              {$$("pages.e2projects.start.form.location.placeholder")}
             </FormHelperText>
           </FormControl>
           {searchResults.length > 0 && (
             <>
               <VStack>
                 <Text>
-                  <b>Suchergebnisse</b>
+                  <b>{$$("pages.e2projects.start.form.suggestions.title")}</b>
                 </Text>
                 {searchResults.map((s) => {
                   return (
@@ -177,7 +180,7 @@ export default function E2ProjectEditDetails(props: {
             </>
           )}
           <Button color={"var(--ion-color-success)"} type={"submit"} w={"100%"}>
-            Speichern
+            {$$("control.save")}
           </Button>
           <Button
             color={"var(--ion-color-danger)"}
@@ -187,9 +190,8 @@ export default function E2ProjectEditDetails(props: {
             onClick={async () => {
               if (
                 !(await PopupManager.confirmAsync({
-                  title: "Projekt löschen",
-                  question:
-                    "Willst du das Projekt wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden!",
+                  title: $$("pages.admin.e2projects.delete"),
+                  question: $$("pages.admin.e2projects.delete.description"),
                 }))
               )
                 return;
@@ -201,10 +203,11 @@ export default function E2ProjectEditDetails(props: {
 
               if (res.status !== 200) {
                 await PopupManager.alertAsync({
-                  title: "Fehler",
-                  description:
-                    "Das Projekt konnte nicht gelöscht werden: " +
+                  title: $$("control.error"),
+                  description: $$(
+                    "components.e2projects.project.delete.error",
                     res.payload.error,
+                  ),
                 });
                 return;
               }
@@ -213,7 +216,7 @@ export default function E2ProjectEditDetails(props: {
             }}
             w={"100%"}
           >
-            Löschen
+            {$$("control.delete")}
           </Button>
         </VStack>
       </form>

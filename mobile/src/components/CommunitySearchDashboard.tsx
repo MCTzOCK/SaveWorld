@@ -24,6 +24,7 @@ import { useEffect } from "react";
 import CommunityBlogList from "./CommunityBlogList";
 import CommunityProfileList from "./CommunityProfileList";
 import PopupManager from "../util/PopupManager";
+import { $$ } from "../translations/i18n";
 
 export default function CommunitySearchDashboard() {
   const [query, setQuery] = React.useState<string>("");
@@ -86,8 +87,11 @@ export default function CommunitySearchDashboard() {
       setPages(res.payload.pages);
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description: "Daten konnten nicht geladen werden: " + res.payload.error,
+        title: $$("control.error"),
+        description: $$(
+          "components.community.data.loading.error",
+          res.payload.error,
+        ),
       });
     }
   };
@@ -112,7 +116,7 @@ export default function CommunitySearchDashboard() {
         }}
       >
         <IonSearchbar
-          placeholder={"Suchbegriff eingeben"}
+          placeholder={$$("control.search")}
           value={query}
           onIonInput={(ev) => {
             setQuery(ev.detail.value as string);
@@ -124,7 +128,9 @@ export default function CommunitySearchDashboard() {
           fill={"outline"}
           color={"success"}
         >
-          {queryType === "profiles" ? "Profile" : "Beiträge"}
+          {queryType === "profiles"
+            ? $$("components.community.search.profiles")
+            : $$("components.admin.stats.blogs")}
           <IonIcon icon={chevronDown} slot={"end"} />
         </IonButton>
         <IonPopover trigger={"open-type-popover"} dismissOnSelect>
@@ -141,7 +147,7 @@ export default function CommunitySearchDashboard() {
                 {queryType === "profiles" && (
                   <IonIcon icon={checkmark} color={"success"} slot={"end"} />
                 )}
-                Profile
+                {$$("components.community.search.profiles")}
               </IonItem>
               <IonItem
                 button={true}
@@ -154,7 +160,7 @@ export default function CommunitySearchDashboard() {
                 {queryType === "posts" && (
                   <IonIcon icon={checkmark} color={"success"} slot={"end"} />
                 )}
-                Beiträge
+                {$$("components.community.search.blogs")}
               </IonItem>
             </IonList>
           </IonContent>

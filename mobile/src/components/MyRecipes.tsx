@@ -26,6 +26,7 @@ import {
 } from "@chakra-ui/react";
 import { ENDPOINT } from "../env";
 import RecipeCard from "./RecipeCard";
+import { $$ } from "../translations/i18n";
 
 export default function MyRecipes() {
   const [query, setQuery] = React.useState<string>("");
@@ -54,9 +55,8 @@ export default function MyRecipes() {
       setPages(res.payload.pages);
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description:
-          "Rezepte konnten nicht geladen werden: " + res.payload.error,
+        title: $$("control.error"),
+        description: $$("components.recipes.loading.error", res.payload.error),
       });
     }
   };
@@ -73,7 +73,7 @@ export default function MyRecipes() {
   return (
     <>
       <IonSearchbar
-        placeholder={"Suchen"}
+        placeholder={$$("control.search")}
         value={query}
         onIonInput={(e) => setQuery(e.detail.value as string)}
         style={{
@@ -104,7 +104,7 @@ export default function MyRecipes() {
             onClick={() => setPage(page - 1)}
             expand={"block"}
           >
-            Zurück
+            {$$("control.back")}
           </IonButton>
         ) : null}
         {page < pages - 1 ? (
@@ -113,7 +113,7 @@ export default function MyRecipes() {
             onClick={() => setPage(page + 1)}
             expand={"block"}
           >
-            Weiter
+            {$$("control.next")}
           </IonButton>
         ) : null}
       </div>

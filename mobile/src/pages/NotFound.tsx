@@ -20,6 +20,7 @@ import {
   Link,
   Text,
 } from "@chakra-ui/react";
+import { $$ } from "../translations/i18n";
 
 export default function NotFound() {
   const router = useIonRouter();
@@ -51,8 +52,7 @@ export default function NotFound() {
             padding={"1rem"}
             fontSize={"xl"}
           >
-            Diese Funktion ist leider aktuell nicht verfügbar. Wenn du der
-            Meinung bist, dass das ein Fehler ist, melde dich bitte bei uns.
+            {$$("page.404.description")}
           </Text>
           <Flex
             flexDirection={["column", "row"]}
@@ -70,7 +70,7 @@ export default function NotFound() {
                 router.push("/support");
               }}
             >
-              Support
+              {$$("menu.support")}
             </Button>
             <Button
               w={"100%"}
@@ -82,7 +82,7 @@ export default function NotFound() {
                 router.push("/");
               }}
             >
-              nach Hause telefonieren
+              {$$("page.404.home")}
             </Button>
           </Flex>
         </Box>

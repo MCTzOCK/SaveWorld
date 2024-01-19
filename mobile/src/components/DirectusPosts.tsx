@@ -31,6 +31,12 @@ import {
 } from "@chakra-ui/react";
 import MobileBox from "./MobileBox";
 import { IonSearchbar, useIonRouter } from "@ionic/react";
+import { $$ } from "../translations/i18n";
+import {
+  translateOnline,
+  translateOnlineV2,
+  translateOnlineV3,
+} from "../util/online-translate";
 
 export default function DirectusPosts(props: {
   pageTitle?: string;
@@ -68,16 +74,42 @@ export default function DirectusPosts(props: {
           search: query,
         }),
       )
-      .then((data) => {
-        setPosts(data);
+      .then(async (data) => {
+        let newPosts = [];
+
+        for (let post of data) {
+          let content = post.markdown;
+          let title = post.title;
+
+          if (window.language !== "de") {
+            /*
+                content = await translateOnline(content, window.language);
+                title = await translateOnline(title, window.language);
+             */
+            title = await translateOnlineV3({
+              text: title,
+              to: window.language,
+            });
+          }
+
+          newPosts.push({
+            ...post,
+            markdown: content,
+            title: title,
+          });
+        }
+
+        setPosts(newPosts);
       });
   }, [query]);
 
   return (
     <>
-      <Page title={props.pageTitle ? props.pageTitle : "Artikel"}>
+      <Page
+        title={props.pageTitle ? props.pageTitle : $$("components.articles")}
+      >
         <IonSearchbar
-          placeholder={"Suchen..."}
+          placeholder={$$("control.search")}
           onIonInput={(e) => {
             setQuery(e.detail.value || "");
           }}
@@ -109,7 +141,8 @@ export default function DirectusPosts(props: {
                       mb={2}
                     />
                     <p>
-                      <b>Quelle</b>: <i>{post.feature_image_author}</i>
+                      <b>{$$("components.articles.source")}</b>:{" "}
+                      <i>{post.feature_image_author}</i>
                     </p>
                     <Heading size={"lg"}>{post.title}</Heading>
                   </CardHeader>
@@ -126,7 +159,7 @@ export default function DirectusPosts(props: {
                           );
                         }}
                       >
-                        Weiterlesen
+                        {$$("components.articles.read.more")}
                       </Button>
                     </ButtonGroup>
                   </CardBody>

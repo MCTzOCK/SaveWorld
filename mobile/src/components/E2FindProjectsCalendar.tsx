@@ -33,6 +33,7 @@ import {
   useIonRouter,
 } from "@ionic/react";
 import { ENDPOINT } from "../env";
+import { $$ } from "../translations/i18n";
 
 export default function E2FindProjectsCalendar() {
   const minMonth = new Date().getUTCMonth();
@@ -88,7 +89,7 @@ export default function E2FindProjectsCalendar() {
       </Text>
       <ButtonGroup mb={4} display={"flex"} justifyContent={"center"}>
         <IconButton
-          aria-label={"Zurück"}
+          aria-label={$$("control.back")}
           icon={<FaBackward />}
           onClick={() => {
             let newMonth = currentMonth - 1;
@@ -103,7 +104,7 @@ export default function E2FindProjectsCalendar() {
           isDisabled={currentMonth === minMonth && currentYear === minYear}
         />
         <IconButton
-          aria-label={"Vorwärts"}
+          aria-label={$$("control.next")}
           icon={<FaForward />}
           onClick={() => {
             let newMonth = currentMonth + 1;
@@ -123,7 +124,12 @@ export default function E2FindProjectsCalendar() {
         onDayClick={(d) => {
           PopupManager.alert({
             title:
-              "Projekte am " + d + "." + (currentMonth + 1) + "." + currentYear,
+              $$("components.e2projects.project.at.day") +
+              d +
+              "." +
+              (currentMonth + 1) +
+              "." +
+              currentYear,
             description: (
               <>
                 <Grid templateColumns={["repeat(1, 1fr)"]}>
@@ -163,7 +169,9 @@ export default function E2FindProjectsCalendar() {
                                   );
                                 }}
                               >
-                                Zum Kalender hinzufügen
+                                {$$(
+                                  "components.e2projects.project.add.to.calendar",
+                                )}
                               </Button>
                               <Button
                                 w={"100%"}
@@ -176,7 +184,7 @@ export default function E2FindProjectsCalendar() {
                                   );
                                 }}
                               >
-                                Zum Projekt
+                                {$$("components.e2projects.project.goto")}
                               </Button>
                             </VStack>
                           </IonCardContent>

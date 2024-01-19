@@ -31,31 +31,26 @@ import {
 import { FaAtom, FaGasPump, FaHashtag, FaPlug } from "react-icons/fa";
 import PopupManager from "../../util/PopupManager";
 import Calculator from "../../components/Calculator";
+import { $$ } from "../../translations/i18n";
 
 export default function CO2HCar() {
   return (
     <>
       <Calculator
-        title={"Auto"}
+        title={$$("pages.tools.calc.hcar")}
         description={
           <>
-            <p>
-              Berechne, wie viel CO2 du mit deinem Auto auf einer Strecke
-              ausstößt. Die Berechnung basiert auf Daten des Umweltbundesamtes
-              (UBA) aus dem Jahr 2022. <br />
-              Für die Berechnung benötigst du die Länge der Strecke (in km) und
-              den Wasserstoffverbrauch deines Autos (in kg/100km). <br />
-            </p>
+            <p>{$$("pages.tools.calc.hcar.description.long")}</p>
           </>
         }
         inputs={[
           {
-            label: "Distanz",
+            label: $$("pages.tools.calc.distance"),
             id: "distance",
             type: "number",
           },
           {
-            label: "Wasserstoff auf 100km",
+            label: $$("pages.tools.calc.hydrogen.usage"),
             id: "consumption",
             type: "number",
           },

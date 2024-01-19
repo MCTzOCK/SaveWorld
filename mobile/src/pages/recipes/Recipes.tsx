@@ -19,16 +19,17 @@ import AllRecipes from "../../components/AllRecipes";
 import MyRecipes from "../../components/MyRecipes";
 import { IonFab, IonFabButton } from "@ionic/react";
 import { FaPlus } from "react-icons/fa6";
+import { $$ } from "../../translations/i18n";
 
 export default function Recipes() {
   return (
     <>
-      <Page title={"Rezepte"}>
+      <Page title={$$("menu.recipes")}>
         <MobileBox padding={"4"}>
           <Tabs colorScheme={"brand"} size={"md"} isFitted>
             <TabList maxW={"100%"} overflow={"auto"} overflowY={"hidden"}>
-              <Tab>Meine</Tab>
-              <Tab>Entdecken</Tab>
+              <Tab>{$$("pages.recipes.my")}</Tab>
+              <Tab>{$$("pages.recipes.explore")}</Tab>
             </TabList>
             <TabPanels>
               <TabPanel

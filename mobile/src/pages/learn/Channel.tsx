@@ -50,6 +50,7 @@ import {
 } from "ionicons/icons";
 import PopupManager from "../../util/PopupManager";
 import CommunityProfileBlogList from "../../components/CommunityProfileBlogList";
+import { $$ } from "../../translations/i18n";
 
 export default function Channel() {
   const router = useIonRouter();
@@ -101,21 +102,21 @@ export default function Channel() {
       setVideos(res.payload.videos);
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description: "Fehler beim Laden der Videos: " + res.payload.error,
+        title: $$("control.error"),
+        description: $$("pages.learn.videos.loading.error", res.payload.error),
       });
     }
   };
 
   return (
     <>
-      <Page title={channel ? channel.name : "Laden..."}>
+      <Page title={channel ? channel.name : $$("general.loading")}>
         {channel ? (
           <>
             <MobileBox>
               <div>
                 <Image
-                  alt={"Banner"}
+                  alt={$$("pages.community.profile.banner")}
                   src={channel.image}
                   rounded={"md"}
                   style={{
@@ -163,7 +164,7 @@ export default function Channel() {
                         textAlign: "center",
                       }}
                     >
-                      Videos
+                      {$$("menu.videos")}
                     </h1>
                   </IonText>
                   <hr
@@ -172,7 +173,7 @@ export default function Channel() {
                     }}
                   />
                   <IonSearchbar
-                    placeholder={"Video suchen"}
+                    placeholder={$$("control.search")}
                     style={{
                       padding: 0,
                     }}

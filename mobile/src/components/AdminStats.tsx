@@ -22,6 +22,7 @@ import {
 } from "react-icons/fa";
 import { FaFileLines, FaMessage, FaUtensils, FaVideo } from "react-icons/fa6";
 import { BiNotification } from "react-icons/bi";
+import { $$ } from "../translations/i18n";
 
 export default function AdminStats(props: { query: string }) {
   const [stats, setStats] = useState<{
@@ -76,50 +77,59 @@ export default function AdminStats(props: { query: string }) {
         const dps: typeof displayStats = [
           {
             icon: <FaUser />,
-            title: "Benutzer",
+            title: $$("components.admin.stats.users"),
             value: s.users.count + " (+" + s.users.inLastWeek + ")",
-            subtitle: "davon aktiv: " + s.users.active,
+            subtitle: $$(
+              "components.admin.stats.users.subtitle",
+              s.users.active,
+            ),
           },
           {
             icon: <FaFileLines />,
-            title: "Kategorien",
+            title: $$("components.video.create.categories"),
             value: s.content.categories,
           },
           {
             icon: <FaVideo />,
-            title: "Videos",
+            title: $$("components.admin.stats.videos"),
             value: s.content.videos,
-            subtitle: "Aufrufe: " + s.content.videosWatched,
+            subtitle: $$(
+              "components.admin.stats.videos.subtitle",
+              s.content.videosWatched,
+            ),
           },
           {
             icon: <FaUtensils />,
-            title: "Rezepte",
+            title: $$("components.admin.stats.recipes"),
             value: s.recipes,
           },
           {
             icon: <FaHandsHelping />,
-            title: "Support-Anfragen",
+            title: $$("components.admin.stats.support"),
             value: s.supportRequests,
           },
           {
             icon: <FaProjectDiagram />,
-            title: "Öko-Projekte",
+            title: $$("components.admin.stats.projects"),
             value: s.ecoProjects,
           },
           {
             icon: <FaFile />,
-            title: "Forum Blogs",
+            title: $$("components.admin.stats.blogs"),
             value: s.community.blogs,
           },
           {
             icon: <FaMessage />,
-            title: "Forum Chats",
+            title: $$("components.admin.stats.chats"),
             value: s.community.chats,
-            subtitle: "Nachrichten: " + s.community.chatMessages,
+            subtitle: $$(
+              "components.admin.stats.chats.subtitle",
+              s.community.chatMessages,
+            ),
           },
           {
             icon: <BiNotification />,
-            title: "Push-Nachr.",
+            title: $$("components.admin.stats.push.notifications"),
             value: s.pushNotifications,
           },
         ];
@@ -127,9 +137,11 @@ export default function AdminStats(props: { query: string }) {
         setDisplayStats(dps);
       } else {
         PopupManager.alert({
-          title: "Fehler",
-          description:
-            "Fehler beim Laden der Statistiken: " + res.payload.error,
+          title: $$("control.error"),
+          description: $$(
+            "components.admin.stats.error.loading",
+            res.payload.error,
+          ),
         });
       }
       setLoading(false);
@@ -148,7 +160,7 @@ export default function AdminStats(props: { query: string }) {
   return (
     <>
       <Heading size={"lg"} mb={4} color={"red.500"}>
-        Statistik
+        {$$("components.admin.stats")}
       </Heading>
       <Grid
         templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}

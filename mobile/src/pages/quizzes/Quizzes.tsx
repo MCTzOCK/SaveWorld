@@ -36,6 +36,11 @@ import {
 import ManageAccountInterests from "../../components/ManageAccountInterests";
 import PopupManager from "../../util/PopupManager";
 import SaveWorldModal from "../../components/SaveWorldModal";
+import { $$ } from "../../translations/i18n";
+import {
+  translateOnline,
+  translateOnlineV3,
+} from "../../util/online-translate";
 
 export default function Quizzes() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -74,16 +79,58 @@ export default function Quizzes() {
             : undefined,
         ),
       )
-      .then((data) => {
-        setQuizzes(data);
+      .then(async (data) => {
+        let newQuizzes = [];
+
+        for (let quiz of data) {
+          let question = quiz.question;
+          let answer_1 = quiz.answer_1;
+          let answer_2 = quiz.answer_2;
+          let answer_3 = quiz.answer_3;
+          let answer_4 = quiz.answer_4;
+
+          if (window.language !== "de") {
+            question = await translateOnlineV3({
+              text: question,
+              to: window.language,
+            });
+            answer_1 = await translateOnlineV3({
+              text: answer_1,
+              to: window.language,
+            });
+            answer_2 = await translateOnlineV3({
+              text: answer_2,
+              to: window.language,
+            });
+            answer_3 = await translateOnlineV3({
+              text: answer_3,
+              to: window.language,
+            });
+            answer_4 = await translateOnlineV3({
+              text: answer_4,
+              to: window.language,
+            });
+          }
+
+          newQuizzes.push({
+            ...quiz,
+            question: question,
+            answer_1: answer_1,
+            answer_2: answer_2,
+            answer_3: answer_3,
+            answer_4: answer_4,
+          });
+        }
+
+        setQuizzes(newQuizzes);
       });
   }, [query]);
 
   return (
     <>
-      <Page title={"Quizze"}>
+      <Page title={$$("menu.quizzes")}>
         <IonSearchbar
-          placeholder={"Suchen..."}
+          placeholder={$$("control.search")}
           onIonInput={(e) => {
             setQuery(e.detail.value || "");
           }}
@@ -118,7 +165,7 @@ export default function Quizzes() {
                         onOpen();
                       }}
                     >
-                      Beantworten
+                      {$$("pages.quizzes.answer")}
                     </Button>
                   </CardBody>
                 </Card>
@@ -126,7 +173,11 @@ export default function Quizzes() {
             );
           })}
         </Grid>
-        <SaveWorldModal title={"Quiz Time!"} isOpen={isOpen} onClose={onClose}>
+        <SaveWorldModal
+          title={$$("pages.quizzes.quiz.time")}
+          isOpen={isOpen}
+          onClose={onClose}
+        >
           {currentQuiz ? (
             <>
               <Heading size={"md"}>
@@ -159,15 +210,20 @@ export default function Quizzes() {
                           )["answer_" + correct] as string;
 
                           PopupManager.alertAsync({
-                            title: "Ergebnis",
-                            description:
-                              "Du hast " +
-                              (correct === answer ? "richtig" : "falsch") +
-                              " geantwortet!" +
-                              (correct !== answer
-                                ? "\n\nDie richtige Antwort ist: " +
-                                  correctAnswer
-                                : ""),
+                            title: $$("pages.quizzes.result"),
+                            description: $$(
+                              "pages.quizzes.result.description",
+                              correct === answer
+                                ? $$("general.correct")
+                                : $$("general.wrong"),
+                              correct !== answer
+                                ? "\n\n" +
+                                    $$(
+                                      "pages.quizzes.result.2",
+                                      correctAnswer.toString(),
+                                    )
+                                : "",
+                            ),
                           });
                           onClose();
                         }}

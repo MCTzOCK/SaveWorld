@@ -40,6 +40,7 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import PopupManager from "../../util/PopupManager";
 import { Box, Flex } from "@chakra-ui/react";
 import MobileBox from "../../components/MobileBox";
+import { $$ } from "../../translations/i18n";
 
 export default function E2() {
   useRedirectForAnon();
@@ -55,9 +56,8 @@ export default function E2() {
           setLevel(res.payload.level);
         } else {
           PopupManager.alert({
-            title: "Fehler",
-            description:
-              "Level konnte nicht geladen werden: " + res.payload.error,
+            title: $$("control.error"),
+            description: $$("pages.e2.level.loading.error", res.payload.error),
           });
         }
       },
@@ -66,7 +66,7 @@ export default function E2() {
 
   return (
     <>
-      <Page title={"Tracker"}>
+      <Page title={$$("menu.tracker")}>
         <MobileBox>
           <div
             style={{
@@ -76,7 +76,7 @@ export default function E2() {
               gap: "10px",
             }}
           >
-            <IonText>Aktueller Level</IonText>
+            <IonText>{$$("pages.e2.level.current")}</IonText>
             <ProgressBar
               completed={level}
               maxCompleted={10}
@@ -99,10 +99,10 @@ export default function E2() {
             }}
           >
             <IonSegmentButton value={"data"}>
-              <IonLabel>Übersicht</IonLabel>
+              <IonLabel>{$$("general.overview")}</IonLabel>
             </IonSegmentButton>
             <IonSegmentButton value={"analytics"}>
-              <IonLabel>Analyse</IonLabel>
+              <IonLabel>{$$("pages.e2.analytics.title")}</IonLabel>
             </IonSegmentButton>
           </IonSegment>
           {segment === "data" ? <E2Data /> : <E2Analytics />}

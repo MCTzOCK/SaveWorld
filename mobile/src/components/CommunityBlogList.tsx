@@ -20,6 +20,7 @@ import {
 } from "@ionic/react";
 import { chatbox, heart, pricetag } from "ionicons/icons";
 import { Grid } from "@chakra-ui/react";
+import { $$ } from "../translations/i18n";
 
 export default function CommunityBlogList(props: {
   blogs: {
@@ -94,8 +95,7 @@ export default function CommunityBlogList(props: {
                     }}
                   >
                     <IonIcon icon={chatbox} />
-                    {blog.comments.length} Kommentar
-                    {blog.comments.length === 1 ? "" : "e"}
+                    {blog.comments.length} {$$("pages.community.blog.comments")}
                   </div>
                 </IonCardContent>
               </IonCard>
@@ -119,7 +119,7 @@ export default function CommunityBlogList(props: {
             onClick={() => props.setPage(props.page - 1)}
             expand={"block"}
           >
-            Zurück
+            {$$("control.back")}
           </IonButton>
         ) : null}
         {props.page < props.pages - 1 ? (
@@ -128,7 +128,7 @@ export default function CommunityBlogList(props: {
             onClick={() => props.setPage(props.page + 1)}
             expand={"block"}
           >
-            Weiter
+            {$$("control.next")}
           </IonButton>
         ) : null}
       </div>

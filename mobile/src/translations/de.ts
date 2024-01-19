@@ -1,0 +1,775 @@
+/**
+ * mobile/src/translations/de.ts
+ *
+ * Author: Ben Siebert <hello@ben-siebert.de>
+ * Copyright: Copyright (c) 2018-2024 Ben Siebert. All rights reserved.
+ * License: Project License
+ * Created At: 13.01.2024
+ *
+ */
+
+export const german = {
+  "components.admin.create.category": "Neue Kategorie",
+  "components.admin.create.category.change.image": "Bild ändern",
+  "components.admin.create.category.description": "Beschreibung",
+  "components.admin.create.category.error":
+    "Fehler beim Erstellen der Kategorie: %0",
+  "components.admin.create.category.name": "Name",
+  "components.admin.intern.tools": "Interne Werkzeuge",
+  "components.admin.stats": "Statistiken",
+  "components.admin.stats.blogs": "Forum Blogs",
+  "components.admin.stats.categories": "Kategorien",
+  "components.admin.stats.chats": "Forum Chats",
+  "components.admin.stats.chats.subtitle": "Nachrichten: %0",
+  "components.admin.stats.error.loading":
+    "Fehler beim Laden der Statistiken: %0",
+  "components.admin.stats.projects": "Öko-Projekte",
+  "components.admin.stats.push.notifications": "Push-Nachr.",
+  "components.admin.stats.recipes": "Rezepte",
+  "components.admin.stats.support": "Support-Anfragen",
+  "components.admin.stats.users": "Benutzer",
+  "components.admin.stats.users.subtitle": "davon aktiv: %0",
+  "components.admin.stats.videos": "Videos",
+  "components.admin.stats.videos.subtitle": "Aufrufe: %0",
+  "components.admin.support.request":
+    "Diese Support-Anfrage wurde am %0 um %1 Uhr von %2 erstellt.",
+  "components.admin.support.request.button.post": "Beitrag",
+  "components.admin.support.request.button.profile": "Profil",
+  "components.admin.support.request.message":
+    "Der Benutzer hat folgende Nachricht hinterlassen:",
+  "components.admin.user.can.login": "Darf sich der Benutzer anmelden?",
+  "components.admin.user.delete.confirm": "Möchtest du den Benutzer löschen?",
+  "components.admin.user.delete.error": "Fehler beim Löschen des Benutzers: %0",
+  "components.admin.user.delete.success": "Der Benutzer wurde gelöscht!",
+  "components.admin.user.is.admin": "Ist der Benutzer ein Administrator?",
+  "components.admin.user.save.error": "Fehler beim Speichern des Benutzers: %0",
+  "components.admin.user.saved": "Benutzer erfolgreich gespeichert!",
+  "components.articles": "Artikel",
+  "components.articles.read.more": "Weiterlesen",
+  "components.articles.source": "Quelle",
+  "components.calc.result": "Ergebnis",
+  "components.calc.result.co2": "Dein CO2-Ausstoß beträgt",
+  "components.calendar.day.friday": "Fr",
+  "components.calendar.day.monday": "Mo",
+  "components.calendar.day.saturday": "Sa",
+  "components.calendar.day.sunday": "So",
+  "components.calendar.day.thursday": "Do",
+  "components.calendar.day.tuesday": "Di",
+  "components.calendar.day.wednesday": "Mi",
+  "components.calendar.time.today": "heute",
+  "components.calendar.time.unit.month.one": "1 Monat",
+  "components.calendar.time.unit.month.six": "6 Monate",
+  "components.calendar.time.unit.month.three": "3 Monate",
+  "components.chat.message.add.image": "Bild hinzufügen",
+  "components.chat.message.box.placeholder": "Nachricht eingeben...",
+  "components.chat.message.send": "Senden",
+  "components.community.blogs.loading.error":
+    "Beiträge konnten nicht geladen werden: %0",
+  "components.community.data.loading.error": "Fehler beim Laden der Daten: %0",
+  "components.community.edit.banner": "Banner bearbeiten",
+  "components.community.edit.bio": "Biographie",
+  "components.community.edit.display.name": "Anzeigename",
+  "components.community.edit.eco.level": "Öko-Level",
+  "components.community.search.blogs": "Beiträge",
+  "components.community.search.profiles": "Profile",
+  "components.e2.add.data": "Daten eintragen",
+  "components.e2.cant.add.data":
+    "Da das Datum in der Vergangenheit liegt, kannst du keien Daten mehr eintragen.",
+  "components.e2.goals": "Ziele",
+  "components.e2.goals.loading.error": "Fehler beim Laden der Ziele: %0",
+  "components.e2.goals.missed": "Gescheiterte Ziele",
+  "components.e2.goals.not.reached": "Ziel nicht erreicht.",
+  "components.e2.goals.reached": "Erreichte Ziele",
+  "components.e2.goals.reached.how.many": "%0 von %1 erreicht.",
+  "components.e2.how.actions":
+    "Wie war dein Tag? Trage ein, wie oft du die folgenden Aktionen durchgeführt hast.",
+  "components.e2.how.was.your.day": "Wie war dein Tag?",
+  "components.e2.lifestyle.loading.error":
+    "Fehler beim Laden des Lebensstils: %0",
+  "components.e2.lifestyle.templates.loading.error":
+    "Vorlagen konnten nicht geladen werden: %0",
+  "components.e2.no.data": "Keine Daten",
+  "components.e2.no.data.description":
+    "Für diesen Tag hast du keine Daten eingetragen!",
+  "components.e2.summary.of.day": "Zusammenfassung vom",
+  "components.e2.unnamed.action": "Unbekannte Aktion",
+  "components.e2.weekly.overview": "Wochenübersicht",
+  "components.e2projects.edit.members.intro":
+    "Dein Projekt hat insgesamt %0 Mitglieder. Jedes Mitglied kann eine von drei Rollen haben:",
+  "components.e2projects.homepage.segment.delete.confirm":
+    "Möchtest du das Segment wirklich löschen?",
+  "components.e2projects.homepage.segment.delete.error":
+    "Das Segment konnte nicht gelöscht werden: %0",
+  "components.e2projects.homepage.segment.list.helper.text":
+    "Trenne die Einträge mit zwei Zeilenumbrüchen.",
+  "components.e2projects.homepage.segment.list.placeholder": "Liste eingeben",
+  "components.e2projects.homepage.segment.pin": "Anheften",
+  "components.e2projects.homepage.segment.pin.error":
+    "Segment konnte nicht angeheftet werden: %0",
+  "components.e2projects.homepage.segment.pinned": "ANGEHEFTET",
+  "components.e2projects.homepage.segment.text.placeholder": "Text eingeben",
+  "components.e2projects.homepage.segment.update.error":
+    "Das Segment konnte nicht gespeichert werden: %0",
+  "components.e2projects.homepage.segments.new": "Neues Segment",
+  "components.e2projects.homepage.segments.new.choose": "Wähle ein Segment aus",
+  "components.e2projects.homepage.segments.new.default":
+    "Bildbeschreibung\0/community_blank_banner.jpg",
+  "components.e2projects.homepage.segments.new.default.list":
+    "Erster Eintrag\0Zweiter Eintrag",
+  "components.e2projects.homepage.segments.new.enter.title":
+    "Gib einen Titel ein",
+  "components.e2projects.homepage.segments.new.error":
+    "Segment konnte nicht erstellt werden: %0",
+  "components.e2projects.homepage.segments.new.list": "Liste",
+  "components.e2projects.homepage.segments.new.text": "Text",
+  "components.e2projects.homepahe.segment.unpin": "Ablösen",
+  "components.e2projects.members.change.role": "Rolle ändern",
+  "components.e2projects.members.change.role.choose":
+    "Wähle eine neue Rolle für das Mitglied",
+  "components.e2projects.members.remove": "Mitglied entfernen",
+  "components.e2projects.members.remove.confirm":
+    "Möchtest du das Mitglied wirklich entfernen?",
+  "components.e2projects.members.roles.admin": "Administrator",
+  "components.e2projects.members.roles.admin.description":
+    "Kann Projekt-Informationen, Homepage Segmente bearbeiten, Mitglieder verwalten und das Projekt löschen.",
+  "components.e2projects.members.roles.editor": "Editor",
+  "components.e2projects.members.roles.editor.description":
+    "Kann alles, was ein Administrator kann, außer das Projekt löschen und die Rollen von Mitglieder ändern.",
+  "components.e2projects.members.roles.member": "Mitglied",
+  "components.e2projects.members.roles.member.description":
+    "Kann alles einsehen, aber nichts bearbeiten. (Standard-Rolle)",
+  "components.e2projects.project.add.to.calendar": "Zum Kalender hinzufügen",
+  "components.e2projects.project.at.day": "Projekt am ",
+  "components.e2projects.project.at.location": "Projekte an diesem Ort",
+  "components.e2projects.project.delete.error":
+    "Das Projekt konnte nicht gelöscht werden: %0",
+  "components.e2projects.project.goto": "Zum Projekt",
+  "components.e2projects.project.save.error":
+    "Fehler beim Speichern des Projektes: %0",
+  "components.e2projects.project.saved":
+    "Dein Projekt wurde erfolgreich gespeichert!",
+  "components.e2projects.todo.delete": "Liste löschen?",
+  "components.e2projects.todo.delete.confirm":
+    "Möchtest du die Liste wirklich löschen?",
+  "components.e2projects.todo.delete.error":
+    "Fehler beim Löschen der Liste: %0",
+  "components.e2projects.todo.loading.error":
+    "Die ToDo-Listen konnten nicht geladen werden!",
+  "components.e2projects.todo.new": "Neue Liste",
+  "components.e2projects.todo.new.description":
+    "Bitte gib den Namen der neuen Liste ein!",
+  "components.e2projects.todo.new.error": "Fehler beim Erstellen der Liste: %0",
+  "components.e2projects.todo.no.lists":
+    "Es wurden noch keine ToDo-Listen hinzugefügt.",
+  "components.forum.edit.profile.error":
+    "Fehler beim Bearbeiten des Profils: %0",
+  "components.interests.no.categories": "Keine Kategorien gefunden!",
+  "components.interests.save.error": "Fehler beim Speichern der Interessen: %0",
+  "components.manage.interests.all.selected":
+    "Du hast alle verfügbaren Interessen ausgewählt!",
+  "components.manage.interests.intro":
+    "Aktuell hast du folgende Interessen angegeben:",
+  "components.manage.interests.more.selectable":
+    "Du kannst zusätzlich noch folgenden Interessen auswählen:",
+  "components.recipes.loading.error": "Fehler beim Laden der Rezepte: %0",
+  "components.video.create": "Neues Video",
+  "components.video.create.button": "Video erstellen",
+  "components.video.create.categories": "Kategorien",
+  "components.video.create.description": "Beschreibung",
+  "components.video.create.error": "Fehler beim Erstellen des Videos: %0",
+  "components.video.create.name": "Name",
+  "components.video.create.sources": "Quellen",
+  "components.video.create.sources.add": "Quelle hinzufügen",
+  "components.video.create.youtube.id": "YouTube-ID",
+  "components.video.form.no.category":
+    "Bitte wähle mindestens eine Kategorie aus.",
+  "components.video.modal.ask.question": "Frage stellen",
+  "components.video.modal.comment": "Video Kommentieren",
+  "components.video.modal.comment.enter": "Gib dein Kommentar ein",
+  "components.video.modal.comment.error":
+    "Das Kommentar konnte nicht gespeichert werden: %0",
+  "components.video.modal.comment.submit": "Kommentieren",
+  "components.video.modal.comments.loading.error":
+    "Kommentare konnten nicht geladen werden: %0",
+  "components.video.modal.comments.no": "Dieses Video hat keine Kommentare.",
+  "components.video.modal.rate.error": "Fehler beim Bewerten des Videos: %0",
+  "components.video.modal.rate.how.stars":
+    "Wie viele Sterne hat das Video verdient?",
+  "components.video.modal.rate.success": "Vielen Dank für deine Bewertung!",
+  "control.activate": "Aktivieren",
+  "control.back": "Zurück",
+  "control.cancel": "Abbrechen",
+  "control.confirm": "Bestätigen",
+  "control.deactivate": "Deaktivieren",
+  "control.delete": "Löschen",
+  "control.error": "Fehler",
+  "control.next": "Weiter",
+  "control.no": "Nein",
+  "control.save": "Speichern",
+  "control.search": "Suchen",
+  "control.success": "Erfolgreich",
+  "control.upload.error": "Der Upload ist fehlgeschlagen: %0",
+  "control.upload.success": "Der Upload war erfolgreich!",
+  "control.yes": "Ja",
+  "form.incomplete": "Bitte fülle alle Felder aus.",
+  "form.passwords.error.not.match": "Passwörter stimmen nicht überein.",
+  "general.account": "Konto",
+  "general.activated": "Aktiviert",
+  "general.active": "Aktiv",
+  "general.correct": "richtig",
+  "general.create": "Erstellen",
+  "general.deactivated": "Deaktiviert",
+  "general.deselect": "Abwählen",
+  "general.edit": "Bearbeiten",
+  "general.edit.short": "Bearb.",
+  "general.export": "Exportieren",
+  "general.finished": "Fertig",
+  "general.here": "hier",
+  "general.hint": "Tipp",
+  "general.image": "Bild",
+  "general.inactive": "Inaktiv",
+  "general.information": "Informationen",
+  "general.join": "Beitreten",
+  "general.leave": "Verlassen",
+  "general.legal.notice": "Impressum",
+  "general.legal.privacy": "Datenschutz",
+  "general.level": "Level",
+  "general.loading": "Laden...",
+  "general.more.details": "Mehr Details",
+  "general.no.results": "Keine Ergebnisse",
+  "general.open": "Öffnen",
+  "general.open.source.licenses": "Open-Source Lizenzen",
+  "general.overview": "Übersicht",
+  "general.preview": "Vorschau",
+  "general.rate": "Bewerten",
+  "general.remove": "Entfernen",
+  "general.select": "Auswählen",
+  "general.serverstatus": "Server-Status",
+  "general.star": "Stern",
+  "general.stars": "Sterne",
+  "general.submit": "Absenden",
+  "general.thanks": "Danke!",
+  "general.welcome": "Willkommen",
+  "general.wrong": "falsch",
+  "menu.admin": "Admin",
+  "menu.blog": "Blog",
+  "menu.calculator": "Rechner",
+  "menu.community": "Community",
+  "menu.community.my.profile": "Mein Profil",
+  "menu.contents": "Inhalte",
+  "menu.e2projects.find": "Projekte finden",
+  "menu.eatingplans": "Essenspläne",
+  "menu.home": "Home",
+  "menu.interests": "Interessen",
+  "menu.learn": "Lernen",
+  "menu.lifestyle": "Lifestyle",
+  "menu.lifestyle.templates": "Lifestyle-Vorlagen",
+  "menu.logout": "Abmelden",
+  "menu.logout.description": "Möchtest du dich wirklich abmelden?",
+  "menu.markdown.help": "Markdown Hilfe",
+  "menu.help": "Hilfe",
+  "menu.menu": "Menü",
+  "menu.my.cookbook": "Mein Kochbuch",
+  "menu.notifications": "Nachrichten",
+  "menu.notifications.short": "Nachr.",
+  "menu.projects": "Projekte",
+  "menu.quizzes": "Quizze",
+  "menu.recipe": "Rezept",
+  "menu.recipes": "Rezepte",
+  "menu.resources": "Ressourcen",
+  "menu.settings": "Einstellungen",
+  "menu.settings.short": "Einst.",
+  "menu.support": "Support",
+  "menu.sustainability.what": "Was ist Nachhaltigkeit?",
+  "menu.tools": "Werkzeuge",
+  "menu.tracker": "Tracker",
+  "menu.videos": "Videos",
+  "page.404.description":
+    "Diese Funktion ist leider aktuell nicht verfügbar. Wenn du der Meinung bist, dass das ein Fehler ist, melde dich bitte bei uns.",
+  "page.404.home": "nach Hause telefonieren",
+  "page.account.2fa": "Zwei Faktor Authentifizierung",
+  "page.account.2fa.activated":
+    "Erfolgreich aktiviert! Trage folgenden Code in deiner App ein: %0",
+  "page.account.2fa.deactivated": "Erfolgreich deaktiviert!",
+  "page.account.2fa.deactivated.description":
+    "Zwei Faktor Authentifizierung wurde erfolgreich deaktiviert.",
+  "page.account.2fa.deactivated.error": "Fehler beim Deaktivieren: %0",
+  "page.account.2fa.error": "Fehler beim Aktivieren: %0",
+  "page.account.dangerzone": "Gefahrenzone",
+  "page.account.delete.account": "Konto löschen",
+  "page.account.delete.account.description":
+    "Möchtest du dein Konto wirklich löschen? Dies kann nicht rückgängig gemacht werden!",
+  "page.account.delete.account.error":
+    "Fehler beim Löschen, bitte kontaktiere den Support: %0",
+  "page.account.delete.pfp.description":
+    "Möchtest du dein Profilbild wirklich entfernen?",
+  "page.account.delete.pfp.error":
+    "Profilbild konnte nicht entfernt werden: %0",
+  "page.account.delete.pfp.success": "Profilbild erfolgreich entfernt.",
+  "page.account.delete.pfp.title": "Profilbild entfernen",
+  "page.account.general": "Generelles",
+  "page.account.info": "Konto-Informationen",
+  "page.account.info.update.error":
+    "Die Daten konnten nicht gespeichert werden: %0",
+  "page.account.info.update.success":
+    "Die Daten wurden erfolgreich gespeichert!",
+  "page.account.intro.open.again": "Einleitung erneut öffnen",
+  "page.account.update.password": "Passwort ändern",
+  "page.account.update.password.error":
+    "Passwort konnte nicht geändert werden: %0",
+  "page.account.update.password.new": "Neues Passwort",
+  "page.account.update.password.new.confirm": "Passwort bestätigen",
+  "page.account.update.password.success": "Passwort erfolgreich geändert.",
+  "page.account.update.pfp": "Profilbild ändern",
+  "page.admin.title.outside": "Admin-Panel",
+  "page.home.title": "Rette die Welt!",
+  "page.licenses.title": "Lizenzen",
+  "page.login.2fa.popup.description": "Bitte gib den 2FA Code ein.",
+  "page.login.2fa.popup.title": "2FA Code",
+  "page.login.error": "Fehler beim Anmelden: %0",
+  "page.login.title": "Anmelden",
+  "page.news.title": "Neuigkeiten",
+  "page.notifications.error.loading":
+    "Nachrichten konnten nicht geladen werden: %0",
+  "page.notifications.read": "Gelesen",
+  "page.notifications.unread": "Ungelesen",
+  "page.offline.description":
+    "Zur Verwendung von SaveWorld wird eine Internetverbindung benötigt. Überprüfe deine Internetverbindung und versuche es erneut.",
+  "page.offline.title": "Kein Internet",
+  "page.register.error": "Fehler beim Registrieren: %0",
+  "page.register.success":
+    "Registrierung erfolgreich! Bitte bestätige deine E-Mail Adresse.",
+  "page.register.title": "Registrieren",
+  "page.support.attachment":
+    "Deiner Anfrage werden die Details des zu meldenden Inhalts automatisch hinzugefügt.",
+  "page.support.attachment.video":
+    "Deiner Anfrage wird das Video automatisch hinzugefügt.",
+  "page.support.category.error": "Fehler melden",
+  "page.support.category.general": "Genereller Support",
+  "page.support.category.question.video": "Video Frage",
+  "page.support.category.report.post": "Beitrag melden",
+  "page.support.category.report.user": "Benutzer melden",
+  "page.support.choose.category": "Kategorie auswählen",
+  "page.support.description":
+    "Du hast eine Frage oder ein Problem? Dann schreib uns eine Nachricht! Alternativ kannst du uns auch Per E-Mail erreichen:",
+  "page.support.error": "Deine Anfrage konnte nicht abgeschickt werden: %0",
+  "page.support.form.confirm": "Möchtest du diese Anfrage wirklich absenden?",
+  "page.support.form.missing.category": "Bitte wähle eine Kategorie aus.",
+  "page.support.form.missing.message": "Bitte gib eine Nachricht ein.",
+  "page.support.success": "Deine Anfrage wurde erfolgreich abgeschickt.",
+  "page.sustainability.title": "Nachhaltigkeit",
+  "pages.admin.category.delete": "Möchtest du die Kategorie wirklich löschen?",
+  "pages.admin.category.delete.error": "Fehler beim Löschen der Kategorie: %0",
+  "pages.admin.category.loading.error": "Fehler beim Laden der Kategorien: %0",
+  "pages.admin.category.no.categories": "Keine Kategorien gefunden.",
+  "pages.admin.category.title": "Kategorien",
+  "pages.admin.content.categories.and.interests": "Kategorien & Interessen",
+  "pages.admin.content.categories.and.interests.description":
+    "Hier kannst du Kategorien und Interessen verwalten.",
+  "pages.admin.content.videos.description": "Hier kannst du Videos verwalten.",
+  "pages.admin.e2projects.delete": "Projekt löschen?",
+  "pages.admin.e2projects.delete.description":
+    "Möchtest du das Projekt wirklich löschen?",
+  "pages.admin.e2projects.delete.success":
+    "Das Projekt wurde erfolgreich gelöscht!",
+  "pages.admin.e2projects.loading.error":
+    "Projekte konnten nicht geladen werden: %0",
+  "pages.admin.lifestyle.create.error": "Fehler beim Erstellen der Vorlage: %0",
+  "pages.admin.lifestyle.delete.description":
+    "Möchtest du die Vorlage wirklich löschen?",
+  "pages.admin.lifestyle.delete.error": "Fehler beim Löschen der Vorlage: %0",
+  "pages.admin.lifestyle.edit.error": "Fehler beim Bearbeiten der Vorlage: %0",
+  "pages.admin.lifestyle.loading.error": "Fehler beim Laden der Vorlagen: %0",
+  "pages.admin.lifestyle.new.goal": "Ziel der Vorlage",
+  "pages.admin.lifestyle.new.title": "Neue Vorlage",
+  "pages.admin.recipes.delete": "Willst du das Rezept wirklich löschen?",
+  "pages.admin.recipes.delete.error": "Fehler beim Löschen des Rezepts: %0",
+  "pages.admin.recipes.delete.success":
+    "Das Rezept wurde erfolgreich gelöscht!",
+  "pages.admin.recipes.loading.error": "Fehler beim Laden der Rezepte: %0",
+  "pages.admin.support.category.bug": "Bug Meldung",
+  "pages.admin.support.category.other": "Anderes",
+  "pages.admin.support.category.post": "Beitrag Meldung",
+  "pages.admin.support.category.user": "Benutzer Meldung",
+  "pages.admin.support.category.video": "Video Frage",
+  "pages.admin.support.loading.error":
+    "Fehler beim Laden der Supportanfragen: %0",
+  "pages.admin.support.request": "Anfrage",
+  "pages.admin.support.request.action.choose": "Aktion auswählen",
+  "pages.admin.support.request.action.delete.post": "Beitrag löschen",
+  "pages.admin.support.request.action.delete.user": "Benutzer löschen",
+  "pages.admin.support.request.action.description":
+    "Wähle die Aktion aus, die du durchführen möchtest.",
+  "pages.admin.support.request.action.no": "Keine Aktion",
+  "pages.admin.support.request.answer": "Antwort",
+  "pages.admin.support.request.answer.complete": "Abschließen",
+  "pages.admin.support.request.answer.description":
+    "Beantworte die Anfrage des Benutzers.",
+  "pages.admin.support.request.answer.error":
+    "Fehler beim Beantworten der Anfrage: %0",
+  "pages.admin.support.request.by": "Anfrage von: ",
+  "pages.admin.support.request.completed": "Abgeschlossen",
+  "pages.admin.support.request.created.by": "Erstellt von",
+  "pages.admin.support.request.error":
+    "Fehler beim Abschließen der Anfrage: %0",
+  "pages.admin.support.request.error.post":
+    "Fehler beim Löschen des Beitrags: %0",
+  "pages.admin.support.request.error.user":
+    "Fehler beim Löschen des Benutzers: %0",
+  "pages.admin.support.request.message": "Nachricht",
+  "pages.admin.support.request.open": "Offen",
+  "pages.admin.support.request.open.post": "Beitrag öffnen",
+  "pages.admin.support.request.open.profile": "Profil öffnen",
+  "pages.admin.support.request.processed":
+    "Diese Anfrage wurde bereits bearbeitet.",
+  "pages.admin.user.delete.error": "Fehler beim Löschen des Benutzers: %0",
+  "pages.admin.user.deleted": "Der Benutzer wurde erfolgreich gelöscht!",
+  "pages.admin.user.loading.error": "Fehler beim Laden des Benutzers: %0",
+  "pages.admin.user.save.error": "Fehler beim Speichern des Benutzers: %0",
+  "pages.admin.user.saved": "Benutzer erfolgreich gespeichert!",
+  "pages.admin.users.created.at": "Erstellt am",
+  "pages.admin.users.loading.error": "Fehler beim Laden der Benutzer: %0",
+  "pages.admin.video.delete.confirm": "Möchtest du das Video wirklich löschen?",
+  "pages.admin.video.deleted": "Video erfolgreich gelöscht!",
+  "pages.admin.video.deleted.error": "Fehler beim Löschen des Videos: %0",
+  "pages.admin.video.form.description": "Beschreibung",
+  "pages.admin.video.form.sources": "Quellen",
+  "pages.admin.video.form.sources.placeholder": "Quellen (eine pro Zeile)",
+  "pages.admin.video.form.title": "Titel",
+  "pages.admin.video.loading.error": "Fehler beim Laden der Videos: %0",
+  "pages.admin.video.updated.error": "Fehler beim Aktualisieren des Videos: %0",
+  "pages.admin.video.updated.success": "Video erfolgreich aktualisiert!",
+  "pages.admin.videos.loading.error": "Fehler beim Laden der Videos: %0",
+  "pages.community.blog.action.error": "Die Aktion ist fehlgeschlagen: %0",
+  "pages.community.blog.comment": "Kommentar",
+  "pages.community.blog.comment.submit": "Veröffentlichen",
+  "pages.community.blog.comments": "Kommentare",
+  "pages.community.blog.delete.confirm":
+    "Möchtest du den Blog-Eintrag wirklich löschen?",
+  "pages.community.blog.loading.error": "Fehler beim Laden des Beitrags: %0",
+  "pages.community.blog.mentioned.users":
+    "In diesem Beitrag sind folgende Konten verlinkt:",
+  "pages.community.create.blog.error": "Es ist ein Fehler aufgetreten: %0",
+  "pages.community.create.blog.error.title": "Bitte gib einen Titel ein.",
+  "pages.community.create.blog.error.too.short":
+    "Bitte gib mehr als 10 Zeichen ein.",
+  "pages.community.create.blog.form.tags": "Tags",
+  "pages.community.create.blog.form.tags.placeholder":
+    "Tags (durch Komma trennen)",
+  "pages.community.create.blog.form.title": "Titel",
+  "pages.community.create.blog.form.title.placeholder": "Titel des Blogs",
+  "pages.community.create.blog.hint":
+    "verwende @Benutzername um andere Benutzer zu markieren. Hierdurch erhalten diese eine Benachrichtigung und andere Benutzer können auf deren Profil gelangen!",
+  "pages.community.create.blog.image": "Bild hinzufügen",
+  "pages.community.create.blog.information": "Informationen (klicken)",
+  "pages.community.create.blog.information.description":
+    "Hier kannst du einen neuen Blog eintrag erstellen. Du kannst von deinen Bemühungen im Bezug auf ein umweltbewussteres Leben berichten, oder auch einfach nur deine Gedanken mit der Community teilen.",
+  "pages.community.create.blog.information.description.2":
+    "Blogs werden mit Markdown geschrieben. Markdown ist eine einfache Auszeichnungssprache, die es dir ermöglicht, deinen Text zu formatieren. Falls du noch nie mit Markdown gearbeitet hast, kannst du dir",
+  "pages.community.create.blog.information.description.3":
+    "eine Übersicht über die wichtigsten Befehle verschaffen.",
+  "pages.community.create.blog.publish": "Veröffentlichen",
+  "pages.community.create.blog.title": "Neuer Blog",
+  "pages.community.dashboard.explore": "Entdecken",
+  "pages.community.dashboard.following": "Folge Ich",
+  "pages.community.messages": "Nachrichten",
+  "pages.community.messages.chat": "Chat",
+  "pages.community.messages.chats": "Chats",
+  "pages.community.messages.chats.create": "Neuer Chat",
+  "pages.community.messages.chats.create.description":
+    "Erstelle einen neuen Chat",
+  "pages.community.messages.chats.create.error.self":
+    "Du kannst dich nicht selbst anschreiben.",
+  "pages.community.messages.chats.create.placeholder":
+    "Gib den Benutzernamen des anderen Nutzers ein",
+  "pages.community.messages.chats.delete": "Chat löschen",
+  "pages.community.messages.chats.delete.confirm":
+    "Möchtest du den Chat wirklich löschen?",
+  "pages.community.messages.group": "Gruppe",
+  "pages.community.messages.group.member.add": "Hinzufügen",
+  "pages.community.messages.group.member.add.success":
+    "Der Benutzer wurde erfolgreich hinzugefügt.",
+  "pages.community.messages.group.member.form.title": "Benutzer hinzufügen",
+  "pages.community.messages.group.member.form.title.placeholder":
+    "Gib den Benutzernamen ein",
+  "pages.community.messages.groups": "Gruppen",
+  "pages.community.messages.groups.create": "Neue Gruppe",
+  "pages.community.messages.groups.create.description":
+    "Gib den Benutzernamen des ersten Mitglieds ein",
+  "pages.community.messages.groups.create.error.self":
+    "Du kannst keine Gruppe mit dir selbst erstellen",
+  "pages.community.messages.groups.create.subline": "Erstelle eine neue Gruppe",
+  "pages.community.profile.actions.block.error": "Fehler beim Blockieren: %0",
+  "pages.community.profile.actions.edit": "Profil bearbeiten",
+  "pages.community.profile.actions.follow.error": "Fehler beim Folgen: %0",
+  "pages.community.profile.actions.for": "Aktionen für",
+  "pages.community.profile.actions.message": "Nachricht senden",
+  "pages.community.profile.actions.not.implemented":
+    "Diese Aktion wurde noch nicht implementiert.",
+  "pages.community.profile.banner": "Banner",
+  "pages.community.profile.block": "Blockieren",
+  "pages.community.profile.blogs": "Beiträge",
+  "pages.community.profile.chat.loading.erorr":
+    "Es ist ein Fehler aufgetreten: %0",
+  "pages.community.profile.follow": "Folgen",
+  "pages.community.profile.followers": "Follower",
+  "pages.community.profile.loading.error": "Fehler beim Laden des Profils: %0",
+  "pages.community.profile.no.level": "Mein Level ist geheim",
+  "pages.community.profile.no.location": "Kein Standort angegeben",
+  "pages.community.profile.report": "Melden",
+  "pages.community.profile.unblock": "Entblocken",
+  "pages.community.profile.unfollow": "Entfolgen",
+  "pages.e2.analytics.title": "Analyse",
+  "pages.e2.level.current": "Aktueller Level",
+  "pages.e2.level.loading.error": "Fehler beim Laden des Levels: %0",
+  "pages.e2projects.calendar": "Kalender",
+  "pages.e2projects.create": "Projekt erstellen",
+  "pages.e2projects.edit.title": "Projekt bearbeiten",
+  "pages.e2projects.editable": "Du kannst dieses Projekt bearbeiten!",
+  "pages.e2projects.filter.all": "Alle",
+  "pages.e2projects.filter.upcoming": "Nur anstehende",
+  "pages.e2projects.homepage": "Homepage",
+  "pages.e2projects.homepage.loading.error":
+    "Homepage konnte nicht geladen werden: %0",
+  "pages.e2projects.list": "Liste",
+  "pages.e2projects.loading.error": "Fehler beim Laden des Projektes: %0",
+  "pages.e2projects.map": "Karte",
+  "pages.e2projects.map.findable": "Auf der Karte auffindbar",
+  "pages.e2projects.map.unfindable": "Nicht auf der Karte angezeigt",
+  "pages.e2projects.map.unfindable.description":
+    "Dein Projekt kann nicht auf der Karte angezeigt werden, da die genaue Adresse nicht bekannt ist. Die Adresse kann in den Projekteinstellungen geändertwerden. WICHTIG: Klicke auf eine vorgeschlagene Adresse, um diese zu übernehmen.",
+  "pages.e2projects.member.status.join":
+    "Möchtest du Teil dieses Projektes werden und mitwirken?",
+  "pages.e2projects.member.status.leave":
+    "Möchtest du kein Teil des Projektes mehr sein?",
+  "pages.e2projects.member.status.popup.1": "Du bist ab jetzt ",
+  "pages.e2projects.member.status.popup.member": "Teil des Projektes!",
+  "pages.e2projects.member.status.popup.no.member":
+    "kein Teil des Projektes mehr.",
+  "pages.e2projects.members": "Mitglieder",
+  "pages.e2projects.menu.todos": "ToDos",
+  "pages.e2projects.my": "Meine Projekte",
+  "pages.e2projects.my.loading.error": "Fehler beim Laden der Projekte: %0",
+  "pages.e2projects.no.projects": "Keine Projekte gefunden.",
+  "pages.e2projects.start.create.error":
+    "Das Projekt konnte nicht erstellt werden: %0",
+  "pages.e2projects.start.created": "Projekt erstellt!",
+  "pages.e2projects.start.created.description":
+    "Dein Projekt wurde erfolgreich erstellt!",
+  "pages.e2projects.start.form.date": "Startdatum",
+  "pages.e2projects.start.form.date.placeholder": "Wann startet das Projekt?",
+  "pages.e2projects.start.form.length": "Dauer",
+  "pages.e2projects.start.form.length.placeholder":
+    "Wie lange soll dein Projekt dauern (in Tagen)?",
+  "pages.e2projects.start.form.location": "Standort",
+  "pages.e2projects.start.form.location.placeholder":
+    "Wo findet dein Projekt statt? TIPP: Ab 5 Zeichen werden Vorschläge angezeigt. Klicke auf einen Vorschlag, um ihn zu übernehmen.",
+  "pages.e2projects.start.form.name": "Name",
+  "pages.e2projects.start.form.name.placeholder":
+    "Gib deinem Projekt einen Namen, der es bestmöglich beschreibt.",
+  "pages.e2projects.start.form.suggestions.title": "Suchergebnisse",
+  "pages.e2projects.start.info.description":
+    "Nun ja, jeder der ein Projekt starten möchte. Das ist ja auch der Sinn der Sache. Aber es gibt ein paar Dinge, die du beachten solltest:",
+  "pages.e2projects.start.info.ls.1":
+    "Dein Projekt sollte einen positiven Einfluss auf die Umwelt haben.",
+  "pages.e2projects.start.info.ls.2":
+    "Dein Projekt darf nicht gegen geltendes Recht verstoßen. (bspw. auf die Straße kleben)",
+  "pages.e2projects.start.info.ls.3":
+    "Dein Projekt sollte auf Zusammenarbeit mit anderen Benutzern ausgelegt sein.",
+  "pages.e2projects.start.info.ls.4":
+    "Dein Projekt sollte einen konkreten Nutzen haben (bswp. Müll sammeln, Bäume pflanzen, ...),",
+  "pages.e2projects.start.info.ls.5":
+    "Dein Projekt sollte einem ausgeklügelten Plan folgen.",
+  "pages.e2projects.start.info.who": "Wer sollte ein neues Projekt starten?",
+  "pages.e2projects.start.page2.error.date":
+    "Das Startdatum muss in der Zukunft liegen.",
+  "pages.e2projects.start.page2.title": "Neues Projekt",
+  "pages.e2projects.start.ready": "Du bist bereit ein Projekt zu starten?",
+  "pages.e2projects.start.ready.2":
+    "Dann klicke auf den Button unten und fülle das Formular aus.",
+  "pages.e2projects.start.ready.button": "Projekt starten",
+  "pages.e2projects.todo": "ToDo Liste",
+  "pages.e2projects.todo.action": "Aktion",
+  "pages.e2projects.todo.description": "Beschreibung",
+  "pages.e2projects.todo.done": "Erledigt",
+  "pages.e2projects.todo.entries.no": "Diese ToDo-Liste hat keine Einträge.",
+  "pages.e2projects.todo.entry.create.error":
+    "Eintrag konnte nicht erstellt werden: %0",
+  "pages.e2projects.todo.entry.delete.confirm":
+    "Soll der Eintrag wirklich gelöscht werden?",
+  "pages.e2projects.todo.entry.delete.error": "Fehler beim Löschen: %0",
+  "pages.e2projects.todo.entry.update.error": "Fehler beim Aktualisieren: %0",
+  "pages.e2projects.todo.loading.error":
+    "Die ToDo-Liste konnte nicht geladen werden: %0",
+  "pages.e2projects.todo.name": "Name",
+  "pages.eatingplans.action.choose": "Aktion auswählen",
+  "pages.eatingplans.action.cook": "Zubereiten",
+  "pages.eatingplans.action.remove": "Rezept entfernen",
+  "pages.eatingplans.action.remove.confirm":
+    "Möchtest du das Rezept wirklich entfernen?",
+  "pages.eatingplans.add.recipe": "Rezept hinzufügen",
+  "pages.eatingplans.loading.error":
+    "Der Essensplan konnte nicht geladen werden: %0",
+  "pages.eatingplans.shopping.list": "Einkaufszettel",
+  "pages.eatingplans.shopping.list.create": "Einkaufszettel erstellen",
+  "pages.eatingplans.shopping.list.for": "Einkaufszettel für den ",
+  "pages.eatingplans.status": "Du hast am %0 %1 Rezepte auf deinem Plan.",
+  "pages.eatingplans.update.error":
+    "Der Essensplan konnte nicht gespeichert werden: %0",
+  "pages.eatingplans.update.success": "Der Essensplan wurde gespeichert!",
+  "pages.home.anon.call.to.action": "Los geht's!",
+  "pages.home.anon.title.1": "Unser Planet braucht deine",
+  "pages.home.anon.title.2": "Hilfe",
+  "pages.home.anon.title.3": "!",
+  "pages.home.anon.title.4": "Leiste deinen",
+  "pages.home.anon.title.5": "Beitrag",
+  "pages.home.anon.title.6": "!",
+  "pages.introduction.call.to.action": "Die Welt verbessern!",
+  "pages.introduction.finished.description":
+    "Du hast die Einrichtung erfolgreich abgeschlossen! Du kannst jetzt anfagen die Welt zu einem besseren Ort zu machen!",
+  "pages.introduction.lifestyle.avoid": "vermeiden",
+  "pages.introduction.lifestyle.description":
+    "Bitte trag hier Daten zu deinem Lebensstil ein, damit du dir Ziele setzen kannst, um diesen zu verbessern! In der linken Spalte siehst du die Aktion und in der rechten Spalte kannst du eintragen, wie oft du diese Aktion in der Woche normalerweise durchführst.",
+  "pages.introduction.lifestyle.save.error":
+    "Fehler beim Speichern des Lifestyles: %0",
+  "pages.introduction.lifestyle.this.action": "Diese Aktion",
+  "pages.introduction.lifestyle.weekly.goal": "Wöchentliches Ziel",
+  "pages.introduction.welcome.choose.later": "Später auswählen",
+  "pages.introduction.welcome.description":
+    "Hey, willkommen bei SaveWorld! Wir freuen uns, dass du die Welt verbessern willst! Für eine optimale Erfahrung solltest du hier deine Interessen auswählen! Du kannst die später jederzeit ändern.",
+  "pages.learn.channels": "Kanäle",
+  "pages.learn.videos.loading.error": "Fehler beim Laden der Videos: %0",
+  "pages.learn.videos.loading.error.next":
+    "Fehler beim Laden des nächsten Videos: %0",
+  "pages.markdown.description":
+    "Markdown ist eine einfache Auszeichnungssprache, die es dir ermöglicht, Texte schnell und einfach zu formatieren. Markdown wird vor allem im Forum verwendet, um Blog-Einträge zu verfassen. Du kannst allerdings auch ohne Markdown einen Eintrag erstellen. Im Folgenden findest du eine Übersicht über die wichtigsten Formatierungen.",
+  "pages.markdown.headlines": "Überschriften",
+  "pages.markdown.headlines.1": "# Überschrift 1",
+  "pages.markdown.headlines.2": "## Überschrift 2",
+  "pages.markdown.headlines.3": "### Überschrift 3",
+  "pages.markdown.headlines.description":
+    "Überschriften werden mit einem Hashtag eingeleitet. Je mehr Hashtags, desto kleiner die Überschrift. Maximal können 6 Hashtags verwendet werden. Beispiel:",
+  "pages.markdown.links": "Links",
+  "pages.markdown.links.1": "[Linktext](https://saveworld.one)",
+  "pages.markdown.links.description":
+    "Links können mit eckigen Klammern und runden Klammern eingeleitet werden.",
+  "pages.markdown.lists": "Listen",
+  "pages.markdown.lists.1": "* Eintrag 1",
+  "pages.markdown.lists.2": "* Eintrag 2",
+  "pages.markdown.lists.3": "1. Eintrag 1",
+  "pages.markdown.lists.4": "2. Eintrag 2",
+  "pages.markdown.lists.description":
+    "Listen können mit einem Sternchen oder einer Zahl (für nummerierte Listen) eingeleitet werden.",
+  "pages.markdown.text.formatting": "Textformatierung",
+  "pages.markdown.text.formatting.bold.1": "*fetter Text*",
+  "pages.markdown.text.formatting.bold.2": "_fetter Text_",
+  "pages.markdown.text.formatting.bold.description":
+    "Der Text kann mit einem Sternchen oder Unterstrich umschlossen werden, um ihn fett zu formatieren.",
+  "pages.markdown.text.formatting.bold.italic.1":
+    "***fetter und kursiver Text***",
+  "pages.markdown.text.formatting.bold.italic.2":
+    "___fetter und kursiver Text___",
+  "pages.markdown.text.formatting.bold.italic.description":
+    "Der Text kann mit drei Sternchen oder Unterstrichen umschlossen werden, um ihn fett und kursiv zu machen.",
+  "pages.markdown.text.formatting.italic.1": "**kursiver Text**",
+  "pages.markdown.text.formatting.italic.2": "__kursiver Text__",
+  "pages.markdown.text.formatting.italic.description":
+    "Der Text kannn mit zwei Sternchen oder Unterstrichen umschlossen werden, um ihn kursiv zu machen.",
+  "pages.markdown.text.formatting.strikethrough.1":
+    "~~durchgestrichener Text~~",
+  "pages.markdown.text.formatting.strikethrough.description":
+    "Der Text kann mit zwei Tilden umschlossen werden, um ihn durchgestrichen zu machen.",
+  "pages.quizzes.answer": "Beantworten",
+  "pages.quizzes.quiz.time": "Quiz Time!",
+  "pages.quizzes.result": "Ergebnis",
+  "pages.quizzes.result.2": "Die richtige Antwort ist: %0",
+  "pages.quizzes.result.description": "Du hast %0 geantwortet! %1",
+  "pages.recipes.cook": "Rezept zubereiten",
+  "pages.recipes.cookbook": "Kochbuch",
+  "pages.recipes.cookbook.description":
+    "In deinem Kochbuch befinden sich alle Rezepte, die du dir gemerkt hast. Aktuell sind es %0 Rezepte.",
+  "pages.recipes.create": "Neues Rezept",
+  "pages.recipes.create.error": "Fehler beim Erstellen des Rezeptes: %0",
+  "pages.recipes.created": "Rezept erstellt!",
+  "pages.recipes.created.by.1": "Dieses Rezept wurde von ",
+  "pages.recipes.created.by.2": " erstellt.",
+  "pages.recipes.created.description":
+    "Dein Rezept wurde erfolgreich erstellt!",
+  "pages.recipes.delete.confirm": "Möchtest du das Rezept wirklich löschen?",
+  "pages.recipes.delete.error": "Fehler beim Löschen des Rezeptes: %0",
+  "pages.recipes.delete.success": "Rezept erfolgreich gelöscht!",
+  "pages.recipes.edit": "Rezept bearbeiten",
+  "pages.recipes.edit.error": "Fehler beim Bearbeiten des Rezeptes: %0",
+  "pages.recipes.edited": "Rezept bearbeitet!",
+  "pages.recipes.edited.description":
+    "Das Rezept wurde erfolgreich bearbeitet!",
+  "pages.recipes.explore": "Entdecken",
+  "pages.recipes.for": "Rezept für ",
+  "pages.recipes.form.title": "Titel",
+  "pages.recipes.image.edit": "Bild bearbeiten",
+  "pages.recipes.ingredients": "Zutaten",
+  "pages.recipes.ingredients.add": "Zutat hinzufügen",
+  "pages.recipes.ingredients.used":
+    "Für das Rezept werden folgende Zutaten benötigt:",
+  "pages.recipes.loading.error": "Fehler beim Laden des Rezeptes: %0",
+  "pages.recipes.my": "Meine Rezepte",
+  "pages.recipes.settings.update.error":
+    "Deine Einstellungen konnten nicht gespeichert werden: %0",
+  "pages.recipes.share.text": "Schau dir dieses Rezept an!",
+  "pages.recipes.step": "Schritt",
+  "pages.recipes.steps": "Schritte",
+  "pages.recipes.steps.add": "Schritt hinzufügen",
+  "pages.recipes.steps.delete": "Schritt löschen",
+  "pages.recipes.steps.description": "Das Rezept wird wie folgt zubereitet:",
+  "pages.sustainability.call.to.action": "Artikel Erkunden",
+  "pages.sustainability.section.1":
+    "Nachhaltigkeit ist ein sehr wichtiges Thema. Es umfasst allerdings nicht nur die Umwelt, sondern besteht aus drei Säulen: Ökologie (Unwelt), Ökonomie (Wirtschaft) und Soziales (Gesellschaft).\n",
+  "pages.sustainability.section.2":
+    "Diese drei Säulen müssen im Gleichgewicht sein, damit wir eine nachhaltige Zukunft haben. Oft werden diese drei Säulen auch als ein Dreieck dargestellt, welches auf einer Seite liegt. Das bedeutet, dass alle drei Säulen gleich wichtig sind. Wenn eine Säule zu kurz kommt, wird das Dreieck instabil und kann umkippen. Das bedeutet, dass wir eine nachhaltige Zukunft nur dann haben, wenn alle drei Säulen gleich wichtig sind.",
+  "pages.sustainability.section.3":
+    "Auch, wenn sich SaveWorld vor allem auf die Umwelt konzentriert, wollen wir auch die anderen beiden Säulen nicht vernachlässigen. Deswegen findest du in diesem Bereich auch Informationen zu den Themen Wirtschaft und Gesellschaft.",
+  "pages.tools.calc": "CO2-Rechner",
+  "pages.tools.calc.calculate": "Berechnen",
+  "pages.tools.calc.car": "Auto",
+  "pages.tools.calc.car.description":
+    "Rechne aus, wie viel CO2 du mit deinem Auto auf einer bestimmten Strecke ausstößt.",
+  "pages.tools.calc.car.description.long":
+    "Berechne, wie viel CO2 du mit deinem Auto auf einer Strecke ausstößt. Die Berechnung basiert auf Daten des Umweltbundesamtes (UBA) aus dem Jahr 2022. Für die Berechnung benötigst du die Länge der Strecke (in km) und den Kraftstoffverbrauch deines Autos (in l/100km).",
+  "pages.tools.calc.distance": "Distanz",
+  "pages.tools.calc.ecar": "Elektro-Auto",
+  "pages.tools.calc.ecar.description":
+    "Rechne aus, wie viel CO2 du mit deinem Elektro Auto auf einer bestimmten Strecke, durch den Stromverbrauch, ausstößt.",
+  "pages.tools.calc.ecar.description.long":
+    "Berechne, wie viel CO2 du mit deinem Auto auf einer Strecke ausstößt. Die Berechnung basiert auf Daten des Umweltbundesamtes (UBA) aus dem Jahr 2022. Für die Berechnung benötigst du die Länge der Strecke (in km) und den Stromverbrauch deines Autos (in kWh/100km).",
+  "pages.tools.calc.fuel.type": "Kraftstoffart",
+  "pages.tools.calc.fuel.type.diesel": "Diesel",
+  "pages.tools.calc.fuel.type.petrol": "Benzin",
+  "pages.tools.calc.fuel.usage": "Kraftstoffverbrauch auf 100km",
+  "pages.tools.calc.hcar": "Wasserstoff-Auto",
+  "pages.tools.calc.hcar.description":
+    "Rechne aus, wie viel CO2 du mit deinem Wasserstoff Auto auf einer bestimmten Strecke, durch den Wasserstoffverbrauch, ausstößt.",
+  "pages.tools.calc.hcar.description.long":
+    "Berechne, wie viel CO2 du mit deinem Auto auf einer Strecke ausstößt. Die Berechnung basiert auf Daten des Umweltbundesamtes (UBA) aus dem Jahr 2022. Für die Berechnung benötigst du die Länge der Strecke (in km) und den Wasserstoffverbrauch deines Autos (in kg/100km).",
+  "pages.tools.calc.hydrogen.usage": "Wasserstoffverbrauch auf 100km",
+  "pages.tools.calc.power.usage": "Stromverbrauch auf 100km",
+  "pages.tools.calc.search.no.results": "Es wurden keine CO2-Rechner gefunden.",
+  "pages.tools.calc.source": "Quelle",
+  "pages.tools.calc.train": "Fernverkehr Zug (ICE, IC, etc)",
+  "pages.tools.calc.train.description":
+    "Rechne aus, wie viel CO2-Ausstoß du auf deiner Reise mit dem Fernverkehrszug verursachst.",
+  "pages.tools.calc.train.description.long":
+    "Berechne, wie viel CO2 du mit auf einer Strecke mit dem Fernzug ausstößt. Die Berechnung basiert auf Daten von Quarks. Für die Berechnung benötigst du die Länge der Strecke (in km). Pro km werden 0,036kg CO2 ausgestoßen, weswegen durch Rundung Abweichungen entstehen können.",
+  "popup.alert.title.default": "Meldung",
+  "popup.close": "Schließen",
+  "popup.input.label": "Eingabe",
+  "popup.select.choose.option": "Wähle eine Option",
+  "product.name": "SaveWorld",
+  "user.email": "E-Mail",
+  "user.firstname": "Vorname",
+  "user.lastname": "Nachname",
+  "user.password": "Passwort",
+  "user.password.confirm": "Passwort bestätigen",
+  "user.role.admin": "Administrator",
+  "user.user": "Benutzer",
+  "user.username": "Benutzername",
+} as const;

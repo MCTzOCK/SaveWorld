@@ -100,6 +100,36 @@ export class REST {
       });
     },
     /**
+     * Creates a video
+     * @param token used to authenticate
+     * @param title of the video
+     * @param description of the video
+     * @param youtubeVideoId of the video
+     * @param categories of the video
+     * @param sources of the video
+     */
+    createVideo: async (
+      token: string,
+      title: string,
+      description: string,
+      youtubeVideoId: string,
+      categories: string[],
+      sources: string[],
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/content/videos/create",
+        method: "POST",
+        token: token,
+        body: {
+          title: title,
+          description: description,
+          youtubeVideoId: youtubeVideoId,
+          categories: categories,
+          sources: sources,
+        },
+      });
+    },
+    /**
      * @return all videos
      * @param token used to authenticate
      * @param page the page to get

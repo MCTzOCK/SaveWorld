@@ -52,6 +52,7 @@ import { useUserData } from "../../hooks/useUserData";
 import PopupManager from "../../util/PopupManager";
 import { Avatar } from "@chakra-ui/react";
 import MobileBox from "../../components/MobileBox";
+import { $$ } from "../../translations/i18n";
 export default function CommunityBlogViewer() {
   useRedirectForAnon();
 
@@ -104,8 +105,11 @@ export default function CommunityBlogViewer() {
       }
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description: "Blog nicht gefunden!",
+        title: $$("control.error"),
+        description: $$(
+          "pages.community.blog.loading.error",
+          res.payload.error,
+        ),
       });
     }
 
@@ -121,8 +125,11 @@ export default function CommunityBlogViewer() {
       });
     } else {
       PopupManager.alert({
-        title: "Fehler",
-        description: "Profil nicht gefunden!",
+        title: $$("control.error"),
+        description: $$(
+          "pages.community.profile.loading.error",
+          res2.payload.error,
+        ),
       });
     }
   };
@@ -133,7 +140,7 @@ export default function CommunityBlogViewer() {
 
   return (
     <>
-      <Page title={"Blog"}>
+      <Page title={$$("menu.blog")}>
         {blog && profile && (
           <MobileBox>
             <IonCard
@@ -257,10 +264,11 @@ export default function CommunityBlogViewer() {
 
                           if (res.status !== 200) {
                             PopupManager.alert({
-                              title: "Fehler",
-                              description:
-                                "Die Aktion ist fehlgeschlagen: " +
+                              title: $$("control.error"),
+                              description: $$(
+                                "pages.community.blog.action.error",
                                 res.payload.error,
+                              ),
                             });
                           } else {
                             reload();
@@ -268,7 +276,7 @@ export default function CommunityBlogViewer() {
                         }}
                       >
                         <IonTextarea
-                          placeholder={"Kommentar"}
+                          placeholder={$$("pages.community.blog.comment")}
                           style={{
                             width: "100%",
                             maxHeight: "200px",
@@ -282,7 +290,7 @@ export default function CommunityBlogViewer() {
                           fill={"outline"}
                         >
                           <IonIcon icon={send} slot={"start"} />
-                          Veröffentlichen
+                          {$$("pages.community.blog.comment.submit")}
                         </IonButton>
                       </form>
                     </IonContent>
@@ -297,10 +305,11 @@ export default function CommunityBlogViewer() {
 
                       if (res.status !== 200) {
                         PopupManager.alert({
-                          title: "Fehler",
-                          description:
-                            "Die Aktion ist fehlgeschlagen: " +
+                          title: $$("control.error"),
+                          description: $$(
+                            "pages.community.blog.action.error",
                             res.payload.error,
+                          ),
                         });
                       } else {
                         await reload();
@@ -347,9 +356,8 @@ export default function CommunityBlogViewer() {
                       onClick={async () => {
                         if (
                           !(await PopupManager.confirmAsync({
-                            title: "Löschen",
-                            question:
-                              "Möchtest du den Blog-Eintrag wirklich löschen?",
+                            title: $$("control.delete"),
+                            question: $$("pages.community.blog.delete.confirm"),
                           }))
                         )
                           return;
@@ -361,10 +369,11 @@ export default function CommunityBlogViewer() {
 
                         if (res.status !== 200) {
                           PopupManager.alert({
-                            title: "Fehler",
-                            description:
-                              "Die Aktion ist fehlgeschlagen: " +
+                            title: $$("control.error"),
+                            description: $$(
+                              "pages.community.blog.action.error",
                               res.payload.error,
+                            ),
                           });
                         } else {
                           await router.push("/community", "back", "push");
@@ -402,7 +411,7 @@ export default function CommunityBlogViewer() {
               >
                 <IonText>
                   <p>
-                    <b>In diesem Beitrag sind folgende Konten verlinkt:</b>
+                    <b>{$$("pages.community.blog.mentioned.users")}</b>
                     {mentions.map((m) => {
                       return (
                         <>
@@ -432,7 +441,7 @@ export default function CommunityBlogViewer() {
                   padding: "12px",
                 }}
               >
-                Kommentare
+                {$$("pages.community.blog.comments")}
               </h1>
             </IonText>
             {blog.comments

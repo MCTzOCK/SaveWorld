@@ -44,7 +44,6 @@ import AdminVideoDashboard from "./pages/admin/AdminVideoDashboard";
 import Videos from "./pages/learn/Videos";
 import VideoSearchFTS from "./pages/learn/VideoSearchFTS";
 import { Redirect, useParams } from "react-router";
-import EcoTracker from "./pages/tracker/EcoTracker";
 
 import OneSignal from "onesignal-cordova-plugin";
 import {
@@ -110,6 +109,8 @@ import Cookbook from "./pages/recipes/Cookbook";
 import EatingPlanOverview from "./pages/eatingplans/EatingPlanOverview";
 import EatingPlanViewer from "./pages/eatingplans/EatingPlanViewer";
 import Licenses from "./pages/account/Licenses";
+import { $$ } from "./translations/i18n";
+import LanguageSwitcher from "./components/LanguageSwitcher";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -187,6 +188,7 @@ export default function App() {
 
   useEffect(() => {
     setRoutes({
+      "/language": LanguageSwitcher,
       "/register": Register,
       "/login": Login,
       "/old-onboarding": Onboarding,
@@ -215,7 +217,6 @@ export default function App() {
         ? Channel
         : NotFound,
       "/learn/fts-search": flags.videos.enabled ? VideoSearchFTS : NotFound,
-      "/eco-tracker": flags.tracker.enabled ? EcoTracker : NotFound,
       "/e2": flags.tracker.enabled ? E2 : NotFound,
       "/e2-projects/new": flags.eco_projects.enabled
         ? StartE2Project
@@ -271,7 +272,7 @@ export default function App() {
             return (
               <DirectusPosts
                 postBaseUrl={"/sustainability/articles"}
-                pageTitle={"Nachhaltigkeit"}
+                pageTitle={$$("page.sustainability.title")}
                 tagFilter={"sustainability"}
               />
             );
@@ -288,7 +289,7 @@ export default function App() {
             return (
               <DirectusPosts
                 postBaseUrl={"/news"}
-                pageTitle={"Neuigkeiten"}
+                pageTitle={$$("page.news.title")}
                 tagFilter={"news"}
               />
             );

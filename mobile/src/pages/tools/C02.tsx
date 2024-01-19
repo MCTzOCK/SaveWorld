@@ -29,73 +29,69 @@ import {
   useIonRouter,
 } from "@ionic/react";
 import { useState } from "react";
-
-const calculators: {
-  title: string;
-  image: {
-    url: string;
-    cpr: string;
-  };
-  description: string;
-  cpr: string;
-  url: string;
-}[] = [
-  {
-    title: "Auto",
-    image: {
-      url: "/assets/calculator/co2/car_emissions.jpg",
-      cpr: "Unsplash, Matt Boitor",
-    },
-    cpr: "UBA 2022: Emissionsbilanz erneuerbarer Energieträger",
-    description:
-      "Rechne aus, wie viel CO2 du mit deinem Auto auf einer bestimmten Strecke ausstößt.",
-    url: "/tools/co2/car",
-  },
-  {
-    title: "Elektro Auto",
-    image: {
-      url: "/assets/calculator/co2/e-car.jpg",
-      cpr: "Unsplash, Remy Lovesy",
-    },
-    cpr: "UBA 2022: Emissionsbilanz erneuerbarer Energieträger",
-    description:
-      "Rechne aus, wie viel CO2 du mit deinem Elektro Auto auf einer bestimmten Strecke, durch den Stromverbrauch, ausstößt.",
-    url: "/tools/co2/e-car",
-  },
-  {
-    title: "Wasserstoff Auto",
-    image: {
-      url: "/assets/calculator/co2/h-car.jpg",
-      cpr: "Unsplash, Darren Halstead",
-    },
-    cpr: "UBA 2022: Emissionsbilanz erneuerbarer Energieträger",
-    description:
-      "Rechne aus, wie viel CO2 du mit deinem Wasserstoff Auto auf einer bestimmten Strecke, durch den Wasserstoffverbrauch, ausstößt.",
-    url: "/tools/co2/h-car",
-  },
-  {
-    title: "Fernverkehr Zug (ICE, IC, etc)",
-    image: {
-      url: "/assets/calculator/co2/long-distance-train.jpg",
-      cpr: "Unsplash, Daniel Abadia",
-    },
-    cpr: "Quarks",
-    description:
-      "Rechne aus, wie viel CO2-Ausstoß du auf deiner Reise mit dem Fernverkehrszug verursachst.",
-    url: "/tools/co2/long-distance-train",
-  },
-];
+import { $$ } from "../../translations/i18n";
 
 export default function C02() {
+  const calculators: {
+    title: string;
+    image: {
+      url: string;
+      cpr: string;
+    };
+    description: string;
+    cpr: string;
+    url: string;
+  }[] = [
+    {
+      title: $$("pages.tools.calc.car"),
+      image: {
+        url: "/assets/calculator/co2/car_emissions.jpg",
+        cpr: "Unsplash, Matt Boitor",
+      },
+      cpr: "UBA 2022: Emissionsbilanz erneuerbarer Energieträger",
+      description: $$("pages.tools.calc.car.description"),
+      url: "/tools/co2/car",
+    },
+    {
+      title: $$("pages.tools.calc.ecar"),
+      image: {
+        url: "/assets/calculator/co2/e-car.jpg",
+        cpr: "Unsplash, Remy Lovesy",
+      },
+      cpr: "UBA 2022: Emissionsbilanz erneuerbarer Energieträger",
+      description: $$("pages.tools.calc.ecar.description"),
+      url: "/tools/co2/e-car",
+    },
+    {
+      title: $$("pages.tools.calc.hcar"),
+      image: {
+        url: "/assets/calculator/co2/h-car.jpg",
+        cpr: "Unsplash, Darren Halstead",
+      },
+      cpr: "UBA 2022: Emissionsbilanz erneuerbarer Energieträger",
+      description: $$("pages.tools.calc.hcar.description"),
+      url: "/tools/co2/h-car",
+    },
+    {
+      title: $$("pages.tools.calc.train"),
+      image: {
+        url: "/assets/calculator/co2/long-distance-train.jpg",
+        cpr: "Unsplash, Daniel Abadia",
+      },
+      cpr: "Quarks",
+      description: $$("pages.tools.calc.train.description"),
+      url: "/tools/co2/long-distance-train",
+    },
+  ];
   const router = useIonRouter();
 
   const [query, setQuery] = useState<string>("");
 
   return (
     <>
-      <Page title={"CO2-Rechner"}>
+      <Page title={$$("pages.tools.calc")}>
         <IonSearchbar
-          placeholder={"Suchen..."}
+          placeholder={$$("control.search")}
           onIonInput={(e) => {
             setQuery(e.detail.value!);
           }}
@@ -120,7 +116,7 @@ export default function C02() {
           }).length === 0 && (
             <>
               <Heading size={"md"}>
-                Es wurden keine CO2-Rechner für "{query}" gefunden.
+                {$$("pages.tools.calc.search.no.results")}
               </Heading>
             </>
           )}
@@ -143,7 +139,8 @@ export default function C02() {
                     <CardHeader>
                       <Image src={calc.image.url} rounded={"md"} />
                       <p>
-                        <b>Quelle</b>: <i>{calc.image.cpr}</i>
+                        <b>{$$("pages.tools.calc.source")}</b>:{" "}
+                        <i>{calc.image.cpr}</i>
                       </p>
                       <Heading size={"lg"}>{calc.title}</Heading>
                     </CardHeader>
@@ -151,7 +148,7 @@ export default function C02() {
                       <Text>
                         {calc.description}
                         <br />
-                        <b>Quelle</b>:&nbsp;
+                        <b>{$$("pages.tools.calc.source")}</b>:&nbsp;
                         <i>{calc.cpr}</i>
                       </Text>
                       <ButtonGroup w={"100%"} mt={4}>
@@ -162,7 +159,7 @@ export default function C02() {
                             router.push(calc.url, "none", "push");
                           }}
                         >
-                          Berechnen
+                          {$$("pages.tools.calc.calculate")}
                         </Button>
                       </ButtonGroup>
                     </CardBody>

@@ -15,6 +15,7 @@ import { REST } from "@saveworld/api-js";
 import Page from "./Page";
 import MobileBox from "./MobileBox";
 import { IonItem, IonList, IonText, IonToggle } from "@ionic/react";
+import { $$ } from "../translations/i18n";
 
 export default function ManageAccountInterests() {
   useRedirectForAnon();
@@ -51,7 +52,7 @@ export default function ManageAccountInterests() {
 
   return (
     <>
-      <IonText>Aktuell hast du folgenden Interessen angegeben:</IonText>
+      <IonText>{$$("components.manage.interests.intro")}</IonText>
       <IonList
         style={{
           marginTop: "20px",
@@ -86,8 +87,8 @@ export default function ManageAccountInterests() {
       <IonText>
         {categories.filter((c) => !preferences.interests.includes(c._id))
           .length === 0
-          ? "Du hast alle verfügbaren Interessen ausgewählt!"
-          : "Du kannst zusätzlich noch folgenden Interessen auswählen:"}
+          ? $$("components.manage.interests.all.selected")
+          : $$("components.manage.interests.more.selectable")}
       </IonText>
       <IonList inset>
         {categories
