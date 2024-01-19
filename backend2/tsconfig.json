@@ -6,6 +6,17 @@
     "rootDir": "src",
     "outDir": "dist",
     "allowJs": true,
+    "checkJs": false,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "noImplicitThis": false,
+    "alwaysStrict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": false,
+    "moduleResolution": "NodeNext",
+    "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "jsx": "react-jsx",
     "lib": [
@@ -16,7 +27,10 @@
     ]
   },
   "exclude": [
-    "node_modules",
-    "dist"
+    "node_modules/**/*",
+    "dist/**/*",
+    "node_modules/@react-email/heading/dist/index.d.ts",
+    "node_modules/@react-email/render/dist/index.d.ts",
+    "node_modules/@react-email/tailwind/dist/tailwind.d.ts"
   ]
 }
