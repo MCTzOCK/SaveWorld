@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 2048 2048" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <circle cx="1024" cy="1024" r="1024" style="fill:rgb(18,18,18);"/>
+    <g transform="matrix(1,0,0,0.926431,-0.533946,0)">
+        <path d="M1024,0L2048,1835L0,1835L1024,0Z" style="fill:rgb(247,117,33);"/>
+    </g>
+    <g transform="matrix(0.5,-0.866025,0.866025,0.5,-671.657,648.658)">
+        <g transform="matrix(288,0,0,288,806.176,1024)">
+        </g>
+        <text x="136px" y="1024px" style="font-family:'BebasNeue-Regular', 'Bebas Neue', sans-serif;font-size:288px;fill:rgb(247,117,33);">Lernen</text>
+    </g>
+    <g transform="matrix(0.5,0.866025,-0.866025,0.5,2030.12,-434.443)">
+        <g transform="matrix(288,0,0,288,1362.02,1024)">
+        </g>
+        <text x="136px" y="1024px" style="font-family:'BebasNeue-Regular', 'Bebas Neue', sans-serif;font-size:288px;fill:rgb(247,117,33);">A<tspan x="250.912px " y="1024px ">u</tspan>st<tspan x="565.408px 680.32px " y="1024px 1024px ">au</tspan>schen</text>
+    </g>
+    <g transform="matrix(1,5.55112e-17,-5.55112e-17,1,429.072,909.48)">
+        <g transform="matrix(288,0,0,288,1055.01,1024)">
+        </g>
+        <text x="136px" y="1024px" style="font-family:'BebasNeue-Regular', 'Bebas Neue', sans-serif;font-size:288px;fill:rgb(247,117,33);">Umsetzen</text>
+    </g>
+    <g transform="matrix(1,5.55112e-17,-5.55112e-17,1,242.52,471.48)">
+        <g transform="matrix(360,0,0,360,1430.92,1024)">
+        </g>
+        <text x="136px" y="1024px" style="font-family:'BebasNeue-Regular', 'Bebas Neue', sans-serif;font-size:360px;fill:rgb(18,18,18);">S<tspan x="268.84px 403.12px " y="1024px 1024px ">av</tspan>eWorld</text>
+    </g>
+</svg>
