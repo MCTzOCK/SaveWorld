@@ -27,6 +27,7 @@ import PopupManager from "../../util/PopupManager";
 import { Box, Flex } from "@chakra-ui/react";
 import MobileBox from "../../components/MobileBox";
 import { $$ } from "../../translations/i18n";
+import { translateOnlineV3 } from "../../util/online-translate";
 
 export default function WelcomeLifestyle() {
   useRedirectForAnon();
@@ -44,7 +45,21 @@ export default function WelcomeLifestyle() {
   }>({});
 
   useEffect(() => {
-    REST.Lifestyle.templates().then((res) => {
+    REST.Lifestyle.templates().then(async (res) => {
+      let tpls = res.payload.lst;
+      if (window.language !== "de") {
+        for (const t of tpls) {
+          t.name = await translateOnlineV3({
+            text: t.name,
+            to: window.language,
+          });
+          t.goal = await translateOnlineV3({
+            text: t.goal,
+            to: window.language,
+          });
+        }
+      }
+
       setTemplates(res.payload.lst);
       let s: {
         [key: string]: number;
@@ -52,7 +67,6 @@ export default function WelcomeLifestyle() {
       for (const a of res.payload.lst) {
         s[a._id] = 0;
       }
-      console.log(s);
       setState(s);
     });
   }, []);
