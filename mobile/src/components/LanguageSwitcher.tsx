@@ -122,7 +122,12 @@ export default function LanguageSwitcher() {
                     <Heading color={"white"} fontSize={"2xl"} fontWeight={1000}>
                       {languages[lang].displayName}
                     </Heading>
-                    <Text color={"white"} fontSize={"md"} fontWeight={1000}>
+                    <Text
+                      color={"white"}
+                      fontSize={"md"}
+                      fontWeight={1000}
+                      textAlign={"center"}
+                    >
                       {languages[lang].type === "auto"
                         ? "Automatically translated"
                         : "Manually translated"}
