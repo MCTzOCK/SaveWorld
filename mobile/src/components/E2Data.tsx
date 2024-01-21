@@ -33,6 +33,7 @@ import { REST } from "@saveworld/api-js";
 import ProgressBar from "@ramonak/react-progress-bar";
 import PopupManager from "../util/PopupManager";
 import { $$ } from "../translations/i18n";
+import { translateOnlineV3 } from "../util/online-translate";
 
 export default function E2Data() {
   const [templates, setTemplates] = useState<
@@ -79,6 +80,20 @@ export default function E2Data() {
     const tplRes = await REST.Lifestyle.templates();
 
     if (tplRes.status === 200) {
+      let tpls = tplRes.payload.lst;
+      if (window.language !== "de") {
+        for (const t of tpls) {
+          t.name = await translateOnlineV3({
+            text: t.name,
+            to: window.language,
+          });
+          t.goal = await translateOnlineV3({
+            text: t.goal,
+            to: window.language,
+          });
+        }
+      }
+
       setTemplates(tplRes.payload.lst);
     } else {
       PopupManager.alert({

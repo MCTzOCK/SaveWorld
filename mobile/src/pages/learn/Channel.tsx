@@ -34,6 +34,7 @@ import {
   Image,
   Link,
   Text,
+  VStack,
 } from "@chakra-ui/react";
 import MobileBox from "../../components/MobileBox";
 import { ENDPOINT } from "../../env";
@@ -51,6 +52,7 @@ import {
 import PopupManager from "../../util/PopupManager";
 import CommunityProfileBlogList from "../../components/CommunityProfileBlogList";
 import { $$ } from "../../translations/i18n";
+import { translateOnlineV3 } from "../../util/online-translate";
 
 export default function Channel() {
   const router = useIonRouter();
@@ -83,11 +85,23 @@ export default function Channel() {
   const reload = () => {
     if (!id) return;
 
-    REST.Content.categories().then((res) => {
+    REST.Content.categories().then(async (res) => {
       if (res.status === 200) {
-        setChannel(
-          (res.payload as any).filter((e: any) => e._id === id)[0] || null,
-        );
+        const cats =
+          (res.payload as any).filter((e: any) => e._id === id)[0] || null;
+
+        if (window.language !== "de") {
+          cats.name = await translateOnlineV3({
+            text: cats.name,
+            to: window.language,
+          });
+          cats.description = await translateOnlineV3({
+            text: cats.description,
+            to: window.language,
+          });
+        }
+
+        setChannel(cats);
       }
     });
   };
@@ -99,6 +113,21 @@ export default function Channel() {
   const reloadVideos = async () => {
     const res = await REST.Content.searchCategory(id, videoQuery);
     if (res.status === 200) {
+      const videos = res.payload.videos as any;
+
+      if (window.language !== "de") {
+        for (const v of videos) {
+          v.title = await translateOnlineV3({
+            text: v.title,
+            to: window.language,
+          });
+          v.description = await translateOnlineV3({
+            text: v.description,
+            to: window.language,
+          });
+        }
+      }
+
       setVideos(res.payload.videos);
     } else {
       PopupManager.alert({
@@ -157,7 +186,7 @@ export default function Channel() {
                     </div>
                   </IonCardContent>
                 </IonCard>
-                <Box mt={["1rem", "3rem"]} mb={"2rem"}>
+                <Box mt={["2rem", "4rem"]} mb={"2rem"}>
                   <IonText>
                     <h1
                       style={{
@@ -182,26 +211,29 @@ export default function Channel() {
                     }}
                   />
                 </Box>
-                {videos.map((v) => {
-                  return (
-                    <>
-                      <Card
-                        bg={"gray.800"}
-                        as={Link}
-                        href={"/learn?vid=" + v._id}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          router.push("/learn?vid=" + v._id);
-                        }}
-                      >
-                        <CardHeader>
-                          <Text fontSize={"xl"}>{v.title}</Text>
-                          <Text fontSize={"lg"}>{v.description}</Text>
-                        </CardHeader>
-                      </Card>
-                    </>
-                  );
-                })}
+                <VStack gap={4}>
+                  {videos.map((v) => {
+                    return (
+                      <>
+                        <Card
+                          w={"100%"}
+                          bg={"gray.800"}
+                          as={Link}
+                          href={"/learn?vid=" + v._id}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            router.push("/learn?vid=" + v._id);
+                          }}
+                        >
+                          <CardHeader>
+                            <Text fontSize={"xl"}>{v.title}</Text>
+                            <Text fontSize={"lg"}>{v.description}</Text>
+                          </CardHeader>
+                        </Card>
+                      </>
+                    );
+                  })}
+                </VStack>
               </div>
             </MobileBox>
           </>

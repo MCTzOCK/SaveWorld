@@ -1663,7 +1663,7 @@ export const FastifySchemas = {
           type: "string",
         },
       },
-      required: ["page", "q"],
+      required: ["page"],
     },
     response: {
       401: {
@@ -1863,7 +1863,7 @@ export const FastifySchemas = {
           type: "string",
         },
       },
-      required: ["page", "q", "type"],
+      required: ["page", "type"],
     },
     response: {
       401: {

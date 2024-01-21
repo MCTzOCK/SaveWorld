@@ -23,6 +23,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { $$ } from "../../translations/i18n";
+import { translateOnlineV3 } from "../../util/online-translate";
 
 export default function Channels() {
   const router = useIonRouter();
@@ -42,8 +43,22 @@ export default function Channels() {
   }, []);
 
   const reload = () => {
-    REST.Content.categories().then((res) => {
+    REST.Content.categories().then(async (res) => {
       if (res.status === 200) {
+        let chan = res.payload as any;
+        if (window.language !== "de") {
+          for (const t of chan) {
+            t.name = await translateOnlineV3({
+              text: t.name,
+              to: window.language,
+            });
+            t.description = await translateOnlineV3({
+              text: t.description,
+              to: window.language,
+            });
+          }
+        }
+
         setChannels(res.payload as any);
       }
     });

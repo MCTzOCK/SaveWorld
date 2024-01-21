@@ -30,6 +30,7 @@ import { REST } from "@saveworld/api-js";
 import PopupManager from "../util/PopupManager";
 import { Grid } from "@chakra-ui/react";
 import { $$ } from "../translations/i18n";
+import { translateOnlineV3 } from "../util/online-translate";
 
 export default function WelcomeInterestModal(props: {
   modal: React.MutableRefObject<HTMLIonModalElement>;
@@ -53,8 +54,22 @@ export default function WelcomeInterestModal(props: {
   }, []);
 
   const reload = () => {
-    REST.Content.categories().then((res) => {
+    REST.Content.categories().then(async (res) => {
       if (res.status === 200) {
+        const categories = res.payload as any;
+
+        if (window.language !== "de") {
+          for (const c of categories) {
+            c.name = await translateOnlineV3({
+              text: c.name,
+              to: window.language,
+            });
+            c.description = await translateOnlineV3({
+              text: c.description,
+              to: window.language,
+            });
+          }
+        }
         setCategories(res.payload as any);
       }
     });

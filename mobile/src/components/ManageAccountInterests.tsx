@@ -16,6 +16,7 @@ import Page from "./Page";
 import MobileBox from "./MobileBox";
 import { IonItem, IonList, IonText, IonToggle } from "@ionic/react";
 import { $$ } from "../translations/i18n";
+import { translateOnlineV3 } from "../util/online-translate";
 
 export default function ManageAccountInterests() {
   useRedirectForAnon();
@@ -40,7 +41,18 @@ export default function ManageAccountInterests() {
   }, []);
 
   const reload = () => {
-    REST.Content.categories().then((res) => {
+    REST.Content.categories().then(async (res) => {
+      const categories = res.payload as any;
+
+      if (window.language !== "de") {
+        for (const c of categories) {
+          c.name = await translateOnlineV3({
+            text: c.name,
+            to: window.language,
+          });
+        }
+      }
+
       setCategories(res.payload as any);
       REST.Account.preferences(localStorage.getItem("token") as string).then(
         (res2) => {
