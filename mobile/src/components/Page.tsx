@@ -60,6 +60,7 @@ import {
 import { ENDPOINT } from "../env";
 import {
   Avatar,
+  Badge,
   Box,
   Button,
   ButtonGroup,
@@ -90,6 +91,7 @@ export default function Page(props: {
   endButtons?: React.ReactNode;
   background?: string;
   noHeader?: boolean;
+  isBeta?: boolean;
 }) {
   const flags = useFlags(["floating_navbar"]);
 
@@ -134,6 +136,11 @@ export default function Page(props: {
               size={"lg"}
             >
               {props.title}
+              {props.isBeta && (
+                <Badge ml={2} colorScheme={"red"}>
+                  {$$("general.beta")}
+                </Badge>
+              )}
             </Heading>
             <ButtonGroup>
               {props.endButtons}
