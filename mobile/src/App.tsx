@@ -111,6 +111,7 @@ import EatingPlanViewer from "./pages/eatingplans/EatingPlanViewer";
 import Licenses from "./pages/account/Licenses";
 import { $$ } from "./translations/i18n";
 import LanguageSwitcher from "./components/LanguageSwitcher";
+import AITest from "./pages/AITest";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -198,6 +199,7 @@ export default function App() {
       "/account": ManageAccount,
       "/account/licenses": Licenses,
       "/admin": AdminDashboard,
+      "/ai-test": AITest,
       "/admin/content": AdminContentDashboard,
       "/admin/content/categories": AdminContentCategoryDashboard,
       "/admin/content/videos": AdminVideosDashboard,

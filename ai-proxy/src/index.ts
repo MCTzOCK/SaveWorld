@@ -11,13 +11,9 @@
 import Fastify from "fastify";
 import fastifyCors from "@fastify/cors";
 import * as process from "process";
-import { createHash } from "crypto";
-import { getRedisClient } from "./redis";
-import { translateOnlineV2 } from "./translate";
+import { aiPrompt } from "./ai";
 
 (async () => {
-  const redis = await getRedisClient();
-
   const fastify = Fastify({
     logger: true,
     ignoreDuplicateSlashes: true,
@@ -36,15 +32,14 @@ import { translateOnlineV2 } from "./translate";
     });
   });
 
-  fastify.post("/translate", async (req, res) => {
+  fastify.post("/llama", async (req, res) => {
     try {
       const body = req.body as {
-        text: string;
-        to: string;
-        from?: string;
+        prompt: string;
+        maxTokens?: number;
       };
 
-      if (!body.text || !body.to) {
+      if (!body.prompt) {
         res.status(400);
         res.send({
           error: "Bad Request",
@@ -52,32 +47,17 @@ import { translateOnlineV2 } from "./translate";
         return;
       }
 
-      const text = body.text;
-      const to = body.to;
-      const from = body.from || "de";
+      const prompt = body.prompt;
 
-      const textHash =
-        from + "_" + to + "_" + createHash("sha256").update(text).digest("hex");
+      const result = await aiPrompt({
+        prompt: prompt,
+        maxTokens: body.maxTokens || 150,
+      });
 
-      if (await redis.exists(textHash)) {
-        res.status(200);
-        res.send({
-          text: await redis.get(textHash),
-        });
-      } else {
-        const translated = await translateOnlineV2({
-          text: text,
-          to: to,
-          from: from,
-        });
-
-        await redis.set(textHash, translated);
-
-        res.status(200);
-        res.send({
-          text: translated,
-        });
-      }
+      res.status(200);
+      res.send({
+        result: result,
+      });
     } catch (e) {
       res.status(500);
       res.send({
