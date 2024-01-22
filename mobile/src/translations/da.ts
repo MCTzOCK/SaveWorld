@@ -618,5 +618,17 @@ export const da = {
   "user.password.confirm": "Bekræft din adgangskode",
   "user.role.admin": "Administrator",
   "user.user": "Brugere",
-  "user.username": "Brugernavn brugernavn"
+  "user.username": "Brugernavn brugernavn",
+  "pages.ai.title": "KI tip",
+  "pages.ai.text": "Vores AI-system kan give dig tips til, hvordan du lever mere bæredygtigt. Men du kan også spørge andre spørgsmål.",
+  "pages.ai.powered.by": "Drevet af GPT3",
+  "general.beta": "Beta",
+  "pages.ai.prompts.eco.tipps": "Praktiske tips kun til dig",
+  "pages.ai.prompts.projects.ideas": "Idéer til øko-projekter",
+  "pages.ai.prompts.blog.template": "Blogskabelon",
+  "pages.ai.prompts.sustainability.fact": "Bæredygtighedsloven",
+  "pages.ai.prompt.placeholder": "Stil et spørgsmål",
+  "pages.ai.left.contingent": "Andre anmodninger: %0",
+  "pages.ai.prompts.blog.topic": "Topic",
+  "pages.ai.prompts.blog.topic.description": "Vælg et tema til din blog"
 };

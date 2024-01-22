@@ -618,5 +618,17 @@ export const el = {
   "user.password.confirm": "Επιβεβαίωση κωδικού πρόσβασης",
   "user.role.admin": "Διαχειριστής",
   "user.user": "Χρήστες",
-  "user.username": "Όνομα χρήστη"
+  "user.username": "Όνομα χρήστη",
+  "pages.ai.title": "Συμβουλές KI",
+  "pages.ai.text": "Το σύστημα τεχνητής νοημοσύνης μπορεί να σας δώσει συμβουλές για το πώς να ζήσετε πιο βιώσιμη. Αλλά μπορείτε επίσης να κάνετε και άλλες ερωτήσεις.",
+  "pages.ai.powered.by": "Με ισχύ GPT3",
+  "general.beta": "Βήτα",
+  "pages.ai.prompts.eco.tipps": "Πρακτικές συμβουλές μόνο για εσάς",
+  "pages.ai.prompts.projects.ideas": "Ιδέες για οικολογικά έργα",
+  "pages.ai.prompts.blog.template": "Πρότυπο ιστολογίου",
+  "pages.ai.prompts.sustainability.fact": "Νόμος για τη βιωσιμότητα",
+  "pages.ai.prompt.placeholder": "Κάνε μια ερώτηση",
+  "pages.ai.left.contingent": "Άλλες αιτήσεις: %0",
+  "pages.ai.prompts.blog.topic": "Θέμα",
+  "pages.ai.prompts.blog.topic.description": "Επιλέξτε ένα θέμα για το blog σας"
 };

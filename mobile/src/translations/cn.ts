@@ -76,12 +76,10 @@ export const cn = {
   "components.e2.summary.of.day": "内容提要",
   "components.e2.unnamed.action": "未知动作",
   "components.e2.weekly.overview": "每周概览",
-  "components.e2projects.edit.members.intro":
-    "您的项目共有% 0 个成员 。 每个成员可发挥以下三个作用之一:",
+  "components.e2projects.edit.members.intro": "您的项目共有% 0 个成员 。 每个成员可发挥以下三个作用之一:",
   "components.e2projects.homepage.segment.delete.confirm": "您真的要删除段吗 ?",
   "components.e2projects.homepage.segment.delete.error": "无法删除段 :% 0",
-  "components.e2projects.homepage.segment.list.helper.text":
-    "将条目分出两个换行符.",
+  "components.e2projects.homepage.segment.list.helper.text": "将条目分出两个换行符.",
   "components.e2projects.homepage.segment.list.placeholder": "输入列表",
   "components.e2projects.homepage.segment.pin": "附录",
   "components.e2projects.homepage.segment.pin.error": "无法附加部分 :% 0",
@@ -90,10 +88,8 @@ export const cn = {
   "components.e2projects.homepage.segment.update.error": "无法保存段 :% 0",
   "components.e2projects.homepage.segments.new": "新建部分",
   "components.e2projects.homepage.segments.new.choose": "选择一段",
-  "components.e2projects.homepage.segments.new.default":
-    "图片描述 * _/ community_blank_banner.jpg",
-  "components.e2projects.homepage.segments.new.default.list":
-    "第一条 下一个条目",
+  "components.e2projects.homepage.segments.new.default": "图片描述 * _/ community_blank_banner.jpg",
+  "components.e2projects.homepage.segments.new.default.list": "第一条 下一个条目",
   "components.e2projects.homepage.segments.new.enter.title": "输入标题",
   "components.e2projects.homepage.segments.new.error": "无法创建段 :% 0",
   "components.e2projects.homepage.segments.new.list": "列表",
@@ -104,14 +100,11 @@ export const cn = {
   "components.e2projects.members.remove": "删除此项目",
   "components.e2projects.members.remove.confirm": "您真的要删除成员吗 ?",
   "components.e2projects.members.roles.admin": "署长",
-  "components.e2projects.members.roles.admin.description":
-    "可以编辑项目信息,主页部分,管理成员并删除项目.",
+  "components.e2projects.members.roles.admin.description": "可以编辑项目信息,主页部分,管理成员并删除项目.",
   "components.e2projects.members.roles.editor": "编辑器",
-  "components.e2projects.members.roles.editor.description":
-    "可以删除管理员所能删除的除了项目之外的一切,并改变成员的角色.",
+  "components.e2projects.members.roles.editor.description": "可以删除管理员所能删除的除了项目之外的一切,并改变成员的角色.",
   "components.e2projects.members.roles.member": "成员",
-  "components.e2projects.members.roles.member.description":
-    "我看得见一切但无所作为. (标准卷)",
+  "components.e2projects.members.roles.member.description": "我看得见一切但无所作为. (标准卷)",
   "components.e2projects.project.add.to.calendar": "添加到日历",
   "components.e2projects.project.at.day": "项目",
   "components.e2projects.project.at.location": "该地点的项目",
@@ -242,8 +235,7 @@ export const cn = {
   "menu.tools": "工具",
   "menu.tracker": "跟踪器",
   "menu.videos": "视频",
-  "page.404.description":
-    "目前还没有这个功能. 如果你觉得这是个错误 请联系我们.",
+  "page.404.description": "目前还没有这个功能. 如果你觉得这是个错误 请联系我们.",
   "page.404.home": "家庭电话",
   "page.account.2fa": "两个因素认证",
   "page.account.2fa.activated": "成功启动 ! 在应用程序中输入以下代码 :% 0",
@@ -253,8 +245,7 @@ export const cn = {
   "page.account.2fa.error": "激活时出错 : % 0 个",
   "page.account.dangerzone": "危险区",
   "page.account.delete.account": "删除账户",
-  "page.account.delete.account.description":
-    "您真的要删除您的账户吗 ? 这事不能解决!",
+  "page.account.delete.account.description": "您真的要删除您的账户吗 ? 这事不能解决!",
   "page.account.delete.account.error": "删除时出错, 请联系支持 :% 0",
   "page.account.delete.pfp.description": "您真的要删除您的配置文件吗 ?",
   "page.account.delete.pfp.error": "无法删除配置文件图像 :% 0",
@@ -282,8 +273,7 @@ export const cn = {
   "page.notifications.error.loading": "无法装入信件 :% 0",
   "page.notifications.read": "更多信息",
   "page.notifications.unread": "未读",
-  "page.offline.description":
-    "要使用SaveWorld,需要连接互联网. 检查一下你的网络连接 再试一次.",
+  "page.offline.description": "要使用SaveWorld,需要连接互联网. 检查一下你的网络连接 再试一次.",
   "page.offline.title": "无因特网",
   "page.register.error": "注册时出错 : % 0 个",
   "page.register.success": "注册成功! 请确认您的电子邮件地址 .",
@@ -296,8 +286,7 @@ export const cn = {
   "page.support.category.report.post": "报告",
   "page.support.category.report.user": "报表用户",
   "page.support.choose.category": "选择类别",
-  "page.support.description":
-    "你有问题吗? 那就给我们写信! 或者,您也可以通过电子邮件联系我们:",
+  "page.support.description": "你有问题吗? 那就给我们写信! 或者,您也可以通过电子邮件联系我们:",
   "page.support.error": "您的请求无法发送 :% 0",
   "page.support.form.confirm": "您真的要发送此请求吗 ?",
   "page.support.form.missing.category": "请选择一个类别 .",
@@ -310,8 +299,7 @@ export const cn = {
   "pages.admin.category.no.categories": "未找到分类 .",
   "pages.admin.category.title": "类别",
   "pages.admin.content.categories.and.interests": "类别( P) :",
-  "pages.admin.content.categories.and.interests.description":
-    "您可以在此管理类别和权益 .",
+  "pages.admin.content.categories.and.interests.description": "您可以在此管理类别和权益 .",
   "pages.admin.content.videos.description": "您可以在这里管理视频 .",
   "pages.admin.e2projects.delete": "删除工程 ?",
   "pages.admin.e2projects.delete.description": "您真的要删除工程吗 ?",
@@ -387,16 +375,12 @@ export const cn = {
   "pages.community.create.blog.form.tags.placeholder": "标记( 以逗号分隔)",
   "pages.community.create.blog.form.title": "标题",
   "pages.community.create.blog.form.title.placeholder": "博客标题",
-  "pages.community.create.blog.hint":
-    "使用 @username 标记其他用户。 这给他们一个通知,其他用户可以访问他们的配置!",
+  "pages.community.create.blog.hint": "使用 @username 标记其他用户。 这给他们一个通知,其他用户可以访问他们的配置!",
   "pages.community.create.blog.image": "添加图像",
   "pages.community.create.blog.information": "信息(单击)",
-  "pages.community.create.blog.information.description":
-    "您可以在此创建新博客 。 你可以谈论你的努力 一个更环保意识的生活, 或者只是与社区分享你的想法.",
-  "pages.community.create.blog.information.description.2":
-    "博客由Markdown撰写. Markdown是一种简单的语言,允许您格式化文本. 如果你从来没有与马克唐合作,你可以",
-  "pages.community.create.blog.information.description.3":
-    "提供了最重要的命令概览.",
+  "pages.community.create.blog.information.description": "您可以在此创建新博客 。 你可以谈论你的努力 一个更环保意识的生活, 或者只是与社区分享你的想法.",
+  "pages.community.create.blog.information.description.2": "博客由Markdown撰写. Markdown是一种简单的语言,允许您格式化文本. 如果你从来没有与马克唐合作,你可以",
+  "pages.community.create.blog.information.description.3": "提供了最重要的命令概览.",
   "pages.community.create.blog.publish": "出版物",
   "pages.community.create.blog.title": "新博客",
   "pages.community.dashboard.explore": "发现",
@@ -417,8 +401,7 @@ export const cn = {
   "pages.community.messages.group.member.form.title.placeholder": "输入用户名",
   "pages.community.messages.groups": "组",
   "pages.community.messages.groups.create": "新组",
-  "pages.community.messages.groups.create.description":
-    "输入第一个成员的用户名",
+  "pages.community.messages.groups.create.description": "输入第一个成员的用户名",
   "pages.community.messages.groups.create.error.self": "你不能自己创建一个团体",
   "pages.community.messages.groups.create.subline": "创建新组",
   "pages.community.profile.actions.block.error": "屏蔽错误 :% 0",
@@ -455,10 +438,8 @@ export const cn = {
   "pages.e2projects.map": "地图",
   "pages.e2projects.map.findable": "在地图上",
   "pages.e2projects.map.unfindable": "在地图上未显示",
-  "pages.e2projects.map.unfindable.description":
-    "无法在地图上显示您的工程, 因为确切地址未知 。 地址可以在项目设置中被更改. 重要:点击建议地址接受.",
-  "pages.e2projects.member.status.join":
-    "你想成为这个项目的一部分并作出贡献吗?",
+  "pages.e2projects.map.unfindable.description": "无法在地图上显示您的工程, 因为确切地址未知 。 地址可以在项目设置中被更改. 重要:点击建议地址接受.",
+  "pages.e2projects.member.status.join": "你想成为这个项目的一部分并作出贡献吗?",
   "pages.e2projects.member.status.leave": "你不想参与这个项目吗?",
   "pages.e2projects.member.status.popup.1": "你现在是",
   "pages.e2projects.member.status.popup.member": "计划的一部分!",
@@ -474,22 +455,17 @@ export const cn = {
   "pages.e2projects.start.form.date": "日期",
   "pages.e2projects.start.form.date.placeholder": "项目什么时候开始?",
   "pages.e2projects.start.form.length": "会期",
-  "pages.e2projects.start.form.length.placeholder":
-    "你的项目应该持续多久(天数)?",
+  "pages.e2projects.start.form.length.placeholder": "你的项目应该持续多久(天数)?",
   "pages.e2projects.start.form.location": "地点",
-  "pages.e2projects.start.form.location.placeholder":
-    "你的项目在哪里进行? TIP:从5个字符开始,将显示建议. 点击建议接受.",
+  "pages.e2projects.start.form.location.placeholder": "你的项目在哪里进行? TIP:从5个字符开始,将显示建议. 点击建议接受.",
   "pages.e2projects.start.form.name": "名称",
-  "pages.e2projects.start.form.name.placeholder":
-    "给你的项目一个最能描述的名字.",
+  "pages.e2projects.start.form.name.placeholder": "给你的项目一个最能描述的名字.",
   "pages.e2projects.start.form.suggestions.title": "搜索结果",
-  "pages.e2projects.start.info.description":
-    "每个人都想启动一个项目 这才是重点 但有一些事情你应该考虑:",
+  "pages.e2projects.start.info.description": "每个人都想启动一个项目 这才是重点 但有一些事情你应该考虑:",
   "pages.e2projects.start.info.ls.1": "你的项目应该对环境产生积极影响.",
   "pages.e2projects.start.info.ls.2": "你的项目不能违反现行法律 (如坚持行道",
   "pages.e2projects.start.info.ls.3": "您的项目应该设计为与其他用户的合作.",
-  "pages.e2projects.start.info.ls.4":
-    "你的项目应该有具体的好处(bswp.收集垃圾,植物树,.),",
+  "pages.e2projects.start.info.ls.4": "你的项目应该有具体的好处(bswp.收集垃圾,植物树,.),",
   "pages.e2projects.start.info.ls.5": "你的项目应该遵循复杂的计划.",
   "pages.e2projects.start.info.who": "谁应该开始一个新的项目?",
   "pages.e2projects.start.page2.error.date": "开始日期必须是未来.",
@@ -528,28 +504,23 @@ export const cn = {
   "pages.home.anon.title.5": "贡献",
   "pages.home.anon.title.6": "来啊!",
   "pages.introduction.call.to.action": "改善世界!",
-  "pages.introduction.finished.description":
-    "您已成功完成设置 ! 你现在敢让世界变得更美好!",
+  "pages.introduction.finished.description": "您已成功完成设置 ! 你现在敢让世界变得更美好!",
   "pages.introduction.lifestyle.avoid": "撤销",
-  "pages.introduction.lifestyle.description":
-    "请输入关于你生活方式的数据 这样你就可以设定目标来改善它! 在左边一栏中,您可以看到动作,在右边一栏中您可以输入您在一周中执行此动作的频率.",
+  "pages.introduction.lifestyle.description": "请输入关于你生活方式的数据 这样你就可以设定目标来改善它! 在左边一栏中,您可以看到动作,在右边一栏中您可以输入您在一周中执行此动作的频率.",
   "pages.introduction.lifestyle.save.error": "保存生活方式出错 : % 0 个",
   "pages.introduction.lifestyle.this.action": "这一行动",
   "pages.introduction.lifestyle.weekly.goal": "每周目标",
   "pages.introduction.welcome.choose.later": "稍后选择",
-  "pages.introduction.welcome.description":
-    "欢迎来到拯救世界! 我们很高兴你想改善世界! 为了获得最佳经验,请在这里选择你的兴趣! 你可以随时改变.",
+  "pages.introduction.welcome.description": "欢迎来到拯救世界! 我们很高兴你想改善世界! 为了获得最佳经验,请在这里选择你的兴趣! 你可以随时改变.",
   "pages.learn.channels": "频道",
   "pages.learn.videos.loading.error": "装入视频出错 : % 0 个",
   "pages.learn.videos.loading.error.next": "装入下一张视频出错 : % 0 个",
-  "pages.markdown.description":
-    "Markdown是一种简单的语言,可以让您快速而轻松地格式化文本. Markdown主要用于论坛写博客条目. 您也可以创建一个不下标的条目 。 下面将概述最重要的格式.",
+  "pages.markdown.description": "Markdown是一种简单的语言,可以让您快速而轻松地格式化文本. Markdown主要用于论坛写博客条目. 您也可以创建一个不下标的条目 。 下面将概述最重要的格式.",
   "pages.markdown.headlines": "标题",
   "pages.markdown.headlines.1": "标题1",
   "pages.markdown.headlines.2": "□ 标题2",
   "pages.markdown.headlines.3": "标题3",
-  "pages.markdown.headlines.description":
-    "标题以标签开头。 标签越多,标题就越小. 最多可使用6个标签。 示例",
+  "pages.markdown.headlines.description": "标题以标签开头。 标签越多,标题就越小. 最多可使用6个标签。 示例",
   "pages.markdown.links": "链接",
   "pages.markdown.links.1": "[链接] (https://saveworld.one)",
   "pages.markdown.links.description": "左用方括号和圆括号介绍.",
@@ -562,21 +533,15 @@ export const cn = {
   "pages.markdown.text.formatting": "文本格式化",
   "pages.markdown.text.formatting.bold.1": "*大案文*",
   "pages.markdown.text.formatting.bold.2": "文本(_F)..",
-  "pages.markdown.text.formatting.bold.description":
-    "文字可以被恒星所包围或下划线来格式化其脂肪.",
+  "pages.markdown.text.formatting.bold.description": "文字可以被恒星所包围或下划线来格式化其脂肪.",
   "pages.markdown.text.formatting.bold.italic.1": "*** 大文本和治疗文本***",
   "pages.markdown.text.formatting.bold.italic.2": "·大文本和治疗文本 ",
-  "pages.markdown.text.formatting.bold.italic.description":
-    "文字可以被三颗恒星所包围,也可以被下划线来使它变得肥而有咒语.",
+  "pages.markdown.text.formatting.bold.italic.description": "文字可以被三颗恒星所包围,也可以被下划线来使它变得肥而有咒语.",
   "pages.markdown.text.formatting.italic.1": "** 校正案文* * 联合国",
-  "pages.markdown.text.formatting.italic.2":
-    "\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ >",
-  "pages.markdown.text.formatting.italic.description":
-    "文字可以被两颗恒星所包围,也可以被下划线来使文字具有咒语性.",
-  "pages.markdown.text.formatting.strikethrough.1":
-    "{\\fn黑体\\fs22\\bord1\\shad0\\3aHBE\\4aH00\\fscx67\\fscy66\\2cHFFFFFF\\3cH808080}你觉得呢",
-  "pages.markdown.text.formatting.strikethrough.description":
-    "文字可以用两个倾斜来粘贴.",
+  "pages.markdown.text.formatting.italic.2": "\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ >",
+  "pages.markdown.text.formatting.italic.description": "文字可以被两颗恒星所包围,也可以被下划线来使文字具有咒语性.",
+  "pages.markdown.text.formatting.strikethrough.1": "{\\fn黑体\\fs22\\bord1\\shad0\\3aHBE\\4aH00\\fscx67\\fscy66\\2cHFFFFFF\\3cH808080}你觉得呢",
+  "pages.markdown.text.formatting.strikethrough.description": "文字可以用两个倾斜来粘贴.",
   "pages.quizzes.answer": "答复",
   "pages.quizzes.quiz.time": "查问时间!",
   "pages.quizzes.result": "结果",
@@ -584,8 +549,7 @@ export const cn = {
   "pages.quizzes.result.description": "您回答% 0 ! % 1 个",
   "pages.recipes.cook": "准备食谱",
   "pages.recipes.cookbook": "烹饪本",
-  "pages.recipes.cookbook.description":
-    "在你的烹饪本上,你注意到所有的食谱。 目前,有% 0 个食谱 .",
+  "pages.recipes.cookbook.description": "在你的烹饪本上,你注意到所有的食谱。 目前,有% 0 个食谱 .",
   "pages.recipes.create": "新食谱",
   "pages.recipes.create.error": "创建食谱出错 :% 0",
   "pages.recipes.created": "食谱创造!",
@@ -616,43 +580,32 @@ export const cn = {
   "pages.recipes.steps.delete": "删除步骤",
   "pages.recipes.steps.description": "编制方法如下:",
   "pages.sustainability.call.to.action": "探索文章",
-  "pages.sustainability.section.1":
-    "可持续性是一个非常重要的问题。 它不仅涵盖环境,还包括三个支柱:生态(不世界)、经济(经济)和社会(社会)。\n.",
-  "pages.sustainability.section.2":
-    "这三大支柱必须保持平衡,以便我们有一个可持续的未来。 这三根柱子往往也显示为一面的三角形. 这意味着这三个支柱都同样重要。 当一柱太短时,三角会变得不稳定并可以倾斜. 这意味着,只有在三大支柱都同样重要的情况下,我们才有可持续的未来.",
-  "pages.sustainability.section.3":
-    "即使拯救世界组织主要关注环境,我们也不想忽视另外两个支柱。 因此,你们还将了解这一领域的企业和社会议题.",
+  "pages.sustainability.section.1": "可持续性是一个非常重要的问题。 它不仅涵盖环境,还包括三个支柱:生态(不世界)、经济(经济)和社会(社会)。\n.",
+  "pages.sustainability.section.2": "这三大支柱必须保持平衡,以便我们有一个可持续的未来。 这三根柱子往往也显示为一面的三角形. 这意味着这三个支柱都同样重要。 当一柱太短时,三角会变得不稳定并可以倾斜. 这意味着,只有在三大支柱都同样重要的情况下,我们才有可持续的未来.",
+  "pages.sustainability.section.3": "即使拯救世界组织主要关注环境,我们也不想忽视另外两个支柱。 因此,你们还将了解这一领域的企业和社会议题.",
   "pages.tools.calc": "CO2计算",
   "pages.tools.calc.calculate": "计算",
   "pages.tools.calc.car": "车",
-  "pages.tools.calc.car.description":
-    "看看你的车在一定距离上运行了多少二氧化碳.",
-  "pages.tools.calc.car.description.long":
-    "计算你用车在轨道上花费了多少二氧化碳. 计算基于2022年联邦环境局的数据. 在计算时,您需要线路长度(以公里计)和您的车的燃料消耗(以l/100公里计).",
+  "pages.tools.calc.car.description": "看看你的车在一定距离上运行了多少二氧化碳.",
+  "pages.tools.calc.car.description.long": "计算你用车在轨道上花费了多少二氧化碳. 计算基于2022年联邦环境局的数据. 在计算时,您需要线路长度(以公里计)和您的车的燃料消耗(以l/100公里计).",
   "pages.tools.calc.distance": "距离",
   "pages.tools.calc.ecar": "电动车",
-  "pages.tools.calc.ecar.description":
-    "校正你用电动车在一定距离上用多少CO2,按功耗.",
-  "pages.tools.calc.ecar.description.long":
-    "计算你用车在轨道上花费了多少二氧化碳. 计算基于2022年联邦环境局的数据. 在计算时,您需要距离(以公里计)的长度和您车的功耗(以克瓦克/100克米计).",
+  "pages.tools.calc.ecar.description": "校正你用电动车在一定距离上用多少CO2,按功耗.",
+  "pages.tools.calc.ecar.description.long": "计算你用车在轨道上花费了多少二氧化碳. 计算基于2022年联邦环境局的数据. 在计算时,您需要距离(以公里计)的长度和您车的功耗(以克瓦克/100克米计).",
   "pages.tools.calc.fuel.type": "燃料类型",
   "pages.tools.calc.fuel.type.diesel": "柴油",
   "pages.tools.calc.fuel.type.petrol": "石油",
   "pages.tools.calc.fuel.usage": "燃料消耗100公里",
   "pages.tools.calc.hcar": "氢气车",
-  "pages.tools.calc.hcar.description":
-    "校正你用多少二氧化碳 在一定距离, 通过氢的消耗.",
-  "pages.tools.calc.hcar.description.long":
-    "计算你用车在轨道上花费了多少二氧化碳. 计算基于2022年联邦环境局的数据. 在计算时,您需要路线长度(以公里计)和汽车用氢消耗量(以千克/100公里计).",
+  "pages.tools.calc.hcar.description": "校正你用多少二氧化碳 在一定距离, 通过氢的消耗.",
+  "pages.tools.calc.hcar.description.long": "计算你用车在轨道上花费了多少二氧化碳. 计算基于2022年联邦环境局的数据. 在计算时,您需要路线长度(以公里计)和汽车用氢消耗量(以千克/100公里计).",
   "pages.tools.calc.hydrogen.usage": "每100公里的氢消耗量",
   "pages.tools.calc.power.usage": "电力消耗100公里",
   "pages.tools.calc.search.no.results": "没有找到二氧化碳计算器.",
   "pages.tools.calc.source": "来源",
   "pages.tools.calc.train": "火车(ICE、IC等)",
-  "pages.tools.calc.train.description":
-    "重新计算你乘坐长途列车的二氧化碳排放量.",
-  "pages.tools.calc.train.description.long":
-    "计算你运行的距离是多少二氧化碳。 计算基于夸克的数据. 在计算时,您需要路线长度(以公里计)。 0.036克二氧化碳被逐出每公里,因此,四舍五入可能会出现偏差.",
+  "pages.tools.calc.train.description": "重新计算你乘坐长途列车的二氧化碳排放量.",
+  "pages.tools.calc.train.description.long": "计算你运行的距离是多少二氧化碳。 计算基于夸克的数据. 在计算时,您需要路线长度(以公里计)。 0.036克二氧化碳被逐出每公里,因此,四舍五入可能会出现偏差.",
   "popup.alert.title.default": "报告",
   "popup.close": "关闭",
   "popup.input.label": "投入",
@@ -665,5 +618,5 @@ export const cn = {
   "user.password.confirm": "确认密码",
   "user.role.admin": "署长",
   "user.user": "用户",
-  "user.username": "用户名",
+  "user.username": "用户名"
 };

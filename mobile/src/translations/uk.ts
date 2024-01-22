@@ -618,5 +618,17 @@ export const uk = {
   "user.password.confirm": "Підтвердити пароль",
   "user.role.admin": "Адміністратор",
   "user.user": "Користувачі",
-  "user.username": "Ім'я користувача"
+  "user.username": "Ім'я користувача",
+  "pages.ai.title": "KI поради",
+  "pages.ai.text": "Наша система AI може надати вам поради, як жити більш стійким. Ви також можете звернутися до інших питань.",
+  "pages.ai.powered.by": "Партнерство - GPT3",
+  "general.beta": "Бетмен",
+  "pages.ai.prompts.eco.tipps": "Практичні поради",
+  "pages.ai.prompts.projects.ideas": "Ідеї для еко-проектів",
+  "pages.ai.prompts.blog.template": "Блог шаблон",
+  "pages.ai.prompts.sustainability.fact": "Акт придатності",
+  "pages.ai.prompt.placeholder": "Запитати питання",
+  "pages.ai.left.contingent": "Інші запити: %0",
+  "pages.ai.prompts.blog.topic": "Головна",
+  "pages.ai.prompts.blog.topic.description": "Виберіть тему для вашого блогу"
 };

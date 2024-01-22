@@ -618,5 +618,17 @@ export const es = {
   "user.password.confirm": "Confirme su contraseña",
   "user.role.admin": "Administrador",
   "user.user": "Usuarios",
-  "user.username": "Nombre de usuario"
+  "user.username": "Nombre de usuario",
+  "pages.ai.title": "Consejos de KI",
+  "pages.ai.text": "Nuestro sistema AI le puede dar consejos sobre cómo vivir más sostenible. Pero también puedes hacer otras preguntas.",
+  "pages.ai.powered.by": "Powered by GPT3",
+  "general.beta": "Beta",
+  "pages.ai.prompts.eco.tipps": "Consejos prácticos sólo para usted",
+  "pages.ai.prompts.projects.ideas": "Ideas para proyectos ecológicos",
+  "pages.ai.prompts.blog.template": "Plantilla del Blog",
+  "pages.ai.prompts.sustainability.fact": "Ley de sostenibilidad",
+  "pages.ai.prompt.placeholder": "Haga una pregunta",
+  "pages.ai.left.contingent": "Otras solicitudes: %0",
+  "pages.ai.prompts.blog.topic": "Tema",
+  "pages.ai.prompts.blog.topic.description": "Elija un tema para su blog"
 };
