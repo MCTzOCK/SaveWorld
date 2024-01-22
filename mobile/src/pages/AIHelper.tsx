@@ -139,9 +139,18 @@ export default function AIHelper() {
     {
       displayName: $$("pages.ai.prompts.projects.ideas"),
       icon: <FaProjectDiagram />,
-      process: () => {
+      process: async () => {
+        const topic = await PopupManager.promptAsync({
+          title: $$("pages.ai.prompts.blog.topic"),
+          helperText: $$("pages.ai.prompts.blog.topic.description"),
+        });
+
+        if (!topic) return;
+
         processPrompt(
-          "Nenne mir eine Idee für ein lokales ökologisches Projekt.",
+          "Nenne mir eine Idee für ein lokales nachhaltiges und leicht umsetzbares Projekt, das auf Zusammenarbeit basiert mit dem Schwerpunkt '" +
+            topic +
+            "' (kein Gemeinschaftsgarten).",
         );
       },
     },
