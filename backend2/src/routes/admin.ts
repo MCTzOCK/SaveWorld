@@ -24,7 +24,7 @@ import { FastifySchemas } from "../Schemas";
 import { sendPN } from "../util/sendPN";
 import LifestyleTemplateModel from "../models/LifestyleTemplateModel";
 
-export default async function accountPlugin(app: FastifyInstance, opts: any) {
+export default async function adminPlugin(app: FastifyInstance, opts: any) {
   app.get(
     "/admin/stats",
     {

@@ -291,7 +291,13 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
         return;
       }
 
-      const disallowed = ["_id", "user", "__v"];
+      const disallowed = [
+        "_id",
+        "user",
+        "__v",
+        "ai_left_usage",
+        "ai_resets_usage",
+      ];
 
       for (const key in update) {
         if (disallowed.includes(key)) {

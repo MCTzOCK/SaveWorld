@@ -43,6 +43,16 @@ const UserPreferencesModel = new mongoose.Schema({
     required: false,
     default: [],
   },
+  ai_left_usage: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
+  ai_resets_usage: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
 });
 
 export default mongoose.models?.UserPreferences ||
