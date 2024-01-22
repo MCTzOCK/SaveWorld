@@ -148,8 +148,19 @@ export default function AIHelper() {
     {
       displayName: $$("pages.ai.prompts.blog.template"),
       icon: <FaPen />,
-      process: () => {
-        processPrompt("Schreibe einen Blogpost über Nachhaltigkeit.");
+      process: async () => {
+        const topic = await PopupManager.promptAsync({
+          title: $$("pages.ai.prompts.blog.topic"),
+          helperText: $$("pages.ai.prompts.blog.topic.description"),
+        });
+
+        if (!topic) return;
+
+        processPrompt(
+          "Schreibe einen Blogpost über Nachhaltigkeit mit dem Schwerpunkt '" +
+            topic +
+            "'.",
+        );
       },
     },
     {
@@ -233,9 +244,7 @@ export default function AIHelper() {
                   <Stack
                     p={4}
                     rounded={"md"}
-                    bg={
-                      "linear-gradient(159deg, rgba(74,252,70,1) 0%, rgba(63,94,251,1) 100%)"
-                    }
+                    bg={"brand.600"}
                     textAlign={"center"}
                     gap={4}
                     cursor={"pointer"}
@@ -305,21 +314,12 @@ export default function AIHelper() {
             w={"100%"}
             mt={4}
           >
-            <Badge
-              fontSize={"md"}
-              fontWeight={"700"}
-              padding={2}
-              borderRadius={10}
-              background={
-                "linear-gradient(159deg, rgba(74,252,70,1) 0%, rgba(63,94,251,1) 100%)"
-              }
-              color={"white"}
-            >
+            <Text>
               {$$(
                 "pages.ai.left.contingent",
                 String(prefs?.ai_left_usage || 0),
               )}
-            </Badge>
+            </Text>
           </Flex>
         </MobileBox>
       </Page>

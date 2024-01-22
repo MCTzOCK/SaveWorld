@@ -783,4 +783,6 @@ export const german = {
   "pages.ai.prompts.sustainability.fact": "Nachhaltigkeits-Fakt",
   "pages.ai.prompt.placeholder": "Stelle eine Frage",
   "pages.ai.left.contingent": "Übrige Anfragen: %0",
+  "pages.ai.prompts.blog.topic": "Thema",
+  "pages.ai.prompts.blog.topic.description": "Wähle ein Thema für deinen Blog",
 } as const;
