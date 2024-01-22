@@ -4,13 +4,6 @@ services:
   redis:
     image: "redis:alpine"
     restart: unless-stopped
-  translate_server:
-    build:
-      context: "./translate-server"
-      dockerfile: "Dockerfile"
-    restart: unless-stopped
-    ports:
-      - "8800:3000"
     networks:
       - saveworld
   translate_cache:
@@ -20,10 +13,9 @@ services:
     ports:
       - "8801:3000"
     environment:
-      - "REDIS_URL=redis://redis@redis:6379"
+      - "REDIS_URL=redis://redis:6379"
     restart: unless-stopped
     depends_on:
-      - translate_server
       - redis
     networks:
       - saveworld
