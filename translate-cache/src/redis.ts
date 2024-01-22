@@ -12,7 +12,7 @@ import { createClient } from "redis";
 
 export async function getRedisClient() {
   const client = createClient({
-    url: "redis://app0.coolescoden.de:6379",
+    url: process.env.REDIS_URL || "redis://localhost:6379",
   });
 
   client.on("error", (err) => {
