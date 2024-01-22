@@ -29,7 +29,7 @@ import {
   Textarea,
   UnorderedList,
 } from "@chakra-ui/react";
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { FaExclamation, FaLeaf } from "react-icons/fa6";
 import { FaPen, FaProjectDiagram } from "react-icons/fa";
 import {
@@ -40,11 +40,82 @@ import {
 } from "@ionic/react";
 import { aiPrompt } from "../util/ai";
 import PopupManager from "../util/PopupManager";
+import { REST } from "@saveworld/api-js";
+import { MUserPreferences } from "../types";
 
 export default function AIHelper() {
-  const [answerLength, setAnswerLength] = React.useState<
-    "short" | "medium" | "long" | "longest"
-  >("short");
+  const [prefs, setPrefs] = useState<MUserPreferences | null>(null);
+  const [lifestyleTemplates, setLifestyleTemplates] = useState<string[]>([]);
+  const [lifestyleActions, setLifestyleActions] = useState<
+    {
+      name: string;
+      current: number;
+    }[]
+  >([]);
+
+  useEffect(() => {
+    reloadPrefs();
+    reloadLifestyle();
+  }, []);
+
+  const reloadLifestyle = async () => {
+    const res = await REST.Lifestyle.templates();
+
+    if (res.status !== 200) {
+      PopupManager.alertAsync({
+        title: $$("control.error"),
+        description: res.payload.error,
+      });
+      return;
+    }
+
+    setLifestyleTemplates(res.payload.lst);
+
+    const lifestyle = await REST.Lifestyle.my(
+      localStorage.getItem("token") as string,
+    );
+
+    if (lifestyle.status !== 200) {
+      await PopupManager.alertAsync({
+        title: $$("control.error"),
+        description: lifestyle.payload.error,
+      });
+      return;
+    }
+
+    const lx = lifestyle.payload.lifestyle;
+
+    const lifestyleData = lx.actions.map((action: any) => {
+      const template = res.payload.lst.find(
+        (t: any) => t._id === action.template,
+      );
+
+      return {
+        name: template.name,
+        current: action.currentPerWeek,
+      };
+    });
+
+    setLifestyleActions(lifestyleData);
+
+    console.log(lifestyleData);
+  };
+
+  const reloadPrefs = async () => {
+    const res = await REST.Account.preferences(
+      localStorage.getItem("token") as string,
+    );
+
+    if (res.status !== 200) {
+      PopupManager.alertAsync({
+        title: $$("control.error"),
+        description: res.payload.error,
+      });
+      return;
+    }
+
+    setPrefs(res.payload.prefs);
+  };
 
   const presetPrompts: {
     displayName: string;
@@ -54,42 +125,81 @@ export default function AIHelper() {
     {
       displayName: $$("pages.ai.prompts.eco.tipps"),
       icon: <FaLeaf />,
-      process: () => {},
+      process: () => {
+        processPrompt(
+          "Ich will mein Leben nachhaltiger gestalten. Aktuell sieht es so aus:\n" +
+            lifestyleActions
+              .map((action) => {
+                return `${action.name}: ${action.current}x pro Woche`;
+              })
+              .join("\n"),
+        );
+      },
     },
     {
       displayName: $$("pages.ai.prompts.projects.ideas"),
       icon: <FaProjectDiagram />,
-      process: () => {},
+      process: () => {
+        processPrompt(
+          "Nenne mir eine Idee für ein lokales ökologisches Projekt.",
+        );
+      },
     },
     {
       displayName: $$("pages.ai.prompts.blog.template"),
       icon: <FaPen />,
-      process: () => {},
+      process: () => {
+        processPrompt("Schreibe einen Blogpost über Nachhaltigkeit.");
+      },
     },
     {
       displayName: $$("pages.ai.prompts.sustainability.fact"),
       icon: <FaExclamation />,
-      process: () => {},
+      process: () => {
+        processPrompt("Nenne mir einen zufälligen Fakt über Nachhaltigkeit.");
+      },
     },
   ];
 
+  const [loading, setLoading] = useState(false);
+
   const processPrompt = async (prompt: string) => {
-    const response = await aiPrompt({
-      prompt: prompt,
-      maxTokens:
-        answerLength === "short"
-          ? 50
-          : answerLength === "medium"
-          ? 100
-          : answerLength === "long"
-          ? 150
-          : 250,
+    if (prompt.length < 1) {
+      setLoading(false);
+      return;
+    }
+
+    const res = await REST.AI.predict(
+      localStorage.getItem("token") as string,
+      prompt,
+    );
+
+    setLoading(false);
+    if (res.status !== 200) {
+      await PopupManager.alertAsync({
+        title: $$("control.error"),
+        description: res.payload.error,
+      });
+      return;
+    }
+
+    await PopupManager.alertAsync({
+      title: $$("pages.ai.title"),
+      description: (
+        <>
+          <pre
+            style={{
+              whiteSpace: "pre-wrap",
+              wordWrap: "break-word",
+            }}
+          >
+            {res.payload.message}
+          </pre>
+        </>
+      ),
     });
 
-    PopupManager.alert({
-      title: "Result",
-      description: response,
-    });
+    await reloadPrefs();
   };
 
   return (
@@ -111,65 +221,11 @@ export default function AIHelper() {
                 "linear-gradient(159deg, rgba(74,252,70,1) 0%, rgba(63,94,251,1) 100%)"
               }
               color={"white"}
-              as={Link}
-              href={"https://ai.meta.com/llama/"}
-              target={"_blank"}
             >
               {$$("pages.ai.powered.by")}
             </Badge>
           </Flex>
           <Text>{$$("pages.ai.text")}</Text>
-
-          <IonAccordionGroup
-            style={{
-              borderRadius: "var(--chakra-radii-lg)",
-              marginTop: "1.5rem",
-            }}
-          >
-            <IonAccordion
-              value={"settings"}
-              style={{
-                borderRadius: "var(--chakra-radii-lg)",
-                background: "black",
-              }}
-            >
-              <IonItem slot="header" color="light">
-                <IonLabel>{$$("menu.settings")}</IonLabel>
-              </IonItem>
-              <div className="ion-padding" slot="content">
-                <FormControl>
-                  <FormLabel>
-                    {$$("pages.ai.settings.prompt.length.title")}
-                  </FormLabel>
-                  <Select
-                    value={answerLength}
-                    onChange={(e) => {
-                      setAnswerLength(
-                        e.target.value as
-                          | "short"
-                          | "medium"
-                          | "long"
-                          | "longest",
-                      );
-                    }}
-                  >
-                    <option value={"short"}>
-                      {$$("pages.ai.settings.prompt.length.short")}
-                    </option>
-                    <option value={"medium"}>
-                      {$$("pages.ai.settings.prompt.length.medium")}
-                    </option>
-                    <option value={"long"}>
-                      {$$("pages.ai.settings.prompt.length.long")}
-                    </option>
-                    <option value={"longest"}>
-                      {$$("pages.ai.settings.prompt.length.longest")}
-                    </option>
-                  </Select>
-                </FormControl>
-              </div>
-            </IonAccordion>
-          </IonAccordionGroup>
           <Grid templateColumns={"repeat(2, 1fr)"} gap={4} mt={4}>
             {presetPrompts.map((prompt) => {
               return (
@@ -204,26 +260,32 @@ export default function AIHelper() {
             onSubmit={(e) => {
               e.preventDefault();
 
+              setLoading(true);
+
               const formData = new FormData(e.target as HTMLFormElement);
 
               const prompt = formData.get("prompt");
 
               if (!prompt) {
+                setLoading(false);
                 return;
               }
 
               processPrompt(prompt as string);
             }}
           >
-            <Textarea
-              placeholder={$$("pages.ai.prompt.placeholder")}
-              mt={4}
-              name={"prompt"}
-            />
+            <FormControl isRequired>
+              <Textarea
+                placeholder={$$("pages.ai.prompt.placeholder")}
+                mt={4}
+                name={"prompt"}
+              />
+            </FormControl>
             <Button
               mt={4}
               w={"100%"}
               type={"submit"}
+              isLoading={loading}
               background={
                 "linear-gradient(159deg, rgba(74,252,70,1) 0%, rgba(63,94,251,1) 100%)"
               }
@@ -236,6 +298,29 @@ export default function AIHelper() {
               {$$("general.submit")}
             </Button>
           </form>
+
+          <Flex
+            alignItems={"center"}
+            justifyContent={"center"}
+            w={"100%"}
+            mt={4}
+          >
+            <Badge
+              fontSize={"md"}
+              fontWeight={"700"}
+              padding={2}
+              borderRadius={10}
+              background={
+                "linear-gradient(159deg, rgba(74,252,70,1) 0%, rgba(63,94,251,1) 100%)"
+              }
+              color={"white"}
+            >
+              {$$(
+                "pages.ai.left.contingent",
+                String(prefs?.ai_left_usage || 0),
+              )}
+            </Badge>
+          </Flex>
         </MobileBox>
       </Page>
     </>

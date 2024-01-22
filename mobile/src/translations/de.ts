@@ -775,16 +775,12 @@ export const german = {
   "pages.ai.title": "KI Tipps",
   "pages.ai.text":
     "Unser KI-System kann dir Tipps geben, wie du nachhaltiger leben kannst. Du kannst aber auch andere Fragen stellen.",
-  "pages.ai.powered.by": "Powered by Llama2",
+  "pages.ai.powered.by": "Powered by GPT3",
   "general.beta": "Beta",
   "pages.ai.prompts.eco.tipps": "Praktische Tipps nur für dich",
   "pages.ai.prompts.projects.ideas": "Ideen für Öko-Projekte",
   "pages.ai.prompts.blog.template": "Blog Vorlage",
   "pages.ai.prompts.sustainability.fact": "Nachhaltigkeits-Fakt",
   "pages.ai.prompt.placeholder": "Stelle eine Frage",
-  "pages.ai.settings.prompt.length.short": "Kurze Antworten",
-  "pages.ai.settings.prompt.length.medium": "Mittlere Antworten",
-  "pages.ai.settings.prompt.length.long": "Lange Antworten",
-  "pages.ai.settings.prompt.length.longest": "Ausführlichste Antworten",
-  "pages.ai.settings.prompt.length.title": "Länge der Antworten",
+  "pages.ai.left.contingent": "Übrige Anfragen: %0",
 } as const;

@@ -22,11 +22,15 @@ export async function prompt(o: { model?: string; prompt: string }) {
         content: "Du bist ein Experte für Nachhaltigkeit!",
       },
       {
+        role: "system",
+        content: "Halte dich möglichst kurz, maximal 300 Zeichen.",
+      },
+      {
         role: "user",
         content: o.prompt,
       },
     ],
-    model: "gpt-3.5-turbo",
+    model: "gpt-3.5-turbo-0613",
   });
 
   return chatCompletion.choices[0].message.content;

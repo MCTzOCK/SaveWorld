@@ -76,7 +76,7 @@ import { theme } from "../theme/chakra";
 import DrawerMenu from "./DrawerMenu";
 import FloatingNavbar from "./FloatingNavbar";
 import { useFlags } from "flagsmith/react";
-import { FaBars } from "react-icons/fa6";
+import { FaBars, FaRobot } from "react-icons/fa6";
 import { FaHome } from "react-icons/fa";
 import { $$ } from "../translations/i18n";
 
@@ -93,7 +93,7 @@ export default function Page(props: {
   noHeader?: boolean;
   isBeta?: boolean;
 }) {
-  const flags = useFlags(["floating_navbar"]);
+  const flags = useFlags(["floating_navbar", "ai_helper"]);
 
   const ref = React.useRef<HTMLElement>(null);
 
@@ -144,6 +144,18 @@ export default function Page(props: {
             </Heading>
             <ButtonGroup>
               {props.endButtons}
+              {flags.ai_helper.enabled && (
+                <IconButton
+                  size={"lg"}
+                  onClick={() => {
+                    router.push("/ai");
+                  }}
+                  icon={<FaRobot />}
+                  aria-label={$$("pages.ai.title")}
+                  variant={"ghost"}
+                  color={props.redGradient ? "red.500" : "brand.500"}
+                />
+              )}
               <IconButton
                 size={"lg"}
                 onClick={() => {

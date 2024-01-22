@@ -58,7 +58,14 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
         } else {
           leftContingent = 5;
         }
-        prefs.ai_left_usage = leftContingent - 1;
+
+        if (leftContingent - 1 < 0) {
+          prefs.ai_left_usage = 0;
+        } else {
+          prefs.ai_left_usage = leftContingent - 1;
+        }
+
+        await prefs.save();
       }
 
       if (leftContingent <= 0) {
@@ -75,7 +82,7 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
 
       res.send({
         message: chatCompletion,
-        leftContingent: leftContingent,
+        leftContingent: leftContingent - 1,
       });
     },
   );
