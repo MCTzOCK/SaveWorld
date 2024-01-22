@@ -1590,4 +1590,22 @@ export class REST {
       });
     },
   };
+
+  public static AI = {
+    /**
+     * @return the AI prediction for the requested data
+     * @param token used to authenticate
+     * @param prompt the prompt to use
+     */
+    predict: async (token: string, prompt: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/ai/v1",
+        method: "POST",
+        token: token,
+        body: {
+          prompt: prompt,
+        },
+      });
+    },
+  };
 }
