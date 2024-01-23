@@ -7,6 +7,10 @@
  * Created At: 21.01.2024
  *
  */
+import { translateOnlineV3 } from "./online-translate";
+import { REST } from "@saveworld/api-js";
+import PopupManager from "./PopupManager";
+import { $$ } from "../translations/i18n";
 
 export async function aiPrompt(options: {
   prompt: string;
@@ -27,6 +31,33 @@ export async function aiPrompt(options: {
   const j = await res.json();
 
   const output = j.result;
+
+  return output;
+}
+
+export async function promptV2(prompt: string): Promise<string> {
+  const res = await REST.AI.predict(
+    localStorage.getItem("token") as string,
+    prompt,
+  );
+
+  if (res.status !== 200) {
+    await PopupManager.alertAsync({
+      title: $$("control.error"),
+      description: res.payload.error,
+    });
+    return "";
+  }
+
+  let output = res.payload.message;
+
+  if (window.language !== "de") {
+    output = await translateOnlineV3({
+      text: output,
+      from: "de",
+      to: window.language,
+    });
+  }
 
   return output;
 }

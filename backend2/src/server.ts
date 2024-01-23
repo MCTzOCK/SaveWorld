@@ -30,6 +30,8 @@ import CreateChatMessageChannel from "./socket/channels/CreateChatMessageChannel
 import ChatMessagesChannel from "./socket/channels/ChatMessagesChannel";
 import AddChatGroupMemberChannel from "./socket/channels/AddChatGroupMemberChannel";
 import SocketRegistry from "./socket/SocketRegistry";
+import * as scheduler from "node-schedule";
+import UserPreferencesModel from "./models/UserPreferencesModel";
 
 (async () => {
   const openapiDocs = await import("fastify-openapi-docs");
@@ -52,12 +54,6 @@ import SocketRegistry from "./socket/SocketRegistry";
     }
   }
 
-  /*  fastify.register(fastifyCors, {
-    origin: "*",
-    methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Accept", "X-AUTH"],
-  });
-*/
   fastify.addHook("onSend", async function (req, res) {
     res.headers({
       "Access-Control-Allow-Origin": "*",
@@ -249,4 +245,13 @@ import SocketRegistry from "./socket/SocketRegistry";
   });
 
   await fastify.listen(process.env.PORT || 3000, "0.0.0.0");
+
+  scheduler.scheduleJob("28 12 * * *", async () => {
+    await UserPreferencesModel.updateMany(
+      {
+        ai_left_usage: { $lt: 6 },
+      },
+      { $set: { ai_left_usage: 5 } },
+    );
+  });
 })();

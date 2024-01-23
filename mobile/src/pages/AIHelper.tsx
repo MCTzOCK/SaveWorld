@@ -38,7 +38,7 @@ import {
   IonItem,
   IonLabel,
 } from "@ionic/react";
-import { aiPrompt } from "../util/ai";
+import { aiPrompt, promptV2 } from "../util/ai";
 import PopupManager from "../util/PopupManager";
 import { REST } from "@saveworld/api-js";
 import { MUserPreferences } from "../types";
@@ -189,19 +189,11 @@ export default function AIHelper() {
       return;
     }
 
-    const res = await REST.AI.predict(
-      localStorage.getItem("token") as string,
-      prompt,
-    );
+    const output = await promptV2(prompt);
+
+    if (output === "") return;
 
     setLoading(false);
-    if (res.status !== 200) {
-      await PopupManager.alertAsync({
-        title: $$("control.error"),
-        description: res.payload.error,
-      });
-      return;
-    }
 
     await PopupManager.alertAsync({
       title: $$("pages.ai.title"),
@@ -213,7 +205,7 @@ export default function AIHelper() {
               wordWrap: "break-word",
             }}
           >
-            {res.payload.message}
+            {output}
           </pre>
         </>
       ),
@@ -253,11 +245,15 @@ export default function AIHelper() {
                   <Stack
                     p={4}
                     rounded={"md"}
-                    bg={"brand.600"}
+                    bg={loading ? "gray.600" : "brand.600"}
                     textAlign={"center"}
                     gap={4}
                     cursor={"pointer"}
-                    onClick={prompt.process}
+                    onClick={() => {
+                      if (loading) return;
+                      setLoading(true);
+                      prompt.process();
+                    }}
                   >
                     <Flex
                       w={"100%"}
