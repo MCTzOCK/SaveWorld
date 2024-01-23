@@ -168,6 +168,7 @@ export default function AIHelper() {
         });
 
         if (!topic) {
+          console.log(1);
           setLoading(false);
           return;
         }
@@ -256,7 +257,7 @@ export default function AIHelper() {
                     textAlign={"center"}
                     gap={4}
                     cursor={"pointer"}
-                    onClick={() => {
+                    onClick={async () => {
                       if (loading) return;
                       setLoading(true);
                       prompt.process();

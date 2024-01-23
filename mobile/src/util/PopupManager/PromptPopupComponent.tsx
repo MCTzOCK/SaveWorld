@@ -50,6 +50,7 @@ export default function PromptPopupComponent(props: {
       <AlertDialog
         isOpen={isOpen}
         onClose={() => {
+          props.callback("");
           onClose();
           props.onClose();
         }}
@@ -89,6 +90,7 @@ export default function PromptPopupComponent(props: {
             <AlertDialogFooter>
               <Button
                 onClick={() => {
+                  props.callback("");
                   onClose();
                   props.onClose();
                 }}
