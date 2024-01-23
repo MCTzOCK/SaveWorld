@@ -1973,7 +1973,7 @@ export const FastifySchemas = {
           type: "array",
         },
       },
-      required: ["comment", "content", "tags"],
+      required: ["content", "tags"],
     },
     response: {
       401: {
