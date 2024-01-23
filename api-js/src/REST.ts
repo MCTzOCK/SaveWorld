@@ -1412,7 +1412,7 @@ export class REST {
           listId +
           "&itemId=" +
           itemId,
-        method: "POST",
+        method: "GET",
         token: token,
       });
     },
