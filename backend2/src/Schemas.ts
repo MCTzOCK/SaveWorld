@@ -1595,11 +1595,11 @@ export const FastifySchemas = {
   eco_projects_homepage_create_segment: {
     querystring: {
       properties: {
-        projectId: {
+        id: {
           type: "string",
         },
       },
-      required: ["projectId"],
+      required: ["id"],
     },
     body: {
       properties: {
