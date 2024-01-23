@@ -763,7 +763,7 @@ export class REST {
     likeBlogEntry: async (token: string, id: string) => {
       return await makeRequest({
         path: RESTEnv.API_URL + "/community/blog/like?id=" + id,
-        method: "POST",
+        method: "GET",
         token: token,
       });
     },
@@ -821,7 +821,7 @@ export class REST {
     follow: async (token: string, username: string) => {
       return await makeRequest({
         path: RESTEnv.API_URL + "/community/profile/" + username + "/follow",
-        method: "POST",
+        method: "GET",
         token: token,
       });
     },

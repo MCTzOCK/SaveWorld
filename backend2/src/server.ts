@@ -40,6 +40,11 @@ import UserPreferencesModel from "./models/UserPreferencesModel";
     logger: {
       level: "info",
     },
+    ajv: {
+      customOptions: {
+        allowUnionTypes: true,
+      },
+    },
     maxParamLength: 1000,
   });
 
