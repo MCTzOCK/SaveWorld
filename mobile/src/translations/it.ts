@@ -630,5 +630,6 @@ export const it = {
   "pages.ai.prompt.placeholder": "Fai una domanda",
   "pages.ai.left.contingent": "Altre richieste: %0",
   "pages.ai.prompts.blog.topic": "Argomento",
-  "pages.ai.prompts.blog.topic.description": "Scegli un tema per il tuo blog"
+  "pages.ai.prompts.blog.topic.description": "Scegli un tema per il tuo blog",
+  "pages.ai.left.contingent.refill": "Prossimo riempimento: 00:00."
 };

@@ -630,5 +630,6 @@ export const ja = {
   "pages.ai.prompt.placeholder": "お問い合わせ",
   "pages.ai.left.contingent": "その他のリクエスト: %0",
   "pages.ai.prompts.blog.topic": "トピック",
-  "pages.ai.prompts.blog.topic.description": "ブログのテーマを選択してください"
+  "pages.ai.prompts.blog.topic.description": "ブログのテーマを選択してください",
+  "pages.ai.left.contingent.refill": "次の充填: 00:00."
 };

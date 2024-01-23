@@ -42,6 +42,7 @@ import { aiPrompt, promptV2 } from "../util/ai";
 import PopupManager from "../util/PopupManager";
 import { REST } from "@saveworld/api-js";
 import { MUserPreferences } from "../types";
+import moment from "moment";
 
 export default function AIHelper() {
   const [prefs, setPrefs] = useState<MUserPreferences | null>(null);
@@ -318,6 +319,7 @@ export default function AIHelper() {
             justifyContent={"center"}
             w={"100%"}
             mt={4}
+            direction={"column"}
           >
             <Text>
               {$$(
@@ -325,6 +327,7 @@ export default function AIHelper() {
                 String(prefs?.ai_left_usage || 0),
               )}
             </Text>
+            <Text>{$$("pages.ai.left.contingent.refill")}</Text>
           </Flex>
         </MobileBox>
       </Page>

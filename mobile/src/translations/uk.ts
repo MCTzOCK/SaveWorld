@@ -630,5 +630,6 @@ export const uk = {
   "pages.ai.prompt.placeholder": "Запитати питання",
   "pages.ai.left.contingent": "Інші запити: %0",
   "pages.ai.prompts.blog.topic": "Головна",
-  "pages.ai.prompts.blog.topic.description": "Виберіть тему для вашого блогу"
+  "pages.ai.prompts.blog.topic.description": "Виберіть тему для вашого блогу",
+  "pages.ai.left.contingent.refill": "Наступна начинка: 00:00."
 };

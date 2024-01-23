@@ -630,5 +630,6 @@ export const ko = {
   "pages.ai.prompt.placeholder": "자주 묻는 질문",
   "pages.ai.left.contingent": "다른 요청: %0",
   "pages.ai.prompts.blog.topic": "이름 *",
-  "pages.ai.prompts.blog.topic.description": "블로그에 대한 테마를 선택하십시오"
+  "pages.ai.prompts.blog.topic.description": "블로그에 대한 테마를 선택하십시오",
+  "pages.ai.left.contingent.refill": "다음 충전 : 00:00."
 };

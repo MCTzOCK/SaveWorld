@@ -630,5 +630,6 @@ export const da = {
   "pages.ai.prompt.placeholder": "Stil et spørgsmål",
   "pages.ai.left.contingent": "Andre anmodninger: %0",
   "pages.ai.prompts.blog.topic": "Topic",
-  "pages.ai.prompts.blog.topic.description": "Vælg et tema til din blog"
+  "pages.ai.prompts.blog.topic.description": "Vælg et tema til din blog",
+  "pages.ai.left.contingent.refill": "Næste påfyldning: 00:00."
 };

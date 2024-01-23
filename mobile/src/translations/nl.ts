@@ -630,5 +630,6 @@ export const nl = {
   "pages.ai.prompt.placeholder": "Stel een vraag",
   "pages.ai.left.contingent": "Andere verzoeken: %0",
   "pages.ai.prompts.blog.topic": "Onderwerp",
-  "pages.ai.prompts.blog.topic.description": "Kies een thema voor uw blog"
+  "pages.ai.prompts.blog.topic.description": "Kies een thema voor uw blog",
+  "pages.ai.left.contingent.refill": "Volgende vulling: 00:00."
 };
