@@ -1263,7 +1263,7 @@ export default async function ecoProjectsPlugin(
     },
   );
 
-  app.post(
+  app.get(
     "/eco-projects/project/members/change-role",
     {
       config: {

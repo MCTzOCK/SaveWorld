@@ -1204,7 +1204,7 @@ export class REST {
           userId +
           "&newRole=" +
           newRole,
-        method: "POST",
+        method: "GET",
         token: token,
       });
     },
