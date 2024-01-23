@@ -49,7 +49,7 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
 
       if (user.role === "admin") {
         leftContingent = 100000;
-        model = "gpt-4-0314";
+        //model = "gpt-4-0613";
       } else {
         const prefs = await UserPreferencesModel.findOne({
           user: user._id,
