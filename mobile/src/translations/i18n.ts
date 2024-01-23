@@ -76,11 +76,6 @@ const languages = {
       type: "auto",
       cc: "kr",
     },
-    cn: {
-      displayName: "中文",
-      type: "auto",
-      cc: "cn",
-    },
   },
 };
 
@@ -88,7 +83,6 @@ import { german } from "./de";
 import { en } from "./en";
 import { es } from "./es";
 import { fr } from "./fr";
-import { cn } from "./cn";
 import { pt } from "./pt";
 import { it } from "./it";
 import { nl } from "./nl";
@@ -138,8 +132,6 @@ function getLanguageSet(language: string): Record<Keys, string> {
       return es;
     case "fr":
       return fr;
-    case "cn":
-      return cn;
     case "pt":
       return pt;
     case "it":

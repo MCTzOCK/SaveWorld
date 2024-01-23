@@ -618,5 +618,18 @@ export const ko = {
   "user.password.confirm": "비밀번호",
   "user.role.admin": "관리자",
   "user.user": "이름 *",
-  "user.username": "사용자 이름"
+  "user.username": "사용자 이름",
+  "pages.ai.title": "KI 팁",
+  "pages.ai.text": "우리의 AI 시스템은 당신에게 더 지속 가능한 삶을 살 수있는 방법에 대한 팁을 줄 수 있습니다. 그러나 다른 질문을 할 수 있습니다.",
+  "pages.ai.powered.by": "에 의해 구동 GPT3",
+  "general.beta": "베타",
+  "pages.ai.prompts.eco.tipps": "당신에게만 연습 팁",
+  "pages.ai.prompts.projects.ideas": "Eco-projects의 아이디어",
+  "pages.ai.prompts.blog.template": "블로그 템플릿",
+  "pages.ai.prompts.sustainability.fact": "지속가능성",
+  "pages.ai.prompt.placeholder": "자주 묻는 질문",
+  "pages.ai.left.contingent": "다른 요청: %0",
+  "pages.ai.prompts.blog.topic": "이름 *",
+  "pages.ai.prompts.blog.topic.description": "블로그에 대한 테마를 선택하십시오",
+  "pages.ai.left.contingent.refill": "다음 충전 : 00:00."
 };

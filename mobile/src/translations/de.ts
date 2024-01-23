@@ -772,4 +772,18 @@ export const german = {
   "user.role.admin": "Administrator",
   "user.user": "Benutzer",
   "user.username": "Benutzername",
+  "pages.ai.title": "KI Tipps",
+  "pages.ai.text":
+    "Unser KI-System kann dir Tipps geben, wie du nachhaltiger leben kannst. Du kannst aber auch andere Fragen stellen.",
+  "pages.ai.powered.by": "Powered by GPT3",
+  "general.beta": "Beta",
+  "pages.ai.prompts.eco.tipps": "Praktische Tipps nur für dich",
+  "pages.ai.prompts.projects.ideas": "Ideen für Öko-Projekte",
+  "pages.ai.prompts.blog.template": "Blog Vorlage",
+  "pages.ai.prompts.sustainability.fact": "Nachhaltigkeits-Fakt",
+  "pages.ai.prompt.placeholder": "Stelle eine Frage",
+  "pages.ai.left.contingent": "Übrige Anfragen: %0",
+  "pages.ai.prompts.blog.topic": "Thema",
+  "pages.ai.prompts.blog.topic.description": "Wähle ein Thema für deinen Blog",
+  "pages.ai.left.contingent.refill": "Nächste Auffüllung: 00:00 Uhr.",
 } as const;

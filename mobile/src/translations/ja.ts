@@ -618,5 +618,18 @@ export const ja = {
   "user.password.confirm": "パスワードの確認",
   "user.role.admin": "管理者",
   "user.user": "ユーザ名",
-  "user.username": "ユーザ名"
+  "user.username": "ユーザ名",
+  "pages.ai.title": "KIの先端",
+  "pages.ai.text": "当社のAIシステムは、より持続可能な生活方法に関するヒントを提供します。 しかし、他の質問をすることもできます.",
+  "pages.ai.powered.by": "GPT3の特長",
+  "general.beta": "ベタ",
+  "pages.ai.prompts.eco.tipps": "あなただけの実用的なヒント",
+  "pages.ai.prompts.projects.ideas": "エコプロジェクトのためのアイデア",
+  "pages.ai.prompts.blog.template": "ブログテンプレート",
+  "pages.ai.prompts.sustainability.fact": "サステナビリティ法",
+  "pages.ai.prompt.placeholder": "お問い合わせ",
+  "pages.ai.left.contingent": "その他のリクエスト: %0",
+  "pages.ai.prompts.blog.topic": "トピック",
+  "pages.ai.prompts.blog.topic.description": "ブログのテーマを選択してください",
+  "pages.ai.left.contingent.refill": "次の充填: 00:00."
 };

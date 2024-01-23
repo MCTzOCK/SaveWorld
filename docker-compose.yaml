@@ -1,0 +1,45 @@
+version: "3.7"
+name: "saveworld"
+services:
+  redis:
+    image: "redis:alpine"
+    restart: unless-stopped
+    networks:
+      - saveworld
+  translate_cache:
+    build:
+      context: "./translate-cache"
+      dockerfile: "Dockerfile"
+    ports:
+      - "8801:3000"
+    environment:
+      - "REDIS_URL=redis://redis:6379"
+    restart: unless-stopped
+    depends_on:
+      - redis
+    networks:
+      - saveworld
+  backend:
+    build:
+      context: "./backend2"
+      dockerfile: "Dockerfile"
+    env_file: "./.env.backend"
+    restart: always
+    ports:
+      - "8802:3000"
+    networks:
+      - saveworld
+  backend_dev:
+    build:
+      context: "./backend2"
+      dockerfile: "Dockerfile"
+    env_file: "./.env.backend_dev"
+    restart: always
+    ports:
+      - "8803:3000"
+    networks:
+      - saveworld
+networks:
+  saveworld:
+    name: saveworld
+    driver: bridge

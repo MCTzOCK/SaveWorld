@@ -20,3 +20,8 @@ translate-cache/node_modules/
 backend2/node_modules/
 backend2/dist/
 backend2/.env
+
+ai-proxy/node_modules/
+
+.env.backend
+.env.backend_dev

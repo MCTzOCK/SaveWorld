@@ -41,6 +41,7 @@ import { translateOnlineV2 } from "./translate";
       const body = req.body as {
         text: string;
         to: string;
+        from?: string;
       };
 
       if (!body.text || !body.to) {
@@ -53,9 +54,10 @@ import { translateOnlineV2 } from "./translate";
 
       const text = body.text;
       const to = body.to;
+      const from = body.from || "de";
 
       const textHash =
-        to + "_" + createHash("sha256").update(text).digest("hex");
+        from + "_" + to + "_" + createHash("sha256").update(text).digest("hex");
 
       if (await redis.exists(textHash)) {
         res.status(200);
@@ -66,7 +68,7 @@ import { translateOnlineV2 } from "./translate";
         const translated = await translateOnlineV2({
           text: text,
           to: to,
-          from: "de",
+          from: from,
         });
 
         await redis.set(textHash, translated);

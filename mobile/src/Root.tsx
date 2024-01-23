@@ -24,6 +24,9 @@ export default function Root(props: { children: any }) {
             environmentID: FLAGSMITH_ENVIRONMENT_ID,
             api: FLAGSMITH_ENDPOINT,
             defaultFlags: {
+              ai_helper: {
+                enabled: true,
+              },
               news: {
                 enabled: true,
               },

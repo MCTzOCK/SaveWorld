@@ -3,10 +3,8 @@
 export const fr = {
   "components.admin.create.category": "Nouvelle catégorie",
   "components.admin.create.category.change.image": "Modifier l' image",
-  "components.admin.create.category.description":
-    "Désignation des marchandises",
-  "components.admin.create.category.error":
-    "Erreur lors de la création de la catégorie & #160;: %0",
+  "components.admin.create.category.description": "Désignation des marchandises",
+  "components.admin.create.category.error": "Erreur lors de la création de la catégorie & #160;: %0",
   "components.admin.create.category.name": "Nom",
   "components.admin.intern.tools": "Outils internes",
   "components.admin.stats": "Statistiques",
@@ -14,8 +12,7 @@ export const fr = {
   "components.admin.stats.categories": "Catégories",
   "components.admin.stats.chats": "Discussion sur le forum",
   "components.admin.stats.chats.subtitle": "Actualités & #160;: %0",
-  "components.admin.stats.error.loading":
-    "Erreur lors du chargement des statistiques : %0",
+  "components.admin.stats.error.loading": "Erreur lors du chargement des statistiques : %0",
   "components.admin.stats.projects": "Projets écologiques",
   "components.admin.stats.push.notifications": "Push-nacher.",
   "components.admin.stats.recipes": "Recettes",
@@ -24,21 +21,16 @@ export const fr = {
   "components.admin.stats.users.subtitle": "dont actif: %0",
   "components.admin.stats.videos": "Vidéos",
   "components.admin.stats.videos.subtitle": "Appels & #160;: %0",
-  "components.admin.support.request":
-    "Cette demande d'assistance a été créée à %0 par %1 %2.",
+  "components.admin.support.request": "Cette demande d'assistance a été créée à %0 par %1 %2.",
   "components.admin.support.request.button.post": "Contribution",
   "components.admin.support.request.button.profile": "Profil",
-  "components.admin.support.request.message":
-    "L'utilisateur a laissé le message suivant :",
+  "components.admin.support.request.message": "L'utilisateur a laissé le message suivant :",
   "components.admin.user.can.login": "L'utilisateur peut-il s'enregistrer?",
-  "components.admin.user.delete.confirm":
-    "Voulez-vous supprimer l'utilisateur ?",
-  "components.admin.user.delete.error":
-    "Erreur lors de la suppression de l'utilisateur & #160;: %0",
+  "components.admin.user.delete.confirm": "Voulez-vous supprimer l'utilisateur ?",
+  "components.admin.user.delete.error": "Erreur lors de la suppression de l'utilisateur & #160;: %0",
   "components.admin.user.delete.success": "L'utilisateur a été supprimé !",
   "components.admin.user.is.admin": "L'utilisateur est-il un administrateur?",
-  "components.admin.user.save.error":
-    "Erreur lors de l'enregistrement de l'utilisateur & #160;: %0",
+  "components.admin.user.save.error": "Erreur lors de l'enregistrement de l'utilisateur & #160;: %0",
   "components.admin.user.saved": "Utilisateur sauvegardé avec succès!",
   "components.articles": "Le président",
   "components.articles.read.more": "Lire la suite",
@@ -59,10 +51,8 @@ export const fr = {
   "components.chat.message.add.image": "Ajouter des images",
   "components.chat.message.box.placeholder": "Saisissez le message...",
   "components.chat.message.send": "Envoyer",
-  "components.community.blogs.loading.error":
-    "Les postes n'ont pas pu être chargés & #160;: %0",
-  "components.community.data.loading.error":
-    "Erreur lors du chargement des données & #160;: %0",
+  "components.community.blogs.loading.error": "Les postes n'ont pas pu être chargés & #160;: %0",
+  "components.community.data.loading.error": "Erreur lors du chargement des données & #160;: %0",
   "components.community.edit.banner": "Modifier les bannières",
   "components.community.edit.bio": "Biographie",
   "components.community.edit.display.name": "Afficher le nom",
@@ -70,137 +60,92 @@ export const fr = {
   "components.community.search.blogs": "Contributions",
   "components.community.search.profiles": "Profils",
   "components.e2.add.data": "Saisissez les données",
-  "components.e2.cant.add.data":
-    "Puisque la date est dans le passé, vous pouvez entrer les données de quien plus.",
+  "components.e2.cant.add.data": "Puisque la date est dans le passé, vous pouvez entrer les données de quien plus.",
   "components.e2.goals": "Objectifs",
-  "components.e2.goals.loading.error":
-    "Erreur lors du chargement des cibles & #160;: %0",
+  "components.e2.goals.loading.error": "Erreur lors du chargement des cibles & #160;: %0",
   "components.e2.goals.missed": "Objectifs échoués",
   "components.e2.goals.not.reached": "Cible non atteinte.",
   "components.e2.goals.reached": "Objectifs atteints",
   "components.e2.goals.reached.how.many": "%0 de %1.",
-  "components.e2.how.actions":
-    "Comment s'est passée ta journée ? Entrez la fréquence des actions suivantes.",
+  "components.e2.how.actions": "Comment s'est passée ta journée ? Entrez la fréquence des actions suivantes.",
   "components.e2.how.was.your.day": "Comment s'est passée ta journée ?",
-  "components.e2.lifestyle.loading.error":
-    "Erreur lors du chargement du mode de vie : %0",
-  "components.e2.lifestyle.templates.loading.error":
-    "Les modèles n'ont pas pu être chargés & #160;: %0",
+  "components.e2.lifestyle.loading.error": "Erreur lors du chargement du mode de vie : %0",
+  "components.e2.lifestyle.templates.loading.error": "Les modèles n'ont pas pu être chargés & #160;: %0",
   "components.e2.no.data": "Pas de données",
-  "components.e2.no.data.description":
-    "Vous n'avez pas entré de données pour ce jour !",
+  "components.e2.no.data.description": "Vous n'avez pas entré de données pour ce jour !",
   "components.e2.summary.of.day": "Résumé",
   "components.e2.unnamed.action": "Action inconnue",
   "components.e2.weekly.overview": "Aperçu hebdomadaire",
-  "components.e2projects.edit.members.intro":
-    "Votre projet compte un total de %0 membres. Chaque membre peut avoir l'un des trois rôles suivants :",
-  "components.e2projects.homepage.segment.delete.confirm":
-    "Voulez-vous vraiment supprimer le segment?",
-  "components.e2projects.homepage.segment.delete.error":
-    "Le segment n'a pas pu être supprimé & #160;: %0",
-  "components.e2projects.homepage.segment.list.helper.text":
-    "Séparez les entrées par deux lignes.",
-  "components.e2projects.homepage.segment.list.placeholder":
-    "Saisissez la liste",
+  "components.e2projects.edit.members.intro": "Votre projet compte un total de %0 membres. Chaque membre peut avoir l'un des trois rôles suivants :",
+  "components.e2projects.homepage.segment.delete.confirm": "Voulez-vous vraiment supprimer le segment?",
+  "components.e2projects.homepage.segment.delete.error": "Le segment n'a pas pu être supprimé & #160;: %0",
+  "components.e2projects.homepage.segment.list.helper.text": "Séparez les entrées par deux lignes.",
+  "components.e2projects.homepage.segment.list.placeholder": "Saisissez la liste",
   "components.e2projects.homepage.segment.pin": "Pièces jointes",
-  "components.e2projects.homepage.segment.pin.error":
-    "Le segment n'a pas pu être joint & #160;: %0",
+  "components.e2projects.homepage.segment.pin.error": "Le segment n'a pas pu être joint & #160;: %0",
   "components.e2projects.homepage.segment.pinned": "BUREAU",
-  "components.e2projects.homepage.segment.text.placeholder":
-    "Saisissez le texte",
-  "components.e2projects.homepage.segment.update.error":
-    "Le segment n'a pas pu être enregistré & #160;: %0",
+  "components.e2projects.homepage.segment.text.placeholder": "Saisissez le texte",
+  "components.e2projects.homepage.segment.update.error": "Le segment n'a pas pu être enregistré & #160;: %0",
   "components.e2projects.homepage.segments.new": "Nouveau segment",
-  "components.e2projects.homepage.segments.new.choose":
-    "Sélectionner un segment",
-  "components.e2projects.homepage.segments.new.default":
-    "Description de l'image",
-  "components.e2projects.homepage.segments.new.default.list":
-    "Première entrée Entrée suivante",
-  "components.e2projects.homepage.segments.new.enter.title":
-    "Saisissez un titre",
-  "components.e2projects.homepage.segments.new.error":
-    "Le segment n'a pas pu être créé & #160;: %0",
+  "components.e2projects.homepage.segments.new.choose": "Sélectionner un segment",
+  "components.e2projects.homepage.segments.new.default": "Description de l'image",
+  "components.e2projects.homepage.segments.new.default.list": "Première entrée Entrée suivante",
+  "components.e2projects.homepage.segments.new.enter.title": "Saisissez un titre",
+  "components.e2projects.homepage.segments.new.error": "Le segment n'a pas pu être créé & #160;: %0",
   "components.e2projects.homepage.segments.new.list": "Liste",
   "components.e2projects.homepage.segments.new.text": "Texte",
   "components.e2projects.homepahe.segment.unpin": "Suppression",
   "components.e2projects.members.change.role": "Changement de rôle",
-  "components.e2projects.members.change.role.choose":
-    "Sélectionnez un nouveau rôle pour le membre",
+  "components.e2projects.members.change.role.choose": "Sélectionnez un nouveau rôle pour le membre",
   "components.e2projects.members.remove": "Supprimer cet élément",
-  "components.e2projects.members.remove.confirm":
-    "Voulez-vous vraiment retirer le membre?",
+  "components.e2projects.members.remove.confirm": "Voulez-vous vraiment retirer le membre?",
   "components.e2projects.members.roles.admin": "Administrateur",
-  "components.e2projects.members.roles.admin.description":
-    "Peut modifier les informations du projet, les segments de page d'accueil, gérer les membres et supprimer le projet.",
+  "components.e2projects.members.roles.admin.description": "Peut modifier les informations du projet, les segments de page d'accueil, gérer les membres et supprimer le projet.",
   "components.e2projects.members.roles.editor": "Éditeur",
-  "components.e2projects.members.roles.editor.description":
-    "Peut supprimer tout ce qu'un administrateur peut sauf le projet et changer les rôles des membres.",
+  "components.e2projects.members.roles.editor.description": "Peut supprimer tout ce qu'un administrateur peut sauf le projet et changer les rôles des membres.",
   "components.e2projects.members.roles.member": "État",
-  "components.e2projects.members.roles.member.description":
-    "Je vois tout, mais je ne fais rien. (roulement standard)",
+  "components.e2projects.members.roles.member.description": "Je vois tout, mais je ne fais rien. (roulement standard)",
   "components.e2projects.project.add.to.calendar": "Ajouter au calendrier",
   "components.e2projects.project.at.day": "Projet",
   "components.e2projects.project.at.location": "Projets à cet endroit",
-  "components.e2projects.project.delete.error":
-    "Le projet n'a pas pu être supprimé: %0",
+  "components.e2projects.project.delete.error": "Le projet n'a pas pu être supprimé: %0",
   "components.e2projects.project.goto": "Le projet",
-  "components.e2projects.project.save.error":
-    "Erreur lors de l'enregistrement du projet & #160;: %0",
-  "components.e2projects.project.saved":
-    "Votre projet a été sauvé avec succès!",
+  "components.e2projects.project.save.error": "Erreur lors de l'enregistrement du projet & #160;: %0",
+  "components.e2projects.project.saved": "Votre projet a été sauvé avec succès!",
   "components.e2projects.todo.delete": "Supprimer la liste ?",
-  "components.e2projects.todo.delete.confirm":
-    "Voulez-vous vraiment supprimer la liste?",
-  "components.e2projects.todo.delete.error":
-    "Erreur lors de la suppression de la liste & #160;: %0",
-  "components.e2projects.todo.loading.error":
-    "Les listes ToDo ne pouvaient pas être chargées !",
+  "components.e2projects.todo.delete.confirm": "Voulez-vous vraiment supprimer la liste?",
+  "components.e2projects.todo.delete.error": "Erreur lors de la suppression de la liste & #160;: %0",
+  "components.e2projects.todo.loading.error": "Les listes ToDo ne pouvaient pas être chargées !",
   "components.e2projects.todo.new": "Nouvelle liste",
-  "components.e2projects.todo.new.description":
-    "Veuillez saisir le nom de la nouvelle liste !",
-  "components.e2projects.todo.new.error":
-    "Erreur lors de la création de la liste & #160;: %0",
-  "components.e2projects.todo.no.lists":
-    "Aucune liste de ToDo n'a encore été ajoutée.",
-  "components.forum.edit.profile.error":
-    "Erreur lors de l'édition du profil & #160;: %0",
+  "components.e2projects.todo.new.description": "Veuillez saisir le nom de la nouvelle liste !",
+  "components.e2projects.todo.new.error": "Erreur lors de la création de la liste & #160;: %0",
+  "components.e2projects.todo.no.lists": "Aucune liste de ToDo n'a encore été ajoutée.",
+  "components.forum.edit.profile.error": "Erreur lors de l'édition du profil & #160;: %0",
   "components.interests.no.categories": "Aucune catégorie trouvée !",
-  "components.interests.save.error":
-    "Erreurs lors de la sauvegarde des intérêts & #160;: %0",
-  "components.manage.interests.all.selected":
-    "Vous avez sélectionné tous les intérêts disponibles!",
-  "components.manage.interests.intro":
-    "Actuellement, vous avez donné les intérêts suivants:",
-  "components.manage.interests.more.selectable":
-    "Vous pouvez également choisir les intérêts suivants:",
-  "components.recipes.loading.error":
-    "Erreur lors du chargement des recettes : %0",
+  "components.interests.save.error": "Erreurs lors de la sauvegarde des intérêts & #160;: %0",
+  "components.manage.interests.all.selected": "Vous avez sélectionné tous les intérêts disponibles!",
+  "components.manage.interests.intro": "Actuellement, vous avez donné les intérêts suivants:",
+  "components.manage.interests.more.selectable": "Vous pouvez également choisir les intérêts suivants:",
+  "components.recipes.loading.error": "Erreur lors du chargement des recettes : %0",
   "components.video.create": "Nouvelle vidéo",
   "components.video.create.button": "Créer une vidéo",
   "components.video.create.categories": "Catégories",
   "components.video.create.description": "Désignation des marchandises",
-  "components.video.create.error":
-    "Erreur lors de la création de la vidéo & #160;: %0",
+  "components.video.create.error": "Erreur lors de la création de la vidéo & #160;: %0",
   "components.video.create.name": "Nom",
   "components.video.create.sources": "Sources",
   "components.video.create.sources.add": "Ajouter une source",
   "components.video.create.youtube.id": "ID YouTube",
-  "components.video.form.no.category":
-    "Veuillez sélectionner au moins une catégorie.",
+  "components.video.form.no.category": "Veuillez sélectionner au moins une catégorie.",
   "components.video.modal.ask.question": "Posez une question",
   "components.video.modal.comment": "Commentaire vidéo",
   "components.video.modal.comment.enter": "Entrez votre commentaire",
-  "components.video.modal.comment.error":
-    "Le commentaire n'a pas pu être enregistré & #160;: %0",
+  "components.video.modal.comment.error": "Le commentaire n'a pas pu être enregistré & #160;: %0",
   "components.video.modal.comment.submit": "Commentaire",
-  "components.video.modal.comments.loading.error":
-    "Les commentaires ne peuvent pas être chargés & #160;: %0",
+  "components.video.modal.comments.loading.error": "Les commentaires ne peuvent pas être chargés & #160;: %0",
   "components.video.modal.comments.no": "Cette vidéo n'a aucun commentaire.",
-  "components.video.modal.rate.error":
-    "Erreur lors de l'évaluation de la vidéo & #160;: %0",
-  "components.video.modal.rate.how.stars":
-    "Combien d'étoiles la vidéo méritait-elle ?",
+  "components.video.modal.rate.error": "Erreur lors de l'évaluation de la vidéo & #160;: %0",
+  "components.video.modal.rate.how.stars": "Combien d'étoiles la vidéo méritait-elle ?",
   "components.video.modal.rate.success": "Merci pour votre commentaire!",
   "control.activate": "Activer",
   "control.back": "Précédent",
@@ -290,44 +235,32 @@ export const fr = {
   "menu.tools": "Outils",
   "menu.tracker": "Tracker",
   "menu.videos": "Vidéos",
-  "page.404.description":
-    "Cette fonctionnalité n'est pas disponible actuellement. Si vous pensez que c'est une erreur, veuillez nous contacter.",
+  "page.404.description": "Cette fonctionnalité n'est pas disponible actuellement. Si vous pensez que c'est une erreur, veuillez nous contacter.",
   "page.404.home": "appels à domicile",
   "page.account.2fa": "Authentification de deux facteurs",
-  "page.account.2fa.activated":
-    "Réussi! Entrez le code suivant dans votre application : %0",
+  "page.account.2fa.activated": "Réussi! Entrez le code suivant dans votre application : %0",
   "page.account.2fa.deactivated": "Succès des handicapés!",
-  "page.account.2fa.deactivated.description":
-    "L'authentification de deux facteurs a été désactivée avec succès.",
+  "page.account.2fa.deactivated.description": "L'authentification de deux facteurs a été désactivée avec succès.",
   "page.account.2fa.deactivated.error": "Erreur de désactivation & #160;: %0",
   "page.account.2fa.error": "Erreur lors de l'activation : %0",
   "page.account.dangerzone": "Zone dangereuse",
   "page.account.delete.account": "Supprimer le compte",
-  "page.account.delete.account.description":
-    "Voulez-vous vraiment supprimer votre compte? Ça ne peut pas être annulé !",
-  "page.account.delete.account.error":
-    "Erreur lors de la suppression, veuillez contacter le support & #160;: %0",
-  "page.account.delete.pfp.description":
-    "Voulez-vous vraiment supprimer votre profil?",
-  "page.account.delete.pfp.error":
-    "L'image du profil n'a pas pu être supprimée & #160;: %0",
-  "page.account.delete.pfp.success":
-    "L'image du profil a été retirée avec succès.",
+  "page.account.delete.account.description": "Voulez-vous vraiment supprimer votre compte? Ça ne peut pas être annulé !",
+  "page.account.delete.account.error": "Erreur lors de la suppression, veuillez contacter le support & #160;: %0",
+  "page.account.delete.pfp.description": "Voulez-vous vraiment supprimer votre profil?",
+  "page.account.delete.pfp.error": "L'image du profil n'a pas pu être supprimée & #160;: %0",
+  "page.account.delete.pfp.success": "L'image du profil a été retirée avec succès.",
   "page.account.delete.pfp.title": "Supprimer l'image du profil",
   "page.account.general": "Généralités",
   "page.account.info": "Informations sur le compte",
-  "page.account.info.update.error":
-    "Les données n'ont pas pu être stockées & #160;: %0",
-  "page.account.info.update.success":
-    "Les données ont été stockées avec succès!",
+  "page.account.info.update.error": "Les données n'ont pas pu être stockées & #160;: %0",
+  "page.account.info.update.success": "Les données ont été stockées avec succès!",
   "page.account.intro.open.again": "Introduction ouverte",
   "page.account.update.password": "Modifier le mot de passe",
-  "page.account.update.password.error":
-    "Le mot de passe n'a pas pu être modifié : %0",
+  "page.account.update.password.error": "Le mot de passe n'a pas pu être modifié : %0",
   "page.account.update.password.new": "Nouveau mot de passe",
   "page.account.update.password.new.confirm": "Confirmez votre mot de passe",
-  "page.account.update.password.success":
-    "Le mot de passe a changé avec succès.",
+  "page.account.update.password.success": "Le mot de passe a changé avec succès.",
   "page.account.update.pfp": "Modifier l'image du profil",
   "page.admin.title.outside": "Panneau d'administration",
   "page.home.title": "Sauvez le monde !",
@@ -337,29 +270,23 @@ export const fr = {
   "page.login.error": "Erreur d'enregistrement & #160;: %0",
   "page.login.title": "Enregistrement",
   "page.news.title": "Nouvelles",
-  "page.notifications.error.loading":
-    "Les messages ne peuvent pas être chargés & #160;: %0",
+  "page.notifications.error.loading": "Les messages ne peuvent pas être chargés & #160;: %0",
   "page.notifications.read": "Lire la suite",
   "page.notifications.unread": "Non lu",
-  "page.offline.description":
-    "Pour utiliser SaveWorld, une connexion Internet est nécessaire. Vérifiez votre connexion Internet et essayez à nouveau.",
+  "page.offline.description": "Pour utiliser SaveWorld, une connexion Internet est nécessaire. Vérifiez votre connexion Internet et essayez à nouveau.",
   "page.offline.title": "Pas d'Internet",
   "page.register.error": "Erreur lors de l'enregistrement : %0",
-  "page.register.success":
-    "Inscription réussie! Veuillez confirmer votre adresse e-mail.",
+  "page.register.success": "Inscription réussie! Veuillez confirmer votre adresse e-mail.",
   "page.register.title": "Registre",
-  "page.support.attachment":
-    "Les détails du contenu à signaler sont automatiquement ajoutés à votre demande.",
-  "page.support.attachment.video":
-    "Votre demande ajoutera automatiquement la vidéo.",
+  "page.support.attachment": "Les détails du contenu à signaler sont automatiquement ajoutés à votre demande.",
+  "page.support.attachment.video": "Votre demande ajoutera automatiquement la vidéo.",
   "page.support.category.error": "Signaler une erreur",
   "page.support.category.general": "Appui général",
   "page.support.category.question.video": "Question vidéo",
   "page.support.category.report.post": "Rapporter un rapport",
   "page.support.category.report.user": "Utilisateur du rapport",
   "page.support.choose.category": "Sélectionner une catégorie",
-  "page.support.description":
-    "Vous avez une question ou un problème ? Alors écrivez-nous un message ! Vous pouvez également nous joindre par email:",
+  "page.support.description": "Vous avez une question ou un problème ? Alors écrivez-nous un message ! Vous pouvez également nous joindre par email:",
   "page.support.error": "Votre demande n'a pas pu être envoyée : %0",
   "page.support.form.confirm": "Voulez-vous vraiment envoyer cette demande?",
   "page.support.form.missing.category": "Veuillez sélectionner une catégorie.",
@@ -367,130 +294,93 @@ export const fr = {
   "page.support.success": "Votre demande a été envoyée avec succès.",
   "page.sustainability.title": "Durabilité",
   "pages.admin.category.delete": "Voulez-vous vraiment supprimer la catégorie?",
-  "pages.admin.category.delete.error":
-    "Erreur lors de la suppression de la catégorie & #160;: %0",
-  "pages.admin.category.loading.error":
-    "Erreur lors du chargement des catégories : %0",
+  "pages.admin.category.delete.error": "Erreur lors de la suppression de la catégorie & #160;: %0",
+  "pages.admin.category.loading.error": "Erreur lors du chargement des catégories : %0",
   "pages.admin.category.no.categories": "Aucune catégorie trouvée.",
   "pages.admin.category.title": "Catégories",
   "pages.admin.content.categories.and.interests": "Catégories d'intérêts &",
-  "pages.admin.content.categories.and.interests.description":
-    "Ici vous pouvez gérer les catégories et les intérêts.",
+  "pages.admin.content.categories.and.interests.description": "Ici vous pouvez gérer les catégories et les intérêts.",
   "pages.admin.content.videos.description": "Ici vous pouvez gérer des vidéos.",
   "pages.admin.e2projects.delete": "Supprimer le projet?",
-  "pages.admin.e2projects.delete.description":
-    "Voulez-vous vraiment supprimer le projet?",
-  "pages.admin.e2projects.delete.success":
-    "Le projet a été supprimé avec succès!",
-  "pages.admin.e2projects.loading.error":
-    "Les projets n'ont pas pu être chargés : %0",
-  "pages.admin.lifestyle.create.error":
-    "Erreur lors de la création du modèle & #160;: %0",
-  "pages.admin.lifestyle.delete.description":
-    "Voulez-vous vraiment supprimer le modèle?",
-  "pages.admin.lifestyle.delete.error":
-    "Erreur lors de la suppression du modèle & #160;: %0",
-  "pages.admin.lifestyle.edit.error":
-    "Erreur lors de l'édition du modèle & #160;: %0",
-  "pages.admin.lifestyle.loading.error":
-    "Erreur lors du chargement des modèles & #160;: %0",
+  "pages.admin.e2projects.delete.description": "Voulez-vous vraiment supprimer le projet?",
+  "pages.admin.e2projects.delete.success": "Le projet a été supprimé avec succès!",
+  "pages.admin.e2projects.loading.error": "Les projets n'ont pas pu être chargés : %0",
+  "pages.admin.lifestyle.create.error": "Erreur lors de la création du modèle & #160;: %0",
+  "pages.admin.lifestyle.delete.description": "Voulez-vous vraiment supprimer le modèle?",
+  "pages.admin.lifestyle.delete.error": "Erreur lors de la suppression du modèle & #160;: %0",
+  "pages.admin.lifestyle.edit.error": "Erreur lors de l'édition du modèle & #160;: %0",
+  "pages.admin.lifestyle.loading.error": "Erreur lors du chargement des modèles & #160;: %0",
   "pages.admin.lifestyle.new.goal": "Objectif du modèle",
   "pages.admin.lifestyle.new.title": "Nouveau modèle",
   "pages.admin.recipes.delete": "Voulez-vous vraiment supprimer la recette?",
-  "pages.admin.recipes.delete.error":
-    "Erreur lors de la suppression de la recette & #160;: %0",
-  "pages.admin.recipes.delete.success":
-    "La recette a été supprimée avec succès!",
-  "pages.admin.recipes.loading.error":
-    "Erreur lors du chargement des recettes : %0",
+  "pages.admin.recipes.delete.error": "Erreur lors de la suppression de la recette & #160;: %0",
+  "pages.admin.recipes.delete.success": "La recette a été supprimée avec succès!",
+  "pages.admin.recipes.loading.error": "Erreur lors du chargement des recettes : %0",
   "pages.admin.support.category.bug": "Message de bogue",
   "pages.admin.support.category.other": "Autres",
   "pages.admin.support.category.post": "Rapport annuel",
   "pages.admin.support.category.user": "Avis à l'utilisateur",
   "pages.admin.support.category.video": "Question vidéo",
-  "pages.admin.support.loading.error":
-    "Erreur lors du chargement des requêtes de support & #160;: %0",
+  "pages.admin.support.loading.error": "Erreur lors du chargement des requêtes de support & #160;: %0",
   "pages.admin.support.request": "Demande",
   "pages.admin.support.request.action.choose": "Sélectionner l' action",
   "pages.admin.support.request.action.delete.post": "Comment supprimer",
-  "pages.admin.support.request.action.delete.user":
-    "Supprimer le nom d'utilisateur",
-  "pages.admin.support.request.action.description":
-    "Sélectionnez l'action que vous voulez exécuter.",
+  "pages.admin.support.request.action.delete.user": "Supprimer le nom d'utilisateur",
+  "pages.admin.support.request.action.description": "Sélectionnez l'action que vous voulez exécuter.",
   "pages.admin.support.request.action.no": "Pas d'action",
   "pages.admin.support.request.answer": "Réponse",
   "pages.admin.support.request.answer.complete": "Fermer",
-  "pages.admin.support.request.answer.description":
-    "Répondez à la demande de l'utilisateur.",
-  "pages.admin.support.request.answer.error":
-    "Erreur dans la réponse à la requête & #160;: %0",
+  "pages.admin.support.request.answer.description": "Répondez à la demande de l'utilisateur.",
+  "pages.admin.support.request.answer.error": "Erreur dans la réponse à la requête & #160;: %0",
   "pages.admin.support.request.by": "Demande de :",
   "pages.admin.support.request.completed": "Achevé",
   "pages.admin.support.request.created.by": "Créé par",
-  "pages.admin.support.request.error":
-    "Erreur lors de la fermeture de la requête & #160;: %0",
-  "pages.admin.support.request.error.post":
-    "Erreur lors de la suppression du message & #160;: %0",
-  "pages.admin.support.request.error.user":
-    "Erreur lors de la suppression de l'utilisateur & #160;: %0",
+  "pages.admin.support.request.error": "Erreur lors de la fermeture de la requête & #160;: %0",
+  "pages.admin.support.request.error.post": "Erreur lors de la suppression du message & #160;: %0",
+  "pages.admin.support.request.error.user": "Erreur lors de la suppression de l'utilisateur & #160;: %0",
   "pages.admin.support.request.message": "Message",
   "pages.admin.support.request.open": "Ouvrir",
   "pages.admin.support.request.open.post": "Ouvrir le compte",
   "pages.admin.support.request.open.profile": "Ouvrir le profil",
   "pages.admin.support.request.processed": "Cette demande a déjà été traitée.",
-  "pages.admin.user.delete.error":
-    "Erreur lors de la suppression de l'utilisateur & #160;: %0",
+  "pages.admin.user.delete.error": "Erreur lors de la suppression de l'utilisateur & #160;: %0",
   "pages.admin.user.deleted": "L'utilisateur a été supprimé avec succès !",
-  "pages.admin.user.loading.error":
-    "Erreur lors du chargement de l'utilisateur & #160;: %0",
-  "pages.admin.user.save.error":
-    "Erreur lors de l'enregistrement de l'utilisateur & #160;: %0",
+  "pages.admin.user.loading.error": "Erreur lors du chargement de l'utilisateur & #160;: %0",
+  "pages.admin.user.save.error": "Erreur lors de l'enregistrement de l'utilisateur & #160;: %0",
   "pages.admin.user.saved": "Utilisateur sauvegardé avec succès!",
   "pages.admin.users.created.at": "Création à",
   "pages.admin.users.loading.error": "Erreur lors du chargement : %0",
-  "pages.admin.video.delete.confirm":
-    "Voulez-vous vraiment supprimer la vidéo?",
+  "pages.admin.video.delete.confirm": "Voulez-vous vraiment supprimer la vidéo?",
   "pages.admin.video.deleted": "Vidéo supprimé avec succès!",
   "pages.admin.video.deleted.error": "Supprimer la vidéo & #160;: %0",
   "pages.admin.video.form.description": "Désignation des marchandises",
   "pages.admin.video.form.sources": "Sources",
   "pages.admin.video.form.sources.placeholder": "Sources (une par ligne)",
   "pages.admin.video.form.title": "Titre",
-  "pages.admin.video.loading.error":
-    "Erreur lors du chargement des vidéos & #160;: %0",
-  "pages.admin.video.updated.error":
-    "Erreur lors de la mise à jour de la vidéo : %0",
+  "pages.admin.video.loading.error": "Erreur lors du chargement des vidéos & #160;: %0",
+  "pages.admin.video.updated.error": "Erreur lors de la mise à jour de la vidéo : %0",
   "pages.admin.video.updated.success": "Vidéo mise à jour avec succès!",
-  "pages.admin.videos.loading.error":
-    "Erreur lors du chargement des vidéos & #160;: %0",
+  "pages.admin.videos.loading.error": "Erreur lors du chargement des vidéos & #160;: %0",
   "pages.community.blog.action.error": "L'action a échoué & #160;: %0",
   "pages.community.blog.comment": "Commentaire",
   "pages.community.blog.comment.submit": "Publication",
   "pages.community.blog.comments": "Commentaires",
-  "pages.community.blog.delete.confirm":
-    "Voulez-vous vraiment supprimer l'entrée de blog?",
+  "pages.community.blog.delete.confirm": "Voulez-vous vraiment supprimer l'entrée de blog?",
   "pages.community.blog.loading.error": "Erreur lors du chargement : %0",
-  "pages.community.blog.mentioned.users":
-    "Les comptes suivants sont liés à ce poste :",
+  "pages.community.blog.mentioned.users": "Les comptes suivants sont liés à ce poste :",
   "pages.community.create.blog.error": "Une erreur s'est produite & #160;: %0",
   "pages.community.create.blog.error.title": "Veuillez saisir un titre.",
-  "pages.community.create.blog.error.too.short":
-    "Veuillez saisir plus de 10 caractères.",
+  "pages.community.create.blog.error.too.short": "Veuillez saisir plus de 10 caractères.",
   "pages.community.create.blog.form.tags": "Étiquettes",
-  "pages.community.create.blog.form.tags.placeholder":
-    "Étiquettes (séparées par virgule)",
+  "pages.community.create.blog.form.tags.placeholder": "Étiquettes (séparées par virgule)",
   "pages.community.create.blog.form.title": "Titre",
   "pages.community.create.blog.form.title.placeholder": "Titre du blog",
-  "pages.community.create.blog.hint":
-    "utilisez @username pour marquer d'autres utilisateurs. Cela leur donne une notification et d'autres utilisateurs peuvent accéder à leur profil!",
+  "pages.community.create.blog.hint": "utilisez @username pour marquer d'autres utilisateurs. Cela leur donne une notification et d'autres utilisateurs peuvent accéder à leur profil!",
   "pages.community.create.blog.image": "Ajouter des images",
   "pages.community.create.blog.information": "Informations (cliquez)",
-  "pages.community.create.blog.information.description":
-    "Ici vous pouvez créer un nouveau blog. Vous pouvez parler de vos efforts concernant une vie plus respectueuse de l'environnement, ou simplement partager vos pensées avec la communauté.",
-  "pages.community.create.blog.information.description.2":
-    "Les blogs sont écrits avec Markdown. Markdown est un langage simple qui vous permet de formater votre texte. Si vous n'avez jamais travaillé avec Markdown, vous pouvez",
-  "pages.community.create.blog.information.description.3":
-    "fournir un aperçu des commandes les plus importantes.",
+  "pages.community.create.blog.information.description": "Ici vous pouvez créer un nouveau blog. Vous pouvez parler de vos efforts concernant une vie plus respectueuse de l'environnement, ou simplement partager vos pensées avec la communauté.",
+  "pages.community.create.blog.information.description.2": "Les blogs sont écrits avec Markdown. Markdown est un langage simple qui vous permet de formater votre texte. Si vous n'avez jamais travaillé avec Markdown, vous pouvez",
+  "pages.community.create.blog.information.description.3": "fournir un aperçu des commandes les plus importantes.",
   "pages.community.create.blog.publish": "Publication",
   "pages.community.create.blog.title": "Nouveau blog",
   "pages.community.dashboard.explore": "Découvrir",
@@ -500,45 +390,33 @@ export const fr = {
   "pages.community.messages.chats": "Chat",
   "pages.community.messages.chats.create": "Nouvelle discussion",
   "pages.community.messages.chats.create.description": "Créer un nouveau chat",
-  "pages.community.messages.chats.create.error.self":
-    "Tu ne peux pas t'écrire.",
-  "pages.community.messages.chats.create.placeholder":
-    "Saisissez le nom d'utilisateur de l'autre utilisateur",
+  "pages.community.messages.chats.create.error.self": "Tu ne peux pas t'écrire.",
+  "pages.community.messages.chats.create.placeholder": "Saisissez le nom d'utilisateur de l'autre utilisateur",
   "pages.community.messages.chats.delete": "Chat Supprimer",
-  "pages.community.messages.chats.delete.confirm":
-    "Voulez-vous vraiment supprimer le chat?",
+  "pages.community.messages.chats.delete.confirm": "Voulez-vous vraiment supprimer le chat?",
   "pages.community.messages.group": "Groupe",
   "pages.community.messages.group.member.add": "Ajouter au panier",
-  "pages.community.messages.group.member.add.success":
-    "L'utilisateur a été ajouté avec succès.",
-  "pages.community.messages.group.member.form.title":
-    "Ajouter un nom d'utilisateur",
-  "pages.community.messages.group.member.form.title.placeholder":
-    "Saisissez le nom d'utilisateur",
+  "pages.community.messages.group.member.add.success": "L'utilisateur a été ajouté avec succès.",
+  "pages.community.messages.group.member.form.title": "Ajouter un nom d'utilisateur",
+  "pages.community.messages.group.member.form.title.placeholder": "Saisissez le nom d'utilisateur",
   "pages.community.messages.groups": "Groupes",
   "pages.community.messages.groups.create": "Nouveau groupe",
-  "pages.community.messages.groups.create.description":
-    "Saisissez le nom d'utilisateur du premier membre",
-  "pages.community.messages.groups.create.error.self":
-    "Vous ne pouvez pas créer un groupe avec vous-même",
+  "pages.community.messages.groups.create.description": "Saisissez le nom d'utilisateur du premier membre",
+  "pages.community.messages.groups.create.error.self": "Vous ne pouvez pas créer un groupe avec vous-même",
   "pages.community.messages.groups.create.subline": "Créer un nouveau groupe",
-  "pages.community.profile.actions.block.error":
-    "Erreur de blocage & #160;: %0",
+  "pages.community.profile.actions.block.error": "Erreur de blocage & #160;: %0",
   "pages.community.profile.actions.edit": "Modifier le profil",
   "pages.community.profile.actions.follow.error": "Dépannage & #160;: %0",
   "pages.community.profile.actions.for": "Actions en faveur",
   "pages.community.profile.actions.message": "Envoyer un message",
-  "pages.community.profile.actions.not.implemented":
-    "Cette action n'a pas encore été mise en œuvre.",
+  "pages.community.profile.actions.not.implemented": "Cette action n'a pas encore été mise en œuvre.",
   "pages.community.profile.banner": "Bannière",
   "pages.community.profile.block": "Blocage",
   "pages.community.profile.blogs": "Contributions",
-  "pages.community.profile.chat.loading.erorr":
-    "Une erreur s'est produite & #160;: %0",
+  "pages.community.profile.chat.loading.erorr": "Une erreur s'est produite & #160;: %0",
   "pages.community.profile.follow": "Suivi",
   "pages.community.profile.followers": "Abonnés",
-  "pages.community.profile.loading.error":
-    "Erreur lors du chargement du profil & #160;: %0",
+  "pages.community.profile.loading.error": "Erreur lors du chargement du profil & #160;: %0",
   "pages.community.profile.no.level": "Mon niveau est secret",
   "pages.community.profile.no.location": "Aucun emplacement spécifié",
   "pages.community.profile.report": "Rapports",
@@ -546,8 +424,7 @@ export const fr = {
   "pages.community.profile.unfollow": "Suivre",
   "pages.e2.analytics.title": "Analyse",
   "pages.e2.level.current": "Niveau actuel",
-  "pages.e2.level.loading.error":
-    "Erreur lors du chargement du niveau & #160;: %0",
+  "pages.e2.level.loading.error": "Erreur lors du chargement du niveau & #160;: %0",
   "pages.e2projects.calendar": "Calendrier",
   "pages.e2projects.create": "Créer un projet",
   "pages.e2projects.edit.title": "Modifier un projet",
@@ -555,96 +432,69 @@ export const fr = {
   "pages.e2projects.filter.all": "Tous",
   "pages.e2projects.filter.upcoming": "En attente seulement",
   "pages.e2projects.homepage": "Page d'accueil",
-  "pages.e2projects.homepage.loading.error":
-    "La page d'accueil n'a pas pu être chargée : %0",
+  "pages.e2projects.homepage.loading.error": "La page d'accueil n'a pas pu être chargée : %0",
   "pages.e2projects.list": "Liste",
-  "pages.e2projects.loading.error":
-    "Erreur lors du chargement du projet & #160;: %0",
+  "pages.e2projects.loading.error": "Erreur lors du chargement du projet & #160;: %0",
   "pages.e2projects.map": "Carte",
   "pages.e2projects.map.findable": "Sur la carte",
   "pages.e2projects.map.unfindable": "Non indiqué sur la carte",
-  "pages.e2projects.map.unfindable.description":
-    "Votre projet ne peut pas être affiché sur la carte car l'adresse exacte n'est pas connue. L'adresse peut être modifiée dans les paramètres du projet. IMPORTANT : Cliquez sur une adresse suggérée pour l'accepter.",
-  "pages.e2projects.member.status.join":
-    "Voulez-vous participer à ce projet et contribuer?",
-  "pages.e2projects.member.status.leave":
-    "Tu ne veux pas faire partie du projet ?",
+  "pages.e2projects.map.unfindable.description": "Votre projet ne peut pas être affiché sur la carte car l'adresse exacte n'est pas connue. L'adresse peut être modifiée dans les paramètres du projet. IMPORTANT : Cliquez sur une adresse suggérée pour l'accepter.",
+  "pages.e2projects.member.status.join": "Voulez-vous participer à ce projet et contribuer?",
+  "pages.e2projects.member.status.leave": "Tu ne veux pas faire partie du projet ?",
   "pages.e2projects.member.status.popup.1": "Vous êtes maintenant",
   "pages.e2projects.member.status.popup.member": "Une partie du projet !",
-  "pages.e2projects.member.status.popup.no.member":
-    "ne font plus partie du projet.",
+  "pages.e2projects.member.status.popup.no.member": "ne font plus partie du projet.",
   "pages.e2projects.members": "Membres",
   "pages.e2projects.menu.todos": "Faire",
   "pages.e2projects.my": "Mes projets",
-  "pages.e2projects.my.loading.error":
-    "Erreur lors du chargement des projets & #160;: %0",
+  "pages.e2projects.my.loading.error": "Erreur lors du chargement des projets & #160;: %0",
   "pages.e2projects.no.projects": "Aucun projet trouvé.",
   "pages.e2projects.start.create.error": "Le projet n'a pas pu être créé : %0",
   "pages.e2projects.start.created": "Projet créé !",
-  "pages.e2projects.start.created.description":
-    "Votre projet a été créé avec succès!",
+  "pages.e2projects.start.created.description": "Votre projet a été créé avec succès!",
   "pages.e2projects.start.form.date": "Date",
-  "pages.e2projects.start.form.date.placeholder":
-    "Quand le projet commence-t-il?",
+  "pages.e2projects.start.form.date.placeholder": "Quand le projet commence-t-il?",
   "pages.e2projects.start.form.length": "Durée",
-  "pages.e2projects.start.form.length.placeholder":
-    "Combien de temps votre projet devrait-il durer (en jours)?",
+  "pages.e2projects.start.form.length.placeholder": "Combien de temps votre projet devrait-il durer (en jours)?",
   "pages.e2projects.start.form.location": "Lieu",
-  "pages.e2projects.start.form.location.placeholder":
-    "Où se déroule votre projet? CONSEIL: A partir de 5 caractères, des suggestions seront affichées. Cliquez sur une suggestion pour la prendre.",
+  "pages.e2projects.start.form.location.placeholder": "Où se déroule votre projet? CONSEIL: A partir de 5 caractères, des suggestions seront affichées. Cliquez sur une suggestion pour la prendre.",
   "pages.e2projects.start.form.name": "Nom",
-  "pages.e2projects.start.form.name.placeholder":
-    "Donnez à votre projet un nom qui le décrit le mieux.",
+  "pages.e2projects.start.form.name.placeholder": "Donnez à votre projet un nom qui le décrit le mieux.",
   "pages.e2projects.start.form.suggestions.title": "Résultats de la recherche",
-  "pages.e2projects.start.info.description":
-    "Tout le monde veut commencer un projet. C'est le problème. Mais il y a quelques choses que vous devriez considérer:",
-  "pages.e2projects.start.info.ls.1":
-    "Votre projet devrait avoir un impact positif sur l'environnement.",
-  "pages.e2projects.start.info.ls.2":
-    "Votre projet ne doit pas violer la loi existante. (par exemple, restez sur la route)",
-  "pages.e2projects.start.info.ls.3":
-    "Votre projet devrait être conçu pour la collaboration avec d'autres utilisateurs.",
-  "pages.e2projects.start.info.ls.4":
-    "Votre projet devrait avoir un avantage concret (p. ex. collecte des ordures, plantation d'arbres, ...),",
-  "pages.e2projects.start.info.ls.5":
-    "Votre projet devrait suivre un plan sophistiqué.",
+  "pages.e2projects.start.info.description": "Tout le monde veut commencer un projet. C'est le problème. Mais il y a quelques choses que vous devriez considérer:",
+  "pages.e2projects.start.info.ls.1": "Votre projet devrait avoir un impact positif sur l'environnement.",
+  "pages.e2projects.start.info.ls.2": "Votre projet ne doit pas violer la loi existante. (par exemple, restez sur la route)",
+  "pages.e2projects.start.info.ls.3": "Votre projet devrait être conçu pour la collaboration avec d'autres utilisateurs.",
+  "pages.e2projects.start.info.ls.4": "Votre projet devrait avoir un avantage concret (p. ex. collecte des ordures, plantation d'arbres, ...),",
+  "pages.e2projects.start.info.ls.5": "Votre projet devrait suivre un plan sophistiqué.",
   "pages.e2projects.start.info.who": "Qui devrait lancer un nouveau projet?",
-  "pages.e2projects.start.page2.error.date":
-    "La date de début doit être à l'avenir.",
+  "pages.e2projects.start.page2.error.date": "La date de début doit être à l'avenir.",
   "pages.e2projects.start.page2.title": "Nouveau projet",
   "pages.e2projects.start.ready": "Vous êtes prêt à lancer un projet ?",
-  "pages.e2projects.start.ready.2":
-    "Cliquez ensuite sur le bouton ci-dessous et remplissez le formulaire.",
+  "pages.e2projects.start.ready.2": "Cliquez ensuite sur le bouton ci-dessous et remplissez le formulaire.",
   "pages.e2projects.start.ready.button": "Démarrer le projet",
   "pages.e2projects.todo": "Liste des tâches",
   "pages.e2projects.todo.action": "Décision",
   "pages.e2projects.todo.description": "Désignation des marchandises",
   "pages.e2projects.todo.done": "Fait",
   "pages.e2projects.todo.entries.no": "Cette liste de ToDo n'a aucune entrée.",
-  "pages.e2projects.todo.entry.create.error":
-    "Impossible de créer l'entrée & #160;: %0",
-  "pages.e2projects.todo.entry.delete.confirm":
-    "Faut-il vraiment supprimer l'entrée?",
+  "pages.e2projects.todo.entry.create.error": "Impossible de créer l'entrée & #160;: %0",
+  "pages.e2projects.todo.entry.delete.confirm": "Faut-il vraiment supprimer l'entrée?",
   "pages.e2projects.todo.entry.delete.error": "Supprimer l'erreur & #160;: %0",
-  "pages.e2projects.todo.entry.update.error":
-    "Erreur de mise à jour & #160;: %0",
-  "pages.e2projects.todo.loading.error":
-    "La liste ToDo n'a pas pu être chargée & #160;: %0",
+  "pages.e2projects.todo.entry.update.error": "Erreur de mise à jour & #160;: %0",
+  "pages.e2projects.todo.loading.error": "La liste ToDo n'a pas pu être chargée & #160;: %0",
   "pages.e2projects.todo.name": "Nom",
   "pages.eatingplans.action.choose": "Sélectionner l' action",
   "pages.eatingplans.action.cook": "Préparations",
   "pages.eatingplans.action.remove": "Supprimer cet élément",
-  "pages.eatingplans.action.remove.confirm":
-    "Voulez-vous vraiment enlever la recette?",
+  "pages.eatingplans.action.remove.confirm": "Voulez-vous vraiment enlever la recette?",
   "pages.eatingplans.add.recipe": "Ajouter une recette",
-  "pages.eatingplans.loading.error":
-    "Le plan alimentaire n'a pas pu être chargé : %0",
+  "pages.eatingplans.loading.error": "Le plan alimentaire n'a pas pu être chargé : %0",
   "pages.eatingplans.shopping.list": "Panier",
   "pages.eatingplans.shopping.list.create": "Créez votre liste d'achats",
   "pages.eatingplans.shopping.list.for": "Feuille d'achats",
   "pages.eatingplans.status": "Vous avez des recettes am%0 %1 sur votre plan.",
-  "pages.eatingplans.update.error":
-    "Le plan alimentaire n'a pas pu être sauvé : %0",
+  "pages.eatingplans.update.error": "Le plan alimentaire n'a pas pu être sauvé : %0",
   "pages.eatingplans.update.success": "Le plan alimentaire a été sauvé !",
   "pages.home.anon.call.to.action": "Allez !",
   "pages.home.anon.title.1": "Notre planète a besoin de votre",
@@ -654,60 +504,44 @@ export const fr = {
   "pages.home.anon.title.5": "Contribution",
   "pages.home.anon.title.6": "- Oui!",
   "pages.introduction.call.to.action": "Améliorer le monde !",
-  "pages.introduction.finished.description":
-    "Vous avez réussi l'installation ! Vous pouvez maintenant oser faire du monde un meilleur endroit !",
+  "pages.introduction.finished.description": "Vous avez réussi l'installation ! Vous pouvez maintenant oser faire du monde un meilleur endroit !",
   "pages.introduction.lifestyle.avoid": "évitement",
-  "pages.introduction.lifestyle.description":
-    "Veuillez saisir des données sur votre style de vie afin que vous puissiez fixer des objectifs pour l'améliorer! Dans la colonne de gauche, vous voyez l'action et dans la colonne de droite, vous pouvez saisir la fréquence d'exécution de cette action dans la semaine.",
-  "pages.introduction.lifestyle.save.error":
-    "Erreur dans la sauvegarde du mode de vie : %0",
+  "pages.introduction.lifestyle.description": "Veuillez saisir des données sur votre style de vie afin que vous puissiez fixer des objectifs pour l'améliorer! Dans la colonne de gauche, vous voyez l'action et dans la colonne de droite, vous pouvez saisir la fréquence d'exécution de cette action dans la semaine.",
+  "pages.introduction.lifestyle.save.error": "Erreur dans la sauvegarde du mode de vie : %0",
   "pages.introduction.lifestyle.this.action": "Cette action",
   "pages.introduction.lifestyle.weekly.goal": "Cible hebdomadaire",
   "pages.introduction.welcome.choose.later": "Sélectionner plus tard",
-  "pages.introduction.welcome.description":
-    "Bienvenue à SaveWorld ! Nous sommes heureux que vous vouliez améliorer le monde! Pour une expérience optimale, choisissez ici vos intérêts ! Vous pouvez les changer à tout moment.",
+  "pages.introduction.welcome.description": "Bienvenue à SaveWorld ! Nous sommes heureux que vous vouliez améliorer le monde! Pour une expérience optimale, choisissez ici vos intérêts ! Vous pouvez les changer à tout moment.",
   "pages.learn.channels": "Canaux",
-  "pages.learn.videos.loading.error":
-    "Erreur lors du chargement des vidéos & #160;: %0",
-  "pages.learn.videos.loading.error.next":
-    "Erreur lors du chargement de la vidéo suivante : %0",
-  "pages.markdown.description":
-    "Markdown est un langage simple qui vous permet de formater les textes rapidement et facilement. Markdown est principalement utilisé dans le forum pour écrire des entrées de blog. Vous pouvez également créer une entrée sans balisage. Vous trouverez ci-dessous un aperçu des formats les plus importants.",
+  "pages.learn.videos.loading.error": "Erreur lors du chargement des vidéos & #160;: %0",
+  "pages.learn.videos.loading.error.next": "Erreur lors du chargement de la vidéo suivante : %0",
+  "pages.markdown.description": "Markdown est un langage simple qui vous permet de formater les textes rapidement et facilement. Markdown est principalement utilisé dans le forum pour écrire des entrées de blog. Vous pouvez également créer une entrée sans balisage. Vous trouverez ci-dessous un aperçu des formats les plus importants.",
   "pages.markdown.headlines": "Rubriques",
   "pages.markdown.headlines.1": "Rubrique 1",
   "pages.markdown.headlines.2": "Rubrique 2",
   "pages.markdown.headlines.3": "Ligne de tête 3",
-  "pages.markdown.headlines.description":
-    "Les titres sont initiés avec un hashtag. Plus les hashtags sont grands, plus le titre est petit. Un maximum de 6 hashtags peut être utilisé. Exemple :",
+  "pages.markdown.headlines.description": "Les titres sont initiés avec un hashtag. Plus les hashtags sont grands, plus le titre est petit. Un maximum de 6 hashtags peut être utilisé. Exemple :",
   "pages.markdown.links": "Liens",
   "pages.markdown.links.1": "[Lientext](https://saveworld.one)",
-  "pages.markdown.links.description":
-    "La gauche peut être introduite avec des crochets et des crochets.",
+  "pages.markdown.links.description": "La gauche peut être introduite avec des crochets et des crochets.",
   "pages.markdown.lists": "Liste",
   "pages.markdown.lists.1": "* Entrée 1",
   "pages.markdown.lists.2": "* Entrée 2",
   "pages.markdown.lists.3": "1. Le président",
   "pages.markdown.lists.4": "Deux. Article 2",
-  "pages.markdown.lists.description":
-    "Les listes peuvent être lancées avec une étoile ou un nombre (pour les listes numérotées).",
+  "pages.markdown.lists.description": "Les listes peuvent être lancées avec une étoile ou un nombre (pour les listes numérotées).",
   "pages.markdown.text.formatting": "Formatage du texte",
   "pages.markdown.text.formatting.bold.1": "*Grand texte*",
   "pages.markdown.text.formatting.bold.2": "_Fetter le texte_",
-  "pages.markdown.text.formatting.bold.description":
-    "Le texte peut être joint avec une étoile ou souligner pour le formater gras.",
-  "pages.markdown.text.formatting.bold.italic.1":
-    "***Grand texte et curatif***",
-  "pages.markdown.text.formatting.bold.italic.2":
-    "__Plus grand et texte curatif___",
-  "pages.markdown.text.formatting.bold.italic.description":
-    "Le texte peut être entouré de trois étoiles ou souligne pour le rendre gras et cursif.",
+  "pages.markdown.text.formatting.bold.description": "Le texte peut être joint avec une étoile ou souligner pour le formater gras.",
+  "pages.markdown.text.formatting.bold.italic.1": "***Grand texte et curatif***",
+  "pages.markdown.text.formatting.bold.italic.2": "__Plus grand et texte curatif___",
+  "pages.markdown.text.formatting.bold.italic.description": "Le texte peut être entouré de trois étoiles ou souligne pour le rendre gras et cursif.",
   "pages.markdown.text.formatting.italic.1": "**Texte courant* *",
   "pages.markdown.text.formatting.italic.2": "Texte _cursif__",
-  "pages.markdown.text.formatting.italic.description":
-    "Le texte peut être entouré de deux étoiles ou souligne pour le rendre cursif.",
+  "pages.markdown.text.formatting.italic.description": "Le texte peut être entouré de deux étoiles ou souligne pour le rendre cursif.",
   "pages.markdown.text.formatting.strikethrough.1": "- Oui",
-  "pages.markdown.text.formatting.strikethrough.description":
-    "Le texte peut être fermé avec deux inclinaisons pour le faire frotter.",
+  "pages.markdown.text.formatting.strikethrough.description": "Le texte peut être fermé avec deux inclinaisons pour le faire frotter.",
   "pages.quizzes.answer": "Réponse",
   "pages.quizzes.quiz.time": "C'est l'heure du quiz !",
   "pages.quizzes.result": "Résultat",
@@ -715,22 +549,18 @@ export const fr = {
   "pages.quizzes.result.description": "Vous avez répondu %0 ! %1",
   "pages.recipes.cook": "Préparer la recette",
   "pages.recipes.cookbook": "Livre de cuisson",
-  "pages.recipes.cookbook.description":
-    "Dans votre livre de cuisine sont toutes les recettes que vous avez remarquées. Actuellement, il y a %0 recettes.",
+  "pages.recipes.cookbook.description": "Dans votre livre de cuisine sont toutes les recettes que vous avez remarquées. Actuellement, il y a %0 recettes.",
   "pages.recipes.create": "Nouvelle recette",
-  "pages.recipes.create.error":
-    "Erreur lors de la création de la recette & #160;: %0",
+  "pages.recipes.create.error": "Erreur lors de la création de la recette & #160;: %0",
   "pages.recipes.created": "Recette créée !",
   "pages.recipes.created.by.1": "Cette recette a été préparée par",
   "pages.recipes.created.by.2": "créé.",
   "pages.recipes.created.description": "Votre recette a été créée avec succès!",
   "pages.recipes.delete.confirm": "Voulez-vous vraiment supprimer la recette?",
-  "pages.recipes.delete.error":
-    "Erreur lors de la suppression de la recette & #160;: %0",
+  "pages.recipes.delete.error": "Erreur lors de la suppression de la recette & #160;: %0",
   "pages.recipes.delete.success": "Recette supprimée avec succès!",
   "pages.recipes.edit": "Modifier la recette",
-  "pages.recipes.edit.error":
-    "Erreur lors de l'édition de la recette & #160;: %0",
+  "pages.recipes.edit.error": "Erreur lors de l'édition de la recette & #160;: %0",
   "pages.recipes.edited": "Recette éditée !",
   "pages.recipes.edited.description": "La recette a été traitée avec succès!",
   "pages.recipes.explore": "Découvrir",
@@ -739,13 +569,10 @@ export const fr = {
   "pages.recipes.image.edit": "Éditer l'image",
   "pages.recipes.ingredients": "Ingrédients",
   "pages.recipes.ingredients.add": "Ajouter votre commentaire",
-  "pages.recipes.ingredients.used":
-    "Les ingrédients suivants sont requis pour la recette:",
-  "pages.recipes.loading.error":
-    "Erreur lors du chargement de la recette & #160;: %0",
+  "pages.recipes.ingredients.used": "Les ingrédients suivants sont requis pour la recette:",
+  "pages.recipes.loading.error": "Erreur lors du chargement de la recette & #160;: %0",
   "pages.recipes.my": "Mes recettes",
-  "pages.recipes.settings.update.error":
-    "Vos paramètres ne peuvent pas être enregistrés & #160;: %0",
+  "pages.recipes.settings.update.error": "Vos paramètres ne peuvent pas être enregistrés & #160;: %0",
   "pages.recipes.share.text": "Regardez cette recette !",
   "pages.recipes.step": "Étape",
   "pages.recipes.steps": "Étapes",
@@ -753,44 +580,32 @@ export const fr = {
   "pages.recipes.steps.delete": "Supprimer l' étape",
   "pages.recipes.steps.description": "La recette est préparée comme suit:",
   "pages.sustainability.call.to.action": "Explorer l'article",
-  "pages.sustainability.section.1":
-    "La durabilité est une question très importante. Il couvre non seulement l'environnement, mais se compose de trois piliers: l'écologie (non-monde), l'économie (économique) et la société (société).\n.",
-  "pages.sustainability.section.2":
-    "Ces trois piliers doivent être en équilibre pour que nous ayons un avenir durable. Souvent ces trois colonnes sont également montrées comme un triangle qui se trouve d'un côté. Cela signifie que les trois piliers sont tout aussi importants. Quand une colonne est trop courte, le triangle devient instable et peut s'incliner. Cela signifie que nous n'avons un avenir durable que si les trois piliers sont tout aussi importants.",
-  "pages.sustainability.section.3":
-    "Même si SaveWorld se concentre principalement sur l'environnement, nous ne voulons pas négliger les deux autres piliers. C'est pourquoi vous trouverez également des informations sur les sujets des entreprises et de la société dans ce domaine.",
+  "pages.sustainability.section.1": "La durabilité est une question très importante. Il couvre non seulement l'environnement, mais se compose de trois piliers: l'écologie (non-monde), l'économie (économique) et la société (société).\n.",
+  "pages.sustainability.section.2": "Ces trois piliers doivent être en équilibre pour que nous ayons un avenir durable. Souvent ces trois colonnes sont également montrées comme un triangle qui se trouve d'un côté. Cela signifie que les trois piliers sont tout aussi importants. Quand une colonne est trop courte, le triangle devient instable et peut s'incliner. Cela signifie que nous n'avons un avenir durable que si les trois piliers sont tout aussi importants.",
+  "pages.sustainability.section.3": "Même si SaveWorld se concentre principalement sur l'environnement, nous ne voulons pas négliger les deux autres piliers. C'est pourquoi vous trouverez également des informations sur les sujets des entreprises et de la société dans ce domaine.",
   "pages.tools.calc": "Calculs du CO2",
   "pages.tools.calc.calculate": "Calculer",
   "pages.tools.calc.car": "Voitures",
-  "pages.tools.calc.car.description":
-    "Vérifiez combien de CO2 vous roulez avec votre voiture sur une certaine distance.",
-  "pages.tools.calc.car.description.long":
-    "Calculez la quantité de CO2 que vous dépensez sur une piste avec votre voiture. Le calcul est basé sur les données de l'Agence fédérale de l'environnement (UBA) de 2022. Pour le calcul, vous avez besoin de la longueur de l'itinéraire (en km) et de la consommation de carburant de votre voiture (en l/100km).",
+  "pages.tools.calc.car.description": "Vérifiez combien de CO2 vous roulez avec votre voiture sur une certaine distance.",
+  "pages.tools.calc.car.description.long": "Calculez la quantité de CO2 que vous dépensez sur une piste avec votre voiture. Le calcul est basé sur les données de l'Agence fédérale de l'environnement (UBA) de 2022. Pour le calcul, vous avez besoin de la longueur de l'itinéraire (en km) et de la consommation de carburant de votre voiture (en l/100km).",
   "pages.tools.calc.distance": "Distance",
   "pages.tools.calc.ecar": "Voiture électrique",
-  "pages.tools.calc.ecar.description":
-    "Rectifier la quantité de CO2 que vous utilisez votre voiture électrique à une certaine distance, par la consommation d'énergie.",
-  "pages.tools.calc.ecar.description.long":
-    "Calculez la quantité de CO2 que vous dépensez sur une piste avec votre voiture. Le calcul est basé sur les données de l'Agence fédérale de l'environnement (UBA) de 2022. Pour le calcul vous avez besoin de la longueur de la distance (en km) et de la consommation d'énergie de votre voiture (en kWh/100km).",
+  "pages.tools.calc.ecar.description": "Rectifier la quantité de CO2 que vous utilisez votre voiture électrique à une certaine distance, par la consommation d'énergie.",
+  "pages.tools.calc.ecar.description.long": "Calculez la quantité de CO2 que vous dépensez sur une piste avec votre voiture. Le calcul est basé sur les données de l'Agence fédérale de l'environnement (UBA) de 2022. Pour le calcul vous avez besoin de la longueur de la distance (en km) et de la consommation d'énergie de votre voiture (en kWh/100km).",
   "pages.tools.calc.fuel.type": "Type de carburant",
   "pages.tools.calc.fuel.type.diesel": "Diesel",
   "pages.tools.calc.fuel.type.petrol": "Pétrole",
   "pages.tools.calc.fuel.usage": "Consommation de carburant à 100 km",
   "pages.tools.calc.hcar": "Voiture à hydrogène",
-  "pages.tools.calc.hcar.description":
-    "Rectifiez la quantité de CO2 que vous utilisez sur une certaine distance, à travers la consommation d'hydrogène.",
-  "pages.tools.calc.hcar.description.long":
-    "Calculez la quantité de CO2 que vous dépensez sur une piste avec votre voiture. Le calcul est basé sur les données de l'Agence fédérale de l'environnement (UBA) de 2022. Pour le calcul, vous avez besoin de la longueur de la route (en km) et de la consommation d'hydrogène de votre voiture (en kg/100km).",
+  "pages.tools.calc.hcar.description": "Rectifiez la quantité de CO2 que vous utilisez sur une certaine distance, à travers la consommation d'hydrogène.",
+  "pages.tools.calc.hcar.description.long": "Calculez la quantité de CO2 que vous dépensez sur une piste avec votre voiture. Le calcul est basé sur les données de l'Agence fédérale de l'environnement (UBA) de 2022. Pour le calcul, vous avez besoin de la longueur de la route (en km) et de la consommation d'hydrogène de votre voiture (en kg/100km).",
   "pages.tools.calc.hydrogen.usage": "Consommation d'hydrogène par 100 km",
   "pages.tools.calc.power.usage": "Consommation électrique à 100 km",
-  "pages.tools.calc.search.no.results":
-    "Aucune calculatrice de CO2 n'a été trouvée.",
+  "pages.tools.calc.search.no.results": "Aucune calculatrice de CO2 n'a été trouvée.",
   "pages.tools.calc.source": "Source",
   "pages.tools.calc.train": "Train (ICE, IC, etc.)",
-  "pages.tools.calc.train.description":
-    "Rendre compte de la quantité d'émissions de CO2 que vous utilisez le train longue distance pendant votre voyage.",
-  "pages.tools.calc.train.description.long":
-    "Calculez la quantité de CO2 que vous utilisez sur une distance. Le calcul est basé sur les données de Quarks. Pour le calcul, vous avez besoin de la longueur de l'itinéraire (en km). 0,036 kg de CO2 est expulsé par km, c'est pourquoi des écarts peuvent se produire en raison de l'arrondissement.",
+  "pages.tools.calc.train.description": "Rendre compte de la quantité d'émissions de CO2 que vous utilisez le train longue distance pendant votre voyage.",
+  "pages.tools.calc.train.description.long": "Calculez la quantité de CO2 que vous utilisez sur une distance. Le calcul est basé sur les données de Quarks. Pour le calcul, vous avez besoin de la longueur de l'itinéraire (en km). 0,036 kg de CO2 est expulsé par km, c'est pourquoi des écarts peuvent se produire en raison de l'arrondissement.",
   "popup.alert.title.default": "Rapport annuel",
   "popup.close": "Fermer",
   "popup.input.label": "Entrée",
@@ -804,4 +619,17 @@ export const fr = {
   "user.role.admin": "Administrateur",
   "user.user": "Utilisateur",
   "user.username": "Nom d'utilisateur",
+  "pages.ai.title": "Conseils d'application",
+  "pages.ai.text": "Notre système d'IA peut vous donner des conseils sur la façon de vivre plus durable. Mais vous pouvez aussi poser d'autres questions.",
+  "pages.ai.powered.by": "Propulsé par GPT3",
+  "general.beta": "Bêta",
+  "pages.ai.prompts.eco.tipps": "Conseils pratiques uniquement pour vous",
+  "pages.ai.prompts.projects.ideas": "Idées pour les écoprojets",
+  "pages.ai.prompts.blog.template": "Modèle de blog",
+  "pages.ai.prompts.sustainability.fact": "Loi sur la durabilité",
+  "pages.ai.prompt.placeholder": "Posez une question",
+  "pages.ai.left.contingent": "Autres demandes & #160;: %0",
+  "pages.ai.prompts.blog.topic": "Thème",
+  "pages.ai.prompts.blog.topic.description": "Choisissez un thème pour votre blog",
+  "pages.ai.left.contingent.refill": "Prochain remplissage: 00:00."
 };

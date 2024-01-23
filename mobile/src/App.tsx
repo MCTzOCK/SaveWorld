@@ -111,6 +111,8 @@ import EatingPlanViewer from "./pages/eatingplans/EatingPlanViewer";
 import Licenses from "./pages/account/Licenses";
 import { $$ } from "./translations/i18n";
 import LanguageSwitcher from "./components/LanguageSwitcher";
+import AITest from "./pages/AITest";
+import AIHelper from "./pages/AIHelper";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -132,6 +134,7 @@ export default function App() {
     "video_category_channels",
     "recipes",
     "eatingplans",
+    "ai_helper",
   ]);
 
   const { userInfo, loaded, loggedIn } = useUserData();
@@ -198,6 +201,8 @@ export default function App() {
       "/account": ManageAccount,
       "/account/licenses": Licenses,
       "/admin": AdminDashboard,
+      "/ai-test": AITest,
+      "/ai": flags.ai_helper.enabled ? AIHelper : NotFound,
       "/admin/content": AdminContentDashboard,
       "/admin/content/categories": AdminContentCategoryDashboard,
       "/admin/content/videos": AdminVideosDashboard,

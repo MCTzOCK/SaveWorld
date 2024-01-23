@@ -52,8 +52,8 @@ struct SaveWorld_WidgetsEntryView : View {
                         .font(.title2)
                         .cornerRadius(12)
                 }
-                Link(destination: URL(string: "saveworld://account")!) {
-                    Image(systemName: "gear")
+                Link(destination: URL(string: "saveworld://ai")!) {
+                    Image(systemName: "bolt.fill")
                         .padding()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(.red)

@@ -618,5 +618,18 @@ export const nl = {
   "user.password.confirm": "Bevestig uw wachtwoord",
   "user.role.admin": "Beheerder",
   "user.user": "Gebruikers",
-  "user.username": "Gebruikersnaam"
+  "user.username": "Gebruikersnaam",
+  "pages.ai.title": "KI tips",
+  "pages.ai.text": "Ons AI-systeem kan u tips geven over hoe u duurzamer kunt leven. Maar je kunt ook andere vragen stellen.",
+  "pages.ai.powered.by": "Aangedreven door GPT3",
+  "general.beta": "Beta",
+  "pages.ai.prompts.eco.tipps": "Praktische tips alleen voor u",
+  "pages.ai.prompts.projects.ideas": "Ideeën voor ecoprojecten",
+  "pages.ai.prompts.blog.template": "Blogsjabloon",
+  "pages.ai.prompts.sustainability.fact": "Wet op de duurzaamheid",
+  "pages.ai.prompt.placeholder": "Stel een vraag",
+  "pages.ai.left.contingent": "Andere verzoeken: %0",
+  "pages.ai.prompts.blog.topic": "Onderwerp",
+  "pages.ai.prompts.blog.topic.description": "Kies een thema voor uw blog",
+  "pages.ai.left.contingent.refill": "Volgende vulling: 00:00."
 };

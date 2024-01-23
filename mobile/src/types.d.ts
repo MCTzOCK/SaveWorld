@@ -178,6 +178,7 @@ interface MUserPreferences {
   };
   blocked_users: string[];
   cookbookItems: string[];
+  ai_left_usage?: number;
 }
 
 interface MVideoComment {
