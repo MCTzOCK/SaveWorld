@@ -24,6 +24,7 @@ services:
       context: "./backend2"
       dockerfile: "Dockerfile"
     env_file: "./.env.backend"
+    restart: always
     ports:
       - "8802:3000"
     networks:
@@ -33,6 +34,7 @@ services:
       context: "./backend2"
       dockerfile: "Dockerfile"
     env_file: "./.env.backend_dev"
+    restart: always
     ports:
       - "8803:3000"
     networks:
