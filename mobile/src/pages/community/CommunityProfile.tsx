@@ -232,6 +232,8 @@ export default function CommunityProfile(props: { socket: Socket }) {
                           }
                           subHeader={"@" + username}
                           onIonActionSheetDidDismiss={async (ev) => {
+                            if (ev.detail.data.action === "cancel") return;
+
                             switch (ev.detail.data.action) {
                               case "follow":
                                 const res = await REST.Community.follow(
