@@ -19,6 +19,24 @@ services:
       - redis
     networks:
       - saveworld
+  backend:
+    build:
+      context: "./backend2"
+      dockerfile: "Dockerfile"
+    env_file: "./.env.backend"
+    ports:
+      - "8802:3000"
+    networks:
+      - saveworld
+  backend_dev:
+    build:
+      context: "./backend2"
+      dockerfile: "Dockerfile"
+    env_file: "./.env.backend_dev"
+    ports:
+      - "8803:3000"
+    networks:
+      - saveworld
 networks:
   saveworld:
     name: saveworld

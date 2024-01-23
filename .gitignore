@@ -22,3 +22,6 @@ backend2/dist/
 backend2/.env
 
 ai-proxy/node_modules/
+
+.env.backend
+.env.backend_dev
