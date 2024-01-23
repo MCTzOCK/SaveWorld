@@ -48,16 +48,16 @@ export default async function eatingplanPlugin(
       }
 
       const { date } = req.query;
-      const eatingPlan = await EatingPlanModel.findOne({
+      let eatingPlan = await EatingPlanModel.findOne({
         user: user._id,
         date: req.query.date,
       }).populate("recipes");
 
       if (!eatingPlan) {
-        res.status(404).send({
-          error: "Not found",
+        eatingPlan = await EatingPlanModel.create({
+          user: user._id,
+          date: date,
         });
-        return;
       }
 
       res.status(200).send({ plan: eatingPlan });

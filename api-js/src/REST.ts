@@ -1160,7 +1160,7 @@ export class REST {
           RESTEnv.API_URL +
           "/eco-projects/project/toggle-member-status?projectId=" +
           projectId,
-        method: "POST",
+        method: "GET",
         token: token,
       });
     },

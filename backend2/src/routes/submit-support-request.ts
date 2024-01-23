@@ -48,7 +48,11 @@ export default async function supportPlugin(app: FastifyInstance, opts: any) {
         return;
       }
 
-      if (category.toLowerCase().startsWith("report") && !additionalData) {
+      if (
+        category.toLowerCase().startsWith("report") &&
+        category.toLowerCase() !== "report-bug" &&
+        !additionalData
+      ) {
         res.status(400).send({
           error: "Missing required fields",
           status: 400,

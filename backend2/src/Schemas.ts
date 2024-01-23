@@ -266,9 +266,7 @@ export const FastifySchemas = {
         message: {
           type: "string",
         },
-        additionalData: {
-          type: "object",
-        },
+        additionalData: {},
       },
       required: ["email", "category", "message"],
     },
