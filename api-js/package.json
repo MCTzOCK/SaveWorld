@@ -1,6 +1,6 @@
 {
   "name": "@saveworld/api-js",
-  "version": "1.0.73",
+  "version": "1.0.74",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc --project tsconfig.json",
