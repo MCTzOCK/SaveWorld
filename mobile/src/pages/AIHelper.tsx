@@ -146,7 +146,10 @@ export default function AIHelper() {
           helperText: $$("pages.ai.prompts.blog.topic.description"),
         });
 
-        if (!topic) return;
+        if (!topic) {
+          setLoading(false);
+          return;
+        }
 
         processPrompt(
           "Nenne mir eine Idee für ein lokales nachhaltiges und leicht umsetzbares Projekt, das auf Zusammenarbeit basiert mit dem Schwerpunkt '" +
@@ -164,7 +167,10 @@ export default function AIHelper() {
           helperText: $$("pages.ai.prompts.blog.topic.description"),
         });
 
-        if (!topic) return;
+        if (!topic) {
+          setLoading(false);
+          return;
+        }
 
         processPrompt(
           "Schreibe einen Blogpost über Nachhaltigkeit mit dem Schwerpunkt '" +
