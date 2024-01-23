@@ -30,7 +30,7 @@ export async function prompt(o: { model?: string; prompt: string }) {
         content: o.prompt,
       },
     ],
-    model: "gpt-3.5-turbo-0613",
+    model: o.model || "gpt-3.5-turbo-0613",
   });
 
   return chatCompletion.choices[0].message.content;

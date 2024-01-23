@@ -45,9 +45,11 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
       }
 
       let leftContingent = 0;
+      let model = "gpt-3.5-turbo-0613";
 
       if (user.role === "admin") {
         leftContingent = 100000;
+        model = "gpt-4-0314";
       } else {
         const prefs = await UserPreferencesModel.findOne({
           user: user._id,
@@ -78,6 +80,7 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
 
       const chatCompletion = await prompt({
         prompt: bPrompt,
+        model,
       });
 
       res.send({
