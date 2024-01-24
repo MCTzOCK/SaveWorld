@@ -69,7 +69,7 @@ export default function HeaderSegment() {
                 _active={{ backgroundColor: "black" }}
                 as={Link}
                 href={
-                  "https://download.ben-siebert.com/saveworld/app/2024.01.08-release/SaveWorld.apk"
+                  "https://download.ben-siebert.com/saveworld/app/2024.01.24-release/SaveWorld.apk"
                 }
                 fontSize={"xl"}
                 leftIcon={<FaAndroid />}
