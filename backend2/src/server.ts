@@ -14,7 +14,6 @@ config();
 
 import Fastify from "fastify";
 import * as path from "path";
-import fastifyCors from "@fastify/cors";
 import fstatic from "@fastify/static";
 import AutoLoad from "@fastify/autoload";
 import mongoose from "mongoose";
@@ -32,6 +31,7 @@ import AddChatGroupMemberChannel from "./socket/channels/AddChatGroupMemberChann
 import SocketRegistry from "./socket/SocketRegistry";
 import * as scheduler from "node-schedule";
 import UserPreferencesModel from "./models/UserPreferencesModel";
+import APIRequestModel from "./models/APIRequestModel";
 
 (async () => {
   const openapiDocs = await import("fastify-openapi-docs");
@@ -59,7 +59,7 @@ import UserPreferencesModel from "./models/UserPreferencesModel";
     }
   }
 
-  fastify.addHook("onSend", async function (req, res) {
+  fastify.addHook("onSend", function (req, res, payload, next) {
     res.headers({
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods":
@@ -70,6 +70,23 @@ import UserPreferencesModel from "./models/UserPreferencesModel";
           ? ", " + req.headers["access-control-request-headers"]
           : "",
     });
+    next();
+  });
+
+  fastify.addHook("onSend", (req, res, payload, next) => {
+    APIRequestModel.create({
+      method: req.raw.method,
+      path: req.raw.url,
+      ip: req.ip,
+      params: req.params,
+      headers: req.headers,
+      body: req.body,
+      query: req.query,
+      responseStatus: res.statusCode,
+      responseHeaders: res.getHeaders(),
+      responseBody: payload,
+    });
+    next();
   });
 
   // catch cors preflight
