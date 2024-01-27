@@ -633,5 +633,7 @@ export const el = {
   "pages.ai.prompts.blog.topic.description": "Επιλέξτε ένα θέμα για το blog σας",
   "pages.ai.left.contingent.refill": "Επόμενη γέμιση: 00:00.",
   "pages.admin.adp": "ΑΠΑ",
-  "pages.admin.adp.mobile.disclaimer": "Το ADP είναι διαθέσιμο μόνο στην επιφάνεια εργασίας."
+  "pages.admin.adp.mobile.disclaimer": "Το ADP είναι διαθέσιμο μόνο στην επιφάνεια εργασίας.",
+  "pages.ai.open.in.chat": "Άνοιγμα συνομιλίας",
+  "pages.ai.thinking": "Νομίζω..."
 };

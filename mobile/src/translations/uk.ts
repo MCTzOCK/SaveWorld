@@ -633,5 +633,7 @@ export const uk = {
   "pages.ai.prompts.blog.topic.description": "Виберіть тему для вашого блогу",
   "pages.ai.left.contingent.refill": "Наступна начинка: 00:00.",
   "pages.admin.adp": "АПУ",
-  "pages.admin.adp.mobile.disclaimer": "ADP доступна тільки на робочому столі."
+  "pages.admin.adp.mobile.disclaimer": "ADP доступна тільки на робочому столі.",
+  "pages.ai.open.in.chat": "Відкрити чат",
+  "pages.ai.thinking": "Я думаю..."
 };

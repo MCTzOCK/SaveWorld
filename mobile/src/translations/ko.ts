@@ -633,5 +633,7 @@ export const ko = {
   "pages.ai.prompts.blog.topic.description": "블로그에 대한 테마를 선택하십시오",
   "pages.ai.left.contingent.refill": "다음 충전 : 00:00.",
   "pages.admin.adp": "사이트맵",
-  "pages.admin.adp.mobile.disclaimer": "ADP는 데스크톱에서만 사용할 수 있습니다."
+  "pages.admin.adp.mobile.disclaimer": "ADP는 데스크톱에서만 사용할 수 있습니다.",
+  "pages.ai.open.in.chat": "채팅 열기",
+  "pages.ai.thinking": "나는 생각한다..."
 };

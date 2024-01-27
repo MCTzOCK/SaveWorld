@@ -633,5 +633,7 @@ export const es = {
   "pages.ai.prompts.blog.topic.description": "Elija un tema para su blog",
   "pages.ai.left.contingent.refill": "Siguiente relleno: 00:00.",
   "pages.admin.adp": "ADP",
-  "pages.admin.adp.mobile.disclaimer": "ADP sólo está disponible en el escritorio."
+  "pages.admin.adp.mobile.disclaimer": "ADP sólo está disponible en el escritorio.",
+  "pages.ai.open.in.chat": "Charla abierta",
+  "pages.ai.thinking": "Creo..."
 };
