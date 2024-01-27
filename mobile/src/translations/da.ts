@@ -631,5 +631,7 @@ export const da = {
   "pages.ai.left.contingent": "Andre anmodninger: %0",
   "pages.ai.prompts.blog.topic": "Topic",
   "pages.ai.prompts.blog.topic.description": "Vælg et tema til din blog",
-  "pages.ai.left.contingent.refill": "Næste påfyldning: 00:00."
+  "pages.ai.left.contingent.refill": "Næste påfyldning: 00:00.",
+  "pages.admin.adp": "ADP",
+  "pages.admin.adp.mobile.disclaimer": "ADP er kun tilgængelig på skrivebordet."
 };

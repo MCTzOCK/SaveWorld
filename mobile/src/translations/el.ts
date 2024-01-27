@@ -631,5 +631,7 @@ export const el = {
   "pages.ai.left.contingent": "Άλλες αιτήσεις: %0",
   "pages.ai.prompts.blog.topic": "Θέμα",
   "pages.ai.prompts.blog.topic.description": "Επιλέξτε ένα θέμα για το blog σας",
-  "pages.ai.left.contingent.refill": "Επόμενη γέμιση: 00:00."
+  "pages.ai.left.contingent.refill": "Επόμενη γέμιση: 00:00.",
+  "pages.admin.adp": "ΑΠΑ",
+  "pages.admin.adp.mobile.disclaimer": "Το ADP είναι διαθέσιμο μόνο στην επιφάνεια εργασίας."
 };
