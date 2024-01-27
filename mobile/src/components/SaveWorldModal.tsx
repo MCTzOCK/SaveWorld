@@ -24,13 +24,14 @@ export default function SaveWorldModal(props: {
   isOpen: boolean;
   onClose: () => void;
   children: ReactNode;
+  customSize?: string | string[];
 }) {
   return (
     <>
       <Modal
         isOpen={props.isOpen}
         onClose={props.onClose}
-        size={["full", "full", "2xl"]}
+        size={props.customSize ? props.customSize : ["full", "full", "2xl"]}
         scrollBehavior={"inside"}
       >
         <ModalOverlay />

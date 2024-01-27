@@ -633,5 +633,7 @@ export const pl = {
   "pages.ai.prompts.blog.topic.description": "Wybierz motyw na blogu",
   "pages.ai.left.contingent.refill": "Następne napełnienie: 00: 00.",
   "pages.admin.adp": "ADP",
-  "pages.admin.adp.mobile.disclaimer": "ADP jest dostępny tylko na pulpicie."
+  "pages.admin.adp.mobile.disclaimer": "ADP jest dostępny tylko na pulpicie.",
+  "pages.ai.open.in.chat": "Otwórz czat",
+  "pages.ai.thinking": "Myślę..."
 };

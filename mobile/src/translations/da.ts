@@ -633,5 +633,7 @@ export const da = {
   "pages.ai.prompts.blog.topic.description": "Vælg et tema til din blog",
   "pages.ai.left.contingent.refill": "Næste påfyldning: 00:00.",
   "pages.admin.adp": "ADP",
-  "pages.admin.adp.mobile.disclaimer": "ADP er kun tilgængelig på skrivebordet."
+  "pages.admin.adp.mobile.disclaimer": "ADP er kun tilgængelig på skrivebordet.",
+  "pages.ai.open.in.chat": "Åbn chat",
+  "pages.ai.thinking": "Jeg tror..."
 };

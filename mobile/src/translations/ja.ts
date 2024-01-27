@@ -633,5 +633,7 @@ export const ja = {
   "pages.ai.prompts.blog.topic.description": "ブログのテーマを選択してください",
   "pages.ai.left.contingent.refill": "次の充填: 00:00.",
   "pages.admin.adp": "ADPについて",
-  "pages.admin.adp.mobile.disclaimer": "ADPはデスクトップ上でのみ利用可能です."
+  "pages.admin.adp.mobile.disclaimer": "ADPはデスクトップ上でのみ利用可能です.",
+  "pages.ai.open.in.chat": "チャットを開く",
+  "pages.ai.thinking": "お問い合わせ."
 };

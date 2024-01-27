@@ -35,3 +35,55 @@ export async function prompt(o: { model?: string; prompt: string }) {
 
   return chatCompletion.choices[0].message.content;
 }
+
+export async function promptWithChat(o: {
+  previousMessages: { role: string; content: string }[];
+  prompt: string;
+  model?: string;
+}): Promise<
+  {
+    role: string;
+    content: string;
+  }[]
+> {
+  const messages = [];
+
+  const defaultMessages = [
+    {
+      role: "system",
+      content: "Du bist ein Experte für Nachhaltigkeit!",
+    },
+    {
+      role: "system",
+      content: "Halte dich möglichst kurz, maximal 300 Zeichen.",
+    },
+  ];
+
+  messages.push(...defaultMessages);
+
+  o.previousMessages = o.previousMessages.filter((m) => m.role !== "system");
+
+  messages.push(...o.previousMessages);
+
+  const chatCompletion = await openai.chat.completions.create({
+    messages: [
+      ...messages,
+      {
+        role: "user",
+        content: o.prompt,
+      },
+    ],
+    model: o.model || "gpt-3.5-turbo-0613",
+  });
+
+  const retMessages = [
+    ...messages,
+    {
+      role: "user",
+      content: o.prompt,
+    },
+    chatCompletion.choices[0].message,
+  ];
+
+  return retMessages;
+}

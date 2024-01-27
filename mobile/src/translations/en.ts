@@ -633,5 +633,7 @@ export const en = {
   "pages.ai.prompts.blog.topic.description": "Choose a theme for your blog",
   "pages.ai.left.contingent.refill": "Next filling: 00:00.",
   "pages.admin.adp": "ADP",
-  "pages.admin.adp.mobile.disclaimer": "ADP is only available on the desktop."
+  "pages.admin.adp.mobile.disclaimer": "ADP is only available on the desktop.",
+  "pages.ai.open.in.chat": "Open chat",
+  "pages.ai.thinking": "I think..."
 };
