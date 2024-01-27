@@ -26,8 +26,33 @@ import {
 import { useRedirectForAnon } from "../../../hooks/useRedirectForAnon";
 import PopupManager from "../../../util/PopupManager";
 import ADPTable from "../../../components/ADPTable";
+import { FaChartPie } from "react-icons/fa6";
+import { Pie } from "react-chartjs-2";
+import {
+  ArcElement,
+  BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip,
+} from "chart.js";
 
 export default function AdvancedDataPlatform() {
+  ChartJS.register(
+    ArcElement,
+    Tooltip,
+    Legend,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    PointElement,
+    LineElement,
+    Title,
+  );
   useRedirectForAnon({
     onlyAdmins: true,
   });
@@ -138,6 +163,96 @@ export default function AdvancedDataPlatform() {
                   return <option value={model}>{model}</option>;
                 })}
               </Select>
+              <IconButton
+                bg={"white"}
+                color={"black"}
+                _hover={{ bg: "white", color: "black" }}
+                _focus={{ bg: "white", color: "black" }}
+                aria-label={"Plot Data"}
+                icon={<FaChartPie />}
+                onClick={async () => {
+                  if (model === "") {
+                    await PopupManager.alertAsync({
+                      title: "Error",
+                      description: "Please select a model first!",
+                    });
+                    return;
+                  }
+                  const field = await PopupManager.selectAsync({
+                    title: "Select a field to plot",
+                    helperText: "Select a field to plot",
+                    choices: Object.keys(
+                      schemas[
+                        Object.keys(schemas).find(
+                          (key) => key === model,
+                        ) as string
+                      ],
+                    ),
+                  });
+
+                  if (field === "") {
+                    return;
+                  }
+
+                  const res = await REST.Admin.adpPlotPie(
+                    localStorage.getItem("token") as string,
+                    model,
+                    field,
+                  );
+
+                  if (res.status !== 200) {
+                    await PopupManager.alertAsync({
+                      title: "Error",
+                      description: res.payload.error,
+                    });
+                    return;
+                  }
+
+                  await PopupManager.alertAsync({
+                    title: "Plot",
+                    description: (
+                      <>
+                        <Box height={"40vh"}>
+                          <Pie
+                            data={{
+                              datasets: [
+                                {
+                                  label: field,
+                                  data: res.payload.data,
+                                  backgroundColor: [
+                                    "#FF6384",
+                                    "#36A2EB",
+                                    "#FFCE56",
+                                    "#FF6384",
+                                    "#36A2EB",
+                                    "#FFCE56",
+                                    "#FF6384",
+                                    "#36A2EB",
+                                    "#FFCE56",
+                                  ],
+                                  borderColor: [
+                                    "#FF6384",
+                                    "#36A2EB",
+                                    "#FFCE56",
+                                    "#FF6384",
+                                    "#36A2EB",
+                                    "#FFCE56",
+                                    "#FF6384",
+                                    "#36A2EB",
+                                    "#FFCE56",
+                                  ],
+                                  borderWidth: 1,
+                                },
+                              ],
+                              labels: res.payload.labels,
+                            }}
+                          />
+                        </Box>
+                      </>
+                    ),
+                  });
+                }}
+              />
               <Button
                 bg={"white"}
                 color={"black"}
