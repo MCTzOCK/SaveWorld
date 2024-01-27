@@ -27,7 +27,44 @@ import mongoose from "mongoose";
 
 export default async function adminPlugin(app: FastifyInstance, opts: any) {
   app.get(
-    "/admin/insights",
+    "/admin/adp/models",
+    {
+      config: {
+        openapi: {
+          description: "Returns all available models",
+          summary: "Receive models",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (req, res) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const models = Object.keys(mongoose.models);
+
+      const schemas = {};
+
+      Object.keys(mongoose.models).map((key) => {
+        const schema = mongoose.models[key].schema;
+        const schemaWithTypes = {};
+        for (const key in schema.paths) {
+          if (schema.paths.hasOwnProperty(key)) {
+            schemaWithTypes[key] = schema.paths[key].instance;
+          }
+        }
+        schemas[key] = schemaWithTypes;
+      });
+
+      res.status(200).send({
+        models,
+        schemas,
+        status: 200,
+      });
+    },
+  );
+  app.get(
+    "/admin/adp/",
     {
       config: {
         openapi: {
@@ -85,7 +122,7 @@ export default async function adminPlugin(app: FastifyInstance, opts: any) {
   );
 
   app.post(
-    "/admin/insights",
+    "/admin/adp",
     {
       config: {
         openapi: {
@@ -143,30 +180,6 @@ export default async function adminPlugin(app: FastifyInstance, opts: any) {
         status: 200,
         message: "Updated",
         document: document,
-      });
-    },
-  );
-
-  app.get(
-    "/admin/insights/models",
-    {
-      config: {
-        openapi: {
-          description: "Returns all available models",
-          summary: "Receive models",
-          tags: ["admin"],
-          security: [{ jwt: [] }],
-        },
-      },
-    },
-    async (req, res) => {
-      const { auth, user } = await defaultAdminAuth(req, res);
-
-      const models = Object.keys(mongoose.models);
-
-      res.status(200).send({
-        models,
-        status: 200,
       });
     },
   );

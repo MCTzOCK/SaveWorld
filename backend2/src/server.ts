@@ -71,7 +71,15 @@ import APIRequestModel from "./models/APIRequestModel";
           : "",
     });
     let x = payload;
+
     if (!x) x = {};
+
+    try {
+      x = JSON.parse(payload as any);
+    } catch (e) {
+      // do nothing
+      x = payload || {};
+    }
 
     (async () => {
       try {
@@ -85,7 +93,7 @@ import APIRequestModel from "./models/APIRequestModel";
         const query = path.split("?")[1] || undefined;
         const responseStatus = res.statusCode || undefined;
         const responseHeaders = res.getHeaders() || undefined;
-        const responseBody = JSON.stringify(x) || undefined;
+        const responseBody = x || undefined;
 
         const pojo = {
           reqId: id,

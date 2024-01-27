@@ -9,35 +9,65 @@
  */
 
 import * as React from "react";
-import { Box, Button, Heading, Link, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Divider,
+  Heading,
+  Link,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import { useIonRouter } from "@ionic/react";
 import { MdHttp, MdQueryBuilder, MdQueryStats } from "react-icons/md";
+import { useEffect } from "react";
+import { REST } from "@saveworld/api-js";
 
 export default function ADPSidebar() {
+  const [models, setModels] = React.useState<string[]>([]);
+  useEffect(() => {
+    reloadModels();
+  }, []);
+
+  const reloadModels = async () => {
+    const res = await REST.Admin.adpModels(
+      localStorage.getItem("token") as string,
+    );
+
+    if (res.status !== 200) {
+      return;
+    }
+
+    setModels(res.payload.models);
+  };
+
   return (
     <>
       <Stack
         w={"100%"}
         h={"fit-content"}
-        bg={"gray.900"}
+        bg={"#121212"}
         flex={"10%"}
         minH={"100vh"}
         gap={4}
         p={2}
       >
-        <Text fontSize={"lg"} textAlign={"center"}>
-          API
-        </Text>
-        <CustomButton
-          text={"Explore"}
-          icon={<MdHttp />}
-          link={"/admin/adp/api/explore"}
-        />
         <CustomButton
           text={"Power Query"}
           icon={<MdQueryStats />}
-          link={"/admin/adp/pq?model=APIRequestModel&title=API Power Query"}
+          link={"/admin/adp/pq"}
         />
+        <Divider />
+        <Text>Dashboards</Text>
+        {models.map((model) => {
+          return (
+            <CustomButton
+              text={model}
+              icon={<MdQueryBuilder />}
+              link={"/admin/adp/model/" + model}
+            />
+          );
+        })}
       </Stack>
     </>
   );
@@ -55,6 +85,9 @@ const CustomButton = (props: { text: string; icon: any; link: string }) => {
         onClick={() => {
           router.push(props.link);
         }}
+        textAlign={"left"}
+        alignItems={"center"}
+        justifyContent={"flex-start"}
         leftIcon={props.icon}
       >
         {props.text}
