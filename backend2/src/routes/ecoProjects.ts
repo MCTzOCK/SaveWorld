@@ -1092,7 +1092,7 @@ export default async function ecoProjectsPlugin(
     },
   );
 
-  app.post(
+  app.get(
     "/eco-projects/project/todo/check-item",
     {
       config: {
@@ -1263,7 +1263,7 @@ export default async function ecoProjectsPlugin(
     },
   );
 
-  app.post(
+  app.get(
     "/eco-projects/project/members/change-role",
     {
       config: {
@@ -1390,7 +1390,7 @@ export default async function ecoProjectsPlugin(
   );
 
   app.post(
-    "/eco-projects/project/homepage/update-segments",
+    "/eco-projects/project/homepage/update-segment",
     {
       config: {
         openapi: {

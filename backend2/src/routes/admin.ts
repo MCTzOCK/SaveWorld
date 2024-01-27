@@ -23,8 +23,167 @@ import WatchHistoryModel from "../models/WatchHistoryModel";
 import { FastifySchemas } from "../Schemas";
 import { sendPN } from "../util/sendPN";
 import LifestyleTemplateModel from "../models/LifestyleTemplateModel";
+import mongoose from "mongoose";
 
 export default async function adminPlugin(app: FastifyInstance, opts: any) {
+  app.get(
+    "/admin/adp/models",
+    {
+      config: {
+        openapi: {
+          description: "Returns all available models",
+          summary: "Receive models",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (req, res) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const models = Object.keys(mongoose.models);
+
+      const schemas = {};
+
+      Object.keys(mongoose.models).map((key) => {
+        const schema = mongoose.models[key].schema;
+        const schemaWithTypes = {};
+        for (const key in schema.paths) {
+          if (schema.paths.hasOwnProperty(key)) {
+            schemaWithTypes[key] = schema.paths[key].instance;
+          }
+        }
+        schemas[key] = schemaWithTypes;
+      });
+
+      res.status(200).send({
+        models,
+        schemas,
+        status: 200,
+      });
+    },
+  );
+  app.get(
+    "/admin/adp/",
+    {
+      config: {
+        openapi: {
+          description: "Returns the requested insights",
+          summary: "Receive insights",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Querystring: {
+          filter?: string;
+          page?: string;
+          model: string;
+        };
+      }>,
+      res,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { model } = req.query;
+
+      if (mongoose.models[model] === undefined) {
+        res.status(404).send({
+          error: "Not Found",
+          status: 404,
+        });
+        return;
+      }
+
+      const { filter, page } = req.query;
+
+      const PAGE_SIZE = 10;
+
+      const modelInstance = mongoose.models[model];
+
+      const filterObject = filter ? JSON.parse(decodeURIComponent(filter)) : {};
+      const pageObject = page ? Number(page) : 0;
+
+      const entries = await modelInstance
+        .find(filterObject)
+        .skip(pageObject * PAGE_SIZE)
+        .limit(PAGE_SIZE);
+
+      const count = await modelInstance.countDocuments(filterObject);
+
+      res.status(200).send({
+        entries,
+        count,
+        pages: Math.ceil(count / PAGE_SIZE),
+      });
+    },
+  );
+
+  app.post(
+    "/admin/adp",
+    {
+      config: {
+        openapi: {
+          description: "Updates the requested data",
+          summary: "Update Data",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Body: {
+          model: string;
+          document_id: string;
+          update: any;
+        };
+      }>,
+      res,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { model, document_id, update } = req.body;
+
+      if (mongoose.models[model] === undefined) {
+        res.status(404).send({
+          error: "Not Found",
+          status: 404,
+        });
+        return;
+      }
+
+      const modelInstance = mongoose.models[model];
+
+      const document = await modelInstance.findById(document_id);
+
+      if (!document) {
+        res.status(404).send({
+          error: "Not Found",
+          status: 404,
+        });
+        return;
+      }
+
+      for (const key in update) {
+        if (update.hasOwnProperty(key)) {
+          document[key] = update[key];
+          document.markModified(key);
+        }
+      }
+
+      await document.save();
+
+      res.status(200).send({
+        status: 200,
+        message: "Updated",
+        document: document,
+      });
+    },
+  );
+
   app.get(
     "/admin/stats",
     {

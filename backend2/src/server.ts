@@ -14,7 +14,6 @@ config();
 
 import Fastify from "fastify";
 import * as path from "path";
-import fastifyCors from "@fastify/cors";
 import fstatic from "@fastify/static";
 import AutoLoad from "@fastify/autoload";
 import mongoose from "mongoose";
@@ -32,6 +31,7 @@ import AddChatGroupMemberChannel from "./socket/channels/AddChatGroupMemberChann
 import SocketRegistry from "./socket/SocketRegistry";
 import * as scheduler from "node-schedule";
 import UserPreferencesModel from "./models/UserPreferencesModel";
+import APIRequestModel from "./models/APIRequestModel";
 
 (async () => {
   const openapiDocs = await import("fastify-openapi-docs");
@@ -39,6 +39,11 @@ import UserPreferencesModel from "./models/UserPreferencesModel";
   const fastify = Fastify({
     logger: {
       level: "info",
+    },
+    ajv: {
+      customOptions: {
+        allowUnionTypes: true,
+      },
     },
     maxParamLength: 1000,
   });
@@ -54,7 +59,7 @@ import UserPreferencesModel from "./models/UserPreferencesModel";
     }
   }
 
-  fastify.addHook("onSend", async function (req, res) {
+  fastify.addHook("onSend", function (req, res, payload, next) {
     res.headers({
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods":
@@ -65,6 +70,56 @@ import UserPreferencesModel from "./models/UserPreferencesModel";
           ? ", " + req.headers["access-control-request-headers"]
           : "",
     });
+    let x = payload;
+
+    if (!x) x = {};
+
+    try {
+      x = JSON.parse(payload as any);
+    } catch (e) {
+      // do nothing
+      x = payload || {};
+    }
+
+    (async () => {
+      try {
+        const id = req.id || "unknown";
+        const method = req.raw.method || "unknown";
+        let path = req.raw.url || "unknown";
+        const ip = req.ip || "unknown";
+        const params = req.params || undefined;
+        const headers = req.headers || undefined;
+        const body = req.body || undefined;
+        const query = path.split("?")[1] || undefined;
+        const responseStatus = res.statusCode || undefined;
+        const responseHeaders = res.getHeaders() || undefined;
+        const responseBody = x || undefined;
+
+        const pojo = {
+          reqId: id,
+          method,
+          path: path.split("?")[0],
+          ip,
+          params,
+          headers,
+          body,
+          query,
+          responseStatus,
+          responseHeaders,
+          responseBody,
+        };
+        const apiRequest = await APIRequestModel.create(pojo);
+        apiRequest.save();
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+    next();
+  });
+
+  process.on("uncaughtException", (err, s) => {
+    console.log(err);
+    console.log(s);
   });
 
   // catch cors preflight

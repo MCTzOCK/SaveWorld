@@ -25,6 +25,7 @@ import {
   AlertTitle,
   Box,
   Button,
+  Stack,
   Tab,
   TabList,
   TabPanel,
@@ -103,84 +104,86 @@ export default function E2ProjectHomepage() {
     <>
       <Page title={project.name}>
         <MobileBox>
-          {(project.owner === userInfo._id ||
-            project.users.find(
-              (u) => u.userId === userInfo._id && u.permissions !== "MEMBER",
-            )) && (
-            <>
-              <Alert status={"info"} rounded={"xl"}>
-                <AlertIcon />
-                <AlertDescription>
-                  {$$("pages.e2projects.editable")}
-                  <Box w={"100%"}>
-                    <Button
-                      w={"100%"}
-                      color={"var(--ion-color-success)"}
-                      onClick={() => {
-                        router.push(
-                          "/e2-projects/" + project._id + "/edit",
-                          "none",
-                          "replace",
-                        );
-                      }}
-                    >
-                      {$$("general.edit")}
-                    </Button>
-                  </Box>
-                </AlertDescription>
-              </Alert>
-            </>
-          )}
-          {project.owner !== userInfo._id && (
-            <>
-              <Alert status={"info"} rounded={"xl"}>
-                <AlertIcon />
-                <AlertDescription w={"100%"}>
-                  {project.users.find((u) => u.userId === userInfo._id)
-                    ? $$("pages.e2projects.member.status.leave")
-                    : $$("pages.e2projects.member.status.join")}
-                  <Box w={"100%"}>
-                    <Button
-                      w={"100%"}
-                      color={
-                        "var(--ion-color-" +
-                        (project.users.find((u) => u.userId === userInfo._id)
-                          ? "danger"
-                          : "success") +
-                        ")"
-                      }
-                      onClick={async () => {
-                        const res = await REST.EcoProjects.toggleMembership(
-                          localStorage.getItem("token") as string,
-                          project._id,
-                        );
-
-                        if (res.status === 200) {
-                          await PopupManager.alertAsync({
-                            title: $$("control.success"),
-                            description:
-                              $$("pages.e2projects.member.status.popup.1") +
-                              (res.payload.memberStatus === 0
-                                ? $$(
-                                    "pages.e2projects.member.status.popup.no.member",
-                                  )
-                                : $$(
-                                    "pages.e2projects.member.status.popup.member",
-                                  )),
-                          });
-                          await reloadProject();
+          <Stack w={"100%"} gap={6}>
+            {(project.owner === userInfo._id ||
+              project.users.find(
+                (u) => u.userId === userInfo._id && u.permissions !== "MEMBER",
+              )) && (
+              <>
+                <Alert status={"info"} rounded={"xl"}>
+                  <AlertIcon />
+                  <AlertDescription>
+                    {$$("pages.e2projects.editable")}
+                    <Box w={"100%"}>
+                      <Button
+                        w={"100%"}
+                        color={"var(--ion-color-success)"}
+                        onClick={() => {
+                          router.push(
+                            "/e2-projects/" + project._id + "/edit",
+                            "none",
+                            "replace",
+                          );
+                        }}
+                      >
+                        {$$("general.edit")}
+                      </Button>
+                    </Box>
+                  </AlertDescription>
+                </Alert>
+              </>
+            )}
+            {project.owner !== userInfo._id && (
+              <>
+                <Alert status={"info"} rounded={"xl"}>
+                  <AlertIcon />
+                  <AlertDescription w={"100%"}>
+                    {project.users.find((u) => u.userId === userInfo._id)
+                      ? $$("pages.e2projects.member.status.leave")
+                      : $$("pages.e2projects.member.status.join")}
+                    <Box w={"100%"}>
+                      <Button
+                        w={"100%"}
+                        color={
+                          "var(--ion-color-" +
+                          (project.users.find((u) => u.userId === userInfo._id)
+                            ? "danger"
+                            : "success") +
+                          ")"
                         }
-                      }}
-                    >
-                      {project.users.find((u) => u.userId === userInfo._id)
-                        ? $$("general.leave")
-                        : $$("general.join")}
-                    </Button>
-                  </Box>
-                </AlertDescription>
-              </Alert>
-            </>
-          )}
+                        onClick={async () => {
+                          const res = await REST.EcoProjects.toggleMembership(
+                            localStorage.getItem("token") as string,
+                            project._id,
+                          );
+
+                          if (res.status === 200) {
+                            await PopupManager.alertAsync({
+                              title: $$("control.success"),
+                              description:
+                                $$("pages.e2projects.member.status.popup.1") +
+                                (res.payload.memberStatus === 0
+                                  ? $$(
+                                      "pages.e2projects.member.status.popup.no.member",
+                                    )
+                                  : $$(
+                                      "pages.e2projects.member.status.popup.member",
+                                    )),
+                            });
+                            await reloadProject();
+                          }
+                        }}
+                      >
+                        {project.users.find((u) => u.userId === userInfo._id)
+                          ? $$("general.leave")
+                          : $$("general.join")}
+                      </Button>
+                    </Box>
+                  </AlertDescription>
+                </Alert>
+              </>
+            )}
+          </Stack>
           <Tabs colorScheme={"brand"} size={"md"} isFitted mt={4}>
             <TabList>
               <Tab>{$$("pages.e2projects.homepage")}</Tab>

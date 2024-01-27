@@ -13,6 +13,69 @@ import { RESTEnv } from "./RESTEnv";
 export class REST {
   public static Admin = {
     /**
+     * @return the requested insights about the api
+     * @param token used to authenticate
+     * @param page the page to get
+     */
+    insights: async (
+      token: string,
+      options: {
+        model: string;
+        page?: number;
+        filter?: object;
+      },
+    ) => {
+      const query = new URLSearchParams();
+      query.append("model", options.model);
+      if (options.page) query.append("page", options.page.toString());
+      if (options.filter)
+        query.append(
+          "filter",
+          encodeURIComponent(JSON.stringify(options.filter)),
+        );
+
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/adp/?" + query.toString(),
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * @return all available models
+     * @param token used to authenticate
+     */
+    adpModels: async (token: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/adp/models",
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * updates an adp model
+     * @param token used to authenticate
+     * @param model the model to update
+     * @param document_id the id of the document to update
+     * @param update the update object
+     */
+    adpUpdate: async (
+      token: string,
+      model: string,
+      document_id: string,
+      update: object,
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/adp",
+        method: "POST",
+        token: token,
+        body: {
+          model: model,
+          document_id: document_id,
+          update: update,
+        },
+      });
+    },
+    /**
      * @return the stats of the system (user count, category count, ...)
      * @param token used to authenticate
      */
@@ -763,7 +826,7 @@ export class REST {
     likeBlogEntry: async (token: string, id: string) => {
       return await makeRequest({
         path: RESTEnv.API_URL + "/community/blog/like?id=" + id,
-        method: "POST",
+        method: "GET",
         token: token,
       });
     },
@@ -821,7 +884,7 @@ export class REST {
     follow: async (token: string, username: string) => {
       return await makeRequest({
         path: RESTEnv.API_URL + "/community/profile/" + username + "/follow",
-        method: "POST",
+        method: "GET",
         token: token,
       });
     },
@@ -1160,7 +1223,7 @@ export class REST {
           RESTEnv.API_URL +
           "/eco-projects/project/toggle-member-status?projectId=" +
           projectId,
-        method: "POST",
+        method: "GET",
         token: token,
       });
     },
@@ -1204,7 +1267,7 @@ export class REST {
           userId +
           "&newRole=" +
           newRole,
-        method: "POST",
+        method: "GET",
         token: token,
       });
     },
@@ -1412,7 +1475,7 @@ export class REST {
           listId +
           "&itemId=" +
           itemId,
-        method: "POST",
+        method: "GET",
         token: token,
       });
     },

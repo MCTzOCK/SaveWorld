@@ -786,4 +786,6 @@ export const german = {
   "pages.ai.prompts.blog.topic": "Thema",
   "pages.ai.prompts.blog.topic.description": "Wähle ein Thema für deinen Blog",
   "pages.ai.left.contingent.refill": "Nächste Auffüllung: 00:00 Uhr.",
+  "pages.admin.adp": "ADP",
+  "pages.admin.adp.mobile.disclaimer": "ADP ist nur auf dem Desktop verfügbar.",
 } as const;

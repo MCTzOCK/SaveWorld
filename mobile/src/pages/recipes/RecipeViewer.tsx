@@ -204,47 +204,6 @@ export default function RecipeViewer() {
               >
                 {$$("control.delete")}
               </Button>
-              <IconButton
-                aria-label={$$("control.save")}
-                icon={
-                  prefs.cookbookItems.includes(id) ? (
-                    <BiSolidBookmark />
-                  ) : (
-                    <BiBookmark />
-                  )
-                }
-                color={"yellow.500"}
-                onClick={async () => {
-                  let newCookbookItems = [...prefs.cookbookItems];
-
-                  if (newCookbookItems.includes(recipe._id)) {
-                    newCookbookItems = newCookbookItems.filter(
-                      (i) => i !== recipe._id,
-                    );
-                  } else {
-                    newCookbookItems.push(recipe._id);
-                  }
-
-                  const res = await REST.Account.updatePreferences(
-                    localStorage.getItem("token") as string,
-                    {
-                      cookbookItems: newCookbookItems,
-                    },
-                  );
-
-                  if (res.status === 200) {
-                    await reloadPrefs();
-                  } else {
-                    PopupManager.alert({
-                      title: $$("control.error"),
-                      description: $$(
-                        "pages.recipes.settings.update.error",
-                        res.payload.error,
-                      ),
-                    });
-                  }
-                }}
-              />
             </ButtonGroup>
           ) : null}
           <Flex
@@ -269,6 +228,48 @@ export default function RecipeViewer() {
                   text: $$("pages.recipes.share.text"),
                   url: "https://app.saveworld.one/recipes/" + recipe._id,
                 });
+              }}
+            />
+            <IconButton
+              aria-label={$$("control.save")}
+              variant={"ghost"}
+              icon={
+                prefs.cookbookItems.includes(id) ? (
+                  <BiSolidBookmark />
+                ) : (
+                  <BiBookmark />
+                )
+              }
+              color={"yellow.500"}
+              onClick={async () => {
+                let newCookbookItems = [...prefs.cookbookItems];
+
+                if (newCookbookItems.includes(recipe._id)) {
+                  newCookbookItems = newCookbookItems.filter(
+                    (i) => i !== recipe._id,
+                  );
+                } else {
+                  newCookbookItems.push(recipe._id);
+                }
+
+                const res = await REST.Account.updatePreferences(
+                  localStorage.getItem("token") as string,
+                  {
+                    cookbookItems: newCookbookItems,
+                  },
+                );
+
+                if (res.status === 200) {
+                  await reloadPrefs();
+                } else {
+                  PopupManager.alert({
+                    title: $$("control.error"),
+                    description: $$(
+                      "pages.recipes.settings.update.error",
+                      res.payload.error,
+                    ),
+                  });
+                }
               }}
             />
           </Flex>
@@ -320,28 +321,32 @@ export default function RecipeViewer() {
           <Button color={"brand.500"} mt={5} w={"100%"} onClick={onOpen}>
             {$$("pages.recipes.cook")}
           </Button>
-          <Button
-            color={"brand.500"}
-            mt={5}
-            w={"100%"}
-            onClick={() => {
-              const data: {
-                title: string;
-                ingredients: string[];
-                steps: string[];
-              } = {
-                title: recipe.title,
-                ingredients: recipe.ingredients,
-                steps: recipe.steps,
-              };
+          {loggedIn && userInfo.username !== recipe.created_by ? (
+            <Button
+              color={"brand.500"}
+              mt={5}
+              w={"100%"}
+              onClick={() => {
+                const data: {
+                  title: string;
+                  ingredients: string[];
+                  steps: string[];
+                } = {
+                  title: recipe.title,
+                  ingredients: recipe.ingredients,
+                  steps: recipe.steps,
+                };
 
-              const b64 = btoa(JSON.stringify(data));
+                const b64 = btoa(JSON.stringify(data));
 
-              router.push("/recipes/create?saveworld.data.recipe.edit=" + b64);
-            }}
-          >
-            {$$("pages.recipes.edit")}
-          </Button>
+                router.push(
+                  "/recipes/create?saveworld.data.recipe.edit=" + b64,
+                );
+              }}
+            >
+              {$$("pages.recipes.edit")}
+            </Button>
+          ) : null}
         </MobileBox>
         <RecipeModal open={isOpen} onClose={onClose} recipe={recipe} />
       </Page>

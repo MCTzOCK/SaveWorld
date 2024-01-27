@@ -555,7 +555,7 @@ export default async function communityPlugin(app: FastifyInstance, opts: any) {
     },
   );
 
-  app.post(
+  app.get(
     "/community/blog/like",
     {
       config: {
@@ -794,7 +794,7 @@ export default async function communityPlugin(app: FastifyInstance, opts: any) {
     },
   );
 
-  app.post(
+  app.get(
     "/community/profile/:username/follow",
     {
       config: {

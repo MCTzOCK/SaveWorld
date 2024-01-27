@@ -266,9 +266,7 @@ export const FastifySchemas = {
         message: {
           type: "string",
         },
-        additionalData: {
-          type: "object",
-        },
+        additionalData: {},
       },
       required: ["email", "category", "message"],
     },
@@ -1597,11 +1595,11 @@ export const FastifySchemas = {
   eco_projects_homepage_create_segment: {
     querystring: {
       properties: {
-        projectId: {
+        id: {
           type: "string",
         },
       },
-      required: ["projectId"],
+      required: ["id"],
     },
     body: {
       properties: {
@@ -1973,7 +1971,7 @@ export const FastifySchemas = {
           type: "array",
         },
       },
-      required: ["comment", "content", "tags"],
+      required: ["content", "tags"],
     },
     response: {
       401: {
@@ -2242,6 +2240,43 @@ export const FastifySchemas = {
             type: "string",
           },
           status: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
+  admin_insights_api_requests: {
+    querystring: {
+      properties: {
+        page: {
+          type: "string",
+        },
+        filter: {
+          type: "string",
+        },
+      },
+    },
+    response: {
+      401: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+      200: {
+        properties: {
+          requests: {
+            type: "array",
+          },
+          count: {
+            type: "number",
+          },
+          pages: {
             type: "number",
           },
         },
