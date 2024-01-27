@@ -93,6 +93,24 @@ export class REST {
       });
     },
     /**
+     * @return the requested plot data
+     * @param token used to authenticate
+     * @param model the model to get
+     * @param field to plot
+     */
+    adpPlotPie: async (token: string, model: string, field: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/admin/adp/plot/pie?model=" +
+          model +
+          "&field=" +
+          field,
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
      * @return the stats of the system (user count, category count, ...)
      * @param token used to authenticate
      */

@@ -24,8 +24,6 @@ import {
   useMediaQuery,
 } from "@chakra-ui/react";
 import { useRedirectForAnon } from "../../../hooks/useRedirectForAnon";
-import ADPSidebar from "../../../components/ADPSidebar";
-import { FaHammer } from "react-icons/fa6";
 import PopupManager from "../../../util/PopupManager";
 import ADPTable from "../../../components/ADPTable";
 
@@ -101,9 +99,8 @@ export default function AdvancedDataPlatform() {
   }, [query, model]);
 
   return (
-    <Page title={$$("pages.admin.adp")} noPadding>
+    <Page title={$$("pages.admin.adp")} noPadding redGradient={true}>
       <Flex w={"100%"} h={"fit-content"} minH={"100vh"} bg={"black"} gap={4}>
-        {/*<ADPSidebar />*/}
         <Box flex={"100%"} mt={4} p={4}>
           <form
             onSubmit={(e) => {
