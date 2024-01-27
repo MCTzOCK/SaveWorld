@@ -631,5 +631,7 @@ export const ko = {
   "pages.ai.left.contingent": "다른 요청: %0",
   "pages.ai.prompts.blog.topic": "이름 *",
   "pages.ai.prompts.blog.topic.description": "블로그에 대한 테마를 선택하십시오",
-  "pages.ai.left.contingent.refill": "다음 충전 : 00:00."
+  "pages.ai.left.contingent.refill": "다음 충전 : 00:00.",
+  "pages.admin.adp": "사이트맵",
+  "pages.admin.adp.mobile.disclaimer": "ADP는 데스크톱에서만 사용할 수 있습니다."
 };

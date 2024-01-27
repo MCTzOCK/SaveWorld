@@ -631,5 +631,7 @@ export const nl = {
   "pages.ai.left.contingent": "Andere verzoeken: %0",
   "pages.ai.prompts.blog.topic": "Onderwerp",
   "pages.ai.prompts.blog.topic.description": "Kies een thema voor uw blog",
-  "pages.ai.left.contingent.refill": "Volgende vulling: 00:00."
+  "pages.ai.left.contingent.refill": "Volgende vulling: 00:00.",
+  "pages.admin.adp": "ADP",
+  "pages.admin.adp.mobile.disclaimer": "ADP is alleen beschikbaar op het bureaublad."
 };

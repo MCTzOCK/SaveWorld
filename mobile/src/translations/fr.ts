@@ -631,5 +631,7 @@ export const fr = {
   "pages.ai.left.contingent": "Autres demandes & #160;: %0",
   "pages.ai.prompts.blog.topic": "Thème",
   "pages.ai.prompts.blog.topic.description": "Choisissez un thème pour votre blog",
-  "pages.ai.left.contingent.refill": "Prochain remplissage: 00:00."
+  "pages.ai.left.contingent.refill": "Prochain remplissage: 00:00.",
+  "pages.admin.adp": "ADP",
+  "pages.admin.adp.mobile.disclaimer": "ADP est uniquement disponible sur le bureau."
 };

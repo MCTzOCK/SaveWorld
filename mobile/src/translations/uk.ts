@@ -631,5 +631,7 @@ export const uk = {
   "pages.ai.left.contingent": "Інші запити: %0",
   "pages.ai.prompts.blog.topic": "Головна",
   "pages.ai.prompts.blog.topic.description": "Виберіть тему для вашого блогу",
-  "pages.ai.left.contingent.refill": "Наступна начинка: 00:00."
+  "pages.ai.left.contingent.refill": "Наступна начинка: 00:00.",
+  "pages.admin.adp": "АПУ",
+  "pages.admin.adp.mobile.disclaimer": "ADP доступна тільки на робочому столі."
 };
