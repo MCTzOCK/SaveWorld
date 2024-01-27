@@ -144,10 +144,11 @@ export default function ADPTable(props: {
                 {Object.keys(props.schema).map((key) => {
                   if (
                     (typeof row[key] === "string" ||
-                      typeof row[key] === "number") &&
+                      typeof row[key] === "number" ||
+                      typeof row[key] === "boolean") &&
                     row[key].toString().length < 50
                   ) {
-                    return <Td>{row[key]}</Td>;
+                    return <Td>{row[key].toString()}</Td>;
                   }
                   if (row[key] === null || row[key] === undefined) {
                     return <Td>N/A</Td>;

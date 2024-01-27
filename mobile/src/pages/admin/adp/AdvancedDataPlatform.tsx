@@ -150,14 +150,6 @@ export default function AdvancedDataPlatform() {
                   return <option value={model}>{model}</option>;
                 })}
               </Select>
-              <IconButton
-                bg={"white"}
-                color={"black"}
-                _hover={{ bg: "white", color: "black" }}
-                _focus={{ bg: "white", color: "black" }}
-                aria-label={"Query Builder"}
-                icon={<FaHammer />}
-              />
               <Button
                 bg={"white"}
                 color={"black"}
