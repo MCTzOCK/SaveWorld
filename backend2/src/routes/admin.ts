@@ -348,7 +348,14 @@ export default async function adminPlugin(app: FastifyInstance, opts: any) {
       });
 
       res.status(200).send({
-        labels,
+        labels: labels.map((key) => {
+          const isDate = new Date(key).getTime() > 0;
+          if (isDate) {
+            return new Date(key).toLocaleString();
+          } else {
+            return key;
+          }
+        }),
         data,
         status: 200,
       });

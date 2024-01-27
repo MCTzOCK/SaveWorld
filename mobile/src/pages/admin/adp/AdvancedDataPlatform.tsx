@@ -27,7 +27,7 @@ import { useRedirectForAnon } from "../../../hooks/useRedirectForAnon";
 import PopupManager from "../../../util/PopupManager";
 import ADPTable from "../../../components/ADPTable";
 import { FaChartPie } from "react-icons/fa6";
-import { Pie } from "react-chartjs-2";
+import { Bar, Pie } from "react-chartjs-2";
 import {
   ArcElement,
   BarElement,
@@ -40,6 +40,32 @@ import {
   Title,
   Tooltip,
 } from "chart.js";
+
+const defaultChartColors = {
+  backgroundColor: [
+    "#FF6384",
+    "#36A2EB",
+    "#FFCE56",
+    "#FF6384",
+    "#36A2EB",
+    "#FFCE56",
+    "#FF6384",
+    "#36A2EB",
+    "#FFCE56",
+  ],
+  borderColor: [
+    "#FF6384",
+    "#36A2EB",
+    "#FFCE56",
+    "#FF6384",
+    "#36A2EB",
+    "#FFCE56",
+    "#FF6384",
+    "#36A2EB",
+    "#FFCE56",
+  ],
+  borderWidth: 1,
+};
 
 export default function AdvancedDataPlatform() {
   ChartJS.register(
@@ -178,6 +204,17 @@ export default function AdvancedDataPlatform() {
                     });
                     return;
                   }
+
+                  const type = await PopupManager.selectAsync({
+                    title: "Select a plot type",
+                    helperText: "Select a plot type",
+                    choices: ["Bar", "Pie"],
+                  });
+
+                  if (!type) {
+                    return;
+                  }
+
                   const field = await PopupManager.selectAsync({
                     title: "Select a field to plot",
                     helperText: "Select a field to plot",
@@ -193,64 +230,79 @@ export default function AdvancedDataPlatform() {
                   if (field === "") {
                     return;
                   }
+                  if (type === "Pie") {
+                    const res = await REST.Admin.adpPlotPie(
+                      localStorage.getItem("token") as string,
+                      model,
+                      field,
+                    );
 
-                  const res = await REST.Admin.adpPlotPie(
-                    localStorage.getItem("token") as string,
-                    model,
-                    field,
-                  );
+                    if (res.status !== 200) {
+                      await PopupManager.alertAsync({
+                        title: "Error",
+                        description: res.payload.error,
+                      });
+                      return;
+                    }
 
-                  if (res.status !== 200) {
                     await PopupManager.alertAsync({
-                      title: "Error",
-                      description: res.payload.error,
+                      title: "Plot",
+                      description: (
+                        <>
+                          <Box height={"40vh"}>
+                            <Pie
+                              data={{
+                                datasets: [
+                                  {
+                                    label: field,
+                                    data: res.payload.data,
+                                    ...defaultChartColors,
+                                  },
+                                ],
+                                labels: res.payload.labels,
+                              }}
+                            />
+                          </Box>
+                        </>
+                      ),
                     });
-                    return;
-                  }
+                  } else if (type === "Bar") {
+                    const res = await REST.Admin.adpPlotBar(
+                      localStorage.getItem("token") as string,
+                      model,
+                      field,
+                    );
 
-                  await PopupManager.alertAsync({
-                    title: "Plot",
-                    description: (
-                      <>
-                        <Box height={"40vh"}>
-                          <Pie
-                            data={{
-                              datasets: [
-                                {
-                                  label: field,
-                                  data: res.payload.data,
-                                  backgroundColor: [
-                                    "#FF6384",
-                                    "#36A2EB",
-                                    "#FFCE56",
-                                    "#FF6384",
-                                    "#36A2EB",
-                                    "#FFCE56",
-                                    "#FF6384",
-                                    "#36A2EB",
-                                    "#FFCE56",
-                                  ],
-                                  borderColor: [
-                                    "#FF6384",
-                                    "#36A2EB",
-                                    "#FFCE56",
-                                    "#FF6384",
-                                    "#36A2EB",
-                                    "#FFCE56",
-                                    "#FF6384",
-                                    "#36A2EB",
-                                    "#FFCE56",
-                                  ],
-                                  borderWidth: 1,
-                                },
-                              ],
-                              labels: res.payload.labels,
-                            }}
-                          />
-                        </Box>
-                      </>
-                    ),
-                  });
+                    if (res.status !== 200) {
+                      await PopupManager.alertAsync({
+                        title: "Error",
+                        description: res.payload.error,
+                      });
+                      return;
+                    }
+
+                    await PopupManager.alertAsync({
+                      title: "Plot",
+                      description: (
+                        <>
+                          <Box height={"40vh"}>
+                            <Bar
+                              data={{
+                                datasets: [
+                                  {
+                                    label: field,
+                                    data: res.payload.data,
+                                    ...defaultChartColors,
+                                  },
+                                ],
+                                labels: res.payload.labels,
+                              }}
+                            />
+                          </Box>
+                        </>
+                      ),
+                    });
+                  }
                 }}
               />
               <Button
