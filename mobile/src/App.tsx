@@ -113,6 +113,7 @@ import { $$ } from "./translations/i18n";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 import AITest from "./pages/AITest";
 import AIHelper from "./pages/AIHelper";
+import AdvancedDataPlatform from "./pages/admin/adp/AdvancedDataPlatform";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -214,6 +215,7 @@ export default function App() {
       "/admin/support-requests/:id": AdminSupportRequestDashboard,
       "/admin/recipes": AdminRecipeDashboard,
       "/admin/eco-projects": AdminEcoProjectsDashboard,
+      "/admin/adp": AdvancedDataPlatform,
       "/learn": flags.videos.enabled ? Videos : NotFound,
       "/learn/channels": flags.video_category_channels.enabled
         ? Channels
