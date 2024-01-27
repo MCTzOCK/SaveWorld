@@ -123,7 +123,47 @@ export default function ADPTable(props: {
                             alignItems={"center"}
                             justifyContent={"center"}
                             w={"100%"}
+                            gap={4}
                           >
+                            <Button
+                              bg={"white"}
+                              color={"black"}
+                              _hover={{ bg: "white", color: "black" }}
+                              _focus={{ bg: "white", color: "black" }}
+                              onClick={async () => {
+                                if (
+                                  !(await PopupManager.confirmAsync({
+                                    title: "Delete Data?",
+                                    question:
+                                      "Are you sure you want to delete this data?",
+                                  }))
+                                )
+                                  return;
+
+                                const res = await REST.Admin.adpDelete(
+                                  localStorage.getItem("token") as string,
+                                  props.model,
+                                  row["_id"],
+                                );
+
+                                if (res.status !== 200) {
+                                  await PopupManager.alertAsync({
+                                    title: "Error",
+                                    description: res.payload.error,
+                                  });
+                                  return;
+                                }
+
+                                await PopupManager.alertAsync({
+                                  title: "Success",
+                                  description: "Row deleted!",
+                                });
+
+                                props.reload();
+                              }}
+                            >
+                              Delete
+                            </Button>
                             <Button
                               bg={"white"}
                               color={"black"}

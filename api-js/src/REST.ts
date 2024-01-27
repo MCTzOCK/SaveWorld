@@ -76,6 +76,59 @@ export class REST {
       });
     },
     /**
+     * Deletes an adp dataset
+     * @param token used to authenticate
+     * @param model the model to delete
+     * @param document_id the id of the document to delete
+     */
+    adpDelete: async (token: string, model: string, document_id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/adp",
+        method: "DELETE",
+        token: token,
+        body: {
+          model: model,
+          document_id: document_id,
+        },
+      });
+    },
+    /**
+     * @return the requested plot data
+     * @param token used to authenticate
+     * @param model the model to get
+     * @param field to plot
+     */
+    adpPlotPie: async (token: string, model: string, field: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/admin/adp/plot/pie?model=" +
+          model +
+          "&field=" +
+          field,
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * @return the requested plot data
+     * @param token used to authenticate
+     * @param model the model to get
+     * @param field to plot
+     */
+    adpPlotBar: async (token: string, model: string, field: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/admin/adp/plot/bar?model=" +
+          model +
+          "&field=" +
+          field,
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
      * @return the stats of the system (user count, category count, ...)
      * @param token used to authenticate
      */

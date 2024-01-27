@@ -184,6 +184,184 @@ export default async function adminPlugin(app: FastifyInstance, opts: any) {
     },
   );
 
+  app.delete(
+    "/admin/adp",
+    {
+      config: {
+        openapi: {
+          description: "Deletes the requested data",
+          summary: "Delete Data",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Body: {
+          model: string;
+          document_id: string;
+        };
+      }>,
+      res,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { model, document_id } = req.body;
+
+      if (mongoose.models[model] === undefined) {
+        res.status(404).send({
+          error: "Not Found",
+          status: 404,
+        });
+        return;
+      }
+
+      const modelInstance = mongoose.models[model];
+
+      const document = await modelInstance.findById(document_id);
+
+      await document.deleteOne();
+
+      res.status(200).send({
+        status: 200,
+        message: "Deleted",
+      });
+    },
+  );
+
+  app.get(
+    "/admin/adp/plot/pie",
+    {
+      config: {
+        openapi: {
+          description: "Returns the requested insights",
+          summary: "Receive insights (plot pie)",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Querystring: {
+          model: string;
+          field: string;
+        };
+      }>,
+      res,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { model, field } = req.query;
+
+      if (mongoose.models[model] === undefined) {
+        res.status(404).send({
+          error: "Not Found",
+          status: 404,
+        });
+        return;
+      }
+
+      const modelInstance = mongoose.models[model];
+
+      const entries = await modelInstance.find({});
+
+      const result = {};
+
+      entries.forEach((entry) => {
+        if (entry[field] in result) {
+          result[entry[field]]++;
+        } else {
+          result[entry[field]] = 1;
+        }
+      });
+
+      const labels = Object.keys(result);
+
+      const data = [];
+
+      labels.forEach((label) => {
+        data.push(result[label]);
+      });
+
+      res.status(200).send({
+        labels,
+        data,
+        status: 200,
+      });
+    },
+  );
+  app.get(
+    "/admin/adp/plot/bar",
+    {
+      config: {
+        openapi: {
+          description: "Returns the requested insights",
+          summary: "Receive insights (plot bar)",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Querystring: {
+          model: string;
+          field: string;
+        };
+      }>,
+      res,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { model, field } = req.query;
+
+      if (mongoose.models[model] === undefined) {
+        res.status(404).send({
+          error: "Not Found",
+          status: 404,
+        });
+        return;
+      }
+
+      const modelInstance = mongoose.models[model];
+
+      const entries = await modelInstance.find({});
+
+      const result = {};
+
+      entries.forEach((entry) => {
+        if (entry[field] in result) {
+          result[entry[field]]++;
+        } else {
+          result[entry[field]] = 1;
+        }
+      });
+
+      const labels = Object.keys(result);
+
+      const data = [];
+
+      labels.forEach((label) => {
+        data.push(result[label]);
+      });
+
+      res.status(200).send({
+        labels: labels.map((key) => {
+          const isDate = new Date(key).getTime() > 0;
+          if (isDate) {
+            return new Date(key).toLocaleString();
+          } else {
+            return key;
+          }
+        }),
+        data,
+        status: 200,
+      });
+    },
+  );
+
   app.get(
     "/admin/stats",
     {
