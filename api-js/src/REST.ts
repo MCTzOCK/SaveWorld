@@ -1723,5 +1723,29 @@ export class REST {
         },
       });
     },
+    /**
+     * @return the current chat messages
+     * @param token used to authenticate
+     * @param prompt the prompt to use
+     * @param previousMessages the previous messages to use
+     */
+    chat: async (
+      token: string,
+      prompt: string,
+      previousMessages: {
+        role: string;
+        content: string;
+      }[],
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/ai/v1/chat",
+        method: "POST",
+        token: token,
+        body: {
+          prompt: prompt,
+          previousMessages: previousMessages,
+        },
+      });
+    },
   };
 }
