@@ -34,7 +34,6 @@ export default function AdvancedDataPlatform() {
     onlyAdmins: true,
   });
 
-  const isMobile = useMediaQuery("(max-width: 800px)")[0];
   const [models, setModels] = React.useState<string[]>([]);
   const [schemas, setSchemas] = React.useState<{
     [key: string]: {
@@ -100,14 +99,6 @@ export default function AdvancedDataPlatform() {
     setPage(0);
     setTotalCount(0);
   }, [query, model]);
-
-  if (isMobile) {
-    return (
-      <Page title={$$("pages.admin.adp")}>
-        {$$("pages.admin.adp.mobile.disclaimer")}
-      </Page>
-    );
-  }
 
   return (
     <Page title={$$("pages.admin.adp")} noPadding>
