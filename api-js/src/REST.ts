@@ -17,12 +17,24 @@ export class REST {
      * @param token used to authenticate
      * @param page the page to get
      */
-    insights: async (token: string, page?: number) => {
+    insights: async (
+      token: string,
+      options: {
+        page?: number;
+        filter?: object;
+      },
+    ) => {
+      const query = new URLSearchParams();
+      if (options.page) query.append("page", options.page.toString());
+      if (options.filter)
+        query.append(
+          "filter",
+          encodeURIComponent(JSON.stringify(options.filter)),
+        );
+
       return await makeRequest({
         path:
-          RESTEnv.API_URL +
-          "/admin/insights/api/request" +
-          (page ? "?page=" + page : ""),
+          RESTEnv.API_URL + "/admin/insights/api/request?" + query.toString(),
         method: "GET",
         token: token,
       });
