@@ -82,6 +82,7 @@ import {
 import SaveWorldModal from "./SaveWorldModal";
 import { useFlags } from "flagsmith/react";
 import { $$ } from "../translations/i18n";
+import { MdQueryStats } from "react-icons/md";
 
 export default function DrawerMenu(props: {
   isOpen: boolean;
@@ -418,6 +419,13 @@ export default function DrawerMenu(props: {
             icon: <FaHammer />,
             onClick: () => {
               router.push("/admin", "none", "replace");
+            },
+          },
+          {
+            label: "ADP",
+            icon: <MdQueryStats />,
+            onClick: () => {
+              router.push("/admin/adp", "none", "replace");
             },
           },
           {

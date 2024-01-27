@@ -131,7 +131,7 @@ export default function AdvancedDataPlatform() {
               />
               <Select
                 placeholder={"Select a model"}
-                flex={"20%"}
+                flex={"40%"}
                 onChange={(e) => {
                   setModel(e.target.value as string);
                 }}
