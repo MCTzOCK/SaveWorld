@@ -28,6 +28,7 @@ import {
   Text,
   Textarea,
   UnorderedList,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { ReactElement, useEffect, useState } from "react";
 import { FaExclamation, FaLeaf } from "react-icons/fa6";
@@ -37,12 +38,14 @@ import {
   IonAccordionGroup,
   IonItem,
   IonLabel,
+  useIonRouter,
 } from "@ionic/react";
-import { aiPrompt, promptV2 } from "../util/ai";
+import { aiPrompt, promptV2, promptV2Chat } from "../util/ai";
 import PopupManager from "../util/PopupManager";
 import { REST } from "@saveworld/api-js";
 import { MUserPreferences } from "../types";
 import moment from "moment";
+import AIChatModal from "../components/AIChatModal";
 
 export default function AIHelper() {
   const [prefs, setPrefs] = useState<MUserPreferences | null>(null);
@@ -190,6 +193,21 @@ export default function AIHelper() {
   ];
 
   const [loading, setLoading] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [messages, setMessages] = useState<
+    {
+      role: string;
+      content: string;
+    }[]
+  >([]);
+
+  const onMessageSend = async (message: string) => {
+    const output = await promptV2Chat(message, messages);
+
+    setMessages(
+      output.filter((m) => m.role === "assistant" || m.role === "user"),
+    );
+  };
 
   const processPrompt = async (prompt: string) => {
     if (prompt.length < 1) {
@@ -215,6 +233,25 @@ export default function AIHelper() {
           >
             {output}
           </pre>
+          <Button
+            colorScheme={"brand"}
+            onClick={() => {
+              setMessages([
+                {
+                  role: "user",
+                  content: prompt,
+                },
+                {
+                  role: "assistant",
+                  content: output,
+                },
+              ]);
+              onOpen();
+            }}
+            mt={4}
+          >
+            {$$("pages.ai.open.in.chat")}
+          </Button>
         </>
       ),
     });
@@ -338,6 +375,12 @@ export default function AIHelper() {
           </Flex>
         </MobileBox>
       </Page>
+      <AIChatModal
+        onClose={onClose}
+        isOpen={isOpen}
+        messages={messages}
+        onSend={onMessageSend}
+      />
     </>
   );
 }

@@ -16,6 +16,7 @@ import { $$ } from "../../translations/i18n";
 export default function ChatMessageInput(props: {
   onSubmit: (message: string) => void;
   onImage: (url: string) => void;
+  noMedia?: boolean;
 }) {
   return (
     <div className={"chat-component chat-message-input-wrapper"}>
@@ -51,6 +52,7 @@ export default function ChatMessageInput(props: {
               icon={<FaImage />}
               color={"brand.500"}
               variant={"ghost"}
+              display={props.noMedia ? "none" : "flex"}
               onClick={async () => {
                 uploadImage((url) => {
                   props.onImage(url);

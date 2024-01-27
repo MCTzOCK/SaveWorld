@@ -788,4 +788,6 @@ export const german = {
   "pages.ai.left.contingent.refill": "Nächste Auffüllung: 00:00 Uhr.",
   "pages.admin.adp": "ADP",
   "pages.admin.adp.mobile.disclaimer": "ADP ist nur auf dem Desktop verfügbar.",
+  "pages.ai.open.in.chat": "Chat öffnen",
+  "pages.ai.thinking": "Ich denke nach...",
 } as const;
