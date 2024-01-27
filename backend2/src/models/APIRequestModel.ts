@@ -11,6 +11,15 @@
 import mongoose from "mongoose";
 
 const APIRequestModel = new mongoose.Schema({
+  reqId: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    required: true,
+    default: Date.now(),
+  },
   method: {
     type: String,
     required: true,
@@ -41,11 +50,11 @@ const APIRequestModel = new mongoose.Schema({
   },
   responseStatus: {
     type: Number,
-    required: true,
+    required: false,
   },
   responseHeaders: {
     type: Object,
-    required: true,
+    required: false,
   },
   responseBody: {
     type: Object,

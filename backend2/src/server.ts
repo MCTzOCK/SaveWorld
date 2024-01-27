@@ -70,23 +70,48 @@ import APIRequestModel from "./models/APIRequestModel";
           ? ", " + req.headers["access-control-request-headers"]
           : "",
     });
+    let x = payload;
+    if (!x) x = {};
+
+    (async () => {
+      try {
+        const id = req.id || "unknown";
+        const method = req.raw.method || "unknown";
+        let path = req.raw.url || "unknown";
+        const ip = req.ip || "unknown";
+        const params = req.params || undefined;
+        const headers = req.headers || undefined;
+        const body = req.body || undefined;
+        const query = path.split("?")[1] || undefined;
+        const responseStatus = res.statusCode || undefined;
+        const responseHeaders = res.getHeaders() || undefined;
+        const responseBody = JSON.stringify(x) || undefined;
+
+        const pojo = {
+          reqId: id,
+          method,
+          path: path.split("?")[0],
+          ip,
+          params,
+          headers,
+          body,
+          query,
+          responseStatus,
+          responseHeaders,
+          responseBody,
+        };
+        const apiRequest = await APIRequestModel.create(pojo);
+        apiRequest.save();
+      } catch (e) {
+        console.log(e);
+      }
+    })();
     next();
   });
 
-  fastify.addHook("onSend", (req, res, payload, next) => {
-    APIRequestModel.create({
-      method: req.raw.method,
-      path: req.raw.url,
-      ip: req.ip,
-      params: req.params,
-      headers: req.headers,
-      body: req.body,
-      query: req.query,
-      responseStatus: res.statusCode,
-      responseHeaders: res.getHeaders(),
-      responseBody: payload,
-    });
-    next();
+  process.on("uncaughtException", (err, s) => {
+    console.log(err);
+    console.log(s);
   });
 
   // catch cors preflight

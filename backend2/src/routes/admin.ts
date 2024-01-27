@@ -23,8 +23,52 @@ import WatchHistoryModel from "../models/WatchHistoryModel";
 import { FastifySchemas } from "../Schemas";
 import { sendPN } from "../util/sendPN";
 import LifestyleTemplateModel from "../models/LifestyleTemplateModel";
+import APIRequestModel from "../models/APIRequestModel";
 
 export default async function adminPlugin(app: FastifyInstance, opts: any) {
+  app.get(
+    "/admin/insights/api/request",
+    {
+      config: {
+        openapi: {
+          description: "Returns the requested insights",
+          summary: "Receive API insights",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Querystring: {
+          filter?: string;
+          page?: string;
+        };
+      }>,
+      res,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const PAGE_SIZE = 10;
+
+      const page = req.query.page ? Number(req.query.page) : 0;
+
+      const filter = req.query.filter ? JSON.parse(req.query.filter) : {};
+
+      const requests = await APIRequestModel.find(filter)
+        .skip(page * PAGE_SIZE)
+        .limit(PAGE_SIZE);
+
+      const count = await APIRequestModel.countDocuments(filter);
+
+      res.status(200).send({
+        requests,
+        count,
+        pages: Math.ceil(count / PAGE_SIZE),
+      });
+    },
+  );
+
   app.get(
     "/admin/stats",
     {

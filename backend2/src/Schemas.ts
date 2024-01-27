@@ -2246,6 +2246,43 @@ export const FastifySchemas = {
       },
     },
   },
+  admin_insights_api_requests: {
+    querystring: {
+      properties: {
+        page: {
+          type: "string",
+        },
+        filter: {
+          type: "string",
+        },
+      },
+    },
+    response: {
+      401: {
+        properties: {
+          status: {
+            type: "number",
+          },
+          error: {
+            type: "string",
+          },
+        },
+      },
+      200: {
+        properties: {
+          requests: {
+            type: "array",
+          },
+          count: {
+            type: "number",
+          },
+          pages: {
+            type: "number",
+          },
+        },
+      },
+    },
+  },
   admin_stats: {
     response: {
       401: {
