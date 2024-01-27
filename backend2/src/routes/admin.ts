@@ -184,6 +184,52 @@ export default async function adminPlugin(app: FastifyInstance, opts: any) {
     },
   );
 
+  app.delete(
+    "/admin/adp",
+    {
+      config: {
+        openapi: {
+          description: "Deletes the requested data",
+          summary: "Delete Data",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Body: {
+          model: string;
+          document_id: string;
+        };
+      }>,
+      res,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { model, document_id } = req.body;
+
+      if (mongoose.models[model] === undefined) {
+        res.status(404).send({
+          error: "Not Found",
+          status: 404,
+        });
+        return;
+      }
+
+      const modelInstance = mongoose.models[model];
+
+      const document = await modelInstance.findById(document_id);
+
+      await document.deleteOne();
+
+      res.status(200).send({
+        status: 200,
+        message: "Deleted",
+      });
+    },
+  );
+
   app.get(
     "/admin/stats",
     {
