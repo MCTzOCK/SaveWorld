@@ -61,3 +61,32 @@ export async function promptV2(prompt: string): Promise<string> {
 
   return output;
 }
+
+export async function promptV2Chat(
+  prompt: string,
+  previousMessages: {
+    role: string;
+    content: string;
+  }[],
+): Promise<
+  {
+    role: string;
+    content: string;
+  }[]
+> {
+  const res = await REST.AI.chat(
+    localStorage.getItem("token") as string,
+    prompt,
+    previousMessages,
+  );
+
+  if (res.status !== 200) {
+    await PopupManager.alertAsync({
+      title: $$("control.error"),
+      description: res.payload.error,
+    });
+    return [];
+  }
+  // TODO: Translate
+  return res.payload.chat;
+}
