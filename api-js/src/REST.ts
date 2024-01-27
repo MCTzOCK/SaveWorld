@@ -20,11 +20,13 @@ export class REST {
     insights: async (
       token: string,
       options: {
+        model: string;
         page?: number;
         filter?: object;
       },
     ) => {
       const query = new URLSearchParams();
+      query.append("model", options.model);
       if (options.page) query.append("page", options.page.toString());
       if (options.filter)
         query.append(
@@ -33,10 +35,44 @@ export class REST {
         );
 
       return await makeRequest({
-        path:
-          RESTEnv.API_URL + "/admin/insights/api/request?" + query.toString(),
+        path: RESTEnv.API_URL + "/admin/adp/?" + query.toString(),
         method: "GET",
         token: token,
+      });
+    },
+    /**
+     * @return all available models
+     * @param token used to authenticate
+     */
+    adpModels: async (token: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/adp/models",
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * updates an adp model
+     * @param token used to authenticate
+     * @param model the model to update
+     * @param document_id the id of the document to update
+     * @param update the update object
+     */
+    adpUpdate: async (
+      token: string,
+      model: string,
+      document_id: string,
+      update: object,
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/adp",
+        method: "POST",
+        token: token,
+        body: {
+          model: model,
+          document_id: document_id,
+          update: update,
+        },
       });
     },
     /**
