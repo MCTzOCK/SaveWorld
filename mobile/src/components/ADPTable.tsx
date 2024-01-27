@@ -19,12 +19,14 @@ import {
   TableContainer,
   Tbody,
   Td,
+  Textarea,
   Th,
   Thead,
   Tr,
 } from "@chakra-ui/react";
 import PopupManager from "../util/PopupManager";
 import { FaEye } from "react-icons/fa";
+import { REST } from "@saveworld/api-js";
 
 export default function ADPTable(props: {
   schema: {
@@ -39,6 +41,7 @@ export default function ADPTable(props: {
   pages: number;
   reload: () => void;
   totalCount: number;
+  model: string;
 }) {
   return (
     <>
@@ -52,7 +55,91 @@ export default function ADPTable(props: {
           </Thead>
           <Tbody>
             {props.data.map((row, index) => (
-              <Tr>
+              <Tr
+                _hover={{
+                  bg: "gray.700",
+                }}
+                cursor={"pointer"}
+                onClick={async (e) => {
+                  if (
+                    ["svg", "button"].includes(
+                      (e.target as HTMLElement).tagName.toLowerCase(),
+                    )
+                  )
+                    return;
+
+                  await PopupManager.alertAsync({
+                    title: "Row " + index,
+                    customSize: "4xl",
+                    description: (
+                      <>
+                        <form
+                          onSubmit={async (e) => {
+                            e.preventDefault();
+                            const formData = new FormData(
+                              e.target as HTMLFormElement,
+                            );
+                            const data = formData.get("data") as string;
+
+                            try {
+                              const json = JSON.parse(data);
+
+                              const res = await REST.Admin.adpUpdate(
+                                localStorage.getItem("token") as string,
+                                props.model,
+                                row["_id"],
+                                JSON.parse(data),
+                              );
+
+                              if (res.status !== 200) {
+                                await PopupManager.alertAsync({
+                                  title: "Error",
+                                  description: res.payload.error,
+                                });
+                                return;
+                              }
+
+                              await PopupManager.alertAsync({
+                                title: "Success",
+                                description: "Row updated!",
+                              });
+
+                              props.reload();
+                            } catch (e: any) {
+                              PopupManager.alertAsync({
+                                title: "Error",
+                                description: e.toString(),
+                              });
+                            }
+                          }}
+                        >
+                          <Textarea
+                            defaultValue={JSON.stringify(row, null, 2)}
+                            height={"50vh"}
+                            name={"data"}
+                          />
+                          <Flex
+                            mt={4}
+                            alignItems={"center"}
+                            justifyContent={"center"}
+                            w={"100%"}
+                          >
+                            <Button
+                              bg={"white"}
+                              color={"black"}
+                              _hover={{ bg: "white", color: "black" }}
+                              _focus={{ bg: "white", color: "black" }}
+                              type={"submit"}
+                            >
+                              Save
+                            </Button>
+                          </Flex>
+                        </form>
+                      </>
+                    ),
+                  });
+                }}
+              >
                 <Td>{index}</Td>
                 {Object.keys(props.schema).map((key) => {
                   if (

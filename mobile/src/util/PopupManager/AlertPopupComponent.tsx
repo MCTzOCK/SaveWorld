@@ -45,6 +45,7 @@ export default function AlertPopupComponent(props: {
         isCentered
         // @ts-ignore
         leastDestructiveRef={whatEverRef}
+        size={props.customSize || undefined}
       >
         <AlertDialogOverlay bg="blackAlpha.300" backdropFilter="blur(10px)">
           <AlertDialogContent bg={"#121212"}>

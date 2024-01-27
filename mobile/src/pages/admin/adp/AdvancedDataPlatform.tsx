@@ -198,9 +198,16 @@ export default function AdvancedDataPlatform() {
                   page: page - 1,
                 });
               }}
+              model={model}
               page={page}
               pages={pages}
-              reload={() => {}}
+              reload={() => {
+                fire({
+                  query: JSON.parse(query),
+                  model: model,
+                  page: page,
+                });
+              }}
             />
           ) : null}
         </Box>
