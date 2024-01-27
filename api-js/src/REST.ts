@@ -13,6 +13,21 @@ import { RESTEnv } from "./RESTEnv";
 export class REST {
   public static Admin = {
     /**
+     * @return the requested insights about the api
+     * @param token used to authenticate
+     * @param page the page to get
+     */
+    insights: async (token: string, page?: number) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/admin/insights/api/request" +
+          (page ? "?page=" + page : ""),
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
      * @return the stats of the system (user count, category count, ...)
      * @param token used to authenticate
      */
