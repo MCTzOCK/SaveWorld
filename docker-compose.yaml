@@ -39,6 +39,17 @@ services:
       - "8803:3000"
     networks:
       - saveworld
+  godot_server:
+    build:
+      context: "./godot-server"
+      dockerfile: "Dockerfile"
+    restart: unless-stopped
+    ports:
+      - "8804:3000"
+    networks:
+      - saveworld
+    volumes:
+      - /root/saveworld/godot_server:/app/public
 networks:
   saveworld:
     name: saveworld

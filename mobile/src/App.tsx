@@ -114,6 +114,7 @@ import LanguageSwitcher from "./components/LanguageSwitcher";
 import AITest from "./pages/AITest";
 import AIHelper from "./pages/AIHelper";
 import AdvancedDataPlatform from "./pages/admin/adp/AdvancedDataPlatform";
+import Page from "./components/Page";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -316,6 +317,31 @@ export default function App() {
       "/eatingplans/:date": flags.eatingplans.enabled
         ? EatingPlanViewer
         : NotFound,
+      "/games/:name": () => {
+        const router = useIonRouter();
+        const { name } = useParams<{ name: string }>();
+        return (
+          <Page title={name}>
+            <iframe
+              src={"/games/" + name + "/index.html"}
+              style={{
+                width: "100%",
+                height: "100%",
+                border: "none",
+              }}
+              onLoad={(e) => {
+                const iframe = e.target as HTMLIFrameElement;
+                const x =
+                  iframe.contentWindow?.document.createElement("script");
+                x!.src = "/games/lib.js";
+                x!.type = "text/javascript";
+                x!.async = true;
+                iframe.contentWindow?.document.head.appendChild(x!);
+              }}
+            />
+          </Page>
+        );
+      },
       //KEEP_ROUTES
     });
   }, [flags]);
@@ -331,7 +357,9 @@ export default function App() {
         options={{
           api_host: POSTHOG_ENDPOINT,
           loaded: (posthog) => {
-            if (process.env.NODE_ENV === "development") posthog.debug();
+            if (process.env.NODE_ENV === "development") {
+              posthog.debug();
+            }
           },
           autocapture: true,
         }}
