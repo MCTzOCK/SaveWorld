@@ -82,7 +82,7 @@ export function useUserData(): {
       } else {
         token = null;
 
-        if (!isPlatform("desktop")) {
+        if (isPlatform("hybrid")) {
           OneSignal.logout();
         }
         setLoggedIn(false);

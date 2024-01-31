@@ -61,7 +61,7 @@ export default function Home() {
                 fontSize={["6xl", "8xl"]}
                 textAlign={"center"}
                 fontWeight={1000}
-                maxWidth={["100%", "100%", "25%"]}
+                maxWidth={["100%", "100%", "60%"]}
               >
                 {$$("page.home.title")}
               </Heading>

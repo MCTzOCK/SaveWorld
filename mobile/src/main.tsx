@@ -2,7 +2,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import { setApiUrl } from "@saveworld/api-js";
-import { ENDPOINT } from "./env";
+import { DEV_ENDPOINT, ENDPOINT } from "./env";
 import { Network } from "@capacitor/network";
 import Root from "./Root";
 import PopupManager from "./util/PopupManager";
@@ -30,7 +30,11 @@ const render = async () => {
   const root = createRoot(container!);
 
   if (status.connected) {
-    setApiUrl(ENDPOINT);
+    if (localStorage.getItem("useDevServer") !== null) {
+      setApiUrl(DEV_ENDPOINT);
+    } else {
+      setApiUrl(ENDPOINT);
+    }
     root.render(
       <Root>
         <App />

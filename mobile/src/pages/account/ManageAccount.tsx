@@ -656,6 +656,32 @@ export default function ManageAccount() {
                     style={{
                       backgroundColor: "transparent",
                     }}
+                    onDoubleClick={async () => {
+                      await new Promise((resolve) => {
+                        setTimeout(() => {
+                          resolve(null);
+                        }, 500);
+                      });
+                      if (
+                        !(await PopupManager.confirmAsync({
+                          title: "Are you sure?",
+                          question:
+                            "Are you sure you want to switch the API environment?",
+                        }))
+                      ) {
+                        return;
+                      }
+
+                      localStorage.removeItem("token");
+
+                      if (localStorage.getItem("useDevServer") === null) {
+                        localStorage.setItem("useDevServer", "true");
+                      } else {
+                        localStorage.removeItem("useDevServer");
+                      }
+
+                      window.location.assign("/");
+                    }}
                   >
                     <IonText>{$$("general.information")}</IonText>
                   </IonList>
