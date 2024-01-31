@@ -50,6 +50,9 @@ const disallowed = [
   "pdf",
   "webp",
   "licenses.txt",
+  ".afpub",
+  ".wasm",
+  ".pck",
 ];
 
 // filter disallowed files
