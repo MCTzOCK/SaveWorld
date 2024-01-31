@@ -46,7 +46,10 @@ const getSlocInfo = () => {
 getGitInfo();
 getSlocInfo();
 
-require("fs").writeFileSync(
+module.exports = INFO;
+
+/*require("fs").writeFileSync(
   process.argv[2] || "./info.ts",
   "export const INFO = " + JSON.stringify(INFO, null, 2) + ";",
 );
+*/

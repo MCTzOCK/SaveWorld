@@ -10,11 +10,16 @@
 
 const { execSync } = require("child_process");
 const { join } = require("path");
+const INFO = require("./info");
+const fs = require("fs");
 
 const file_name = "local-depl-info.ts";
 
-const outputs = ["./backend2/src", "./website/src"];
+const outputs = ["./backend2/src", "./website/src", "./mobile/src"];
 
 for (const o of outputs) {
-  execSync(`node ./info.js ${join(o, file_name)}`);
+  fs.writeFileSync(
+    join(o, file_name),
+    `export const INFO = ${JSON.stringify(INFO, null, 2)};`,
+  );
 }

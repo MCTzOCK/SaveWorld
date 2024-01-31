@@ -10,7 +10,8 @@
     "build": "tsc",
     "ts:start": "tsx src/server.ts",
     "start": "node dist/server.js",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "postinstall": "cd .. && node makeInfo"
   },
   "author": {
     "name": "Ben Siebert",
