@@ -635,5 +635,11 @@ export const uk = {
   "pages.admin.adp": "АПУ",
   "pages.admin.adp.mobile.disclaimer": "ADP доступна тільки на робочому столі.",
   "pages.ai.open.in.chat": "Відкрити чат",
-  "pages.ai.thinking": "Я думаю..."
+  "pages.ai.thinking": "Я думаю...",
+  "pages.settings.stats.nerds": "Статистика Nerds",
+  "pages.settings.stats.commits": "Товари",
+  "pages.settings.stats.branch": "Афіша",
+  "pages.settings.stats.version": "Редагування",
+  "pages.settings.stats.last.commit": "Останні зміни",
+  "pages.settings.status.sloc": "Джерела коду"
 };

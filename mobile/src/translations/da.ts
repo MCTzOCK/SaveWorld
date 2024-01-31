@@ -635,5 +635,11 @@ export const da = {
   "pages.admin.adp": "ADP",
   "pages.admin.adp.mobile.disclaimer": "ADP er kun tilgængelig på skrivebordet.",
   "pages.ai.open.in.chat": "Åbn chat",
-  "pages.ai.thinking": "Jeg tror..."
+  "pages.ai.thinking": "Jeg tror...",
+  "pages.settings.stats.nerds": "Statistik for Nerds",
+  "pages.settings.stats.commits": "Commits",
+  "pages.settings.stats.branch": "Branche Branch Branch Branch",
+  "pages.settings.stats.version": "Version",
+  "pages.settings.stats.last.commit": "Sidste ændring",
+  "pages.settings.status.sloc": "Kildekodelinjer"
 };
