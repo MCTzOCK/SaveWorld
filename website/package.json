@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "cd .. && node makeInfo"
+    "lint": "next lint"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",

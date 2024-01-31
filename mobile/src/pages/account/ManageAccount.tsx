@@ -736,43 +736,23 @@ export default function ManageAccount() {
                           description: (
                             <>
                               <Stack gap={6}>
-                                <Text
-                                  fontSize={"lg"}
-                                  fontFamily={"monospace"}
-                                  color={"gray.200"}
-                                >
+                                <Text fontSize={"lg"} color={"gray.200"}>
                                   {$$("pages.settings.stats.commits")}:{" "}
                                   {INFO.git.commits}
                                 </Text>
-                                <Text
-                                  fontSize={"lg"}
-                                  fontFamily={"monospace"}
-                                  color={"gray.200"}
-                                >
+                                <Text fontSize={"lg"} color={"gray.200"}>
                                   {$$("pages.settings.stats.branch")}:{" "}
                                   {INFO.git.branch}
                                 </Text>
-                                <Text
-                                  fontSize={"lg"}
-                                  fontFamily={"monospace"}
-                                  color={"gray.200"}
-                                >
+                                <Text fontSize={"lg"} color={"gray.200"}>
                                   {$$("pages.settings.stats.version")}:{" "}
                                   {INFO.git.commit}
                                 </Text>
-                                <Text
-                                  fontSize={"lg"}
-                                  fontFamily={"monospace"}
-                                  color={"gray.200"}
-                                >
+                                <Text fontSize={"lg"} color={"gray.200"}>
                                   {$$("pages.settings.stats.last.commit")}:{" "}
                                   {INFO.git.lastCommitMessage}
                                 </Text>
-                                <Text
-                                  fontSize={"lg"}
-                                  fontFamily={"monospace"}
-                                  color={"gray.200"}
-                                >
+                                <Text fontSize={"lg"} color={"gray.200"}>
                                   {$$("pages.settings.status.sloc")}:{" "}
                                   {INFO.sloc}
                                 </Text>
