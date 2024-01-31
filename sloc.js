@@ -53,6 +53,7 @@ const disallowed = [
   ".afpub",
   ".wasm",
   ".pck",
+  "local-depl-info.ts",
 ];
 
 // filter disallowed files

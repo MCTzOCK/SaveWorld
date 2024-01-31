@@ -29,3 +29,4 @@ ai-proxy/node_modules/
 godot-server/node_modules/
 
 info.json
+local-depl-info.ts

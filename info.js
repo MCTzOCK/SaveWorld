@@ -38,9 +38,15 @@ const getGitInfo = () => {
   }
 };
 
+const getSlocInfo = () => {
+  const sloc = execSync("node ./sloc.js . --only-total-lines").toString();
+  INFO.sloc = parseInt(sloc.replace("\n", ""));
+};
+
 getGitInfo();
+getSlocInfo();
 
 require("fs").writeFileSync(
-  process.argv[2] || "./info.json",
-  JSON.stringify(INFO, null, 2),
+  process.argv[2] || "./info.ts",
+  "export const INFO = " + JSON.stringify(INFO, null, 2) + ";",
 );
