@@ -34,6 +34,8 @@ import UserPreferencesModel from "./models/UserPreferencesModel";
 import APIRequestModel from "./models/APIRequestModel";
 
 (async () => {
+  const versionInfo = await import("./info.json");
+
   const openapiDocs = await import("fastify-openapi-docs");
 
   const fastify = Fastify({
@@ -251,6 +253,10 @@ import APIRequestModel from "./models/APIRequestModel";
         },
       },
     },
+  });
+
+  fastify.get("/version", async (req, res) => {
+    res.send(versionInfo);
   });
 
   fastify.register(AutoLoad, {

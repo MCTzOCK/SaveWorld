@@ -7,7 +7,7 @@
     "access": "restricted"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "node ../info.js ./src/info.json && tsc",
     "ts:start": "tsx src/server.ts",
     "start": "node dist/server.js",
     "dev": "nodemon"
