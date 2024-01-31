@@ -60,7 +60,7 @@ export default function AIChatModal(props: {
                         ? ENDPOINT +
                           "/media/profile-picture-username/" +
                           userInfo.username
-                        : "https://saveworld.one/logo.png",
+                        : "/favicon.png",
                   }}
                   read={false}
                 />
@@ -73,7 +73,7 @@ export default function AIChatModal(props: {
                 timestamp={""}
                 sender={{
                   name: "",
-                  avatar: "https://saveworld.one/logo.png",
+                  avatar: "/favicon.png",
                 }}
                 read={false}
               />
