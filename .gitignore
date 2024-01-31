@@ -27,6 +27,3 @@ ai-proxy/node_modules/
 .env.backend_dev
 
 godot-server/node_modules/
-
-info.json
-local-depl-info.ts
