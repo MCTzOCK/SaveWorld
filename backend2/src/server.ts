@@ -32,6 +32,7 @@ import SocketRegistry from "./socket/SocketRegistry";
 import * as scheduler from "node-schedule";
 import UserPreferencesModel from "./models/UserPreferencesModel";
 import APIRequestModel from "./models/APIRequestModel";
+import { INFO } from "./local-depl-info";
 
 (async () => {
   const openapiDocs = await import("fastify-openapi-docs");
@@ -251,6 +252,10 @@ import APIRequestModel from "./models/APIRequestModel";
         },
       },
     },
+  });
+
+  fastify.get("/version", async (req, res) => {
+    res.status(200).send(INFO);
   });
 
   fastify.register(AutoLoad, {

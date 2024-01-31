@@ -635,5 +635,11 @@ export const pt = {
   "pages.admin.adp": "ADP",
   "pages.admin.adp.mobile.disclaimer": "ADP só está disponível na área de trabalho.",
   "pages.ai.open.in.chat": "Abrir chat",
-  "pages.ai.thinking": "Acho que..."
+  "pages.ai.thinking": "Acho que...",
+  "pages.settings.stats.nerds": "Estatísticas para Nerds",
+  "pages.settings.stats.commits": "Autorizações",
+  "pages.settings.stats.branch": "Filial",
+  "pages.settings.stats.version": "Versão",
+  "pages.settings.stats.last.commit": "Alteração",
+  "pages.settings.status.sloc": "Linhas de código fonte"
 };

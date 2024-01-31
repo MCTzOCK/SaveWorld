@@ -635,5 +635,11 @@ export const it = {
   "pages.admin.adp": "ADP",
   "pages.admin.adp.mobile.disclaimer": "ADP è disponibile solo sul desktop.",
   "pages.ai.open.in.chat": "Apri chat",
-  "pages.ai.thinking": "Credo..."
+  "pages.ai.thinking": "Credo...",
+  "pages.settings.stats.nerds": "Statistiche per Nerds",
+  "pages.settings.stats.commits": "Impegni",
+  "pages.settings.stats.branch": "Branch",
+  "pages.settings.stats.version": "Versione",
+  "pages.settings.stats.last.commit": "Ultimo emendamento",
+  "pages.settings.status.sloc": "Linee di codice sorgente"
 };

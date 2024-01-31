@@ -790,4 +790,10 @@ export const german = {
   "pages.admin.adp.mobile.disclaimer": "ADP ist nur auf dem Desktop verfügbar.",
   "pages.ai.open.in.chat": "Chat öffnen",
   "pages.ai.thinking": "Ich denke nach...",
+  "pages.settings.stats.nerds": "Statistiken für Nerds",
+  "pages.settings.stats.commits": "Commits",
+  "pages.settings.stats.branch": "Branch",
+  "pages.settings.stats.version": "Version",
+  "pages.settings.stats.last.commit": "Letzte Änderung",
+  "pages.settings.status.sloc": "Quellcode Zeilen",
 } as const;

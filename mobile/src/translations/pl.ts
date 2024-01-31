@@ -635,5 +635,11 @@ export const pl = {
   "pages.admin.adp": "ADP",
   "pages.admin.adp.mobile.disclaimer": "ADP jest dostępny tylko na pulpicie.",
   "pages.ai.open.in.chat": "Otwórz czat",
-  "pages.ai.thinking": "Myślę..."
+  "pages.ai.thinking": "Myślę...",
+  "pages.settings.stats.nerds": "Statystyki dla frajerów",
+  "pages.settings.stats.commits": "Komisja",
+  "pages.settings.stats.branch": "Oddział",
+  "pages.settings.stats.version": "Wersja",
+  "pages.settings.stats.last.commit": "Ostatnia poprawka",
+  "pages.settings.status.sloc": "Linie kodu źródłowego"
 };

@@ -25,3 +25,5 @@ ai-proxy/node_modules/
 
 .env.backend
 .env.backend_dev
+
+godot-server/node_modules/

@@ -635,5 +635,11 @@ export const ja = {
   "pages.admin.adp": "ADPについて",
   "pages.admin.adp.mobile.disclaimer": "ADPはデスクトップ上でのみ利用可能です.",
   "pages.ai.open.in.chat": "チャットを開く",
-  "pages.ai.thinking": "お問い合わせ."
+  "pages.ai.thinking": "お問い合わせ.",
+  "pages.settings.stats.nerds": "ネルドスの統計",
+  "pages.settings.stats.commits": "コミット",
+  "pages.settings.stats.branch": "スタッフ",
+  "pages.settings.stats.version": "バージョン",
+  "pages.settings.stats.last.commit": "最終修正",
+  "pages.settings.status.sloc": "ソースコードライン"
 };

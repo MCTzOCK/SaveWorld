@@ -11,6 +11,7 @@ import GhostContentAPI from "@tryghost/content-api";
 import { createDirectus, rest } from "@directus/sdk";
 
 export const ENDPOINT = import.meta.env.VITE_ENDPOINT;
+export const DEV_ENDPOINT = import.meta.env.VITE_DEV_ENDPOINT;
 export const GHOST_ENDPOINT = import.meta.env.VITE_GHOST_ENDPOINT;
 export const ONE_SIGNAL_APP_ID = import.meta.env.VITE_ONE_SIGNAL_APP_ID;
 export const NOMINATIM_ENDPOINT = import.meta.env.VITE_NOMINATIM_ENDPOINT;
@@ -54,6 +55,10 @@ export const getDirectusApi = () => {
       answer_4: string;
       image: string;
       correct: number;
+    }[];
+    Changelog: {
+      version: string;
+      changes: string;
     }[];
   }>(DIRECTUS_ENDPOINT).with(rest());
 };

@@ -635,5 +635,11 @@ export const nl = {
   "pages.admin.adp": "ADP",
   "pages.admin.adp.mobile.disclaimer": "ADP is alleen beschikbaar op het bureaublad.",
   "pages.ai.open.in.chat": "Gesprek openen",
-  "pages.ai.thinking": "Ik denk..."
+  "pages.ai.thinking": "Ik denk...",
+  "pages.settings.stats.nerds": "Statistieken voor Nerds",
+  "pages.settings.stats.commits": "Commits",
+  "pages.settings.stats.branch": "Branch",
+  "pages.settings.stats.version": "Versie",
+  "pages.settings.stats.last.commit": "Laatste wijziging",
+  "pages.settings.status.sloc": "Broncoderegels"
 };

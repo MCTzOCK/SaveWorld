@@ -635,5 +635,11 @@ export const ko = {
   "pages.admin.adp": "사이트맵",
   "pages.admin.adp.mobile.disclaimer": "ADP는 데스크톱에서만 사용할 수 있습니다.",
   "pages.ai.open.in.chat": "채팅 열기",
-  "pages.ai.thinking": "나는 생각한다..."
+  "pages.ai.thinking": "나는 생각한다...",
+  "pages.settings.stats.nerds": "Nerds의 통계",
+  "pages.settings.stats.commits": "코미트",
+  "pages.settings.stats.branch": "팟캐스트",
+  "pages.settings.stats.version": "이름 *",
+  "pages.settings.stats.last.commit": "마지막 개정",
+  "pages.settings.status.sloc": "소스 코드 라인"
 };

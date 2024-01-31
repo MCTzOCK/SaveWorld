@@ -47,6 +47,7 @@ import { Redirect, useParams } from "react-router";
 
 import OneSignal from "onesignal-cordova-plugin";
 import {
+  DIRECTUS_ENDPOINT,
   ENDPOINT,
   FLAGSMITH_ENDPOINT,
   ONE_SIGNAL_APP_ID,
@@ -114,6 +115,15 @@ import LanguageSwitcher from "./components/LanguageSwitcher";
 import AITest from "./pages/AITest";
 import AIHelper from "./pages/AIHelper";
 import AdvancedDataPlatform from "./pages/admin/adp/AdvancedDataPlatform";
+import Page from "./components/Page";
+import {
+  getChangelog,
+  setChangelogShown,
+  shouldShowChangelog,
+} from "./util/changelog";
+import PopupManager from "./util/PopupManager";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -189,6 +199,28 @@ export default function App() {
       }
     } catch (e) {}
   }, [loggedIn, loaded]);
+
+  useEffect(() => {
+    if (localStorage) {
+      if (shouldShowChangelog()) {
+        getChangelog().then((data) => {
+          if (data.hasChangelog) {
+            setChangelogShown();
+            PopupManager.alert({
+              title: "Changelog",
+              description: (
+                <>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {data.changelog}
+                  </ReactMarkdown>
+                </>
+              ),
+            });
+          }
+        });
+      }
+    }
+  }, []);
 
   useEffect(() => {
     setRoutes({
@@ -316,6 +348,31 @@ export default function App() {
       "/eatingplans/:date": flags.eatingplans.enabled
         ? EatingPlanViewer
         : NotFound,
+      "/games/:name": () => {
+        const router = useIonRouter();
+        const { name } = useParams<{ name: string }>();
+        return (
+          <Page title={name}>
+            <iframe
+              src={"/games/" + name + "/index.html"}
+              style={{
+                width: "100%",
+                height: "100%",
+                border: "none",
+              }}
+              onLoad={(e) => {
+                const iframe = e.target as HTMLIFrameElement;
+                const x =
+                  iframe.contentWindow?.document.createElement("script");
+                x!.src = "/games/lib.js";
+                x!.type = "text/javascript";
+                x!.async = true;
+                iframe.contentWindow?.document.head.appendChild(x!);
+              }}
+            />
+          </Page>
+        );
+      },
       //KEEP_ROUTES
     });
   }, [flags]);
@@ -331,7 +388,9 @@ export default function App() {
         options={{
           api_host: POSTHOG_ENDPOINT,
           loaded: (posthog) => {
-            if (process.env.NODE_ENV === "development") posthog.debug();
+            if (process.env.NODE_ENV === "development") {
+              posthog.debug();
+            }
           },
           autocapture: true,
         }}

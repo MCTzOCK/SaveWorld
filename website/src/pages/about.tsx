@@ -9,8 +9,9 @@
  */
 
 import * as React from "react";
-import { Flex, Heading, Stack, Text } from "@chakra-ui/react";
+import { Flex, Heading, Stack, Text, SimpleGrid } from "@chakra-ui/react";
 import Link from "next/link";
+import { INFO } from "@/local-depl-info";
 
 export default function About() {
   return (
@@ -28,6 +29,23 @@ export default function About() {
           <Heading color={"primary.500"} size={"2xl"}>
             Über SaveWorld
           </Heading>
+          <SimpleGrid columns={2} spacing={10}>
+            <Heading size={"md"} fontFamily={"monospace"} color={"gray.200"}>
+              Commits: {INFO.git.commits}
+            </Heading>
+            <Heading size={"md"} fontFamily={"monospace"} color={"gray.200"}>
+              Branch: {INFO.git.branch}
+            </Heading>
+            <Heading size={"md"} fontFamily={"monospace"} color={"gray.200"}>
+              Version: {INFO.git.commit}
+            </Heading>
+            <Heading size={"md"} fontFamily={"monospace"} color={"gray.200"}>
+              Letzte Änderung: {INFO.git.lastCommitMessage}
+            </Heading>
+            <Heading size={"md"} fontFamily={"monospace"} color={"gray.200"}>
+              Zeilen: {INFO.sloc}
+            </Heading>
+          </SimpleGrid>
           <Text fontSize={"xl"}>
             SaveWorld ist eine App, die dir dabei hilft, deinen Alltag
             nachhaltiger zu gestalten. Dabei unterstützt sie dich in

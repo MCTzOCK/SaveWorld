@@ -635,5 +635,11 @@ export const el = {
   "pages.admin.adp": "ΑΠΑ",
   "pages.admin.adp.mobile.disclaimer": "Το ADP είναι διαθέσιμο μόνο στην επιφάνεια εργασίας.",
   "pages.ai.open.in.chat": "Άνοιγμα συνομιλίας",
-  "pages.ai.thinking": "Νομίζω..."
+  "pages.ai.thinking": "Νομίζω...",
+  "pages.settings.stats.nerds": "Στατιστικά για τους σπασίκλες",
+  "pages.settings.stats.commits": "Υποχρεώσεις",
+  "pages.settings.stats.branch": "Κλάδος",
+  "pages.settings.stats.version": "Έκδοση",
+  "pages.settings.stats.last.commit": "Τελευταία τροποποίηση",
+  "pages.settings.status.sloc": "Γραμμές πηγαίου κώδικα"
 };

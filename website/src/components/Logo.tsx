@@ -13,14 +13,7 @@ import * as React from "react";
 export default function Logo(props: { s: number }) {
   return (
     <>
-      <img
-        src={
-          "https://content.saveworld.one/assets/7de3ae7c-0d86-416a-a761-93403ae870ca"
-        }
-        alt={"Logo"}
-        width={props.s}
-        height={props.s}
-      />
+      <img src={"/logo.png"} alt={"Logo"} width={props.s} height={props.s} />
     </>
   );
 }

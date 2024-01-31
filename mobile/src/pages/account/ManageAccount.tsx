@@ -34,6 +34,7 @@ import {
   analyticsSharp,
   pencil,
   pencilSharp,
+  glasses,
 } from "ionicons/icons";
 import { REST } from "@saveworld/api-js";
 import { Browser } from "@capacitor/browser";
@@ -52,6 +53,8 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  SimpleGrid,
+  Stack,
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -60,6 +63,7 @@ import MobileBox from "../../components/MobileBox";
 import ManageAccountInterests from "../../components/ManageAccountInterests";
 import SaveWorldModal from "../../components/SaveWorldModal";
 import { $$ } from "../../translations/i18n";
+import { INFO } from "../../local-depl-info";
 
 export default function ManageAccount() {
   const { loggedIn, loaded, userInfo } = useUserData();
@@ -652,6 +656,32 @@ export default function ManageAccount() {
                     style={{
                       backgroundColor: "transparent",
                     }}
+                    onDoubleClick={async () => {
+                      await new Promise((resolve) => {
+                        setTimeout(() => {
+                          resolve(null);
+                        }, 500);
+                      });
+                      if (
+                        !(await PopupManager.confirmAsync({
+                          title: "Are you sure?",
+                          question:
+                            "Are you sure you want to switch the API environment?",
+                        }))
+                      ) {
+                        return;
+                      }
+
+                      localStorage.removeItem("token");
+
+                      if (localStorage.getItem("useDevServer") === null) {
+                        localStorage.setItem("useDevServer", "true");
+                      } else {
+                        localStorage.removeItem("useDevServer");
+                      }
+
+                      window.location.assign("/");
+                    }}
                   >
                     <IonText>{$$("general.information")}</IonText>
                   </IonList>
@@ -721,6 +751,45 @@ export default function ManageAccount() {
                         md={ionDocumentSharp}
                       />
                       <IonText>{$$("general.open.source.licenses")}</IonText>
+                    </IonItem>
+                    <IonItem
+                      color={"light"}
+                      detail
+                      button
+                      onClick={async () => {
+                        await PopupManager.alertAsync({
+                          title: $$("pages.settings.stats.nerds"),
+                          description: (
+                            <>
+                              <Stack gap={6}>
+                                <Text fontSize={"lg"} color={"gray.200"}>
+                                  {$$("pages.settings.stats.commits")}:{" "}
+                                  {INFO.git.commits}
+                                </Text>
+                                <Text fontSize={"lg"} color={"gray.200"}>
+                                  {$$("pages.settings.stats.branch")}:{" "}
+                                  {INFO.git.branch}
+                                </Text>
+                                <Text fontSize={"lg"} color={"gray.200"}>
+                                  {$$("pages.settings.stats.version")}:{" "}
+                                  {INFO.git.commit}
+                                </Text>
+                                <Text fontSize={"lg"} color={"gray.200"}>
+                                  {$$("pages.settings.stats.last.commit")}:{" "}
+                                  {INFO.git.lastCommitMessage}
+                                </Text>
+                                <Text fontSize={"lg"} color={"gray.200"}>
+                                  {$$("pages.settings.status.sloc")}:{" "}
+                                  {INFO.sloc}
+                                </Text>
+                              </Stack>
+                            </>
+                          ),
+                        });
+                      }}
+                    >
+                      <IonIcon slot={"start"} ios={glasses} />
+                      <IonText>{$$("pages.settings.stats.nerds")}</IonText>
                     </IonItem>
                   </IonList>
                 </Box>
