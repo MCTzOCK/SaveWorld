@@ -12,12 +12,6 @@ import { I18n } from "./translations/i18n";
 
 window.PopupManager = PopupManager;
 
-window.addEventListener("message", (event) => {
-  console.log(event);
-  if (event.origin === "https://games.saveworld.one") {
-    eval(event.data);
-  }
-});
 const render = async () => {
   Preferences.get({ key: "language" }).then((res) => {
     let lang = "";

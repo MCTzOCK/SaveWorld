@@ -47,6 +47,7 @@ import { Redirect, useParams } from "react-router";
 
 import OneSignal from "onesignal-cordova-plugin";
 import {
+  DIRECTUS_ENDPOINT,
   ENDPOINT,
   FLAGSMITH_ENDPOINT,
   ONE_SIGNAL_APP_ID,
@@ -115,6 +116,14 @@ import AITest from "./pages/AITest";
 import AIHelper from "./pages/AIHelper";
 import AdvancedDataPlatform from "./pages/admin/adp/AdvancedDataPlatform";
 import Page from "./components/Page";
+import {
+  getChangelog,
+  setChangelogShown,
+  shouldShowChangelog,
+} from "./util/changelog";
+import PopupManager from "./util/PopupManager";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -190,6 +199,28 @@ export default function App() {
       }
     } catch (e) {}
   }, [loggedIn, loaded]);
+
+  useEffect(() => {
+    if (localStorage) {
+      if (shouldShowChangelog()) {
+        getChangelog().then((data) => {
+          if (data.hasChangelog) {
+            setChangelogShown();
+            PopupManager.alert({
+              title: "Changelog",
+              description: (
+                <>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {data.changelog}
+                  </ReactMarkdown>
+                </>
+              ),
+            });
+          }
+        });
+      }
+    }
+  }, []);
 
   useEffect(() => {
     setRoutes({

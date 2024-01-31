@@ -55,5 +55,9 @@ export const getDirectusApi = () => {
       image: string;
       correct: number;
     }[];
+    Changelog: {
+      version: string;
+      changes: string;
+    }[];
   }>(DIRECTUS_ENDPOINT).with(rest());
 };

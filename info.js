@@ -29,7 +29,7 @@ const getGitInfo = () => {
     .replace(/\n/g, "");
 
   INFO.git.commits = parseInt(gitCommits.replace("\n", ""));
-  INFO.git.commit = gitCommit.replace("\n", "");
+  INFO.git.commit = gitCommit.replace("\n", "").substr(0, 6);
   INFO.git.branch = gitBranch.replace("\n", "");
   INFO.git.lastCommitMessage = gitLastCommitMessage.replace("\n", "");
   // FORMAT: YYYY.MM.DD
