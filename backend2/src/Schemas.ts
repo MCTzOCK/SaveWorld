@@ -2409,7 +2409,7 @@ export const FastifySchemas = {
     body: {
       properties: {
         message: {
-          type: "object",
+          type: "string",
         },
       },
     },
