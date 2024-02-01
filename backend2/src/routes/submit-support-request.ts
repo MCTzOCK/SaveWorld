@@ -13,6 +13,11 @@ import UserModel from "../models/UserModel";
 import { sendPN } from "../util/sendPN";
 import { FastifySchemas } from "../Schemas";
 
+import { Octokit } from "octokit";
+
+const octokit = new Octokit({
+  auth: process.env.GITHUB_ACCESS_TOKEN,
+});
 export default async function supportPlugin(app: FastifyInstance, opts: any) {
   app.post(
     "/submit-support-request",
@@ -86,6 +91,30 @@ export default async function supportPlugin(app: FastifyInstance, opts: any) {
           "https://app.saveworld.one/admin/support-requests/" +
           supportRequest._id,
       });
+
+      if (category.toUpperCase() === "REPORT-BUG") {
+        const issue = await octokit.rest.issues.create({
+          owner: process.env.GITHUB_REPOSITORY.split("/")[0],
+          repo: process.env.GITHUB_REPOSITORY.split("/")[1],
+          title: "[auto] Bug Report",
+          body:
+            "# Bug Report\n\n" +
+            "Created at " +
+            new Date().toISOString() +
+            "\n\n" +
+            "## User\n\n" +
+            "Email: " +
+            email +
+            "\n\n" +
+            "## Message\n\n" +
+            message +
+            "\n\n" +
+            "## Additional Data\n\n" +
+            JSON.stringify(additionalData || {}, null, 2) +
+            "\n\n",
+          labels: ["bug"],
+        });
+      }
     },
   );
 }

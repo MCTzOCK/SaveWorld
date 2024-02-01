@@ -24,7 +24,6 @@ import { FastifySchemas } from "../Schemas";
 import { sendPN } from "../util/sendPN";
 import LifestyleTemplateModel from "../models/LifestyleTemplateModel";
 import mongoose from "mongoose";
-
 export default async function adminPlugin(app: FastifyInstance, opts: any) {
   app.get(
     "/admin/adp/models",
