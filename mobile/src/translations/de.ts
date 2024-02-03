@@ -314,6 +314,7 @@ export const german = {
   "page.account.info.update.success":
     "Die Daten wurden erfolgreich gespeichert!",
   "page.account.intro.open.again": "Einleitung erneut öffnen",
+  "page.account.update.app.icon": "App-Symbol ändern",
   "page.account.update.password": "Passwort ändern",
   "page.account.update.password.error":
     "Passwort konnte nicht geändert werden: %0",

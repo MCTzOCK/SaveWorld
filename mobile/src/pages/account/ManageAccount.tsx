@@ -64,12 +64,18 @@ import ManageAccountInterests from "../../components/ManageAccountInterests";
 import SaveWorldModal from "../../components/SaveWorldModal";
 import { $$ } from "../../translations/i18n";
 import { INFO } from "../../local-depl-info";
+import AccountAppIconModal from "../../components/AccountAppIconModal";
 
 export default function ManageAccount() {
   const { loggedIn, loaded, userInfo } = useUserData();
   const router = useIonRouter();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isAppIconOpen,
+    onOpen: onAppIconOpen,
+    onClose: onAppIconClose,
+  } = useDisclosure();
 
   const [preferences, setPreferences] = React.useState<{
     picture: string;
@@ -291,6 +297,16 @@ export default function ManageAccount() {
                       routerDirection={"none"}
                     >
                       <IonText>{$$("page.account.intro.open.again")}</IonText>
+                    </IonItem>
+                    <IonItem
+                      color={"light"}
+                      detail
+                      button
+                      onClick={() => {
+                        onAppIconOpen();
+                      }}
+                    >
+                      <IonText>{$$("page.account.update.app.icon")}</IonText>
                     </IonItem>
                   </IonList>
                 </Box>
@@ -804,6 +820,7 @@ export default function ManageAccount() {
         >
           <ManageAccountInterests />
         </SaveWorldModal>
+        <AccountAppIconModal onClose={onAppIconClose} isOpen={isAppIconOpen} />
       </Page>
     </>
   );

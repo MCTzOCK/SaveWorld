@@ -124,13 +124,14 @@ import {
 import PopupManager from "./util/PopupManager";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { RESTEnv } from "@saveworld/api-js/dist/RESTEnv";
 //KEEP_IMPORTS
 
 setupIonicReact({
   mode: "ios",
 });
 
-const socket = io(ENDPOINT);
+const socket = io(RESTEnv.API_URL);
 
 export default function App() {
   const flags = useFlags([
