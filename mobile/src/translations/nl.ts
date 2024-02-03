@@ -641,5 +641,6 @@ export const nl = {
   "pages.settings.stats.branch": "Branch",
   "pages.settings.stats.version": "Versie",
   "pages.settings.stats.last.commit": "Laatste wijziging",
-  "pages.settings.status.sloc": "Broncoderegels"
+  "pages.settings.status.sloc": "Broncoderegels",
+  "page.account.update.app.icon": "App pictogram wijzigen"
 };

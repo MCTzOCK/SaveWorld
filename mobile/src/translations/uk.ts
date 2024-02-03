@@ -641,5 +641,6 @@ export const uk = {
   "pages.settings.stats.branch": "Афіша",
   "pages.settings.stats.version": "Редагування",
   "pages.settings.stats.last.commit": "Останні зміни",
-  "pages.settings.status.sloc": "Джерела коду"
+  "pages.settings.status.sloc": "Джерела коду",
+  "page.account.update.app.icon": "Ім'я користувача"
 };

@@ -641,5 +641,6 @@ export const it = {
   "pages.settings.stats.branch": "Branch",
   "pages.settings.stats.version": "Versione",
   "pages.settings.stats.last.commit": "Ultimo emendamento",
-  "pages.settings.status.sloc": "Linee di codice sorgente"
+  "pages.settings.status.sloc": "Linee di codice sorgente",
+  "page.account.update.app.icon": "Cambia icona dell'app"
 };

@@ -641,5 +641,6 @@ export const da = {
   "pages.settings.stats.branch": "Branche Branch Branch Branch",
   "pages.settings.stats.version": "Version",
   "pages.settings.stats.last.commit": "Sidste ændring",
-  "pages.settings.status.sloc": "Kildekodelinjer"
+  "pages.settings.status.sloc": "Kildekodelinjer",
+  "page.account.update.app.icon": "Skift app ikon"
 };

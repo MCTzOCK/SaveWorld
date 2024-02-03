@@ -641,5 +641,6 @@ export const en = {
   "pages.settings.stats.branch": "Branch",
   "pages.settings.stats.version": "Version",
   "pages.settings.stats.last.commit": "Last amendment",
-  "pages.settings.status.sloc": "Source code lines"
+  "pages.settings.status.sloc": "Source code lines",
+  "page.account.update.app.icon": "Change App icon"
 };

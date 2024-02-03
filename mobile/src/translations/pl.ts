@@ -641,5 +641,6 @@ export const pl = {
   "pages.settings.stats.branch": "Oddział",
   "pages.settings.stats.version": "Wersja",
   "pages.settings.stats.last.commit": "Ostatnia poprawka",
-  "pages.settings.status.sloc": "Linie kodu źródłowego"
+  "pages.settings.status.sloc": "Linie kodu źródłowego",
+  "page.account.update.app.icon": "Zmień ikonę aplikacji"
 };

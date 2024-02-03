@@ -641,5 +641,6 @@ export const ko = {
   "pages.settings.stats.branch": "팟캐스트",
   "pages.settings.stats.version": "이름 *",
   "pages.settings.stats.last.commit": "마지막 개정",
-  "pages.settings.status.sloc": "소스 코드 라인"
+  "pages.settings.status.sloc": "소스 코드 라인",
+  "page.account.update.app.icon": "App 아이콘 변경"
 };

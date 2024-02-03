@@ -52,6 +52,7 @@ export default function AccountAppIconModal(props: {
             return (
               <>
                 <Box
+                  rounded={"md"}
                   key={index}
                   bg={index % 2 === 0 ? "rgba(0,0,0,0.4)" : "rgba(0,0,0,.7)"}
                   p={4}

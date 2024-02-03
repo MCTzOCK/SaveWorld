@@ -641,5 +641,6 @@ export const el = {
   "pages.settings.stats.branch": "Κλάδος",
   "pages.settings.stats.version": "Έκδοση",
   "pages.settings.stats.last.commit": "Τελευταία τροποποίηση",
-  "pages.settings.status.sloc": "Γραμμές πηγαίου κώδικα"
+  "pages.settings.status.sloc": "Γραμμές πηγαίου κώδικα",
+  "page.account.update.app.icon": "Τροποποίηση εικονιδίου εφαρμογής"
 };

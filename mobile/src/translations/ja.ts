@@ -641,5 +641,6 @@ export const ja = {
   "pages.settings.stats.branch": "スタッフ",
   "pages.settings.stats.version": "バージョン",
   "pages.settings.stats.last.commit": "最終修正",
-  "pages.settings.status.sloc": "ソースコードライン"
+  "pages.settings.status.sloc": "ソースコードライン",
+  "page.account.update.app.icon": "アプリアイコンの変更"
 };
