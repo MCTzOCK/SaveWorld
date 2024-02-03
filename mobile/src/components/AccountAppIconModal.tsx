@@ -54,6 +54,7 @@ export default function AccountAppIconModal(props: {
                 <Box
                   rounded={"lg"}
                   key={index}
+                  cursor={"pointer"}
                   bg={index % 2 === 0 ? "rgba(0,0,0,0.4)" : "rgba(0,0,0,.7)"}
                   p={4}
                   onClick={async () => {
