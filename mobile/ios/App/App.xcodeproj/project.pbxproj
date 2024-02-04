@@ -34,6 +34,14 @@
 		B5ADF9762B531EF700E4892D /* ProjectDetailsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADF9752B531EF700E4892D /* ProjectDetailsListView.swift */; };
 		B5BDFF552B6E4E1600AE0FC5 /* classic.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BDFF532B6E4E1600AE0FC5 /* classic.png */; };
 		B5BDFF572B6E52A100AE0FC5 /* modern.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BDFF562B6E52A100AE0FC5 /* modern.png */; };
+		B5BDFF592B6F936D00AE0FC5 /* classic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BDFF582B6F936C00AE0FC5 /* classic@2x.png */; };
+		B5BDFF5B2B6F93A300AE0FC5 /* classic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BDFF5A2B6F93A300AE0FC5 /* classic@3x.png */; };
+		B5BDFF5D2B6F93C900AE0FC5 /* classic@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BDFF5C2B6F93C900AE0FC5 /* classic@2x~ipad.png */; };
+		B5BDFF5F2B6F940700AE0FC5 /* classic@3x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BDFF5E2B6F940700AE0FC5 /* classic@3x~ipad.png */; };
+		B5BDFF6C2B6F969D00AE0FC5 /* modern@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BDFF6B2B6F969D00AE0FC5 /* modern@2x.png */; };
+		B5BDFF6E2B6F96BE00AE0FC5 /* modern@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BDFF6D2B6F96BE00AE0FC5 /* modern@3x.png */; };
+		B5BDFF702B6F96D800AE0FC5 /* modern@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BDFF6F2B6F96D800AE0FC5 /* modern@2x~ipad.png */; };
+		B5BDFF722B6F96F900AE0FC5 /* modern@3x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BDFF712B6F96F900AE0FC5 /* modern@3x~ipad.png */; };
 		B5D63A152ABA1AC000116441 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D63A142ABA1AC000116441 /* NotificationService.swift */; };
 		B5D63A192ABA1AC000116441 /* OneSignalNotificationServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B5D63A122ABA1AC000116441 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B5D63A1E2ABA1B2300116441 /* OneSignalExtension.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D63A1D2ABA1B2300116441 /* OneSignalExtension.xcframework */; };
@@ -125,6 +133,14 @@
 		B5AE8D4C2AB05F60004F26AD /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		B5BDFF532B6E4E1600AE0FC5 /* classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = classic.png; path = ../../../../public/assets/icons/classic.png; sourceTree = "<group>"; };
 		B5BDFF562B6E52A100AE0FC5 /* modern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = modern.png; path = "SaveWorld App Clip/Assets.xcassets/modern.appiconset/modern.png"; sourceTree = SOURCE_ROOT; };
+		B5BDFF582B6F936C00AE0FC5 /* classic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "classic@2x.png"; path = "../../../../../../../Downloads/classic@2x.png"; sourceTree = "<group>"; };
+		B5BDFF5A2B6F93A300AE0FC5 /* classic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "classic@3x.png"; path = "../../../../../../../Downloads/classic@3x.png"; sourceTree = "<group>"; };
+		B5BDFF5C2B6F93C900AE0FC5 /* classic@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "classic@2x~ipad.png"; path = "../../../../../../../Downloads/classic@2x~ipad.png"; sourceTree = "<group>"; };
+		B5BDFF5E2B6F940700AE0FC5 /* classic@3x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "classic@3x~ipad.png"; path = "../../../../../../../Downloads/classic@3x~ipad.png"; sourceTree = "<group>"; };
+		B5BDFF6B2B6F969D00AE0FC5 /* modern@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "modern@2x.png"; sourceTree = "<group>"; };
+		B5BDFF6D2B6F96BE00AE0FC5 /* modern@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "modern@3x.png"; sourceTree = "<group>"; };
+		B5BDFF6F2B6F96D800AE0FC5 /* modern@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "modern@2x~ipad.png"; sourceTree = "<group>"; };
+		B5BDFF712B6F96F900AE0FC5 /* modern@3x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "modern@3x~ipad.png"; sourceTree = "<group>"; };
 		B5D63A042ABA1A9C00116441 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		B5D63A062ABA1A9C00116441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5D63A122ABA1AC000116441 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -278,7 +294,15 @@
 			isa = PBXGroup;
 			children = (
 				B5BDFF532B6E4E1600AE0FC5 /* classic.png */,
+				B5BDFF582B6F936C00AE0FC5 /* classic@2x.png */,
+				B5BDFF5A2B6F93A300AE0FC5 /* classic@3x.png */,
+				B5BDFF5C2B6F93C900AE0FC5 /* classic@2x~ipad.png */,
+				B5BDFF5E2B6F940700AE0FC5 /* classic@3x~ipad.png */,
 				B5BDFF562B6E52A100AE0FC5 /* modern.png */,
+				B5BDFF6B2B6F969D00AE0FC5 /* modern@2x.png */,
+				B5BDFF6D2B6F96BE00AE0FC5 /* modern@3x.png */,
+				B5BDFF6F2B6F96D800AE0FC5 /* modern@2x~ipad.png */,
+				B5BDFF712B6F96F900AE0FC5 /* modern@3x~ipad.png */,
 			);
 			path = AlternateIcons;
 			sourceTree = "<group>";
@@ -437,14 +461,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5BDFF5F2B6F940700AE0FC5 /* classic@3x~ipad.png in Resources */,
 				B5BDFF552B6E4E1600AE0FC5 /* classic.png in Resources */,
 				504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */,
 				50B271D11FEDC1A000F3C39B /* public in Resources */,
 				504EC30F1FED79650016851F /* Assets.xcassets in Resources */,
 				B5BDFF572B6E52A100AE0FC5 /* modern.png in Resources */,
+				B5BDFF6C2B6F969D00AE0FC5 /* modern@2x.png in Resources */,
 				50379B232058CBB4000EE86E /* capacitor.config.json in Resources */,
+				B5BDFF592B6F936D00AE0FC5 /* classic@2x.png in Resources */,
+				B5BDFF5D2B6F93C900AE0FC5 /* classic@2x~ipad.png in Resources */,
+				B5BDFF722B6F96F900AE0FC5 /* modern@3x~ipad.png in Resources */,
+				B5BDFF6E2B6F96BE00AE0FC5 /* modern@3x.png in Resources */,
 				504EC30D1FED79650016851F /* Main.storyboard in Resources */,
+				B5BDFF5B2B6F93A300AE0FC5 /* classic@3x.png in Resources */,
 				2FAD9763203C412B000D30F8 /* config.xml in Resources */,
+				B5BDFF702B6F96D800AE0FC5 /* modern@2x~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -737,12 +769,12 @@
 				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 40;
+				CURRENT_PROJECT_VERSION = 62;
 				DEVELOPMENT_TEAM = U5XU7Z3LFF;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SaveWorld;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -770,13 +802,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 40;
+				CURRENT_PROJECT_VERSION = 62;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = U5XU7Z3LFF;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SaveWorld;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -881,7 +913,7 @@
 				CODE_SIGN_ENTITLEMENTS = "SaveWorld App Clip/SaveWorld_App_Clip.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 40;
+				CURRENT_PROJECT_VERSION = 62;
 				DEVELOPMENT_ASSET_PATHS = "\"SaveWorld App Clip/Preview Content\"";
 				DEVELOPMENT_TEAM = U5XU7Z3LFF;
 				ENABLE_PREVIEWS = YES;
@@ -926,7 +958,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 40;
+				CURRENT_PROJECT_VERSION = 62;
 				DEVELOPMENT_ASSET_PATHS = "\"SaveWorld App Clip/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = U5XU7Z3LFF;
