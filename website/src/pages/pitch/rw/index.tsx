@@ -13,6 +13,8 @@ import Presentation from "@/components/presentation/Presentation";
 import Intro from "@/components/presentation/slides/Intro";
 import About from "@/components/presentation/slides/About";
 import Content from "@/components/presentation/slides/Content";
+import Tracker from "@/components/presentation/slides/Tracker";
+import Articles from "@/components/presentation/slides/Articles";
 
 export default function Index() {
   return (
@@ -21,6 +23,8 @@ export default function Index() {
         <Intro />
         <About />
         <Content />
+        <Tracker />
+        <Articles />
       </Presentation>
     </>
   );

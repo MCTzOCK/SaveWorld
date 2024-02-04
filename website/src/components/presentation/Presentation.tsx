@@ -50,7 +50,7 @@ export default function Presentation(props: { children: React.ReactNode }) {
   }, [currentSlide]);
 
   return (
-    <Box userSelect={"none"}>
+    <Box>
       <Box w={"100%"} h={"100vh"} display={overview ? "initial" : "none"}>
         <Grid
           templateColumns={["repeat(2, 1fr)"]}

@@ -1,5 +1,5 @@
 /**
- * website/src/components/presentation/slides/Content.tsx
+ * website/src/components/presentation/slides/Tracker.tsx
  *
  * Author: Ben Siebert <hello@ben-siebert.de>
  * Copyright: Copyright (c) 2018-2024 Ben Siebert. All rights reserved.
@@ -9,27 +9,23 @@
  */
 
 import * as React from "react";
-import Slide from "@/components/presentation/Slide";
 import SlideTitle from "@/components/presentation/SlideTitle";
-import SlideList from "@/components/presentation/SlideList";
+import Slide from "@/components/presentation/Slide";
 import { Box, Flex, Image } from "@chakra-ui/react";
+import SlideList from "@/components/presentation/SlideList";
 
-export default function Content() {
+export default function Tracker() {
   return (
     <>
       <Slide>
-        <SlideTitle>Recherche</SlideTitle>
+        <SlideTitle>Tracker</SlideTitle>
         <Flex w={"100%"}>
           <SlideList
-            lines={[
-              "Verwendung seriöser Quellen",
-              "Faktencheck",
-              "Quellenangaben",
-            ]}
+            lines={["Täglich Daten eintragen", "Automatische Ziele", "Analyse"]}
           />
           <Box flex={"70%"}>
             <Image
-              src={"/assets/pitch/rw/slide_content_articles.png"}
+              src={"/assets/pitch/rw/slide_tracker.png"}
               w={400}
               aspectRatio={9 / 16}
               rounded={"xl"}
