@@ -76,7 +76,7 @@ for (let i = 0; i < paths.length; i++) {
     lines += fLines;
 }
 
-if(process.argv.includes("--only-total-lines")) {
+if (process.argv.includes("--only-total-lines")) {
     console.log(lines);
     process.exit(0);
 }
