@@ -28,6 +28,7 @@ import {
 import { useFlags } from "flagsmith/react";
 import { FaUtensils } from "react-icons/fa6";
 import { $$ } from "../translations/i18n";
+import { FaProjectDiagram } from "react-icons/fa";
 
 export default function Home() {
   const flags = useFlags([
@@ -84,7 +85,7 @@ export default function Home() {
               >
                 {flags.tracker.enabled ? (
                   <HomeCardV2
-                    color={"green.500"}
+                    color={"brand.500"}
                     icon={<BiLeaf />}
                     text={$$("menu.tracker")}
                     url={"/e2"}
@@ -134,6 +135,14 @@ export default function Home() {
                     icon={<FaUtensils />}
                     text={$$("menu.recipes")}
                     url={"/recipes"}
+                  />
+                ) : null}
+                {flags.eco_projects.enabled ? (
+                  <HomeCardV2
+                    color={"brand.500"}
+                    icon={<FaProjectDiagram />}
+                    text={$$("menu.projects")}
+                    url={"/e2-projects/my"}
                   />
                 ) : null}
                 {flags.sustainability_articles.enabled ? (
