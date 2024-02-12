@@ -27,3 +27,7 @@ ai-proxy/node_modules/
 .env.backend_dev
 
 godot-server/node_modules/
+
+games/Platformer/Temp/
+
+games/Platformer/Library/
