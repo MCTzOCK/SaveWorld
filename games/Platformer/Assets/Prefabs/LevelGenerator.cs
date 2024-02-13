@@ -25,7 +25,7 @@ public class FloorSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.transform.position.z > floorCount * 20 - 120)
+        if (player.transform.position.z > floorCount * 20 - 140)
         {
             SpawnFloor();
         }
@@ -38,7 +38,7 @@ public class FloorSpawner : MonoBehaviour
     
     void SpawnFloor()
     {
-        GameObject floor = Instantiate(floorPrefab, new Vector3(0, 0, floorCount * 20), Quaternion.identity);
+        GameObject floor = Instantiate(floorPrefab, new Vector3(0, 0, floorCount * 20.5f), Quaternion.identity);
         floorList.Add(floor);
         floorCount++;
     }
