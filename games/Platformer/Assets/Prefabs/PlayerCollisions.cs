@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCollisions : MonoBehaviour
 {
@@ -32,6 +33,11 @@ public class PlayerCollisions : MonoBehaviour
             GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
             StartCoroutine(ResetSpeed());
             coin_text.text = "" + collected_coins;
+        }
+
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            SceneManager.LoadScene("GameOver");
         }
     }
     

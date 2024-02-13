@@ -40,3 +40,25 @@ The following packages were updated:
   com.unity.collab-proxy from version 1.13.5 to 2.2.0
   com.unity.timeline from version 1.6.2 to 1.7.6
   com.unity.visualscripting from version 1.7.6 to 1.9.1
+
+=== Tue Feb 13 13:58:48 2024
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.2d.animation from version 5.0.9 to 9.1.0
+  com.unity.2d.spriteshape from version 5.1.5 to 9.0.2
+  com.unity.test-framework from version 1.1.29 to 1.1.33
+  com.unity.timeline from version 1.4.8 to 1.7.6
+
+=== Tue Feb 13 13:58:48 2024
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+
+The following packages were added:
+  com.unity.2d.animation@9.1.0
+  com.unity.2d.sprite@1.0.0
+  com.unity.2d.spriteshape@9.0.2
+  com.unity.test-framework@1.1.33
