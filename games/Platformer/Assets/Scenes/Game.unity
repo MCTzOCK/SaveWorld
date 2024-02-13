@@ -211,7 +211,7 @@ PrefabInstance:
     - target: {fileID: 3567647709685407522, guid: 939dd5800a56568478892ddb4824fca2, type: 3}
       propertyPath: body
       value: 
-      objectReference: {fileID: 877854998}
+      objectReference: {fileID: 1111616421}
     - target: {fileID: 3567647709685407522, guid: 939dd5800a56568478892ddb4824fca2, type: 3}
       propertyPath: speed
       value: 20
@@ -280,6 +280,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7107798460075196505, guid: 939dd5800a56568478892ddb4824fca2, type: 3}
+      propertyPath: coin_text
+      value: 
+      objectReference: {fileID: 1469235382}
     - target: {fileID: 7192536198899019614, guid: 939dd5800a56568478892ddb4824fca2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -388,11 +392,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &877854998 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4637950268551256038, guid: 939dd5800a56568478892ddb4824fca2, type: 3}
-  m_PrefabInstance: {fileID: 692316522}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &896944348
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,7 +660,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
+  m_AllowDynamicResolution: 1
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -685,6 +684,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 5.79}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1111616421 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1350501978395554308, guid: 939dd5800a56568478892ddb4824fca2, type: 3}
+  m_PrefabInstance: {fileID: 692316522}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1469235380
 GameObject:
   m_ObjectHideFlags: 0

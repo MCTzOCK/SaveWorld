@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject body;
     public bool isSpeedBoosted = false;
     
+    private Vector2 startTouchPosition, endTouchPosition;
+    
     
     void Start()
     {
@@ -36,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
         }
         
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed * Time.deltaTime);
-        body.transform.rotation = Quaternion.Euler(0, -90, 0);
         body.transform.position = new Vector3(current_x, body.transform.position.y, body.transform.position.z);
         if(Input.GetKeyDown(KeyCode.RightArrow))
         {
@@ -45,6 +46,25 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
             Left();
+        }
+
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            startTouchPosition = Input.GetTouch(0).position;
+        }
+
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        {
+            endTouchPosition = Input.GetTouch(0).position;
+            
+            if(endTouchPosition.x < startTouchPosition.x)
+            {
+                Left();
+            }
+            else if(endTouchPosition.x > startTouchPosition.x)
+            {
+                Right();
+            }
         }
     }
 
