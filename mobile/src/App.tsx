@@ -353,7 +353,7 @@ export default function App() {
         const router = useIonRouter();
         const { name } = useParams<{ name: string }>();
         return (
-          <Page title={name}>
+          <Page title={name} noPadding>
             <iframe
               src={"/games/" + name + "/index.html"}
               style={{

@@ -24,6 +24,8 @@ public class PlayerCollisions : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Loot"))
         {
+            //save the loot to the top javascript window
+            Application.ExternalEval("window.unityInstance.save('surfers', 'loot', " + (collected_coins + 1) + ")");
             collected_coins++;
             transform.parent.gameObject.GetComponent<PlayerMovement>().isSpeedBoosted = true;
             Destroy(other.gameObject);
