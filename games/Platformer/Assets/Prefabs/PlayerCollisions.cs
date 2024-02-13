@@ -29,6 +29,7 @@ public class PlayerCollisions : MonoBehaviour
             Application.ExternalEval("window.unityInstance.save('surfers', 'loot', " + (collected_coins + 1) + ")");
             collected_coins++;
             transform.parent.gameObject.GetComponent<PlayerMovement>().isSpeedBoosted = true;
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + .2f);
             Destroy(other.gameObject);
             GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
             StartCoroutine(ResetSpeed());
