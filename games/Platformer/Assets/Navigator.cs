@@ -10,7 +10,7 @@ public class Navigator : MonoBehaviour
 
     public void Menu()
     {
-        
+        NavigateTo("Menu");        
     }
 
     public  void Game()

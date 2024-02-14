@@ -51,7 +51,7 @@ MonoBehaviour:
   left_x: -2.25
   right_x: 2.25
   middle_x: 0
-  body: {fileID: 0}
+  body: {fileID: 1350501978395554308}
   isSpeedBoosted: 0
 --- !u!1001 &2196801920054038357
 PrefabInstance:

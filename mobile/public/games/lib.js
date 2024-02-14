@@ -20,6 +20,6 @@ window.unityInstance = {
   },
   load: (game, key) => {
     console.log("Load", game, key);
-    return t.localStorage.getItem(game + "_" + key);
+    return t.localStorage.getItem(game + "_" + key) || 0;
   },
 };
