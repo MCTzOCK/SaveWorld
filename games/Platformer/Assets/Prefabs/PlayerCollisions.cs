@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,10 @@ public class PlayerCollisions : MonoBehaviour
     
     private int collected_coins = 0;
     public TextMeshProUGUI coin_text;
+    [DllImport("__Internal")]
+    private static extern int GetHighScore();
+    [DllImport("__Internal")]
+    private static extern void SetHighScore(int score);
     
     void Start()
     {
@@ -25,8 +30,12 @@ public class PlayerCollisions : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Loot"))
         {
-            //save the loot to the top javascript window
-            Application.ExternalEval("window.unityInstance.save('surfers', 'loot', " + (collected_coins + 1) + ")");
+            if (collected_coins + 1 > GetHighScore())
+            {
+                SetHighScore(collected_coins + 1);
+                print("New High Score: " + GetHighScore());
+            }
+
             collected_coins++;
             transform.parent.gameObject.GetComponent<PlayerMovement>().isSpeedBoosted = true;
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + .2f);
