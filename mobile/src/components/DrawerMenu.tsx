@@ -47,6 +47,7 @@ import {
   FaEarthEurope,
   FaHammer,
   FaLeaf,
+  FaLink,
   FaNewspaper,
   FaPeopleGroup,
   FaPerson,
@@ -426,6 +427,20 @@ export default function DrawerMenu(props: {
             icon: <MdQueryStats />,
             onClick: () => {
               router.push("/admin/adp", "none", "replace");
+            },
+          },
+          {
+            label: "Custom Path",
+            icon: <FaLink />,
+            onClick: async () => {
+              const path = await PopupManager.promptAsync({
+                title: "Custom Path",
+                helperText: "Enter the path",
+              });
+
+              if (!path) return;
+
+              router.push(path, "none", "replace");
             },
           },
           {
