@@ -12,3 +12,14 @@ const t = window.top;
 window.receiveToken = () => {
   return t.localStorage.getItem("token");
 };
+
+window.unityInstance = {
+  save: (game, key, value) => {
+    console.log("Save", game, key, value);
+    t.localStorage.setItem(game + "_" + key, value);
+  },
+  load: (game, key) => {
+    console.log("Load", game, key);
+    return t.localStorage.getItem(game + "_" + key) || 0;
+  },
+};
