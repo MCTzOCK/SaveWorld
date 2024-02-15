@@ -240,6 +240,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4901940484572351868, guid: 939dd5800a56568478892ddb4824fca2, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901940484572351868, guid: 939dd5800a56568478892ddb4824fca2, type: 3}
+      propertyPath: m_Constraints
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 6440356492469625671, guid: 939dd5800a56568478892ddb4824fca2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -469,7 +477,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: -1
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -833,7 +841,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 935841348}
+  - {fileID: 896944352}
   - {fileID: 692316522}
   - {fileID: 377339125}
-  - {fileID: 896944352}
   - {fileID: 823663629}
