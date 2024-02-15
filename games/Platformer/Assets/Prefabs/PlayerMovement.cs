@@ -48,6 +48,11 @@ public class PlayerMovement : MonoBehaviour
             Left();
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
+
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             startTouchPosition = Input.GetTouch(0).position;
@@ -64,6 +69,11 @@ public class PlayerMovement : MonoBehaviour
             else if(endTouchPosition.x > startTouchPosition.x)
             {
                 Right();
+            }
+            
+            if(endTouchPosition.y > startTouchPosition.y)
+            {
+                Jump();
             }
         }
     }
@@ -92,5 +102,18 @@ public class PlayerMovement : MonoBehaviour
             //body.transform.position = new Vector3(left_x, body.transform.position.y, body.transform.position.z);
             current_x = left_x;
         } 
+    }
+    
+    private bool IsGrounded()
+    {
+        return transform.GetChild(1).GetComponent<Rigidbody>().velocity.y == 0;
+    }
+    
+    private void Jump()
+    {
+        if (IsGrounded())
+        {
+            transform.GetChild(1).GetComponent<Rigidbody>().velocity = new Vector3(0, 7f, 0);
+        }
     }
 }
