@@ -125,6 +125,7 @@ import PopupManager from "./util/PopupManager";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { RESTEnv } from "@saveworld/api-js/dist/RESTEnv";
+import Games from "./pages/games/Games";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -349,13 +350,14 @@ export default function App() {
       "/eatingplans/:date": flags.eatingplans.enabled
         ? EatingPlanViewer
         : NotFound,
+      "/games": Games,
       "/games/:name": () => {
         const router = useIonRouter();
         const { name } = useParams<{ name: string }>();
         return (
           <Page title={name} noPadding>
             <iframe
-              src={"/games/" + name + "/index.html"}
+              src={"/_static/games/" + name + "/index.html"}
               style={{
                 width: "100%",
                 height: "100%",
@@ -365,7 +367,7 @@ export default function App() {
                 const iframe = e.target as HTMLIFrameElement;
                 const x =
                   iframe.contentWindow?.document.createElement("script");
-                x!.src = "/games/lib.js";
+                x!.src = "/_static/games/lib.js";
                 x!.type = "text/javascript";
                 x!.async = true;
                 iframe.contentWindow?.document.head.appendChild(x!);
