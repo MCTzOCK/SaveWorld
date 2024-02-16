@@ -238,6 +238,10 @@ import { INFO } from "./local-depl-info";
           description: "Support System related APIs",
         },
         {
+          name: "games",
+          description: "Games related APIs",
+        },
+        {
           name: "system",
           description: "System relevant endpoints",
         },
