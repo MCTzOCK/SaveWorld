@@ -38,13 +38,25 @@ export class REST {
         },
       });
     },
+    /**
+     * @return the requested user score
+     * @param game the game to get
+     * @param token used to authenticate
+     */
+    myScore: async (game: string, token: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/games/leaderboard/" + game + "/my",
+        method: "GET",
+        token: token,
+      });
+    },
   };
 
   public static Admin = {
     /**
      * @return the requested insights about the api
      * @param token used to authenticate
-     * @param page the page to get
+     * @param options
      */
     insights: async (
       token: string,
