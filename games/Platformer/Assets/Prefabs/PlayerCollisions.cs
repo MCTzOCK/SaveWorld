@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -28,12 +30,15 @@ public class PlayerCollisions : MonoBehaviour
     
     private void OnCollisionEnter(Collision other)
     {
+        
         if (other.gameObject.CompareTag("Loot"))
         {
-            if (collected_coins + 1 > GetHighScore())
+            int highscore = GetHighScore();
+            
+            if (collected_coins + 1 >  highscore)
             {
                 SetHighScore(collected_coins + 1);
-                print("New High Score: " + GetHighScore());
+                print("New High Score: " + (collected_coins + 1));
             }
 
             collected_coins++;

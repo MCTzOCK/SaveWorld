@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
@@ -16,7 +18,7 @@ public class HighscoreDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        highscore_text.text = "Highscore: " + GetHighScore().ToString();
+        highscore_text.text = "Highscore: " + GetHighScore();
     }
 
     // Update is called once per frame

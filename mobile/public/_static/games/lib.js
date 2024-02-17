@@ -8,6 +8,7 @@
  *
  */
 const t = window.top;
+window.REST = t.REST;
 
 window.receiveToken = () => {
   return t.localStorage.getItem("token");
@@ -20,12 +21,10 @@ window.unityInstance = {
     }
     t.localStorage.setItem(game + "_" + key, value);
   },
-  load: async (game, key) => {
-    if (key === "highscore") {
-      //return await window.REST.Games;
-      return 0;
-    } else {
-      return t.localStorage.getItem(game + "_" + key) || 0;
-    }
+  load: (game, key) => {
+    window.REST.Games.myScore(game, window.receiveToken()).then((res) => {
+      t.localStorage.setItem(game + "_" + key, value);
+    });
+    return t.localStorage.getItem(game + "_" + key) || 0;
   },
 };
