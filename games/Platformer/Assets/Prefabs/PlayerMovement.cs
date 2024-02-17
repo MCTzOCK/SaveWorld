@@ -70,11 +70,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 Right();
             }
-            
+            /*
+             - Temporarily removing the jump feature -
             if(endTouchPosition.y > startTouchPosition.y)
             {
                 Jump();
             }
+            */
         }
     }
 
