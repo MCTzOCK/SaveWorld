@@ -642,5 +642,11 @@ export const en = {
   "pages.settings.stats.version": "Version",
   "pages.settings.stats.last.commit": "Last amendment",
   "pages.settings.status.sloc": "Source code lines",
-  "page.account.update.app.icon": "Change App icon"
+  "page.account.update.app.icon": "Change App icon",
+  "pages.games.title": "Games",
+  "pages.games.game.ecosurfers.name": "EcoSurfers",
+  "pages.games.game.ecosurfers.description": "Collect garbage and save the world!",
+  "pages.games.play": "Play",
+  "pages.games.leaderboard.title": "Best list",
+  "pages.games.leaderboard.notfound": "The game was not found."
 };

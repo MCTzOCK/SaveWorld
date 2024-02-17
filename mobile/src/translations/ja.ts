@@ -642,5 +642,11 @@ export const ja = {
   "pages.settings.stats.version": "バージョン",
   "pages.settings.stats.last.commit": "最終修正",
   "pages.settings.status.sloc": "ソースコードライン",
-  "page.account.update.app.icon": "アプリアイコンの変更"
+  "page.account.update.app.icon": "アプリアイコンの変更",
+  "pages.games.title": "ゲーム",
+  "pages.games.game.ecosurfers.name": "エコサーファー",
+  "pages.games.game.ecosurfers.description": "ゴミを収集し、世界を救う!",
+  "pages.games.play": "プレイ",
+  "pages.games.leaderboard.title": "ベストリスト",
+  "pages.games.leaderboard.notfound": "ゲームが見つかりませんでした."
 };

@@ -642,5 +642,11 @@ export const uk = {
   "pages.settings.stats.version": "Редагування",
   "pages.settings.stats.last.commit": "Останні зміни",
   "pages.settings.status.sloc": "Джерела коду",
-  "page.account.update.app.icon": "Ім'я користувача"
+  "page.account.update.app.icon": "Ім'я користувача",
+  "pages.games.title": "Ігри",
+  "pages.games.game.ecosurfers.name": "ЕкоСурфери",
+  "pages.games.game.ecosurfers.description": "Збір сміття та збереження світу!",
+  "pages.games.play": "Грати",
+  "pages.games.leaderboard.title": "Кращий список",
+  "pages.games.leaderboard.notfound": "Гра не знайдено."
 };

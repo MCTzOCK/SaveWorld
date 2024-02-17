@@ -642,5 +642,11 @@ export const el = {
   "pages.settings.stats.version": "Έκδοση",
   "pages.settings.stats.last.commit": "Τελευταία τροποποίηση",
   "pages.settings.status.sloc": "Γραμμές πηγαίου κώδικα",
-  "page.account.update.app.icon": "Τροποποίηση εικονιδίου εφαρμογής"
+  "page.account.update.app.icon": "Τροποποίηση εικονιδίου εφαρμογής",
+  "pages.games.title": "Παιχνίδια",
+  "pages.games.game.ecosurfers.name": "EcoSurfers",
+  "pages.games.game.ecosurfers.description": "Συλλέξτε σκουπίδια και να σώσει τον κόσμο!",
+  "pages.games.play": "Αναπαραγωγή",
+  "pages.games.leaderboard.title": "Καλύτερη λίστα",
+  "pages.games.leaderboard.notfound": "Το παιχνίδι δεν βρέθηκε."
 };

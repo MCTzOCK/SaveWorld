@@ -26,32 +26,17 @@ import {
 } from "@chakra-ui/react";
 import { FaGamepad, FaTrophy } from "react-icons/fa6";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
+import { games } from "../../util/types/Games";
 
 export default function Games() {
   useRedirectForAnon();
   const [query, setQuery] = React.useState<string>("");
 
-  const games: {
-    name: string;
-    description: string;
-    hasLeaderboard: boolean;
-    image: string;
-    identifier: string;
-  }[] = [
-    {
-      name: $$("pages.games.game.ecosurfers.name"),
-      description: $$("pages.games.game.ecosurfers.description"),
-      hasLeaderboard: true,
-      image: "/_static/game-splashes/surfers.png",
-      identifier: "surfers",
-    },
-  ];
-
   const router = useIonRouter();
 
   return (
     <>
-      <Page title={$$("pages.games.title")}>
+      <Page title={$$("pages.games.title")} isBeta>
         <IonSearchbar
           placeholder={$$("control.search")}
           value={query}
@@ -78,11 +63,11 @@ export default function Games() {
                     <Image src={game.image} roundedTop={"md"} />
                     <CardHeader>
                       <Text fontWeight={"bold"} fontSize={"xl"}>
-                        {game.name}
+                        {$$(game.name as any)}
                       </Text>
                     </CardHeader>
                     <CardBody>
-                      <Text fontSize={"lg"}>{game.description}</Text>
+                      <Text fontSize={"lg"}>{$$(game.description as any)}</Text>
                       <ButtonGroup mt={4} w={"100%"}>
                         <Button
                           w={"100%"}

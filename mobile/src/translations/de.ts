@@ -364,6 +364,8 @@ export const german = {
   "pages.games.game.ecosurfers.name": "EcoSurfers",
   "pages.games.game.ecosurfers.description": "Sammle Müll und rette die Welt!",
   "pages.games.play": "Spielen",
+  "pages.games.leaderboard.title": "Bestenliste",
+  "pages.games.leaderboard.notfound": "Das Spiel wurde nicht gefunden.",
   "pages.admin.category.delete.error": "Fehler beim Löschen der Kategorie: %0",
   "pages.admin.category.loading.error": "Fehler beim Laden der Kategorien: %0",
   "pages.admin.category.no.categories": "Keine Kategorien gefunden.",

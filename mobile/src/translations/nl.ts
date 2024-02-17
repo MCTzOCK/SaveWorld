@@ -642,5 +642,11 @@ export const nl = {
   "pages.settings.stats.version": "Versie",
   "pages.settings.stats.last.commit": "Laatste wijziging",
   "pages.settings.status.sloc": "Broncoderegels",
-  "page.account.update.app.icon": "App pictogram wijzigen"
+  "page.account.update.app.icon": "App pictogram wijzigen",
+  "pages.games.title": "Spellen",
+  "pages.games.game.ecosurfers.name": "EcoSurfers",
+  "pages.games.game.ecosurfers.description": "Verzamel afval en red de wereld!",
+  "pages.games.play": "Afspelen",
+  "pages.games.leaderboard.title": "Beste lijst",
+  "pages.games.leaderboard.notfound": "Het spel werd niet gevonden."
 };

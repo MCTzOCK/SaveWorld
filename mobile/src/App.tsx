@@ -126,6 +126,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { RESTEnv } from "@saveworld/api-js/dist/RESTEnv";
 import Games from "./pages/games/Games";
+import GameLeaderBoard from "./pages/games/GameLeaderBoard";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -351,6 +352,7 @@ export default function App() {
         ? EatingPlanViewer
         : NotFound,
       "/games": Games,
+      "/games/:game/leaderboard": GameLeaderBoard,
       "/games/:name": () => {
         const router = useIonRouter();
         const { name } = useParams<{ name: string }>();
