@@ -89,11 +89,6 @@ export default async function communityPlugin(app: FastifyInstance, opts: any) {
         openapi: {
           description: "Get the leaderboard for a specific game",
           tags: ["games"],
-          security: [
-            {
-              jwt: [],
-            },
-          ],
         },
       },
     },
