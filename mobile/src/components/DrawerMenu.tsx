@@ -45,6 +45,7 @@ import {
 import {
   FaBook,
   FaEarthEurope,
+  FaGamepad,
   FaHammer,
   FaLeaf,
   FaLink,
@@ -394,6 +395,19 @@ export default function DrawerMenu(props: {
         ],
       });
     }
+
+    gr.push({
+      label: $$("pages.games.title"),
+      items: [
+        {
+          label: $$("pages.games.title"),
+          icon: <FaGamepad />,
+          onClick: () => {
+            router.push("/games", "none", "replace");
+          },
+        },
+      ],
+    });
 
     gr.push({
       label: $$("menu.resources"),
