@@ -82,6 +82,55 @@ export default async function communityPlugin(app: FastifyInstance, opts: any) {
   );
 
   app.get(
+    "/games/leaderboard/:game/my",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Get the leaderboard for a specific game",
+          tags: ["games"],
+          security: [
+            {
+              jwt: [],
+            },
+          ],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{ Params: { game: string } }>,
+      res: FastifyReply,
+    ) => {
+      const { user, auth } = await isAuth(req);
+
+      if (!auth) {
+        return res.status(401).send({ error: "Not authorized" });
+      }
+
+      const game = req.params.game as string;
+
+      if (!game) {
+        return res.status(400).send({ error: "No game provided" });
+      }
+
+      let leaderboard = await GameLeaderBoardModel.findOne({
+        game: game,
+        user: user._id,
+      });
+
+      if (!leaderboard) {
+        leaderboard = await GameLeaderBoardModel.create({
+          game: game,
+          user: user._id,
+          score: 0,
+        });
+      }
+
+      return res.send({ leaderboard });
+    },
+  );
+
+  app.get(
     "/games/leaderboard/:game",
     {
       schema: {},

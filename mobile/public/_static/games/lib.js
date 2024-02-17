@@ -15,11 +15,17 @@ window.receiveToken = () => {
 
 window.unityInstance = {
   save: (game, key, value) => {
-    console.log("Save", game, key, value);
+    if (key === "highscore") {
+      window.REST.Games.updateLeaderboard(game, value, window.receiveToken());
+    }
     t.localStorage.setItem(game + "_" + key, value);
   },
-  load: (game, key) => {
-    console.log("Load", game, key);
-    return t.localStorage.getItem(game + "_" + key) || 0;
+  load: async (game, key) => {
+    if (key === "highscore") {
+      //return await window.REST.Games;
+      return 0;
+    } else {
+      return t.localStorage.getItem(game + "_" + key) || 0;
+    }
   },
 };

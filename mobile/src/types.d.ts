@@ -8,11 +8,13 @@
  *
  */
 import PopupManager from "./util/PopupManager";
+import { REST } from "@saveworld/api-js";
 
 declare global {
   interface Window {
     PopupManager: typeof PopupManager;
     language: string;
+    REST: typeof REST;
   }
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
-import { setApiUrl } from "@saveworld/api-js";
+import { REST, setApiUrl } from "@saveworld/api-js";
 import { DEV_ENDPOINT, ENDPOINT } from "./env";
 import { Network } from "@capacitor/network";
 import Root from "./Root";
@@ -11,6 +11,7 @@ import { Preferences } from "@capacitor/preferences";
 import { I18n } from "./translations/i18n";
 
 window.PopupManager = PopupManager;
+window.REST = REST;
 
 const render = async () => {
   Preferences.get({ key: "language" }).then((res) => {
