@@ -18,9 +18,10 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta content={"width=device-width, initial-scale=1"} name="viewport" />
       </Head>
       <ChakraProvider theme={theme}>
-        <NavigationBar />
+        {!router.pathname.includes("pitch") && <NavigationBar />}
         <Component {...pageProps} />
-        <Footer />
+
+        {!router.pathname.includes("pitch") && <Footer />}
       </ChakraProvider>
     </>
   );

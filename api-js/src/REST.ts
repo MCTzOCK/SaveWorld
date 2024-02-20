@@ -11,11 +11,52 @@ import makeRequest from "./util/makeRequest";
 import { RESTEnv } from "./RESTEnv";
 
 export class REST {
+  public static Games = {
+    /**
+     * @return the requested leaderboard
+     * @param game the game to get
+     */
+    leaderboard: async (game: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/games/leaderboard/" + game,
+        method: "GET",
+      });
+    },
+    /**
+     * Updates the leaderboard
+     * @param game the game to update
+     * @param score the score to set
+     * @param token used to authenticate
+     */
+    updateLeaderboard: async (game: string, score: number, token: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/games/leaderboard/" + game,
+        method: "POST",
+        token: token,
+        body: {
+          score: score,
+        },
+      });
+    },
+    /**
+     * @return the requested user score
+     * @param game the game to get
+     * @param token used to authenticate
+     */
+    myScore: async (game: string, token: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/games/leaderboard/" + game + "/my",
+        method: "GET",
+        token: token,
+      });
+    },
+  };
+
   public static Admin = {
     /**
      * @return the requested insights about the api
      * @param token used to authenticate
-     * @param page the page to get
+     * @param options
      */
     insights: async (
       token: string,

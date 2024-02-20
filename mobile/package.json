@@ -9,6 +9,7 @@
     "build:prod:ios": "npm run build:licenses && ionic cap sync ios"
   },
   "dependencies": {
+    "@capacitor-community/app-icon": "^4.1.1",
     "@capacitor/android": "5.2.3",
     "@capacitor/app": "^5.0.6",
     "@capacitor/browser": "^5.0.6",
@@ -30,7 +31,7 @@
     "@ionic/react": "^7.0.0",
     "@ionic/react-router": "^7.0.0",
     "@ramonak/react-progress-bar": "^5.0.3",
-    "@saveworld/api-js": "^1.0.85",
+    "@saveworld/api-js": "^1.0.88",
     "@saveworld/browser-translate": "^1.2.0",
     "@tryghost/content-api": "^1.11.19",
     "@types/leaflet": "^1.9.7",

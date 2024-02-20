@@ -215,7 +215,7 @@ export default function AdminUserEditorModal(props: {
                 }
               }}
             >
-              {$$("control.error")}
+              {$$("control.delete")}
             </Button>
           </ButtonGroup>
         </Stack>

@@ -641,5 +641,12 @@ export const fr = {
   "pages.settings.stats.branch": "Branche",
   "pages.settings.stats.version": "Version",
   "pages.settings.stats.last.commit": "Dernier amendement",
-  "pages.settings.status.sloc": "Lignes de code source"
+  "pages.settings.status.sloc": "Lignes de code source",
+  "page.account.update.app.icon": "Modifier l'icône de l'application",
+  "pages.games.title": "Jeux",
+  "pages.games.game.ecosurfers.name": "EcoSurfers",
+  "pages.games.game.ecosurfers.description": "Recueillir des ordures et sauver le monde !",
+  "pages.games.play": "Jouer",
+  "pages.games.leaderboard.title": "Meilleure liste",
+  "pages.games.leaderboard.notfound": "Le jeu n'a pas été trouvé."
 };

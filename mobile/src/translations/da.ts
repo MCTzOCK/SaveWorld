@@ -641,5 +641,12 @@ export const da = {
   "pages.settings.stats.branch": "Branche Branch Branch Branch",
   "pages.settings.stats.version": "Version",
   "pages.settings.stats.last.commit": "Sidste ændring",
-  "pages.settings.status.sloc": "Kildekodelinjer"
+  "pages.settings.status.sloc": "Kildekodelinjer",
+  "page.account.update.app.icon": "Skift app ikon",
+  "pages.games.title": "Spil spil",
+  "pages.games.game.ecosurfers.name": "EcoSurfers",
+  "pages.games.game.ecosurfers.description": "Indsamle affald og redde verden!",
+  "pages.games.play": "Afspil spil",
+  "pages.games.leaderboard.title": "Bedste liste",
+  "pages.games.leaderboard.notfound": "Spillet blev ikke fundet."
 };

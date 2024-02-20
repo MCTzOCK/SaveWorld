@@ -32,6 +32,16 @@
 		B5ADF9722B531ECB00E4892D /* ProjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADF9712B531ECB00E4892D /* ProjectListView.swift */; };
 		B5ADF9742B531EE100E4892D /* ProjectDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADF9732B531EE100E4892D /* ProjectDetailsView.swift */; };
 		B5ADF9762B531EF700E4892D /* ProjectDetailsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADF9752B531EF700E4892D /* ProjectDetailsListView.swift */; };
+		B5BDFF552B6E4E1600AE0FC5 /* classic.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BDFF532B6E4E1600AE0FC5 /* classic.png */; };
+		B5BDFF572B6E52A100AE0FC5 /* modern.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BDFF562B6E52A100AE0FC5 /* modern.png */; };
+		B5BDFF592B6F936D00AE0FC5 /* classic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BDFF582B6F936C00AE0FC5 /* classic@2x.png */; };
+		B5BDFF5B2B6F93A300AE0FC5 /* classic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BDFF5A2B6F93A300AE0FC5 /* classic@3x.png */; };
+		B5BDFF5D2B6F93C900AE0FC5 /* classic@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BDFF5C2B6F93C900AE0FC5 /* classic@2x~ipad.png */; };
+		B5BDFF5F2B6F940700AE0FC5 /* classic@3x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BDFF5E2B6F940700AE0FC5 /* classic@3x~ipad.png */; };
+		B5BDFF6C2B6F969D00AE0FC5 /* modern@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BDFF6B2B6F969D00AE0FC5 /* modern@2x.png */; };
+		B5BDFF6E2B6F96BE00AE0FC5 /* modern@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BDFF6D2B6F96BE00AE0FC5 /* modern@3x.png */; };
+		B5BDFF702B6F96D800AE0FC5 /* modern@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BDFF6F2B6F96D800AE0FC5 /* modern@2x~ipad.png */; };
+		B5BDFF722B6F96F900AE0FC5 /* modern@3x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BDFF712B6F96F900AE0FC5 /* modern@3x~ipad.png */; };
 		B5D63A152ABA1AC000116441 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D63A142ABA1AC000116441 /* NotificationService.swift */; };
 		B5D63A192ABA1AC000116441 /* OneSignalNotificationServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B5D63A122ABA1AC000116441 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B5D63A1E2ABA1B2300116441 /* OneSignalExtension.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D63A1D2ABA1B2300116441 /* OneSignalExtension.xcframework */; };
@@ -92,7 +102,7 @@
 		2FAD9762203C412B000D30F8 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
 		3CAF7C467ADE30FE5629C192 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		50379B222058CBB4000EE86E /* capacitor.config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = capacitor.config.json; sourceTree = "<group>"; };
-		504EC3041FED79650016851F /* SaveWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SaveWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		504EC3041FED79650016851F /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		504EC3071FED79650016851F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		504EC30C1FED79650016851F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		504EC30E1FED79650016851F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -121,6 +131,16 @@
 		B5ADF9732B531EE100E4892D /* ProjectDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailsView.swift; sourceTree = "<group>"; };
 		B5ADF9752B531EF700E4892D /* ProjectDetailsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailsListView.swift; sourceTree = "<group>"; };
 		B5AE8D4C2AB05F60004F26AD /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
+		B5BDFF532B6E4E1600AE0FC5 /* classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = classic.png; path = ../../../../public/assets/icons/classic.png; sourceTree = "<group>"; };
+		B5BDFF562B6E52A100AE0FC5 /* modern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = modern.png; path = "SaveWorld App Clip/Assets.xcassets/modern.appiconset/modern.png"; sourceTree = SOURCE_ROOT; };
+		B5BDFF582B6F936C00AE0FC5 /* classic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "classic@2x.png"; path = "../../../../../../../Downloads/classic@2x.png"; sourceTree = "<group>"; };
+		B5BDFF5A2B6F93A300AE0FC5 /* classic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "classic@3x.png"; path = "../../../../../../../Downloads/classic@3x.png"; sourceTree = "<group>"; };
+		B5BDFF5C2B6F93C900AE0FC5 /* classic@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "classic@2x~ipad.png"; path = "../../../../../../../Downloads/classic@2x~ipad.png"; sourceTree = "<group>"; };
+		B5BDFF5E2B6F940700AE0FC5 /* classic@3x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "classic@3x~ipad.png"; path = "../../../../../../../Downloads/classic@3x~ipad.png"; sourceTree = "<group>"; };
+		B5BDFF6B2B6F969D00AE0FC5 /* modern@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "modern@2x.png"; sourceTree = "<group>"; };
+		B5BDFF6D2B6F96BE00AE0FC5 /* modern@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "modern@3x.png"; sourceTree = "<group>"; };
+		B5BDFF6F2B6F96D800AE0FC5 /* modern@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "modern@2x~ipad.png"; sourceTree = "<group>"; };
+		B5BDFF712B6F96F900AE0FC5 /* modern@3x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "modern@3x~ipad.png"; sourceTree = "<group>"; };
 		B5D63A042ABA1A9C00116441 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		B5D63A062ABA1A9C00116441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5D63A122ABA1AC000116441 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,7 +217,7 @@
 		504EC3051FED79650016851F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				504EC3041FED79650016851F /* SaveWorld.app */,
+				504EC3041FED79650016851F /* App.app */,
 				B5D63A122ABA1AC000116441 /* OneSignalNotificationServiceExtension.appex */,
 				B53961232B52D11000CA61A3 /* SaveWorld WidgetsExtension.appex */,
 				B5ADF94B2B5307D400E4892D /* SaveWorld App Clip.app */,
@@ -208,6 +228,7 @@
 		504EC3061FED79650016851F /* App */ = {
 			isa = PBXGroup;
 			children = (
+				B5BDFF512B6E4DB300AE0FC5 /* AlternateIcons */,
 				B5AE8D4C2AB05F60004F26AD /* App.entitlements */,
 				50379B222058CBB4000EE86E /* capacitor.config.json */,
 				504EC3071FED79650016851F /* AppDelegate.swift */,
@@ -269,6 +290,23 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		B5BDFF512B6E4DB300AE0FC5 /* AlternateIcons */ = {
+			isa = PBXGroup;
+			children = (
+				B5BDFF532B6E4E1600AE0FC5 /* classic.png */,
+				B5BDFF582B6F936C00AE0FC5 /* classic@2x.png */,
+				B5BDFF5A2B6F93A300AE0FC5 /* classic@3x.png */,
+				B5BDFF5C2B6F93C900AE0FC5 /* classic@2x~ipad.png */,
+				B5BDFF5E2B6F940700AE0FC5 /* classic@3x~ipad.png */,
+				B5BDFF562B6E52A100AE0FC5 /* modern.png */,
+				B5BDFF6B2B6F969D00AE0FC5 /* modern@2x.png */,
+				B5BDFF6D2B6F96BE00AE0FC5 /* modern@3x.png */,
+				B5BDFF6F2B6F96D800AE0FC5 /* modern@2x~ipad.png */,
+				B5BDFF712B6F96F900AE0FC5 /* modern@3x~ipad.png */,
+			);
+			path = AlternateIcons;
+			sourceTree = "<group>";
+		};
 		B5D63A032ABA1A9C00116441 /* OneSignalNotificationServiceExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,9 +328,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		504EC3031FED79650016851F /* SaveWorld */ = {
+		504EC3031FED79650016851F /* App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 504EC3161FED79650016851F /* Build configuration list for PBXNativeTarget "SaveWorld" */;
+			buildConfigurationList = 504EC3161FED79650016851F /* Build configuration list for PBXNativeTarget "App" */;
 			buildPhases = (
 				6634F4EFEBD30273BCE97C65 /* [CP] Check Pods Manifest.lock */,
 				504EC3001FED79650016851F /* Sources */,
@@ -309,9 +347,9 @@
 				B539612F2B52D11700CA61A3 /* PBXTargetDependency */,
 				B5ADF9592B5307D700E4892D /* PBXTargetDependency */,
 			);
-			name = SaveWorld;
+			name = App;
 			productName = App;
-			productReference = 504EC3041FED79650016851F /* SaveWorld.app */;
+			productReference = 504EC3041FED79650016851F /* App.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B53961222B52D11000CA61A3 /* SaveWorld WidgetsExtension */ = {
@@ -410,7 +448,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				504EC3031FED79650016851F /* SaveWorld */,
+				504EC3031FED79650016851F /* App */,
 				B5D63A112ABA1AC000116441 /* OneSignalNotificationServiceExtension */,
 				B53961222B52D11000CA61A3 /* SaveWorld WidgetsExtension */,
 				B5ADF94A2B5307D400E4892D /* SaveWorld App Clip */,
@@ -423,12 +461,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5BDFF5F2B6F940700AE0FC5 /* classic@3x~ipad.png in Resources */,
+				B5BDFF552B6E4E1600AE0FC5 /* classic.png in Resources */,
 				504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */,
 				50B271D11FEDC1A000F3C39B /* public in Resources */,
 				504EC30F1FED79650016851F /* Assets.xcassets in Resources */,
+				B5BDFF572B6E52A100AE0FC5 /* modern.png in Resources */,
+				B5BDFF6C2B6F969D00AE0FC5 /* modern@2x.png in Resources */,
 				50379B232058CBB4000EE86E /* capacitor.config.json in Resources */,
+				B5BDFF592B6F936D00AE0FC5 /* classic@2x.png in Resources */,
+				B5BDFF5D2B6F93C900AE0FC5 /* classic@2x~ipad.png in Resources */,
+				B5BDFF722B6F96F900AE0FC5 /* modern@3x~ipad.png in Resources */,
+				B5BDFF6E2B6F96BE00AE0FC5 /* modern@3x.png in Resources */,
 				504EC30D1FED79650016851F /* Main.storyboard in Resources */,
+				B5BDFF5B2B6F93A300AE0FC5 /* classic@3x.png in Resources */,
 				2FAD9763203C412B000D30F8 /* config.xml in Resources */,
+				B5BDFF702B6F96D800AE0FC5 /* modern@2x~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,21 +763,23 @@
 			baseConfigurationReference = FC68EB0AF532CFC21C3344DD /* Pods-App.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-modern AppIcon-classic";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 36;
+				CURRENT_PROJECT_VERSION = 68;
 				DEVELOPMENT_TEAM = U5XU7Z3LFF;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SaveWorld;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.1.23;
+				MARKETING_VERSION = 2024.2.17;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DDEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bensiebert.saveworld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -745,23 +795,25 @@
 			baseConfigurationReference = AF51FD2D460BCFE21FA515B2 /* Pods-App.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-modern AppIcon-classic";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 36;
+				CURRENT_PROJECT_VERSION = 68;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = U5XU7Z3LFF;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SaveWorld;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.1.23;
+				MARKETING_VERSION = 2024.2.17;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bensiebert.saveworld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -861,7 +913,7 @@
 				CODE_SIGN_ENTITLEMENTS = "SaveWorld App Clip/SaveWorld_App_Clip.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 36;
+				CURRENT_PROJECT_VERSION = 68;
 				DEVELOPMENT_ASSET_PATHS = "\"SaveWorld App Clip/Preview Content\"";
 				DEVELOPMENT_TEAM = U5XU7Z3LFF;
 				ENABLE_PREVIEWS = YES;
@@ -882,7 +934,7 @@
 					"@executable_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2024.1.23;
+				MARKETING_VERSION = 2024.2.17;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bensiebert.saveworld.Clip;
@@ -906,7 +958,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 36;
+				CURRENT_PROJECT_VERSION = 68;
 				DEVELOPMENT_ASSET_PATHS = "\"SaveWorld App Clip/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = U5XU7Z3LFF;
@@ -928,7 +980,7 @@
 					"@executable_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2024.1.23;
+				MARKETING_VERSION = 2024.2.17;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bensiebert.saveworld.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1035,7 +1087,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		504EC3161FED79650016851F /* Build configuration list for PBXNativeTarget "SaveWorld" */ = {
+		504EC3161FED79650016851F /* Build configuration list for PBXNativeTarget "App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				504EC3171FED79650016851F /* Debug */,

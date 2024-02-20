@@ -2,6 +2,37 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconName</key>
+			<string></string>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string></string>
+			</array>
+			<key>UIPrerenderedIcon</key>
+			<false/>
+		</dict>
+        <key>CFBundleAlternateIcons</key>
+        <dict>
+            <key>modern</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>modern</string>
+                </array>
+            </dict>
+            <key>classic</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>classic</string>
+                </array>
+            </dict>
+        </dict>
+	</dict>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Das hochgeladene Foto wird für dein Profilbild oder deine Forum-Beiträge verwendet.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>

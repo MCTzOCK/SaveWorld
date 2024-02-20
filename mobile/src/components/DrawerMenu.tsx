@@ -45,8 +45,10 @@ import {
 import {
   FaBook,
   FaEarthEurope,
+  FaGamepad,
   FaHammer,
   FaLeaf,
+  FaLink,
   FaNewspaper,
   FaPeopleGroup,
   FaPerson,
@@ -395,6 +397,19 @@ export default function DrawerMenu(props: {
     }
 
     gr.push({
+      label: $$("pages.games.title"),
+      items: [
+        {
+          label: $$("pages.games.title"),
+          icon: <FaGamepad />,
+          onClick: () => {
+            router.push("/games", "none", "replace");
+          },
+        },
+      ],
+    });
+
+    gr.push({
       label: $$("menu.resources"),
       items: [
         {
@@ -426,6 +441,20 @@ export default function DrawerMenu(props: {
             icon: <MdQueryStats />,
             onClick: () => {
               router.push("/admin/adp", "none", "replace");
+            },
+          },
+          {
+            label: "Custom Path",
+            icon: <FaLink />,
+            onClick: async () => {
+              const path = await PopupManager.promptAsync({
+                title: "Custom Path",
+                helperText: "Enter the path",
+              });
+
+              if (!path) return;
+
+              router.push(path, "none", "replace");
             },
           },
           {

@@ -641,5 +641,12 @@ export const ko = {
   "pages.settings.stats.branch": "팟캐스트",
   "pages.settings.stats.version": "이름 *",
   "pages.settings.stats.last.commit": "마지막 개정",
-  "pages.settings.status.sloc": "소스 코드 라인"
+  "pages.settings.status.sloc": "소스 코드 라인",
+  "page.account.update.app.icon": "App 아이콘 변경",
+  "pages.games.title": "(주)",
+  "pages.games.game.ecosurfers.name": "에코셔퍼",
+  "pages.games.game.ecosurfers.description": "쓰레기를 수집하고 세계를 저장하십시오!",
+  "pages.games.play": "뚱 베어",
+  "pages.games.leaderboard.title": "가장 좋은 목록",
+  "pages.games.leaderboard.notfound": "게임이 발견되지 않았습니다."
 };

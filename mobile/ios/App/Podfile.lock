@@ -7,6 +7,8 @@ PODS:
     - Capacitor
   - CapacitorCamera (5.0.8):
     - Capacitor
+  - CapacitorCommunityAppIcon (4.1.1):
+    - Capacitor
   - CapacitorCordova (5.2.3)
   - CapacitorHaptics (5.0.6):
     - Capacitor
@@ -74,6 +76,7 @@ DEPENDENCIES:
   - "CapacitorApp (from `../../node_modules/@capacitor/app`)"
   - "CapacitorBrowser (from `../../node_modules/@capacitor/browser`)"
   - "CapacitorCamera (from `../../node_modules/@capacitor/camera`)"
+  - "CapacitorCommunityAppIcon (from `../../node_modules/@capacitor-community/app-icon`)"
   - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
   - "CapacitorHaptics (from `../../node_modules/@capacitor/haptics`)"
   - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
@@ -99,6 +102,8 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/browser"
   CapacitorCamera:
     :path: "../../node_modules/@capacitor/camera"
+  CapacitorCommunityAppIcon:
+    :path: "../../node_modules/@capacitor-community/app-icon"
   CapacitorCordova:
     :path: "../../node_modules/@capacitor/ios"
   CapacitorHaptics:
@@ -123,6 +128,7 @@ SPEC CHECKSUMS:
   CapacitorApp: 024e1b1bea5f883d79f6330d309bc441c88ad04a
   CapacitorBrowser: 7a0fb6a1011abfaaf2dfedfd8248f942a8eda3d6
   CapacitorCamera: 4be26c04b35e01f5e7ceb0fcaeafd7dc19b448e0
+  CapacitorCommunityAppIcon: f984c79ffec7b26a0448ad588a221f0531763202
   CapacitorCordova: 35def3ebfdef491f0a7b652816eb873ff4b20bbf
   CapacitorHaptics: 1fffc1217c7e64a472d7845be50fb0c2f7d4204c
   CapacitorKeyboard: b978154b024a5f65e044908e37d15b7de58b9d12
@@ -135,6 +141,6 @@ SPEC CHECKSUMS:
   IonicLiveUpdates: bf5aa07e5bedb693a9fd5a977056d5fa785c7012
   OneSignalXCFramework: 7e0a6d68dda7e80b03069bd145232f480f8c2279
 
-PODFILE CHECKSUM: 2877d0d9ec774aeeb7acb5469f2563a660613e39
+PODFILE CHECKSUM: 8d096e521b78ac6d50c04548797dd1df8cf600e6
 
 COCOAPODS: 1.14.3

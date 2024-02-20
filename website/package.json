@@ -13,7 +13,8 @@
     "@directus/sdk": "^13.0.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "framer-motion": "^10.16.4",
+    "@remotion/cli": "^4.0.106",
+    "framer-motion": "^10.18.0",
     "geist": "^1.1.0",
     "next": "14.0.2",
     "react": "^18",
@@ -22,6 +23,7 @@
     "react-markdown": "^9.0.0",
     "reactflow": "^11.10.1",
     "remark-gfm": "^3.0.1",
+    "remotion": "^4.0.106",
     "sass": "^1.69.5"
   },
   "devDependencies": {
