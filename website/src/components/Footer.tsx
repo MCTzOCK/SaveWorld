@@ -118,15 +118,6 @@ export default function Footer() {
               </Link>{" "}
               &nbsp;|&nbsp; Charlotte Drumann
             </Text>
-            <Stack
-              spacing={2}
-              direction={{ base: "column", md: "row" }}
-              gap={4}
-            >
-              <Text fontSize="md">
-                Ursprünglich erstellt für Jugend forscht 2024
-              </Text>
-            </Stack>
             <Stack spacing={2} direction={{ base: "column", md: "row" }}>
               <IconButton
                 aria-label={"Instagram"}
@@ -136,6 +127,21 @@ export default function Footer() {
                 icon={<FaInstagram />}
               />
             </Stack>
+          </Stack>
+          <Stack
+            spacing={2}
+            direction={{ base: "column", md: "row" }}
+            gap={4}
+            justifyContent={"center"}
+          >
+            <Text fontSize="md">Ausgezeichnet durch:</Text>
+            <Link>
+              <Image
+                src={"//codeup.space/_static/images/logos/jugend-forscht.svg"}
+                alt={"Jugend Forscht"}
+                width={"150px"}
+              />
+            </Link>
           </Stack>
         </Box>
       </Box>
