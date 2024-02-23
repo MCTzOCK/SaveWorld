@@ -21,9 +21,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import HomeCard from "./HomeCard";
-import { FaEarthEurope } from "react-icons/fa6";
-import { IonCard, IonCardContent, useIonRouter } from "@ionic/react";
+import { useIonRouter } from "@ionic/react";
 import { $$ } from "../translations/i18n";
 
 export default function HomeForAnon() {
