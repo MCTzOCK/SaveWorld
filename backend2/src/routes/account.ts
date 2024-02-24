@@ -20,6 +20,7 @@ import { sendEmailCode, sendRegisterEmail } from "../util/sendMail";
 import { getRedisClient } from "../util/redis";
 
 export default async function accountPlugin(app: FastifyInstance, opts: any) {
+  /** @deprecated */
   app.get(
     "/account/activate",
     {
@@ -41,6 +42,12 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
       }>,
       res,
     ) => {
+      res.status(299).send({
+        status: 299,
+        error: "This endpoint is deprecated. Please use /account/register/code",
+      });
+
+      return;
       const { token } = req.query;
 
       const user = await UserModel.findOne({
@@ -239,6 +246,12 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
       }>,
       res,
     ) => {
+      res.status(299).send({
+        status: 299,
+        error: "This endpoint is deprecated. Please use /account/register/code",
+      });
+
+      return;
       const { email, password, totpCode } = req.body;
 
       if (!email || !password) {
@@ -559,9 +572,9 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
           firstName: req.body.firstName,
           lastName: req.body.lastName,
           activationToken: null,
-          active: false,
+          active: true,
           role: "user",
-          password: "",
+          password: randomBytes(128).toString("hex"),
         });
 
         res.status(200).send({
@@ -572,6 +585,7 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
     },
   );
 
+  /** @deprecated */
   app.post(
     "/account/register",
     {
@@ -597,6 +611,13 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
       }>,
       res,
     ) => {
+      res.status(299).send({
+        status: 299,
+        error: "This endpoint is deprecated. Please use /account/register/code",
+      });
+
+      return;
+
       const { username, password, email, firstName, lastName } = req.body;
 
       if (!username || !password || !email || !firstName || !lastName) {

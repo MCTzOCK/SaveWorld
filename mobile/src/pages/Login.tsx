@@ -25,6 +25,8 @@ import {
   Box,
   Button,
   Flex,
+  FormControl,
+  FormLabel,
   Heading,
   HStack,
   Input,
@@ -48,6 +50,7 @@ export default function Login() {
   const [loading, setLoading] = React.useState(false);
   const [activeStep, setActiveStep] = React.useState(0);
   const [email, setEmail] = React.useState("");
+  const [action, setAction] = React.useState<"login" | "register">("login");
 
   return (
     <>
@@ -69,6 +72,7 @@ export default function Login() {
                   setLoading(false);
                   if (res.status === 200) {
                     setActiveStep(1);
+                    setAction("login");
                   } else {
                     await PopupManager.alertAsync({
                       title: $$("control.error"),
@@ -102,6 +106,10 @@ export default function Login() {
                           description: $$("page.login.enter.email"),
                         });
                       }
+
+                      setEmail(email);
+
+                      setActiveStep(100);
                     }}
                     variant={"brand"}
                     isLoading={loading}
@@ -121,17 +129,34 @@ export default function Login() {
                     size={"lg"}
                     onComplete={async (code) => {
                       setLoading(true);
-                      const res = await REST.Account.loginCode(email, code);
-                      if (res.status === 200) {
-                        localStorage.setItem("token", res.payload.token);
-                        window.location.href = "/";
-                      } else {
-                        await PopupManager.alertAsync({
-                          title: $$("control.error"),
-                          description: res.payload.error,
+                      if (action === "login") {
+                        const res = await REST.Account.loginCode(email, code);
+                        if (res.status === 200) {
+                          localStorage.setItem("token", res.payload.token);
+                          window.location.href = "/";
+                        } else {
+                          await PopupManager.alertAsync({
+                            title: $$("control.error"),
+                            description: res.payload.error,
+                          });
+                          setLoading(false);
+                          setActiveStep(0);
+                        }
+                      } else if (action === "register") {
+                        const res = await REST.Account.registerCode(email, {
+                          emailCode: code,
                         });
-                        setLoading(false);
-                        setActiveStep(0);
+                        if (res.status === 200) {
+                          localStorage.setItem("token", res.payload.token);
+                          window.location.href = "/";
+                        } else {
+                          await PopupManager.alertAsync({
+                            title: $$("control.error"),
+                            description: res.payload.error,
+                          });
+                          setLoading(false);
+                          setActiveStep(0);
+                        }
                       }
                     }}
                     isDisabled={loading}
@@ -145,6 +170,72 @@ export default function Login() {
                   </PinInput>
                 </HStack>
               </>
+            )}
+            {activeStep === 100 && (
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  setLoading(true);
+                  const username = (e.target as any).username.value;
+                  const firstname = (e.target as any).firstname.value;
+                  const lastname = (e.target as any).lastname.value;
+
+                  const res = await REST.Account.registerCode(email, {
+                    username,
+                    firstName: firstname,
+                    lastName: lastname,
+                  });
+                  if (res.status !== 200) {
+                    await PopupManager.alertAsync({
+                      title: $$("control.error"),
+                      description: res.payload.error,
+                    });
+                    setLoading(false);
+                    return;
+                  }
+
+                  setLoading(false);
+                  setActiveStep(1);
+                  setAction("register");
+                }}
+              >
+                <Stack gap={4}>
+                  <FormControl isRequired>
+                    <FormLabel>{$$("user.username")}</FormLabel>
+                    <Input
+                      type={"text"}
+                      placeholder={$$("user.username")}
+                      name={"username"}
+                    />
+                  </FormControl>
+                  <FormControl isRequired>
+                    <FormLabel>{$$("user.firstname")}</FormLabel>
+                    <Input
+                      type={"text"}
+                      placeholder={$$("user.firstname")}
+                      name={"firstname"}
+                    />
+                  </FormControl>
+                  <FormControl isRequired>
+                    <FormLabel>{$$("user.lastname")}</FormLabel>
+                    <Input
+                      type={"text"}
+                      placeholder={$$("user.lastname")}
+                      name={"lastname"}
+                    />
+                  </FormControl>
+                  <Button variant={"brand"} isLoading={loading} type={"submit"}>
+                    {$$("page.register.title")}
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setActiveStep(0);
+                    }}
+                  >
+                    {$$("control.back")}
+                  </Button>
+                </Stack>
+              </form>
             )}
           </Box>
         </MobileBox>
