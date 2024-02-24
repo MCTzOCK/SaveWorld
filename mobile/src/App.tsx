@@ -228,7 +228,7 @@ export default function App() {
   useEffect(() => {
     setRoutes({
       "/language": LanguageSwitcher,
-      "/register": Register,
+      "/register": Login,
       "/login": Login,
       "/old-onboarding": Onboarding,
       "/welcome": Welcome,

@@ -648,5 +648,6 @@ export const el = {
   "pages.games.game.ecosurfers.description": "Συλλέξτε σκουπίδια και να σώσει τον κόσμο!",
   "pages.games.play": "Αναπαραγωγή",
   "pages.games.leaderboard.title": "Καλύτερη λίστα",
-  "pages.games.leaderboard.notfound": "Το παιχνίδι δεν βρέθηκε."
+  "pages.games.leaderboard.notfound": "Το παιχνίδι δεν βρέθηκε.",
+  "page.login.enter.email.code": "Παρακαλώ εισάγετε τον εξαψήφιο κωδικό που σας στείλαμε μέσω email."
 };

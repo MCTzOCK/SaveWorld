@@ -142,39 +142,41 @@ export default function Page(props: {
                 </Badge>
               )}
             </Heading>
-            <ButtonGroup>
-              {props.endButtons}
-              {flags.ai_helper.enabled && (
+            {loggedIn && (
+              <ButtonGroup>
+                {props.endButtons}
+                {flags.ai_helper.enabled && (
+                  <IconButton
+                    size={"lg"}
+                    onClick={() => {
+                      router.push("/ai");
+                    }}
+                    icon={<FaRobot />}
+                    aria-label={$$("pages.ai.title")}
+                    variant={"ghost"}
+                    color={props.redGradient ? "red.500" : "brand.500"}
+                  />
+                )}
                 <IconButton
                   size={"lg"}
                   onClick={() => {
-                    router.push("/ai");
+                    router.push("/");
                   }}
-                  icon={<FaRobot />}
-                  aria-label={$$("pages.ai.title")}
+                  icon={<FaHome />}
+                  aria-label={$$("menu.home")}
                   variant={"ghost"}
                   color={props.redGradient ? "red.500" : "brand.500"}
                 />
-              )}
-              <IconButton
-                size={"lg"}
-                onClick={() => {
-                  router.push("/");
-                }}
-                icon={<FaHome />}
-                aria-label={$$("menu.home")}
-                variant={"ghost"}
-                color={props.redGradient ? "red.500" : "brand.500"}
-              />
-              <IconButton
-                size={"lg"}
-                onClick={onOpen}
-                icon={<FaBars />}
-                aria-label={$$("menu.menu")}
-                variant={"ghost"}
-                color={props.redGradient ? "red.500" : "brand.500"}
-              />
-            </ButtonGroup>
+                <IconButton
+                  size={"lg"}
+                  onClick={onOpen}
+                  icon={<FaBars />}
+                  aria-label={$$("menu.menu")}
+                  variant={"ghost"}
+                  color={props.redGradient ? "red.500" : "brand.500"}
+                />
+              </ButtonGroup>
+            )}
           </Flex>
         </IonHeader>
         <IonContent

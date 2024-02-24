@@ -8,7 +8,7 @@
  *
  */
 
-import { FastifyInstance, FastifyRequest } from "fastify";
+import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import UserModel from "../models/UserModel";
 import { FastifySchemas } from "../Schemas";
 import { isAuth } from "../util/isAuth";
@@ -16,9 +16,11 @@ import { createHash, randomBytes } from "crypto";
 import { authenticator } from "otplib";
 import { sign } from "jsonwebtoken";
 import UserPreferencesModel from "../models/UserPreferencesModel";
-import { sendRegisterEmail } from "../util/sendMail";
+import { sendEmailCode, sendRegisterEmail } from "../util/sendMail";
+import { getRedisClient } from "../util/redis";
 
 export default async function accountPlugin(app: FastifyInstance, opts: any) {
+  /** @deprecated */
   app.get(
     "/account/activate",
     {
@@ -40,6 +42,12 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
       }>,
       res,
     ) => {
+      res.status(299).send({
+        status: 299,
+        error: "This endpoint is deprecated. Please use /account/register/code",
+      });
+
+      return;
       const { token } = req.query;
 
       const user = await UserModel.findOne({
@@ -116,6 +124,106 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
   );
 
   app.post(
+    "/account/login/code",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Logs into an account",
+          summary: "Login v2",
+          tags: ["account"],
+          security: [],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Body: {
+          email: string;
+          emailCode?: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      if (!req.body.email) {
+        res.status(400).send({
+          status: 400,
+          error: "Please provide a valid email address",
+        });
+        return;
+      }
+
+      const user = await UserModel.findOne({
+        email: req.body.email,
+      });
+
+      if (!user) {
+        res.status(400).send({
+          status: 400,
+          error: "Please provide a valid email address",
+        });
+        return;
+      }
+
+      const redis = await getRedisClient();
+
+      if (req.body.emailCode) {
+        const emailCode = await redis.get(`emailCode:${user.email}`);
+
+        if (emailCode !== req.body.emailCode) {
+          res.status(400).send({
+            status: 400,
+            error: "Please provide a valid email code",
+          });
+          return;
+        }
+
+        await redis.del(`emailCode:${user.email}`);
+
+        const jsonwebtoken = sign(
+          {
+            id: user._id,
+          },
+          process.env.JWT_SECRET as string,
+          {
+            expiresIn: "365d",
+          },
+        );
+
+        res.status(200).send({
+          status: 200,
+          message: "Login successful",
+          token: jsonwebtoken,
+        });
+      } else {
+        const emailCode = Math.floor(
+          100000 + Math.random() * 900000,
+        ).toString();
+        await redis.set(`emailCode:${user.email}`, emailCode);
+        await redis.expireAt(
+          `emailCode:${user.email}`,
+          Math.floor(Date.now() / 1000) + 60 * 15,
+        );
+
+        await sendEmailCode({
+          to: user.email,
+          code: emailCode,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          protocol: req.protocol,
+          hostname: req.hostname,
+        });
+
+        res.status(200).send({
+          status: 200,
+          message: "Email sent",
+        });
+      }
+    },
+  );
+
+  /** @deprecated */
+  app.post(
     "/account/login",
     {
       schema: FastifySchemas.account_login,
@@ -138,6 +246,12 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
       }>,
       res,
     ) => {
+      res.status(299).send({
+        status: 299,
+        error: "This endpoint is deprecated. Please use /account/register/code",
+      });
+
+      return;
       const { email, password, totpCode } = req.body;
 
       if (!email || !password) {
@@ -321,6 +435,158 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
   );
 
   app.post(
+    "/account/register/code",
+    {
+      config: {
+        openapi: {
+          description: "Register an account",
+          summary: "Register",
+          tags: ["account"],
+          security: [],
+        },
+      },
+      schema: {},
+    },
+    async (
+      req: FastifyRequest<{
+        Body: {
+          email: string;
+          emailCode?: string;
+          firstName?: string;
+          lastName?: string;
+          username?: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      if (!req.body.email) {
+        res.status(400).send({
+          status: 400,
+          error: "Please provide a valid email address",
+        });
+        return;
+      }
+
+      const redis = await getRedisClient();
+
+      if (req.body.emailCode) {
+        const emailCode = await redis.get(
+          `emailCode_register:${req.body.email}`,
+        );
+
+        if (emailCode !== req.body.emailCode) {
+          res.status(400).send({
+            status: 400,
+            error: "Please provide a valid email code",
+          });
+          return;
+        }
+
+        const user = await UserModel.findOne({
+          email: req.body.email,
+        });
+
+        if (!user) {
+          res.status(400).send({
+            status: 400,
+            error: "Please provide all required fields",
+          });
+          return;
+        }
+
+        user.active = true;
+        user.activationToken = "";
+        await user.save();
+
+        await redis.del(`emailCode_register:${req.body.email}`);
+
+        const jsonwebtoken = sign(
+          {
+            id: user._id,
+          },
+          process.env.JWT_SECRET as string,
+          {
+            expiresIn: "365d",
+          },
+        );
+
+        res.status(200).send({
+          status: 200,
+          message: "Login successful",
+          token: jsonwebtoken,
+        });
+      } else {
+        if (!req.body.firstName || !req.body.lastName || !req.body.username) {
+          res.status(400).send({
+            status: 400,
+            error: "Please provide all required fields",
+          });
+          return;
+        }
+
+        const user = await UserModel.findOne({
+          email: req.body.email,
+        });
+
+        if (user) {
+          res.status(400).send({
+            status: 400,
+            error: "Email already in use",
+          });
+          return;
+        }
+
+        const user2 = await UserModel.findOne({
+          username: req.body.username,
+        });
+
+        if (user2) {
+          res.status(400).send({
+            status: 400,
+            error: "Username already in use",
+          });
+          return;
+        }
+
+        const emailCode = Math.floor(
+          100000 + Math.random() * 900000,
+        ).toString();
+        await redis.set(`emailCode_register:${req.body.email}`, emailCode);
+        await redis.expireAt(
+          `emailCode_register:${req.body.email}`,
+          Math.floor(Date.now() / 1000) + 60 * 15,
+        );
+
+        await sendEmailCode({
+          to: req.body.email,
+          code: emailCode,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          protocol: req.protocol,
+          hostname: req.hostname,
+        });
+
+        const userMod = await UserModel.create({
+          username: req.body.username,
+          email: req.body.email,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          activationToken: null,
+          active: true,
+          role: "user",
+          password: randomBytes(128).toString("hex"),
+        });
+
+        res.status(200).send({
+          status: 200,
+          message: "Email sent",
+        });
+      }
+    },
+  );
+
+  /** @deprecated */
+  app.post(
     "/account/register",
     {
       config: {
@@ -345,6 +611,13 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
       }>,
       res,
     ) => {
+      res.status(299).send({
+        status: 299,
+        error: "This endpoint is deprecated. Please use /account/register/code",
+      });
+
+      return;
+
       const { username, password, email, firstName, lastName } = req.body;
 
       if (!username || !password || !email || !firstName || !lastName) {

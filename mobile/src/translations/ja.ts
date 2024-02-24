@@ -648,5 +648,6 @@ export const ja = {
   "pages.games.game.ecosurfers.description": "ゴミを収集し、世界を救う!",
   "pages.games.play": "プレイ",
   "pages.games.leaderboard.title": "ベストリスト",
-  "pages.games.leaderboard.notfound": "ゲームが見つかりませんでした."
+  "pages.games.leaderboard.notfound": "ゲームが見つかりませんでした.",
+  "page.login.enter.email.code": "メールで送信した6桁のコードを入力してください."
 };

@@ -77,10 +77,10 @@ export default function HomeForAnon() {
               _hover={{ backgroundColor: "brand.500" }}
               _active={{ backgroundColor: "brand.700" }}
               as={Link}
-              href={"/register"}
+              href={"/login"}
               onClick={(e) => {
                 e.preventDefault();
-                router.push("/register");
+                router.push("/login");
               }}
               fontSize={"xl"}
             >

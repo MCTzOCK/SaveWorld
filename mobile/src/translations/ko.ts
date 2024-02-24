@@ -648,5 +648,6 @@ export const ko = {
   "pages.games.game.ecosurfers.description": "쓰레기를 수집하고 세계를 저장하십시오!",
   "pages.games.play": "뚱 베어",
   "pages.games.leaderboard.title": "가장 좋은 목록",
-  "pages.games.leaderboard.notfound": "게임이 발견되지 않았습니다."
+  "pages.games.leaderboard.notfound": "게임이 발견되지 않았습니다.",
+  "page.login.enter.email.code": "이메일로 보내 주신 6자리 코드를 입력하십시오."
 };

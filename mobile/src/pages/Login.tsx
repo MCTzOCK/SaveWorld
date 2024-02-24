@@ -19,152 +19,225 @@ import {
   IonText,
   useIonRouter,
 } from "@ionic/react";
-import { REST } from "@saveworld/api-js";
 import Page from "../components/Page";
 import PopupManager from "../util/PopupManager";
-import { Box, Button, Flex, Link } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  HStack,
+  Input,
+  Link,
+  PinInput,
+  PinInputField,
+  Stack,
+  Step,
+  StepIcon,
+  StepIndicator,
+  Stepper,
+  StepStatus,
+  Text,
+} from "@chakra-ui/react";
 import MobileBox from "../components/MobileBox";
 import { $$ } from "../translations/i18n";
+import { REST } from "@saveworld/api-js";
 
 export default function Login() {
   const router = useIonRouter();
+  const [loading, setLoading] = React.useState(false);
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [email, setEmail] = React.useState("");
+  const [action, setAction] = React.useState<"login" | "register">("login");
+
   return (
     <>
       <Page title={$$("page.login.title")}>
         <MobileBox>
-          <form
-            onSubmit={async (e) => {
-              e.preventDefault();
-
-              const mail = (e.target as any).mail.value;
-              const pass = (e.target as any).pass.value;
-
-              const res = await REST.Account.login(mail, pass);
-
-              if (res.status === 200) {
-                localStorage.setItem("token", res.payload.token);
-                const prefs = await REST.Account.preferences(res.payload.token);
-
-                let hasInterests = false;
-
-                if (!prefs.payload.prefs.interests) {
-                  hasInterests = false;
-                } else {
-                  hasInterests = prefs.payload.prefs.interests.length > 0;
-                }
-
-                if (!hasInterests) {
-                  router.push("/welcome", "none", "replace");
-                } else {
-                  router.push("/onboarding", "none", "replace");
-                }
-              } else {
-                if (res.payload.error === "TOTP Code incorrect") {
-                  const code = await PopupManager.promptAsync({
-                    title: $$("page.login.2fa.popup.title"),
-                    helperText: $$("page.login.2fa.popup.description"),
-                    inputType: "INPUT",
-                  });
-
-                  if (!code) return;
-                  const resp = await REST.Account.login(mail, pass, code);
-
-                  if (resp.status === 200) {
-                    localStorage.setItem("token", resp.payload.token);
-                    const prefs = await REST.Account.preferences(
-                      resp.payload.token,
-                    );
-                    let hasInterests: boolean;
-
-                    if (!prefs.payload.prefs.interests) {
-                      hasInterests = false;
-                    } else {
-                      hasInterests = prefs.payload.prefs.interests.length > 0;
-                    }
-
-                    if (!hasInterests) {
-                      router.push("/welcome", "none", "replace");
-                    } else {
-                      router.push("/onboarding", "none", "replace");
-                    }
-                  } else {
-                    PopupManager.alert({
-                      title: $$("control.error"),
-                      description: $$("page.login.error", res.payload.error),
-                    });
-                  }
-                } else {
-                  PopupManager.alert({
-                    title: $$("control.error"),
-                    description: $$("page.login.error", res.payload.error),
-                  });
-                }
-              }
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                width: "100%",
-                gap: "1.2rem",
-              }}
-            >
-              <IonInput
-                name={"mail"}
-                type={"email"}
-                placeholder={$$("user.email")}
-                style={{
-                  borderBottom: "1px solid var(--ion-color-success-shade)",
-                }}
-              />
-              <div
-                style={{
-                  marginTop: "1.2rem",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  width: "100%",
-                  gap: "1.2rem",
-                }}
-              >
-                <IonInput
-                  name={"pass"}
-                  type={"password"}
-                  placeholder={$$("user.password")}
-                  style={{
-                    borderBottom: "1px solid var(--ion-color-success-shade)",
-                  }}
-                />
-              </div>
-            </div>
-            <Flex w={"100%"} direction={["column", "row"]} gap={4}>
-              <Button
-                type={"submit"}
-                style={{ marginTop: "1.2rem", marginBottom: "1.2rem" }}
-                w={"100%"}
-                colorScheme={"brand"}
-                size={"lg"}
-              >
-                {$$("page.login.title")}
-              </Button>
-              <Button
-                as={Link}
-                href={"/register"}
-                onClick={(e) => {
+          <Box bg={"gray.900"} rounded={"xl"} shadow={"xl"} p={4}>
+            <Heading textAlign={"center"} fontWeight={1000}>
+              {$$("page.login.title")}
+            </Heading>
+            {activeStep === 0 && (
+              <form
+                onSubmit={async (e) => {
+                  setLoading(true);
                   e.preventDefault();
-                  router.push("/register");
+                  const email = (e.target as any).email.value;
+
+                  const res = await REST.Account.loginCode(email);
+                  setEmail(email);
+                  setLoading(false);
+                  if (res.status === 200) {
+                    setActiveStep(1);
+                    setAction("login");
+                  } else {
+                    await PopupManager.alertAsync({
+                      title: $$("control.error"),
+                      description: res.payload.error,
+                    });
+                    return;
+                  }
                 }}
-                style={{ marginTop: "1.2rem", marginBottom: "1.2rem" }}
-                w={"100%"}
-                color={"brand.500"}
-                size={"lg"}
               >
-                {$$("page.register.title")}
-              </Button>
-            </Flex>
-          </form>
+                <Stack spacing={4}>
+                  <Input
+                    type={"email"}
+                    placeholder={$$("user.email")}
+                    name={"email"}
+                    id={"login_register-email"}
+                  />
+                  <Button type={"submit"} variant={"brand"} isLoading={loading}>
+                    {$$("page.login.title")}
+                  </Button>
+                  <Button
+                    onClick={async () => {
+                      const email = (
+                        document.getElementById(
+                          "login_register-email",
+                        ) as HTMLInputElement
+                      ).value;
+
+                      if (!email) {
+                        await PopupManager.alertAsync({
+                          title: $$("control.error"),
+                          description: $$("page.login.enter.email"),
+                        });
+                      }
+
+                      setEmail(email);
+
+                      setActiveStep(100);
+                    }}
+                    variant={"brand"}
+                    isLoading={loading}
+                  >
+                    {$$("page.register.title")}
+                  </Button>
+                </Stack>
+              </form>
+            )}
+            {activeStep === 1 && (
+              <>
+                <Text textAlign={"center"}>
+                  {$$("page.login.enter.email.code")}
+                </Text>
+                <HStack mt={4} alignItems={"center"} justifyContent={"center"}>
+                  <PinInput
+                    size={"lg"}
+                    onComplete={async (code) => {
+                      setLoading(true);
+                      if (action === "login") {
+                        const res = await REST.Account.loginCode(email, code);
+                        if (res.status === 200) {
+                          localStorage.setItem("token", res.payload.token);
+                          window.location.href = "/";
+                        } else {
+                          await PopupManager.alertAsync({
+                            title: $$("control.error"),
+                            description: res.payload.error,
+                          });
+                          setLoading(false);
+                          setActiveStep(0);
+                        }
+                      } else if (action === "register") {
+                        const res = await REST.Account.registerCode(email, {
+                          emailCode: code,
+                        });
+                        if (res.status === 200) {
+                          localStorage.setItem("token", res.payload.token);
+                          window.location.href = "/";
+                        } else {
+                          await PopupManager.alertAsync({
+                            title: $$("control.error"),
+                            description: res.payload.error,
+                          });
+                          setLoading(false);
+                          setActiveStep(0);
+                        }
+                      }
+                    }}
+                    isDisabled={loading}
+                  >
+                    <PinInputField />
+                    <PinInputField />
+                    <PinInputField />
+                    <PinInputField />
+                    <PinInputField />
+                    <PinInputField />
+                  </PinInput>
+                </HStack>
+              </>
+            )}
+            {activeStep === 100 && (
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  setLoading(true);
+                  const username = (e.target as any).username.value;
+                  const firstname = (e.target as any).firstname.value;
+                  const lastname = (e.target as any).lastname.value;
+
+                  const res = await REST.Account.registerCode(email, {
+                    username,
+                    firstName: firstname,
+                    lastName: lastname,
+                  });
+                  if (res.status !== 200) {
+                    await PopupManager.alertAsync({
+                      title: $$("control.error"),
+                      description: res.payload.error,
+                    });
+                    setLoading(false);
+                    return;
+                  }
+
+                  setLoading(false);
+                  setActiveStep(1);
+                  setAction("register");
+                }}
+              >
+                <Stack gap={4}>
+                  <FormControl isRequired>
+                    <FormLabel>{$$("user.username")}</FormLabel>
+                    <Input
+                      type={"text"}
+                      placeholder={$$("user.username")}
+                      name={"username"}
+                    />
+                  </FormControl>
+                  <FormControl isRequired>
+                    <FormLabel>{$$("user.firstname")}</FormLabel>
+                    <Input
+                      type={"text"}
+                      placeholder={$$("user.firstname")}
+                      name={"firstname"}
+                    />
+                  </FormControl>
+                  <FormControl isRequired>
+                    <FormLabel>{$$("user.lastname")}</FormLabel>
+                    <Input
+                      type={"text"}
+                      placeholder={$$("user.lastname")}
+                      name={"lastname"}
+                    />
+                  </FormControl>
+                  <Button variant={"brand"} isLoading={loading} type={"submit"}>
+                    {$$("page.register.title")}
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setActiveStep(0);
+                    }}
+                  >
+                    {$$("control.back")}
+                  </Button>
+                </Stack>
+              </form>
+            )}
+          </Box>
         </MobileBox>
       </Page>
     </>

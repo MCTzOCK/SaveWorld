@@ -648,5 +648,6 @@ export const uk = {
   "pages.games.game.ecosurfers.description": "Збір сміття та збереження світу!",
   "pages.games.play": "Грати",
   "pages.games.leaderboard.title": "Кращий список",
-  "pages.games.leaderboard.notfound": "Гра не знайдено."
+  "pages.games.leaderboard.notfound": "Гра не знайдено.",
+  "page.login.enter.email.code": "Введіть номер мобільного, який Ви вказали при укладаннi договору з нами."
 };

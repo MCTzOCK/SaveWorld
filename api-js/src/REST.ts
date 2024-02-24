@@ -443,6 +443,48 @@ export class REST {
 
   public static Account = {
     /**
+     * @return the requested jwt or the request to enter the email code
+     * @param email of the user
+     * @param emailCode the email code to enter
+     */
+    loginCode: async (email: string, emailCode?: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/account/login/code",
+        method: "POST",
+        body: {
+          email: email,
+          emailCode: emailCode,
+        },
+      });
+    },
+    /**
+     * @return the requested jwt or the request to enter the email code
+     * @param email of the user
+     * @param options the options to set
+     */
+    registerCode: async (
+      email: string,
+      options: {
+        emailCode?: string;
+        firstName?: string;
+        lastName?: string;
+        username?: string;
+      },
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/account/register/code",
+        method: "POST",
+        body: {
+          email: email,
+          emailCode: options.emailCode,
+          firstName: options.firstName,
+          lastName: options.lastName,
+          username: options.username,
+        },
+      });
+    },
+    /**
+     * @deprecated
      * @return the requested jwt
      * @param mail of the user
      * @param password of the user

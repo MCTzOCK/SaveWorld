@@ -803,4 +803,9 @@ export const german = {
   "pages.settings.stats.version": "Version",
   "pages.settings.stats.last.commit": "Letzte Änderung",
   "pages.settings.status.sloc": "Quellcode Zeilen",
+  "page.login.enter.email.code":
+    "Bitte gib den sechsstelligen Code ein, den wir dir per E-Mail geschickt haben.",
+  "page.login.enter.email": "Bitte gib deine E-Mail-Adresse ein.",
+  "pages.account.2fa.deprecated":
+    "Zwei-Faktor-Authentifizierung (2FA) wird im Zuge der Login-Umstellung auf E-Mail-Code-Authentifizierung aktuell nicht unterstützt. Wir arbeiten daran, 2FA in Zukunft wieder zu unterstützen.",
 } as const;

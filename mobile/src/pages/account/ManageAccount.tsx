@@ -500,6 +500,12 @@ export default function ManageAccount() {
                       color={"light"}
                       detail
                       onClick={async () => {
+                        await PopupManager.alertAsync({
+                          title: $$("control.error"),
+                          description: $$("pages.account.2fa.deprecated"),
+                        });
+
+                        return;
                         if (!userInfo.totpActive) {
                           const res = await REST.Account.update(
                             localStorage.getItem("token") as string,
@@ -608,7 +614,7 @@ export default function ManageAccount() {
                           }
                         } catch (e) {}
                         localStorage.removeItem("token");
-                        router.push("/register");
+                        router.push("/login");
                       }}
                     >
                       <IonText color={"danger"}>{$$("menu.logout")}</IonText>
@@ -634,7 +640,7 @@ export default function ManageAccount() {
 
                         if (res.status === 200) {
                           localStorage.removeItem("token");
-                          router.push("/register");
+                          router.push("/login");
                         } else {
                           PopupManager.alert({
                             title: $$("control.error"),
