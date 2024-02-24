@@ -649,5 +649,7 @@ export const pl = {
   "pages.games.play": "Zagraj",
   "pages.games.leaderboard.title": "Najlepsza lista",
   "pages.games.leaderboard.notfound": "Gra nie została odnaleziona.",
-  "page.login.enter.email.code": "Proszę podać kod sześciocyfrowy, który wysłaliśmy pocztą elektroniczną."
+  "page.login.enter.email.code": "Proszę podać kod sześciocyfrowy, który wysłaliśmy pocztą elektroniczną.",
+  "page.login.enter.email": "Proszę podać swój adres e-mail.",
+  "pages.account.2fa.deprecated": "Uwierzytelnianie dwóch czynników (2FA) nie jest obecnie obsługiwane podczas konwersji logowania na uwierzytelnianie kodu e-mail. W przyszłości pracujemy nad wsparciem 2FA."
 };

@@ -649,5 +649,7 @@ export const nl = {
   "pages.games.play": "Afspelen",
   "pages.games.leaderboard.title": "Beste lijst",
   "pages.games.leaderboard.notfound": "Het spel werd niet gevonden.",
-  "page.login.enter.email.code": "Voer de zescijferige code in die we u per e-mail hebben gestuurd."
+  "page.login.enter.email.code": "Voer de zescijferige code in die we u per e-mail hebben gestuurd.",
+  "page.login.enter.email": "Voer uw e-mailadres in.",
+  "pages.account.2fa.deprecated": "Two-factor authenticatie (2FA) wordt momenteel niet ondersteund tijdens de login conversie naar e-mailcode authenticatie. We werken aan de ondersteuning van 2FA in de toekomst."
 };

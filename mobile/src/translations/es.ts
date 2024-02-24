@@ -649,5 +649,7 @@ export const es = {
   "pages.games.play": "Jugar",
   "pages.games.leaderboard.title": "La mejor lista",
   "pages.games.leaderboard.notfound": "El juego no fue encontrado.",
-  "page.login.enter.email.code": "Por favor, introduzca el código de seis dígitos que le enviamos por correo electrónico."
+  "page.login.enter.email.code": "Por favor, introduzca el código de seis dígitos que le enviamos por correo electrónico.",
+  "page.login.enter.email": "Por favor, introduzca su dirección de correo electrónico.",
+  "pages.account.2fa.deprecated": "Actualmente no se admite la autenticación de dos factores (2FA) durante la conversión de inicio de sesión a la autenticación del código de correo electrónico. Estamos trabajando en apoyar 2FA en el futuro."
 };

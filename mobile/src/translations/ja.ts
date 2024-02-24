@@ -649,5 +649,7 @@ export const ja = {
   "pages.games.play": "プレイ",
   "pages.games.leaderboard.title": "ベストリスト",
   "pages.games.leaderboard.notfound": "ゲームが見つかりませんでした.",
-  "page.login.enter.email.code": "メールで送信した6桁のコードを入力してください."
+  "page.login.enter.email.code": "メールで送信した6桁のコードを入力してください.",
+  "page.login.enter.email": "メールアドレスを入力してください.",
+  "pages.account.2fa.deprecated": "2ファクター認証(2FA)は、ログイン変換時にメールコード認証をサポートしていません。 今後も2FAのご支援に取り組んでまいります."
 };

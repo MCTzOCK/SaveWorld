@@ -649,5 +649,7 @@ export const da = {
   "pages.games.play": "Afspil spil",
   "pages.games.leaderboard.title": "Bedste liste",
   "pages.games.leaderboard.notfound": "Spillet blev ikke fundet.",
-  "page.login.enter.email.code": "Indtast venligst den seks-cifrede kode, vi har sendt dig via e-mail."
+  "page.login.enter.email.code": "Indtast venligst den seks-cifrede kode, vi har sendt dig via e-mail.",
+  "page.login.enter.email": "Indtast venligst din e-mailadresse.",
+  "pages.account.2fa.deprecated": "Tofaktorgodkendelse (2FA) understøttes i øjeblikket ikke under loginkonvertering til e-mail-kodegodkendelse. Vi arbejder på at støtte 2FA i fremtiden."
 };

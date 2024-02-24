@@ -649,5 +649,7 @@ export const ko = {
   "pages.games.play": "뚱 베어",
   "pages.games.leaderboard.title": "가장 좋은 목록",
   "pages.games.leaderboard.notfound": "게임이 발견되지 않았습니다.",
-  "page.login.enter.email.code": "이메일로 보내 주신 6자리 코드를 입력하십시오."
+  "page.login.enter.email.code": "이메일로 보내 주신 6자리 코드를 입력하십시오.",
+  "page.login.enter.email": "자주 묻는 질문.",
+  "pages.account.2fa.deprecated": "2단계 인증 (2FA)는 현재 로그인 전환 중에 코드 인증으로 지원되지 않습니다. 앞으로 2FA 지원에 종사하고 있습니다."
 };

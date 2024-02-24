@@ -649,5 +649,7 @@ export const el = {
   "pages.games.play": "Αναπαραγωγή",
   "pages.games.leaderboard.title": "Καλύτερη λίστα",
   "pages.games.leaderboard.notfound": "Το παιχνίδι δεν βρέθηκε.",
-  "page.login.enter.email.code": "Παρακαλώ εισάγετε τον εξαψήφιο κωδικό που σας στείλαμε μέσω email."
+  "page.login.enter.email.code": "Παρακαλώ εισάγετε τον εξαψήφιο κωδικό που σας στείλαμε μέσω email.",
+  "page.login.enter.email": "Παρακαλώ εισάγετε τη διεύθυνση email σας.",
+  "pages.account.2fa.deprecated": "Η ταυτοποίηση δύο συντελεστών (2FA) επί του παρόντος δεν υποστηρίζεται κατά τη μετατροπή σύνδεσης σε ταυτοποίηση κώδικα ηλεκτρονικού ταχυδρομείου. Εργαζόμαστε για την υποστήριξη 2FA στο μέλλον."
 };
