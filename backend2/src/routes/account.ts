@@ -189,11 +189,13 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
           token: jsonwebtoken,
         });
       } else {
-        const emailCode = randomBytes(6).toString("hex");
+        const emailCode = Math.floor(
+          100000 + Math.random() * 900000,
+        ).toString();
         await redis.set(`emailCode:${user.email}`, emailCode);
         await redis.expireAt(
           `emailCode:${user.email}`,
-          Date.now() + 1000 * 60 * 5,
+          Math.floor(Date.now() / 1000) + 60 * 15,
         );
 
         await sendEmailCode({

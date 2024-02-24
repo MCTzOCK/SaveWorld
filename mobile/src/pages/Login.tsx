@@ -26,9 +26,17 @@ import {
   Button,
   Flex,
   Heading,
+  HStack,
   Input,
   Link,
+  PinInput,
+  PinInputField,
   Stack,
+  Step,
+  StepIcon,
+  StepIndicator,
+  Stepper,
+  StepStatus,
 } from "@chakra-ui/react";
 import MobileBox from "../components/MobileBox";
 import { $$ } from "../translations/i18n";
@@ -37,6 +45,9 @@ import { REST } from "@saveworld/api-js";
 export default function Login() {
   const router = useIonRouter();
   const [loading, setLoading] = React.useState(false);
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [email, setEmail] = React.useState("");
+
   return (
     <>
       <Page title={$$("page.login.title")}>
@@ -45,29 +56,71 @@ export default function Login() {
             <Heading textAlign={"center"} fontWeight={1000}>
               {$$("page.login.title")}
             </Heading>
-            <form
-              onSubmit={async (e) => {
-                setLoading(true);
-                e.preventDefault();
-                const email = (e.target as any).email.value;
+            {activeStep === 0 && (
+              <form
+                onSubmit={async (e) => {
+                  setLoading(true);
+                  e.preventDefault();
+                  const email = (e.target as any).email.value;
 
-                const res = await REST.Account.loginCode(email);
-                if (res.status === 200) {
+                  const res = await REST.Account.loginCode(email);
+                  setEmail(email);
                   setLoading(false);
-                }
-              }}
-            >
-              <Stack spacing={4}>
-                <Input
-                  type={"email"}
-                  placeholder={$$("user.email")}
-                  name={"email"}
-                />
-                <Button type={"submit"} variant={"brand"} isLoading={loading}>
-                  {$$("page.login.title")}
-                </Button>
-              </Stack>
-            </form>
+                  if (res.status === 200) {
+                    setActiveStep(1);
+                  } else {
+                    await PopupManager.alertAsync({
+                      title: $$("control.error"),
+                      description: res.payload.error,
+                    });
+                    return;
+                  }
+                }}
+              >
+                <Stack spacing={4}>
+                  <Input
+                    type={"email"}
+                    placeholder={$$("user.email")}
+                    name={"email"}
+                  />
+                  <Button type={"submit"} variant={"brand"} isLoading={loading}>
+                    {$$("page.login.title")}
+                  </Button>
+                </Stack>
+              </form>
+            )}
+            {activeStep === 1 && (
+              <>
+                <HStack>
+                  <PinInput
+                    size={"lg"}
+                    onComplete={async (code) => {
+                      setLoading(true);
+                      const res = await REST.Account.loginCode(email, code);
+                      if (res.status === 200) {
+                        localStorage.setItem("token", res.payload.token);
+                        window.location.href = "/";
+                      } else {
+                        await PopupManager.alertAsync({
+                          title: $$("control.error"),
+                          description: res.payload.error,
+                        });
+                        setLoading(false);
+                        setActiveStep(0);
+                      }
+                    }}
+                    isDisabled={loading}
+                  >
+                    <PinInputField />
+                    <PinInputField />
+                    <PinInputField />
+                    <PinInputField />
+                    <PinInputField />
+                    <PinInputField />
+                  </PinInput>
+                </HStack>
+              </>
+            )}
           </Box>
         </MobileBox>
       </Page>
