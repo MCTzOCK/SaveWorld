@@ -803,4 +803,7 @@ export const german = {
   "pages.settings.stats.version": "Version",
   "pages.settings.stats.last.commit": "Letzte Änderung",
   "pages.settings.status.sloc": "Quellcode Zeilen",
+  "page.login.enter.email.code":
+    "Bitte gib den sechsstelligen Code ein, den wir dir per E-Mail geschickt haben.",
+  "page.login.enter.email": "Bitte gib deine E-Mail-Adresse ein.",
 } as const;

@@ -648,5 +648,6 @@ export const pl = {
   "pages.games.game.ecosurfers.description": "Zbieraj śmieci i ratuj świat!",
   "pages.games.play": "Zagraj",
   "pages.games.leaderboard.title": "Najlepsza lista",
-  "pages.games.leaderboard.notfound": "Gra nie została odnaleziona."
+  "pages.games.leaderboard.notfound": "Gra nie została odnaleziona.",
+  "page.login.enter.email.code": "Proszę podać kod sześciocyfrowy, który wysłaliśmy pocztą elektroniczną."
 };

@@ -648,5 +648,6 @@ export const da = {
   "pages.games.game.ecosurfers.description": "Indsamle affald og redde verden!",
   "pages.games.play": "Afspil spil",
   "pages.games.leaderboard.title": "Bedste liste",
-  "pages.games.leaderboard.notfound": "Spillet blev ikke fundet."
+  "pages.games.leaderboard.notfound": "Spillet blev ikke fundet.",
+  "page.login.enter.email.code": "Indtast venligst den seks-cifrede kode, vi har sendt dig via e-mail."
 };

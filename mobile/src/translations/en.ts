@@ -648,5 +648,6 @@ export const en = {
   "pages.games.game.ecosurfers.description": "Collect garbage and save the world!",
   "pages.games.play": "Play",
   "pages.games.leaderboard.title": "Best list",
-  "pages.games.leaderboard.notfound": "The game was not found."
+  "pages.games.leaderboard.notfound": "The game was not found.",
+  "page.login.enter.email.code": "Please enter the six-digit code we sent you by email."
 };

@@ -422,6 +422,157 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
   );
 
   app.post(
+    "/account/register/code",
+    {
+      config: {
+        openapi: {
+          description: "Register an account",
+          summary: "Register",
+          tags: ["account"],
+          security: [],
+        },
+      },
+      schema: {},
+    },
+    async (
+      req: FastifyRequest<{
+        Body: {
+          email: string;
+          emailCode?: string;
+          firstName?: string;
+          lastName?: string;
+          username?: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      if (!req.body.email) {
+        res.status(400).send({
+          status: 400,
+          error: "Please provide a valid email address",
+        });
+        return;
+      }
+
+      const redis = await getRedisClient();
+
+      if (req.body.emailCode) {
+        const emailCode = await redis.get(
+          `emailCode_register:${req.body.email}`,
+        );
+
+        if (emailCode !== req.body.emailCode) {
+          res.status(400).send({
+            status: 400,
+            error: "Please provide a valid email code",
+          });
+          return;
+        }
+
+        const user = await UserModel.findOne({
+          email: req.body.email,
+        });
+
+        if (!user) {
+          res.status(400).send({
+            status: 400,
+            error: "Please provide all required fields",
+          });
+          return;
+        }
+
+        user.active = true;
+        user.activationToken = "";
+        await user.save();
+
+        await redis.del(`emailCode_register:${req.body.email}`);
+
+        const jsonwebtoken = sign(
+          {
+            id: user._id,
+          },
+          process.env.JWT_SECRET as string,
+          {
+            expiresIn: "365d",
+          },
+        );
+
+        res.status(200).send({
+          status: 200,
+          message: "Login successful",
+          token: jsonwebtoken,
+        });
+      } else {
+        if (!req.body.firstName || !req.body.lastName || !req.body.username) {
+          res.status(400).send({
+            status: 400,
+            error: "Please provide all required fields",
+          });
+          return;
+        }
+
+        const user = await UserModel.findOne({
+          email: req.body.email,
+        });
+
+        if (user) {
+          res.status(400).send({
+            status: 400,
+            error: "Email already in use",
+          });
+          return;
+        }
+
+        const user2 = await UserModel.findOne({
+          username: req.body.username,
+        });
+
+        if (user2) {
+          res.status(400).send({
+            status: 400,
+            error: "Username already in use",
+          });
+          return;
+        }
+
+        const emailCode = Math.floor(
+          100000 + Math.random() * 900000,
+        ).toString();
+        await redis.set(`emailCode_register:${req.body.email}`, emailCode);
+        await redis.expireAt(
+          `emailCode_register:${req.body.email}`,
+          Math.floor(Date.now() / 1000) + 60 * 15,
+        );
+
+        await sendEmailCode({
+          to: req.body.email,
+          code: emailCode,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          protocol: req.protocol,
+          hostname: req.hostname,
+        });
+
+        const userMod = await UserModel.create({
+          username: req.body.username,
+          email: req.body.email,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          activationToken: null,
+          active: false,
+          role: "user",
+          password: "",
+        });
+
+        res.status(200).send({
+          status: 200,
+          message: "Email sent",
+        });
+      }
+    },
+  );
+
+  app.post(
     "/account/register",
     {
       config: {

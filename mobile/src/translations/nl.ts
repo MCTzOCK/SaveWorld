@@ -648,5 +648,6 @@ export const nl = {
   "pages.games.game.ecosurfers.description": "Verzamel afval en red de wereld!",
   "pages.games.play": "Afspelen",
   "pages.games.leaderboard.title": "Beste lijst",
-  "pages.games.leaderboard.notfound": "Het spel werd niet gevonden."
+  "pages.games.leaderboard.notfound": "Het spel werd niet gevonden.",
+  "page.login.enter.email.code": "Voer de zescijferige code in die we u per e-mail hebben gestuurd."
 };

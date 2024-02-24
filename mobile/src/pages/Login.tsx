@@ -37,6 +37,7 @@ import {
   StepIndicator,
   Stepper,
   StepStatus,
+  Text,
 } from "@chakra-ui/react";
 import MobileBox from "../components/MobileBox";
 import { $$ } from "../translations/i18n";
@@ -82,16 +83,40 @@ export default function Login() {
                     type={"email"}
                     placeholder={$$("user.email")}
                     name={"email"}
+                    id={"login_register-email"}
                   />
                   <Button type={"submit"} variant={"brand"} isLoading={loading}>
                     {$$("page.login.title")}
+                  </Button>
+                  <Button
+                    onClick={async () => {
+                      const email = (
+                        document.getElementById(
+                          "login_register-email",
+                        ) as HTMLInputElement
+                      ).value;
+
+                      if (!email) {
+                        await PopupManager.alertAsync({
+                          title: $$("control.error"),
+                          description: $$("page.login.enter.email"),
+                        });
+                      }
+                    }}
+                    variant={"brand"}
+                    isLoading={loading}
+                  >
+                    {$$("page.register.title")}
                   </Button>
                 </Stack>
               </form>
             )}
             {activeStep === 1 && (
               <>
-                <HStack>
+                <Text textAlign={"center"}>
+                  {$$("page.login.enter.email.code")}
+                </Text>
+                <HStack mt={4} alignItems={"center"} justifyContent={"center"}>
                   <PinInput
                     size={"lg"}
                     onComplete={async (code) => {

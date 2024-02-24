@@ -648,5 +648,6 @@ export const pt = {
   "pages.games.game.ecosurfers.description": "Colete lixo e salve o mundo!",
   "pages.games.play": "Jogar",
   "pages.games.leaderboard.title": "Melhor lista",
-  "pages.games.leaderboard.notfound": "O jogo não foi encontrado."
+  "pages.games.leaderboard.notfound": "O jogo não foi encontrado.",
+  "page.login.enter.email.code": "Digite o código de seis dígitos que lhe enviamos por e-mail."
 };
