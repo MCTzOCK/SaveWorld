@@ -47,5 +47,21 @@ export const theme = extendTheme({
         color: "brand.500",
       },
     },
+    Button: {
+      variants: {
+        brand: {
+          bg: "brand.600",
+          color: "white",
+          _hover: {
+            bg: "brand.700",
+          },
+        },
+      },
+    },
+    Input: {
+      defaultProps: {
+        focusBorderColor: "brand.500",
+      },
+    },
   },
 });

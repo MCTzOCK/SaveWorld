@@ -12,6 +12,7 @@ import * as React from "react";
 import { getTransport } from "./transport";
 import { render } from "@react-email/render";
 import Register from "../email-components/Register";
+import EmailCode from "../email-components/EmailCode";
 
 export async function sendRegisterEmail(options: {
   to: string;
@@ -50,6 +51,26 @@ export async function sendRegisterEmail(options: {
           options.activationToken
         }
       />,
+    ),
+  });
+}
+
+export async function sendEmailCode(options: {
+  to: string;
+  firstName: string;
+  lastName: string;
+  protocol: string;
+  hostname: string;
+  code: string;
+}) {
+  const transport = getTransport();
+  await transport.sendMail({
+    to: options.to,
+    from: process.env.SMTP_FROM,
+    text: "",
+    subject: "Anmeldung abschließen",
+    html: render(
+      <EmailCode firstName={options.firstName} code={options.code} />,
     ),
   });
 }
