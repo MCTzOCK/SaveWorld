@@ -127,6 +127,7 @@ import remarkGfm from "remark-gfm";
 import { RESTEnv } from "@saveworld/api-js/dist/RESTEnv";
 import Games from "./pages/games/Games";
 import GameLeaderBoard from "./pages/games/GameLeaderBoard";
+import AdminArticleDashboard from "./pages/admin/AdminArticleDashboard";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -251,6 +252,7 @@ export default function App() {
       "/admin/recipes": AdminRecipeDashboard,
       "/admin/eco-projects": AdminEcoProjectsDashboard,
       "/admin/adp": AdvancedDataPlatform,
+      "/admin/articles": AdminArticleDashboard,
       "/learn": flags.videos.enabled ? Videos : NotFound,
       "/learn/channels": flags.video_category_channels.enabled
         ? Channels

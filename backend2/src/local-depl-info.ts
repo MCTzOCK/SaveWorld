@@ -1,9 +1,9 @@
 export const INFO = {
   "git": {
-    "commits": 1048,
-    "commit": "415b9b",
+    "commits": 1049,
+    "commit": "af1658",
     "branch": "features/learning-tree",
-    "lastCommitMessage": "update rest client"
+    "lastCommitMessage": "[api-js] Auto update api docs"
   },
-  "sloc": 68255
+  "sloc": 68540
 };
