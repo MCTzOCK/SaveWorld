@@ -25,6 +25,7 @@ import { sendPN } from "../util/sendPN";
 import LifestyleTemplateModel from "../models/LifestyleTemplateModel";
 import mongoose from "mongoose";
 import ArticleModel from "../models/ArticleModel";
+import QuizModel from "../models/QuizModel";
 export default async function adminPlugin(app: FastifyInstance, opts: any) {
   app.get(
     "/admin/adp/models",
@@ -1353,6 +1354,173 @@ export default async function adminPlugin(app: FastifyInstance, opts: any) {
       res.status(200).send({
         status: 200,
         message: "Updated",
+      });
+    },
+  );
+
+  app.post(
+    "/admin/content/quizzes",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Creates a quiz",
+          summary: "Create quiz",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Body: {
+          title: string;
+          answers: string[];
+          correctAnswer: number;
+          featureImage: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { title, answers, correctAnswer } = req.body;
+
+      if (!title || !answers || !correctAnswer || !featureImage) {
+        res.status(400).send({
+          error: "Bad Request",
+          status: 400,
+        });
+        return;
+      }
+
+      const quiz = await QuizModel.create({
+        title,
+        answers,
+        correctAnswer,
+        featureImage,
+      });
+
+      res.status(200).send({
+        status: 200,
+        message: "Quiz created",
+        quiz: quiz,
+      });
+    },
+  );
+
+  app.put(
+    "/admin/content/quizzes",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Updates a quiz",
+          summary: "Update quiz",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Querystring: {
+          id: string;
+        };
+        Body: {
+          title: string;
+          answers: string[];
+          correctAnswer: number;
+          featureImage: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { id } = req.query;
+      const { title, answers, correctAnswer, featureImage } = req.body;
+
+      if (!id || !title || !answers || !correctAnswer || !featureImage) {
+        res.status(400).send({
+          error: "Bad Request",
+          status: 400,
+        });
+        return;
+      }
+
+      const quiz = await QuizModel.findById(id);
+
+      if (!quiz) {
+        res.status(404).send({
+          error: "Not Found",
+          status: 404,
+        });
+        return;
+      }
+
+      quiz.title = title;
+      quiz.answers = answers;
+      quiz.correctAnswer = correctAnswer;
+      quiz.featureImage = featureImage;
+
+      await quiz.save();
+
+      res.status(200).send({
+        status: 200,
+        message: "Updated",
+      });
+    },
+  );
+
+  app.delete(
+    "/admin/content/quizzes",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Deletes a quiz",
+          summary: "Delete quiz",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Querystring: {
+          id: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { id } = req.query;
+
+      if (!id) {
+        res.status(400).send({
+          error: "Bad Request",
+          status: 400,
+        });
+        return;
+      }
+
+      const quiz = await QuizModel.findById(id);
+
+      if (!quiz) {
+        res.status(404).send({
+          error: "Not Found",
+          status: 404,
+        });
+        return;
+      }
+
+      await quiz.deleteOne();
+
+      res.status(200).send({
+        status: 200,
+        message: "Deleted",
       });
     },
   );

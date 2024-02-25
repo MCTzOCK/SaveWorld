@@ -16,6 +16,7 @@ import UserPreferencesModel from "../models/UserPreferencesModel";
 import WatchHistoryModel from "../models/WatchHistoryModel";
 import VideoCommentModel from "../models/VideoCommentModel";
 import ArticleModel from "../models/ArticleModel";
+import QuizModel from "../models/QuizModel";
 
 export default async function contentPlugin(app: FastifyInstance, opts: any) {
   app.get(
@@ -581,6 +582,50 @@ export default async function contentPlugin(app: FastifyInstance, opts: any) {
       res.status(200).send({
         status: 200,
         article,
+      });
+    },
+  );
+
+  app.get(
+    "/content/quizzes",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Returns a list of quizzes",
+          summary: "Get Quizzes",
+          tags: ["content"],
+          security: [],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Querystring: {
+          page?: number;
+          search?: string;
+        };
+      }>,
+      res,
+    ) => {
+      const PAGE_SIZE = 10;
+      const page = req.query.page ? parseInt(req.query.page.toString()) : 0;
+      const filter = {};
+      if (req.query.search) {
+        filter["title"] = {
+          $regex: req.query.search,
+          $options: "i",
+        };
+      }
+      const quizzes = await QuizModel.find(filter)
+        .sort({ createdAt: -1 })
+        .skip(page * PAGE_SIZE)
+        .limit(PAGE_SIZE);
+      res.status(200).send({
+        status: 200,
+        quizzes,
+        pages: Math.ceil((await QuizModel.countDocuments()) / PAGE_SIZE),
+        page,
       });
     },
   );
