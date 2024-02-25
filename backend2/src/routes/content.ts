@@ -7,7 +7,7 @@
  * Created At: 17.01.2024
  *
  */
-import { FastifyInstance, FastifyRequest } from "fastify";
+import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import CategoryModel from "../models/CategoryModel";
 import { FastifySchemas } from "../Schemas";
 import { isAuth } from "../util/isAuth";
@@ -15,6 +15,7 @@ import VideoModel from "../models/VideoModel";
 import UserPreferencesModel from "../models/UserPreferencesModel";
 import WatchHistoryModel from "../models/WatchHistoryModel";
 import VideoCommentModel from "../models/VideoCommentModel";
+import ArticleModel from "../models/ArticleModel";
 
 export default async function contentPlugin(app: FastifyInstance, opts: any) {
   app.get(
@@ -507,6 +508,72 @@ export default async function contentPlugin(app: FastifyInstance, opts: any) {
       res.status(200).send({
         status: 200,
         message: "Rating saved",
+      });
+    },
+  );
+
+  app.get(
+    "/content/articles",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Returns a list of articles",
+          summary: "Get Articles",
+          tags: ["content"],
+          security: [],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Querystring: {
+          page?: number;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const PAGE_SIZE = 10;
+      const page = req.query.page ? parseInt(req.query.page.toString()) : 0;
+      const articles = await ArticleModel.find()
+        .sort({ createdAt: -1 })
+        .skip(page * PAGE_SIZE)
+        .limit(PAGE_SIZE);
+
+      res.status(200).send({
+        status: 200,
+        articles,
+        pages: Math.ceil((await ArticleModel.countDocuments()) / PAGE_SIZE),
+        page,
+      });
+    },
+  );
+
+  app.get(
+    "/content/articles/:id",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Returns a single article",
+          summary: "Get Article",
+          tags: ["content"],
+          security: [],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Params: {
+          id: string;
+        };
+      }>,
+      res,
+    ) => {
+      const article = await ArticleModel.findById(req.params.id);
+      res.status(200).send({
+        status: 200,
+        article,
       });
     },
   );
