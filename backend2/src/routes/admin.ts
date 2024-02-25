@@ -24,6 +24,7 @@ import { FastifySchemas } from "../Schemas";
 import { sendPN } from "../util/sendPN";
 import LifestyleTemplateModel from "../models/LifestyleTemplateModel";
 import mongoose from "mongoose";
+import ArticleModel from "../models/ArticleModel";
 export default async function adminPlugin(app: FastifyInstance, opts: any) {
   app.get(
     "/admin/adp/models",
@@ -1172,6 +1173,186 @@ export default async function adminPlugin(app: FastifyInstance, opts: any) {
       res.status(200).send({
         status: 200,
         message: "Updated video",
+      });
+    },
+  );
+
+  app.post(
+    "/admin/content/articles",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Creates an article",
+          summary: "Create article",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Body: {
+          title: string;
+          content: string;
+          tags: string[];
+          featureImage: string;
+          featureImageAuthor: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { title, content, tags, featureImage, featureImageAuthor } =
+        req.body;
+
+      if (!title || !content || !tags || !featureImage || !featureImageAuthor) {
+        res.status(400).send({
+          error: "Bad Request",
+          status: 400,
+        });
+        return;
+      }
+
+      const articleModel = await ArticleModel.create({
+        title,
+        content,
+        tags,
+        featureImage,
+        featureImageAuthor,
+      });
+
+      res.status(200).send({
+        status: 200,
+        message: "Article created",
+        article: articleModel,
+      });
+    },
+  );
+
+  app.delete(
+    "/admin/content/articles",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Deletes an article",
+          summary: "Delete article",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Querystring: {
+          id: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { id } = req.query;
+
+      if (!id) {
+        res.status(400).send({
+          error: "Bad Request",
+          status: 400,
+        });
+        return;
+      }
+
+      const article = await ArticleModel.findById(id);
+
+      if (!article) {
+        res.status(404).send({
+          error: "Not Found",
+          status: 404,
+        });
+        return;
+      }
+
+      await article.deleteOne();
+
+      res.status(200).send({
+        status: 200,
+        message: "Deleted",
+      });
+    },
+  );
+
+  app.put(
+    "/admin/content/articles",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Updates an article",
+          summary: "Update article",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Querystring: {
+          id: string;
+        };
+        Body: {
+          title: string;
+          content: string;
+          tags: string[];
+          featureImage: string;
+          featureImageAuthor: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { id } = req.query;
+      const { title, content, tags, featureImage, featureImageAuthor } =
+        req.body;
+
+      if (
+        !id ||
+        !title ||
+        !content ||
+        !tags ||
+        !featureImage ||
+        !featureImageAuthor
+      ) {
+        res.status(400).send({
+          error: "Bad Request",
+          status: 400,
+        });
+        return;
+      }
+
+      const article = await ArticleModel.findById(id);
+
+      if (!article) {
+        res.status(404).send({
+          error: "Not Found",
+          status: 404,
+        });
+        return;
+      }
+
+      article.title = title;
+      article.content = content;
+      article.tags = tags;
+      article.featureImage = featureImage;
+      article.featureImageAuthor = featureImageAuthor;
+
+      await article.save();
+
+      res.status(200).send({
+        status: 200,
+        message: "Updated",
       });
     },
   );
