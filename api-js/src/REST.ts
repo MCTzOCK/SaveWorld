@@ -54,6 +54,74 @@ export class REST {
 
   public static Admin = {
     /**
+     * Creates a new quiz
+     * @param token used to authenticate
+     * @param title of the quiz
+     * @param answers of the quiz
+     * @param correctAnswer of the quiz
+     * @param featureImage of the quiz
+     */
+    createQuiz: async (
+      token: string,
+      title: string,
+      answers: string[],
+      correctAnswer: number,
+      featureImage: string,
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/content/quizzes",
+        method: "POST",
+        token: token,
+        body: {
+          title: title,
+          answers: answers,
+          correctAnswer: correctAnswer,
+          featureImage: featureImage,
+        },
+      });
+    },
+    /**
+     * Deletes a quiz
+     * @param token used to authenticate
+     * @param id of the quiz to delete
+     */
+    deleteQuiz: async (token: string, id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/content/quizzes?id=" + id,
+        method: "DELETE",
+        token: token,
+      });
+    },
+    /**
+     * Updates a quiz
+     * @param token used to authenticate
+     * @param id of the quiz to update
+     * @param title of the quiz
+     * @param answers of the quiz
+     * @param correctAnswer of the quiz
+     * @param featureImage of the quiz
+     */
+    updateQuiz: async (
+      token: string,
+      id: string,
+      title: string,
+      answers: string[],
+      correctAnswer: number,
+      featureImage: string,
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/content/quizzes?id=" + id,
+        method: "PUT",
+        token: token,
+        body: {
+          title: title,
+          answers: answers,
+          correctAnswer: correctAnswer,
+          featureImage: featureImage,
+        },
+      });
+    },
+    /**
      * Creates a new article
      * @param token used to authenticate
      * @param title of the article
@@ -678,6 +746,21 @@ export class REST {
   };
 
   public static Content = {
+    /**
+     * @return all quizzes
+     * @param page the page to get
+     * @param search the search query
+     */
+    quizzes: async (page: number, search?: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/content/quizzes?page=" +
+          page +
+          (search ? "&search=" + search : ""),
+        method: "GET",
+      });
+    },
     /**
      * @return all articles
      * @param page the page to get
