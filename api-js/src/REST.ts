@@ -682,9 +682,13 @@ export class REST {
      * @return all articles
      * @param page the page to get
      */
-    articles: async (page: number) => {
+    articles: async (page: number, tag?: string) => {
       return await makeRequest({
-        path: RESTEnv.API_URL + "/content/articles?page=" + page,
+        path:
+          RESTEnv.API_URL +
+          "/content/articles?page=" +
+          page +
+          (tag ? "&tag=" + tag : ""),
         method: "GET",
       });
     },
