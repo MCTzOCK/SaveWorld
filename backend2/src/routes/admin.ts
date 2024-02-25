@@ -1220,7 +1220,7 @@ export default async function adminPlugin(app: FastifyInstance, opts: any) {
         content,
         tags,
         featureImage,
-        featureImageAuthor,
+        featureImageCPR: featureImageAuthor,
       });
 
       res.status(200).send({
@@ -1346,7 +1346,7 @@ export default async function adminPlugin(app: FastifyInstance, opts: any) {
       article.content = content;
       article.tags = tags;
       article.featureImage = featureImage;
-      article.featureImageAuthor = featureImageAuthor;
+      article.featureImageCPR = featureImageAuthor;
 
       await article.save();
 

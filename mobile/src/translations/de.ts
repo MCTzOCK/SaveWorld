@@ -812,4 +812,6 @@ export const german = {
   "pages.admin.articles.new.feature.image.author": "Autor des Bildes",
   "pages.admin.articles.new.tags": "Tags",
   "pages.admin.articles.new.content": "Inhalt",
+  "pages.admin.articles.delete.confirm":
+    "Bist du dir sicher, dass du den Artikel löschen willst?",
 } as const;
