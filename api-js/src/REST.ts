@@ -689,6 +689,16 @@ export class REST {
       });
     },
     /**
+     * @return the requested article
+     * @param id of the article to get
+     */
+    article: async (id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/content/articles/" + id,
+        method: "GET",
+      });
+    },
+    /**
      * @return all categories
      */
     categories: async () => {
