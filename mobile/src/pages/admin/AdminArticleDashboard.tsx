@@ -135,6 +135,9 @@ export default function AdminArticleDashboard() {
                   <p>
                     <b>{$$("components.articles.source")}</b>:{" "}
                     <i>{a.featureImageCPR}</i>
+                    <br />
+                    <b>{$$("pages.admin.articles.new.tags")}</b>:{" "}
+                    {a.tags.join(", ")}
                   </p>
                   <Heading size={"lg"}>{a.title}</Heading>
                 </CardHeader>
