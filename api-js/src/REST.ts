@@ -54,6 +54,80 @@ export class REST {
 
   public static Admin = {
     /**
+     * Creates a new article
+     * @param token used to authenticate
+     * @param title of the article
+     * @param content of the article
+     * @param tags of the article
+     * @param featureImage of the article
+     * @param featureImageAuthor of the article
+     */
+    createArticle: async (
+      token: string,
+      title: string,
+      content: string,
+      tags: string[],
+      featureImage: string,
+      featureImageAuthor: string,
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/content/articles",
+        method: "POST",
+        token: token,
+        body: {
+          title: title,
+          content: content,
+          tags: tags,
+          featureImage: featureImage,
+          featureImageAuthor: featureImageAuthor,
+        },
+      });
+    },
+    /**
+     * Deletes an article
+     * @param token used to authenticate
+     * @param id of the article to delete
+     */
+    deleteArticle: async (token: string, id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/content/articles?id=" + id,
+        method: "DELETE",
+        token: token,
+      });
+    },
+    /**
+     * Updates an article
+     * @param token used to authenticate
+     * @param id of the article to update
+     * @param title of the article
+     * @param content of the article
+     * @param tags of the article
+     * @param featureImage of the article
+     * @param featureImageAuthor of the article
+     */
+    updateArticle: async (
+      token: string,
+      id: string,
+      title: string,
+      content: string,
+      tags: string[],
+      featureImage: string,
+      featureImageAuthor: string,
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/content/articles?id=" + id,
+        method: "PUT",
+        token: token,
+        body: {
+          title: title,
+          content: content,
+          tags: tags,
+          featureImage: featureImage,
+          featureImageAuthor: featureImageAuthor,
+        },
+      });
+    },
+    /**
      * @return the requested insights about the api
      * @param token used to authenticate
      * @param options
