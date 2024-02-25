@@ -77,7 +77,7 @@ export default function AdminArticleDashboard() {
   };
 
   const loadPage = async (p: number) => {
-    const res = await REST.Content.articles(p);
+    const res = await REST.Content.articles(p, "");
     if (res.status !== 200) {
       PopupManager.alert({
         title: $$("control.error"),

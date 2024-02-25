@@ -536,11 +536,13 @@ export default async function contentPlugin(app: FastifyInstance, opts: any) {
     ) => {
       const PAGE_SIZE = 10;
       const page = req.query.page ? parseInt(req.query.page.toString()) : 0;
-      const articles = await ArticleModel.find({
-        tags: {
-          $in: req.query.tag ? [req.query.tag] : [],
-        },
-      })
+      const filter = {};
+      if (req.query.tag) {
+        filter["tags"] = {
+          $in: [req.query.tag],
+        };
+      }
+      const articles = await ArticleModel.find(filter)
         .sort({ createdAt: -1 })
         .skip(page * PAGE_SIZE)
         .limit(PAGE_SIZE);

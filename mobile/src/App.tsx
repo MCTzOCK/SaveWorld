@@ -128,6 +128,8 @@ import { RESTEnv } from "@saveworld/api-js/dist/RESTEnv";
 import Games from "./pages/games/Games";
 import GameLeaderBoard from "./pages/games/GameLeaderBoard";
 import AdminArticleDashboard from "./pages/admin/AdminArticleDashboard";
+import SWArticles from "./components/SWArticles";
+import SWArticle from "./components/SWArticle";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -314,35 +316,19 @@ export default function App() {
       "/sustainability/articles": flags.sustainability_articles.enabled
         ? () => {
             return (
-              <DirectusPosts
-                postBaseUrl={"/sustainability/articles"}
-                pageTitle={$$("page.sustainability.title")}
-                tagFilter={"sustainability"}
+              <SWArticles
+                pageTitle={$$("components.articles")}
+                tag={"sustainability"}
               />
             );
           }
         : NotFound,
-      "/sustainability/articles/:id": flags.sustainability_articles.enabled
-        ? () => {
-            const { id } = useParams<{ id: string }>();
-            return <DirectusPost postId={id} />;
-          }
-        : NotFound,
+      "/articles/:id": SWArticle,
       "/news": flags.news.enabled
         ? () => {
             return (
-              <DirectusPosts
-                postBaseUrl={"/news"}
-                pageTitle={$$("page.news.title")}
-                tagFilter={"news"}
-              />
+              <SWArticles tag={"news"} pageTitle={$$("page.news.title")} />
             );
-          }
-        : NotFound,
-      "/news/:id": flags.news.enabled
-        ? () => {
-            const { id } = useParams<{ id: string }>();
-            return <DirectusPost postId={id} />;
           }
         : NotFound,
       "/recipes": flags.recipes.enabled ? Recipes : NotFound,
