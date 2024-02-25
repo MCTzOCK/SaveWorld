@@ -679,6 +679,16 @@ export class REST {
 
   public static Content = {
     /**
+     * @return all articles
+     * @param page the page to get
+     */
+    articles: async (page: number) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/content/articles?page=" + page,
+        method: "GET",
+      });
+    },
+    /**
      * @return all categories
      */
     categories: async () => {
