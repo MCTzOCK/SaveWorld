@@ -131,6 +131,7 @@ import AdminArticleDashboard from "./pages/admin/AdminArticleDashboard";
 import SWArticles from "./components/SWArticles";
 import SWArticle from "./components/SWArticle";
 import AdminQuizzesDashboard from "./pages/admin/AdminQuizzesDashboard";
+import QuizzesV2 from "./pages/quizzes/QuizzesV2";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -311,7 +312,8 @@ export default function App() {
       "/tools/co2/long-distance-train": flags.tools_co2_calc.enabled
         ? CO2LongDistanceTrain
         : NotFound,
-      "/quizzes": flags.quizzes.enabled ? Quizzes : NotFound,
+      "/quizzes-old": flags.quizzes.enabled ? Quizzes : NotFound,
+      "/quizzes": flags.quizzes.enabled ? QuizzesV2 : NotFound,
       "/sustainability": flags.sustainability_articles.enabled
         ? Sustainability
         : NotFound,
