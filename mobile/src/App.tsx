@@ -130,6 +130,7 @@ import GameLeaderBoard from "./pages/games/GameLeaderBoard";
 import AdminArticleDashboard from "./pages/admin/AdminArticleDashboard";
 import SWArticles from "./components/SWArticles";
 import SWArticle from "./components/SWArticle";
+import AdminQuizzesDashboard from "./pages/admin/AdminQuizzesDashboard";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -255,6 +256,7 @@ export default function App() {
       "/admin/eco-projects": AdminEcoProjectsDashboard,
       "/admin/adp": AdvancedDataPlatform,
       "/admin/articles": AdminArticleDashboard,
+      "/admin/quizzes": AdminQuizzesDashboard,
       "/learn": flags.videos.enabled ? Videos : NotFound,
       "/learn/channels": flags.video_category_channels.enabled
         ? Channels

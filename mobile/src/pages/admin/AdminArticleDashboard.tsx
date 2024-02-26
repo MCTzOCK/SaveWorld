@@ -38,8 +38,12 @@ import { FaImage } from "react-icons/fa";
 import { REST } from "@saveworld/api-js";
 import PopupManager from "../../util/PopupManager";
 import { IonButton } from "@ionic/react";
+import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
 
 export default function AdminArticleDashboard() {
+  useRedirectForAnon({
+    onlyAdmins: true,
+  });
   const { onOpen, isOpen, onClose } = useDisclosure();
   const [currentArticle, setCurrentArticle] = useState<{
     _id?: string;

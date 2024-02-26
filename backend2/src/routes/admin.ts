@@ -1384,7 +1384,7 @@ export default async function adminPlugin(app: FastifyInstance, opts: any) {
     ) => {
       const { auth, user } = await defaultAdminAuth(req, res);
 
-      const { title, answers, correctAnswer } = req.body;
+      const { title, answers, correctAnswer, featureImage } = req.body;
 
       if (!title || !answers || !correctAnswer || !featureImage) {
         res.status(400).send({

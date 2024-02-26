@@ -22,6 +22,7 @@ import {
 import {
   FaFileLines,
   FaLifeRing,
+  FaQuestion,
   FaUsers,
   FaUtensils,
   FaVideo,
@@ -82,6 +83,12 @@ export default function AdminTools(props: { query: string }) {
       icon: <FaFileLines />,
       text: $$("components.articles"),
       url: "/admin/articles",
+      color: "red.500",
+    },
+    {
+      icon: <FaQuestion />,
+      text: $$("menu.quizzes"),
+      url: "/admin/quizzes",
       color: "red.500",
     },
   ];

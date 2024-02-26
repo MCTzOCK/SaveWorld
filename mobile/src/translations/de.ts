@@ -808,6 +808,12 @@ export const german = {
   "page.login.enter.email": "Bitte gib deine E-Mail-Adresse ein.",
   "pages.account.2fa.deprecated":
     "Zwei-Faktor-Authentifizierung (2FA) wird im Zuge der Login-Umstellung auf E-Mail-Code-Authentifizierung aktuell nicht unterstützt. Wir arbeiten daran, 2FA in Zukunft wieder zu unterstützen.",
+  "pages.admin.quizzes.new": "Neues Quiz",
+  "pages.admin.quizzes.new.answer": "Antwort hinzufügen",
+  "pages.admin.quizzes.new.answer.text": "Antwort",
+  "pages.admin.quizzes.new.answer.correct": "Richtige Antwort",
+  "pages.admin.quizzes.delete.confirm":
+      "Bist du dir sicher, dass du das Quiz löschen willst?",
   "pages.admin.articles.new": "Neuer Artikel",
   "pages.admin.articles.new.feature.image.author": "Autor des Bildes",
   "pages.admin.articles.new.tags": "Tags",
