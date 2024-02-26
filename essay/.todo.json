@@ -22,7 +22,7 @@
     },
     {
       "section": "2. Motivation und Fragestellung",
-      "finished": false,
+      "finished": true,
       "notes": [
         "Ist zum aktuellen Zeitpunkt (21.12.2023) nicht lang genug"
       ],
@@ -30,13 +30,13 @@
     },
     {
       "section": "3. Hintergrund und theoretische Grundlagen",
-      "finished": false,
+      "finished": true,
       "notes": [],
       "pages": 1
     },
     {
       "section": "4. Vorgehensweise, Materialien und Methoden",
-      "finished": false,
+      "finished": true,
       "notes": [],
       "pages": 2
     },
@@ -48,7 +48,7 @@
     },
     {
       "section": "6. Ergebnisdiskussion",
-      "finished": false,
+      "finished": true,
       "notes": [],
       "pages": 3
     },
