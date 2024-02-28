@@ -54,6 +54,27 @@ export class REST {
 
   public static Admin = {
     /**
+     * Updates or creates a new learning graph
+     * @param token used to authenticate
+     * @param json the graph to set
+     * @param category the category to set
+     */
+    updateLearningGraph: async (
+      token: string,
+      json: object,
+      category: string,
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/learning-graph",
+        method: "POST",
+        token: token,
+        body: {
+          json: json,
+          category: category,
+        },
+      });
+    },
+    /**
      * Creates a new quiz
      * @param token used to authenticate
      * @param title of the quiz
@@ -746,6 +767,17 @@ export class REST {
   };
 
   public static Content = {
+    /**
+     * @return all learning graphs
+     * @param token used to authenticate
+     */
+    learningGraphs: async (token: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/content/learning-graphs",
+        method: "GET",
+        token: token,
+      });
+    },
     /**
      * @return all quizzes
      * @param page the page to get
