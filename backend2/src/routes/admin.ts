@@ -26,6 +26,7 @@ import LifestyleTemplateModel from "../models/LifestyleTemplateModel";
 import mongoose from "mongoose";
 import ArticleModel from "../models/ArticleModel";
 import QuizModel from "../models/QuizModel";
+import LearningGraphModel from "../models/LearningGraphModel";
 export default async function adminPlugin(app: FastifyInstance, opts: any) {
   app.get(
     "/admin/adp/models",
@@ -1521,6 +1522,54 @@ export default async function adminPlugin(app: FastifyInstance, opts: any) {
       res.status(200).send({
         status: 200,
         message: "Deleted",
+      });
+    },
+  );
+
+  app.post(
+    "/admin/learning-graphs",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Creates a learning graph",
+          summary: "Create learning graph",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Body: {
+          category: string;
+          json: string;
+        };
+      }>,
+      res,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { category, json } = req.body;
+
+      const learningGraph = await LearningGraphModel.findOne({
+        category,
+      });
+
+      if (learningGraph) {
+        learningGraph.json = json;
+        learningGraph.markModified("json");
+        await learningGraph.save();
+      } else {
+        await LearningGraphModel.create({
+          category,
+          json,
+        });
+      }
+
+      res.status(200).send({
+        status: 200,
+        message: "Created or updated",
       });
     },
   );

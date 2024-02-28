@@ -17,6 +17,7 @@ import WatchHistoryModel from "../models/WatchHistoryModel";
 import VideoCommentModel from "../models/VideoCommentModel";
 import ArticleModel from "../models/ArticleModel";
 import QuizModel from "../models/QuizModel";
+import LearningGraphModel from "../models/LearningGraphModel";
 
 export default async function contentPlugin(app: FastifyInstance, opts: any) {
   app.get(
@@ -626,6 +627,30 @@ export default async function contentPlugin(app: FastifyInstance, opts: any) {
         quizzes,
         pages: Math.ceil((await QuizModel.countDocuments()) / PAGE_SIZE),
         page,
+      });
+    },
+  );
+
+  app.get(
+    "/content/learning-graphs",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Returns a list of learning graphs",
+          summary: "Get Learning Graphs",
+          tags: ["content"],
+          security: [],
+        },
+      },
+    },
+    async (req, res) => {
+      const learningGraphs = await LearningGraphModel.find({}).populate(
+        "category",
+      );
+      res.status(200).send({
+        status: 200,
+        learningGraphs,
       });
     },
   );
