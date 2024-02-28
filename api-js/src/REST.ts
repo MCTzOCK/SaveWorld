@@ -769,13 +769,21 @@ export class REST {
   public static Content = {
     /**
      * @return all learning graphs
-     * @param token used to authenticate
      */
     learningGraphs: async (token: string) => {
       return await makeRequest({
         path: RESTEnv.API_URL + "/content/learning-graphs",
         method: "GET",
-        token: token,
+      });
+    },
+    /**
+     * @return the requested learning graph
+     * @param category the category to get
+     */
+    learningGraph: async (category: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/content/learning-graphs/" + category,
+        method: "GET",
       });
     },
     /**

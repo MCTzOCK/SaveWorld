@@ -654,4 +654,34 @@ export default async function contentPlugin(app: FastifyInstance, opts: any) {
       });
     },
   );
+  app.get(
+    "/content/learning-graphs/:category",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Returns a list of learning graphs",
+          summary: "Get Learning Graphs",
+          tags: ["content"],
+          security: [],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Params: {
+          category: string;
+        };
+      }>,
+      res,
+    ) => {
+      const learningGraph = await LearningGraphModel.find({
+        category: req.params.category,
+      }).populate("category");
+      res.status(200).send({
+        status: 200,
+        learningGraph,
+      });
+    },
+  );
 }
