@@ -651,5 +651,15 @@ export const el = {
   "pages.games.leaderboard.notfound": "Το παιχνίδι δεν βρέθηκε.",
   "page.login.enter.email.code": "Παρακαλώ εισάγετε τον εξαψήφιο κωδικό που σας στείλαμε μέσω email.",
   "page.login.enter.email": "Παρακαλώ εισάγετε τη διεύθυνση email σας.",
-  "pages.account.2fa.deprecated": "Η ταυτοποίηση δύο συντελεστών (2FA) επί του παρόντος δεν υποστηρίζεται κατά τη μετατροπή σύνδεσης σε ταυτοποίηση κώδικα ηλεκτρονικού ταχυδρομείου. Εργαζόμαστε για την υποστήριξη 2FA στο μέλλον."
+  "pages.account.2fa.deprecated": "Η ταυτοποίηση δύο συντελεστών (2FA) επί του παρόντος δεν υποστηρίζεται κατά τη μετατροπή σύνδεσης σε ταυτοποίηση κώδικα ηλεκτρονικού ταχυδρομείου. Εργαζόμαστε για την υποστήριξη 2FA στο μέλλον.",
+  "pages.admin.quizzes.new": "Νέο κουίζ",
+  "pages.admin.quizzes.new.answer": "Προσθήκη απάντησης",
+  "pages.admin.quizzes.new.answer.text": "Απάντηση",
+  "pages.admin.quizzes.new.answer.correct": "Σωστή απάντηση",
+  "pages.admin.quizzes.delete.confirm": "Σίγουρα θέλετε να διαγράψετε το κουίζ?",
+  "pages.admin.articles.new": "Νέο άρθρο",
+  "pages.admin.articles.new.feature.image.author": "Συγγραφέας της εικόνας",
+  "pages.admin.articles.new.tags": "Ετικέτες",
+  "pages.admin.articles.new.content": "Περιεχόμενα",
+  "pages.admin.articles.delete.confirm": "Είστε σίγουροι ότι θέλετε να διαγράψετε το άρθρο?"
 };

@@ -651,5 +651,15 @@ export const nl = {
   "pages.games.leaderboard.notfound": "Het spel werd niet gevonden.",
   "page.login.enter.email.code": "Voer de zescijferige code in die we u per e-mail hebben gestuurd.",
   "page.login.enter.email": "Voer uw e-mailadres in.",
-  "pages.account.2fa.deprecated": "Two-factor authenticatie (2FA) wordt momenteel niet ondersteund tijdens de login conversie naar e-mailcode authenticatie. We werken aan de ondersteuning van 2FA in de toekomst."
+  "pages.account.2fa.deprecated": "Two-factor authenticatie (2FA) wordt momenteel niet ondersteund tijdens de login conversie naar e-mailcode authenticatie. We werken aan de ondersteuning van 2FA in de toekomst.",
+  "pages.admin.quizzes.new": "Nieuwe quiz",
+  "pages.admin.quizzes.new.answer": "Antwoord toevoegen",
+  "pages.admin.quizzes.new.answer.text": "Antwoord",
+  "pages.admin.quizzes.new.answer.correct": "Juist antwoord",
+  "pages.admin.quizzes.delete.confirm": "Weet u zeker dat u de quiz wilt verwijderen?",
+  "pages.admin.articles.new": "Nieuw artikel",
+  "pages.admin.articles.new.feature.image.author": "Auteur van de foto",
+  "pages.admin.articles.new.tags": "Tags",
+  "pages.admin.articles.new.content": "Inhoud",
+  "pages.admin.articles.delete.confirm": "Weet u zeker dat u het artikel wilt verwijderen?"
 };

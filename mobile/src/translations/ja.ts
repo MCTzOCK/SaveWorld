@@ -651,5 +651,15 @@ export const ja = {
   "pages.games.leaderboard.notfound": "ゲームが見つかりませんでした.",
   "page.login.enter.email.code": "メールで送信した6桁のコードを入力してください.",
   "page.login.enter.email": "メールアドレスを入力してください.",
-  "pages.account.2fa.deprecated": "2ファクター認証(2FA)は、ログイン変換時にメールコード認証をサポートしていません。 今後も2FAのご支援に取り組んでまいります."
+  "pages.account.2fa.deprecated": "2ファクター認証(2FA)は、ログイン変換時にメールコード認証をサポートしていません。 今後も2FAのご支援に取り組んでまいります.",
+  "pages.admin.quizzes.new": "新しいクイズ",
+  "pages.admin.quizzes.new.answer": "返信を追加する",
+  "pages.admin.quizzes.new.answer.text": "ソリューション",
+  "pages.admin.quizzes.new.answer.correct": "正しい回答",
+  "pages.admin.quizzes.delete.confirm": "クイズを削除したいですか?",
+  "pages.admin.articles.new": "新着情報",
+  "pages.admin.articles.new.feature.image.author": "写真の著者",
+  "pages.admin.articles.new.tags": "ニュース",
+  "pages.admin.articles.new.content": "コンテンツ",
+  "pages.admin.articles.delete.confirm": "記事を削除したいですか?"
 };

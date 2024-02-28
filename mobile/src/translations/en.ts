@@ -651,5 +651,15 @@ export const en = {
   "pages.games.leaderboard.notfound": "The game was not found.",
   "page.login.enter.email.code": "Please enter the six-digit code we sent you by email.",
   "page.login.enter.email": "Please enter your email address.",
-  "pages.account.2fa.deprecated": "Two-factor authentication (2FA) is currently not supported during login conversion to email code authentication. We are working on supporting 2FA in the future."
+  "pages.account.2fa.deprecated": "Two-factor authentication (2FA) is currently not supported during login conversion to email code authentication. We are working on supporting 2FA in the future.",
+  "pages.admin.quizzes.new": "New quiz",
+  "pages.admin.quizzes.new.answer": "Add a reply",
+  "pages.admin.quizzes.new.answer.text": "Answer",
+  "pages.admin.quizzes.new.answer.correct": "Right answer",
+  "pages.admin.quizzes.delete.confirm": "Are you sure you want to delete the quiz?",
+  "pages.admin.articles.new": "New article",
+  "pages.admin.articles.new.feature.image.author": "Author of the picture",
+  "pages.admin.articles.new.tags": "Tags",
+  "pages.admin.articles.new.content": "Contents",
+  "pages.admin.articles.delete.confirm": "Are you sure you want to delete the article?"
 };

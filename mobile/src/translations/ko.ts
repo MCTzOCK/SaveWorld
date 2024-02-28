@@ -651,5 +651,15 @@ export const ko = {
   "pages.games.leaderboard.notfound": "게임이 발견되지 않았습니다.",
   "page.login.enter.email.code": "이메일로 보내 주신 6자리 코드를 입력하십시오.",
   "page.login.enter.email": "자주 묻는 질문.",
-  "pages.account.2fa.deprecated": "2단계 인증 (2FA)는 현재 로그인 전환 중에 코드 인증으로 지원되지 않습니다. 앞으로 2FA 지원에 종사하고 있습니다."
+  "pages.account.2fa.deprecated": "2단계 인증 (2FA)는 현재 로그인 전환 중에 코드 인증으로 지원되지 않습니다. 앞으로 2FA 지원에 종사하고 있습니다.",
+  "pages.admin.quizzes.new": "새로운 퀴즈",
+  "pages.admin.quizzes.new.answer": "자주 묻는 질문",
+  "pages.admin.quizzes.new.answer.text": "이름 *",
+  "pages.admin.quizzes.new.answer.correct": "정답",
+  "pages.admin.quizzes.delete.confirm": "퀴즈를 삭제하시겠습니까?",
+  "pages.admin.articles.new": "새로운 기사",
+  "pages.admin.articles.new.feature.image.author": "사진의 저자",
+  "pages.admin.articles.new.tags": "이름 *",
+  "pages.admin.articles.new.content": "제품정보",
+  "pages.admin.articles.delete.confirm": "기사를 삭제하시겠습니까?"
 };
