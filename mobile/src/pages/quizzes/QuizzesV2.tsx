@@ -16,6 +16,7 @@ import { IonButton, IonSearchbar } from "@ionic/react";
 import { REST } from "@saveworld/api-js";
 import { Card, CardHeader, Grid, Heading, Image } from "@chakra-ui/react";
 import { showQuiz } from "../../util/quizzes";
+import { translateOnlineV3 } from "../../util/online-translate";
 
 export default function QuizzesV2() {
   const [query, setQuery] = useState<string>("");
@@ -37,8 +38,25 @@ export default function QuizzesV2() {
   }, []);
 
   useEffect(() => {
-    REST.Content.quizzes(page, query).then((res) => {
-      setQuizzes(res.payload.quizzes);
+    REST.Content.quizzes(page, query).then(async (res) => {
+      const quizzes = res.payload.quizzes;
+      if (window.language !== "de") {
+        for (const q of quizzes) {
+          q.title = await translateOnlineV3({
+            text: q.title,
+            from: "de",
+            to: window.language,
+          });
+          for (let a of q.answers) {
+            a = await translateOnlineV3({
+              text: a,
+              from: "de",
+              to: window.language,
+            });
+          }
+        }
+      }
+      setQuizzes(quizzes);
       setPages(res.payload.pages);
     });
   }, [page, query]);
