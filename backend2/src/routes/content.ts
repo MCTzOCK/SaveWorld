@@ -675,12 +675,18 @@ export default async function contentPlugin(app: FastifyInstance, opts: any) {
       }>,
       res,
     ) => {
-      const learningGraph = await LearningGraphModel.find({
+      const learningGraph = await LearningGraphModel.findOne({
         category: req.params.category,
       }).populate("category");
+
       res.status(200).send({
         status: 200,
-        learningGraph,
+        learningGraph: learningGraph
+          ? learningGraph
+          : JSON.stringify({
+              nodes: [],
+              edges: [],
+            }),
       });
     },
   );

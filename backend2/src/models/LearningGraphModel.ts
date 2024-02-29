@@ -22,6 +22,10 @@ const LearningGraphModel = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  json: {
+    type: String,
+    required: false,
+  },
 });
 
 export default mongoose.models?.LearningGraph ||

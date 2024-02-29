@@ -61,7 +61,7 @@ export class REST {
      */
     updateLearningGraph: async (
       token: string,
-      json: object,
+      json: string,
       category: string,
     ) => {
       return await makeRequest({

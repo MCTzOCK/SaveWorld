@@ -1527,7 +1527,7 @@ export default async function adminPlugin(app: FastifyInstance, opts: any) {
   );
 
   app.post(
-    "/admin/learning-graphs",
+    "/admin/learning-graph",
     {
       schema: {},
       config: {

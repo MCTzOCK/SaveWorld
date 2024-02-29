@@ -132,6 +132,8 @@ import SWArticles from "./components/SWArticles";
 import SWArticle from "./components/SWArticle";
 import AdminQuizzesDashboard from "./pages/admin/AdminQuizzesDashboard";
 import QuizzesV2 from "./pages/quizzes/QuizzesV2";
+import AdminLearningGraphs from "./pages/admin/AdminLearningGraphs";
+import AdminLearningGraph from "./pages/admin/AdminLearningGraph";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -258,6 +260,8 @@ export default function App() {
       "/admin/adp": AdvancedDataPlatform,
       "/admin/articles": AdminArticleDashboard,
       "/admin/quizzes": AdminQuizzesDashboard,
+      "/admin/learning-graphs": AdminLearningGraphs,
+      "/admin/learning-graphs/:id": AdminLearningGraph,
       "/learn": flags.videos.enabled ? Videos : NotFound,
       "/learn/channels": flags.video_category_channels.enabled
         ? Channels

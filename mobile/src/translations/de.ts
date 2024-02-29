@@ -813,11 +813,13 @@ export const german = {
   "pages.admin.quizzes.new.answer.text": "Antwort",
   "pages.admin.quizzes.new.answer.correct": "Richtige Antwort",
   "pages.admin.quizzes.delete.confirm":
-      "Bist du dir sicher, dass du das Quiz löschen willst?",
+    "Bist du dir sicher, dass du das Quiz löschen willst?",
   "pages.admin.articles.new": "Neuer Artikel",
   "pages.admin.articles.new.feature.image.author": "Autor des Bildes",
   "pages.admin.articles.new.tags": "Tags",
   "pages.admin.articles.new.content": "Inhalt",
   "pages.admin.articles.delete.confirm":
     "Bist du dir sicher, dass du den Artikel löschen willst?",
+  "components.learning.graphs": "Lerngraphen",
+  "components.learning.graphs.error.loading": "Fehler beim Laden des Graphens",
 } as const;
