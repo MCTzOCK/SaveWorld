@@ -62,6 +62,8 @@ import {
 import VideoNode from "../../components/reactflow/VideoNode";
 import { MVideo } from "../../types";
 import VideoSelector from "../../components/reactflow/VideoSelector";
+import QuizSelector from "../../components/reactflow/QuizSelector";
+import QuizNode from "../../components/reactflow/QuizNode";
 
 export default function AdminLearningGraph() {
   useRedirectForAnon({
@@ -146,6 +148,7 @@ export default function AdminLearningGraph() {
   const nodeTypes = useMemo(() => {
     return {
       video: VideoNode,
+      quiz: QuizNode,
     };
   }, []);
 
@@ -153,6 +156,11 @@ export default function AdminLearningGraph() {
     isOpen: isVideoOpen,
     onOpen: onVideoOpen,
     onClose: onVideoClose,
+  } = useDisclosure();
+  const {
+    isOpen: isQuizOpen,
+    onOpen: onQuizOpen,
+    onClose: onQuizClose,
   } = useDisclosure();
 
   const onVideoSelect = (
@@ -168,6 +176,29 @@ export default function AdminLearningGraph() {
         type: "video",
         id: video._id + "_" + Math.random() * 1000,
         data: video,
+        position: {
+          x: 0,
+          y: 0,
+        },
+      },
+    ]);
+  };
+
+  const onQuizSelect = (quiz: {
+    _id: string;
+    title: string;
+    featureImage: string;
+    answers: string[];
+    correctAnswer: number;
+  }) => {
+    onQuizClose();
+
+    setNodes([
+      ...nodes,
+      {
+        type: "quiz",
+        id: quiz._id + "_" + Math.random() * 1000,
+        data: quiz,
         position: {
           x: 0,
           y: 0,
@@ -315,7 +346,12 @@ export default function AdminLearningGraph() {
             <IonFabButton color={"success"}>
               <FaFileLines />
             </IonFabButton>
-            <IonFabButton color={"success"}>
+            <IonFabButton
+              color={"success"}
+              onClick={async () => {
+                onQuizOpen();
+              }}
+            >
               <FaQuestion />
             </IonFabButton>
             <IonFabButton
@@ -332,6 +368,11 @@ export default function AdminLearningGraph() {
           onClose={onVideoClose}
           isOpen={isVideoOpen}
           onSelection={onVideoSelect}
+        />
+        <QuizSelector
+          onClose={onQuizClose}
+          isOpen={isQuizOpen}
+          onSelection={onQuizSelect}
         />
       </Page>
     </>
