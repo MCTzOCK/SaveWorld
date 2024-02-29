@@ -12,6 +12,7 @@ import { Handle, Position } from "reactflow";
 
 import * as React from "react";
 import {
+  Badge,
   Box,
   Button,
   Card,
@@ -37,6 +38,9 @@ export default function VideoNode(props: { data: any }) {
         p={2}
       >
         <Stack gap={4}>
+          <Badge colorScheme="brand" variant="solid">
+            {$$("components.learning.graphs.nodes.video")}
+          </Badge>
           <Heading size={"md"}>{props.data.title}</Heading>
           <Text fontSize={"sm"}>{props.data.description}</Text>
           <Button

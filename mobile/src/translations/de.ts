@@ -831,4 +831,6 @@ export const german = {
   "components.learning.graphs.node.type": "Typ",
   "components.learning.graphs.select.video.title": "Video auswählen",
   "components.learn.watch": "Ansehen",
+  "components.learning.graphs.nodes.video": "Video",
+  "components.learning.graphs.nodes.quiz": "Quiz",
 } as const;

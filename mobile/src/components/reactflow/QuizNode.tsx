@@ -12,6 +12,7 @@ import { Handle, Position } from "reactflow";
 
 import * as React from "react";
 import {
+  Badge,
   Box,
   Button,
   Card,
@@ -39,6 +40,9 @@ export default function QuizNode(props: { data: any }) {
         p={2}
       >
         <Stack gap={4}>
+          <Badge colorScheme="orange" variant="solid">
+            {$$("components.learning.graphs.nodes.quiz")}
+          </Badge>
           <Image
             src={props.data.featureImage}
             w={"100%"}
