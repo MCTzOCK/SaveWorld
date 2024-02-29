@@ -822,4 +822,11 @@ export const german = {
     "Bist du dir sicher, dass du den Artikel löschen willst?",
   "components.learning.graphs": "Lerngraphen",
   "components.learning.graphs.error.loading": "Fehler beim Laden des Graphens",
+  "components.learning.graphs.inspector": "Inspektor",
+  "components.learning.graphs.node": "Knoten",
+  "components.learning.graphs.edge": "Kante",
+  "components.learning.graphs.edge.animated": "Animiert",
+  "components.learning.graphs.inspector.nothing.selected": "Nichts ausgewählt",
+  "components.learning.graphs.edge.label": "Label",
+  "components.learning.graphs.node.type": "Typ",
 } as const;

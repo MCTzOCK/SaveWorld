@@ -9,7 +9,7 @@
  */
 
 import * as React from "react";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import ReactFlow, {
   addEdge,
   applyEdgeChanges,
@@ -32,7 +32,17 @@ import Page from "../../components/Page";
 import { $$ } from "../../translations/i18n";
 import { REST } from "@saveworld/api-js";
 import PopupManager from "../../util/PopupManager";
-import { Box } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  HStack,
+  Input,
+  Select,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import { IonFab, IonFabButton, IonFabList, IonIcon } from "@ionic/react";
 import { FaFileLines, FaPlus, FaQuestion, FaVideo } from "react-icons/fa6";
 import {
@@ -48,6 +58,7 @@ import {
   person,
   personSharp,
 } from "ionicons/icons";
+import VideoNode from "../../components/reactflow/VideoNode";
 
 export default function AdminLearningGraph() {
   useRedirectForAnon({
@@ -129,36 +140,144 @@ export default function AdminLearningGraph() {
     });
   }, [id]);
 
+  const nodeTypes = useMemo(() => {
+    return {
+      video: VideoNode,
+    };
+  }, []);
+
   return (
     <>
       <Page title={$$("components.learning.graphs")}>
-        <Box w={"100%"} h={"100%"}>
-          <ReactFlow
-            nodes={nodes}
-            edges={edges}
-            onConnect={onConnect}
-            onNodesChange={onNodesChange}
-            onEdgesChange={onEdgesChange}
-            snapToGrid={true}
-            snapGrid={[10, 10]}
-            zoomOnPinch
-            fitView
-            fitViewOptions={{ padding: 0.2 }}
-            onInit={setRfInstance}
-            onEdgeClick={(e, edge) => {
-              setCurrentEdge(edge);
-              setCurrentNode(null);
-            }}
-            onNodeClick={(e, node) => {
-              setCurrentNode(node);
-              setCurrentEdge(null);
-            }}
+        <Flex
+          w={"100%"}
+          h={"100%"}
+          gap={2}
+          direction={["column", "column", "row"]}
+        >
+          <Box w={"100%"} flex={"80%"} h={"100%"}>
+            <ReactFlow
+              nodes={nodes}
+              edges={edges}
+              onConnect={onConnect}
+              onNodesChange={onNodesChange}
+              onEdgesChange={onEdgesChange}
+              snapToGrid={true}
+              snapGrid={[10, 10]}
+              zoomOnPinch
+              nodeTypes={nodeTypes}
+              fitView
+              fitViewOptions={{ padding: 0.2 }}
+              onInit={setRfInstance}
+              onEdgeClick={(e, edge) => {
+                setCurrentEdge(edge);
+                setCurrentNode(null);
+              }}
+              onNodeClick={(e, node) => {
+                setCurrentNode(node);
+                setCurrentEdge(null);
+              }}
+            >
+              <Controls />
+              <Background />
+            </ReactFlow>
+          </Box>
+          <Box
+            flex={"20%"}
+            bg={"gray.800"}
+            rounded={"md"}
+            shadow={"xl"}
+            maxW={"20%"}
+            p={4}
           >
-            <Controls />
-            <Background />
-          </ReactFlow>
-        </Box>
-        <IonFab vertical="bottom" horizontal="end" slot="fixed">
+            <Heading size={"lg"} textAlign={"center"}>
+              {$$("components.learning.graphs.inspector")}
+            </Heading>
+            {currentEdge && (
+              <>
+                <Heading size={"md"} textAlign={"center"}>
+                  {$$("components.learning.graphs.edge")}
+                </Heading>
+                <Stack gap={2}>
+                  <HStack gap={4}>
+                    <Text fontSize={"2xl"} fontWeight={700}>
+                      {$$("components.learning.graphs.edge.animated")}
+                    </Text>
+                    <Select
+                      defaultValue={currentEdge.animated ? "yes" : "no"}
+                      onChange={() => {
+                        currentEdge.animated = !currentEdge.animated;
+                        setEdges([
+                          ...edges.filter((e) => e.id !== currentEdge.id),
+                          currentEdge,
+                        ]);
+                        setCurrentEdge(currentEdge);
+                      }}
+                    >
+                      <option value={"no"}>{$$("control.no")}</option>
+                      <option value={"yes"}>{$$("control.yes")}</option>
+                    </Select>
+                  </HStack>
+                  <HStack gap={4}>
+                    <Text fontSize={"2xl"} fontWeight={700}>
+                      {$$("components.learning.graphs.edge.label")}
+                    </Text>
+                    <Input
+                      defaultValue={currentEdge.label?.toString() || ""}
+                      placeholder={$$("components.learning.graphs.edge.label")}
+                      onChange={(e) => {
+                        currentEdge.label = e.target.value;
+                        setEdges([
+                          ...edges.filter((e) => e.id !== currentEdge.id),
+                          currentEdge,
+                        ]);
+                        setCurrentEdge(currentEdge);
+                      }}
+                    />
+                  </HStack>
+                  <Button
+                    color={"red.500"}
+                    onClick={() => {
+                      setEdges(edges.filter((e) => e.id !== currentEdge.id));
+                      setCurrentEdge(null);
+                    }}
+                  >
+                    {$$("control.delete")}
+                  </Button>
+                </Stack>
+              </>
+            )}
+
+            {currentNode && (
+              <>
+                <Heading size={"md"} textAlign={"center"}>
+                  {$$("components.learning.graphs.node")}
+                </Heading>
+                <Stack>
+                  <HStack gap={4}>
+                    <Text fontSize={"2xl"} fontWeight={700}>
+                      {$$("components.learning.graphs.node.type")}:&nbsp;
+                      {currentNode.type}
+                    </Text>
+                  </HStack>
+                  <Button
+                    color={"red.500"}
+                    onClick={() => {
+                      setNodes(nodes.filter((n) => n.id !== currentNode.id));
+                      setCurrentNode(null);
+                    }}
+                  >
+                    {$$("control.delete")}
+                  </Button>
+                </Stack>
+              </>
+            )}
+            {!currentEdge && !currentNode && (
+              <>{$$("components.learning.graphs.inspector.nothing.selected")}</>
+            )}
+          </Box>
+        </Flex>
+        <IonFab vertical="bottom" horizontal="start" slot="fixed">
           <IonFabButton color={"success"}>
             <IonIcon ios={add} md={addSharp} />
           </IonFabButton>
@@ -176,8 +295,8 @@ export default function AdminLearningGraph() {
                   ...nodes,
                   {
                     id: "new-node-" + Math.random(),
-                    type: "text",
-                    data: { label: "New Node" },
+                    type: "video",
+                    data: {},
                     position: { x: 0, y: 0 },
                   },
                 ]);
