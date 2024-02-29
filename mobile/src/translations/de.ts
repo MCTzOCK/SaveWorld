@@ -829,4 +829,6 @@ export const german = {
   "components.learning.graphs.inspector.nothing.selected": "Nichts ausgewählt",
   "components.learning.graphs.edge.label": "Label",
   "components.learning.graphs.node.type": "Typ",
+  "components.learning.graphs.select.video.title": "Video auswählen",
+  "components.learn.watch": "Ansehen",
 } as const;

@@ -42,6 +42,7 @@ import {
   Select,
   Stack,
   Text,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { IonFab, IonFabButton, IonFabList, IonIcon } from "@ionic/react";
 import { FaFileLines, FaPlus, FaQuestion, FaVideo } from "react-icons/fa6";
@@ -59,6 +60,8 @@ import {
   personSharp,
 } from "ionicons/icons";
 import VideoNode from "../../components/reactflow/VideoNode";
+import { MVideo } from "../../types";
+import VideoSelector from "../../components/reactflow/VideoSelector";
 
 export default function AdminLearningGraph() {
   useRedirectForAnon({
@@ -145,6 +148,33 @@ export default function AdminLearningGraph() {
       video: VideoNode,
     };
   }, []);
+
+  const {
+    isOpen: isVideoOpen,
+    onOpen: onVideoOpen,
+    onClose: onVideoClose,
+  } = useDisclosure();
+
+  const onVideoSelect = (
+    video: MVideo & {
+      _id: string;
+    },
+  ) => {
+    onVideoClose();
+
+    setNodes([
+      ...nodes,
+      {
+        type: "video",
+        id: video._id + "_" + Math.random() * 1000,
+        data: video,
+        position: {
+          x: 0,
+          y: 0,
+        },
+      },
+    ]);
+  };
 
   return (
     <>
@@ -290,22 +320,19 @@ export default function AdminLearningGraph() {
             </IonFabButton>
             <IonFabButton
               color={"success"}
-              onClick={() => {
-                setNodes([
-                  ...nodes,
-                  {
-                    id: "new-node-" + Math.random(),
-                    type: "video",
-                    data: {},
-                    position: { x: 0, y: 0 },
-                  },
-                ]);
+              onClick={async () => {
+                onVideoOpen();
               }}
             >
               <FaVideo />
             </IonFabButton>
           </IonFabList>
         </IonFab>
+        <VideoSelector
+          onClose={onVideoClose}
+          isOpen={isVideoOpen}
+          onSelection={onVideoSelect}
+        />
       </Page>
     </>
   );
