@@ -2,7 +2,7 @@
 
 body.barcode-scanner-active {
   visibility: hidden;
-  display: none;
+  display: none !important;
 
   --background: transparent;
   --ion-background-color: transparent;

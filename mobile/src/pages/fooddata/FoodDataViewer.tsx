@@ -126,10 +126,13 @@ export default function FoodDataViewer() {
                   score={product.ecoscore_data.score}
                 />
                 <Text>
-                  {$$(
-                    // @ts-ignore
-                    "pages.fooddata.ecoscore." + product.ecoscore_data.grade,
-                  )}
+                  {product.ecoscore_data && product.ecoscore_data.grade
+                    ? $$(
+                        // @ts-ignore
+                        "pages.fooddata.ecoscore." +
+                          product.ecoscore_data.grade,
+                      )
+                    : null}
                 </Text>
                 <chakra.b color={"brand.500"}>
                   {$$("pages.recipes.ingredients")}:

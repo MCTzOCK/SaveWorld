@@ -24,7 +24,10 @@ import {
 import { FaBarcode } from "react-icons/fa6";
 import DividerWithText from "../../components/DividerWithText";
 import MobileBox from "../../components/MobileBox";
-import { BarcodeScanner } from "@capacitor-mlkit/barcode-scanning";
+import {
+  BarcodeFormat,
+  BarcodeScanner,
+} from "@capacitor-mlkit/barcode-scanning";
 import { useEffect } from "react";
 
 export default function FoodData() {
@@ -72,8 +75,17 @@ export default function FoodData() {
                     redirect(result.barcode.rawValue);
                   },
                 );
+                await BarcodeScanner.startScan({
+                  formats: [BarcodeFormat.Ean13],
+                });
 
-                await BarcodeScanner.startScan();
+                setTimeout(async () => {
+                  await listener.remove();
+                  document
+                    .querySelector("body")
+                    ?.classList.remove("barcode-scanner-active");
+                  await BarcodeScanner.stopScan();
+                }, 5000);
               }}
             >
               {$$("pages.fooddata.barcode.scan")}
