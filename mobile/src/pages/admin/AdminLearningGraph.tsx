@@ -241,7 +241,7 @@ export default function AdminLearningGraph() {
 
   return (
     <>
-      <Page title={$$("components.learning.graphs")}>
+      <Page title={$$("components.learning.graphs")} redGradient>
         <Flex
           w={"100%"}
           h={"100%"}

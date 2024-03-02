@@ -56,7 +56,7 @@ export default function AdminLearningGraphs() {
 
   return (
     <>
-      <Page title={$$("components.learning.graphs")}>
+      <Page title={$$("components.learning.graphs")} redGradient>
         <Grid
           templateColumns={[
             "repeat(1, 1fr)",
