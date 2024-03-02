@@ -64,6 +64,8 @@ import { MVideo } from "../../types";
 import VideoSelector from "../../components/reactflow/VideoSelector";
 import QuizSelector from "../../components/reactflow/QuizSelector";
 import QuizNode from "../../components/reactflow/QuizNode";
+import ArticleSelector from "../../components/reactflow/ArticleSelector";
+import ArticleNode from "../../components/reactflow/ArticleNode";
 
 export default function AdminLearningGraph() {
   useRedirectForAnon({
@@ -149,6 +151,7 @@ export default function AdminLearningGraph() {
     return {
       video: VideoNode,
       quiz: QuizNode,
+      article: ArticleNode,
     };
   }, []);
 
@@ -161,6 +164,12 @@ export default function AdminLearningGraph() {
     isOpen: isQuizOpen,
     onOpen: onQuizOpen,
     onClose: onQuizClose,
+  } = useDisclosure();
+
+  const {
+    isOpen: isArticleOpen,
+    onOpen: onArticleOpen,
+    onClose: onArticleClose,
   } = useDisclosure();
 
   const onVideoSelect = (
@@ -199,6 +208,29 @@ export default function AdminLearningGraph() {
         type: "quiz",
         id: quiz._id + "_" + Math.random() * 1000,
         data: quiz,
+        position: {
+          x: 0,
+          y: 0,
+        },
+      },
+    ]);
+  };
+
+  const onArticleSelect = (article: {
+    _id: string;
+    title: string;
+    featureImage: string;
+    featureImageCPR: string;
+    content: string;
+    tags: string[];
+  }) => {
+    onArticleClose();
+    setNodes([
+      ...nodes,
+      {
+        type: "article",
+        id: article._id + "_" + Math.random() * 1000,
+        data: article,
         position: {
           x: 0,
           y: 0,
@@ -343,7 +375,12 @@ export default function AdminLearningGraph() {
             <IonIcon ios={add} md={addSharp} />
           </IonFabButton>
           <IonFabList side={"top"}>
-            <IonFabButton color={"success"}>
+            <IonFabButton
+              color={"success"}
+              onClick={async () => {
+                onArticleOpen();
+              }}
+            >
               <FaFileLines />
             </IonFabButton>
             <IonFabButton
@@ -373,6 +410,11 @@ export default function AdminLearningGraph() {
           onClose={onQuizClose}
           isOpen={isQuizOpen}
           onSelection={onQuizSelect}
+        />
+        <ArticleSelector
+          onClose={onArticleClose}
+          isOpen={isArticleOpen}
+          onSelection={onArticleSelect}
         />
       </Page>
     </>

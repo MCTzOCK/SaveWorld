@@ -90,7 +90,7 @@ export default function QuizSelector(props: {
     <SaveWorldModal
       isOpen={props.isOpen}
       onClose={props.onClose}
-      title={$$("components.learning.graphs.select.video.title")}
+      title={$$("components.learning.graphs.select.quiz.title")}
     >
       <IonSearchbar
         value={query}
