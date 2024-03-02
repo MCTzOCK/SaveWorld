@@ -19,7 +19,14 @@ import {
   FaStarOfLife,
   FaUser,
 } from "react-icons/fa";
-import { FaLifeRing, FaUsers, FaUtensils, FaVideo } from "react-icons/fa6";
+import {
+  FaFileLines,
+  FaLifeRing,
+  FaQuestion,
+  FaUsers,
+  FaUtensils,
+  FaVideo,
+} from "react-icons/fa6";
 import { $$ } from "../translations/i18n";
 
 export default function AdminTools(props: { query: string }) {
@@ -70,6 +77,18 @@ export default function AdminTools(props: { query: string }) {
       icon: <FaProjectDiagram />,
       text: $$("components.admin.stats.projects"),
       url: "/admin/eco-projects",
+      color: "red.500",
+    },
+    {
+      icon: <FaFileLines />,
+      text: $$("components.articles"),
+      url: "/admin/articles",
+      color: "red.500",
+    },
+    {
+      icon: <FaQuestion />,
+      text: $$("menu.quizzes"),
+      url: "/admin/quizzes",
       color: "red.500",
     },
   ];

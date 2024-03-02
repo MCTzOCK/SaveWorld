@@ -24,6 +24,9 @@ import { FastifySchemas } from "../Schemas";
 import { sendPN } from "../util/sendPN";
 import LifestyleTemplateModel from "../models/LifestyleTemplateModel";
 import mongoose from "mongoose";
+import ArticleModel from "../models/ArticleModel";
+import QuizModel from "../models/QuizModel";
+import LearningGraphModel from "../models/LearningGraphModel";
 export default async function adminPlugin(app: FastifyInstance, opts: any) {
   app.get(
     "/admin/adp/models",
@@ -1172,6 +1175,401 @@ export default async function adminPlugin(app: FastifyInstance, opts: any) {
       res.status(200).send({
         status: 200,
         message: "Updated video",
+      });
+    },
+  );
+
+  app.post(
+    "/admin/content/articles",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Creates an article",
+          summary: "Create article",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Body: {
+          title: string;
+          content: string;
+          tags: string[];
+          featureImage: string;
+          featureImageAuthor: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { title, content, tags, featureImage, featureImageAuthor } =
+        req.body;
+
+      if (!title || !content || !tags || !featureImage || !featureImageAuthor) {
+        res.status(400).send({
+          error: "Bad Request",
+          status: 400,
+        });
+        return;
+      }
+
+      const articleModel = await ArticleModel.create({
+        title,
+        content,
+        tags,
+        featureImage,
+        featureImageCPR: featureImageAuthor,
+      });
+
+      res.status(200).send({
+        status: 200,
+        message: "Article created",
+        article: articleModel,
+      });
+    },
+  );
+
+  app.delete(
+    "/admin/content/articles",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Deletes an article",
+          summary: "Delete article",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Querystring: {
+          id: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { id } = req.query;
+
+      if (!id) {
+        res.status(400).send({
+          error: "Bad Request",
+          status: 400,
+        });
+        return;
+      }
+
+      const article = await ArticleModel.findById(id);
+
+      if (!article) {
+        res.status(404).send({
+          error: "Not Found",
+          status: 404,
+        });
+        return;
+      }
+
+      await article.deleteOne();
+
+      res.status(200).send({
+        status: 200,
+        message: "Deleted",
+      });
+    },
+  );
+
+  app.put(
+    "/admin/content/articles",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Updates an article",
+          summary: "Update article",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Querystring: {
+          id: string;
+        };
+        Body: {
+          title: string;
+          content: string;
+          tags: string[];
+          featureImage: string;
+          featureImageAuthor: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { id } = req.query;
+      const { title, content, tags, featureImage, featureImageAuthor } =
+        req.body;
+
+      if (
+        !id ||
+        !title ||
+        !content ||
+        !tags ||
+        !featureImage ||
+        !featureImageAuthor
+      ) {
+        res.status(400).send({
+          error: "Bad Request",
+          status: 400,
+        });
+        return;
+      }
+
+      const article = await ArticleModel.findById(id);
+
+      if (!article) {
+        res.status(404).send({
+          error: "Not Found",
+          status: 404,
+        });
+        return;
+      }
+
+      article.title = title;
+      article.content = content;
+      article.tags = tags;
+      article.featureImage = featureImage;
+      article.featureImageCPR = featureImageAuthor;
+
+      await article.save();
+
+      res.status(200).send({
+        status: 200,
+        message: "Updated",
+      });
+    },
+  );
+
+  app.post(
+    "/admin/content/quizzes",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Creates a quiz",
+          summary: "Create quiz",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Body: {
+          title: string;
+          answers: string[];
+          correctAnswer: number;
+          featureImage: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { title, answers, correctAnswer, featureImage } = req.body;
+
+      if (!title || !answers || !correctAnswer || !featureImage) {
+        res.status(400).send({
+          error: "Bad Request",
+          status: 400,
+        });
+        return;
+      }
+
+      const quiz = await QuizModel.create({
+        title,
+        answers,
+        correctAnswer,
+        featureImage,
+      });
+
+      res.status(200).send({
+        status: 200,
+        message: "Quiz created",
+        quiz: quiz,
+      });
+    },
+  );
+
+  app.put(
+    "/admin/content/quizzes",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Updates a quiz",
+          summary: "Update quiz",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Querystring: {
+          id: string;
+        };
+        Body: {
+          title: string;
+          answers: string[];
+          correctAnswer: number;
+          featureImage: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { id } = req.query;
+      const { title, answers, correctAnswer, featureImage } = req.body;
+
+      if (!id || !title || !answers || !correctAnswer || !featureImage) {
+        res.status(400).send({
+          error: "Bad Request",
+          status: 400,
+        });
+        return;
+      }
+
+      const quiz = await QuizModel.findById(id);
+
+      if (!quiz) {
+        res.status(404).send({
+          error: "Not Found",
+          status: 404,
+        });
+        return;
+      }
+
+      quiz.title = title;
+      quiz.answers = answers;
+      quiz.correctAnswer = correctAnswer;
+      quiz.featureImage = featureImage;
+
+      await quiz.save();
+
+      res.status(200).send({
+        status: 200,
+        message: "Updated",
+      });
+    },
+  );
+
+  app.delete(
+    "/admin/content/quizzes",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Deletes a quiz",
+          summary: "Delete quiz",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Querystring: {
+          id: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { id } = req.query;
+
+      if (!id) {
+        res.status(400).send({
+          error: "Bad Request",
+          status: 400,
+        });
+        return;
+      }
+
+      const quiz = await QuizModel.findById(id);
+
+      if (!quiz) {
+        res.status(404).send({
+          error: "Not Found",
+          status: 404,
+        });
+        return;
+      }
+
+      await quiz.deleteOne();
+
+      res.status(200).send({
+        status: 200,
+        message: "Deleted",
+      });
+    },
+  );
+
+  app.post(
+    "/admin/learning-graph",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Creates a learning graph",
+          summary: "Create learning graph",
+          tags: ["admin"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Body: {
+          category: string;
+          json: string;
+        };
+      }>,
+      res,
+    ) => {
+      const { auth, user } = await defaultAdminAuth(req, res);
+
+      const { category, json } = req.body;
+
+      const learningGraph = await LearningGraphModel.findOne({
+        category,
+      });
+
+      if (learningGraph) {
+        learningGraph.json = json;
+        learningGraph.markModified("json");
+        await learningGraph.save();
+      } else {
+        await LearningGraphModel.create({
+          category,
+          json,
+        });
+      }
+
+      res.status(200).send({
+        status: 200,
+        message: "Created or updated",
       });
     },
   );

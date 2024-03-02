@@ -29,6 +29,7 @@ import { useFlags } from "flagsmith/react";
 import { FaUtensils } from "react-icons/fa6";
 import { $$ } from "../translations/i18n";
 import { FaProjectDiagram } from "react-icons/fa";
+import { RiMindMap } from "react-icons/ri";
 
 export default function Home() {
   const flags = useFlags([
@@ -153,6 +154,12 @@ export default function Home() {
                     url={"/sustainability/articles"}
                   />
                 ) : null}
+                <HomeCardV2
+                  color={"purple.500"}
+                  icon={<RiMindMap />}
+                  text={$$("components.learning.graphs")}
+                  url={"/learn/graphs"}
+                />
                 <HomeCardV2
                   color={"pink.500"}
                   icon={<BiCog />}

@@ -310,7 +310,7 @@ import { INFO } from "./local-depl-info";
 
   await fastify.listen(process.env.PORT || 3000, "0.0.0.0");
 
-  scheduler.scheduleJob("28 12 * * *", async () => {
+  scheduler.scheduleJob("0 12 * * *", async () => {
     await UserPreferencesModel.updateMany(
       {
         ai_left_usage: { $lt: 6 },

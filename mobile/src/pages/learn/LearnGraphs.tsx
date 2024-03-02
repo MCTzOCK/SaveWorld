@@ -1,0 +1,92 @@
+/**
+ * mobile/src/pages/learn/LearnGraphs.tsx
+ *
+ * Author: Ben Siebert <hello@ben-siebert.de>
+ * Copyright: Copyright (c) 2018-2024 Ben Siebert. All rights reserved.
+ * License: Project License
+ * Created At: 02.03.2024
+ *
+ */
+
+import * as React from "react";
+import Page from "../../components/Page";
+import { $$ } from "../../translations/i18n";
+import { useEffect, useState } from "react";
+import { REST } from "@saveworld/api-js";
+import { translateOnlineV3 } from "../../util/online-translate";
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  Grid,
+  Image,
+  Link,
+  Text,
+} from "@chakra-ui/react";
+import { useIonRouter } from "@ionic/react";
+import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
+
+export default function LearnGraphs() {
+  const [categories, setCategories] = useState<
+    {
+      _id: string;
+      name: string;
+      description: string;
+      image: string;
+    }[]
+  >([]);
+
+  useEffect(() => {
+    reload();
+  }, []);
+
+  const reload = () => {
+    REST.Content.categories().then(async (res) => {
+      if (res.status === 200) {
+        let chan = res.payload as any;
+        setCategories(res.payload as any);
+      }
+    });
+  };
+
+  const router = useIonRouter();
+
+  return (
+    <>
+      <Page title={$$("components.learning.graphs")}>
+        <Grid
+          templateColumns={[
+            "repeat(1, 1fr)",
+            "repeat(3, 1fr)",
+            "repeat(4, 1fr)",
+            "repeat(5, 1fr)",
+          ]}
+          gap={6}
+        >
+          {categories.map((c) => (
+            <Card
+              key={c._id}
+              bg={"gray.900"}
+              as={Link}
+              href={"/learn/graphs/" + c._id}
+              onClick={(e) => {
+                e.preventDefault();
+                router.push("/learn/graphs/" + c._id);
+              }}
+            >
+              <Image src={c.image} roundedTop={"md"} />
+              <CardHeader>
+                <Text fontWeight={"bold"} fontSize={"xl"}>
+                  {c.name}
+                </Text>
+              </CardHeader>
+              <CardBody>
+                <Text fontSize={"lg"}>{c.description}</Text>
+              </CardBody>
+            </Card>
+          ))}
+        </Grid>
+      </Page>
+    </>
+  );
+}

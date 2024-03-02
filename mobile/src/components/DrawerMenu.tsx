@@ -85,6 +85,8 @@ import SaveWorldModal from "./SaveWorldModal";
 import { useFlags } from "flagsmith/react";
 import { $$ } from "../translations/i18n";
 import { MdQueryStats } from "react-icons/md";
+import { BsFileBarGraph } from "react-icons/bs";
+import { RiMindMap } from "react-icons/ri";
 
 export default function DrawerMenu(props: {
   isOpen: boolean;
@@ -240,6 +242,13 @@ export default function DrawerMenu(props: {
         },
       });
     }
+    gr[2].items.push({
+      label: $$("components.learning.graphs"),
+      icon: <RiMindMap />,
+      onClick: () => {
+        router.push("/learn/graphs", "none", "replace");
+      },
+    });
     if (flags.tracker.enabled) {
       gr.push({
         label: $$("menu.tracker"),

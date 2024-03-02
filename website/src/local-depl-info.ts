@@ -1,9 +1,9 @@
 export const INFO = {
   "git": {
-    "commits": 1044,
-    "commit": "8cfd7d",
-    "branch": "main",
-    "lastCommitMessage": "Merge pull request #121 from MCTzOCK/features/login-magic-linksFeatures/login magic links"
+    "commits": 1076,
+    "commit": "33dd30",
+    "branch": "features/learning-tree",
+    "lastCommitMessage": "update translations"
   },
-  "sloc": 67881
+  "sloc": 71920
 };
