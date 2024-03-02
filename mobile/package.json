@@ -41,6 +41,7 @@
     "@types/tryghost__content-api": "^1.3.13",
     "@uiw/react-md-editor": "^3.23.6",
     "byte-size": "^8.1.1",
+    "capacitor-rate-app": "^4.0.3",
     "chart.js": "^4.4.0",
     "easymde": "^2.18.0",
     "flagsmith": "^3.21.0",

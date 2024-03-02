@@ -857,4 +857,5 @@ export const german = {
   "pages.fooddata.ecoscore.d": "Hohe Umweltauswirkungen",
   "pages.fooddata.ecoscore.e": "Sehr hohe Umweltauswirkungen",
   "pages.fooddata.na": "Nicht verfügbar",
+  "general.rating.title": "Wie gefällt dir SaveWorld?",
 } as const;
