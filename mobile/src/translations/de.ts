@@ -836,4 +836,24 @@ export const german = {
   "components.learning.graphs.nodes.article": "Artikel",
   "components.learning.graphs.select.quiz.title": "Quiz auswählen",
   "components.learning.graphs.select.article.title": "Artikel auswählen",
+  "pages.fooddata.title": "Lebensmittel Daten",
+  "pages.fooddata.description":
+    "Hier kannst du dir Daten zu einem Lebensmittel anzeigen lassen. Für die meisten Lebensmittel gibt es ebenfalls Umweltinformationen. Alle Daten stammen von der OpenFoodFacts Datenbank, welche unter der Open Database License (ODbL) veröffentlicht ist.",
+  "pages.fooddata.barcode.scan": "Barcode scannen",
+  "control.or": "oder",
+  "pages.fooddata.ean.number": "EAN Nummer (GTIN)",
+  "pages.fooddata.ean.submit": "Daten anzeigen",
+  "pages.fooddata.error.notfound":
+    "Das gesuchte Lebensmittel wurde nicht gefunden.",
+  "pages.fooddata.nutriscore": "Nutri-Score",
+  "pages.fooddata.nutriscore.description":
+    "Der Nutri-Score ist ein Label, welches die Nährwertqualität eines Lebensmittels anzeigt.Der Nutri-Score reicht von A (grün) bis E (rot). A ist die beste Bewertung, E die schlechteste. Der Nutri-Score basiert auf den Nährwertangaben pro 100g des Lebensmittels.",
+  "pages.fooddata.packaging": "Verpackung",
+  "pages.fooddata.quantity": "Menge",
+  "pages.fooddata.ecoscore": "Öko-Score",
+  "pages.fooddata.ecoscore.a": "Sehr niedrige Umweltauswirkungen",
+  "pages.fooddata.ecoscore.b": "Niedrige Umweltauswirkungen",
+  "pages.fooddata.ecoscore.c": "Moderate Umweltauswirkungen",
+  "pages.fooddata.ecoscore.d": "Hohe Umweltauswirkungen",
+  "pages.fooddata.ecoscore.e": "Sehr hohe Umweltauswirkungen",
 } as const;

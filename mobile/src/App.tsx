@@ -136,6 +136,8 @@ import AdminLearningGraphs from "./pages/admin/AdminLearningGraphs";
 import AdminLearningGraph from "./pages/admin/AdminLearningGraph";
 import LearnGraphs from "./pages/learn/LearnGraphs";
 import LearnGraph from "./pages/learn/LearnGraph";
+import FoodData from "./pages/fooddata/FoodData";
+import FoodDataViewer from "./pages/fooddata/FoodDataViewer";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -378,6 +380,8 @@ export default function App() {
           </Page>
         );
       },
+      "/fooddata": FoodData,
+      "/fooddata/:ean": FoodDataViewer,
       //KEEP_ROUTES
     });
   }, [flags]);
