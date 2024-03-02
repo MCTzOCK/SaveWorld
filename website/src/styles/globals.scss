@@ -1,24 +1,5 @@
 @import url("https://rsms.me/inter/inter.css");
 
-body.barcode-scanner-active {
-  visibility: hidden;
-  display: none !important;
-
-  --background: transparent;
-  --ion-background-color: transparent;
-}
-
-.barcode-scanner-modal {
-  visibility: visible;
-}
-
-@media (prefers-color-scheme: dark) {
-  .barcode-scanner-modal {
-    --background: transparent;
-    --ion-background-color: transparent;
-  }
-}
-
 * {
   scrollbar-width: thin;
   font-family:

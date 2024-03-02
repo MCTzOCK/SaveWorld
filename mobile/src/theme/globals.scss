@@ -13,6 +13,25 @@
   src: url("/assets/fonts/geist/GeistVariableVF.ttf") format("truetype");
 }
 
+body.barcode-scanner-active {
+  visibility: hidden;
+  display: none !important;
+
+  --background: transparent;
+  --ion-background-color: transparent;
+}
+
+.barcode-scanner-modal {
+  visibility: visible;
+}
+
+@media (prefers-color-scheme: dark) {
+  .barcode-scanner-modal {
+    --background: transparent;
+    --ion-background-color: transparent;
+  }
+}
+
 *,
 *::before,
 *::after {
