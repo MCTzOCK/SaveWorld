@@ -73,8 +73,6 @@ export default function AdminLearningGraph() {
   });
   const { id } = useParams<{ id: string }>();
 
-  React.useEffect(() => {}, []);
-
   const [nodes, setNodes] = React.useState<Node[]>([]);
   const [edges, setEdges] = React.useState<Edge[]>([]);
 

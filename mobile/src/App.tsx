@@ -134,6 +134,8 @@ import AdminQuizzesDashboard from "./pages/admin/AdminQuizzesDashboard";
 import QuizzesV2 from "./pages/quizzes/QuizzesV2";
 import AdminLearningGraphs from "./pages/admin/AdminLearningGraphs";
 import AdminLearningGraph from "./pages/admin/AdminLearningGraph";
+import LearnGraphs from "./pages/learn/LearnGraphs";
+import LearnGraph from "./pages/learn/LearnGraph";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -263,6 +265,8 @@ export default function App() {
       "/admin/learning-graphs": AdminLearningGraphs,
       "/admin/learning-graphs/:id": AdminLearningGraph,
       "/learn": flags.videos.enabled ? Videos : NotFound,
+      "/learn/graphs": LearnGraphs,
+      "/learn/graphs/:id": LearnGraph,
       "/learn/channels": flags.video_category_channels.enabled
         ? Channels
         : NotFound,
