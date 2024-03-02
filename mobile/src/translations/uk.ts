@@ -661,5 +661,21 @@ export const uk = {
   "pages.admin.articles.new.feature.image.author": "Автор картини",
   "pages.admin.articles.new.tags": "Панчохи",
   "pages.admin.articles.new.content": "Зміст",
-  "pages.admin.articles.delete.confirm": "Ви впевнені, що ви хочете видалити статтю?"
+  "pages.admin.articles.delete.confirm": "Ви впевнені, що ви хочете видалити статтю?",
+  "components.learning.graphs": "Навчальні графіки",
+  "components.learning.graphs.error.loading": "Завантажити граф",
+  "components.learning.graphs.inspector": "Інспектор",
+  "components.learning.graphs.node": "Ні",
+  "components.learning.graphs.edge": "Краіна",
+  "components.learning.graphs.edge.animated": "Анімація",
+  "components.learning.graphs.inspector.nothing.selected": "Ніщо вибрано",
+  "components.learning.graphs.edge.label": "Етикетка",
+  "components.learning.graphs.node.type": "Тип",
+  "components.learning.graphs.select.video.title": "Виберіть відео",
+  "components.learn.watch": "Про нас",
+  "components.learning.graphs.nodes.video": "Відео",
+  "components.learning.graphs.nodes.quiz": "Напляскване",
+  "components.learning.graphs.nodes.article": "Статті 2",
+  "components.learning.graphs.select.quiz.title": "Виберіть вікторину",
+  "components.learning.graphs.select.article.title": "Оберіть товар"
 };

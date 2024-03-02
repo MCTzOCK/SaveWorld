@@ -661,5 +661,21 @@ export const ja = {
   "pages.admin.articles.new.feature.image.author": "写真の著者",
   "pages.admin.articles.new.tags": "ニュース",
   "pages.admin.articles.new.content": "コンテンツ",
-  "pages.admin.articles.delete.confirm": "記事を削除したいですか?"
+  "pages.admin.articles.delete.confirm": "記事を削除したいですか?",
+  "components.learning.graphs": "グラフの学習",
+  "components.learning.graphs.error.loading": "グラフをロードするエラー",
+  "components.learning.graphs.inspector": "インスペクター",
+  "components.learning.graphs.node": "なし",
+  "components.learning.graphs.edge": "エッジ",
+  "components.learning.graphs.edge.animated": "アニメーション",
+  "components.learning.graphs.inspector.nothing.selected": "選択なし",
+  "components.learning.graphs.edge.label": "ラベル",
+  "components.learning.graphs.node.type": "タイプ:",
+  "components.learning.graphs.select.video.title": "ビデオを選択",
+  "components.learn.watch": "ウォッチ",
+  "components.learning.graphs.nodes.video": "ビデオ",
+  "components.learning.graphs.nodes.quiz": "クイズ",
+  "components.learning.graphs.nodes.article": "第2条",
+  "components.learning.graphs.select.quiz.title": "クイズを選択",
+  "components.learning.graphs.select.article.title": "アイテムを選択"
 };

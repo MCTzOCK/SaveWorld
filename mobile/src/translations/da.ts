@@ -661,5 +661,21 @@ export const da = {
   "pages.admin.articles.new.feature.image.author": "Forfatter af billedet",
   "pages.admin.articles.new.tags": "Tags",
   "pages.admin.articles.new.content": "Indholdsfortegnelse",
-  "pages.admin.articles.delete.confirm": "Er du sikker på, at du vil slette artiklen?"
+  "pages.admin.articles.delete.confirm": "Er du sikker på, at du vil slette artiklen?",
+  "components.learning.graphs": "Læringsgrafer",
+  "components.learning.graphs.error.loading": "Fejl ved indlæsning af grafen",
+  "components.learning.graphs.inspector": "Inspektion",
+  "components.learning.graphs.node": "Ingen",
+  "components.learning.graphs.edge": "Kantkant",
+  "components.learning.graphs.edge.animated": "Animeret",
+  "components.learning.graphs.inspector.nothing.selected": "Intet valgt",
+  "components.learning.graphs.edge.label": "Etiketter",
+  "components.learning.graphs.node.type": "Type",
+  "components.learning.graphs.select.video.title": "Vælg video",
+  "components.learn.watch": "Se Watch Watch Watch",
+  "components.learning.graphs.nodes.video": "Video",
+  "components.learning.graphs.nodes.quiz": "Quiz",
+  "components.learning.graphs.nodes.article": "Artikel 2",
+  "components.learning.graphs.select.quiz.title": "Vælg en quiz",
+  "components.learning.graphs.select.article.title": "Vælg element"
 };

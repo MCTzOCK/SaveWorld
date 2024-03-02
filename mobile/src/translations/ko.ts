@@ -661,5 +661,21 @@ export const ko = {
   "pages.admin.articles.new.feature.image.author": "사진의 저자",
   "pages.admin.articles.new.tags": "이름 *",
   "pages.admin.articles.new.content": "제품정보",
-  "pages.admin.articles.delete.confirm": "기사를 삭제하시겠습니까?"
+  "pages.admin.articles.delete.confirm": "기사를 삭제하시겠습니까?",
+  "components.learning.graphs": "학습 그래프",
+  "components.learning.graphs.error.loading": "오류 로딩",
+  "components.learning.graphs.inspector": "검사기",
+  "components.learning.graphs.node": "없음",
+  "components.learning.graphs.edge": "제품 정보",
+  "components.learning.graphs.edge.animated": "인기있는",
+  "components.learning.graphs.inspector.nothing.selected": "선택 없음",
+  "components.learning.graphs.edge.label": "이름 *",
+  "components.learning.graphs.node.type": "제품정보",
+  "components.learning.graphs.select.video.title": "동영상 보기",
+  "components.learn.watch": "제품정보",
+  "components.learning.graphs.nodes.video": "(주)",
+  "components.learning.graphs.nodes.quiz": "한국어",
+  "components.learning.graphs.nodes.article": "제2조",
+  "components.learning.graphs.select.quiz.title": "퀴즈 선택",
+  "components.learning.graphs.select.article.title": "선택 항목"
 };

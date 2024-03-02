@@ -661,5 +661,21 @@ export const el = {
   "pages.admin.articles.new.feature.image.author": "Συγγραφέας της εικόνας",
   "pages.admin.articles.new.tags": "Ετικέτες",
   "pages.admin.articles.new.content": "Περιεχόμενα",
-  "pages.admin.articles.delete.confirm": "Είστε σίγουροι ότι θέλετε να διαγράψετε το άρθρο?"
+  "pages.admin.articles.delete.confirm": "Είστε σίγουροι ότι θέλετε να διαγράψετε το άρθρο?",
+  "components.learning.graphs": "Διαγράμματα εκμάθησης",
+  "components.learning.graphs.error.loading": "Σφάλμα φόρτωσης του γραφήματος",
+  "components.learning.graphs.inspector": "Επιθεωρητής",
+  "components.learning.graphs.node": "Όχι",
+  "components.learning.graphs.edge": "Άκρο",
+  "components.learning.graphs.edge.animated": "Κινούμενα",
+  "components.learning.graphs.inspector.nothing.selected": "Τίποτα επιλεγμένο",
+  "components.learning.graphs.edge.label": "Ετικέτα",
+  "components.learning.graphs.node.type": "Τύπος",
+  "components.learning.graphs.select.video.title": "Επιλογή βίντεο",
+  "components.learn.watch": "Κοίτα",
+  "components.learning.graphs.nodes.video": "Βίντεο",
+  "components.learning.graphs.nodes.quiz": "Κουίζ",
+  "components.learning.graphs.nodes.article": "Άρθρο 2",
+  "components.learning.graphs.select.quiz.title": "Επιλέξτε ένα κουίζ",
+  "components.learning.graphs.select.article.title": "Επιλογή αντικειμένου"
 };

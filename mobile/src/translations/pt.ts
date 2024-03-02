@@ -661,5 +661,21 @@ export const pt = {
   "pages.admin.articles.new.feature.image.author": "Autor da imagem",
   "pages.admin.articles.new.tags": "Tags",
   "pages.admin.articles.new.content": "Índice",
-  "pages.admin.articles.delete.confirm": "Tem certeza de que deseja excluir o artigo?"
+  "pages.admin.articles.delete.confirm": "Tem certeza de que deseja excluir o artigo?",
+  "components.learning.graphs": "Gráficos de aprendizagem",
+  "components.learning.graphs.error.loading": "Erro ao carregar o gráfico",
+  "components.learning.graphs.inspector": "Inspector",
+  "components.learning.graphs.node": "Não",
+  "components.learning.graphs.edge": "Borda",
+  "components.learning.graphs.edge.animated": "Animação",
+  "components.learning.graphs.inspector.nothing.selected": "Nada selecionado",
+  "components.learning.graphs.edge.label": "Etiqueta",
+  "components.learning.graphs.node.type": "Tipo",
+  "components.learning.graphs.select.video.title": "Selecione vídeo",
+  "components.learn.watch": "Cuidado",
+  "components.learning.graphs.nodes.video": "Vídeo",
+  "components.learning.graphs.nodes.quiz": "Por favor",
+  "components.learning.graphs.nodes.article": "Artigo 2.°",
+  "components.learning.graphs.select.quiz.title": "Selecione um questionário",
+  "components.learning.graphs.select.article.title": "Selecione o item"
 };

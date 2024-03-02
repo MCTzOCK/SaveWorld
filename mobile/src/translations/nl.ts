@@ -661,5 +661,21 @@ export const nl = {
   "pages.admin.articles.new.feature.image.author": "Auteur van de foto",
   "pages.admin.articles.new.tags": "Tags",
   "pages.admin.articles.new.content": "Inhoud",
-  "pages.admin.articles.delete.confirm": "Weet u zeker dat u het artikel wilt verwijderen?"
+  "pages.admin.articles.delete.confirm": "Weet u zeker dat u het artikel wilt verwijderen?",
+  "components.learning.graphs": "Leergrafieken",
+  "components.learning.graphs.error.loading": "Fout bij laden van de grafiek",
+  "components.learning.graphs.inspector": "Inspecteur",
+  "components.learning.graphs.node": "Nee",
+  "components.learning.graphs.edge": "Rand",
+  "components.learning.graphs.edge.animated": "Geanimeerd",
+  "components.learning.graphs.inspector.nothing.selected": "Niets geselecteerd",
+  "components.learning.graphs.edge.label": "Label",
+  "components.learning.graphs.node.type": "Type",
+  "components.learning.graphs.select.video.title": "Video selecteren",
+  "components.learn.watch": "Kijk",
+  "components.learning.graphs.nodes.video": "Video",
+  "components.learning.graphs.nodes.quiz": "Quiz",
+  "components.learning.graphs.nodes.article": "Artikel 2",
+  "components.learning.graphs.select.quiz.title": "Een quiz selecteren",
+  "components.learning.graphs.select.article.title": "Item selecteren"
 };
