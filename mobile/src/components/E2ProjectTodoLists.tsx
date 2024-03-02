@@ -126,7 +126,7 @@ export default function E2ProjectTodoLists(props: {
                               "/todos/" +
                               list._id,
                             "none",
-                            "replace",
+                            "push",
                           );
                         }}
                       />

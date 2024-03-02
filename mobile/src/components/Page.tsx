@@ -77,7 +77,7 @@ import DrawerMenu from "./DrawerMenu";
 import FloatingNavbar from "./FloatingNavbar";
 import { useFlags } from "flagsmith/react";
 import { FaBars, FaRobot } from "react-icons/fa6";
-import { FaHome } from "react-icons/fa";
+import { FaBackward, FaHome } from "react-icons/fa";
 import { $$ } from "../translations/i18n";
 
 export default function Page(props: {
@@ -134,6 +134,10 @@ export default function Page(props: {
               fontWeight={1000}
               color={props.redGradient ? "red.500" : "brand.500"}
               size={"lg"}
+              onClick={() => {
+                router.push("/");
+              }}
+              cursor={"pointer"}
             >
               {props.title}
               {props.isBeta && (
@@ -145,25 +149,13 @@ export default function Page(props: {
             {loggedIn && (
               <ButtonGroup>
                 {props.endButtons}
-                {flags.ai_helper.enabled && (
-                  <IconButton
-                    size={"lg"}
-                    onClick={() => {
-                      router.push("/ai");
-                    }}
-                    icon={<FaRobot />}
-                    aria-label={$$("pages.ai.title")}
-                    variant={"ghost"}
-                    color={props.redGradient ? "red.500" : "brand.500"}
-                  />
-                )}
                 <IconButton
                   size={"lg"}
+                  aria-label={"Back"}
+                  icon={<FaBackward />}
                   onClick={() => {
-                    router.push("/");
+                    router.goBack();
                   }}
-                  icon={<FaHome />}
-                  aria-label={$$("menu.home")}
                   variant={"ghost"}
                   color={props.redGradient ? "red.500" : "brand.500"}
                 />

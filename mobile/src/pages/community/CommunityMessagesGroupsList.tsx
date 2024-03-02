@@ -117,7 +117,7 @@ export default function CommunityMessagesGroupsList(props: { socket: Socket }) {
         <IonSegment
           value={"groups"}
           onIonChange={(e) => {
-            router.push("/community/messages", "none", "replace");
+            router.push("/community/messages", "forward", "push");
           }}
         >
           <IonSegmentButton value="chats">

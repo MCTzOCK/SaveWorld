@@ -116,7 +116,7 @@ export default function CommunityProfile(props: { socket: Socket }) {
             res.payload.error,
           ),
           callback: () => {
-            router.push("/community", "none", "replace");
+            router.push("/community", "forward", "push");
           },
         });
       }

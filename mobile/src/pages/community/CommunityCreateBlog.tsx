@@ -86,7 +86,7 @@ export default function CommunityCreateBlog() {
                     )}{" "}
                     <a
                       onClick={() => {
-                        router.push("/resources/md-help", "none", "replace");
+                        router.push("/resources/md-help", "forward", "push");
                       }}
                       style={{
                         color: "var(--ion-color-success)",
@@ -221,7 +221,7 @@ export default function CommunityCreateBlog() {
                 router.push(
                   "/community/r/" + res.payload.entry._id,
                   "forward",
-                  "replace",
+                  "push",
                 );
               } else {
                 PopupManager.alert({

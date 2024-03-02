@@ -44,7 +44,7 @@ export default function Sustainability() {
             w={"100%"}
             mt={4}
             onClick={() => {
-              router.push("/sustainability/articles", "none", "push");
+              router.push("/sustainability/articles", "forward", "push");
             }}
           >
             {$$("pages.sustainability.call.to.action")}

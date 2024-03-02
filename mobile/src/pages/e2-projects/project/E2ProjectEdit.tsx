@@ -48,7 +48,7 @@ export default function E2ProjectEdit() {
           "NONE",
       )
     ) {
-      router.push("/e2-projects/" + id, "none", "replace");
+      router.push("/e2-projects/" + id, "forward", "push");
     }
   }, [loggedIn, userInfo, project]);
 
@@ -59,7 +59,7 @@ export default function E2ProjectEdit() {
     );
 
     if (res.status !== 200) {
-      router.push("/e2-projects/" + id, "none", "replace");
+      router.push("/e2-projects/" + id, "forward", "push");
     } else {
       setProject(res.payload.project);
     }

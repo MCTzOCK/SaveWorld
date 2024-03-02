@@ -117,7 +117,7 @@ export default function E2FindProjectsMap() {
                                           router.push(
                                             "/e2-projects/" + p._id,
                                             "none",
-                                            "replace",
+                                            "push",
                                           );
                                         }}
                                       >

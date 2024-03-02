@@ -90,7 +90,7 @@ export default function Notifications() {
                       router.push(
                         n.launch_url.split(".one")[1],
                         "none",
-                        "replace",
+                        "push",
                       );
                     } else {
                       loadPage(page);

@@ -167,7 +167,7 @@ export default function StartE2Project() {
                             "pages.e2projects.start.created.description",
                           ),
                         });
-                        router.push("/e2-projects/my", "none", "replace");
+                        router.push("/e2-projects/my", "forward", "push");
                       } else {
                         await PopupManager.alertAsync({
                           title: $$("control.error"),
