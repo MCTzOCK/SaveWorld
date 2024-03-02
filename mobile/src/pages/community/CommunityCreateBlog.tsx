@@ -40,6 +40,7 @@ import { Button } from "@chakra-ui/react";
 import { uploadImage } from "../../util/files";
 import { ENDPOINT } from "../../env";
 import { $$ } from "../../translations/i18n";
+import { requestRating } from "../../util/rating";
 
 export default function CommunityCreateBlog() {
   useRedirectForAnon();
@@ -223,6 +224,7 @@ export default function CommunityCreateBlog() {
                   "forward",
                   "push",
                 );
+                requestRating();
               } else {
                 PopupManager.alert({
                   title: $$("control.error"),

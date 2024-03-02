@@ -14,7 +14,8 @@ import { RateApp } from "capacitor-rate-app";
 import { isPlatform } from "@ionic/react";
 
 export async function requestRating() {
-  if (isPlatform("ios")) {
+  if (isPlatform("ios") && localStorage.getItem("rated") !== "true") {
+    localStorage.setItem("rated", "true");
     await PopupManager.alertAsync({
       title: $$("general.rating.title"),
       description: (
