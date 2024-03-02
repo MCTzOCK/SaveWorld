@@ -856,4 +856,5 @@ export const german = {
   "pages.fooddata.ecoscore.c": "Moderate Umweltauswirkungen",
   "pages.fooddata.ecoscore.d": "Hohe Umweltauswirkungen",
   "pages.fooddata.ecoscore.e": "Sehr hohe Umweltauswirkungen",
+  "pages.fooddata.na": "Nicht verfügbar",
 } as const;

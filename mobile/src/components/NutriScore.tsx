@@ -9,7 +9,8 @@
  */
 
 import * as React from "react";
-import { Box, HStack } from "@chakra-ui/react";
+import { Box, HStack, Text } from "@chakra-ui/react";
+import { $$ } from "../translations/i18n";
 
 export default function NutriScore(props: { grade: string; score: number }) {
   const compare = (a: string, b: string) => {
@@ -20,40 +21,44 @@ export default function NutriScore(props: { grade: string; score: number }) {
 
   return (
     <>
-      <HStack
-        gap={0}
-        w={"100%"}
-        justifyContent={"center"}
-        alignItems={"center"}
-      >
-        <NutriEntry
-          text={"A"}
-          color={"brand.500"}
-          rStart
-          big={compare(props.grade, "a")}
-        />
-        <NutriEntry
-          text={"B"}
-          color={"green.400"}
-          big={compare(props.grade, "b")}
-        />
-        <NutriEntry
-          text={"C"}
-          color={"yellow.500"}
-          big={compare(props.grade, "c")}
-        />
-        <NutriEntry
-          text={"D"}
-          color={"orange.500"}
-          big={compare(props.grade, "d")}
-        />
-        <NutriEntry
-          text={"E"}
-          color={"red.500"}
-          rEnd
-          big={compare(props.grade, "e")}
-        />
-      </HStack>
+      {!props.grade ? (
+        <Text>{$$("pages.fooddata.na")}</Text>
+      ) : (
+        <HStack
+          gap={0}
+          w={"100%"}
+          justifyContent={"center"}
+          alignItems={"center"}
+        >
+          <NutriEntry
+            text={"A"}
+            color={"brand.500"}
+            rStart
+            big={compare(props.grade, "a")}
+          />
+          <NutriEntry
+            text={"B"}
+            color={"green.400"}
+            big={compare(props.grade, "b")}
+          />
+          <NutriEntry
+            text={"C"}
+            color={"yellow.500"}
+            big={compare(props.grade, "c")}
+          />
+          <NutriEntry
+            text={"D"}
+            color={"orange.500"}
+            big={compare(props.grade, "d")}
+          />
+          <NutriEntry
+            text={"E"}
+            color={"red.500"}
+            rEnd
+            big={compare(props.grade, "e")}
+          />
+        </HStack>
+      )}
     </>
   );
 }
