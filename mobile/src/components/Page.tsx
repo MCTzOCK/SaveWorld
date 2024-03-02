@@ -67,6 +67,7 @@ import {
   ChakraProvider,
   Flex,
   Heading,
+  HStack,
   IconButton,
   Link,
   Spinner,
@@ -76,7 +77,7 @@ import { theme } from "../theme/chakra";
 import DrawerMenu from "./DrawerMenu";
 import FloatingNavbar from "./FloatingNavbar";
 import { useFlags } from "flagsmith/react";
-import { FaBars, FaRobot } from "react-icons/fa6";
+import { FaBars, FaChevronLeft, FaRobot } from "react-icons/fa6";
 import { FaBackward, FaHome } from "react-icons/fa";
 import { $$ } from "../translations/i18n";
 
@@ -130,35 +131,39 @@ export default function Page(props: {
             pt={["2.5rem", 0]}
           >
             <DrawerMenu isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
-            <Heading
-              fontWeight={1000}
-              color={props.redGradient ? "red.500" : "brand.500"}
-              size={"lg"}
-              onClick={() => {
-                router.push("/");
-              }}
-              cursor={"pointer"}
-            >
-              {props.title}
-              {props.isBeta && (
-                <Badge ml={2} colorScheme={"red"}>
-                  {$$("general.beta")}
-                </Badge>
-              )}
-            </Heading>
+            <Flex gap={2} alignItems={"center"}>
+              <IconButton
+                display={router.canGoBack() ? "inherit" : "none"}
+                size={"lg"}
+                aria-label={$$("control.back")}
+                icon={<FaChevronLeft />}
+                onClick={() => {
+                  router.goBack();
+                }}
+                variant={"ghost"}
+                color={props.redGradient ? "red.500" : "brand.500"}
+                mt={2}
+              />
+              <Heading
+                fontWeight={1000}
+                color={props.redGradient ? "red.500" : "brand.500"}
+                size={"lg"}
+                onClick={() => {
+                  router.push("/");
+                }}
+                cursor={"pointer"}
+              >
+                {props.title}
+                {props.isBeta && (
+                  <Badge ml={2} colorScheme={"red"}>
+                    {$$("general.beta")}
+                  </Badge>
+                )}
+              </Heading>
+            </Flex>
             {loggedIn && (
               <ButtonGroup>
                 {props.endButtons}
-                <IconButton
-                  size={"lg"}
-                  aria-label={"Back"}
-                  icon={<FaBackward />}
-                  onClick={() => {
-                    router.goBack();
-                  }}
-                  variant={"ghost"}
-                  color={props.redGradient ? "red.500" : "brand.500"}
-                />
                 <IconButton
                   size={"lg"}
                   onClick={onOpen}

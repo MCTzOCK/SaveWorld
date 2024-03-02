@@ -26,7 +26,7 @@ import {
   BiVideo,
 } from "react-icons/bi";
 import { useFlags } from "flagsmith/react";
-import { FaUtensils } from "react-icons/fa6";
+import { FaRobot, FaUtensils } from "react-icons/fa6";
 import { $$ } from "../translations/i18n";
 import { FaProjectDiagram } from "react-icons/fa";
 import { RiMindMap } from "react-icons/ri";
@@ -42,6 +42,7 @@ export default function Home() {
     "eco_projects",
     "community",
     "recipes",
+    "ai_helper",
   ]);
   const { loggedIn } = useUserData();
 
@@ -108,6 +109,14 @@ export default function Home() {
                     url={"/quizzes"}
                   />
                 ) : null}
+                {flags.ai_helper.enabled && (
+                  <HomeCardV2
+                    icon={<FaRobot />}
+                    url={"/ai"}
+                    color={"blue.500"}
+                    text={$$("pages.ai.title")}
+                  />
+                )}
                 <HomeCardV2
                   color={"red.500"}
                   icon={<BiInfoCircle />}
