@@ -1,9 +1,9 @@
 export const INFO = {
   "git": {
-    "commits": 1091,
-    "commit": "4c1395",
+    "commits": 1094,
+    "commit": "119b7d",
     "branch": "main",
-    "lastCommitMessage": "update drawer menu"
+    "lastCommitMessage": "Merge branch 'main' of https://github.com/MCTzOCK/SaveWorld"
   },
   "sloc": 72749
 };
