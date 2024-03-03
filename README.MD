@@ -7,7 +7,6 @@ Die App für Nachhaltigkeit - nachhaltiges Denken bei Jugendlichen stärken!
 ## Autoren
 
 - [Ben Siebert](https://ben-siebert.com) (Entwicklung)
-- Charlotte Sophie Drumann (Inhalt)
 
 ## Demo
 
