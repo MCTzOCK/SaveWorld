@@ -40,6 +40,7 @@ import { Button } from "@chakra-ui/react";
 import { uploadImage } from "../../util/files";
 import { ENDPOINT } from "../../env";
 import { $$ } from "../../translations/i18n";
+import { requestRating } from "../../util/rating";
 
 export default function CommunityCreateBlog() {
   useRedirectForAnon();
@@ -86,7 +87,7 @@ export default function CommunityCreateBlog() {
                     )}{" "}
                     <a
                       onClick={() => {
-                        router.push("/resources/md-help", "none", "replace");
+                        router.push("/resources/md-help", "forward", "push");
                       }}
                       style={{
                         color: "var(--ion-color-success)",
@@ -221,8 +222,9 @@ export default function CommunityCreateBlog() {
                 router.push(
                   "/community/r/" + res.payload.entry._id,
                   "forward",
-                  "replace",
+                  "push",
                 );
+                requestRating();
               } else {
                 PopupManager.alert({
                   title: $$("control.error"),

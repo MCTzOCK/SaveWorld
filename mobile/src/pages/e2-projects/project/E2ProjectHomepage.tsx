@@ -86,7 +86,7 @@ export default function E2ProjectHomepage() {
     );
 
     if (res.status !== 200) {
-      router.push("/e2-projects/my", "none", "replace");
+      router.push("/e2-projects/my", "forward", "push");
     } else {
       setProject(res.payload.project);
     }
@@ -122,7 +122,7 @@ export default function E2ProjectHomepage() {
                           router.push(
                             "/e2-projects/" + project._id + "/edit",
                             "none",
-                            "replace",
+                            "push",
                           );
                         }}
                       >

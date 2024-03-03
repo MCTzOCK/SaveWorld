@@ -76,7 +76,7 @@ export default function Register() {
                   title: $$("control.success"),
                   description: $$("page.register.success"),
                 });
-                router.push("/login", "none", "replace");
+                router.push("/login", "forward", "push");
               } else {
                 PopupManager.alert({
                   title: $$("control.error"),

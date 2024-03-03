@@ -18,12 +18,12 @@ export function useRedirectForAnon(options?: { onlyAdmins?: boolean }) {
   useEffect(() => {
     if (loaded && router) {
       if (!loggedIn) {
-        router.push("/register", "none", "replace");
+        router.push("/register", "forward", "push");
       } else {
         if (options && options.onlyAdmins) {
           if (userInfo) {
             if (userInfo.role !== "admin") {
-              router.push("/", "none", "replace");
+              router.push("/", "forward", "push");
             }
           }
         }

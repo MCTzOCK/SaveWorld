@@ -54,6 +54,169 @@ export class REST {
 
   public static Admin = {
     /**
+     * Updates or creates a new learning graph
+     * @param token used to authenticate
+     * @param json the graph to set
+     * @param category the category to set
+     */
+    updateLearningGraph: async (
+      token: string,
+      json: string,
+      category: string,
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/learning-graph",
+        method: "POST",
+        token: token,
+        body: {
+          json: json,
+          category: category,
+        },
+      });
+    },
+    /**
+     * Creates a new quiz
+     * @param token used to authenticate
+     * @param title of the quiz
+     * @param answers of the quiz
+     * @param correctAnswer of the quiz
+     * @param featureImage of the quiz
+     */
+    createQuiz: async (
+      token: string,
+      title: string,
+      answers: string[],
+      correctAnswer: number,
+      featureImage: string,
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/content/quizzes",
+        method: "POST",
+        token: token,
+        body: {
+          title: title,
+          answers: answers,
+          correctAnswer: correctAnswer,
+          featureImage: featureImage,
+        },
+      });
+    },
+    /**
+     * Deletes a quiz
+     * @param token used to authenticate
+     * @param id of the quiz to delete
+     */
+    deleteQuiz: async (token: string, id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/content/quizzes?id=" + id,
+        method: "DELETE",
+        token: token,
+      });
+    },
+    /**
+     * Updates a quiz
+     * @param token used to authenticate
+     * @param id of the quiz to update
+     * @param title of the quiz
+     * @param answers of the quiz
+     * @param correctAnswer of the quiz
+     * @param featureImage of the quiz
+     */
+    updateQuiz: async (
+      token: string,
+      id: string,
+      title: string,
+      answers: string[],
+      correctAnswer: number,
+      featureImage: string,
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/content/quizzes?id=" + id,
+        method: "PUT",
+        token: token,
+        body: {
+          title: title,
+          answers: answers,
+          correctAnswer: correctAnswer,
+          featureImage: featureImage,
+        },
+      });
+    },
+    /**
+     * Creates a new article
+     * @param token used to authenticate
+     * @param title of the article
+     * @param content of the article
+     * @param tags of the article
+     * @param featureImage of the article
+     * @param featureImageAuthor of the article
+     */
+    createArticle: async (
+      token: string,
+      title: string,
+      content: string,
+      tags: string[],
+      featureImage: string,
+      featureImageAuthor: string,
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/content/articles",
+        method: "POST",
+        token: token,
+        body: {
+          title: title,
+          content: content,
+          tags: tags,
+          featureImage: featureImage,
+          featureImageAuthor: featureImageAuthor,
+        },
+      });
+    },
+    /**
+     * Deletes an article
+     * @param token used to authenticate
+     * @param id of the article to delete
+     */
+    deleteArticle: async (token: string, id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/content/articles?id=" + id,
+        method: "DELETE",
+        token: token,
+      });
+    },
+    /**
+     * Updates an article
+     * @param token used to authenticate
+     * @param id of the article to update
+     * @param title of the article
+     * @param content of the article
+     * @param tags of the article
+     * @param featureImage of the article
+     * @param featureImageAuthor of the article
+     */
+    updateArticle: async (
+      token: string,
+      id: string,
+      title: string,
+      content: string,
+      tags: string[],
+      featureImage: string,
+      featureImageAuthor: string,
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/admin/content/articles?id=" + id,
+        method: "PUT",
+        token: token,
+        body: {
+          title: title,
+          content: content,
+          tags: tags,
+          featureImage: featureImage,
+          featureImageAuthor: featureImageAuthor,
+        },
+      });
+    },
+    /**
      * @return the requested insights about the api
      * @param token used to authenticate
      * @param options
@@ -443,6 +606,48 @@ export class REST {
 
   public static Account = {
     /**
+     * @return the requested jwt or the request to enter the email code
+     * @param email of the user
+     * @param emailCode the email code to enter
+     */
+    loginCode: async (email: string, emailCode?: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/account/login/code",
+        method: "POST",
+        body: {
+          email: email,
+          emailCode: emailCode,
+        },
+      });
+    },
+    /**
+     * @return the requested jwt or the request to enter the email code
+     * @param email of the user
+     * @param options the options to set
+     */
+    registerCode: async (
+      email: string,
+      options: {
+        emailCode?: string;
+        firstName?: string;
+        lastName?: string;
+        username?: string;
+      },
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/account/register/code",
+        method: "POST",
+        body: {
+          email: email,
+          emailCode: options.emailCode,
+          firstName: options.firstName,
+          lastName: options.lastName,
+          username: options.username,
+        },
+      });
+    },
+    /**
+     * @deprecated
      * @return the requested jwt
      * @param mail of the user
      * @param password of the user
@@ -562,6 +767,64 @@ export class REST {
   };
 
   public static Content = {
+    /**
+     * @return all learning graphs
+     */
+    learningGraphs: async (token: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/content/learning-graphs",
+        method: "GET",
+      });
+    },
+    /**
+     * @return the requested learning graph
+     * @param category the category to get
+     */
+    learningGraph: async (category: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/content/learning-graphs/" + category,
+        method: "GET",
+      });
+    },
+    /**
+     * @return all quizzes
+     * @param page the page to get
+     * @param search the search query
+     */
+    quizzes: async (page: number, search?: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/content/quizzes?page=" +
+          page +
+          (search ? "&search=" + search : ""),
+        method: "GET",
+      });
+    },
+    /**
+     * @return all articles
+     * @param page the page to get
+     */
+    articles: async (page: number, tag?: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL +
+          "/content/articles?page=" +
+          page +
+          (tag ? "&tag=" + tag : ""),
+        method: "GET",
+      });
+    },
+    /**
+     * @return the requested article
+     * @param id of the article to get
+     */
+    article: async (id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/content/articles/" + id,
+        method: "GET",
+      });
+    },
     /**
      * @return all categories
      */

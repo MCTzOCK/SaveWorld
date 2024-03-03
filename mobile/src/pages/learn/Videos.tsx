@@ -43,6 +43,7 @@ import {
 import { FaSearch } from "react-icons/fa";
 import MobileBox from "../../components/MobileBox";
 import { $$ } from "../../translations/i18n";
+import { requestRating } from "../../util/rating";
 
 export default function Videos() {
   useRedirectForAnon();
@@ -115,6 +116,7 @@ export default function Videos() {
 
   const swipeHandlers = useSwipeable({
     onSwipedUp: (eventData) => {
+      requestRating();
       nextVideo();
     },
     trackMouse: true,

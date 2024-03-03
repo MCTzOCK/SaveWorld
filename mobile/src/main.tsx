@@ -9,9 +9,11 @@ import PopupManager from "./util/PopupManager";
 import NoConnection from "./components/NoConnection";
 import { Preferences } from "@capacitor/preferences";
 import { I18n } from "./translations/i18n";
+import { requestRating } from "./util/rating";
 
 window.PopupManager = PopupManager;
 window.REST = REST;
+window.requestRating = requestRating;
 
 const render = async () => {
   Preferences.get({ key: "language" }).then((res) => {

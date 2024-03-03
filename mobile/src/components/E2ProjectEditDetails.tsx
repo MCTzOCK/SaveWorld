@@ -212,7 +212,7 @@ export default function E2ProjectEditDetails(props: {
                 return;
               }
 
-              router.push("/e2-projects/my", "none", "replace");
+              router.push("/e2-projects/my", "forward", "push");
             }}
             w={"100%"}
           >

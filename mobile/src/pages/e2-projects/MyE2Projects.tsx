@@ -267,7 +267,7 @@ export default function MyE2Projects() {
                     w={"100%"}
                     mt={4}
                     onClick={() => {
-                      router.push("/e2-projects/new", "none", "replace");
+                      router.push("/e2-projects/new", "forward", "push");
                     }}
                   >
                     {$$("pages.e2projects.create")}

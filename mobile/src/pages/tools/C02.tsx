@@ -156,7 +156,7 @@ export default function C02() {
                           color={"brand.500"}
                           w={"100%"}
                           onClick={() => {
-                            router.push(calc.url, "none", "push");
+                            router.push(calc.url, "forward", "push");
                           }}
                         >
                           {$$("pages.tools.calc.calculate")}

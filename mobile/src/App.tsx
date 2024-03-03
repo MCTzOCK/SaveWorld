@@ -127,6 +127,17 @@ import remarkGfm from "remark-gfm";
 import { RESTEnv } from "@saveworld/api-js/dist/RESTEnv";
 import Games from "./pages/games/Games";
 import GameLeaderBoard from "./pages/games/GameLeaderBoard";
+import AdminArticleDashboard from "./pages/admin/AdminArticleDashboard";
+import SWArticles from "./components/SWArticles";
+import SWArticle from "./components/SWArticle";
+import AdminQuizzesDashboard from "./pages/admin/AdminQuizzesDashboard";
+import QuizzesV2 from "./pages/quizzes/QuizzesV2";
+import AdminLearningGraphs from "./pages/admin/AdminLearningGraphs";
+import AdminLearningGraph from "./pages/admin/AdminLearningGraph";
+import LearnGraphs from "./pages/learn/LearnGraphs";
+import LearnGraph from "./pages/learn/LearnGraph";
+import FoodData from "./pages/fooddata/FoodData";
+import FoodDataViewer from "./pages/fooddata/FoodDataViewer";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -228,7 +239,7 @@ export default function App() {
   useEffect(() => {
     setRoutes({
       "/language": LanguageSwitcher,
-      "/register": Register,
+      "/register": Login,
       "/login": Login,
       "/old-onboarding": Onboarding,
       "/welcome": Welcome,
@@ -251,7 +262,13 @@ export default function App() {
       "/admin/recipes": AdminRecipeDashboard,
       "/admin/eco-projects": AdminEcoProjectsDashboard,
       "/admin/adp": AdvancedDataPlatform,
+      "/admin/articles": AdminArticleDashboard,
+      "/admin/quizzes": AdminQuizzesDashboard,
+      "/admin/learning-graphs": AdminLearningGraphs,
+      "/admin/learning-graphs/:id": AdminLearningGraph,
       "/learn": flags.videos.enabled ? Videos : NotFound,
+      "/learn/graphs": LearnGraphs,
+      "/learn/graphs/:id": LearnGraph,
       "/learn/channels": flags.video_category_channels.enabled
         ? Channels
         : NotFound,
@@ -305,42 +322,27 @@ export default function App() {
       "/tools/co2/long-distance-train": flags.tools_co2_calc.enabled
         ? CO2LongDistanceTrain
         : NotFound,
-      "/quizzes": flags.quizzes.enabled ? Quizzes : NotFound,
+      "/quizzes-old": flags.quizzes.enabled ? Quizzes : NotFound,
+      "/quizzes": flags.quizzes.enabled ? QuizzesV2 : NotFound,
       "/sustainability": flags.sustainability_articles.enabled
         ? Sustainability
         : NotFound,
       "/sustainability/articles": flags.sustainability_articles.enabled
         ? () => {
             return (
-              <DirectusPosts
-                postBaseUrl={"/sustainability/articles"}
-                pageTitle={$$("page.sustainability.title")}
-                tagFilter={"sustainability"}
+              <SWArticles
+                pageTitle={$$("components.articles")}
+                tag={"sustainability"}
               />
             );
           }
         : NotFound,
-      "/sustainability/articles/:id": flags.sustainability_articles.enabled
-        ? () => {
-            const { id } = useParams<{ id: string }>();
-            return <DirectusPost postId={id} />;
-          }
-        : NotFound,
+      "/articles/:id": SWArticle,
       "/news": flags.news.enabled
         ? () => {
             return (
-              <DirectusPosts
-                postBaseUrl={"/news"}
-                pageTitle={$$("page.news.title")}
-                tagFilter={"news"}
-              />
+              <SWArticles tag={"news"} pageTitle={$$("page.news.title")} />
             );
-          }
-        : NotFound,
-      "/news/:id": flags.news.enabled
-        ? () => {
-            const { id } = useParams<{ id: string }>();
-            return <DirectusPost postId={id} />;
           }
         : NotFound,
       "/recipes": flags.recipes.enabled ? Recipes : NotFound,
@@ -378,6 +380,8 @@ export default function App() {
           </Page>
         );
       },
+      "/fooddata": FoodData,
+      "/fooddata/:ean": FoodDataViewer,
       //KEEP_ROUTES
     });
   }, [flags]);

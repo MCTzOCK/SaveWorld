@@ -105,7 +105,7 @@ export default function WelcomeInterestModal(props: {
 
                   props.modal.current?.dismiss();
 
-                  router.push("/welcome/lifestyle", "forward", "replace");
+                  router.push("/welcome/lifestyle", "forward", "push");
                 }}
               >
                 <b>{$$("general.finished")}</b>

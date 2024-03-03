@@ -187,7 +187,7 @@ export default function WelcomeLifestyle() {
                   ),
                 });
               } else {
-                router.push("/welcome/finish", "forward", "replace");
+                router.push("/welcome/finish", "forward", "push");
               }
             }}
           >

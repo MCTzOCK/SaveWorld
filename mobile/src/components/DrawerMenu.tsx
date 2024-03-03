@@ -45,6 +45,7 @@ import {
 import {
   FaBook,
   FaEarthEurope,
+  FaFileLines,
   FaGamepad,
   FaHammer,
   FaLeaf,
@@ -53,7 +54,9 @@ import {
   FaPeopleGroup,
   FaPerson,
   FaPlus,
+  FaQuestion,
   FaRightFromBracket,
+  FaRobot,
   FaUsers,
   FaUtensils,
   FaVideo,
@@ -85,6 +88,8 @@ import SaveWorldModal from "./SaveWorldModal";
 import { useFlags } from "flagsmith/react";
 import { $$ } from "../translations/i18n";
 import { MdQueryStats } from "react-icons/md";
+import { BsFileBarGraph } from "react-icons/bs";
+import { RiMindMap } from "react-icons/ri";
 
 export default function DrawerMenu(props: {
   isOpen: boolean;
@@ -132,14 +137,21 @@ export default function DrawerMenu(props: {
             label: $$("menu.home"),
             icon: <BiHome />,
             onClick: () => {
-              router.push("/onboarding", "none", "replace");
+              router.push("/onboarding", "forward", "push");
             },
           },
           {
             label: "Language",
             icon: <BiFlag />,
             onClick: () => {
-              router.push("/language", "none", "replace");
+              router.push("/language", "forward", "push");
+            },
+          },
+          {
+            label: $$("pages.ai.title"),
+            icon: <FaRobot />,
+            onClick: () => {
+              router.push("/ai", "forward", "push");
             },
           },
         ],
@@ -150,21 +162,21 @@ export default function DrawerMenu(props: {
             label: $$("menu.settings"),
             icon: <BiCog />,
             onClick: () => {
-              router.push("/account", "none", "replace");
+              router.push("/account", "forward", "push");
             },
           },
           {
             label: $$("menu.notifications"),
             icon: <BiEnvelope />,
             onClick: () => {
-              router.push("/notifications", "none", "replace");
+              router.push("/notifications", "forward", "push");
             },
           },
           {
             label: $$("menu.help"),
             icon: <BiInfoCircle />,
             onClick: () => {
-              router.push("/support", "none", "replace");
+              router.push("/support", "forward", "push");
             },
           },
           {
@@ -183,7 +195,7 @@ export default function DrawerMenu(props: {
                 OneSignal.logout();
               }
               localStorage.removeItem("token");
-              router.push("/login", "none", "replace");
+              router.push("/login", "forward", "push");
             },
           },
         ],
@@ -200,7 +212,7 @@ export default function DrawerMenu(props: {
         label: $$("page.news.title"),
         icon: <BiNews />,
         onClick: () => {
-          router.push("/news", "none", "replace");
+          router.push("/news", "forward", "push");
         },
       });
     }
@@ -210,14 +222,14 @@ export default function DrawerMenu(props: {
         label: $$("menu.videos"),
         icon: <BiVideo />,
         onClick: () => {
-          router.push("/learn", "none", "replace");
+          router.push("/learn", "forward", "push");
         },
       });
       gr[2].items.push({
         label: $$("control.search"),
         icon: <BiSearch />,
         onClick: () => {
-          router.push("/learn/fts-search", "none", "replace");
+          router.push("/learn/fts-search", "forward", "push");
         },
       });
 
@@ -226,7 +238,7 @@ export default function DrawerMenu(props: {
           label: $$("pages.learn.channels"),
           icon: <BiGroup />,
           onClick: () => {
-            router.push("/learn/channels", "none", "replace");
+            router.push("/learn/channels", "forward", "push");
           },
         });
       }
@@ -236,10 +248,17 @@ export default function DrawerMenu(props: {
         label: $$("menu.quizzes"),
         icon: <BiQuestionMark />,
         onClick: () => {
-          router.push("/quizzes", "none", "replace");
+          router.push("/quizzes", "forward", "push");
         },
       });
     }
+    gr[2].items.push({
+      label: $$("components.learning.graphs"),
+      icon: <RiMindMap />,
+      onClick: () => {
+        router.push("/learn/graphs", "forward", "push");
+      },
+    });
     if (flags.tracker.enabled) {
       gr.push({
         label: $$("menu.tracker"),
@@ -248,7 +267,7 @@ export default function DrawerMenu(props: {
             label: $$("general.overview"),
             icon: <BiLeaf />,
             onClick: () => {
-              router.push("/e2", "none", "replace");
+              router.push("/e2", "forward", "push");
             },
           },
         ],
@@ -262,14 +281,14 @@ export default function DrawerMenu(props: {
             label: $$("menu.sustainability.what"),
             icon: <BiPlanet />,
             onClick: () => {
-              router.push("/sustainability", "none", "replace");
+              router.push("/sustainability", "forward", "push");
             },
           },
           {
             label: $$("components.articles"),
             icon: <BiFile />,
             onClick: () => {
-              router.push("/sustainability/articles", "none", "replace");
+              router.push("/sustainability/articles", "forward", "push");
             },
           },
         ],
@@ -283,21 +302,21 @@ export default function DrawerMenu(props: {
             label: $$("menu.recipes"),
             icon: <FaUtensils />,
             onClick: () => {
-              router.push("/recipes", "none", "replace");
+              router.push("/recipes", "forward", "push");
             },
           },
           {
             label: $$("menu.my.cookbook"),
             icon: <FaBook />,
             onClick: () => {
-              router.push("/recipes/cookbook", "none", "replace");
+              router.push("/recipes/cookbook", "forward", "push");
             },
           },
           {
             label: $$("pages.recipes.create"),
             icon: <FaPlus />,
             onClick: () => {
-              router.push("/recipes/create", "none", "replace");
+              router.push("/recipes/create", "forward", "push");
             },
           },
         ],
@@ -308,7 +327,7 @@ export default function DrawerMenu(props: {
           label: $$("menu.eatingplans"),
           icon: <FaCalendar />,
           onClick: () => {
-            router.push("/eatingplans", "none", "replace");
+            router.push("/eatingplans", "forward", "push");
           },
         });
       }
@@ -321,7 +340,7 @@ export default function DrawerMenu(props: {
             label: $$("menu.calculator"),
             icon: <BiCalculator />,
             onClick: () => {
-              router.push("/tools/co2", "none", "replace");
+              router.push("/tools/co2", "forward", "push");
             },
           },
         ],
@@ -335,21 +354,21 @@ export default function DrawerMenu(props: {
             label: $$("pages.e2projects.my"),
             icon: <FaProjectDiagram />,
             onClick: () => {
-              router.push("/e2-projects/my", "none", "replace");
+              router.push("/e2-projects/my", "forward", "push");
             },
           },
           {
             label: $$("pages.e2projects.create"),
             icon: <BiPlus />,
             onClick: () => {
-              router.push("/e2-projects/new", "none", "replace");
+              router.push("/e2-projects/new", "forward", "push");
             },
           },
           {
             label: $$("menu.e2projects.find"),
             icon: <BiSearch />,
             onClick: () => {
-              router.push("/e2-projects/search", "none", "replace");
+              router.push("/e2-projects/search", "forward", "push");
             },
           },
         ],
@@ -364,21 +383,21 @@ export default function DrawerMenu(props: {
             label: $$("menu.home"),
             icon: <BiGroup />,
             onClick: () => {
-              router.push("/community", "none", "replace");
+              router.push("/community", "forward", "push");
             },
           },
           {
             label: $$("pages.community.create.blog.title"),
             icon: <BiPen />,
             onClick: () => {
-              router.push("/community/create/blog", "none", "replace");
+              router.push("/community/create/blog", "forward", "push");
             },
           },
           {
             label: $$("menu.notifications"),
             icon: <BiEnvelope />,
             onClick: () => {
-              router.push("/community/messages", "none", "replace");
+              router.push("/community/messages", "forward", "push");
             },
           },
           {
@@ -387,8 +406,8 @@ export default function DrawerMenu(props: {
             onClick: () => {
               router.push(
                 "/community/u/" + userInfo.username,
-                "none",
-                "replace",
+                "forward",
+                "push",
               );
             },
           },
@@ -403,7 +422,7 @@ export default function DrawerMenu(props: {
           label: $$("pages.games.title"),
           icon: <FaGamepad />,
           onClick: () => {
-            router.push("/games", "none", "replace");
+            router.push("/games", "forward", "push");
           },
         },
       ],
@@ -416,7 +435,7 @@ export default function DrawerMenu(props: {
           label: $$("menu.markdown.help"),
           icon: <BiLogoMarkdown />,
           onClick: () => {
-            router.push("/resources/md-help", "none", "replace");
+            router.push("/resources/md-help", "forward", "push");
           },
         },
       ],
@@ -433,14 +452,14 @@ export default function DrawerMenu(props: {
             label: $$("general.overview"),
             icon: <FaHammer />,
             onClick: () => {
-              router.push("/admin", "none", "replace");
+              router.push("/admin", "forward", "push");
             },
           },
           {
             label: "ADP",
             icon: <MdQueryStats />,
             onClick: () => {
-              router.push("/admin/adp", "none", "replace");
+              router.push("/admin/adp", "forward", "push");
             },
           },
           {
@@ -454,42 +473,63 @@ export default function DrawerMenu(props: {
 
               if (!path) return;
 
-              router.push(path, "none", "replace");
+              router.push(path, "forward", "push");
             },
           },
           {
             label: $$("user.user"),
             icon: <BiGroup />,
             onClick: () => {
-              router.push("/admin/users", "none", "replace");
+              router.push("/admin/users", "forward", "push");
             },
           },
           {
             label: $$("components.admin.stats.support"),
             icon: <BiInfoCircle />,
             onClick: () => {
-              router.push("/admin/support-requests", "none", "replace");
+              router.push("/admin/support-requests", "forward", "push");
             },
           },
           {
             label: $$("menu.videos"),
             icon: <BiVideo />,
             onClick: () => {
-              router.push("/admin/content/videos", "none", "replace");
+              router.push("/admin/content/videos", "forward", "push");
             },
           },
           {
             label: $$("menu.lifestyle.templates"),
             icon: <BiFile />,
             onClick: () => {
-              router.push("/admin/lifestyle-templates", "none", "replace");
+              router.push("/admin/lifestyle-templates", "forward", "push");
             },
           },
           {
             label: $$("menu.interests"),
             icon: <BiLeaf />,
             onClick: () => {
-              router.push("/admin/content/categories", "none", "replace");
+              router.push("/admin/content/categories", "forward", "push");
+            },
+          },
+          {
+            label: $$("components.articles"),
+            icon: <FaFileLines />,
+            onClick: () => {
+              router.push("/admin/articles", "forward", "push");
+            },
+          },
+          {
+            label: $$("menu.quizzes"),
+            icon: <FaQuestion />,
+            onClick: () => {
+              router.push("/admin/quizzes", "forward", "push");
+            },
+          },
+          {
+            label: $$("components.learning.graphs"),
+            icon: <RiMindMap />,
+            onClick: () => {
+              router.push("/admin/learning-graphs", "forward", "push");
             },
           },
         ],

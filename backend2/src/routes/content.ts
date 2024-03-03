@@ -7,7 +7,7 @@
  * Created At: 17.01.2024
  *
  */
-import { FastifyInstance, FastifyRequest } from "fastify";
+import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import CategoryModel from "../models/CategoryModel";
 import { FastifySchemas } from "../Schemas";
 import { isAuth } from "../util/isAuth";
@@ -15,6 +15,9 @@ import VideoModel from "../models/VideoModel";
 import UserPreferencesModel from "../models/UserPreferencesModel";
 import WatchHistoryModel from "../models/WatchHistoryModel";
 import VideoCommentModel from "../models/VideoCommentModel";
+import ArticleModel from "../models/ArticleModel";
+import QuizModel from "../models/QuizModel";
+import LearningGraphModel from "../models/LearningGraphModel";
 
 export default async function contentPlugin(app: FastifyInstance, opts: any) {
   app.get(
@@ -507,6 +510,183 @@ export default async function contentPlugin(app: FastifyInstance, opts: any) {
       res.status(200).send({
         status: 200,
         message: "Rating saved",
+      });
+    },
+  );
+
+  app.get(
+    "/content/articles",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Returns a list of articles",
+          summary: "Get Articles",
+          tags: ["content"],
+          security: [],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Querystring: {
+          page?: number;
+          tag?: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const PAGE_SIZE = 10;
+      const page = req.query.page ? parseInt(req.query.page.toString()) : 0;
+      const filter = {};
+      if (req.query.tag) {
+        filter["tags"] = {
+          $in: [req.query.tag],
+        };
+      }
+      const articles = await ArticleModel.find(filter)
+        .sort({ createdAt: -1 })
+        .skip(page * PAGE_SIZE)
+        .limit(PAGE_SIZE);
+
+      res.status(200).send({
+        status: 200,
+        articles,
+        pages: Math.ceil((await ArticleModel.countDocuments()) / PAGE_SIZE),
+        page,
+      });
+    },
+  );
+
+  app.get(
+    "/content/articles/:id",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Returns a single article",
+          summary: "Get Article",
+          tags: ["content"],
+          security: [],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Params: {
+          id: string;
+        };
+      }>,
+      res,
+    ) => {
+      const article = await ArticleModel.findById(req.params.id);
+      res.status(200).send({
+        status: 200,
+        article,
+      });
+    },
+  );
+
+  app.get(
+    "/content/quizzes",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Returns a list of quizzes",
+          summary: "Get Quizzes",
+          tags: ["content"],
+          security: [],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Querystring: {
+          page?: number;
+          search?: string;
+        };
+      }>,
+      res,
+    ) => {
+      const PAGE_SIZE = 10;
+      const page = req.query.page ? parseInt(req.query.page.toString()) : 0;
+      const filter = {};
+      if (req.query.search) {
+        filter["title"] = {
+          $regex: req.query.search,
+          $options: "i",
+        };
+      }
+      const quizzes = await QuizModel.find(filter)
+        .sort({ createdAt: -1 })
+        .skip(page * PAGE_SIZE)
+        .limit(PAGE_SIZE);
+      res.status(200).send({
+        status: 200,
+        quizzes,
+        pages: Math.ceil((await QuizModel.countDocuments()) / PAGE_SIZE),
+        page,
+      });
+    },
+  );
+
+  app.get(
+    "/content/learning-graphs",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Returns a list of learning graphs",
+          summary: "Get Learning Graphs",
+          tags: ["content"],
+          security: [],
+        },
+      },
+    },
+    async (req, res) => {
+      const learningGraphs = await LearningGraphModel.find({}).populate(
+        "category",
+      );
+      res.status(200).send({
+        status: 200,
+        learningGraphs,
+      });
+    },
+  );
+  app.get(
+    "/content/learning-graphs/:category",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Returns a list of learning graphs",
+          summary: "Get Learning Graphs",
+          tags: ["content"],
+          security: [],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Params: {
+          category: string;
+        };
+      }>,
+      res,
+    ) => {
+      const learningGraph = await LearningGraphModel.findOne({
+        category: req.params.category,
+      }).populate("category");
+
+      res.status(200).send({
+        status: 200,
+        learningGraph: learningGraph
+          ? learningGraph
+          : JSON.stringify({
+              nodes: [],
+              edges: [],
+            }),
       });
     },
   );
