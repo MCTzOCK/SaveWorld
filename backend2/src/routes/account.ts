@@ -42,12 +42,13 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
       }>,
       res,
     ) => {
+      /*
       res.status(299).send({
         status: 299,
         error: "This endpoint is deprecated. Please use /account/register/code",
       });
 
-      return;
+      return;*/
       const { token } = req.query;
 
       const user = await UserModel.findOne({
@@ -246,10 +247,11 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
       }>,
       res,
     ) => {
+      /*
       res.status(299).send({
         status: 299,
         error: "This endpoint is deprecated. Please use /account/register/code",
-      });
+      });*/
 
       return;
       const { email, password, totpCode } = req.body;
@@ -611,12 +613,13 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
       }>,
       res,
     ) => {
+      /*
       res.status(299).send({
         status: 299,
         error: "This endpoint is deprecated. Please use /account/register/code",
       });
 
-      return;
+      return;*/
 
       const { username, password, email, firstName, lastName } = req.body;
 
