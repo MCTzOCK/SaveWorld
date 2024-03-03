@@ -28,6 +28,7 @@ import {
   FaVideo,
 } from "react-icons/fa6";
 import { $$ } from "../translations/i18n";
+import { RiMindMap } from "react-icons/ri";
 
 export default function AdminTools(props: { query: string }) {
   const tools: {
@@ -89,6 +90,12 @@ export default function AdminTools(props: { query: string }) {
       icon: <FaQuestion />,
       text: $$("menu.quizzes"),
       url: "/admin/quizzes",
+      color: "red.500",
+    },
+    {
+      icon: <RiMindMap />,
+      text: $$("components.learning.graphs"),
+      url: "/admin/learning-graphs",
       color: "red.500",
     },
   ];
