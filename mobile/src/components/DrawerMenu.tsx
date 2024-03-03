@@ -45,6 +45,7 @@ import {
 import {
   FaBook,
   FaEarthEurope,
+  FaFileLines,
   FaGamepad,
   FaHammer,
   FaLeaf,
@@ -53,6 +54,7 @@ import {
   FaPeopleGroup,
   FaPerson,
   FaPlus,
+  FaQuestion,
   FaRightFromBracket,
   FaRobot,
   FaUsers,
@@ -507,6 +509,27 @@ export default function DrawerMenu(props: {
             icon: <BiLeaf />,
             onClick: () => {
               router.push("/admin/content/categories", "forward", "push");
+            },
+          },
+          {
+            label: $$("components.articles"),
+            icon: <FaFileLines />,
+            onClick: () => {
+              router.push("/admin/articles", "forward", "push");
+            },
+          },
+          {
+            label: $$("menu.quizzes"),
+            icon: <FaQuestion />,
+            onClick: () => {
+              router.push("/admin/quizzes", "forward", "push");
+            },
+          },
+          {
+            label: $$("components.learning.graphs"),
+            icon: <RiMindMap />,
+            onClick: () => {
+              router.push("/admin/learning-graphs", "forward", "push");
             },
           },
         ],
