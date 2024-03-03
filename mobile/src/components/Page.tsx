@@ -77,7 +77,7 @@ import { theme } from "../theme/chakra";
 import DrawerMenu from "./DrawerMenu";
 import FloatingNavbar from "./FloatingNavbar";
 import { useFlags } from "flagsmith/react";
-import { FaBars, FaChevronLeft, FaRobot } from "react-icons/fa6";
+import { FaBarcode, FaBars, FaChevronLeft, FaRobot } from "react-icons/fa6";
 import { FaBackward, FaHome } from "react-icons/fa";
 import { $$ } from "../translations/i18n";
 
@@ -164,6 +164,16 @@ export default function Page(props: {
             {loggedIn && (
               <ButtonGroup>
                 {props.endButtons}
+                <IconButton
+                  size={"lg"}
+                  icon={<FaBarcode />}
+                  aria-label={$$("pages.fooddata.barcode.scan")}
+                  variant={"ghost"}
+                  color={props.redGradient ? "red.500" : "brand.500"}
+                  onClick={() => {
+                    router.push("/fooddata", "forward", "push");
+                  }}
+                />
                 <IconButton
                   size={"lg"}
                   onClick={onOpen}

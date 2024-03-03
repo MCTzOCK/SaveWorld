@@ -54,6 +54,7 @@ import {
   FaPerson,
   FaPlus,
   FaRightFromBracket,
+  FaRobot,
   FaUsers,
   FaUtensils,
   FaVideo,
@@ -142,6 +143,13 @@ export default function DrawerMenu(props: {
             icon: <BiFlag />,
             onClick: () => {
               router.push("/language", "forward", "push");
+            },
+          },
+          {
+            label: $$("pages.ai.title"),
+            icon: <FaRobot />,
+            onClick: () => {
+              router.push("/ai", "forward", "push");
             },
           },
         ],
