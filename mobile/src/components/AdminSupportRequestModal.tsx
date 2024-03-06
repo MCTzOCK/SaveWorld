@@ -29,7 +29,7 @@ import {
   useIonRouter,
 } from "@ionic/react";
 import PopupManager from "../util/PopupManager";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import { $$ } from "../translations/i18n";
 
 export default function AdminSupportRequestModal(props: {

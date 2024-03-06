@@ -34,7 +34,7 @@ import {
 import { FaLock, FaPen, FaSave, FaTimes } from "react-icons/fa";
 import { FaLeaf, FaThumbtack, FaTrash } from "react-icons/fa6";
 import { useEffect } from "react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "../util/PopupManager";
 import { $$ } from "../translations/i18n";
 

@@ -36,7 +36,7 @@ import {
   pencilSharp,
   glasses,
 } from "ionicons/icons";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import { Browser } from "@capacitor/browser";
 import { useEffect } from "react";
 import { ENDPOINT } from "../../env";

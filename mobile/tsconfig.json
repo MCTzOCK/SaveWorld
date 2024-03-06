@@ -15,6 +15,11 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": "./",
+    "paths": {
+      "@saveworld/api-js*": ["./src/api-js-embedded/src/*"]
+    },
+    "traceResolution": true
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

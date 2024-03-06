@@ -42,7 +42,7 @@ import {
 } from "@ionic/react";
 import { aiPrompt, promptV2, promptV2Chat } from "../util/ai";
 import PopupManager from "../util/PopupManager";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import { MUserPreferences } from "../types";
 import moment from "moment";
 import AIChatModal from "../components/AIChatModal";

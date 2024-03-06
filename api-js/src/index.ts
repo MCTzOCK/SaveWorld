@@ -9,8 +9,10 @@
  */
 import { RESTEnv } from "./RESTEnv";
 
+export { RESTEnv } from "./RESTEnv";
+
 export { REST } from "./REST";
-export { IResponse } from "./types/IResponse";
+//export { IResponse } from "./types/IResponse";
 
 export function setApiUrl(url: string) {
   RESTEnv.API_URL = url;

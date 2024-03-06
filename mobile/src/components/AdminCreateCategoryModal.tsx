@@ -24,7 +24,7 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import { ENDPOINT } from "../env";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import { useEffect } from "react";
 import PopupManager from "../util/PopupManager";
 import { $$ } from "../translations/i18n";

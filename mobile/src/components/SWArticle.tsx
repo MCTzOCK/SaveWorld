@@ -10,7 +10,7 @@
 
 import * as React from "react";
 import { useParams } from "react-router";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "../util/PopupManager";
 import { translateOnlineV3 } from "../util/online-translate";
 import Page from "./Page";

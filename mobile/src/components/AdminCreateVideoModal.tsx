@@ -26,7 +26,7 @@ import {
   IonToggle,
   IonToolbar,
 } from "@ionic/react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import { ENDPOINT } from "../env";
 import { useEffect } from "react";
 import PopupManager from "../util/PopupManager";

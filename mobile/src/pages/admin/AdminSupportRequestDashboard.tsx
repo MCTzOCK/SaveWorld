@@ -21,7 +21,7 @@ import {
   Flex,
   VStack,
 } from "@chakra-ui/react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import {
   IonButton,
   IonCard,

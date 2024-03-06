@@ -11,7 +11,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { E2Projects } from "../../util/types/E2Project";
-import { IResponse, REST } from "@saveworld/api-js";
+import { IResponse, REST } from "@saveworld/api-js/index";
 import PopupManager from "../../util/PopupManager";
 import {
   IonCard,

@@ -34,7 +34,7 @@ import {
   trashSharp,
 } from "ionicons/icons";
 import { useEffect, useState } from "react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "../../util/PopupManager";
 import MobileBox from "../../components/MobileBox";
 import {

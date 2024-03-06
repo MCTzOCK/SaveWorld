@@ -22,7 +22,7 @@ import {
 } from "@chakra-ui/react";
 import moment from "moment";
 import { FaBackward, FaForward } from "react-icons/fa";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "../util/PopupManager";
 import {
   IonCard,

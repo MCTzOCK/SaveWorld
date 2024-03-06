@@ -16,7 +16,7 @@ import {
   IonList,
   useIonRouter,
 } from "@ionic/react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import Page from "../components/Page";
 import PopupManager from "../util/PopupManager";
 import { Box, Button, Flex, Link } from "@chakra-ui/react";

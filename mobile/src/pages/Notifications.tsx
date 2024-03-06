@@ -12,7 +12,7 @@ import * as React from "react";
 import Page from "../components/Page";
 import PopupManager from "../util/PopupManager";
 import { useEffect } from "react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import {
   IonButton,
   IonCard,

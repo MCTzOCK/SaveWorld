@@ -8,7 +8,7 @@
  *
  */
 import { translateOnlineV3 } from "./online-translate";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "./PopupManager";
 import { $$ } from "../translations/i18n";
 

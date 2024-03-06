@@ -23,7 +23,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useUserData } from "../../hooks/useUserData";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import { useEffect } from "react";
 import MobileBox from "../../components/MobileBox";
 import { ENDPOINT } from "../../env";

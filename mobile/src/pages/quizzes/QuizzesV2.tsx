@@ -13,7 +13,7 @@ import Page from "../../components/Page";
 import { $$ } from "../../translations/i18n";
 import { useEffect, useState } from "react";
 import { IonButton, IonSearchbar } from "@ionic/react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import { Card, CardHeader, Grid, Heading, Image } from "@chakra-ui/react";
 import { showQuiz } from "../../util/quizzes";
 import { translateOnlineV3 } from "../../util/online-translate";

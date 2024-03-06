@@ -11,7 +11,7 @@
 import * as React from "react";
 import { useRedirectForAnon } from "../hooks/useRedirectForAnon";
 import { useEffect, useState } from "react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import Page from "./Page";
 import MobileBox from "./MobileBox";
 import { IonItem, IonList, IonText, IonToggle } from "@ionic/react";

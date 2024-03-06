@@ -20,7 +20,7 @@ import {
   IonText,
 } from "@ionic/react";
 import { useEffect, useState } from "react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import { Grid } from "@chakra-ui/react";
 import { $$ } from "../../translations/i18n";
 

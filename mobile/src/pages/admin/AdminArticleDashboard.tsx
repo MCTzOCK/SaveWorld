@@ -35,7 +35,7 @@ import { uploadFiles } from "@directus/sdk";
 import { uploadImage } from "../../util/files";
 import { ENDPOINT } from "../../env";
 import { FaImage } from "react-icons/fa";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "../../util/PopupManager";
 import { IonButton } from "@ionic/react";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";

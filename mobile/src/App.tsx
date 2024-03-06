@@ -124,7 +124,7 @@ import {
 import PopupManager from "./util/PopupManager";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { RESTEnv } from "@saveworld/api-js/dist/RESTEnv";
+import { RESTEnv } from "@saveworld/api-js/index";
 import Games from "./pages/games/Games";
 import GameLeaderBoard from "./pages/games/GameLeaderBoard";
 import AdminArticleDashboard from "./pages/admin/AdminArticleDashboard";

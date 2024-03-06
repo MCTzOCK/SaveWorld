@@ -19,7 +19,7 @@ import {
   IonInfiniteScrollContent,
   IonSearchbar,
 } from "@ionic/react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import { useEffect, useState } from "react";
 import PopupManager from "../../util/PopupManager";
 import { Grid } from "@chakra-ui/react";

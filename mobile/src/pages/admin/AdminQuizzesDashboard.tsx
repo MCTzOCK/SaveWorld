@@ -33,7 +33,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "../../util/PopupManager";
 import { FaCheck, FaPlus, FaTrash } from "react-icons/fa6";
 import SaveWorldModal from "../../components/SaveWorldModal";

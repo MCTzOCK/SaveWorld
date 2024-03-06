@@ -35,7 +35,7 @@ import { ENDPOINT } from "../env";
 import { FaHammer, FaTrash } from "react-icons/fa6";
 import { FaPen, FaUser } from "react-icons/fa";
 import PopupManager from "../util/PopupManager";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import { useUserData } from "../hooks/useUserData";
 import { $$ } from "../translations/i18n";
 
