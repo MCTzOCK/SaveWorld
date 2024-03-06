@@ -70,7 +70,7 @@ export function useUserData(): {
             } else {
               token = null;
 
-              if (!isPlatform("desktop")) {
+              if (isPlatform("capacitor")) {
                 OneSignal.logout();
               }
               setLoggedIn(false);
@@ -82,7 +82,7 @@ export function useUserData(): {
       } else {
         token = null;
 
-        if (isPlatform("hybrid")) {
+        if (isPlatform("capacitor")) {
           OneSignal.logout();
         }
         setLoggedIn(false);

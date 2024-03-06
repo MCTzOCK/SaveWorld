@@ -191,7 +191,7 @@ export default function DrawerMenu(props: {
               )
                 return;
 
-              if (!isPlatform("desktop")) {
+              if (isPlatform("capacitor")) {
                 OneSignal.logout();
               }
               localStorage.removeItem("token");

@@ -609,7 +609,7 @@ export default function ManageAccount() {
                         }
 
                         try {
-                          if (!isPlatform("desktop")) {
+                          if (isPlatform("capacitor")) {
                             OneSignal.logout();
                           }
                         } catch (e) {}

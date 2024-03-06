@@ -203,7 +203,7 @@ export default function App() {
       });
     }
     try {
-      if (!isPlatform("desktop")) {
+      if (isPlatform("capacitor")) {
         OneSignal.initialize(ONE_SIGNAL_APP_ID);
 
         OneSignal.Notifications.requestPermission();
