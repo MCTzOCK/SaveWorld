@@ -28,9 +28,8 @@ export default function Paper() {
             Schriftliche Arbeit
           </Heading>
           <Text fontSize={"lg"}>
-            Zum aktuellen Zeitpunkt (11.11.2023) ist noch keine schriftliche
-            Arbeit vorhanden. Diese wird spätestens ab dem 01.02.2024 hier zur
-            Verfügung stehen.
+            Die schriftliche Arbeit steht hier nach Beendigung des Wettbewerbs
+            "Jugend forscht" zur Verfügung.
           </Text>
         </Stack>
       </Flex>
