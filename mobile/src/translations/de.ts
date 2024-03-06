@@ -858,4 +858,7 @@ export const german = {
   "pages.fooddata.ecoscore.e": "Sehr hohe Umweltauswirkungen",
   "pages.fooddata.na": "Nicht verfügbar",
   "general.rating.title": "Wie gefällt dir SaveWorld?",
+  "pages.teachers.enter.area": "Bereich für Lehrer",
+  "pages.teachers.area": "Lehrerbereich",
+  "pages.teachers.my.classes": "Klassen",
 } as const;

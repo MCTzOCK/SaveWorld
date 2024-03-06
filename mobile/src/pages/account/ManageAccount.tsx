@@ -813,6 +813,21 @@ export default function ManageAccount() {
                       <IonIcon slot={"start"} ios={glasses} />
                       <IonText>{$$("pages.settings.stats.nerds")}</IonText>
                     </IonItem>
+                    <IonItem
+                      color={"light"}
+                      detail
+                      button
+                      onClick={async () => {
+                        router.push("/teachers");
+                      }}
+                    >
+                      <IonIcon
+                        slot={"start"}
+                        ios={ionDocument}
+                        md={ionDocumentSharp}
+                      />
+                      <IonText>{$$("pages.teachers.enter.area")}</IonText>
+                    </IonItem>
                   </IonList>
                 </Box>
               </Grid>

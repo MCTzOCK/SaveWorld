@@ -105,6 +105,7 @@ export default function Login() {
                           title: $$("control.error"),
                           description: $$("page.login.enter.email"),
                         });
+                        return;
                       }
 
                       setEmail(email);

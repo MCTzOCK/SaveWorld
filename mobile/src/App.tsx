@@ -138,6 +138,7 @@ import LearnGraphs from "./pages/learn/LearnGraphs";
 import LearnGraph from "./pages/learn/LearnGraph";
 import FoodData from "./pages/fooddata/FoodData";
 import FoodDataViewer from "./pages/fooddata/FoodDataViewer";
+import Teachers from "./pages/teachers/Teachers";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -382,6 +383,7 @@ export default function App() {
       },
       "/fooddata": FoodData,
       "/fooddata/:ean": FoodDataViewer,
+      "/teachers": Teachers,
       //KEEP_ROUTES
     });
   }, [flags]);

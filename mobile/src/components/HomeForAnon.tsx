@@ -72,10 +72,11 @@ export default function HomeForAnon() {
           </Text>
           <ButtonGroup w={"100%"} justifyContent={["center", "right"]}>
             <Button
-              backgroundColor={"brand.600"}
               size={"lg"}
-              _hover={{ backgroundColor: "brand.500" }}
-              _active={{ backgroundColor: "brand.700" }}
+              variant={"brand"}
+              _hover={{
+                textDecoration: "none",
+              }}
               as={Link}
               href={"/login"}
               onClick={(e) => {
