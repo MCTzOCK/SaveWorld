@@ -17,7 +17,7 @@
     "jsx": "react-jsx",
     "baseUrl": "./",
     "paths": {
-      "@saveworld/api-js*": ["./src/api-js-embedded/src/*"]
+      "@saveworld/api-js/*": ["./src/api-js-embedded/src/*"]
     },
     "traceResolution": true
   },

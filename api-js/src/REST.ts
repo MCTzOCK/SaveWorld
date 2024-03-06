@@ -2052,4 +2052,49 @@ export class REST {
       });
     },
   };
+
+  public static School = {
+    /**
+     * @return all created classes
+     * @param token used to authenticate
+     */
+    classes: async (token: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/school/classes",
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * Creates a new class
+     * @param token used to authenticate
+     * @param name of the class
+     */
+    createClass: async (token: string, name: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/school/classes",
+        method: "POST",
+        token: token,
+        body: {
+          name: name,
+        },
+      });
+    },
+    /**
+     * Renames a class
+     * @param token used to authenticate
+     * @param id of the class to rename
+     * @param name of the class
+     */
+    renameClass: async (token: string, id: string, name: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/school/classes/" + id + "/name",
+        method: "POST",
+        token: token,
+        body: {
+          name: name,
+        },
+      });
+    },
+  };
 }

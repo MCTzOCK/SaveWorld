@@ -861,4 +861,9 @@ export const german = {
   "pages.teachers.enter.area": "Bereich für Lehrer",
   "pages.teachers.area": "Lehrerbereich",
   "pages.teachers.my.classes": "Klassen",
+  "pages.teachers.classes.create": "Neue Klasse",
+  "pages.teachers.classes.create.name.desc": "Wie heißt die neue Klasse?",
+  "pages.teachers.classes.students": "Schüler",
+  "pages.teachers.classes.rename": "Umbenennen",
+  "pages.teachers.classes.rename.desc": "Bitte gib einen neuen Namen ein.",
 } as const;

@@ -17,6 +17,7 @@ import {
   ButtonGroup,
   Flex,
   Heading,
+  Image,
   Link,
   Text,
 } from "@chakra-ui/react";
@@ -84,6 +85,18 @@ export default function NotFound() {
             >
               {$$("page.404.home")}
             </Button>
+          </Flex>
+          <Flex
+            mt={4}
+            w={"100%"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
+            <Image
+              src={"/assets/images/alien-29939_1280.png"}
+              alt={"Alien"}
+              maxW={"300px"}
+            />
           </Flex>
         </Box>
       </Flex>

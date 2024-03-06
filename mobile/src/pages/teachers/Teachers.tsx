@@ -14,6 +14,7 @@ import { $$ } from "../../translations/i18n";
 import MobileBox from "../../components/MobileBox";
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
+import SchoolClassesList from "../../components/SchoolClassesList";
 
 export default function Teachers() {
   useRedirectForAnon();
@@ -26,7 +27,9 @@ export default function Teachers() {
               <Tab>{$$("pages.teachers.my.classes")}</Tab>
             </TabList>
             <TabPanels>
-              <TabPanel></TabPanel>
+              <TabPanel>
+                <SchoolClassesList />
+              </TabPanel>
             </TabPanels>
           </Tabs>
         </MobileBox>
