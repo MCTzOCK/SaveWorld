@@ -104,6 +104,61 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
     },
   );
 
+  app.get(
+    "/school/classes/:id",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          summary: "Get a class",
+          description: "Get a class",
+          tags: ["school"],
+          security: [
+            {
+              jwt: [],
+            },
+          ],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Params: {
+          id: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const { auth, user } = await isAuth(req);
+
+      if (!auth) {
+        res.status(401).send({
+          error: "Unauthorized",
+          status: 401,
+        });
+        return;
+      }
+
+      const { id } = req.params;
+
+      const schoolClass = await SchoolClassModel.findOne({
+        _id: id,
+        createdBy: user._id,
+      });
+
+      if (!schoolClass) {
+        res.status(404).send({
+          error: "Class not found",
+          status: 404,
+        });
+        return;
+      }
+      schoolClass.populate("students");
+
+      res.status(200).send({ schoolClass });
+    },
+  );
+
   app.post(
     "/school/classes/:id/name",
     {

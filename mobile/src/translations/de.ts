@@ -860,6 +860,7 @@ export const german = {
   "general.rating.title": "Wie gefällt dir SaveWorld?",
   "pages.teachers.enter.area": "Bereich für Lehrer",
   "pages.teachers.area": "Lehrerbereich",
+  "pages.teachers.my.class": "Klasse",
   "pages.teachers.my.classes": "Klassen",
   "pages.teachers.classes.create": "Neue Klasse",
   "pages.teachers.classes.create.name.desc": "Wie heißt die neue Klasse?",
@@ -869,4 +870,5 @@ export const german = {
   "pages.teachers.classes.delete": "Klasse löschen?",
   "pages.teachers.classes.delete.desc":
     "Willst du diese Klasse wirklich unwiederruflich löschen?",
+  "pages.teachers.classes.actions": "Aktionen",
 } as const;
