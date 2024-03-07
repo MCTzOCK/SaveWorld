@@ -866,4 +866,7 @@ export const german = {
   "pages.teachers.classes.students": "Schüler",
   "pages.teachers.classes.rename": "Umbenennen",
   "pages.teachers.classes.rename.desc": "Bitte gib einen neuen Namen ein.",
+  "pages.teachers.classes.delete": "Klasse löschen?",
+  "pages.teachers.classes.delete.desc":
+    "Willst du diese Klasse wirklich unwiederruflich löschen?",
 } as const;

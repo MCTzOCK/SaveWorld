@@ -2096,5 +2096,17 @@ export class REST {
         },
       });
     },
+    /**
+     * Deletes a class
+     * @param token used to authenticate
+     * @param id of the class to delete
+     */
+    deleteClass: async (token: string, id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/school/classes/" + id,
+        method: "DELETE",
+        token: token,
+      });
+    },
   };
 }

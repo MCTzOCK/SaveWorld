@@ -115,7 +115,30 @@ export default function SchoolClassesList() {
                 aria-label={"Delete"}
                 icon={<FaTrash />}
                 colorScheme={"red"}
-                onClick={async () => {}}
+                onClick={async () => {
+                  if (
+                    !(await PopupManager.confirmAsync({
+                      title: $$("pages.teachers.classes.delete"),
+                      question: $$("pages.teachers.classes.delete.desc"),
+                    }))
+                  )
+                    return;
+
+                  const res = await REST.School.deleteClass(
+                    localStorage.getItem("token") as string,
+                    c._id,
+                  );
+
+                  if (res.status !== 200) {
+                    await PopupManager.alertAsync({
+                      title: $$("control.error"),
+                      description: res.payload.error,
+                    });
+                    return;
+                  }
+
+                  await reload();
+                }}
               />
               <IconButton
                 aria-label={"Rename"}
