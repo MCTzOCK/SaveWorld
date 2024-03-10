@@ -27,6 +27,8 @@ import mongoose from "mongoose";
 import ArticleModel from "../models/ArticleModel";
 import QuizModel from "../models/QuizModel";
 import LearningGraphModel from "../models/LearningGraphModel";
+import { isAllowed } from "../util/permissions";
+import { Perms } from "../util/Perms";
 export default async function adminPlugin(app: FastifyInstance, opts: any) {
   app.get(
     "/admin/adp/models",
@@ -1597,7 +1599,7 @@ async function defaultAdminAuth(
     return;
   }
 
-  if (user.role !== "admin") {
+  if (!isAllowed(user.role, Perms.ADMIN_PANEL)) {
     res.status(401).send({
       error: "Unauthorized",
       status: 401,

@@ -11,6 +11,8 @@ import { FastifyInstance, FastifyRequest } from "fastify";
 import { isAuth } from "../util/isAuth";
 import UserPreferencesModel from "../models/UserPreferencesModel";
 import { prompt, promptWithChat } from "../util/ai";
+import { checkRequestPermission } from "../util/permissions";
+import { Perms } from "../util/Perms";
 
 export default async function aiPlugin(app: FastifyInstance, opts: any) {
   app.post(
@@ -43,6 +45,9 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.AI_SINGLE_REQUEST, res))
+        return;
 
       let leftContingent = 0;
       let model = "gpt-3.5-turbo-0613";
@@ -120,6 +125,9 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.AI_CHAT_REQUEST, res))
+        return;
 
       let leftContingent = 0;
       let model = "gpt-3.5-turbo-0613";
