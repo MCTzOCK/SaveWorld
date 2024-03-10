@@ -18,6 +18,8 @@ import VideoCommentModel from "../models/VideoCommentModel";
 import ArticleModel from "../models/ArticleModel";
 import QuizModel from "../models/QuizModel";
 import LearningGraphModel from "../models/LearningGraphModel";
+import { checkRequestPermission } from "../util/permissions";
+import { Perms } from "../util/Perms";
 
 export default async function contentPlugin(app: FastifyInstance, opts: any) {
   app.get(
@@ -70,6 +72,19 @@ export default async function contentPlugin(app: FastifyInstance, opts: any) {
     },
     async (req: FastifyRequest, res) => {
       const { auth, user } = await isAuth(req);
+
+      if (!auth) {
+        res.status(401).send({
+          error: "Unauthorized",
+          status: 401,
+        });
+        return;
+      }
+
+      if (
+        !checkRequestPermission(user.role, Perms.CONTENT_VIDEOS_SUGGESTED, res)
+      )
+        return;
 
       const prefs = await UserPreferencesModel.findOne({
         user: user._id,
@@ -210,6 +225,9 @@ export default async function contentPlugin(app: FastifyInstance, opts: any) {
         return;
       }
 
+      if (!checkRequestPermission(user.role, Perms.CONTENT_VIDEOS_HISTORY, res))
+        return;
+
       const { videoId } = req.body as {
         videoId: string;
       };
@@ -319,6 +337,9 @@ export default async function contentPlugin(app: FastifyInstance, opts: any) {
         return;
       }
 
+      if (!checkRequestPermission(user.role, Perms.CONTENT_VIDEOS_COMMENT, res))
+        return;
+
       const { id } = req.params;
 
       const video = await VideoModel.findById(id);
@@ -388,6 +409,11 @@ export default async function contentPlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      if (
+        !checkRequestPermission(user.role, Perms.CONTENT_VIDEOS_COMMENTS, res)
+      )
+        return;
 
       const { id } = req.params;
 

@@ -14,6 +14,8 @@ import UserPreferencesModel from "../models/UserPreferencesModel";
 import UserModel from "../models/UserModel";
 import { FastifySchemas } from "../Schemas";
 import GameLeaderBoardModel from "../models/GameLeaderBoardModel";
+import { checkRequestPermission } from "../util/permissions";
+import { Perms } from "../util/Perms";
 
 export default async function communityPlugin(app: FastifyInstance, opts: any) {
   app.post(
@@ -52,6 +54,9 @@ export default async function communityPlugin(app: FastifyInstance, opts: any) {
       if (!auth) {
         return res.status(401).send({ error: "Not authorized" });
       }
+
+      if (!checkRequestPermission(user.role, Perms.GAMES_LEADERBOARD, res))
+        return;
 
       const game = req.params.game as string;
 
@@ -106,6 +111,8 @@ export default async function communityPlugin(app: FastifyInstance, opts: any) {
       if (!auth) {
         return res.status(401).send({ error: "Not authorized" });
       }
+      if (!checkRequestPermission(user.role, Perms.GAMES_LEADERBOARD, res))
+        return;
 
       const game = req.params.game as string;
 

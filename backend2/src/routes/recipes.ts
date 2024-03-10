@@ -11,6 +11,8 @@ import { FastifyInstance, FastifyRequest } from "fastify";
 import { isAuth } from "../util/isAuth";
 import RecipeModel from "../models/RecipeModel";
 import { FastifySchemas } from "../Schemas";
+import { checkRequestPermission } from "../util/permissions";
+import { Perms } from "../util/Perms";
 
 export default async function recipePlugin(app: FastifyInstance, opts: any) {
   app.get(
@@ -44,6 +46,7 @@ export default async function recipePlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+      if (!checkRequestPermission(user.role, Perms.RECIPES_ALL, res)) return;
 
       const PAGE_SIZE = 5;
       const page = req.query.page ? parseInt(req.query.page.toString()) : 0;
@@ -101,6 +104,8 @@ export default async function recipePlugin(app: FastifyInstance, opts: any) {
         return;
       }
 
+      if (!checkRequestPermission(user.role, Perms.RECIPES_CREATE, res)) return;
+
       const { title, steps, ingredients, image } = req.body;
 
       const recipe = await RecipeModel.create({
@@ -145,6 +150,8 @@ export default async function recipePlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.RECIPES_DELETE, res)) return;
 
       const { id } = req.query;
 
@@ -194,6 +201,9 @@ export default async function recipePlugin(app: FastifyInstance, opts: any) {
         res.status(401).send({ error: "Unauthorized", status: 401 });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.RECIPES_MY, res)) return;
+
       const PAGE_SIZE = 5;
       const page = req.query.page ? parseInt(req.query.page.toString()) : 0;
       const search = req.query.q ? req.query.q.toString() : "";
@@ -244,6 +254,10 @@ export default async function recipePlugin(app: FastifyInstance, opts: any) {
         res.status(401).send({ error: "Unauthorized", status: 401 });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.RECIPES_RECEIVE, res))
+        return;
+
       const { id } = req.query;
 
       const recipe = await RecipeModel.findById(id);
@@ -290,6 +304,8 @@ export default async function recipePlugin(app: FastifyInstance, opts: any) {
         res.status(401).send({ error: "Unauthorized", status: 401 });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.RECIPES_UPDATE, res)) return;
 
       const { id } = req.query;
       const { title, steps, ingredients, image } = req.body;

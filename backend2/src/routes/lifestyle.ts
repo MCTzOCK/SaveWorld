@@ -14,6 +14,8 @@ import { isAuth } from "../util/isAuth";
 import LifestyleModel from "../models/LifestyleModel";
 import { getUserEcoLevel } from "../util/getUserEcoLevel";
 import LifestyleSummaryModel from "../models/LifestyleSummaryModel";
+import { Perms } from "../util/Perms";
+import { checkRequestPermission } from "../util/permissions";
 
 export default async function lifestylePlugin(app: FastifyInstance, opts: any) {
   app.get(
@@ -60,6 +62,8 @@ export default async function lifestylePlugin(app: FastifyInstance, opts: any) {
         return;
       }
 
+      if (!checkRequestPermission(user.role, Perms.LIFESTYLE_MY, res)) return;
+
       let lfsm = await LifestyleModel.findOne({
         user: user._id,
       });
@@ -102,6 +106,9 @@ export default async function lifestylePlugin(app: FastifyInstance, opts: any) {
         return;
       }
 
+      if (!checkRequestPermission(user.role, Perms.LIFESTYLE_LEVEL, res))
+        return;
+
       const lvl = await getUserEcoLevel(user);
 
       res.status(200).send({
@@ -143,6 +150,9 @@ export default async function lifestylePlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.LIFESTYLE_SUBMIT, res))
+        return;
 
       const { goals } = req.body;
 
@@ -206,6 +216,9 @@ export default async function lifestylePlugin(app: FastifyInstance, opts: any) {
         return;
       }
 
+      if (!checkRequestPermission(user.role, Perms.LIFESTYLE_UPDATE, res))
+        return;
+
       let lifestyle = await LifestyleModel.findOne({
         user: user._id,
       });
@@ -261,6 +274,9 @@ export default async function lifestylePlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.LIFESTYLE_MY_WEEKLY, res))
+        return;
 
       const lfs = await LifestyleModel.findOne({
         user: user._id,
@@ -359,6 +375,9 @@ export default async function lifestylePlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.LIFESTYLE_MY_DAY, res))
+        return;
 
       const date = new Date(req.params.date);
 

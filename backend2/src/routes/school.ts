@@ -11,6 +11,8 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { isAuth } from "../util/isAuth";
 import SchoolClassModel from "../models/SchoolClassModel";
+import { checkRequestPermission } from "../util/permissions";
+import { Perms } from "../util/Perms";
 
 export default async function aiPlugin(app: FastifyInstance, opts: any) {
   app.get(
@@ -40,6 +42,9 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.SCHOOL_CLASSES_RECEIVE, res))
+        return;
 
       const schoolClasses = await SchoolClassModel.find({
         createdBy: user._id,
@@ -83,6 +88,9 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.SCHOOL_CLASSES_CREATE, res))
+        return;
 
       const { name } = req.body;
 
@@ -138,6 +146,9 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.SCHOOL_CLASSES_RECEIVE, res))
+        return;
 
       const { id } = req.params;
 
@@ -196,6 +207,9 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.SCHOOL_CLASSES_UPDATE, res))
+        return;
 
       const { name } = req.body;
       const { id } = req.params;
@@ -263,6 +277,9 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.SCHOOL_CLASSES_DELETE, res))
+        return;
 
       const { id } = req.params;
 
