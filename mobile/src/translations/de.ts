@@ -876,4 +876,5 @@ export const german = {
     "Gib an, wie viele Schüler du hinzufügen möchtest. (Eine Klasse kann maximal 40 Schüler beinhalten.)",
   "pages.teachers.classes.students.delete":
     "Bist du dir sicher, dass du den Schüler löschen möchtest?",
+  "pages.teachers.classes.students.login.code": "Anmelde-Code",
 } as const;

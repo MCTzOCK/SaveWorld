@@ -155,6 +155,30 @@ export default function TeachersClassViewer() {
                             shadow={"xl"}
                           >
                             <Text>{student.email}</Text>
+                            <Text>
+                              <b>
+                                {$$(
+                                  "pages.teachers.classes.students.login.code",
+                                )}
+                              </b>
+                              :{" "}
+                              {new Array(2).fill(0).map(() => {
+                                return (
+                                  <>
+                                    {new Date(student.createdAt)
+                                      .getUTCMilliseconds()
+                                      .toString().length < 3
+                                      ? new Date(student.createdAt)
+                                          .getUTCMilliseconds()
+                                          .toString()
+                                          .padStart(3, "0")
+                                      : new Date(student.createdAt)
+                                          .getUTCMilliseconds()
+                                          .toString()}
+                                  </>
+                                );
+                              })}
+                            </Text>
                             <Button
                               mt={2}
                               size={"sm"}

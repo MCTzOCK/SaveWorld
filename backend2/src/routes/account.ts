@@ -150,7 +150,7 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
       if (!req.body.email) {
         res.status(400).send({
           status: 400,
-          error: "Please provide a valid email address",
+          error: "Please provide a valid email address2",
         });
         return;
       }
@@ -162,8 +162,56 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
       if (!user) {
         res.status(400).send({
           status: 400,
-          error: "Please provide a valid email address",
+          error: "Please provide a valid email address1",
         });
+        return;
+      }
+
+      if (user.email.endsWith("@students.saveworld.one")) {
+        if (!req.body.emailCode) {
+          res.status(200).send({
+            status: 200,
+            message: "Email sent",
+          });
+        } else {
+          if (
+            req.body.emailCode ===
+            new Array(2)
+              .fill(0)
+              .map(() => {
+                return new Date(user.createdAt).getUTCMilliseconds().toString()
+                  .length < 3
+                  ? new Date(user.createdAt)
+                      .getUTCMilliseconds()
+                      .toString()
+                      .padStart(3, "0")
+                  : new Date(user.createdAt).getUTCMilliseconds().toString();
+              })
+              .join("")
+          ) {
+            const jsonwebtoken = sign(
+              {
+                id: user._id,
+              },
+              process.env.JWT_SECRET as string,
+              {
+                expiresIn: "365d",
+              },
+            );
+
+            res.status(200).send({
+              status: 200,
+              message: "Login successful",
+              token: jsonwebtoken,
+            });
+          } else {
+            res.status(400).send({
+              status: 400,
+              error: "Please provide a valid email code",
+            });
+          }
+        }
+
         return;
       }
 

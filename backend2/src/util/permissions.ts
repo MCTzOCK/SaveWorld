@@ -73,6 +73,7 @@ const DEFAULT_PERMISSIONS: {
 };
 
 DEFAULT_PERMISSIONS.admin = DEFAULT_PERMISSIONS.user;
+DEFAULT_PERMISSIONS.student = DEFAULT_PERMISSIONS.user;
 
 export function getAllPermissions(role: string): {
   permission: string;

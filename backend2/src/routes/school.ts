@@ -299,6 +299,14 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
         return;
       }
 
+      for (const student of schoolClass.students) {
+        const userMod = await UserModel.findOne({
+          _id: student,
+        });
+
+        await userMod.deleteOne();
+      }
+
       await schoolClass.deleteOne();
 
       res.status(200).send({ success: true });
