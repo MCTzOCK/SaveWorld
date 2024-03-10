@@ -150,7 +150,7 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
       if (!req.body.email) {
         res.status(400).send({
           status: 400,
-          error: "Please provide a valid email address2",
+          error: "Please provide a valid email address",
         });
         return;
       }
@@ -162,7 +162,7 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
       if (!user) {
         res.status(400).send({
           status: 400,
-          error: "Please provide a valid email address1",
+          error: "Please provide a valid email address",
         });
         return;
       }
