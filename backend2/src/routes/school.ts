@@ -13,6 +13,8 @@ import { isAuth } from "../util/isAuth";
 import SchoolClassModel from "../models/SchoolClassModel";
 import { checkRequestPermission } from "../util/permissions";
 import { Perms } from "../util/Perms";
+import UserModel from "../models/UserModel";
+import { createHash } from "crypto";
 
 export default async function aiPlugin(app: FastifyInstance, opts: any) {
   app.get(
@@ -155,7 +157,9 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
       const schoolClass = await SchoolClassModel.findOne({
         _id: id,
         createdBy: user._id,
-      });
+      })
+        .populate("students")
+        .exec();
 
       if (!schoolClass) {
         res.status(404).send({
@@ -164,7 +168,6 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
-      schoolClass.populate("students");
 
       res.status(200).send({ schoolClass });
     },
@@ -299,6 +302,213 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
       await schoolClass.deleteOne();
 
       res.status(200).send({ success: true });
+    },
+  );
+
+  app.post(
+    "/school/classes/:id/students",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          summary: "Creates multiple students",
+          description: "Creates multiple students",
+          tags: ["school"],
+          security: [
+            {
+              jwt: [],
+            },
+          ],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Body: {
+          count: number;
+        };
+        Params: {
+          id: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const { auth, user } = await isAuth(req);
+
+      if (!auth) {
+        res.status(401).send({
+          error: "Unauthorized",
+          status: 401,
+        });
+        return;
+      }
+
+      if (
+        !checkRequestPermission(
+          user.role,
+          Perms.SCHOOL_CLASSES_MANAGE_STUDENTS,
+          res,
+        )
+      )
+        return;
+
+      const { id } = req.params;
+
+      const schoolClass = await SchoolClassModel.findOne({
+        _id: id,
+        createdBy: user._id,
+      });
+
+      if (!schoolClass) {
+        res.status(404).send({
+          error: "Class not found",
+          status: 404,
+        });
+        return;
+      }
+
+      const { count } = req.body;
+
+      if (count === undefined || count === null || count === 0) {
+        res.status(400).send({
+          error: "Count is missing",
+          status: 400,
+        });
+        return;
+      }
+
+      if (count > 40 || count + schoolClass.students.length > 40) {
+        res.status(400).send({
+          error:
+            "Count is too high: You can have a maximum of 40 students per class",
+          status: 400,
+        });
+        return;
+      }
+
+      const students = schoolClass.students;
+
+      for (let i = 0; i < count; i++) {
+        const username = "s" + Math.random().toString(36).substring(7);
+
+        const userModel = await UserModel.create({
+          role: "student",
+          username,
+          email: username + "@students.saveworld.one",
+          firstName: "Schüler",
+          lastName: i.toString() + " (" + schoolClass.name + ")",
+          password: createHash("sha256")
+            .update(username + Math.random().toString(36))
+            .digest("hex"),
+          active: true,
+        });
+
+        students.push(userModel._id);
+      }
+
+      schoolClass.students = students;
+      schoolClass.markModified("students");
+
+      await schoolClass.save();
+
+      res.status(200).send({ students });
+    },
+  );
+
+  app.delete(
+    "/school/classes/:id/students/:student",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          summary: "Delete a student from a class",
+          description: "Delete a student from a class",
+          tags: ["school"],
+          security: [
+            {
+              jwt: [],
+            },
+          ],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Params: {
+          id: string;
+          student: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const { auth, user } = await isAuth(req);
+
+      if (!auth) {
+        res.status(401).send({
+          error: "Unauthorized",
+          status: 401,
+        });
+        return;
+      }
+
+      if (
+        !checkRequestPermission(
+          user.role,
+          Perms.SCHOOL_CLASSES_MANAGE_STUDENTS,
+          res,
+        )
+      )
+        return;
+
+      const { id, student } = req.params;
+
+      const schoolClass = await SchoolClassModel.findOne({
+        _id: id,
+        createdBy: user._id,
+      });
+
+      if (!schoolClass) {
+        res.status(404).send({
+          error: "Class not found",
+          status: 404,
+        });
+        return;
+      }
+
+      const students = schoolClass.students;
+
+      const index = students.indexOf(student);
+
+      if (index > -1) {
+        const userMod = await UserModel.findOne({
+          _id: student,
+        });
+
+        if (!userMod) {
+          res.status(404).send({
+            error: "Student not found",
+            status: 404,
+          });
+          return;
+        }
+
+        await userMod.deleteOne();
+
+        students.splice(index, 1);
+
+        schoolClass.students = students;
+
+        await schoolClass.save();
+
+        res.status(200).send({ success: true });
+
+        return;
+      }
+
+      res.status(404).send({
+        error: "Student not found",
+        status: 404,
+      });
     },
   );
 }

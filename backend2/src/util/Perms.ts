@@ -64,4 +64,5 @@ export enum Perms {
   SCHOOL_CLASSES_CREATE = "school.classes.create",
   SCHOOL_CLASSES_UPDATE = "school.classes.update",
   SCHOOL_CLASSES_DELETE = "school.classes.delete",
+  SCHOOL_CLASSES_MANAGE_STUDENTS = "school.classes.manage.students",
 }

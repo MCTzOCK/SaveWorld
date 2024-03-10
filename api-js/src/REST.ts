@@ -2120,5 +2120,35 @@ export class REST {
         token: token,
       });
     },
+    /**
+     * Creates X amount of students
+     * @param token used to authenticate
+     * @param id of the class to create the students for
+     * @param count of students to create (max. 40)
+     */
+    createStudents: async (token: string, id: string, count: number) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/school/classes/" + id + "/students",
+        method: "POST",
+        token: token,
+        body: {
+          count: count,
+        },
+      });
+    },
+    /**
+     * Deletes a student
+     * @param token used to authenticate
+     * @param id of the class to delete the student from
+     * @param student of the student to delete
+     */
+    deleteStudent: async (token: string, id: string, student: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL + "/school/classes/" + id + "/students/" + student,
+        method: "DELETE",
+        token: token,
+      });
+    },
   };
 }

@@ -871,4 +871,9 @@ export const german = {
   "pages.teachers.classes.delete.desc":
     "Willst du diese Klasse wirklich unwiederruflich löschen?",
   "pages.teachers.classes.actions": "Aktionen",
+  "pages.teachers.classes.students.create": "Schüler hinzufügen",
+  "pages.teachers.classes.students.create.desc":
+    "Gib an, wie viele Schüler du hinzufügen möchtest. (Eine Klasse kann maximal 40 Schüler beinhalten.)",
+  "pages.teachers.classes.students.delete":
+    "Bist du dir sicher, dass du den Schüler löschen möchtest?",
 } as const;
