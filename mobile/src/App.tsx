@@ -401,9 +401,7 @@ export default function App() {
         options={{
           api_host: POSTHOG_ENDPOINT,
           loaded: (posthog) => {
-            if (process.env.NODE_ENV === "development") {
-              posthog.debug();
-            }
+            posthog.debug(false);
           },
           autocapture: true,
         }}

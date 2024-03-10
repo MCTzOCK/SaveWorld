@@ -18,6 +18,7 @@ import { sign } from "jsonwebtoken";
 import UserPreferencesModel from "../models/UserPreferencesModel";
 import { sendEmailCode, sendRegisterEmail } from "../util/sendMail";
 import { getRedisClient } from "../util/redis";
+import { getAllPermissions } from "../util/permissions";
 
 export default async function accountPlugin(app: FastifyInstance, opts: any) {
   /** @deprecated */
@@ -869,6 +870,7 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
           role: pUser.role,
           username: pUser.username,
         },
+        permission_flags: getAllPermissions(user.role),
       });
     },
   );

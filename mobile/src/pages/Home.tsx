@@ -30,6 +30,7 @@ import { FaRobot, FaUtensils } from "react-icons/fa6";
 import { $$ } from "../translations/i18n";
 import { FaProjectDiagram } from "react-icons/fa";
 import { RiMindMap } from "react-icons/ri";
+import { Perms } from "../Perms";
 
 export default function Home() {
   const flags = useFlags([
@@ -44,7 +45,7 @@ export default function Home() {
     "recipes",
     "ai_helper",
   ]);
-  const { loggedIn } = useUserData();
+  const { loggedIn, permission_flags } = useUserData();
 
   return (
     <>
@@ -85,7 +86,10 @@ export default function Home() {
                 w={"100%"}
                 maxW={["600px"]}
               >
-                {flags.tracker.enabled ? (
+                {flags.tracker.enabled &&
+                permission_flags.find((p) => {
+                  return p.permission === Perms.LIFESTYLE_MY_DAY;
+                })?.allowed ? (
                   <HomeCardV2
                     color={"brand.500"}
                     icon={<BiLeaf />}
@@ -93,7 +97,10 @@ export default function Home() {
                     url={"/e2"}
                   />
                 ) : null}
-                {flags.videos.enabled ? (
+                {flags.videos.enabled &&
+                permission_flags.find((p) => {
+                  return p.permission === Perms.CONTENT_VIDEOS_SUGGESTED;
+                })?.allowed ? (
                   <HomeCardV2
                     color={"orange.500"}
                     icon={<BiVideo />}
@@ -109,14 +116,17 @@ export default function Home() {
                     url={"/quizzes"}
                   />
                 ) : null}
-                {flags.ai_helper.enabled && (
-                  <HomeCardV2
-                    icon={<FaRobot />}
-                    url={"/ai"}
-                    color={"blue.500"}
-                    text={$$("pages.ai.title")}
-                  />
-                )}
+                {flags.ai_helper.enabled &&
+                  permission_flags.find((p) => {
+                    return p.permission === Perms.AI_SINGLE_REQUEST;
+                  })?.allowed && (
+                    <HomeCardV2
+                      icon={<FaRobot />}
+                      url={"/ai"}
+                      color={"blue.500"}
+                      text={$$("pages.ai.title")}
+                    />
+                  )}
                 <HomeCardV2
                   color={"red.500"}
                   icon={<BiInfoCircle />}
@@ -131,7 +141,10 @@ export default function Home() {
                     url={"/tools/co2"}
                   />
                 ) : null}
-                {flags.community.enabled ? (
+                {flags.community.enabled &&
+                permission_flags.find((p) => {
+                  return p.permission === Perms.COMMUNITY_SUGGESTED;
+                })?.allowed ? (
                   <HomeCardV2
                     color={"purple.500"}
                     icon={<BiGroup />}
@@ -139,7 +152,10 @@ export default function Home() {
                     url={"/community"}
                   />
                 ) : null}
-                {flags.recipes.enabled ? (
+                {flags.recipes.enabled &&
+                permission_flags.find((p) => {
+                  return p.permission === Perms.RECIPES_ALL;
+                })?.allowed ? (
                   <HomeCardV2
                     color={"orange.500"}
                     icon={<FaUtensils />}
@@ -147,7 +163,10 @@ export default function Home() {
                     url={"/recipes"}
                   />
                 ) : null}
-                {flags.eco_projects.enabled ? (
+                {flags.eco_projects.enabled &&
+                permission_flags.find((p) => {
+                  return p.permission === Perms.E2PROJECTS_MY;
+                })?.allowed ? (
                   <HomeCardV2
                     color={"brand.500"}
                     icon={<FaProjectDiagram />}

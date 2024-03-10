@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { REST } from "@saveworld/api-js/index";
 import OneSignal from "onesignal-cordova-plugin";
 import { isPlatform } from "@ionic/react";
+import { Perms } from "../Perms";
 
 export function useUserData(): {
   loggedIn: boolean;
@@ -24,6 +25,10 @@ export function useUserData(): {
     role: string;
     username: string;
   };
+  permission_flags: {
+    permission: Perms;
+    allowed: boolean;
+  }[];
 } {
   const [loggedIn, setLoggedIn] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -36,6 +41,12 @@ export function useUserData(): {
     totpActive: false,
     role: "user",
   });
+  const [permission_flags, setPermissionFlags] = useState<
+    {
+      permission: Perms;
+      allowed: boolean;
+    }[]
+  >([]);
 
   useEffect(() => {
     let token: string | null = null;
@@ -54,6 +65,7 @@ export function useUserData(): {
                 if (r.status === 200 || r.status === 304) {
                   setLoggedIn(true);
                   setUserInfo(r.payload.user);
+                  setPermissionFlags(r.payload.permission_flags);
                 } else {
                   setLoggedIn(false);
                 }
@@ -67,6 +79,7 @@ export function useUserData(): {
                 _id: res.payload.user.id,
                 ...res.payload.user,
               });
+              setPermissionFlags(res.payload.permission_flags);
             } else {
               token = null;
 
@@ -96,5 +109,6 @@ export function useUserData(): {
     loggedIn,
     loaded,
     userInfo,
+    permission_flags,
   };
 }

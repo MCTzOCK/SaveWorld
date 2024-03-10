@@ -64,8 +64,14 @@ const DEFAULT_PERMISSIONS: {
     Perms.RECIPES_MY,
     Perms.RECIPES_RECEIVE,
     Perms.RECIPES_UPDATE,
+    Perms.SCHOOL_CLASSES_RECEIVE,
+    Perms.SCHOOL_CLASSES_CREATE,
+    Perms.SCHOOL_CLASSES_UPDATE,
+    Perms.SCHOOL_CLASSES_DELETE,
   ],
 };
+
+DEFAULT_PERMISSIONS.admin = DEFAULT_PERMISSIONS.user;
 
 export function getAllPermissions(role: string): {
   permission: string;
@@ -136,9 +142,6 @@ export function isAllowed(role: string, permission: string): boolean {
   if (role === "admin") return true;
 
   const perms = getAllPermissions(role);
-
-  console.table(perms);
-
   for (const perm of perms) {
     if (perm.permission === permission) {
       return perm.allowed;
