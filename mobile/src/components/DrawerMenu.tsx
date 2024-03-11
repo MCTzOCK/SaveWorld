@@ -207,6 +207,20 @@ export default function DrawerMenu(props: {
       });
     }
 
+    if (
+      permission_flags.find(
+        (p) => p.permission === Perms.SCHOOL_CLASSES_RECEIVE,
+      )?.allowed
+    ) {
+      gr[0].items.push({
+        label: $$("pages.teachers.area"),
+        icon: <FaBook />,
+        onClick: () => {
+          router.push("/teachers", "forward", "push");
+        },
+      });
+    }
+
     if (flags.news.enabled) {
       gr[0].items.push({
         label: $$("page.news.title"),
