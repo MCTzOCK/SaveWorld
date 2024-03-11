@@ -97,7 +97,7 @@ export default function TeachersClassViewer() {
             <Tabs colorScheme={"brand"} size={"md"} isFitted>
               <TabList>
                 <Tab>{$$("pages.teachers.classes.students")}</Tab>
-                <Tab>{$$("pages.teachers.classes.actions")}</Tab>
+                <Tab>{$$("menu.settings")}</Tab>
               </TabList>
               <TabPanels>
                 <TabPanel>
