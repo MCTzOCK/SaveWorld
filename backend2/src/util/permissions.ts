@@ -10,7 +10,7 @@
 import { FastifyReply } from "fastify";
 import { Perms } from "./Perms";
 
-const DEFAULT_PERMISSIONS: {
+export const DEFAULT_PERMISSIONS: {
   [key: string]: Perms[];
 } = {
   user: [
@@ -69,6 +69,7 @@ const DEFAULT_PERMISSIONS: {
     Perms.SCHOOL_CLASSES_UPDATE,
     Perms.SCHOOL_CLASSES_DELETE,
     Perms.SCHOOL_CLASSES_MANAGE_STUDENTS,
+    Perms.SCHOOL_CLASSES_PERMISSIONS,
   ],
 };
 

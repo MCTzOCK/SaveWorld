@@ -11,7 +11,13 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { isAuth } from "../util/isAuth";
 import SchoolClassModel from "../models/SchoolClassModel";
-import { checkRequestPermission } from "../util/permissions";
+import {
+  allow,
+  checkRequestPermission,
+  DEFAULT_PERMISSIONS,
+  disallow,
+  getAllPermissions,
+} from "../util/permissions";
 import { Perms } from "../util/Perms";
 import UserModel from "../models/UserModel";
 import { createHash } from "crypto";
@@ -517,6 +523,172 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
         error: "Student not found",
         status: 404,
       });
+    },
+  );
+
+  app.post(
+    "/school/classes/:id/permissions",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          summary: "Add a permission to a class",
+          description: "Add a permission to a class",
+          tags: ["school"],
+          security: [
+            {
+              jwt: [],
+            },
+          ],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Body: {
+          permissions: { permission: string; allowed: boolean }[];
+        };
+        Params: {
+          id: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const { auth, user } = await isAuth(req);
+
+      if (!auth) {
+        res.status(401).send({
+          error: "Unauthorized",
+          status: 401,
+        });
+        return;
+      }
+
+      if (
+        !checkRequestPermission(
+          user.role,
+          Perms.SCHOOL_CLASSES_PERMISSIONS,
+          res,
+        )
+      )
+        return;
+
+      const { id } = req.params;
+      const { permissions } = req.body;
+
+      const schoolClass = await SchoolClassModel.findOne({
+        _id: id,
+        createdBy: user._id,
+      });
+
+      if (!schoolClass) {
+        res.status(404).send({
+          error: "Class not found",
+          status: 404,
+        });
+        return;
+      }
+
+      let newRole = "student";
+
+      for (const p of permissions) {
+        if (Perms[p.permission]) {
+          if (DEFAULT_PERMISSIONS["user"].includes(Perms[p.permission])) {
+            if (p.allowed) {
+              newRole = allow(newRole, Perms[p.permission]);
+            } else {
+              newRole = disallow(newRole, Perms[p.permission]);
+            }
+          }
+        }
+      }
+
+      for (const student of schoolClass.students) {
+        const userMod = await UserModel.findOne({
+          _id: student,
+        });
+
+        userMod.role = newRole;
+        userMod.markModified("role");
+        await userMod.save();
+      }
+
+      res.status(200).send({ success: true });
+    },
+  );
+
+  app.get(
+    "/school/classes/:id/permissions",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          summary: "Get all permissions of a class",
+          description: "Get all permissions of a class",
+          tags: ["school"],
+          security: [
+            {
+              jwt: [],
+            },
+          ],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Params: {
+          id: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const { auth, user } = await isAuth(req);
+
+      if (!auth) {
+        res.status(401).send({
+          error: "Unauthorized",
+          status: 401,
+        });
+        return;
+      }
+
+      if (
+        !checkRequestPermission(
+          user.role,
+          Perms.SCHOOL_CLASSES_PERMISSIONS,
+          res,
+        )
+      )
+        return;
+
+      const { id } = req.params;
+
+      const schoolClass = await SchoolClassModel.findOne({
+        _id: id,
+        createdBy: user._id,
+      });
+
+      if (!schoolClass) {
+        res.status(404).send({
+          error: "Class not found",
+          status: 404,
+        });
+        return;
+      }
+
+      const userMod = await UserModel.findOne({
+        _id: schoolClass.students[0],
+      });
+
+      if (!userMod) {
+        res.status(404).send({
+          error: "Student not found",
+          status: 404,
+        });
+        return;
+      }
+
+      res.status(200).send({ permissions: getAllPermissions(userMod.role) });
     },
   );
 }

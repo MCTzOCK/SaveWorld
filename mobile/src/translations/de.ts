@@ -877,4 +877,5 @@ export const german = {
   "pages.teachers.classes.students.delete":
     "Bist du dir sicher, dass du den Schüler löschen möchtest?",
   "pages.teachers.classes.students.login.code": "Anmelde-Code",
+  "pages.teachers.classes.permissions": "Berichtigungen",
 } as const;

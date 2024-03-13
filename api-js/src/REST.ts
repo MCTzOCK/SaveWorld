@@ -2150,5 +2150,40 @@ export class REST {
         token: token,
       });
     },
+    /**
+     * Updates a classes permission
+     * @param token used to authenticate
+     * @param id of the class to update the permission for
+     * @param permissions the permission to set
+     */
+    updatePermission: async (
+      token: string,
+      id: string,
+      permissions: {
+        permission: string;
+        allowed: boolean;
+      }[],
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/school/classes/" + id + "/permissions",
+        method: "POST",
+        token: token,
+        body: {
+          permissions: permissions,
+        },
+      });
+    },
+    /**
+     * @return the requested class permission
+     * @param token used to authenticate
+     * @param id of the class to get the permission for
+     */
+    permission: async (token: string, id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/school/classes/" + id + "/permissions",
+        method: "GET",
+        token: token,
+      });
+    },
   };
 }
