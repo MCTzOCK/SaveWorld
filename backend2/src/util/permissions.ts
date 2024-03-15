@@ -156,14 +156,26 @@ export function isAllowed(role: string, permission: string): boolean {
 
 export function allow(role: string, permission: string): string {
   // changes the role respecting the permission
+  // example role: "user;+feature,-feature2"
   const perms = getAllPermissions(role);
 
-  for (const perm of perms) {
-    if (perm.permission === permission) {
-      if (perm.allowed) {
-        return role;
-      } else {
-        return role.replace(`-${permission}`, `+${permission}`);
+  const baseRole = role.split(";")[0];
+  if (role.split(";").length === 1) {
+    return role + `;+${permission}`;
+  } else {
+    const rolePermissions = role.split(";")[1].split(",");
+
+    for (const perm of perms) {
+      if (perm.permission === permission) {
+        if (perm.allowed) {
+          return role;
+        } else {
+          if (rolePermissions.includes(`-${permission}`)) {
+            return role.replace(`-${permission}`, `+${permission}`);
+          } else {
+            return role;
+          }
+        }
       }
     }
   }
@@ -173,14 +185,26 @@ export function allow(role: string, permission: string): string {
 
 export function disallow(role: string, permission: string): string {
   // changes the role respecting the permission
+  // example role: "user;+feature,-feature2"
   const perms = getAllPermissions(role);
 
-  for (const perm of perms) {
-    if (perm.permission === permission) {
-      if (!perm.allowed) {
-        return role;
-      } else {
-        return role.replace(`+${permission}`, `-${permission}`);
+  const baseRole = role.split(";")[0];
+  if (role.split(";").length === 1) {
+    return role + `;-${permission}`;
+  } else {
+    const rolePermissions = role.split(";")[1].split(",");
+
+    for (const perm of perms) {
+      if (perm.permission === permission) {
+        if (perm.allowed) {
+          return role + `,-${permission}`;
+        } else {
+          if (rolePermissions.includes(`+${permission}`)) {
+            return role.replace(`+${permission}`, `-${permission}`);
+          } else {
+            return role;
+          }
+        }
       }
     }
   }

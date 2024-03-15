@@ -31,6 +31,11 @@ const SchoolClassModel = new mongoose.Schema({
     required: true,
     default: [],
   },
+  permissions: {
+    type: Array,
+    required: true,
+    default: [],
+  },
 });
 
 export default mongoose.models?.SchoolClass ||

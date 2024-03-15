@@ -589,29 +589,36 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
         return;
       }
 
-      let newRole = "student";
+      let cPerms = schoolClass.permissions;
 
       for (const p of permissions) {
-        if (Perms[p.permission]) {
-          if (DEFAULT_PERMISSIONS["user"].includes(Perms[p.permission])) {
-            if (p.allowed) {
-              newRole = allow(newRole, Perms[p.permission]);
-            } else {
-              newRole = disallow(newRole, Perms[p.permission]);
-            }
+        if (cPerms.find((x) => x.permission === p.permission)) {
+          cPerms = cPerms.filter((x) => x.permission !== p.permission);
+          cPerms.push(p);
+        } else {
+          if (DEFAULT_PERMISSIONS["user"].includes(p.permission as Perms)) {
+            cPerms.push(p);
           }
         }
       }
 
-      for (const student of schoolClass.students) {
-        const userMod = await UserModel.findOne({
-          _id: student,
-        });
+      schoolClass.permissions = cPerms;
+      schoolClass.markModified("permissions");
+      await schoolClass.save();
 
-        userMod.role = newRole;
-        userMod.markModified("role");
-        await userMod.save();
+      let newRole = "student";
+
+      for (const p of cPerms) {
+        if (p.allowed) {
+          newRole = allow(newRole, p.permission);
+        } else {
+          newRole = disallow(newRole, p.permission);
+        }
       }
+
+      console.log(newRole);
+
+      await updateStudentPermissions(schoolClass, newRole);
 
       res.status(200).send({ success: true });
     },
@@ -676,19 +683,27 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
         return;
       }
 
-      const userMod = await UserModel.findOne({
-        _id: schoolClass.students[0],
-      });
+      const perms: {
+        permission: string;
+        allowed: boolean;
+      }[] = [];
 
-      if (!userMod) {
-        res.status(404).send({
-          error: "Student not found",
-          status: 404,
-        });
-        return;
+      for (const p of schoolClass.permissions) {
+        perms.push(p);
       }
-
-      res.status(200).send({ permissions: getAllPermissions(userMod.role) });
+      res.status(200).send({ permissions: perms });
     },
   );
+}
+
+async function updateStudentPermissions(sClass: any, newRole: string) {
+  for (const student of sClass.students) {
+    const userMod = await UserModel.findOne({
+      _id: student,
+    });
+
+    userMod.role = newRole;
+    userMod.markModified("role");
+    await userMod.save();
+  }
 }

@@ -34,6 +34,7 @@ import { useEffect } from "react";
 import SchoolClassesList from "../../components/SchoolClassesList";
 import { FaPlus } from "react-icons/fa6";
 import schoolClassModel from "../../../../backend2/src/models/SchoolClassModel";
+import TeachersClassPermissions from "../../components/TeachersClassPermissions";
 
 export default function TeachersClassViewer() {
   useRedirectForAnon();
@@ -220,7 +221,9 @@ export default function TeachersClassViewer() {
                     })}
                   </Grid>
                 </TabPanel>
-                <TabPanel></TabPanel>
+                <TabPanel>
+                  <TeachersClassPermissions classId={c._id} />
+                </TabPanel>
               </TabPanels>
             </Tabs>
           </>
