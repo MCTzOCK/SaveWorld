@@ -19,12 +19,15 @@ import PopupManager from "../../util/PopupManager";
 import {
   Box,
   Button,
+  ButtonGroup,
   Card,
   CardHeader,
   Flex,
   Grid,
   Heading,
+  HStack,
   IconButton,
+  Image,
   Radio,
   RadioGroup,
   Spinner,
@@ -40,10 +43,13 @@ import {
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 import SchoolClassesList from "../../components/SchoolClassesList";
-import { FaPlus } from "react-icons/fa6";
+import { FaPlus, FaTrash } from "react-icons/fa6";
 import schoolClassModel from "../../../../backend2/src/models/SchoolClassModel";
 import TeachersClassPermissions from "../../components/TeachersClassPermissions";
 import { useIonRouter } from "@ionic/react";
+import { MVideo } from "../../types";
+import VideoSelector from "../../components/reactflow/VideoSelector";
+import ArticleSelector from "../../components/reactflow/ArticleSelector";
 
 export default function TeachersClassViewer() {
   useRedirectForAnon();
@@ -67,6 +73,16 @@ export default function TeachersClassViewer() {
       __v: number;
     }[];
     homepage: string;
+    recommendedVideos: MVideo[];
+    recommendedArticles: {
+      _id: string;
+      title: string;
+      content: string;
+      featureImage: string;
+      featureImageCPR: string;
+      createdAt: string;
+      tags: string[];
+    }[];
   } | null>(null);
 
   const reloadClass = async () => {
@@ -88,6 +104,73 @@ export default function TeachersClassViewer() {
   useEffect(() => {
     reloadClass();
   }, []);
+
+  const {
+    isOpen: isVOpen,
+    onOpen: onVOpen,
+    onClose: onVClose,
+  } = useDisclosure();
+  const {
+    isOpen: isAOpen,
+    onOpen: onAOpen,
+    onClose: onAClose,
+  } = useDisclosure();
+
+  const onVSelection = async (video: MVideo & { _id: string }) => {
+    onVClose();
+    const recommendedVideos: string[] = c!.recommendedVideos
+      ? (c?.recommendedVideos.map((v) => (v as any)._id) as string[])
+      : ([] as string[]);
+    recommendedVideos.push(video._id);
+
+    const res = await REST.School.updateRecommendedContent(
+      localStorage.getItem("token") as string,
+      id,
+      recommendedVideos,
+      c?.recommendedArticles.map((a) => a._id) || [],
+    );
+
+    if (res.status !== 200) {
+      await PopupManager.alertAsync({
+        title: $$("control.error"),
+        description: res.payload.error,
+      });
+      return;
+    }
+
+    await reloadClass();
+  };
+
+  const onASelection = async (article: {
+    _id: string;
+    title: string;
+    featureImage: string;
+    featureImageCPR: string;
+    content: string;
+    tags: string[];
+  }) => {
+    onAClose();
+    const recommendedArticles: string[] = c!.recommendedArticles
+      ? (c?.recommendedArticles.map((v) => (v as any)._id) as string[])
+      : ([] as string[]);
+    recommendedArticles.push(article._id);
+    const res = await REST.School.updateRecommendedContent(
+      localStorage.getItem("token") as string,
+      id,
+      c?.recommendedVideos.map((v) => (v as any)._id) || [],
+      recommendedArticles,
+    );
+
+    if (res.status !== 200) {
+      await PopupManager.alertAsync({
+        title: $$("control.error"),
+        description: res.payload.error,
+      });
+      return;
+    }
+
+    await reloadClass();
+  };
 
   const router = useIonRouter();
   return (
@@ -113,7 +196,7 @@ export default function TeachersClassViewer() {
                 <Tab>{$$("pages.teachers.classes.permissions")}</Tab>
               </TabList>
               <TabPanels>
-                <TabPanel>
+                <TabPanel p={0} pt={2}>
                   {$$("pages.teachers.classes.intro")}
                   <Stack spacing={4} p={0} mt={3}>
                     <Box
@@ -175,6 +258,163 @@ export default function TeachersClassViewer() {
                       <Text>
                         {$$("pages.teachers.recommended.content.desc")}
                       </Text>
+                      <ButtonGroup w={"100%"}>
+                        <Button
+                          variant={"brand"}
+                          w={"100%"}
+                          size={"sm"}
+                          onClick={() => {
+                            onVOpen();
+                          }}
+                        >
+                          {$$("components.learning.graphs.select.video.title")}
+                        </Button>
+                        <Button
+                          variant={"brand"}
+                          w={"100%"}
+                          size={"sm"}
+                          onClick={() => {
+                            onAOpen();
+                          }}
+                        >
+                          {$$(
+                            "components.learning.graphs.select.article.title",
+                          )}
+                        </Button>
+                      </ButtonGroup>
+                      <Stack spacing={2}>
+                        <Heading size={"sm"}>
+                          {$$("components.articles")}
+                        </Heading>
+                        <HStack overflow={"auto"} spacing={2}>
+                          {c.recommendedArticles.map((a) => {
+                            return (
+                              <Card
+                                bg={"gray.800"}
+                                rounded={"md"}
+                                shadow={"xl"}
+                                minW={"200px"}
+                              >
+                                <CardHeader>
+                                  <Image
+                                    src={a.featureImage}
+                                    rounded={"md"}
+                                    mb={2}
+                                  />
+                                  <p>
+                                    <b>{$$("components.articles.source")}</b>:{" "}
+                                    <i>{a.featureImageCPR}</i>
+                                    <br />
+                                    <b>{$$("pages.admin.articles.new.tags")}</b>
+                                    : {a.tags.join(", ")}
+                                  </p>
+                                  <Heading size={"lg"}>{a.title}</Heading>
+                                  <Button
+                                    colorScheme={"red"}
+                                    leftIcon={<FaTrash />}
+                                    onClick={async () => {
+                                      const recommendedVideos =
+                                        c.recommendedVideos.map(
+                                          (v) => (v as any)._id,
+                                        ) || [];
+                                      let recommendedArticles =
+                                        c.recommendedArticles.map(
+                                          (a) => (a as any)._id,
+                                        ) || [];
+
+                                      recommendedArticles =
+                                        recommendedArticles.filter(
+                                          (x) => x !== a._id,
+                                        );
+
+                                      const res =
+                                        await REST.School.updateRecommendedContent(
+                                          localStorage.getItem(
+                                            "token",
+                                          ) as string,
+                                          id,
+                                          recommendedVideos,
+                                          recommendedArticles,
+                                        );
+
+                                      if (res.status !== 200) {
+                                        await PopupManager.alertAsync({
+                                          title: $$("control.error"),
+                                          description: res.payload.error,
+                                        });
+                                        return;
+                                      }
+
+                                      await reloadClass();
+                                    }}
+                                  >
+                                    {$$("general.remove")}
+                                  </Button>
+                                </CardHeader>
+                              </Card>
+                            );
+                          })}
+                        </HStack>
+
+                        <Heading size={"sm"}>{$$("menu.videos")}</Heading>
+                        <HStack overflow={"auto"} spacing={2}>
+                          {c.recommendedVideos.map((v) => {
+                            return (
+                              <Card
+                                bg={"gray.800"}
+                                rounded={"md"}
+                                shadow={"xl"}
+                                minW={"200px"}
+                              >
+                                <CardHeader>
+                                  <Heading size={"lg"}>{v.title}</Heading>
+                                  <Button
+                                    colorScheme={"red"}
+                                    leftIcon={<FaTrash />}
+                                    onClick={async () => {
+                                      let recommendedVideos =
+                                        c.recommendedVideos.map(
+                                          (v) => (v as any)._id,
+                                        ) || [];
+                                      const recommendedArticles =
+                                        c.recommendedArticles.map(
+                                          (a) => (a as any)._id,
+                                        ) || [];
+
+                                      recommendedVideos =
+                                        recommendedVideos.filter(
+                                          (x) => x !== v._id,
+                                        );
+
+                                      const res =
+                                        await REST.School.updateRecommendedContent(
+                                          localStorage.getItem(
+                                            "token",
+                                          ) as string,
+                                          id,
+                                          recommendedVideos,
+                                          recommendedArticles,
+                                        );
+
+                                      if (res.status !== 200) {
+                                        await PopupManager.alertAsync({
+                                          title: $$("control.error"),
+                                          description: res.payload.error,
+                                        });
+                                        return;
+                                      }
+
+                                      await reloadClass();
+                                    }}
+                                  >
+                                    {$$("general.remove")}
+                                  </Button>
+                                </CardHeader>
+                              </Card>
+                            );
+                          })}
+                        </HStack>
+                      </Stack>
                     </Box>
                   </Stack>
                 </TabPanel>
@@ -306,6 +546,16 @@ export default function TeachersClassViewer() {
           </>
         )}
       </MobileBox>
+      <VideoSelector
+        onClose={onVClose}
+        isOpen={isVOpen}
+        onSelection={onVSelection}
+      />
+      <ArticleSelector
+        isOpen={isAOpen}
+        onClose={onAClose}
+        onSelection={onASelection}
+      />
     </Page>
   );
 }

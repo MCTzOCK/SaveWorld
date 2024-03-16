@@ -239,7 +239,23 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
         return;
       }
 
-      schoolClass.recommendedArticles = recommendedArticles;
+      const rA = [];
+
+      for (const a of recommendedArticles) {
+        if (!a) continue;
+        if (rA.includes(a)) continue;
+        rA.push(a);
+      }
+
+      const rV = [];
+
+      for (const v of recommendedVideos) {
+        if (!v) continue;
+        if (rV.includes(v)) continue;
+        rV.push(v);
+      }
+
+      schoolClass.recommendedArticles = rA;
       schoolClass.markModified("recommendedArticles");
 
       schoolClass.recommendedVideos = recommendedVideos;
