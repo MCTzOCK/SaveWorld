@@ -69,156 +69,162 @@ export default function Home() {
       <Page title={$$("product.name")} noHeader>
         {loggedIn ? (
           <>
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Heading
-                fontSize={["6xl", "8xl"]}
-                textAlign={"center"}
-                fontWeight={1000}
-                maxWidth={["100%", "100%", "60%"]}
-              >
-                {$$("page.home.title")}
-              </Heading>
-            </div>
+            {homepage === "saveworld.default.homepage" ? (
+              <>
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Heading
+                    fontSize={["6xl", "8xl"]}
+                    textAlign={"center"}
+                    fontWeight={1000}
+                    maxWidth={["100%", "100%", "60%"]}
+                  >
+                    {$$("page.home.title")}
+                  </Heading>
+                </div>
 
-            <div
-              style={{
-                marginTop: "2rem",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "100%",
-              }}
-            >
-              <Grid
-                templateColumns={["repeat(2, 1fr)", "repeat(3, 1fr)"]}
-                gap={4}
-                w={"100%"}
-                maxW={["600px"]}
-              >
-                {flags.tracker.enabled &&
-                permission_flags.find((p) => {
-                  return p.permission === Perms.LIFESTYLE_MY_DAY;
-                })?.allowed ? (
-                  <HomeCardV2
-                    color={"brand.500"}
-                    icon={<BiLeaf />}
-                    text={$$("menu.tracker")}
-                    url={"/e2"}
-                  />
-                ) : null}
-                {flags.videos.enabled &&
-                permission_flags.find((p) => {
-                  return p.permission === Perms.CONTENT_VIDEOS_SUGGESTED;
-                })?.allowed ? (
-                  <HomeCardV2
-                    color={"orange.500"}
-                    icon={<BiVideo />}
-                    text={$$("menu.videos")}
-                    url={"/learn"}
-                  />
-                ) : null}
-                {flags.quizzes.enabled ? (
-                  <HomeCardV2
-                    color={"teal.500"}
-                    icon={<BiQuestionMark />}
-                    text={$$("menu.quizzes")}
-                    url={"/quizzes"}
-                  />
-                ) : null}
-                {flags.ai_helper.enabled &&
-                  permission_flags.find((p) => {
-                    return p.permission === Perms.AI_SINGLE_REQUEST;
-                  })?.allowed && (
+                <div
+                  style={{
+                    marginTop: "2rem",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    width: "100%",
+                  }}
+                >
+                  <Grid
+                    templateColumns={["repeat(2, 1fr)", "repeat(3, 1fr)"]}
+                    gap={4}
+                    w={"100%"}
+                    maxW={["600px"]}
+                  >
+                    {flags.tracker.enabled &&
+                    permission_flags.find((p) => {
+                      return p.permission === Perms.LIFESTYLE_MY_DAY;
+                    })?.allowed ? (
+                      <HomeCardV2
+                        color={"brand.500"}
+                        icon={<BiLeaf />}
+                        text={$$("menu.tracker")}
+                        url={"/e2"}
+                      />
+                    ) : null}
+                    {flags.videos.enabled &&
+                    permission_flags.find((p) => {
+                      return p.permission === Perms.CONTENT_VIDEOS_SUGGESTED;
+                    })?.allowed ? (
+                      <HomeCardV2
+                        color={"orange.500"}
+                        icon={<BiVideo />}
+                        text={$$("menu.videos")}
+                        url={"/learn"}
+                      />
+                    ) : null}
+                    {flags.quizzes.enabled ? (
+                      <HomeCardV2
+                        color={"teal.500"}
+                        icon={<BiQuestionMark />}
+                        text={$$("menu.quizzes")}
+                        url={"/quizzes"}
+                      />
+                    ) : null}
+                    {flags.ai_helper.enabled &&
+                      permission_flags.find((p) => {
+                        return p.permission === Perms.AI_SINGLE_REQUEST;
+                      })?.allowed && (
+                        <HomeCardV2
+                          icon={<FaRobot />}
+                          url={"/ai"}
+                          color={"blue.500"}
+                          text={$$("pages.ai.title")}
+                        />
+                      )}
                     <HomeCardV2
-                      icon={<FaRobot />}
-                      url={"/ai"}
-                      color={"blue.500"}
-                      text={$$("pages.ai.title")}
+                      color={"red.500"}
+                      icon={<BiInfoCircle />}
+                      text={$$("menu.support")}
+                      url={"/support"}
                     />
-                  )}
-                <HomeCardV2
-                  color={"red.500"}
-                  icon={<BiInfoCircle />}
-                  text={$$("menu.support")}
-                  url={"/support"}
-                />
-                {flags.tools_co2_calc.enabled ? (
-                  <HomeCardV2
-                    color={"yellow.500"}
-                    icon={<BiCalculator />}
-                    text={$$("menu.calculator")}
-                    url={"/tools/co2"}
-                  />
-                ) : null}
-                {flags.community.enabled &&
-                permission_flags.find((p) => {
-                  return p.permission === Perms.COMMUNITY_SUGGESTED;
-                })?.allowed ? (
-                  <HomeCardV2
-                    color={"purple.500"}
-                    icon={<BiGroup />}
-                    text={$$("menu.community")}
-                    url={"/community"}
-                  />
-                ) : null}
-                {flags.recipes.enabled &&
-                permission_flags.find((p) => {
-                  return p.permission === Perms.RECIPES_ALL;
-                })?.allowed ? (
-                  <HomeCardV2
-                    color={"orange.500"}
-                    icon={<FaUtensils />}
-                    text={$$("menu.recipes")}
-                    url={"/recipes"}
-                  />
-                ) : null}
-                {flags.eco_projects.enabled &&
-                permission_flags.find((p) => {
-                  return p.permission === Perms.E2PROJECTS_MY;
-                })?.allowed ? (
-                  <HomeCardV2
-                    color={"brand.500"}
-                    icon={<FaProjectDiagram />}
-                    text={$$("menu.projects")}
-                    url={"/e2-projects/my"}
-                  />
-                ) : null}
-                {flags.sustainability_articles.enabled ? (
-                  <HomeCardV2
-                    color={"blue.500"}
-                    icon={<BiFile />}
-                    text={$$("components.articles")}
-                    url={"/sustainability/articles"}
-                  />
-                ) : null}
-                <HomeCardV2
-                  color={"purple.500"}
-                  icon={<RiMindMap />}
-                  text={$$("components.learning.graphs")}
-                  url={"/learn/graphs"}
-                />
-                <HomeCardV2
-                  color={"pink.500"}
-                  icon={<BiCog />}
-                  text={$$("menu.settings.short")}
-                  url={"/account"}
-                />
-                <HomeCardV2
-                  color={"teal.500"}
-                  icon={<BiMessage />}
-                  text={$$("menu.notifications.short")}
-                  url={"/notifications"}
-                />
-              </Grid>
-            </div>
+                    {flags.tools_co2_calc.enabled ? (
+                      <HomeCardV2
+                        color={"yellow.500"}
+                        icon={<BiCalculator />}
+                        text={$$("menu.calculator")}
+                        url={"/tools/co2"}
+                      />
+                    ) : null}
+                    {flags.community.enabled &&
+                    permission_flags.find((p) => {
+                      return p.permission === Perms.COMMUNITY_SUGGESTED;
+                    })?.allowed ? (
+                      <HomeCardV2
+                        color={"purple.500"}
+                        icon={<BiGroup />}
+                        text={$$("menu.community")}
+                        url={"/community"}
+                      />
+                    ) : null}
+                    {flags.recipes.enabled &&
+                    permission_flags.find((p) => {
+                      return p.permission === Perms.RECIPES_ALL;
+                    })?.allowed ? (
+                      <HomeCardV2
+                        color={"orange.500"}
+                        icon={<FaUtensils />}
+                        text={$$("menu.recipes")}
+                        url={"/recipes"}
+                      />
+                    ) : null}
+                    {flags.eco_projects.enabled &&
+                    permission_flags.find((p) => {
+                      return p.permission === Perms.E2PROJECTS_MY;
+                    })?.allowed ? (
+                      <HomeCardV2
+                        color={"brand.500"}
+                        icon={<FaProjectDiagram />}
+                        text={$$("menu.projects")}
+                        url={"/e2-projects/my"}
+                      />
+                    ) : null}
+                    {flags.sustainability_articles.enabled ? (
+                      <HomeCardV2
+                        color={"blue.500"}
+                        icon={<BiFile />}
+                        text={$$("components.articles")}
+                        url={"/sustainability/articles"}
+                      />
+                    ) : null}
+                    <HomeCardV2
+                      color={"purple.500"}
+                      icon={<RiMindMap />}
+                      text={$$("components.learning.graphs")}
+                      url={"/learn/graphs"}
+                    />
+                    <HomeCardV2
+                      color={"pink.500"}
+                      icon={<BiCog />}
+                      text={$$("menu.settings.short")}
+                      url={"/account"}
+                    />
+                    <HomeCardV2
+                      color={"teal.500"}
+                      icon={<BiMessage />}
+                      text={$$("menu.notifications.short")}
+                      url={"/notifications"}
+                    />
+                  </Grid>
+                </div>
+              </>
+            ) : (
+              "Not implemented"
+            )}
           </>
         ) : (
           <HomeForAnon />
