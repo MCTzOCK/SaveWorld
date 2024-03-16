@@ -41,6 +41,18 @@ const SchoolClassModel = new mongoose.Schema({
     required: true,
     default: JSON.stringify(["saveworld.default.homepage"]),
   },
+  recommendedArticles: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "Article",
+    required: true,
+    default: [],
+  },
+  recommendedVideos: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "Video",
+    required: true,
+    default: [],
+  },
 });
 
 export default mongoose.models?.SchoolClass ||

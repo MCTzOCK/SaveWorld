@@ -162,6 +162,20 @@ export default function TeachersClassViewer() {
                         </VStack>
                       </RadioGroup>
                     </Box>
+                    <Box
+                      bg={"gray.900"}
+                      rounded={"md"}
+                      shadow={"xl"}
+                      p={3}
+                      pt={0}
+                    >
+                      <Heading size={"md"}>
+                        {$$("pages.teachers.recommended.content")}
+                      </Heading>
+                      <Text>
+                        {$$("pages.teachers.recommended.content.desc")}
+                      </Text>
+                    </Box>
                   </Stack>
                 </TabPanel>
                 <TabPanel p={0}>

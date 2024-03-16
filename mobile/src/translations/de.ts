@@ -950,4 +950,7 @@ export const german = {
     "Passe an, was auf der Startseite deiner Schüler angezeigt wird!",
   "pages.teachers.classes.homepage.default": "Standard Startseite",
   "pages.teachers.classes.homepage.class": "Klassen Startseite",
+  "pages.teachers.recommended.content": "Vorgeschlagene Inhalte",
+  "pages.teachers.recommended.content.desc":
+    "Schlage deinen Schülern Inhalte vor, die sie sich ansehen können!",
 } as const;

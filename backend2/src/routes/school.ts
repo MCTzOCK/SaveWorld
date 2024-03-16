@@ -165,6 +165,8 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
         createdBy: user._id,
       })
         .populate("students")
+        .populate("recommendedArticles")
+        .populate("recommendedVideos")
         .exec();
 
       if (!schoolClass) {
@@ -174,6 +176,76 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      res.status(200).send({ schoolClass });
+    },
+  );
+
+  app.post(
+    "/school/classes/:id/recommended-content",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          summary: "Update a classes recommended content",
+          description: "Update a classes recommended content",
+          tags: ["school"],
+          security: [
+            {
+              jwt: [],
+            },
+          ],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Body: {
+          recommendedArticles: string[];
+          recommendedVideos: string[];
+        };
+        Params: {
+          id: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const { auth, user } = await isAuth(req);
+
+      if (!auth) {
+        res.status(401).send({
+          error: "Unauthorized",
+          status: 401,
+        });
+        return;
+      }
+
+      if (!checkRequestPermission(user.role, Perms.SCHOOL_CLASSES_UPDATE, res))
+        return;
+
+      const { id } = req.params;
+      const { recommendedArticles, recommendedVideos } = req.body;
+
+      const schoolClass = await SchoolClassModel.findOne({
+        _id: id,
+        createdBy: user._id,
+      });
+
+      if (!schoolClass) {
+        res.status(404).send({
+          error: "Class not found",
+          status: 404,
+        });
+        return;
+      }
+
+      schoolClass.recommendedArticles = recommendedArticles;
+      schoolClass.markModified("recommendedArticles");
+
+      schoolClass.recommendedVideos = recommendedVideos;
+      schoolClass.markModified("recommendedVideos");
+
+      await schoolClass.save();
 
       res.status(200).send({ schoolClass });
     },

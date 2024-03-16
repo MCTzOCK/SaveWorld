@@ -2212,5 +2212,29 @@ export class REST {
         },
       });
     },
+    /**
+     * Updates recommended content
+     * @param token used to authenticate
+     * @param id of the class to update the recommended content for
+     * @param recommendedVideos the recommended videos to set
+     * @param recommendedArticles the recommended articles to set
+     */
+    updateRecommendedContent: async (
+      token: string,
+      id: string,
+      recommendedVideos: string[],
+      recommendedArticles: string[],
+    ) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL + "/school/classes/" + id + "/recommended-content",
+        method: "POST",
+        token: token,
+        body: {
+          recommendedVideos: recommendedVideos,
+          recommendedArticles: recommendedArticles,
+        },
+      });
+    },
   };
 }
