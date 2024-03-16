@@ -11,7 +11,8 @@
 import * as React from "react";
 import { useEffect } from "react";
 import { REST } from "@saveworld/api-js/REST";
-import { Switch, VStack } from "@chakra-ui/react";
+import { Heading, Switch, Text, VStack } from "@chakra-ui/react";
+import { $$ } from "../translations/i18n";
 
 export default function TeachersClassPermissions(props: { classId: string }) {
   const [perms, setPerms] = React.useState<
@@ -20,6 +21,7 @@ export default function TeachersClassPermissions(props: { classId: string }) {
       allowed: boolean;
     }[]
   >([]);
+  const [categories, setCategories] = React.useState<string[]>([]);
 
   useEffect(() => {
     if (!props.classId) return;
@@ -38,43 +40,71 @@ export default function TeachersClassPermissions(props: { classId: string }) {
     }
 
     setPerms(res.payload.permissions);
+
+    let c: string[] = [];
+
+    res.payload.permissions.forEach(
+      (p: { permission: string; allowed: boolean }) => {
+        const cat = p.permission.split(".")[0];
+        if (!c.includes(cat)) {
+          c.push(cat);
+        }
+      },
+    );
+
+    setCategories(c);
   };
 
   return (
     <>
       <VStack spacing={4}>
-        {perms.map((p, i) => {
+        {categories.map((cat) => {
           return (
-            <Switch
-              key={i}
-              w={"100%"}
-              isChecked={p.allowed}
-              onChange={async () => {
-                let newPerms = [...perms];
+            <>
+              <Heading
+                size={"md"}
+                justifySelf={"flex-start"}
+                alignSelf={"flex-start"}
+              >
+                {$$(`permissions.cat.${cat}` as any) || cat}
+              </Heading>
+              {perms
+                .filter((p) => p.permission.split(".")[0] === cat)
+                .map((p, i) => {
+                  return (
+                    <Switch
+                      key={i}
+                      w={"100%"}
+                      isChecked={p.allowed}
+                      onChange={async () => {
+                        let newPerms = [...perms];
 
-                newPerms = newPerms.map((np) => {
-                  if (np.permission === p.permission) {
-                    np.allowed = !np.allowed;
-                  }
+                        newPerms = newPerms.map((np) => {
+                          if (np.permission === p.permission) {
+                            np.allowed = !np.allowed;
+                          }
 
-                  return np;
-                });
+                          return np;
+                        });
 
-                const res = await REST.School.updatePermission(
-                  localStorage.getItem("token") as string,
-                  props.classId,
-                  newPerms,
-                );
+                        const res = await REST.School.updatePermission(
+                          localStorage.getItem("token") as string,
+                          props.classId,
+                          newPerms,
+                        );
 
-                if (res.status !== 200) {
-                  return;
-                }
+                        if (res.status !== 200) {
+                          return;
+                        }
 
-                reload();
-              }}
-            >
-              {p.permission}
-            </Switch>
+                        reload();
+                      }}
+                    >
+                      {$$(`permissions.${p.permission}` as any)}
+                    </Switch>
+                  );
+                })}
+            </>
           );
         })}
       </VStack>
