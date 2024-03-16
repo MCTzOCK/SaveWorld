@@ -19,22 +19,31 @@ import PopupManager from "../../util/PopupManager";
 import {
   Box,
   Button,
+  Card,
+  CardHeader,
   Flex,
   Grid,
+  Heading,
   IconButton,
+  Radio,
+  RadioGroup,
   Spinner,
+  Stack,
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
   Text,
+  useDisclosure,
+  VStack,
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 import SchoolClassesList from "../../components/SchoolClassesList";
 import { FaPlus } from "react-icons/fa6";
 import schoolClassModel from "../../../../backend2/src/models/SchoolClassModel";
 import TeachersClassPermissions from "../../components/TeachersClassPermissions";
+import { useIonRouter } from "@ionic/react";
 
 export default function TeachersClassViewer() {
   useRedirectForAnon();
@@ -57,6 +66,7 @@ export default function TeachersClassViewer() {
       password: string;
       __v: number;
     }[];
+    homepage: string;
   } | null>(null);
 
   const reloadClass = async () => {
@@ -79,6 +89,7 @@ export default function TeachersClassViewer() {
     reloadClass();
   }, []);
 
+  const router = useIonRouter();
   return (
     <Page title={c !== null ? c.name : $$("pages.teachers.my.class")}>
       <MobileBox>
@@ -97,11 +108,63 @@ export default function TeachersClassViewer() {
           <>
             <Tabs colorScheme={"brand"} size={"md"} isFitted>
               <TabList>
+                <Tab>{$$("menu.home")}</Tab>
                 <Tab>{$$("pages.teachers.classes.students")}</Tab>
                 <Tab>{$$("pages.teachers.classes.permissions")}</Tab>
               </TabList>
               <TabPanels>
                 <TabPanel>
+                  {$$("pages.teachers.classes.intro")}
+                  <Stack spacing={4} p={0} mt={3}>
+                    <Box
+                      bg={"gray.900"}
+                      rounded={"md"}
+                      shadow={"xl"}
+                      p={3}
+                      pt={0}
+                    >
+                      <Heading size={"md"}>
+                        {$$("pages.e2projects.homepage")}
+                      </Heading>
+                      <Text>{$$("pages.teachers.classes.homepage")}</Text>
+
+                      <RadioGroup
+                        onChange={async (e) => {
+                          const res = await REST.School.updateHomepage(
+                            localStorage.getItem("token") as string,
+                            id,
+                            e,
+                          );
+
+                          if (res.status !== 200) {
+                            await PopupManager.alertAsync({
+                              title: $$("control.error"),
+                              description: res.payload.error,
+                            });
+                            return;
+                          }
+
+                          await reloadClass();
+                        }}
+                        value={c.homepage}
+                      >
+                        <VStack
+                          spacing={2}
+                          justifyContent={"flex-start"}
+                          alignItems={"left"}
+                        >
+                          <Radio value={"saveworld.default.homepage"}>
+                            {$$("pages.teachers.classes.homepage.default")}
+                          </Radio>
+                          <Radio value={"saveworld.students.class.homepage"}>
+                            {$$("pages.teachers.classes.homepage.class")}
+                          </Radio>
+                        </VStack>
+                      </RadioGroup>
+                    </Box>
+                  </Stack>
+                </TabPanel>
+                <TabPanel p={0}>
                   <Flex mt={2} w={"100%"} justifyContent={"flex-end"}>
                     <IconButton
                       aria-label={"Create Students"}
@@ -221,7 +284,7 @@ export default function TeachersClassViewer() {
                     })}
                   </Grid>
                 </TabPanel>
-                <TabPanel>
+                <TabPanel p={0}>
                   <TeachersClassPermissions classId={c._id} />
                 </TabPanel>
               </TabPanels>

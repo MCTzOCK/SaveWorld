@@ -19,6 +19,7 @@ import UserPreferencesModel from "../models/UserPreferencesModel";
 import { sendEmailCode, sendRegisterEmail } from "../util/sendMail";
 import { getRedisClient } from "../util/redis";
 import { getAllPermissions } from "../util/permissions";
+import SchoolClassModel from "../models/SchoolClassModel";
 
 export default async function accountPlugin(app: FastifyInstance, opts: any) {
   /** @deprecated */
@@ -919,6 +920,57 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
           username: pUser.username,
         },
         permission_flags: getAllPermissions(user.role),
+      });
+    },
+  );
+
+  app.get(
+    "/account/homepage",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          description: "Returns the homepage",
+          summary: "Homepage",
+          tags: ["account"],
+          security: [{ jwt: [] }],
+        },
+      },
+    },
+    async (req: FastifyRequest, res: FastifyReply) => {
+      const { auth, user } = await isAuth(req);
+
+      if (!auth) {
+        res.status(401).send({
+          status: 401,
+          error: "Unauthorized",
+        });
+        return;
+      }
+
+      if (!user.role.startsWith("student")) {
+        res.status(200).send({
+          status: 200,
+          homepage: "saveworld.default.homepage",
+        });
+        return;
+      }
+
+      const classX = await SchoolClassModel.findOne({
+        students: user._id,
+      });
+
+      if (!classX) {
+        res.status(200).send({
+          status: 200,
+          homepage: "saveworld.default.homepage",
+        });
+        return;
+      }
+
+      res.status(200).send({
+        status: 200,
+        homepage: classX.homepage,
       });
     },
   );

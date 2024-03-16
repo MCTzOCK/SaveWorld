@@ -31,6 +31,7 @@ import { $$ } from "../translations/i18n";
 import { FaProjectDiagram } from "react-icons/fa";
 import { RiMindMap } from "react-icons/ri";
 import { Perms } from "../Perms";
+import { REST } from "@saveworld/api-js/REST";
 
 export default function Home() {
   const flags = useFlags([
@@ -46,6 +47,22 @@ export default function Home() {
     "ai_helper",
   ]);
   const { loggedIn, permission_flags } = useUserData();
+
+  const [homepage, setHomepage] = React.useState<string>("loading");
+
+  React.useEffect(() => {
+    if (loggedIn) {
+      REST.Account.homepage(localStorage.getItem("token") as string).then(
+        (res) => {
+          if (res.status === 200) {
+            setHomepage(res.payload.homepage);
+          } else {
+            setHomepage("saveworld.default.homepage");
+          }
+        },
+      );
+    }
+  }, [loggedIn]);
 
   return (
     <>

@@ -36,6 +36,11 @@ const SchoolClassModel = new mongoose.Schema({
     required: true,
     default: [],
   },
+  homepage: {
+    type: String,
+    required: true,
+    default: JSON.stringify(["saveworld.default.homepage"]),
+  },
 });
 
 export default mongoose.models?.SchoolClass ||

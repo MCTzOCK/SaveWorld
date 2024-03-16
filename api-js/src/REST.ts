@@ -764,6 +764,17 @@ export class REST {
         },
       });
     },
+    /**
+     * @return the users homepage
+     * @param token used to authenticate
+     */
+    homepage: async (token: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/account/homepage",
+        method: "GET",
+        token: token,
+      });
+    },
   };
 
   public static Content = {
@@ -2183,6 +2194,22 @@ export class REST {
         path: RESTEnv.API_URL + "/school/classes/" + id + "/permissions",
         method: "GET",
         token: token,
+      });
+    },
+    /**
+     * Updates the classes homepage
+     * @param token used to authenticate
+     * @param id of the class to update the homepage for
+     * @param homepage JSON-encoded homepage segments
+     */
+    updateHomepage: async (token: string, id: string, homepage: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/school/classes/" + id + "/homepage",
+        method: "POST",
+        token: token,
+        body: {
+          homepage: homepage,
+        },
       });
     },
   };

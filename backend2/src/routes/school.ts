@@ -694,6 +694,77 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
       res.status(200).send({ permissions: perms });
     },
   );
+
+  app.post(
+    "/school/classes/:id/homepage",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          summary: "Set the homepage of a class",
+          description: "Set the homepage of a class",
+          tags: ["school"],
+          security: [
+            {
+              jwt: [],
+            },
+          ],
+        },
+      },
+    },
+    async (
+      req: FastifyRequest<{
+        Body: {
+          homepage: string;
+        };
+        Params: {
+          id: string;
+        };
+      }>,
+      res: FastifyReply,
+    ) => {
+      const { auth, user } = await isAuth(req);
+
+      if (!auth) {
+        res.status(401).send({
+          error: "Unauthorized",
+          status: 401,
+        });
+        return;
+      }
+
+      if (
+        !checkRequestPermission(
+          user.role,
+          Perms.SCHOOL_CLASSES_PERMISSIONS,
+          res,
+        )
+      )
+        return;
+
+      const { id } = req.params;
+      const { homepage } = req.body;
+
+      const schoolClass = await SchoolClassModel.findOne({
+        _id: id,
+        createdBy: user._id,
+      });
+
+      if (!schoolClass) {
+        res.status(404).send({
+          error: "Class not found",
+          status: 404,
+        });
+        return;
+      }
+
+      schoolClass.homepage = homepage;
+      schoolClass.markModified("homepage");
+      await schoolClass.save();
+
+      res.status(200).send({ success: true });
+    },
+  );
 }
 
 async function updateStudentPermissions(sClass: any, newRole: string) {
