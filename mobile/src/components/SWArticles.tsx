@@ -10,7 +10,7 @@
 
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "../util/PopupManager";
 import { $$ } from "../translations/i18n";
 import Page from "./Page";
@@ -93,6 +93,7 @@ export default function SWArticles(props: { tag: string; pageTitle: string }) {
             "repeat(2, 1fr)",
             "repeat(3, 1fr)",
           ]}
+          gap={2}
         >
           {articles.map((a) => {
             return (

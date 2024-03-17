@@ -88,6 +88,7 @@ const disallowed = [
   ".cginc",
   ".rtf",
   "TextMesh Pro",
+  "api-js-embedded",
 ];
 
 // filter disallowed files

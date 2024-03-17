@@ -17,9 +17,7 @@ import { Avatar, Grid, Heading, HStack, Stack, Text } from "@chakra-ui/react";
 import MobileBox from "../../components/MobileBox";
 import { useEffect } from "react";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
-import { REST } from "@saveworld/api-js";
-import { ENDPOINT } from "../../env";
-import { RESTEnv } from "@saveworld/api-js/dist/RESTEnv";
+import { REST, RESTEnv } from "@saveworld/api-js/index";
 
 export default function GameLeaderBoard() {
   const { game } = useParams<{ game: string }>();

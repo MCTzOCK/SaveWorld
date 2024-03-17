@@ -11,6 +11,8 @@ import { FastifyInstance, FastifyRequest } from "fastify";
 import { isAuth } from "../util/isAuth";
 import EatingPlanModel from "../models/EatingPlanModel";
 import { FastifySchemas } from "../Schemas";
+import { checkRequestPermission } from "../util/permissions";
+import { Perms } from "../util/Perms";
 
 export default async function eatingplanPlugin(
   app: FastifyInstance,
@@ -46,6 +48,8 @@ export default async function eatingplanPlugin(
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.EATINGPLAN_GET, res)) return;
 
       const { date } = req.query;
       let eatingPlan = await EatingPlanModel.findOne({
@@ -94,6 +98,9 @@ export default async function eatingplanPlugin(
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.EATINGPLAN_CREATE, res))
+        return;
 
       const { date } = req.query;
 
@@ -150,6 +157,9 @@ export default async function eatingplanPlugin(
         return;
       }
 
+      if (!checkRequestPermission(user.role, Perms.EATINGPLAN_UPDATE, res))
+        return;
+
       const { date, recipes } = req.body;
 
       const eatingPlan = await EatingPlanModel.findOne({
@@ -205,6 +215,10 @@ export default async function eatingplanPlugin(
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.EATINGPLAN_DELETE, res))
+        return;
+
       const { date } = req.body;
 
       if (!date) {

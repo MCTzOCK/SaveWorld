@@ -43,7 +43,7 @@ import {
 } from "@chakra-ui/react";
 import MobileBox from "../components/MobileBox";
 import { $$ } from "../translations/i18n";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 
 export default function Login() {
   const router = useIonRouter();
@@ -105,6 +105,7 @@ export default function Login() {
                           title: $$("control.error"),
                           description: $$("page.login.enter.email"),
                         });
+                        return;
                       }
 
                       setEmail(email);

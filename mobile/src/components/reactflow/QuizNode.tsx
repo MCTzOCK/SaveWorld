@@ -48,6 +48,7 @@ export default function QuizNode(props: { data: any }) {
             w={"100%"}
             rounded={"md"}
             shadow={"xl"}
+            maxW={"300px"}
           />
           <Heading size={"md"}>{props.data.title}</Heading>
           <Text fontSize={"sm"}>{props.data.description}</Text>

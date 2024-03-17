@@ -29,7 +29,7 @@ import {
 } from "@ionic/react";
 import { useState } from "react";
 import { reloadCircle, reloadCircleSharp } from "ionicons/icons";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "../../util/PopupManager";
 import { Grid, useDisclosure } from "@chakra-ui/react";
 import MobileBox from "../../components/MobileBox";

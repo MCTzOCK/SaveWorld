@@ -29,7 +29,7 @@ import {
 } from "@ionic/react";
 import E2SubmitModal from "./E2SubmitModal";
 import { useEffect, useState } from "react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import ProgressBar from "@ramonak/react-progress-bar";
 import PopupManager from "../util/PopupManager";
 import { $$ } from "../translations/i18n";

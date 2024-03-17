@@ -11,6 +11,8 @@ import { FastifyInstance, FastifyRequest } from "fastify";
 import { isAuth } from "../util/isAuth";
 import PushNotificationModel from "../models/PushNotificationModel";
 import { FastifySchemas } from "../Schemas";
+import { checkRequestPermission } from "../util/permissions";
+import { Perms } from "../util/Perms";
 
 export default async function notificationPlugin(
   app: FastifyInstance,
@@ -46,6 +48,8 @@ export default async function notificationPlugin(
         });
         return;
       }
+      if (!checkRequestPermission(user.role, Perms.NOTIFICATIONS_MY, res))
+        return;
 
       const PAGE_SIZE = 10;
       const page = req.query.page ? parseInt(req.query.page.toString()) : 0;
@@ -98,6 +102,9 @@ export default async function notificationPlugin(
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.NOTIFICATIONS_READ, res))
+        return;
 
       const id = req.query.id;
 

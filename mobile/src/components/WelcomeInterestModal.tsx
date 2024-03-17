@@ -26,7 +26,7 @@ import {
   IonToolbar,
   useIonRouter,
 } from "@ionic/react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "../util/PopupManager";
 import { Grid } from "@chakra-ui/react";
 import { $$ } from "../translations/i18n";

@@ -12,7 +12,7 @@ import * as React from "react";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
 import { useParams } from "react-router";
 import { useEffect } from "react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import Page from "../../components/Page";
 import {
   IonInput,

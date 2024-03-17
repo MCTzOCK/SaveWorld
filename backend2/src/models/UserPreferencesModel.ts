@@ -46,7 +46,7 @@ const UserPreferencesModel = new mongoose.Schema({
   ai_left_usage: {
     type: Number,
     required: false,
-    default: 0,
+    default: 5,
   },
   ai_resets_usage: {
     type: Number,

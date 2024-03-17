@@ -16,7 +16,7 @@ import Calendar from "../../components/calendar/Calendar";
 import MobileBox from "../../components/MobileBox";
 import { ButtonGroup, IconButton, Text } from "@chakra-ui/react";
 import { FaBackward, FaForward } from "react-icons/fa";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import { $$ } from "../../translations/i18n";
 
 export default function EatingPlanOverview() {

@@ -12,7 +12,7 @@ import * as React from "react";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
 import Page from "../../components/Page";
 import { useEffect, useState } from "react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "../../util/PopupManager";
 import { E2Projects } from "../../util/types/E2Project";
 import {

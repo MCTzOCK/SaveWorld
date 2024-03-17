@@ -12,7 +12,7 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Page from "../../components/Page";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
 import { useUserData } from "../../hooks/useUserData";
 import {

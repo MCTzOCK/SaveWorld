@@ -23,7 +23,7 @@ import {
   Switch,
 } from "@chakra-ui/react";
 import { FaSave } from "react-icons/fa";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "../util/PopupManager";
 import { FaTrash } from "react-icons/fa6";
 import { $$ } from "../translations/i18n";

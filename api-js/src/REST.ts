@@ -764,6 +764,17 @@ export class REST {
         },
       });
     },
+    /**
+     * @return the users homepage
+     * @param token used to authenticate
+     */
+    homepage: async (token: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/account/homepage",
+        method: "GET",
+        token: token,
+      });
+    },
   };
 
   public static Content = {
@@ -2049,6 +2060,191 @@ export class REST {
           prompt: prompt,
           previousMessages: previousMessages,
         },
+      });
+    },
+  };
+
+  public static School = {
+    /**
+     * @return all created classes
+     * @param token used to authenticate
+     */
+    classes: async (token: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/school/classes",
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * Creates a new class
+     * @param token used to authenticate
+     * @param name of the class
+     */
+    createClass: async (token: string, name: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/school/classes",
+        method: "POST",
+        token: token,
+        body: {
+          name: name,
+        },
+      });
+    },
+    /**
+     * Renames a class
+     * @param token used to authenticate
+     * @param id of the class to rename
+     * @param name of the class
+     */
+    renameClass: async (token: string, id: string, name: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/school/classes/" + id + "/name",
+        method: "POST",
+        token: token,
+        body: {
+          name: name,
+        },
+      });
+    },
+    /**
+     * Deletes a class
+     * @param token used to authenticate
+     * @param id of the class to delete
+     */
+    deleteClass: async (token: string, id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/school/classes/" + id,
+        method: "DELETE",
+        token: token,
+      });
+    },
+    /**
+     * @return the requested class
+     * @param token used to authenticate
+     * @param id of the class to get
+     */
+    class: async (token: string, id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/school/classes/" + id,
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * Creates X amount of students
+     * @param token used to authenticate
+     * @param id of the class to create the students for
+     * @param count of students to create (max. 40)
+     */
+    createStudents: async (token: string, id: string, count: number) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/school/classes/" + id + "/students",
+        method: "POST",
+        token: token,
+        body: {
+          count: count,
+        },
+      });
+    },
+    /**
+     * Deletes a student
+     * @param token used to authenticate
+     * @param id of the class to delete the student from
+     * @param student of the student to delete
+     */
+    deleteStudent: async (token: string, id: string, student: string) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL + "/school/classes/" + id + "/students/" + student,
+        method: "DELETE",
+        token: token,
+      });
+    },
+    /**
+     * Updates a classes permission
+     * @param token used to authenticate
+     * @param id of the class to update the permission for
+     * @param permissions the permission to set
+     */
+    updatePermission: async (
+      token: string,
+      id: string,
+      permissions: {
+        permission: string;
+        allowed: boolean;
+      }[],
+    ) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/school/classes/" + id + "/permissions",
+        method: "POST",
+        token: token,
+        body: {
+          permissions: permissions,
+        },
+      });
+    },
+    /**
+     * @return the requested class permission
+     * @param token used to authenticate
+     * @param id of the class to get the permission for
+     */
+    permission: async (token: string, id: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/school/classes/" + id + "/permissions",
+        method: "GET",
+        token: token,
+      });
+    },
+    /**
+     * Updates the classes homepage
+     * @param token used to authenticate
+     * @param id of the class to update the homepage for
+     * @param homepage JSON-encoded homepage segments
+     */
+    updateHomepage: async (token: string, id: string, homepage: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/school/classes/" + id + "/homepage",
+        method: "POST",
+        token: token,
+        body: {
+          homepage: homepage,
+        },
+      });
+    },
+    /**
+     * Updates recommended content
+     * @param token used to authenticate
+     * @param id of the class to update the recommended content for
+     * @param recommendedVideos the recommended videos to set
+     * @param recommendedArticles the recommended articles to set
+     */
+    updateRecommendedContent: async (
+      token: string,
+      id: string,
+      recommendedVideos: string[],
+      recommendedArticles: string[],
+    ) => {
+      return await makeRequest({
+        path:
+          RESTEnv.API_URL + "/school/classes/" + id + "/recommended-content",
+        method: "POST",
+        token: token,
+        body: {
+          recommendedVideos: recommendedVideos,
+          recommendedArticles: recommendedArticles,
+        },
+      });
+    },
+    /**
+     * @return the requested class
+     * @param token used to authenticate
+     */
+    myClass: async (token: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/school/class/my",
+        method: "GET",
+        token: token,
       });
     },
   };

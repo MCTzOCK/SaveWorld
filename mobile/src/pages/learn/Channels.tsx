@@ -12,7 +12,7 @@ import * as React from "react";
 import Page from "../../components/Page";
 import { IonSearchbar, useIonRouter } from "@ionic/react";
 import { useEffect, useState } from "react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import {
   Card,
   CardBody,

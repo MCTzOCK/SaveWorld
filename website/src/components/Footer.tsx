@@ -58,8 +58,6 @@ export default function Footer() {
               <Text mt={2} color="white" fontSize="md">
                 Developed by Ben Siebert.
                 <br />
-                Content by Charlotte Drumann.
-                <br />
                 Made with ❤ and ☕ in Hattingen.
               </Text>
             </Box>
@@ -115,8 +113,7 @@ export default function Footer() {
                 isExternal
               >
                 Ben Siebert
-              </Link>{" "}
-              &nbsp;|&nbsp; Charlotte Drumann
+              </Link>
             </Text>
             <Stack spacing={2} direction={{ base: "column", md: "row" }}>
               <IconButton

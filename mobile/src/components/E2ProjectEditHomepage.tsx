@@ -12,7 +12,7 @@ import * as React from "react";
 import { E2Project } from "../util/types/E2Project";
 import { useEffect, useState } from "react";
 import { E2HomepageSegments } from "../util/types/E2HomepageSegment";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "../util/PopupManager";
 import { Button } from "@chakra-ui/react";
 import { FaPlus } from "react-icons/fa6";

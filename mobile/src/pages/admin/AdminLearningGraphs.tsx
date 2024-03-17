@@ -12,7 +12,7 @@ import * as React from "react";
 import Page from "../../components/Page";
 import { $$ } from "../../translations/i18n";
 import { useEffect, useState } from "react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import { translateOnlineV3 } from "../../util/online-translate";
 import {
   Card,

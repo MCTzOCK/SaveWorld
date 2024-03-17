@@ -15,6 +15,8 @@ import CommunityBlogEntryModel from "../models/CommunityBlogEntryModel";
 import { FastifySchemas } from "../Schemas";
 import { sendPN } from "../util/sendPN";
 import { getUserEcoLevel } from "../util/getUserEcoLevel";
+import { Perms } from "../util/Perms";
+import { checkRequestPermission } from "../util/permissions";
 
 export default async function communityPlugin(app: FastifyInstance, opts: any) {
   app.get(
@@ -47,6 +49,9 @@ export default async function communityPlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.COMMUNITY_SUGGESTED, res))
+        return;
 
       const PAGE_SIZE = 4;
       const page = req.query.page ? parseInt(req.query.page.toString()) : 0;
@@ -117,6 +122,9 @@ export default async function communityPlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.COMMUNITY_SEARCH, res))
+        return;
 
       const type = req.query.type ? req.query.type.toString() : "posts";
 
@@ -249,6 +257,9 @@ export default async function communityPlugin(app: FastifyInstance, opts: any) {
         return;
       }
 
+      if (!checkRequestPermission(user.role, Perms.COMMUNITY_FOLLOWING, res))
+        return;
+
       const following = await UserPreferencesModel.find({
         "community_profile.followers": user.username,
       });
@@ -330,6 +341,9 @@ export default async function communityPlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.COMMUNITY_COMMENT, res))
+        return;
 
       const { id } = req.query as { id: string };
 
@@ -413,6 +427,9 @@ export default async function communityPlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.COMMUNITY_CREATE_BLOG, res))
+        return;
 
       let { content, title, tags } = req.body as {
         content: string;
@@ -527,6 +544,9 @@ export default async function communityPlugin(app: FastifyInstance, opts: any) {
         return;
       }
 
+      if (!checkRequestPermission(user.role, Perms.COMMUNITY_DELETE_BLOG, res))
+        return;
+
       const { id } = req.query as { id: string };
 
       const entry = await CommunityBlogEntryModel.findById(id);
@@ -585,6 +605,8 @@ export default async function communityPlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.COMMUNITY_LIKE, res)) return;
 
       const { id } = req.query as { id: string };
 
@@ -665,6 +687,9 @@ export default async function communityPlugin(app: FastifyInstance, opts: any) {
         return;
       }
 
+      if (!checkRequestPermission(user.role, Perms.COMMUNITY_RECEIVE_BLOG, res))
+        return;
+
       const { id } = req.query as { id: string };
 
       if (!id) {
@@ -721,6 +746,11 @@ export default async function communityPlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      if (
+        !checkRequestPermission(user.role, Perms.COMMUNITY_RECEIVE_PROFILE, res)
+      )
+        return;
 
       const { username } = req.params;
 
@@ -824,6 +854,9 @@ export default async function communityPlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.COMMUNITY_FOLLOW, res))
+        return;
 
       const { username } = req.params;
 
@@ -933,6 +966,15 @@ export default async function communityPlugin(app: FastifyInstance, opts: any) {
         });
         return;
       }
+
+      if (
+        !checkRequestPermission(
+          user.role,
+          Perms.COMMUNITY_RECEIVE_PROFILE_BLOGS,
+          res,
+        )
+      )
+        return;
 
       const { username } = req.params;
 

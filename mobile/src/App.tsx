@@ -124,7 +124,7 @@ import {
 import PopupManager from "./util/PopupManager";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { RESTEnv } from "@saveworld/api-js/dist/RESTEnv";
+import { RESTEnv } from "@saveworld/api-js/index";
 import Games from "./pages/games/Games";
 import GameLeaderBoard from "./pages/games/GameLeaderBoard";
 import AdminArticleDashboard from "./pages/admin/AdminArticleDashboard";
@@ -138,6 +138,8 @@ import LearnGraphs from "./pages/learn/LearnGraphs";
 import LearnGraph from "./pages/learn/LearnGraph";
 import FoodData from "./pages/fooddata/FoodData";
 import FoodDataViewer from "./pages/fooddata/FoodDataViewer";
+import Teachers from "./pages/teachers/Teachers";
+import TeachersClassViewer from "./pages/teachers/TeachersClassViewer";
 //KEEP_IMPORTS
 
 setupIonicReact({
@@ -203,7 +205,7 @@ export default function App() {
       });
     }
     try {
-      if (!isPlatform("desktop")) {
+      if (isPlatform("capacitor")) {
         OneSignal.initialize(ONE_SIGNAL_APP_ID);
 
         OneSignal.Notifications.requestPermission();
@@ -382,6 +384,8 @@ export default function App() {
       },
       "/fooddata": FoodData,
       "/fooddata/:ean": FoodDataViewer,
+      "/teachers": Teachers,
+      "/teachers/classes/:id": TeachersClassViewer,
       //KEEP_ROUTES
     });
   }, [flags]);
@@ -397,9 +401,7 @@ export default function App() {
         options={{
           api_host: POSTHOG_ENDPOINT,
           loaded: (posthog) => {
-            if (process.env.NODE_ENV === "development") {
-              posthog.debug();
-            }
+            posthog.debug(false);
           },
           autocapture: true,
         }}

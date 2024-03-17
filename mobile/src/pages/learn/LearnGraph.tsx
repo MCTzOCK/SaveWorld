@@ -18,7 +18,7 @@ import ReactFlow, {
   ReactFlowInstance,
 } from "reactflow";
 import { useEffect, useMemo } from "react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "../../util/PopupManager";
 import { $$ } from "../../translations/i18n";
 import VideoNode from "../../components/reactflow/VideoNode";

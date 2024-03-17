@@ -36,7 +36,7 @@ import {
   pencilSharp,
   glasses,
 } from "ionicons/icons";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import { Browser } from "@capacitor/browser";
 import { useEffect } from "react";
 import { ENDPOINT } from "../../env";
@@ -609,7 +609,7 @@ export default function ManageAccount() {
                         }
 
                         try {
-                          if (!isPlatform("desktop")) {
+                          if (isPlatform("capacitor")) {
                             OneSignal.logout();
                           }
                         } catch (e) {}
@@ -812,6 +812,21 @@ export default function ManageAccount() {
                     >
                       <IonIcon slot={"start"} ios={glasses} />
                       <IonText>{$$("pages.settings.stats.nerds")}</IonText>
+                    </IonItem>
+                    <IonItem
+                      color={"light"}
+                      detail
+                      button
+                      onClick={async () => {
+                        router.push("/teachers");
+                      }}
+                    >
+                      <IonIcon
+                        slot={"start"}
+                        ios={ionDocument}
+                        md={ionDocumentSharp}
+                      />
+                      <IonText>{$$("pages.teachers.enter.area")}</IonText>
                     </IonItem>
                   </IonList>
                 </Box>

@@ -19,7 +19,8 @@ import {
   IonSearchbar,
 } from "@ionic/react";
 import { checkmark, chevronDown } from "ionicons/icons";
-import { IResponse, REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
+import { IResponse } from "@saveworld/api-js/types/IResponse";
 import { useEffect } from "react";
 import CommunityBlogList from "./CommunityBlogList";
 import CommunityProfileList from "./CommunityProfileList";

@@ -14,7 +14,7 @@ import { E2Project } from "../../../util/types/E2Project";
 import Page from "../../../components/Page";
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "../../../util/PopupManager";
 import { useIonRouter } from "@ionic/react";
 import { useUserData } from "../../../hooks/useUserData";

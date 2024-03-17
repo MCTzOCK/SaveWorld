@@ -15,7 +15,7 @@ import { useUserData } from "../../../hooks/useUserData";
 import { useParams } from "react-router";
 import { useIonRouter } from "@ionic/react";
 import { useEffect } from "react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import Page from "../../../components/Page";
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import E2ProjectEditDetails from "../../../components/E2ProjectEditDetails";

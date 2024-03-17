@@ -14,7 +14,7 @@ import { APPLE_MAP_KIT_TOKEN, ENDPOINT } from "../env";
 import { Box, Button, Grid, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { E2Projects } from "../util/types/E2Project";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "../util/PopupManager";
 import moment from "moment/moment";
 import {

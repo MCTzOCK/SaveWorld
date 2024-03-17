@@ -10,7 +10,7 @@
 
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "../util/PopupManager";
 import { Grid, Heading } from "@chakra-ui/react";
 import AdminStat from "./AdminStat";

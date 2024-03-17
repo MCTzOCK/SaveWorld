@@ -35,7 +35,7 @@ import {
 import { FaEnvelope, FaTag } from "react-icons/fa";
 import { useEffect } from "react";
 import PopupManager from "../util/PopupManager";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import { useRedirectForAnon } from "../hooks/useRedirectForAnon";
 import MobileBox from "../components/MobileBox";
 import { $$ } from "../translations/i18n";

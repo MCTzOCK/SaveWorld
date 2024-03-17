@@ -16,6 +16,8 @@ import ical, { ICalCalendarMethod } from "ical-generator";
 import EcoProjectToDoListModel from "../models/EcoProjectToDoListModel";
 import EcoProjectToDoListItemModel from "../models/EcoProjectToDoListItemModel";
 import EcoProjectHomepageSegmentModel from "../models/EcoProjectHomepageSegmentModel";
+import { checkRequestPermission } from "../util/permissions";
+import { Perms } from "../util/Perms";
 
 export default async function ecoProjectsPlugin(
   app: FastifyInstance,
@@ -44,6 +46,8 @@ export default async function ecoProjectsPlugin(
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.E2PROJECTS_MY, res)) return;
 
       const projects = await EcoProjectModel.find({
         $or: [
@@ -146,6 +150,9 @@ export default async function ecoProjectsPlugin(
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.E2PROJECTS_CREATE, res))
+        return;
 
       // geoLocation: should be the display_name received from Nominatim
       const { name, startDate, lastsDays, geoLocation } = req.body;
@@ -343,6 +350,11 @@ export default async function ecoProjectsPlugin(
         return;
       }
 
+      if (
+        !checkRequestPermission(user.role, Perms.E2PROJECTS_TOGGLE_MEMBER, res)
+      )
+        return;
+
       const { projectId } = req.query;
 
       const project = await EcoProjectModel.findById(projectId);
@@ -466,6 +478,8 @@ export default async function ecoProjectsPlugin(
         return;
       }
 
+      if (!checkRequestPermission(user.role, Perms.E2PROJECTS_UPDATE, res))
+        return;
       const { id } = req.query;
 
       const { name, startDate, lastsDays, geoLocation } = req.body;
@@ -569,6 +583,8 @@ export default async function ecoProjectsPlugin(
         return;
       }
 
+      if (!checkRequestPermission(user.role, Perms.E2PROJECTS_DELETE, res))
+        return;
       const { id } = req.query;
 
       if (!id) {
@@ -703,6 +719,8 @@ export default async function ecoProjectsPlugin(
         return;
       }
 
+      if (!checkRequestPermission(user.role, Perms.E2PROJECTS_TODO_LISTS, res))
+        return;
       const { id } = req.query;
 
       if (!id) {
@@ -755,6 +773,9 @@ export default async function ecoProjectsPlugin(
         res.status(401).send({ error: "Unauthorized", status: 401 });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.E2PROJECTS_TODO_ITEMS, res))
+        return;
 
       const { listId } = req.query;
 
@@ -809,6 +830,15 @@ export default async function ecoProjectsPlugin(
         res.status(401).send({ error: "Unauthorized", status: 401 });
         return;
       }
+
+      if (
+        !checkRequestPermission(
+          user.role,
+          Perms.E2PROJECTS_TODO_LIST_DELETE,
+          res,
+        )
+      )
+        return;
 
       const { id, listId } = req.query;
 
@@ -885,6 +915,15 @@ export default async function ecoProjectsPlugin(
         res.status(401).send({ error: "Unauthorized", status: 401 });
         return;
       }
+
+      if (
+        !checkRequestPermission(
+          user.role,
+          Perms.E2PROJECTS_TODO_ITEM_DELETE,
+          res,
+        )
+      )
+        return;
 
       const { id, itemId, listId } = req.query;
 
@@ -973,6 +1012,15 @@ export default async function ecoProjectsPlugin(
         return;
       }
 
+      if (
+        !checkRequestPermission(
+          user.role,
+          Perms.E2PROJECTS_TODO_LISTS_CREATE,
+          res,
+        )
+      )
+        return;
+
       const { id } = req.query;
 
       const project = await EcoProjectModel.findById(id);
@@ -1041,6 +1089,15 @@ export default async function ecoProjectsPlugin(
         res.status(401).send({ error: "Unauthorized", status: 401 });
         return;
       }
+
+      if (
+        !checkRequestPermission(
+          user.role,
+          Perms.E2PROJECTS_TODO_ITEM_CREATE,
+          res,
+        )
+      )
+        return;
 
       const { id, listId } = req.query;
 
@@ -1121,6 +1178,15 @@ export default async function ecoProjectsPlugin(
         res.status(401).send({ error: "Unauthorized", status: 401 });
         return;
       }
+
+      if (
+        !checkRequestPermission(
+          user.role,
+          Perms.E2PROJECTS_TODO_ITEM_CHECK,
+          res,
+        )
+      )
+        return;
 
       const { id, itemId, listId } = req.query;
 
@@ -1211,6 +1277,11 @@ export default async function ecoProjectsPlugin(
         return;
       }
 
+      if (
+        !checkRequestPermission(user.role, Perms.E2PROJECTS_MEMBER_DELETE, res)
+      )
+        return;
+
       const { projectId, userId } = req.query;
 
       const project = await EcoProjectModel.findById(projectId);
@@ -1292,6 +1363,15 @@ export default async function ecoProjectsPlugin(
         res.status(401).send({ error: "Unauthorized", status: 401 });
         return;
       }
+
+      if (
+        !checkRequestPermission(
+          user.role,
+          Perms.E2PROJECTS_MEMBER_CHANGE_ROLE,
+          res,
+        )
+      )
+        return;
 
       const { projectId, userId, newRole } = req.query;
 
@@ -1427,6 +1507,9 @@ export default async function ecoProjectsPlugin(
         return;
       }
 
+      if (!checkRequestPermission(user.role, Perms.E2PROJECTS_UPDATE, res))
+        return;
+
       const { projectId, id } = req.query;
       const { title, content, type, pinned } = req.body;
 
@@ -1523,6 +1606,9 @@ export default async function ecoProjectsPlugin(
         return;
       }
 
+      if (!checkRequestPermission(user.role, Perms.E2PROJECTS_UPDATE, res))
+        return;
+
       const { projectId, id } = req.query;
 
       const project = await EcoProjectModel.findById(projectId);
@@ -1611,6 +1697,9 @@ export default async function ecoProjectsPlugin(
         });
         return;
       }
+
+      if (!checkRequestPermission(user.role, Perms.E2PROJECTS_UPDATE, res))
+        return;
 
       const { id } = req.query;
       const { title, content, type, pinned } = req.body;

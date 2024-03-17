@@ -29,7 +29,7 @@ import {
   IonToolbar,
   useIonRouter,
 } from "@ionic/react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import { share, shareSharp, star, starSharp } from "ionicons/icons";
 import { Share } from "@capacitor/share";
 import PopupManager from "../util/PopupManager";

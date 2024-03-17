@@ -35,7 +35,7 @@ import {
 import { FaPen } from "react-icons/fa";
 import { FaPlus, FaTrash } from "react-icons/fa6";
 import * as async_hooks from "async_hooks";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "../../util/PopupManager";
 import { useParams } from "react-router";
 import { useEffect } from "react";

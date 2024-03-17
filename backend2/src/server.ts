@@ -225,6 +225,7 @@ import { INFO } from "./local-depl-info";
           name: "admin",
           description: "Admin related APIs",
         },
+        { name: "school", description: "School/Teacher related APIs" },
         {
           name: "tracker",
           description: "Eco-Tracker related APIs",

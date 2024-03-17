@@ -30,7 +30,7 @@ import {
   useIonRouter,
 } from "@ionic/react";
 import { warning, warningSharp } from "ionicons/icons";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "../../util/PopupManager";
 import { Box, Flex } from "@chakra-ui/react";
 import { $$ } from "../../translations/i18n";

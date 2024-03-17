@@ -8,7 +8,7 @@
  *
  */
 import { ENDPOINT } from "../env";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "./PopupManager";
 
 export const uploadImage = (

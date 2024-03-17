@@ -26,7 +26,7 @@ import {
 } from "@chakra-ui/react";
 import PopupManager from "../util/PopupManager";
 import { FaEye } from "react-icons/fa";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 
 export default function ADPTable(props: {
   schema: {

@@ -27,7 +27,7 @@ import {
 } from "@chakra-ui/react";
 import { AnimatePresence, easeInOut, motion } from "framer-motion";
 import { useEffect } from "react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import { NOMINATIM_ENDPOINT } from "../../env";
 import PopupManager from "../../util/PopupManager";
 import { useIonRouter } from "@ionic/react";

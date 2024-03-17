@@ -12,7 +12,7 @@ import * as React from "react";
 import { useEffect, useRef } from "react";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
 import Page from "../../components/Page";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import { ENDPOINT } from "../../env";
 import Plyr, { APITypes } from "plyr-react";
 import "plyr-react/plyr.css";

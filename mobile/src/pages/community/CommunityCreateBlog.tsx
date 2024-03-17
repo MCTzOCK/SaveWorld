@@ -32,7 +32,7 @@ import {
   send,
   sendSharp,
 } from "ionicons/icons";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "../../util/PopupManager";
 import MDEditor from "@uiw/react-md-editor";
 import MobileBox from "../../components/MobileBox";

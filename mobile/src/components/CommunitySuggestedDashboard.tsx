@@ -9,7 +9,7 @@
  */
 
 import * as React from "react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import { useEffect } from "react";
 import CommunityBlogList from "./CommunityBlogList";
 import PopupManager from "../util/PopupManager";

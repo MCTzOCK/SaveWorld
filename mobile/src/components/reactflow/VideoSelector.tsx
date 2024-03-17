@@ -13,7 +13,7 @@ import SaveWorldModal from "../SaveWorldModal";
 import { MVideo } from "../../types";
 import { $$ } from "../../translations/i18n";
 import { useEffect, useState } from "react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import PopupManager from "../../util/PopupManager";
 import {
   IonCard,

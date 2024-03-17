@@ -90,6 +90,7 @@ import { $$ } from "../translations/i18n";
 import { MdQueryStats } from "react-icons/md";
 import { BsFileBarGraph } from "react-icons/bs";
 import { RiMindMap } from "react-icons/ri";
+import { Perms } from "../Perms";
 
 export default function DrawerMenu(props: {
   isOpen: boolean;
@@ -110,7 +111,7 @@ export default function DrawerMenu(props: {
     "eatingplans",
   ]);
 
-  const { userInfo, loggedIn } = useUserData();
+  const { userInfo, loggedIn, permission_flags } = useUserData();
 
   const [query, setQuery] = React.useState<string>("");
 
@@ -147,13 +148,6 @@ export default function DrawerMenu(props: {
               router.push("/language", "forward", "push");
             },
           },
-          {
-            label: $$("pages.ai.title"),
-            icon: <FaRobot />,
-            onClick: () => {
-              router.push("/ai", "forward", "push");
-            },
-          },
         ],
       },
       {
@@ -163,13 +157,6 @@ export default function DrawerMenu(props: {
             icon: <BiCog />,
             onClick: () => {
               router.push("/account", "forward", "push");
-            },
-          },
-          {
-            label: $$("menu.notifications"),
-            icon: <BiEnvelope />,
-            onClick: () => {
-              router.push("/notifications", "forward", "push");
             },
           },
           {
@@ -191,7 +178,7 @@ export default function DrawerMenu(props: {
               )
                 return;
 
-              if (!isPlatform("desktop")) {
+              if (isPlatform("capacitor")) {
                 OneSignal.logout();
               }
               localStorage.removeItem("token");
@@ -207,6 +194,33 @@ export default function DrawerMenu(props: {
       },
     ];
 
+    if (
+      permission_flags.find((p) => p.permission === Perms.AI_SINGLE_REQUEST)
+        ?.allowed
+    ) {
+      gr[0].items.push({
+        label: $$("pages.ai.title"),
+        icon: <FaRobot />,
+        onClick: () => {
+          router.push("/ai", "forward", "push");
+        },
+      });
+    }
+
+    if (
+      permission_flags.find(
+        (p) => p.permission === Perms.SCHOOL_CLASSES_RECEIVE,
+      )?.allowed
+    ) {
+      gr[0].items.push({
+        label: $$("pages.teachers.area"),
+        icon: <FaBook />,
+        onClick: () => {
+          router.push("/teachers", "forward", "push");
+        },
+      });
+    }
+
     if (flags.news.enabled) {
       gr[0].items.push({
         label: $$("page.news.title"),
@@ -217,7 +231,25 @@ export default function DrawerMenu(props: {
       });
     }
 
-    if (flags.videos.enabled) {
+    if (
+      permission_flags.find((p) => p.permission === Perms.NOTIFICATIONS_MY)
+        ?.allowed
+    ) {
+      gr[1].items.push({
+        label: $$("menu.notifications"),
+        icon: <BiEnvelope />,
+        onClick: () => {
+          router.push("/notifications", "forward", "push");
+        },
+      });
+    }
+
+    if (
+      flags.videos.enabled &&
+      permission_flags.find(
+        (p) => (p.permission = Perms.CONTENT_VIDEOS_SUGGESTED),
+      )?.allowed
+    ) {
       gr[2].items.push({
         label: $$("menu.videos"),
         icon: <BiVideo />,
@@ -259,7 +291,11 @@ export default function DrawerMenu(props: {
         router.push("/learn/graphs", "forward", "push");
       },
     });
-    if (flags.tracker.enabled) {
+    if (
+      flags.tracker.enabled &&
+      permission_flags.find((p) => p.permission === Perms.LIFESTYLE_MY_DAY)
+        ?.allowed
+    ) {
       gr.push({
         label: $$("menu.tracker"),
         items: [
@@ -294,7 +330,10 @@ export default function DrawerMenu(props: {
         ],
       });
     }
-    if (flags.recipes.enabled) {
+    if (
+      flags.recipes.enabled &&
+      permission_flags.find((p) => p.permission === Perms.RECIPES_ALL)?.allowed
+    ) {
       gr.push({
         label: $$("menu.recipes"),
         items: [
@@ -322,7 +361,11 @@ export default function DrawerMenu(props: {
         ],
       });
 
-      if (flags.eatingplans.enabled) {
+      if (
+        flags.eatingplans.enabled &&
+        permission_flags.find((p) => p.permission === Perms.EATINGPLAN_GET)
+          ?.allowed
+      ) {
         gr[gr.length - 1].items.push({
           label: $$("menu.eatingplans"),
           icon: <FaCalendar />,
@@ -349,84 +392,122 @@ export default function DrawerMenu(props: {
     if (flags.eco_projects.enabled) {
       gr.push({
         label: $$("menu.projects"),
-        items: [
-          {
-            label: $$("pages.e2projects.my"),
-            icon: <FaProjectDiagram />,
-            onClick: () => {
-              router.push("/e2-projects/my", "forward", "push");
-            },
-          },
-          {
-            label: $$("pages.e2projects.create"),
-            icon: <BiPlus />,
-            onClick: () => {
-              router.push("/e2-projects/new", "forward", "push");
-            },
-          },
-          {
-            label: $$("menu.e2projects.find"),
-            icon: <BiSearch />,
-            onClick: () => {
-              router.push("/e2-projects/search", "forward", "push");
-            },
-          },
-        ],
+        items: [],
       });
+
+      if (
+        permission_flags.find((p) => p.permission === Perms.E2PROJECTS_MY)
+          ?.allowed
+      ) {
+        gr[gr.length - 1].items.push({
+          label: $$("pages.e2projects.my"),
+          icon: <FaProjectDiagram />,
+          onClick: () => {
+            router.push("/e2-projects/my", "forward", "push");
+          },
+        });
+      }
+
+      if (
+        permission_flags.find((p) => p.permission === Perms.E2PROJECTS_CREATE)
+          ?.allowed
+      ) {
+        gr[gr.length - 1].items.push({
+          label: $$("pages.e2projects.create"),
+          icon: <BiPlus />,
+          onClick: () => {
+            router.push("/e2-projects/new", "forward", "push");
+          },
+        });
+      }
+
+      if (
+        permission_flags.find((p) => p.permission === Perms.E2PROJECTS_MY)
+          ?.allowed
+      ) {
+        gr[gr.length - 1].items.push({
+          label: $$("menu.e2projects.find"),
+          icon: <BiSearch />,
+          onClick: () => {
+            router.push("/e2-projects/search", "forward", "push");
+          },
+        });
+      }
     }
 
     if (flags.community.enabled) {
       gr.push({
         label: $$("menu.community"),
+        items: [],
+      });
+
+      if (
+        permission_flags.find((p) => p.permission === Perms.COMMUNITY_SUGGESTED)
+          ?.allowed
+      ) {
+        gr[gr.length - 1].items.push({
+          label: $$("menu.home"),
+          icon: <BiGroup />,
+          onClick: () => {
+            router.push("/community", "forward", "push");
+          },
+        });
+      }
+
+      if (
+        permission_flags.find(
+          (p) => p.permission === Perms.COMMUNITY_CREATE_BLOG,
+        )?.allowed
+      ) {
+        gr[gr.length - 1].items.push({
+          label: $$("pages.community.create.blog.title"),
+          icon: <BiPen />,
+          onClick: () => {
+            router.push("/community/create/blog", "forward", "push");
+          },
+        });
+      }
+
+      if (
+        permission_flags.find(
+          (p) => p.permission === Perms.COMMUNITY_RECEIVE_PROFILE,
+        )?.allowed
+      ) {
+        gr[gr.length - 1].items.push({
+          label: $$("menu.community.my.profile"),
+          icon: <BiUser />,
+          onClick: () => {
+            router.push("/community/u/" + userInfo.username, "forward", "push");
+          },
+        });
+
+        gr[gr.length - 1].items.push({
+          label: $$("menu.notifications"),
+          icon: <BiEnvelope />,
+          onClick: () => {
+            router.push("/community/messages", "forward", "push");
+          },
+        });
+      }
+    }
+
+    if (
+      permission_flags.find((p) => p.permission === Perms.GAMES_LEADERBOARD)
+        ?.allowed
+    ) {
+      gr.push({
+        label: $$("pages.games.title"),
         items: [
           {
-            label: $$("menu.home"),
-            icon: <BiGroup />,
+            label: $$("pages.games.title"),
+            icon: <FaGamepad />,
             onClick: () => {
-              router.push("/community", "forward", "push");
-            },
-          },
-          {
-            label: $$("pages.community.create.blog.title"),
-            icon: <BiPen />,
-            onClick: () => {
-              router.push("/community/create/blog", "forward", "push");
-            },
-          },
-          {
-            label: $$("menu.notifications"),
-            icon: <BiEnvelope />,
-            onClick: () => {
-              router.push("/community/messages", "forward", "push");
-            },
-          },
-          {
-            label: $$("menu.community.my.profile"),
-            icon: <BiUser />,
-            onClick: () => {
-              router.push(
-                "/community/u/" + userInfo.username,
-                "forward",
-                "push",
-              );
+              router.push("/games", "forward", "push");
             },
           },
         ],
       });
     }
-
-    gr.push({
-      label: $$("pages.games.title"),
-      items: [
-        {
-          label: $$("pages.games.title"),
-          icon: <FaGamepad />,
-          onClick: () => {
-            router.push("/games", "forward", "push");
-          },
-        },
-      ],
-    });
 
     gr.push({
       label: $$("menu.resources"),

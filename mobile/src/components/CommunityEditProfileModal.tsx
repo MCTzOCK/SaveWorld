@@ -34,7 +34,7 @@ import {
   IonToggle,
   IonToolbar,
 } from "@ionic/react";
-import { REST } from "@saveworld/api-js";
+import { REST } from "@saveworld/api-js/index";
 import { informationCircle, informationCircleSharp } from "ionicons/icons";
 import { useEffect, useState } from "react";
 import { ENDPOINT } from "../env";
