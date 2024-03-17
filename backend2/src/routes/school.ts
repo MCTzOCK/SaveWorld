@@ -853,6 +853,61 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
       res.status(200).send({ success: true });
     },
   );
+
+  app.get(
+    "/school/class/my",
+    {
+      schema: {},
+      config: {
+        openapi: {
+          summary: "Get the class of the user",
+          description: "Get the class of the user",
+          tags: ["school"],
+          security: [
+            {
+              jwt: [],
+            },
+          ],
+        },
+      },
+    },
+    async (req: FastifyRequest, res: FastifyReply) => {
+      const { auth, user } = await isAuth(req);
+
+      if (!auth) {
+        res.status(401).send({
+          error: "Unauthorized",
+          status: 401,
+        });
+        return;
+      }
+
+      if (!user.role.startsWith("student")) {
+        res.status(404).send({
+          error: "User is not a student",
+          status: 404,
+        });
+        return;
+      }
+
+      const sClass = await SchoolClassModel.findOne({
+        students: user._id,
+      })
+        .populate("recommendedArticles")
+        .populate("recommendedVideos")
+        .exec();
+
+      if (!sClass) {
+        res.status(404).send({
+          error: "Class not found",
+          status: 404,
+        });
+        return;
+      }
+
+      res.status(200).send({ sClass });
+    },
+  );
 }
 
 async function updateStudentPermissions(sClass: any, newRole: string) {

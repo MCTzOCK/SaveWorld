@@ -32,6 +32,7 @@ import { FaProjectDiagram } from "react-icons/fa";
 import { RiMindMap } from "react-icons/ri";
 import { Perms } from "../Perms";
 import { REST } from "@saveworld/api-js/REST";
+import ClassHomepage from "../components/ClassHomepage";
 
 export default function Home() {
   const flags = useFlags([
@@ -66,7 +67,7 @@ export default function Home() {
 
   return (
     <>
-      <Page title={$$("product.name")} noHeader>
+      <Page title={$$("product.name")} noHeader noPadding>
         {loggedIn ? (
           <>
             {homepage === "saveworld.default.homepage" ? (
@@ -104,6 +105,7 @@ export default function Home() {
                     gap={4}
                     w={"100%"}
                     maxW={["600px"]}
+                    p={4}
                   >
                     {flags.tracker.enabled &&
                     permission_flags.find((p) => {
@@ -223,7 +225,7 @@ export default function Home() {
                 </div>
               </>
             ) : (
-              "Not implemented"
+              <ClassHomepage />
             )}
           </>
         ) : (

@@ -383,7 +383,7 @@ export default function TeachersClassViewer() {
 
                                       recommendedVideos =
                                         recommendedVideos.filter(
-                                          (x) => x !== v._id,
+                                          (x) => x !== (v as any)._id,
                                         );
 
                                       const res =

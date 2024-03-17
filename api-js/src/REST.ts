@@ -2236,5 +2236,16 @@ export class REST {
         },
       });
     },
+    /**
+     * @return the requested class
+     * @param token used to authenticate
+     */
+    myClass: async (token: string) => {
+      return await makeRequest({
+        path: RESTEnv.API_URL + "/school/class/my",
+        method: "GET",
+        token: token,
+      });
+    },
   };
 }

@@ -953,4 +953,6 @@ export const german = {
   "pages.teachers.recommended.content": "Vorgeschlagene Inhalte",
   "pages.teachers.recommended.content.desc":
     "Schlage deinen Schülern Inhalte vor, die sie sich ansehen können!",
+  "pages.class.homepage.disclaimer":
+    "Du hast dich mit einem Schüler-Konto angemeldet! Deine Lehrkraft kann dieses jederzeit löschen und bearbeiten!",
 } as const;
