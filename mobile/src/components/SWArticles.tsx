@@ -93,6 +93,7 @@ export default function SWArticles(props: { tag: string; pageTitle: string }) {
             "repeat(2, 1fr)",
             "repeat(3, 1fr)",
           ]}
+          gap={2}
         >
           {articles.map((a) => {
             return (

@@ -201,6 +201,35 @@ export default function AdminArticleDashboard() {
             );
           })}
         </Grid>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "1rem",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100%",
+          }}
+        >
+          {page > 0 ? (
+            <IonButton
+              color={"danger"}
+              onClick={() => setPage(page - 1)}
+              expand={"block"}
+            >
+              {$$("control.back")}
+            </IonButton>
+          ) : null}
+          {page < pages - 1 ? (
+            <IonButton
+              color={"success"}
+              onClick={() => setPage(page + 1)}
+              expand={"block"}
+            >
+              {$$("control.next")}
+            </IonButton>
+          ) : null}
+        </div>
       </Page>
       <SaveWorldModal
         title={
@@ -411,36 +440,6 @@ export default function AdminArticleDashboard() {
           </Stack>
         </form>
       </SaveWorldModal>
-
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          gap: "1rem",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "100%",
-        }}
-      >
-        {page > 0 ? (
-          <IonButton
-            color={"danger"}
-            onClick={() => setPage(page - 1)}
-            expand={"block"}
-          >
-            {$$("control.back")}
-          </IonButton>
-        ) : null}
-        {page < pages - 1 ? (
-          <IonButton
-            color={"success"}
-            onClick={() => setPage(page + 1)}
-            expand={"block"}
-          >
-            {$$("control.next")}
-          </IonButton>
-        ) : null}
-      </div>
     </>
   );
 }
