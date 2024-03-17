@@ -88,6 +88,23 @@ export default async function mediaPlugin(app: FastifyInstance, opts: any) {
 
       const objectName = req.params.objectname;
 
+      minio.presignedGetObject(
+        process.env.MINIO_MEDIA_BUCKET,
+        objectName,
+        60 * 60,
+        (err, presignedUrl) => {
+          if (err) {
+            res.status(500).send({
+              status: 500,
+              message: "Error while creating presigned URL",
+            });
+            return;
+          }
+
+          res.redirect(presignedUrl);
+        },
+      );
+      return res;
       await minio.fGetObject(
         process.env.MINIO_MEDIA_BUCKET,
         objectName,

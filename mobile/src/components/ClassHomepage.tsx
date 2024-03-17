@@ -92,6 +92,7 @@ export default function ClassHomepage() {
                   rounded={"md"}
                   shadow={"xl"}
                   minW={"200px"}
+                  maxW={"200px"}
                   onClick={() => {
                     router.push("/articles/" + a._id, "forward", "push");
                   }}
@@ -122,6 +123,7 @@ export default function ClassHomepage() {
                   rounded={"md"}
                   shadow={"xl"}
                   minW={"200px"}
+                  maxW={"200px"}
                   onClick={() => {
                     router.push("/learn?vid=" + v._id, "forward", "push");
                   }}
