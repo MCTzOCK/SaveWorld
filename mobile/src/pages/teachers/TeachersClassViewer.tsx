@@ -44,7 +44,6 @@ import {
 import { useEffect } from "react";
 import SchoolClassesList from "../../components/SchoolClassesList";
 import { FaPlus, FaTrash } from "react-icons/fa6";
-import schoolClassModel from "../../../../backend2/src/models/SchoolClassModel";
 import TeachersClassPermissions from "../../components/TeachersClassPermissions";
 import { useIonRouter } from "@ionic/react";
 import { MVideo } from "../../types";
