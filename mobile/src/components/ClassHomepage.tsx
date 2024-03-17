@@ -83,7 +83,7 @@ export default function ClassHomepage() {
           {$$("pages.teachers.recommended.content")}
         </Heading>
         <Stack spacing={2}>
-          <Heading size={"sm"}>{$$("components.articles")}</Heading>
+          <Heading size={"md"}>{$$("components.articles")}</Heading>
           <HStack overflow={"auto"} spacing={2}>
             {c.recommendedArticles.map((a) => {
               return (
@@ -113,7 +113,7 @@ export default function ClassHomepage() {
             })}
           </HStack>
 
-          <Heading size={"sm"}>{$$("menu.videos")}</Heading>
+          <Heading size={"md"}>{$$("menu.videos")}</Heading>
           <HStack overflow={"auto"} spacing={2}>
             {c.recommendedVideos.map((v) => {
               return (
