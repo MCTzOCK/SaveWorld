@@ -786,5 +786,6 @@ export const uk = {
   "pages.teachers.classes.homepage.class": "Класи Головна",
   "pages.teachers.recommended.content": "Пропонований контент",
   "pages.teachers.recommended.content.desc": "Натиснути студентам з контентом, які можна подивитися!",
-  "pages.class.homepage.disclaimer": "Ви підписалися на студентський рахунок! У будь-який час ви можете видалити і редагувати його!"
+  "pages.class.homepage.disclaimer": "Ви підписалися на студентський рахунок! У будь-який час ви можете видалити і редагувати його!",
+  "pages.teachers.intro": "Ви можете почати нові класи нижче. Ви отримаєте додаткову інформацію після створення!"
 };

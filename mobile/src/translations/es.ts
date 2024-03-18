@@ -786,5 +786,6 @@ export const es = {
   "pages.teachers.classes.homepage.class": "Classes Home",
   "pages.teachers.recommended.content": "Contenido propuesto",
   "pages.teachers.recommended.content.desc": "Impresione a sus estudiantes con contenido que pueden ver!",
-  "pages.class.homepage.disclaimer": "¡Se inscribió con una cuenta estudiantil! Su maestro puede borrar y editar esto en cualquier momento!"
+  "pages.class.homepage.disclaimer": "¡Se inscribió con una cuenta estudiantil! Su maestro puede borrar y editar esto en cualquier momento!",
+  "pages.teachers.intro": "Puedes empezar nuevas clases a continuación. Usted recibirá más información después de la creación!"
 };

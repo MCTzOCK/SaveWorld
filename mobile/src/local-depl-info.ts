@@ -1,9 +1,9 @@
 export const INFO = {
   "git": {
-    "commits": 1132,
-    "commit": "87d4e0",
+    "commits": 1133,
+    "commit": "ace4b3",
     "branch": "main",
-    "lastCommitMessage": "Add further explanations to teachers area"
+    "lastCommitMessage": "Move barcode scanner to drawer menu"
   },
-  "sloc": 77151
+  "sloc": 77163
 };

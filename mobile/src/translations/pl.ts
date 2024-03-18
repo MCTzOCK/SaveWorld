@@ -786,5 +786,6 @@ export const pl = {
   "pages.teachers.classes.homepage.class": "Klasy Spis treści",
   "pages.teachers.recommended.content": "Proponowana zawartość",
   "pages.teachers.recommended.content.desc": "Zaimponuj swoim uczniom treści, które mogą oglądać!",
-  "pages.class.homepage.disclaimer": "Zapisałeś się na studenckie konto! Twój nauczyciel może to usunąć i edytować w każdej chwili!"
+  "pages.class.homepage.disclaimer": "Zapisałeś się na studenckie konto! Twój nauczyciel może to usunąć i edytować w każdej chwili!",
+  "pages.teachers.intro": "Możesz zacząć nowe zajęcia poniżej. Po stworzeniu otrzymasz dalsze informacje!"
 };

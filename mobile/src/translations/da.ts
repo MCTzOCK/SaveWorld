@@ -786,5 +786,6 @@ export const da = {
   "pages.teachers.classes.homepage.class": "Kurser Hjem",
   "pages.teachers.recommended.content": "Foreslået indhold",
   "pages.teachers.recommended.content.desc": "Imponere dine elever med indhold, de kan se!",
-  "pages.class.homepage.disclaimer": "Du har tilmeldt dig en studiekonto! Din lærer kan slette og redigere dette til enhver tid!"
+  "pages.class.homepage.disclaimer": "Du har tilmeldt dig en studiekonto! Din lærer kan slette og redigere dette til enhver tid!",
+  "pages.teachers.intro": "Du kan starte nye klasser nedenfor. Du vil modtage yderligere oplysninger efter oprettelse!"
 };

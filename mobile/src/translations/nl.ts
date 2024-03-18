@@ -786,5 +786,6 @@ export const nl = {
   "pages.teachers.classes.homepage.class": "Lessen Begin",
   "pages.teachers.recommended.content": "Voorgestelde inhoud",
   "pages.teachers.recommended.content.desc": "Indruk op uw studenten met inhoud die ze kunnen kijken!",
-  "pages.class.homepage.disclaimer": "Je hebt je ingeschreven bij een studentenaccount! Uw leraar kan dit op elk moment verwijderen en bewerken!"
+  "pages.class.homepage.disclaimer": "Je hebt je ingeschreven bij een studentenaccount! Uw leraar kan dit op elk moment verwijderen en bewerken!",
+  "pages.teachers.intro": "Je kunt hieronder nieuwe lessen beginnen. U ontvangt verdere informatie na creatie!"
 };
