@@ -38,6 +38,7 @@ export default function QuizNode(props: { data: any }) {
         }}
         rounded={"md"}
         p={2}
+        maxW={"300px"}
       >
         <Stack gap={4}>
           <Badge colorScheme="orange" variant="solid">
