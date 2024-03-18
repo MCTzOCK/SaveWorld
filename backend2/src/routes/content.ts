@@ -578,7 +578,9 @@ export default async function contentPlugin(app: FastifyInstance, opts: any) {
       res.status(200).send({
         status: 200,
         articles,
-        pages: Math.ceil((await ArticleModel.countDocuments()) / PAGE_SIZE),
+        pages: Math.ceil(
+          (await ArticleModel.countDocuments(filter)) / PAGE_SIZE,
+        ),
         page,
       });
     },
@@ -651,7 +653,7 @@ export default async function contentPlugin(app: FastifyInstance, opts: any) {
       res.status(200).send({
         status: 200,
         quizzes,
-        pages: Math.ceil((await QuizModel.countDocuments()) / PAGE_SIZE),
+        pages: Math.ceil((await QuizModel.countDocuments(filter)) / PAGE_SIZE),
         page,
       });
     },
