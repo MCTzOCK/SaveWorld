@@ -14,6 +14,7 @@ import MobileBox from "../../components/MobileBox";
 import { Box, Button, Flex, Image } from "@chakra-ui/react";
 import { useIonRouter } from "@ionic/react";
 import { $$ } from "../../translations/i18n";
+import SustainabilityExplanation from "../../components/SustainabilityExplanation";
 
 export default function Sustainability() {
   const router = useIonRouter();
@@ -22,23 +23,7 @@ export default function Sustainability() {
     <>
       <Page title={$$("page.sustainability.title")}>
         <MobileBox>
-          <Flex
-            justifyContent={"center"}
-            direction={"column"}
-            w={"100%"}
-            alignItems={"center"}
-          >
-            <Image
-              src={"/assets/sustainability/sustainability_triangle.svg"}
-              maxW={"50%"}
-              rounded={"xl"}
-            />
-          </Flex>
-          {$$("pages.sustainability.section.1")}
-          <br />
-          {$$("pages.sustainability.section.2")}
-          <br />
-          {$$("pages.sustainability.section.3")}
+          <SustainabilityExplanation />
           <Button
             color={"brand.500"}
             w={"100%"}

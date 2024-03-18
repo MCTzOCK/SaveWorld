@@ -29,6 +29,7 @@ import { $$ } from "../translations/i18n";
 import { FaTrash } from "react-icons/fa6";
 import PopupManager from "../util/PopupManager";
 import { useIonRouter } from "@ionic/react";
+import SustainabilityExplanation from "./SustainabilityExplanation";
 
 export default function ClassHomepage() {
   const [c, setC] = useState<{
@@ -79,6 +80,9 @@ export default function ClassHomepage() {
         {$$("pages.class.homepage.disclaimer")}
       </Alert>
       <Box p={4}>
+        <Box w={["100%", "100%", "50%"]} maxW={["100%", "100%", "50%"]} mb={4}>
+          <SustainabilityExplanation noImage />
+        </Box>
         <Heading size={"lg"} mt={-2}>
           {$$("pages.teachers.recommended.content")}
         </Heading>

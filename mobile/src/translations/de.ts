@@ -945,7 +945,9 @@ export const german = {
   "permissions.cat.recipes": "Rezepte",
   "permissions.cat.school": "Schule",
   "pages.teachers.classes.intro":
-    "Herzlich Willkommen im Lehrerbereich für deine Klasse! Du kannst verschiedene Einstellungen bezüglich der Klasse treffen. Eine Klasse kann maximal 40 Schüler beinhalten, welche du über den Reiter 'Schüler' verwalten kannst. Des Weiteren kannst du einstellen, welche Funktionen von SaveWorld deine Schüler verwenden dürfen. Dies kannst du über den Reiter 'Berechtigungen' verwalten. Im Folgenden findest du eine umfassende Übersicht aller Optionen, die deiner Klasse zur Verfügung stehen.",
+    "Herzlich Willkommen im Lehrerbereich für deine Klasse! Du kannst verschiedene Einstellungen bezüglich der Klasse treffen. Eine Klasse kann maximal 40 Schüler beinhalten, welche du über den Reiter 'Schüler' verwalten kannst. Des Weiteren kannst du einstellen, welche Funktionen von SaveWorld deine Schüler verwenden dürfen. Dies kannst du über den Reiter 'Berechtigungen' verwalten. Im Folgenden findest du eine umfassende Übersicht aller Optionen, die deiner Klasse zur Verfügung stehen. Du erhältst für jeden Schüler jeweils eine eigene Mailadresse und einen Code, die du an die Schüler weitergibst. Damit können sie sich auf der Seite saveworld.one anmelden.",
+  "pages.teachers.intro":
+    "Unten kannst du neue Klassen anlegen. Weiterführende Informationen erhältst du nach Erstellung!",
   "pages.teachers.classes.homepage":
     "Passe an, was auf der Startseite deiner Schüler angezeigt wird!",
   "pages.teachers.classes.homepage.default": "Standard Startseite",
