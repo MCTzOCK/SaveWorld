@@ -786,5 +786,6 @@ export const en = {
   "pages.teachers.classes.homepage.class": "Classes Home",
   "pages.teachers.recommended.content": "Proposed content",
   "pages.teachers.recommended.content.desc": "Impress your students with content they can watch!",
-  "pages.class.homepage.disclaimer": "You signed up with a student account! Your teacher can delete and edit this at any time!"
+  "pages.class.homepage.disclaimer": "You signed up with a student account! Your teacher can delete and edit this at any time!",
+  "pages.teachers.intro": "You can start new classes below. You will receive further information after creation!"
 };

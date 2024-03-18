@@ -155,6 +155,7 @@ export default function E2Analytics() {
             },
           }}
           data={data}
+          height={window.innerHeight / 2}
         />
       </div>
     </>

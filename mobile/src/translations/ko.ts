@@ -786,5 +786,6 @@ export const ko = {
   "pages.teachers.classes.homepage.class": "클래스 홈",
   "pages.teachers.recommended.content": "Proposed 내용",
   "pages.teachers.recommended.content.desc": "학생들이 볼 수 있는 콘텐츠로 학생들을 감동!",
-  "pages.class.homepage.disclaimer": "학생 계정으로 가입! 선생님은 언제든지 삭제하고 편집 할 수 있습니다!"
+  "pages.class.homepage.disclaimer": "학생 계정으로 가입! 선생님은 언제든지 삭제하고 편집 할 수 있습니다!",
+  "pages.teachers.intro": "아래 새 수업을 시작할 수 있습니다. 창조 후 더 많은 정보를 받게 됩니다!"
 };

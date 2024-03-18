@@ -779,6 +779,16 @@ export default async function aiPlugin(app: FastifyInstance, opts: any) {
       for (const p of schoolClass.permissions) {
         perms.push(p);
       }
+
+      for (const p of DEFAULT_PERMISSIONS["user"]) {
+        if (!perms.find((x) => x.permission === p)) {
+          perms.push({
+            permission: p,
+            allowed: true,
+          });
+        }
+      }
+
       res.status(200).send({ permissions: perms });
     },
   );

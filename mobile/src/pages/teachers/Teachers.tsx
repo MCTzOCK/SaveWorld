@@ -12,7 +12,14 @@ import * as React from "react";
 import Page from "../../components/Page";
 import { $$ } from "../../translations/i18n";
 import MobileBox from "../../components/MobileBox";
-import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import {
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+} from "@chakra-ui/react";
 import { useRedirectForAnon } from "../../hooks/useRedirectForAnon";
 import SchoolClassesList from "../../components/SchoolClassesList";
 
@@ -22,6 +29,7 @@ export default function Teachers() {
     <>
       <Page title={$$("pages.teachers.area")}>
         <MobileBox>
+          <Text>{$$("pages.teachers.intro")}</Text>
           <Tabs colorScheme={"brand"} size={"md"} isFitted>
             <TabList>
               <Tab>{$$("pages.teachers.my.classes")}</Tab>

@@ -36,6 +36,7 @@ export default function VideoNode(props: { data: any }) {
         }}
         rounded={"md"}
         p={2}
+        maxW={"300px"}
       >
         <Stack gap={4}>
           <Badge colorScheme="brand" variant="solid">

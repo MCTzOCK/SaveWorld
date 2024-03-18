@@ -54,6 +54,7 @@ import {
   FaPeopleGroup,
   FaPerson,
   FaPlus,
+  FaQrcode,
   FaQuestion,
   FaRightFromBracket,
   FaRobot,
@@ -146,6 +147,13 @@ export default function DrawerMenu(props: {
             icon: <BiFlag />,
             onClick: () => {
               router.push("/language", "forward", "push");
+            },
+          },
+          {
+            label: $$("pages.fooddata.title"),
+            icon: <FaQrcode />,
+            onClick: () => {
+              router.push("/fooddata", "forward", "push");
             },
           },
         ],

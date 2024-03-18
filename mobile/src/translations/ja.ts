@@ -786,5 +786,6 @@ export const ja = {
   "pages.teachers.classes.homepage.class": "クラスホーム",
   "pages.teachers.recommended.content": "提案されたコンテンツ",
   "pages.teachers.recommended.content.desc": "生徒に見てもらえるコンテンツを感動!",
-  "pages.class.homepage.disclaimer": "学生アカウントにサインアップ! 教師はいつでもこれを削除して編集することができます!"
+  "pages.class.homepage.disclaimer": "学生アカウントにサインアップ! 教師はいつでもこれを削除して編集することができます!",
+  "pages.teachers.intro": "下記のレッスンを開始できます。 制作後にさらに詳しい情報が届きます!"
 };

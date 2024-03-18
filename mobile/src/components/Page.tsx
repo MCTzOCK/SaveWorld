@@ -166,16 +166,6 @@ export default function Page(props: {
                 {props.endButtons}
                 <IconButton
                   size={"lg"}
-                  icon={<FaBarcode />}
-                  aria-label={$$("pages.fooddata.barcode.scan")}
-                  variant={"ghost"}
-                  color={props.redGradient ? "red.500" : "brand.500"}
-                  onClick={() => {
-                    router.push("/fooddata", "forward", "push");
-                  }}
-                />
-                <IconButton
-                  size={"lg"}
                   onClick={onOpen}
                   icon={<FaBars />}
                   aria-label={$$("menu.menu")}

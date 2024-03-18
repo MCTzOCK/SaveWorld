@@ -8,7 +8,7 @@
  *
  */
 import PopupManager from "./PopupManager";
-import { Button, Image, Stack } from "@chakra-ui/react";
+import { Box, Button, Image, Stack, Text } from "@chakra-ui/react";
 import { $$ } from "../translations/i18n";
 
 export async function showQuiz(quiz: {
@@ -30,9 +30,13 @@ export async function showQuiz(quiz: {
             w={"100%"}
           />
           {quiz.answers.map((answer, index) => (
-            <Button
+            <Box
               key={index}
-              variant={"brand"}
+              rounded={"md"}
+              bg={"brand.600"}
+              p={2}
+              fontWeight={"700"}
+              cursor={"pointer"}
               onClick={() => {
                 if (index === quiz.correctAnswer) {
                   PopupManager.alert({
@@ -58,8 +62,8 @@ export async function showQuiz(quiz: {
                 }
               }}
             >
-              {answer}
-            </Button>
+              <Text wordBreak={"break-word"}>{answer}</Text>
+            </Box>
           ))}
         </Stack>
       </>
