@@ -62,7 +62,7 @@ export async function showQuiz(quiz: {
                 }
               }}
             >
-              <Text wordBreak={"break-all"}>{answer}</Text>
+              <Text wordBreak={"break-word"}>{answer}</Text>
             </Box>
           ))}
         </Stack>
