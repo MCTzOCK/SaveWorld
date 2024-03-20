@@ -31,9 +31,10 @@ export default function CO2LongDistanceTrain() {
           },
         ]}
         calculate={(v) => {
-          let co2 = 36;
+          let co2 = 0.36;
 
-          const result = Math.floor((v["distance"] * co2) / 100);
+
+          const result = Math.floor((v["distance"] * co2) / 10);
 
           return result + "kg CO2";
         }}
