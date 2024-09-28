@@ -138,6 +138,8 @@ export default function Footer() {
                 alt={"Jugend Forscht"}
                 width={"150px"}
               />
+            </Link>
+            <Link>
               <Image
                 src={"/buw.jpg"}
                 alt={"BundesUmweltWettbewerb"}
