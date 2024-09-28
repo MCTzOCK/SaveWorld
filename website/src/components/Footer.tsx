@@ -139,7 +139,7 @@ export default function Footer() {
                 width={"150px"}
               />
               <Image
-                src={"/buw.jpeg"}
+                src={"/buw.jpg"}
                 alt={"BundesUmweltWettbewerb"}
                 width={"150px"}
               />
