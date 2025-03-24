@@ -472,7 +472,7 @@ export default async function accountPlugin(app: FastifyInstance, opts: any) {
 
       const { update } = req.body;
 
-      if (!update) {
+      if (!(update)) {
         res.status(400).send({
           error: "Please provide an update object",
           status: 400,
