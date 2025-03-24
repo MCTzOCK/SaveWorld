@@ -1,0 +1,4 @@
+[submodule "ios-mobile"]
+	path = ios-mobile
+	url = https://github.com/MCTzOCK/SaveWorld-App.git
+	branch = main
