@@ -1,5 +1,7 @@
 # SaveWorld
 
+vorerst archiviert
+
 Die App für Nachhaltigkeit - nachhaltiges Denken bei Jugendlichen stärken!
 
 ![Header Image](https://download.ben-siebert.com/saveworld/assets/gh/header.png)
