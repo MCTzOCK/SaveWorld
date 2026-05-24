@@ -1,6 +1,6 @@
 # SaveWorld
 
-vorerst archiviert
+vorerst archiviert.
 
 Die App für Nachhaltigkeit - nachhaltiges Denken bei Jugendlichen stärken!
 
